@@ -11,6 +11,59 @@
 <link rel="stylesheet" href="assets/shared.css?v=ias2-chrome-wire-20261002">
 <link rel="stylesheet" href="assets/draft.css?v=ias2-chrome-wire-20261002">
 <link rel="stylesheet" href="assets/body-sum.css?v=ias2-body-sum-20261003">
+<style>
+/* Sequence steps already used in this chapter. Pack stylesheets are not in this checkout. */
+article.teaching .mini-flow { margin: 12px 0 8px; }
+article.teaching .vis-title { font-weight: 700; margin: 0 0 8px; }
+article.teaching .mini-flow-steps { display: flex; align-items: stretch; gap: 8px; flex-wrap: wrap; }
+article.teaching .mini-step {
+  flex: 1 1 140px;
+  border: 1px solid var(--line, #3a4553);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--surface, #1c2128);
+  color: var(--ink, #e8eaed);
+}
+article.teaching .mini-step-head { display: block; font-weight: 700; margin-bottom: 4px; }
+article.teaching .mini-arrow,
+article.teaching .mini-op { align-self: center; color: var(--accent, #6ba3d9); font-weight: 700; flex: 0 0 auto; }
+article.teaching .mini-arrow::before { content: "→"; }
+article.teaching .mini-out { display: block; margin-top: 6px; }
+article.teaching .mini-join {
+  align-self: center;
+  width: 18px;
+  height: 2px;
+  background: var(--accent, #6ba3d9);
+  flex: 0 0 auto;
+}
+article.teaching .mini-branch {
+  flex: 1.6 1 220px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 6px;
+  align-items: stretch;
+}
+article.teaching .mini-arm {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--accent, #6ba3d9);
+  font-weight: 700;
+}
+article.teaching .mini-bar {
+  display: block;
+  width: 14px;
+  height: 2px;
+  background: currentColor;
+}
+@media (max-width: 720px) {
+  article.teaching .mini-flow-steps { flex-direction: column; }
+  article.teaching .mini-arrow,
+  article.teaching .mini-op { text-align: center; }
+  article.teaching .mini-arrow::before { content: "↓"; }
+  article.teaching .mini-join { width: 2px; height: 14px; }
+}
+</style>
 <script src="assets/theme.js?v=ias2-fit-20261001"></script>
 <script src="assets/iframe-fit.js?v=ias2-fit-20261001"></script>
 </head>
@@ -41,11 +94,17 @@
 <p><strong>Inventories are measured at cost on initial recognition and, after initial recognition, at the lower of cost and net realisable value (NRV).</strong> <span class="cite cite-official">IAS 2 · para 9</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.15</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.34</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3</span></p>
 <ul>
   <li><strong>Lower of cost and net realisable value.</strong> <q>Inventories shall be measured at the lower of cost and net realisable value.</q> Initial measurement of inventories is at cost; after initial recognition, inventories are measured at the lower of cost and NRV. <span class="cite cite-official">IAS 2 · para 9</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.15</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3</span></li>
-  <li><strong>Cost — determined under paragraphs 10 to 27.</strong> The cost of inventories comprises all costs of purchase, costs of conversion and other costs incurred in bringing the inventories to their present location and condition (<a href="ch03.html#s-3-1">Chapter 3 · 3.1</a>), assigned to items by specific identification or by the first-in, first-out (FIFO) or weighted average cost formula (<a href="ch03.html#s-3-10">Chapter 3 · 3.10</a>). <span class="cite cite-official">IAS 2 · para 10</span> <span class="cite cite-official">IAS 2 · para 23</span> <span class="cite cite-official">IAS 2 · para 25</span></li>
-  <li><strong>No reasonable expectation of sufficient future revenue to cover cost — irrecoverable cost charged as an expense.</strong> If there is no reasonable expectation of sufficient future revenue to cover cost incurred, the irrecoverable cost is charged as an expense in the period under review. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.34</span></li>
-  <li><strong>Write-down to NRV — an expense in the period the write-down occurs.</strong> When the NRV of an item of inventory is less than its cost, the excess is written off immediately in profit or loss: the amount of any write-down of inventories to NRV is recognised as an expense in the period the write-down occurs (<a href="ch05.html#s-5-2">Chapter 5 · 5.2</a>). <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.10</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
+  <li><strong>Cost.</strong> The cost of inventories, determined under paragraphs 10 to 27, comprises all costs of purchase, costs of conversion and other costs incurred in bringing the inventories to their present location and condition (<a href="ch03.html#s-3-1">Chapter 3 · 3.1</a>), assigned to items by
+    <ul>
+      <li>specific identification</li>
+      <li>the FIFO</li>
+      <li>or weighted average cost formula</li>
+    </ul>
+    (<a href="ch03.html#s-3-10">Chapter 3 · 3.10</a>). <span class="cite cite-official">IAS 2 · para 10</span> <span class="cite cite-official">IAS 2 · para 23</span> <span class="cite cite-official">IAS 2 · para 25</span></li>
+  <li><strong>Irrecoverable cost.</strong> If there is no reasonable expectation of sufficient future revenue to cover cost incurred, the irrecoverable cost is charged as an expense in the period under review. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.34</span></li>
+  <li><strong>Write-down to NRV.</strong> When the NRV of an item of inventory is less than its cost, the excess is written off immediately in profit or loss: the amount of any write-down of inventories to NRV is recognised as an expense in the period the write-down occurs (<a href="ch05.html#s-5-2">Chapter 5 · 5.2</a>). <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.10</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
 </ul>
-<p><strong>Carrying amount after comparing cost with net realisable value.</strong> The comparison is made item by item, or for groups of similar or related items (<a href="#s-4-4">4.4</a>). <span class="cite cite-official">IAS 2 · para 9</span> <span class="cite cite-official">IAS 2 · para 29</span> <span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para 34</span></p>
+<p><strong>Carrying amount.</strong> The carrying amount after comparing cost with net realisable value: the comparison is made item by item, or for groups of similar or related items (<a href="#s-4-4">4.4</a>).</p>
 <div class="table-wrap"><table class="vis-table">
   <thead><tr><th>Result of the comparison</th><th>Carrying amount</th><th>Profit or loss</th><th>IAS 2</th><th>Section</th></tr></thead>
   <tbody>
@@ -54,6 +113,7 @@
     <tr><td>In a subsequent period, the circumstances that caused the write-down no longer exist, or there is clear evidence of an increase in NRV because of changed economic circumstances</td><td>Lower of cost and revised NRV — the reversal is limited to the amount of the original write-down</td><td>Reversal recognised as a reduction in the amount of inventories recognised as an expense</td><td>paras 33, 34</td><td><a href="#s-4-7">4.7</a></td></tr>
   </tbody>
 </table></div>
+<p><span class="cite cite-official">IAS 2 · para 9</span> <span class="cite cite-official">IAS 2 · para 29</span> <span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para 34</span></p>
 
 <h3 id="s-4-1">4.1 Net realisable value<a class="sec-top" href="#page-map">top</a></h3>
 
@@ -68,8 +128,15 @@
   <span class="cost-sum-op">=</span>
   <div class="cost-sum-term cost-sum-result">Net realisable value</div>
 </div> <span class="cite cite-official">IAS 2 · para 6</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.34</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.330.10</span></li>
-  <li><strong>Costs of sale include directly attributable marketing and distribution costs.</strong> The costs of sale include directly attributable marketing and distribution costs. Distribution costs that are not included in the cost of inventories (<a href="ch03.html#s-3-ex-dtt-distrib">Chapter 3 · Distribution, packaging and transport costs</a>) are taken into account when assessing NRV. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.330.10</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.22.4</span></li>
-  <li><strong>NRV may fall below cost for many reasons.</strong> The NRV of an item of inventory may fall below its cost for many reasons, including damage, obsolescence, a decline in selling prices, or an increase in the estimate of costs to complete and market the inventories (<a href="#s-4-3">4.3</a>). <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-official">IAS 2 · para 28</span></li>
+  <li><strong>Costs of sale.</strong> The costs of sale include directly attributable marketing and distribution costs. Distribution costs that are not included in the cost of inventories (<a href="ch03.html#s-3-ex-dtt-distrib">Chapter 3 · Distribution, packaging and transport costs</a>) are taken into account when assessing NRV. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.330.10</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.22.4</span></li>
+  <li><strong>Below cost.</strong> The NRV of an item of inventory may fall below its cost for many reasons, including
+    <ul>
+      <li>damage</li>
+      <li>obsolescence</li>
+      <li>a decline in selling prices</li>
+      <li>or an increase in the estimate of costs to complete and market the inventories</li>
+    </ul>
+    (<a href="#s-4-3">4.3</a>). <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-official">IAS 2 · para 28</span></li>
 </ul>
 <div class="mini-flow" role="group" aria-label="Net realisable value, paragraph 6">
   <p class="vis-title">Net realisable value — paragraph 6</p>
@@ -95,20 +162,45 @@
     </div>
   </div>
 </div>
+  <p>How is net realisable value estimated from the selling price, the costs of completion and the costs necessary to make the sale?</p>
 
 <h4 id="s-4-ex-costs-sell">Costs necessary to make the sale</h4>
 <ul>
-  <li><strong>IAS 2 does not identify which costs are necessary to make the sale.</strong> Paragraphs 28 to 33 include further requirements on how an entity estimates NRV, but do not identify which specific costs are “necessary to make the sale” of inventories — in particular, whether such costs are limited to incremental costs. Paragraph 28 describes the objective of writing inventories down to NRV as being to avoid inventories being carried <q>in excess of amounts expected to be realised from their sale</q>. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2-1</span> <span class="cite cite-official">IAS 2 · para 28</span></li>
-  <li><strong>Not limited to incremental costs — the costs necessary to make the sale in the ordinary course of business.</strong> IAS 2 requires an entity to estimate the costs necessary to make the sale. That requirement does not allow the entity to limit those costs to only those that are incremental, which could exclude costs the entity must incur to sell its inventories but which are not incremental to a particular sale; including only incremental costs could fail to achieve the objective in paragraph 28. The entity uses its judgement to determine which costs are necessary to make the sale, considering its specific facts and circumstances, including the nature of the inventories. This conclusion was confirmed by the IFRS Interpretations Committee in the June 2021 IFRIC Update. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2-1</span> <span class="cite cite-official">IAS 2 · para 6</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.330.10</span></li>
-  <li><strong>Earlier analogy to IAS 36 costs of disposal — change in accounting policy.</strong> Before the agenda decision, entities may have concluded that it was acceptable to limit the costs necessary to make the sale to incremental costs, by analogy to IAS 36, which defines ‘costs of disposal’ as the “incremental costs directly attributable to the disposal of an asset, excluding finance costs and income tax expense”. An entity that determines it needs to change its accounting policy as a result of the agenda decision is entitled to take sufficient time to make that determination and implement the change, but is expected to implement it on a timely basis and, if material, considers whether disclosure related to the change is required. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2-1</span></li>
+  <li><strong>Which costs.</strong> IAS 2 does not identify which costs are necessary to make the sale. Paragraphs 28 to 33 include further requirements on how an entity estimates NRV, but do not identify which specific costs are “necessary to make the sale” of inventories — in particular, whether such costs are limited to incremental costs. Paragraph 28 describes the objective of writing inventories down to NRV as being to avoid inventories being carried <q>in excess of amounts expected to be realised from their sale</q>. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2-1</span> <span class="cite cite-official">IAS 2 · para 28</span></li>
+  <li><strong>Incremental costs.</strong>
+    <div class="table-wrap"><table class="vis-table">
+      <thead><tr><th>Case</th><th>Treatment</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Before the agenda decision</td>
+          <td><ul>
+            <li>Earlier analogy to IAS 36 costs of disposal.</li>
+            <li>Before the agenda decision, entities may have concluded that it was acceptable to limit the costs necessary to make the sale to incremental costs.</li>
+            <li>by analogy to IAS 36, which defines ‘costs of disposal’ as the “incremental costs directly attributable to the disposal of an asset, excluding finance costs and income tax expense”.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td>June 2021 IFRIC Update</td>
+          <td><ul>
+            <li>Not limited to incremental costs — the costs necessary to make the sale in the ordinary course of business.</li>
+            <li>IAS 2 requires an entity to estimate the costs necessary to make the sale.</li>
+            <li>That requirement does not allow the entity to limit those costs to only those that are incremental, which could exclude costs the entity must incur to sell its inventories but which are not incremental to a particular sale.</li>
+            <li>Including only incremental costs could fail to achieve the objective in paragraph 28.</li>
+            <li>The entity uses its judgement to determine which costs are necessary to make the sale, considering its specific facts and circumstances, including the nature of the inventories.</li>
+            <li>This conclusion was confirmed by the IFRS Interpretations Committee in the June 2021 IFRIC Update.</li>
+          </ul></td>
+        </tr>
+      </tbody>
+    </table></div>
+    An entity that determines it needs to change its accounting policy as a result of the agenda decision is entitled to take sufficient time to make that determination and implement the change, but is expected to implement it on a timely basis and, if material, considers whether disclosure related to the change is required. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2-1</span> <span class="cite cite-official">IAS 2 · para 6</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.330.10</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2-1</span></li>
 </ul>
 
 <h3 id="s-4-2">4.2 Net realisable value and fair value<a class="sec-top" href="#page-map">top</a></h3>
-<p><strong>fair value is not. NRV for inventories may not equal fair value less costs to sell.</strong> <span class="cite cite-official">IAS 2 · para 7</span></p>
+<p><strong>Fair value is not. NRV for inventories may not equal fair value less costs to sell.</strong> <span class="cite cite-official">IAS 2 · para 7</span></p>
 <ul>
-  <li><strong>Entity-specific value and market-participant price.</strong> <q>Net realisable value refers to the net amount that an entity expects to realise from the sale of inventory in the ordinary course of business. Fair value reflects the price at which an orderly transaction to sell the same inventory in the principal (or most advantageous) market for that inventory would take place between market participants at the measurement date. The former is an entity-specific value; the latter is not. Net realisable value for inventories may not equal fair value less costs to sell.</q> Fair value is the price that would be received to sell an asset or paid to transfer a liability in an orderly transaction between market participants at the measurement date (IFRS 13). <span class="cite cite-official">IAS 2 · para 7</span> <span class="cite cite-official">IAS 2 · para 6</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.330.10</span></li>
-  <li><strong>Favourable binding sales contracts — NRV differs from fair value less costs to sell.</strong> NRV will not equal fair value less costs to sell, for example, when the reporting entity has secured favourable binding sales contracts that have not been affected by more recent adverse market conditions. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span></li>
-  <li><strong>Fair value for broker-traders; NRV for producers.</strong> Fair values are the appropriate measurement bases for broker-traders, because they have access to ready markets; NRV is appropriate for producers, because they might not have such access. Where inventories are measured at fair value, that fair value is measured in accordance with IFRS 13. For mineral inventories with a current market price of C10 per tonne and a forward contract to sell at C12 per tonne, fair value is C10 per tonne but NRV is C12 per tonne (<a href="ch01.html#s-1-ex-nrv-fv">Illustration 1.3.3</a>). <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.8.1</span> <span class="cite cite-official">IAS 2 · para 3(b)</span></li>
+  <li><strong>Entity-specific value.</strong> <q>Net realisable value refers to the net amount that an entity expects to realise from the sale of inventory in the ordinary course of business. Fair value reflects the price at which an orderly transaction to sell the same inventory in the principal (or most advantageous) market for that inventory would take place between market participants at the measurement date. The former is an entity-specific value; the latter is not. Net realisable value for inventories may not equal fair value less costs to sell.</q> Fair value is the price that would be received to sell an asset or paid to transfer a liability in an orderly transaction between market participants at the measurement date (IFRS 13). That price is a market-participant price. <span class="cite cite-official">IAS 2 · para 7</span> <span class="cite cite-official">IAS 2 · para 6</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.330.10</span></li>
+  <li><strong>Favourable binding sales contracts.</strong> NRV differs from fair value less costs to sell. NRV will not equal fair value less costs to sell, for example, when the reporting entity has secured favourable binding sales contracts that have not been affected by more recent adverse market conditions. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span></li>
+  <li><strong>Broker-traders and producers.</strong> Fair values are the appropriate measurement bases for broker-traders, because they have access to ready markets; NRV is appropriate for producers, because they might not have such access. Where inventories are measured at fair value, that fair value is measured in accordance with IFRS 13. For mineral inventories with a current market price of C10 per tonne and a forward contract to sell at C12 per tonne, fair value is C10 per tonne but NRV is C12 per tonne (<a href="ch01.html#s-1-ex-nrv-fv">Illustration 1.3.3</a>). <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.8.1</span> <span class="cite cite-official">IAS 2 · para 3(b)</span></li>
 </ul>
 <div class="table-wrap"><table class="vis-table">
   <thead><tr><th></th><th>Net realisable value</th><th>Fair value</th><th>Source</th></tr></thead>
@@ -159,9 +251,17 @@
 <h3 id="s-4-3">4.3 Circumstances in which the cost of inventories may not be recoverable<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>The cost of inventories may not be recoverable if they are damaged, wholly or partially obsolete or their selling prices have declined, or if the estimated costs of completion or of making the sale have increased; the inventories are then written down below cost to NRV.</strong> <span class="cite cite-official">IAS 2 · para 28</span></p>
 <ul>
-  <li><strong>Assets not carried in excess of amounts expected to be realised from their sale or use.</strong> <q>The cost of inventories may not be recoverable if those inventories are damaged, if they have become wholly or partially obsolete, or if their selling prices have declined. The cost of inventories may also not be recoverable if the estimated costs of completion or the estimated costs to be incurred to make the sale have increased. The practice of writing inventories down below cost to net realisable value is consistent with the view that assets should not be carried in excess of amounts expected to be realised from their sale or use.</q> <span class="cite cite-official">IAS 2 · para 28</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span></li>
-  <li><strong>Principal situations in which NRV is likely to be less than cost.</strong> An increase in costs to complete or selling costs, or a fall in selling price; physical deterioration of inventories; obsolescence of products; a decision, as part of a company’s marketing strategy, to manufacture and sell products at a loss; and an error in production or purchasing. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.35</span> <span class="cite cite-official">IAS 2 · para 28</span></li>
-  <li><strong>Changes in exchange rates — may require an NRV write-down.</strong> Changes in exchange rates may require an NRV write-down (<a href="#s-4-ex-kpmg-fx-nrv">Illustration 4.3.1</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.380.10</span></li>
+  <li><strong>Sale or use.</strong> <q>The cost of inventories may not be recoverable if those inventories are damaged, if they have become wholly or partially obsolete, or if their selling prices have declined. The cost of inventories may also not be recoverable if the estimated costs of completion or the estimated costs to be incurred to make the sale have increased. The practice of writing inventories down below cost to net realisable value is consistent with the view that assets should not be carried in excess of amounts expected to be realised from their sale or use.</q> <span class="cite cite-official">IAS 2 · para 28</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span></li>
+  <li><strong>Principal situations.</strong> Principal situations in which NRV is likely to be less than cost:
+    <ul>
+      <li>An increase in costs to complete or selling costs, or a fall in selling price</li>
+      <li>physical deterioration of inventories</li>
+      <li>obsolescence of products</li>
+      <li>a decision, as part of a company’s marketing strategy, to manufacture and sell products at a loss</li>
+      <li>and an error in production or purchasing</li>
+    </ul>
+    <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.35</span> <span class="cite cite-official">IAS 2 · para 28</span></li>
+  <li><strong>Exchange rates.</strong> Changes in exchange rates may require an NRV write-down (<a href="#s-4-ex-kpmg-fx-nrv">Illustration 4.3.1</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.380.10</span></li>
 </ul>
 <div class="table-wrap"><table class="vis-table">
   <thead><tr><th>Circumstance</th><th>Effect</th><th>Source</th></tr></thead>
@@ -223,9 +323,9 @@
 <h3 id="s-4-4">4.4 Item by item and groups of similar or related items<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>Inventories are usually written down to NRV item by item; in some circumstances it may be appropriate to group similar or related items, but not a classification of inventory or all the inventories in an operating segment.</strong> <span class="cite cite-official">IAS 2 · para 29</span></p>
 <ul>
-  <li><strong>Item by item; groups of similar or related items in the same product line.</strong> <q>Inventories are usually written down to net realisable value item by item. In some circumstances, however, it may be appropriate to group similar or related items. This may be the case with items of inventory relating to the same product line that have similar purposes or end uses, are produced and marketed in the same geographical area, and cannot be practicably evaluated separately from other items in that product line. It is not appropriate to write inventories down on the basis of a classification of inventory, for example, finished goods, or all the inventories in a particular operating segment.</q> <span class="cite cite-official">IAS 2 · para 29</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.36</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.340.10</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 3.3</span></li>
-  <li><strong>Clothing textiles — NRV assessed for all textiles for a season.</strong> In the clothing textile industry it may not be possible to determine selling prices for each textile individually, and therefore it may be necessary to perform the NRV assessment on all textiles that will be used to produce clothing for a particular season. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.340.20</span></li>
-  <li><strong>Retailers — not the whole department store.</strong> Retailers do not generally determine NRV write-downs on the basis of the whole department store, because different departments usually have different margins. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.340.30</span></li>
+  <li><strong>Item by item.</strong> <q>Inventories are usually written down to net realisable value item by item. In some circumstances, however, it may be appropriate to group similar or related items. This may be the case with items of inventory relating to the same product line that have similar purposes or end uses, are produced and marketed in the same geographical area, and cannot be practicably evaluated separately from other items in that product line. It is not appropriate to write inventories down on the basis of a classification of inventory, for example, finished goods, or all the inventories in a particular operating segment.</q> <span class="cite cite-official">IAS 2 · para 29</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.36</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.340.10</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 3.3</span></li>
+  <li><strong>Clothing textiles.</strong> In the clothing textile industry it may not be possible to determine selling prices for each textile individually, and therefore it may be necessary to perform the NRV assessment on all textiles that will be used to produce clothing for a particular season. NRV assessed for all textiles for a season. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.340.20</span></li>
+  <li><strong>Retailers.</strong> Retailers do not generally determine NRV write-downs on the basis of the whole department store, because different departments usually have different margins. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.340.30</span></li>
 </ul>
 <div class="table-wrap" id="s-4-ex-a"><table class="vis-table">
   <thead><tr><th>Basis for writing inventories down to NRV</th><th>Appropriate?</th><th>Source</th></tr></thead>
@@ -241,7 +341,18 @@
 
 <h4 id="s-4-ex-formula">Write-down formulas</h4>
 <ul>
-  <li><strong>Formulas based on predetermined criteria — results reviewed for special circumstances.</strong> The initial calculation of a write-down to reduce inventory from cost to NRV might often be made by the use of formulas based on predetermined criteria. The formulas normally take account of the age, movements in the past, expected future movements and estimated scrap values of the inventory, as appropriate. Whilst the use of such a formula establishes a basis for making a write-down that can be consistently applied, it is still necessary for the results to be reviewed in the light of any special circumstances that cannot be anticipated in the formula, such as changes in external market information or in the state of the order book. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.36.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.36</span> <span class="cite cite-official">IAS 2 · para 29</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 3.3</span></li>
+  <li><strong>Formulas.</strong> The initial calculation of a write-down to reduce inventory from cost to NRV might often be made by the use of formulas based on predetermined criteria. The formulas normally take account of
+    <ul>
+      <li>the age</li>
+      <li>movements in the past</li>
+      <li>expected future movements</li>
+      <li>and estimated scrap values of the inventory, as appropriate</li>
+    </ul>
+    Whilst the use of such a formula establishes a basis for making a write-down that can be consistently applied, it is still necessary for the results to be reviewed in the light of any special circumstances that cannot be anticipated in the formula, such as
+    <ul>
+      <li>changes in external market information</li>
+      <li>or in the state of the order book</li>
+    </ul> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.36.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.36</span> <span class="cite cite-official">IAS 2 · para 29</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 3.3</span></li>
 </ul>
 <div class="mini-flow" role="group" aria-label="Write-down formulas">
   <p class="vis-title">Write-down calculated by formula — PwC FAQ 25.36.1</p>
@@ -264,18 +375,19 @@
     </div>
   </div>
 </div>
+  <p>Is the initial calculation of a write-down by formulas based on predetermined criteria still reviewed for special circumstances?</p>
 
 <h3 id="s-4-5">4.5 Estimates of net realisable value<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>Estimates of NRV are based on the most reliable evidence available at the time the estimates are made, and take into consideration the purpose for which the inventory is held.</strong> <span class="cite cite-official">IAS 2 · para 30</span> <span class="cite cite-official">IAS 2 · para 31</span></p>
 <ul>
-  <li><strong>Most reliable evidence; events after the period that confirm conditions at the end of the period.</strong> <q>Estimates of net realisable value are based on the most reliable evidence available at the time the estimates are made, of the amount the inventories are expected to realise. These estimates take into consideration fluctuations of price or cost directly relating to events occurring after the end of the period to the extent that such events confirm conditions existing at the end of the period.</q> When estimating NRV, management considers all of the facts relating to the inventories and the operating environment at the time the estimates are made. <span class="cite cite-official">IAS 2 · para 30</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.39</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.360.10</span></li>
-  <li><strong>Purpose for which the inventory is held.</strong> <q>Estimates of net realisable value also take into consideration the purpose for which the inventory is held. For example, the net realisable value of the quantity of inventory held to satisfy firm sales or service contracts is based on the contract price. If the sales contracts are for less than the inventory quantities held, the net realisable value of the excess is based on general selling prices. Provisions may arise from firm sales contracts in excess of inventory quantities held or from firm purchase contracts. Such provisions are dealt with under IAS 37 Provisions, Contingent Liabilities and Contingent Assets.</q> <span class="cite cite-official">IAS 2 · para 31</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.38</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.10</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.10</span></li>
+  <li><strong>Most reliable evidence.</strong> <q>Estimates of net realisable value are based on the most reliable evidence available at the time the estimates are made, of the amount the inventories are expected to realise. These estimates take into consideration fluctuations of price or cost directly relating to events occurring after the end of the period to the extent that such events confirm conditions existing at the end of the period.</q> When estimating NRV, management considers all of the facts relating to the inventories and the operating environment at the time the estimates are made. <span class="cite cite-official">IAS 2 · para 30</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.39</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.360.10</span></li>
+  <li><strong>Purpose.</strong> <q>Estimates of net realisable value also take into consideration the purpose for which the inventory is held. For example, the net realisable value of the quantity of inventory held to satisfy firm sales or service contracts is based on the contract price. If the sales contracts are for less than the inventory quantities held, the net realisable value of the excess is based on general selling prices. Provisions may arise from firm sales contracts in excess of inventory quantities held or from firm purchase contracts. Such provisions are dealt with under IAS 37 Provisions, Contingent Liabilities and Contingent Assets.</q> <span class="cite cite-official">IAS 2 · para 31</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.38</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.10</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.10</span></li>
 </ul>
 
 <h4 id="s-4-5-events">Events after the reporting period</h4>
 <ul>
-  <li><strong>Events after the reporting date that evidence cost above NRV at the reporting date — written down to NRV at that date.</strong> Events after the reporting date may provide evidence that the cost of inventory exceeds its NRV at the reporting date; in these cases, the inventory is written down to its NRV at the reporting date. Events occurring between the balance sheet date and the date of completion of the financial statements — for example, a subsequent reduction in selling prices — are considered in arriving at NRV at the balance sheet date, to the extent that they confirm conditions existing at the end of the year. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.360.10</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.39</span> <span class="cite cite-official">IAS 2 · para 30</span></li>
-  <li><strong>IAS 10 — a sale after the balance sheet date gives evidence of NRV.</strong> IAS 10 gives examples of events that require an adjustment to amounts recognised at the balance sheet date; one such example, in paragraph 9(b) of IAS 10, refers to the sale of inventories after the balance sheet date as giving evidence of their NRV at the balance sheet date. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.39.1</span> <span class="cite cite-official">IAS 10 · para 9(b)</span></li>
+  <li><strong>Reporting date.</strong> Events after the reporting date that evidence cost above NRV at the reporting date are written down to NRV at that date. Events after the reporting date may provide evidence that the cost of inventory exceeds its NRV at the reporting date; in these cases, the inventory is written down to its NRV at the reporting date. Events occurring between the balance sheet date and the date of completion of the financial statements — for example, a subsequent reduction in selling prices — are considered in arriving at NRV at the balance sheet date, to the extent that they confirm conditions existing at the end of the year. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.360.10</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.39</span> <span class="cite cite-official">IAS 2 · para 30</span></li>
+  <li><strong>IAS 10.</strong> IAS 10 gives examples of events that require an adjustment to amounts recognised at the balance sheet date; one such example, in paragraph 9(b) of IAS 10, refers to the sale of inventories after the balance sheet date as giving evidence of their NRV at the balance sheet date. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.39.1</span> <span class="cite cite-official">IAS 10 · para 9(b)</span></li>
 </ul>
 <div class="mini-flow" role="group" aria-label="Price or cost changes after the end of the reporting period">
   <p class="vis-title">Price or cost changes after the end of the reporting period — paragraph 30</p>
@@ -304,6 +416,7 @@
     </div>
   </div>
 </div>
+  <p>Do fluctuations of price or cost after the end of the period confirm conditions existing at the end of the period?</p>
 
 <div class="worked-strip" id="s-4-ex-post">
   <p class="worked-strip-title"><strong>Illustration: 4.5.1 — Sale after the reporting period at a price below cost</strong><span class="cite-row"><span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1-2</span> <span class="cite cite-official">IAS 2 · para 30</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 3.3.1</span></span></p>
@@ -312,7 +425,7 @@
       <p class="box-title">Facts</p>
       <div class="box-body">
         <ul>
-          <li>An item of inventory cost <strong>CU100</strong>.</li>
+          <li>An item of inventory cost <strong>currency units (CU) 100</strong>.</li>
           <li>It is sold after the reporting period for <strong>CU80</strong>.</li>
         </ul>
       </div>
@@ -396,6 +509,7 @@
       </div>
     </div>
   </div>
+  <p>Is the inventory of Company P written down from 100 to 95 in the 31 December 2019 financial statements?</p>
 </div>
 
 <div class="worked-strip" id="s-4-ex-dev">
@@ -496,6 +610,7 @@
       </div>
     </div>
   </div>
+  <p>Is the change of models after the year end reflected in the carrying value of the inventories at the year end?</p>
 </div>
 
 <div class="worked-strip" id="s-4-ex-long">
@@ -517,7 +632,13 @@
       <div class="box-body">
         <ul>
           <li>Because no relevant market exists for the two-year work in progress, the entity may use as its starting point the <strong>current selling price</strong> for the inventory in its completed state.</li>
-          <li>It deducts expected <strong>holding costs (including finance costs)</strong>, outstanding <strong>costs of conversion</strong> and <strong>costs to sell</strong>.</li>
+          <li>It deducts
+            <ul>
+              <li>expected <strong>holding costs (including finance costs)</strong></li>
+              <li>outstanding <strong>costs of conversion</strong></li>
+              <li>and <strong>costs to sell</strong></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -544,8 +665,8 @@
 
 <h4 id="s-4-5-purpose">Purpose for which the inventory is held — intended use</h4>
 <ul>
-  <li><strong>Estimated selling price takes into account the intended use.</strong> The estimated selling price takes into account the intended use of the items. The calculation of NRV takes account of the intended use of the inventory — for example, the NRV of inventories held to satisfy a particular sales or service contract is based on the contract price (<a href="#s-4-5-contracts">firm sales contracts</a>). Materials held for use in production, and materials to be sold in their current form: <a href="#s-4-6">4.6</a>. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.10</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.38</span> <span class="cite cite-official">IAS 2 · para 31</span></li>
-  <li><strong>Operating losses — no automatic write-down of inventory.</strong> Operating losses do not result in an automatic write-down of inventory (<a href="#s-4-ex-kpmg-oploss">Illustration 4.5.7</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.30</span></li>
+  <li><strong>Intended use.</strong> The estimated selling price takes into account the intended use of the items. The calculation of NRV takes account of the intended use of the inventory — for example, the NRV of inventories held to satisfy a particular sales or service contract is based on the contract price (<a href="#s-4-5-contracts">firm sales contracts</a>). Materials held for use in production, and materials to be sold in their current form: <a href="#s-4-6">4.6</a>. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.10</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.38</span> <span class="cite cite-official">IAS 2 · para 31</span></li>
+  <li><strong>Operating losses.</strong> Operating losses do not result in an automatic write-down of inventory (<a href="#s-4-ex-kpmg-oploss">Illustration 4.5.7</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.30</span></li>
 </ul>
 
 <div class="worked-strip" id="s-4-ex-kpmg-intended">
@@ -557,7 +678,7 @@
         <ul>
           <li>Company P, a cabinet manufacturer, has raw material timber inventory at 31 December 2019 with a carrying amount of <strong>100</strong>; the current market value of that timber is <strong>95</strong>.</li>
           <li>P intends to use the timber to manufacture cabinets, so NRV is based on the finished cabinets and not on the timber in its raw material form: selling price of the cabinets <strong>160</strong>; estimated costs to completion and sale <strong>50</strong>.</li>
-          <li>NRV of the timber <strong>110</strong> (160 − 50) is higher than its carrying amount of 100 — <strong>no write-down</strong> at 31 December 2019.</li>
+          <li>NRV of the timber is higher than its carrying amount of 100 — <strong>no write-down</strong> at 31 December 2019.</li>
         </ul>
       </div>
     </div>
@@ -581,6 +702,13 @@
         </ul>
       </div>
     </div>
+  </div>
+  <div class="cost-sum" role="group" aria-label="Selling price of the cabinets less estimated costs to completion and sale equals net realisable value of the timber">
+    <div class="cost-sum-term">selling price of the cabinets 160</div>
+    <span class="cost-sum-op">−</span>
+    <div class="cost-sum-term">estimated costs to completion and sale 50</div>
+    <span class="cost-sum-op">=</span>
+    <div class="cost-sum-term cost-sum-result">NRV of the timber 110</div>
   </div>
   <div class="table-wrap"><table class="vis-table">
     <thead><tr><th>Inventory at 31 December 2019</th><th>Carrying amount</th><th>Current market value</th><th>Intended use</th><th>NRV based on</th><th>Write-down</th></tr></thead>
@@ -635,10 +763,15 @@
 
 <h4 id="s-4-5-contracts">Firm sales contracts</h4>
 <ul>
-  <li><strong>Inventory held to satisfy firm sales contracts — contract price; excess — general selling prices.</strong> The determination of NRV takes into account firm sales contracts that have been entered into. The NRV of inventory held to satisfy firm sales contracts is based on the selling price under those contracts; the NRV of inventory held in excess of firm sales contracts is based on general selling prices without regard to the firm sales contracts. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.10</span> <span class="cite cite-official">IAS 2 · para 31</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.38</span></li>
-  <li><strong>Sales commitment derivatives — contract price including their fair value.</strong> Where forward contracts entered into to manage inventory levels are in the scope of IFRS 9 and accounted for under its guidance, in KPMG’s view the NRV of the inventory held to satisfy firm sales contracts is based on the contract price including the fair value of the related sales commitment derivatives; the NRV of inventory held in excess of firm sales contracts is based on general selling prices without regard to the specific sales contracts (<a href="#s-4-ex-kpmg-firm-deriv">Illustration 4.5.10</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.50</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.60</span></li>
-  <li><strong>Contract to sell inventory for less than the cost of fulfilling it.</strong> If an entity has a contract to sell inventory for less than the cost of fulfilling the obligations under the contract, the inventory held to satisfy that contract is written down by the amount by which the cost of fulfilling the obligations exceeds the selling price. If that excess is greater than the carrying amount of the inventory, the entity considers the guidance in IAS 37 on onerous contracts. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.70</span> <span class="cite cite-official">IAS 2 · para 31</span></li>
-  <li><strong>Onerous contracts for future sales or future purchases — IAS 37.</strong> Contracts for future sales, or for future purchases of raw materials, might give rise to provisions where such contracts are onerous — for example, a future sales contract set at a price below the entity’s cost of production of the relevant goods, or a purchase commitment for goods or raw materials at a price above the price at which the entity can sell on the goods or manufacture the finished product from the raw materials. Onerous contracts are accounted for under IAS 37. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.38</span> <span class="cite cite-official">IAS 2 · para 31</span></li>
+  <li><strong>Firm sales contracts.</strong> The determination of NRV takes into account firm sales contracts that have been entered into.
+    <ul>
+      <li>The NRV of inventory held to satisfy firm sales contracts is based on the selling price under those contracts</li>
+      <li>The NRV of inventory held in excess of firm sales contracts is based on general selling prices without regard to the firm sales contracts</li>
+    </ul>
+    <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.10</span> <span class="cite cite-official">IAS 2 · para 31</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.38</span></li>
+  <li><strong>Sales commitment derivatives.</strong> Where forward contracts entered into to manage inventory levels are in the scope of IFRS 9 and accounted for under its guidance, in KPMG’s view the NRV of the inventory held to satisfy firm sales contracts is based on the contract price including the fair value of the related sales commitment derivatives; the NRV of inventory held in excess of firm sales contracts is based on general selling prices without regard to the specific sales contracts (<a href="#s-4-ex-kpmg-firm-deriv">Illustration 4.5.10</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.50</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.60</span></li>
+  <li><strong>Cost of fulfilling.</strong> If an entity has a contract to sell inventory for less than the cost of fulfilling the obligations under the contract, the inventory held to satisfy that contract is written down by the amount by which the cost of fulfilling the obligations exceeds the selling price. If that excess is greater than the carrying amount of the inventory, the entity considers the guidance in IAS 37 on onerous contracts. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.390.70</span> <span class="cite cite-official">IAS 2 · para 31</span></li>
+  <li><strong>Onerous contracts.</strong> Contracts for future sales, or for future purchases of raw materials, might give rise to provisions where such contracts are onerous — for example, a future sales contract set at a price below the entity’s cost of production of the relevant goods, or a purchase commitment for goods or raw materials at a price above the price at which the entity can sell on the goods or manufacture the finished product from the raw materials. Onerous contracts are accounted for under IAS 37. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.38</span> <span class="cite cite-official">IAS 2 · para 31</span></li>
 </ul>
 <div class="table-wrap"><table class="vis-table">
   <thead><tr><th>Inventory quantity or contract</th><th>Net realisable value or accounting</th><th>Source</th></tr></thead>
@@ -770,11 +903,25 @@
 <h3 id="s-4-6">4.6 Materials and other supplies held for use in production<a class="sec-top" href="#page-map">top</a></h3>
 
 <ul>
-  <li><strong>Written down only when the cost of the finished products exceeds NRV</strong> <q>Materials and other supplies held for use in the production of inventories are not written down below cost if the finished products in which they will be incorporated are expected to be sold at or above cost. However, when a decline in the price of materials indicates that the cost of the finished products exceeds net realisable value, the materials are written down to net realisable value. In such circumstances, the replacement cost of the materials may be the best available measure of their net realisable value.</q> A write-down is not necessary where the NRV of material inventories is less than the purchase price, provided that the finished goods into which the materials are to be incorporated can still be sold at a profit after incorporating the materials at cost price. <span class="cite cite-official">IAS 2 · para 32</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.40</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.25</span></li>
-  <li><strong>NRV based on the finished products — or on the materials in their current form if they are to be sold.</strong> If materials and other supplies are held for use in the production of inventories, NRV is based on the estimated selling price of the finished products in which they will be incorporated (less the estimated costs of completion and sale). If the entity intends to sell materials in their current form rather than incorporate them into finished products, NRV is based on the estimated selling price of the materials in their current form (<a href="#s-4-ex-kpmg-intended">Illustration 4.5.6</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.25</span></li>
-  <li id="s-4-ex-kpmg-excess"><strong>Excess materials that will not be used in production — NRV based on their anticipated sale.</strong> Company B has excess inventories of materials that it will not be able to use in production, and has decided to sell them; the NRV of the excess materials is based on their anticipated sale. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · Example 10</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.20</span> <span class="cite cite-official">IAS 2 · para 32</span></li>
-  <li><strong>Lower replacement costs — no automatic write-down.</strong> Lower replacement costs do not lead automatically to an NRV write-down; a write-down is recognised if the fall in prices means that the finished products will be sold for less than production cost. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.370.10</span> <span class="cite cite-official">IAS 2 · para 32</span></li>
-  <li><strong>Parts, sub-assemblies and inventories on order — reviewed when finished goods are written down.</strong> Where a write-down is required to reduce the value of finished goods below cost, the stocks of the parts and sub-assemblies held for the purpose of the manufacture of such products, together with inventories on order, might need to be reviewed to determine whether a write-down is also required against such items. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.40</span></li>
+  <li><strong>Finished products.</strong> Written down only when the cost of the finished products exceeds NRV. <q>Materials and other supplies held for use in the production of inventories are not written down below cost if the finished products in which they will be incorporated are expected to be sold at or above cost. However, when a decline in the price of materials indicates that the cost of the finished products exceeds net realisable value, the materials are written down to net realisable value. In such circumstances, the replacement cost of the materials may be the best available measure of their net realisable value.</q> A write-down is not necessary where the NRV of material inventories is less than the purchase price, provided that the finished goods into which the materials are to be incorporated can still be sold at a profit after incorporating the materials at cost price. <span class="cite cite-official">IAS 2 · para 32</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.40</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.25</span></li>
+  <li><strong>Current form.</strong>
+    <div class="table-wrap"><table class="vis-table">
+      <thead><tr><th>Case</th><th>Treatment</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Held for use in the production of inventories</td>
+          <td>If materials and other supplies are held for use in the production of inventories, NRV is based on the estimated selling price of the finished products in which they will be incorporated (less the estimated costs of completion and sale).</td>
+        </tr>
+        <tr>
+          <td>Sold in their current form</td>
+          <td>If the entity intends to sell materials in their current form rather than incorporate them into finished products, NRV is based on the estimated selling price of the materials in their current form. NRV based on the finished products — or on the materials in their current form if they are to be sold.</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <a href="#s-4-ex-kpmg-intended">Illustration 4.5.6</a>. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.25</span></li>
+  <li id="s-4-ex-kpmg-excess"><strong>Excess materials.</strong> Company B has excess inventories of materials that it will not be able to use in production, and has decided to sell them; the NRV of the excess materials is based on their anticipated sale. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · Example 10</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.20</span> <span class="cite cite-official">IAS 2 · para 32</span></li>
+  <li><strong>Replacement cost.</strong> Lower replacement costs — no automatic write-down. Lower replacement costs do not lead automatically to an NRV write-down; a write-down is recognised if the fall in prices means that the finished products will be sold for less than production cost. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.370.10</span> <span class="cite cite-official">IAS 2 · para 32</span></li>
+  <li><strong>Parts and sub-assemblies.</strong> Where a write-down is required to reduce the value of finished goods below cost, the stocks of the parts and sub-assemblies held for the purpose of the manufacture of such products, together with inventories on order, might need to be reviewed to determine whether a write-down is also required against such items. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.40</span></li>
 </ul>
 <div class="mini-flow" role="group" aria-label="Materials held for use in production, paragraph 32">
   <p class="vis-title">Materials and other supplies held for use in production — paragraph 32</p>
@@ -802,6 +949,7 @@
     </div>
   </div>
 </div>
+  <p>Are materials and other supplies held for use in production written down below cost when the finished products are expected to be sold at or above cost?</p>
 
 <div class="worked-strip" id="s-4-ex-pwc-mat">
   <p class="worked-strip-title"><strong>Illustration: 4.6.1 — Semi-finished telecommunication equipment: NRV based on the finished product</strong><span class="cite-row"><span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.40.1</span> <span class="cite cite-official">IAS 2 · para 32</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.350.25</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 3.3.1.A</span></span></p>
@@ -830,7 +978,7 @@
       <p class="box-title">Conclusion</p>
       <div class="box-body">
         <ul>
-          <li>NRV of the semi-finished product at stage 1: selling price of the completed product <strong>280</strong>, less stage 3 conversion costs <strong>(60)</strong>, less stage 2 conversion costs <strong>(40)</strong> = <strong>180</strong>.</li>
+          <li>NRV of the semi-finished product at stage 1: selling price of the completed product, less stage 3 conversion costs, less stage 2 conversion costs.</li>
         </ul>
       </div>
     </div>
@@ -845,24 +993,25 @@
       <tr><td><strong>Completed product</strong></td><td class="num"><strong>250</strong></td><td class="num"><strong>280</strong></td></tr>
     </tbody>
   </table></div>
-  <div class="table-wrap"><table class="vis-table">
-    <thead><tr><th>NRV of the semi-finished product at stage 1</th><th>C</th></tr></thead>
-    <tbody>
-      <tr><td>Selling price of the completed product</td><td class="num">280</td></tr>
-      <tr><td>less stage 3 conversion costs</td><td class="num">(60)</td></tr>
-      <tr><td>less stage 2 conversion costs</td><td class="num">(40)</td></tr>
-      <tr><td><strong>Net realisable value at stage 1</strong></td><td class="num"><strong>180</strong></td></tr>
-    </tbody>
-  </table></div>
+  <div class="cost-sum" role="group" aria-label="Selling price of the completed product less stage 3 conversion costs less stage 2 conversion costs equals net realisable value at stage 1">
+    <div class="cost-sum-term">Selling price of the completed product 280</div>
+    <span class="cost-sum-op">−</span>
+    <div class="cost-sum-term">stage 3 conversion costs (60)</div>
+    <span class="cost-sum-op">−</span>
+    <div class="cost-sum-term">stage 2 conversion costs (40)</div>
+    <span class="cost-sum-op">=</span>
+    <div class="cost-sum-term cost-sum-result">Net realisable value at stage 1 180</div>
+  </div>
+
 </div>
 
 <h3 id="s-4-7">4.7 Reversal of write-downs<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>A new assessment of NRV is made in each subsequent period; a write-down is reversed when the circumstances that caused it no longer exist or there is clear evidence of an increase in NRV — limited to the amount of the original write-down.</strong> <span class="cite cite-official">IAS 2 · para 33</span></p>
 <ul>
-  <li><strong>New assessment in each subsequent period; reversal limited to the original write-down.</strong> <q>A new assessment is made of net realisable value in each subsequent period. When the circumstances that previously caused inventories to be written down below cost no longer exist or when there is clear evidence of an increase in net realisable value because of changed economic circumstances, the amount of the write-down is reversed (ie the reversal is limited to the amount of the original write-down) so that the new carrying amount is the lower of the cost and the revised net realisable value. This occurs, for example, when an item of inventory that is carried at net realisable value, because its selling price has declined, is still on hand in a subsequent period and its selling price has increased.</q> The Standard describes the circumstances that would trigger a reversal of a write-down of inventories recognised in a prior period. <span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para IN15</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.3</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.41</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 3.3.1.C</span></li>
-  <li><strong>All or part of the write-down no longer needed — reversed to that extent.</strong> If the circumstances that caused the write-down cease to exist, such that all or part of the write-down is no longer needed, it is reversed to that extent. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.41</span></li>
-  <li><strong>Reversal through profit or loss — a reduction in the amount of inventories recognised as an expense.</strong> The amount of the write-down is reversed through profit or loss so that the new carrying amount is the lower of the cost and the revised NRV. Reversals are recognised in profit or loss in the period in which the reversal occurs, as a reduction in the amount of inventories recognised as an expense in the period (<a href="ch05.html#s-5-3">Chapter 5 · 5.3</a>). <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.3</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
-  <li><strong>Item on hand for a long time — consider obsolescence.</strong> When an item carried at NRV because its selling price had declined is still on hand in a subsequent period and its selling price has increased, it would still be necessary, if the item had been on hand for a long time, to consider whether there might be obsolescence issues. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.3</span></li>
+  <li><strong>New assessment.</strong> <q>A new assessment is made of net realisable value in each subsequent period. When the circumstances that previously caused inventories to be written down below cost no longer exist or when there is clear evidence of an increase in net realisable value because of changed economic circumstances, the amount of the write-down is reversed (ie the reversal is limited to the amount of the original write-down) so that the new carrying amount is the lower of the cost and the revised net realisable value. This occurs, for example, when an item of inventory that is carried at net realisable value, because its selling price has declined, is still on hand in a subsequent period and its selling price has increased.</q> The Standard describes the circumstances that would trigger a reversal of a write-down of inventories recognised in a prior period. <span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para IN15</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.3</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.41</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 3.3.1.C</span></li>
+  <li><strong>All or part.</strong> If the circumstances that caused the write-down cease to exist, such that all or part of the write-down is no longer needed, it is reversed to that extent. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.41</span></li>
+  <li><strong>Profit or loss.</strong> The amount of the write-down is reversed through profit or loss so that the new carrying amount is the lower of the cost and the revised NRV. Reversals are recognised in profit or loss in the period in which the reversal occurs, as a reduction in the amount of inventories recognised as an expense in the period (<a href="ch05.html#s-5-3">Chapter 5 · 5.3</a>). <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.3</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
+  <li><strong>Obsolescence.</strong> When an item carried at NRV because its selling price had declined is still on hand in a subsequent period and its selling price has increased, it would still be necessary, if the item had been on hand for a long time, to consider whether there might be obsolescence issues. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.3</span></li>
 </ul>
 <div class="mini-flow" role="group" aria-label="Write-down and reversal, paragraphs 33 and 34">
   <p class="vis-title">Write-down and reversal — paragraphs 33 and 34</p>
@@ -885,6 +1034,7 @@
     </div>
   </div>
 </div>
+  <p>When the circumstances that caused a write-down no longer exist, is the reversal limited to the amount of the original write-down?</p>
 
 <div class="worked-strip" id="s-4-ex-d">
   <p class="worked-strip-title"><strong>Illustration: 4.7.1 — Reversal of a write-down limited to the original write-down</strong><span class="cite-row"><span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · Example 9</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.30–40</span> <span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 3.3.1.C</span></span></p>
@@ -937,7 +1087,7 @@
           <li>Cost uses <strong>FIFO</strong>, with weighted average where appropriate — same-nature / same-use consistency.</li>
           <li>Cost includes <ul>
       <li>expenditure to acquire and bring inventories to present location and condition</li>
-      <li>finished goods and work in progress include direct materials, direct labour and attributable overheads on <strong>normal operating capacity</strong></li>
+      <li>Finished goods and work in progress include direct materials, direct labour and attributable overheads on <strong>normal operating capacity</strong></li>
       <li><strong>borrowing costs excluded</strong></li>
     </ul></li>
           <li>NRV = estimated proceeds of sale less costs to complete and costs of marketing, selling and distribution.</li>

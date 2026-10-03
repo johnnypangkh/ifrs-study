@@ -10,6 +10,29 @@
 <link rel="stylesheet" href="../../_shared/cite.css?v=ias2-chrome-wire-20261002">
 <link rel="stylesheet" href="assets/shared.css?v=ias2-chrome-wire-20261002">
 <link rel="stylesheet" href="assets/draft.css?v=ias2-chrome-wire-20261002">
+<style>
+/* Sequence steps already used in this chapter. Pack stylesheets are not in this checkout. */
+article.teaching .mini-flow { margin: 12px 0 8px; }
+article.teaching .vis-title { font-weight: 700; margin: 0 0 8px; }
+article.teaching .mini-flow-steps { display: flex; align-items: stretch; gap: 8px; }
+article.teaching .mini-step {
+  flex: 1 1 0;
+  border: 1px solid var(--line, #3a4553);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--surface, #1c2128);
+  color: var(--ink, #e8eaed);
+}
+article.teaching .mini-step-head { display: block; font-weight: 700; margin-bottom: 4px; }
+article.teaching .mini-arrow { align-self: center; color: var(--accent, #6ba3d9); font-weight: 700; }
+article.teaching .mini-arrow::before { content: "→"; }
+article.teaching .mini-out { display: block; margin-top: 6px; }
+@media (max-width: 720px) {
+  article.teaching .mini-flow-steps { flex-direction: column; }
+  article.teaching .mini-arrow { text-align: center; }
+  article.teaching .mini-arrow::before { content: "↓"; }
+}
+</style>
 <script src="assets/theme.js?v=ias2-fit-20261001"></script>
 <script src="assets/iframe-fit.js?v=ias2-fit-20261001"></script>
 </head>
@@ -39,33 +62,69 @@
 <h3 id="s-1-0">1.0 Objective<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>IAS 2 prescribes the accounting treatment for inventories; inventories within its scope are measured at the lower of cost and net realisable value.</strong> The scope paragraphs separate inventories that are entirely outside the Standard from inventories that are excluded only from its measurement requirements. <span class="cite cite-official">IAS 2 · para 1</span> <span class="cite cite-official">IAS 2 · para 2</span> <span class="cite cite-official">IAS 2 · para 3</span> <span class="cite cite-official">IAS 2 · para 9</span> <span class="cite cite-official">IAS 2 · para IN6</span></p>
 <ul>
-  <li><strong>Objective</strong> <q>The objective of this Standard is to prescribe the accounting treatment for inventories. A primary issue in accounting for inventories is the amount of cost to be recognised as an asset and carried forward until the related revenues are recognised. This Standard provides guidance on the determination of cost and its subsequent recognition as an expense, including any write-down to net realisable value. It also provides guidance on the cost formulas that are used to assign costs to inventories.</q> The cost formulas covered are specific identification (for items not ordinarily interchangeable), first-in, first-out (FIFO) and weighted average cost (<a href="ch03.html#s-3-10">Chapter 3 · 3.10</a>). <span class="cite cite-official">IAS 2 · para 1</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 2.1</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 1.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.2</span></li>
-  <li><strong>Historical-cost system wording removed — the Standard applies to all inventories not specifically exempted.</strong> Both the objective and the scope of the previous version of IAS 2 referred to accounting for inventories under the <q>historical cost system</q>. Some had read those words as limiting IAS 2 to a historical-cost system and permitting a choice of other measurement bases (for example fair value). The Board agreed that wording could produce inconsistent application, and deleted the phrase <q>in the context of the historical cost system in accounting for inventories</q> to clarify that the Standard applies to all inventories that are not specifically exempted from its scope. <span class="cite cite-official">IAS 2 · para BC4–BC5</span> <span class="cite cite-official">IAS 2 · para 1</span> <span class="cite cite-official">IAS 2 · para 2</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 1</span></li>
+  <li><strong>Objective.</strong> <q>The objective of this Standard is to prescribe the accounting treatment for inventories. A primary issue in accounting for inventories is the amount of cost to be recognised as an asset and carried forward until the related revenues are recognised. This Standard provides guidance on the determination of cost and its subsequent recognition as an expense, including any write-down to net realisable value. It also provides guidance on the cost formulas that are used to assign costs to inventories.</q> The cost formulas covered are
+    <ul>
+      <li>specific identification (for items not ordinarily interchangeable)</li>
+      <li>FIFO</li>
+      <li>and weighted average cost</li>
+    </ul>
+    (<a href="ch03.html#s-3-10">Chapter 3 · 3.10</a>). <span class="cite cite-official">IAS 2 · para 1</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 2.1</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 1.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.2</span></li>
+  <li><strong>Historical-cost system.</strong> Historical-cost system wording removed — the Standard applies to all inventories not specifically exempted. Both the objective and the scope of the previous version of IAS 2 referred to accounting for inventories under the <q>historical cost system</q>.
+    <div class="table-wrap"><table class="vis-table">
+      <thead><tr><th>Party</th><th>View</th></tr></thead>
+      <tbody>
+      <tr><td>Some had read those words</td><td>as limiting IAS 2 to a historical-cost system and permitting a choice of other measurement bases (for example fair value).</td></tr>
+      <tr><td>The Board</td><td>agreed that wording could produce inconsistent application, and deleted the phrase <q>in the context of the historical cost system in accounting for inventories</q> to clarify that the Standard applies to all inventories that are not specifically exempted from its scope.</td></tr>
+      </tbody>
+    </table></div>
+    <span class="cite cite-official">IAS 2 · para BC4–BC5</span> <span class="cite cite-official">IAS 2 · para 1</span> <span class="cite cite-official">IAS 2 · para 2</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 1</span></li>
 </ul>
 
 <h3 id="s-1-1">1.1 Definition of inventories<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>Inventories are assets in one of three classes.</strong> <span class="cite cite-official">IAS 2 · para 6</span></p>
 <ul>
   <li><strong>Three classes</strong> Inventories are assets:
-    <div class="table-wrap"><table class="vis-table"><tbody>
-      <tr><td><q>held for sale in the ordinary course of business</q></td></tr>
-      <tr><td><q>in the process of production for such sale</q></td></tr>
-      <tr><td><q>in the form of materials or supplies to be consumed in the production process or in the rendering of services</q></td></tr>
-    </tbody></table></div> <span class="cite cite-official">IAS 2 · para 6</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.9</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.10</span></li>
-  <li><strong>What inventories encompass</strong> Inventories encompass:
+    <ul>
+      <li><q>held for sale in the ordinary course of business</q></li>
+      <li><q>in the process of production for such sale</q></li>
+      <li><q>in the form of materials or supplies to be consumed in the production process or in the rendering of services</q></li>
+    </ul> <span class="cite cite-official">IAS 2 · para 6</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.1</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.9</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.10</span></li>
+  <li><strong>What inventories encompass.</strong> Inventories encompass:
     <ul>
       <li>goods purchased and held for resale (for example merchandise purchased by a retailer, or land and other property held for resale)</li>
       <li>finished goods produced</li>
       <li>work in progress being produced</li>
       <li>materials and supplies awaiting use in the production process</li>
-    </ul> Items bought or constructed with the intention of resale in the ordinary course are inventories even where they would have met the definition of property, plant and equipment (PPE) — for example buildings — had they been held for use, for rental or for administrative purposes. <span class="cite cite-official">IAS 2 · para 8</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.11</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.14</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 2.3</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.20</span></li>
-  <li><strong>Intangible assets produced for resale can be inventories.</strong> Inventory may include intangible assets that are being produced for resale — for example software. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.10</span> <span class="cite cite-official">IAS 38 · para 2–3</span></li>
-  <li><strong>Property held for sale in the ordinary course versus investment property — the business model on initial recognition.</strong> Classifying property as held for sale in the ordinary course of business (inventory) or as held for capital appreciation (investment property) can be complex and may require judgement; the entity’s business model plays a key role on initial recognition. Property is subsequently reclassified only on an actual change in use. Transfers into inventories when development with a view to sale begins: <a href="ch02.html#s-2-1-property">Chapter 2 · 2.1</a>. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.25</span> <span class="cite cite-official">IAS 40 · para 57–58</span></li>
-  <li><strong>Existing PPE is not reclassified as inventory on a decision to sell — except assets routinely sold after rental.</strong> It is not appropriate to reclassify an existing item of PPE (for example a building) as inventory when the entity decides to sell it; in KPMG’s view this also applies when management changes its intention during construction so that the building will be sold once finished, unless the entity sells buildings in the ordinary course of business (non-current assets held for sale: IFRS 5). Items of PPE that are rented and then routinely sold (for example rental cars) are transferred to inventories at their carrying amount when they cease to be rented and become held for sale. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.20</span> <span class="cite cite-official">IAS 16 · para 68A</span> <span class="cite cite-official">IFRS 5 · para 3</span></li>
-  <li><strong>Spare parts, stand-by equipment and servicing equipment — PPE if they meet the PPE definition; otherwise inventory.</strong> Such items are PPE when they meet the definition of PPE, including the requirement to be used during more than one period; otherwise they are inventory. The same test applies to items held for use within the entity and to items held to provide maintenance services to others (<a href="#s-1-ex-spare">Illustration 1.1.3</a>). <span class="cite cite-official">IAS 16 · para 8</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.10</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.30</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.1</span></li>
-  <li><strong>Re-usable and returnable packaging or parts used over more than one period are not inventory.</strong> Packaging or parts sold to a customer but returned to the seller to be re-used are not inventory if the items will be used over more than one period (<a href="#s-1-ex-kpmg-bottles">Illustration 1.1.4</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.40</span></li>
-  <li><strong>Supplies purchased in the research phase are not inventories before a decision to proceed with commercial production.</strong> Supplies purchased during the research phase of a project (for example in the pharmaceutical industry) do not meet the definition of inventories before a decision to proceed with commercial production; they may nevertheless qualify for recognition as another asset. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.1</span></li>
-  <li><strong>Production stripping costs in a surface mine — inventories or a non-current asset under IFRIC 20.</strong> The classification of costs of production stripping activity in a surface mine as inventories or as a non-current asset is addressed by IFRIC 20. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.1</span> <span class="cite cite-official">IFRIC 20</span></li>
+    </ul>
+    Items bought or constructed with the intention of resale in the ordinary course are inventories even where they would have met the definition of property, plant and equipment (PPE) — for example buildings — had they been held for use, for rental or for administrative purposes. <span class="cite cite-official">IAS 2 · para 8</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.11</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.14</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 2.3</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.20</span></li>
+  <li><strong>Intangible assets.</strong> Inventory may include intangible assets that are being produced for resale — for example software. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.10</span> <span class="cite cite-official">IAS 38 · para 2–3</span></li>
+  <li><strong>Property held for sale versus investment property.</strong>
+    <ul>
+      <li>Classifying property as held for sale in the ordinary course of business (inventory) or as held for capital appreciation (investment property) can be complex and may require judgement; the entity’s business model plays a key role on initial recognition.</li>
+      <li>Property is subsequently reclassified only on an actual change in use.</li>
+    </ul>
+    Transfers into inventories when development with a view to sale begins: <a href="ch02.html#s-2-1-property">Chapter 2 · 2.1</a>. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.25</span> <span class="cite cite-official">IAS 40 · para 57–58</span></li>
+  <li><strong>Existing PPE.</strong>
+    <div class="table-wrap"><table class="vis-table">
+      <thead><tr><th>Case</th><th>Treatment</th></tr></thead>
+      <tbody>
+      <tr><td>Existing item of PPE</td><td>It is not appropriate to reclassify an existing item of PPE (for example a building) as inventory when the entity decides to sell it; in KPMG’s view this also applies when management changes its intention during construction so that the building will be sold once finished, unless the entity sells buildings in the ordinary course of business (non-current assets held for sale: IFRS 5).</td></tr>
+      <tr><td>Rented and then routinely sold</td><td>Items of PPE that are rented and then routinely sold (for example rental cars) are transferred to inventories at their carrying amount when they cease to be rented and become held for sale.</td></tr>
+      </tbody>
+    </table></div>
+    <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.20</span> <span class="cite cite-official">IAS 16 · para 68A</span> <span class="cite cite-official">IFRS 5 · para 3</span></li>
+  <li><strong>Spare parts, stand-by equipment and servicing equipment.</strong>
+    <div class="table-wrap"><table class="vis-table">
+      <thead><tr><th>Case</th><th>Treatment</th></tr></thead>
+      <tbody>
+      <tr><td>PPE</td><td>Such items are PPE when they meet the definition of PPE, including the requirement to be used during more than one period</td></tr>
+      <tr><td>Otherwise</td><td>Otherwise they are inventory.</td></tr>
+      </tbody>
+    </table></div>
+     The same test applies to items held for use within the entity and to items held to provide maintenance services to others (<a href="#s-1-ex-spare">Illustration 1.1.3</a>). <span class="cite cite-official">IAS 16 · para 8</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.10</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.30</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.1</span></li>
+  <li><strong>Re-usable and returnable packaging.</strong> Packaging or parts sold to a customer but returned to the seller to be re-used are not inventory if the items will be used over more than one period (<a href="#s-1-ex-kpmg-bottles">Illustration 1.1.4</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.40</span></li>
+  <li><strong>Research phase.</strong> Supplies purchased during the research phase of a project (for example in the pharmaceutical industry) do not meet the definition of inventories before a decision to proceed with commercial production; they may nevertheless qualify for recognition as another asset. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.1</span></li>
+  <li><strong>Production stripping costs.</strong> The classification of costs of production stripping activity in a surface mine as inventories or as a non-current asset is addressed by IFRIC 20. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.1</span> <span class="cite cite-official">IFRIC 20</span></li>
 </ul>
 
 <div class="worked-strip" id="s-1-ex-pipeline">
@@ -122,6 +181,7 @@
       </div>
     </div>
   </div>
+  <p>When is the pipeline fill recognised, and is there a step-up in the value of inventories at each swap?</p>
 </div>
 
 <div class="worked-strip" id="s-1-ex-crypto">
@@ -178,6 +238,7 @@
       </div>
     </div>
   </div>
+  <p>Are cryptocurrencies held for sale in the ordinary course of business classified as inventories, and how are commodity broker-trader holdings measured?</p>
 </div>
 
 <div class="worked-strip" id="s-1-ex-spare">
@@ -316,6 +377,7 @@
       </div>
     </div>
   </div>
+  <p>Are the assets acquired by residual value guarantor A inventories from the end of the main lease term to sale?</p>
 </div>
 
 <div class="worked-strip" id="s-1-ex-dtt-lease-before-sale">
@@ -374,6 +436,7 @@
       </div>
     </div>
   </div>
+  <p>Does a temporary lease shortly before sale reclassify inventory to investment property?</p>
 </div>
 
 <div class="worked-strip" id="s-1-ex-dtt-co2e-offsets">
@@ -424,21 +487,80 @@
 <h3 id="s-1-2">1.2 Scope exclusions<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>IAS 2 applies to all inventories except financial instruments and biological assets related to agricultural activity and agricultural produce at the point of harvest.</strong> <span class="cite cite-official">IAS 2 · para 2</span></p>
 <ul>
-  <li><strong>Inventories excluded from the scope of IAS 2 — financial instruments; biological assets related to agricultural activity and agricultural produce at the point of harvest.</strong> IAS 2 applies to all inventories (raw materials, consumable supplies, work in progress and finished goods) except: financial instruments (IAS 32 and IFRS 9); and biological assets related to agricultural activity and agricultural produce <strong>at the point of harvest</strong> (IAS 41). Paragraph 2(a) is deleted (IFRS 15 amended paragraph 2). <span class="cite cite-official">IAS 2 · para 2</span> <span class="cite cite-official">IAS 2 · para 40E</span> <span class="cite cite-official">IAS 2 · para IN6</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.2</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.3</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 2.3</span></li>
-  <li><strong>Financial assets held for trading are not inventory.</strong> Financial assets, such as investments held for trading for short-term profit making, are not inventory. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.10</span> <span class="cite cite-official">IAS 2 · para 2(b)</span></li>
-  <li><strong>Agricultural activity and harvest.</strong> Agricultural activity includes raising livestock, forestry, annual or perennial cropping, orchards and plantations, floriculture and aquaculture. Agricultural produce is the harvested product of an entity’s biological assets; harvest is the detachment of produce from a biological asset or the cessation of a biological asset’s life processes. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.5</span></li>
+  <li><strong>Inventories excluded from the scope of IAS 2.</strong> IAS 2 applies to all inventories
+    <ul>
+      <li>raw materials</li>
+      <li>consumable supplies</li>
+      <li>work in progress</li>
+      <li>and finished goods</li>
+    </ul>
+    except
+    <ul>
+      <li>financial instruments (IAS 32 and IFRS 9)</li>
+      <li>and biological assets related to agricultural activity and agricultural produce <strong>at the point of harvest</strong> (IAS 41)</li>
+    </ul>
+    Paragraph 2(a) is deleted (IFRS 15 amended paragraph 2). <span class="cite cite-official">IAS 2 · para 2</span> <span class="cite cite-official">IAS 2 · para 40E</span> <span class="cite cite-official">IAS 2 · para IN6</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.2</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.3</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 2.3</span></li>
+  <li><strong>Financial assets held for trading.</strong> Financial assets, such as investments held for trading for short-term profit making, are not inventory. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.10</span> <span class="cite cite-official">IAS 2 · para 2(b)</span></li>
+  <li><strong>Agricultural activity and harvest.</strong> Agricultural activity includes
+    <ul>
+      <li>raising livestock</li>
+      <li>forestry</li>
+      <li>annual or perennial cropping</li>
+      <li>orchards and plantations</li>
+      <li>floriculture</li>
+      <li>and aquaculture</li>
+    </ul>
+    Agricultural produce is the harvested product of an entity’s biological assets; harvest is the detachment of produce from a biological asset or the cessation of a biological asset’s life processes. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.5</span></li>
 </ul>
 <aside class="callout see-also"><strong>See also — IAS 41.</strong> Harvested agricultural produce enters IAS 2 after the point of harvest. IAS 41 measures it at fair value less costs to sell at the point of harvest, and that amount is its cost at that date for applying IAS 2 — <a href="ch03.html#s-3-8">Chapter 3 · 3.8</a>. <span class="cite cite-official">IAS 2 · para 20</span> <span class="cite cite-official">IAS 41 · para 13</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.5</span></aside>
 
 <h3 id="s-1-3">1.3 Inventories excluded from the measurement requirements only<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>IAS 2 does not apply to the measurement of inventories held by industry-practice producers measuring at net realisable value or by commodity broker-traders measuring at fair value less costs to sell; the other requirements of IAS 2 — including presentation and disclosure — still apply.</strong> <span class="cite cite-official">IAS 2 · para 3</span> <span class="cite cite-official">IAS 2 · para 4</span> <span class="cite cite-official">IAS 2 · para 5</span></p>
 <ul>
-  <li><strong>Entirely outside the scope versus outside the measurement requirements only.</strong> <q>Paragraph 3 establishes a clear distinction between those inventories that are entirely outside the scope of the Standard (described in paragraph 2) and those inventories that are outside the scope of the measurement requirements but within the scope of the other requirements in the Standard.</q> Paragraph 3 inventories are excluded from <strong>only</strong> the measurement requirements; the other requirements (for example presentation and disclosure) apply in the normal way. <span class="cite cite-official">IAS 2 · para IN7</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.2</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.4</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 2.3</span></li>
-  <li><strong>Producers of agricultural and forest products, agricultural produce after harvest, and minerals and mineral products — net realisable value under well-established industry practice.</strong> To the extent such inventories are measured at net realisable value in accordance with well-established practices in those industries, changes in that value are recognised in profit or loss in the period of the change. These inventories are measured at net realisable value at certain stages of production — for example when crops have been harvested or minerals extracted and sale is assured under a forward contract or a government guarantee, or when an active market exists and there is a negligible risk of failure to sell. The exemption applies only to producers; there is no exemption for entities that process or convert these products. <span class="cite cite-official">IAS 2 · para 3(a)</span> <span class="cite cite-official">IAS 2 · para 4</span> <span class="cite cite-official">IAS 2 · para IN8</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.6</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.70</span></li>
-  <li><strong>Producers that carry these inventories at cost apply the full measurement requirements.</strong> The extent to which IAS 2 applies depends on the accounting policy adopted: an entity that chooses to carry such inventories at cost measures them at the lower of cost and net realisable value, and the requirements of IAS 2 apply in their entirety. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.6–25.7</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.1</span> <span class="cite cite-official">IAS 2 · para 9</span></li>
+  <li><strong>Entirely outside the scope versus measurement requirements only.</strong> <q>Paragraph 3 establishes a clear distinction between those inventories that are entirely outside the scope of the Standard (described in paragraph 2) and those inventories that are outside the scope of the measurement requirements but within the scope of the other requirements in the Standard.</q>
+    <div class="table-wrap"><table class="vis-table">
+      <thead><tr><th>Case</th><th>Treatment</th></tr></thead>
+      <tbody>
+      <tr><td>Measurement requirements</td><td>Paragraph 3 inventories are excluded from <strong>only</strong> the measurement requirements</td></tr>
+      <tr><td>Other requirements</td><td>The other requirements (for example presentation and disclosure) apply in the normal way.</td></tr>
+      </tbody>
+    </table></div>
+    <span class="cite cite-official">IAS 2 · para IN7</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.2</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.4</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 2.3</span></li>
+  <li><strong>Producers — net realisable value.</strong> Producers of agricultural and forest products, agricultural produce after harvest, and minerals and mineral products. To the extent such inventories are measured at net realisable value in accordance with well-established practices in those industries, changes in that value are recognised in profit or loss in the period of the change. These inventories are measured at net realisable value at certain stages of production —
+    <ul>
+      <li>for example when crops have been harvested or minerals extracted and sale is assured under a forward contract or a government guarantee</li>
+      <li>or when an active market exists and there is a negligible risk of failure to sell</li>
+    </ul>
+    
+    <div class="table-wrap"><table class="vis-table">
+      <thead><tr><th>Case</th><th>Treatment</th></tr></thead>
+      <tbody>
+      <tr><td>Producers</td><td>The exemption applies only to producers</td></tr>
+      <tr><td>Entities that process or convert these products</td><td>There is no exemption for entities that process or convert these products.</td></tr>
+      </tbody>
+    </table></div>
+    <span class="cite cite-official">IAS 2 · para 3(a)</span> <span class="cite cite-official">IAS 2 · para 4</span> <span class="cite cite-official">IAS 2 · para IN8</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.6</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.70</span></li>
+  <li><strong>Producers at cost.</strong> The extent to which IAS 2 applies depends on the accounting policy adopted: an entity that chooses to carry such inventories at cost measures them at the lower of cost and net realisable value, and the requirements of IAS 2 apply in their entirety. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.6–25.7</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.1</span> <span class="cite cite-official">IAS 2 · para 9</span></li>
   <li><strong>Commodity broker-traders</strong> Commodity broker-traders who measure their inventories at fair value less costs to sell recognise changes in fair value less costs to sell in profit or loss in the period of the change. <q>Broker-traders are those who buy or sell commodities for others or on their own account. The inventories referred to in paragraph 3(b) are principally acquired with the purpose of selling in the near future and generating a profit from fluctuations in price or broker-traders’ margin. When these inventories are measured at fair value less costs to sell, they are excluded from only the measurement requirements of this Standard.</q> Such inventories are normally traded in an active market, and industry practice is often to carry them at fair value less costs to sell. <span class="cite cite-official">IAS 2 · para 3(b)</span> <span class="cite cite-official">IAS 2 · para 5</span> <span class="cite cite-official">IAS 2 · para IN9</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.8</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 2.3</span></li>
-  <li><strong>Whether an entity acts as a commodity broker-trader — interpreting “near future”.</strong> In KPMG’s view the assessment may vary from entity to entity; factors include the entity’s business model, the extent to which it provides additional services related to the commodities (such as distribution, storage or repackaging), and the fact that entities that sell goods in the near future after receipt generally do not have significant storage capacity. An entity that acts as a commodity broker-trader will not generally be able to apply the own-use exemption in IFRS 9. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.70</span> <span class="cite cite-official">IAS 2 · para 3</span> <span class="cite cite-official">IAS 2 · para 5</span></li>
-  <li id="s-1-ex-bc-broker"><strong>Basis for Conclusions — why broker-traders are excluded from the measurement requirements.</strong> The Exposure Draft proposed excluding inventories of non-producers of agricultural and forest products and mineral ores measured at net realisable value under well-established industry practice. Respondents argued that the exemption should apply to all types of broker-trader inventories, that established practice for broker-traders is a mark-to-market approach rather than net realisable value, and that the IAS 2 net realisable value guidance is not appropriate for valuing broker-trader inventories (BC6). The Board agreed and excluded from the measurement requirements (a) producers measuring at net realisable value, as in the previous version of IAS 2, and (b) commodity broker-traders measuring at fair value less costs to sell (BC7). To qualify, changes in the recognised amount must be included in profit or loss, consistent with the measurement attribute — particularly appropriate for commodity broker-traders, which seek to profit from fluctuations in prices and trade margins (BC8). <span class="cite cite-official">IAS 2 · para BC6</span> <span class="cite cite-official">IAS 2 · para BC7</span> <span class="cite cite-official">IAS 2 · para BC8</span></li>
+  <li><strong>Whether an entity acts as a commodity broker-trader — interpreting “near future”.</strong> In KPMG’s view the assessment may vary from entity to entity; factors include
+    <ul>
+      <li>the entity’s business model</li>
+      <li>the extent to which it provides additional services related to the commodities (such as distribution, storage or repackaging)</li>
+      <li>and the fact that entities that sell goods in the near future after receipt generally do not have significant storage capacity</li>
+    </ul>
+     An entity that acts as a commodity broker-trader will not generally be able to apply the own-use exemption in IFRS 9. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.70</span> <span class="cite cite-official">IAS 2 · para 3</span> <span class="cite cite-official">IAS 2 · para 5</span></li>
+  <li id="s-1-ex-bc-broker"><strong>Basis for Conclusions.</strong> Why broker-traders are excluded from the measurement requirements. The Exposure Draft proposed excluding inventories of non-producers of agricultural and forest products and mineral ores measured at net realisable value under well-established industry practice. Respondents argued that
+    <ul>
+      <li>the exemption should apply to all types of broker-trader inventories</li>
+      <li>that established practice for broker-traders is a mark-to-market approach rather than net realisable value</li>
+      <li>and that the IAS 2 net realisable value guidance is not appropriate for valuing broker-trader inventories (BC6)</li>
+    </ul>
+    The Board agreed and excluded from the measurement requirements
+    <ul>
+      <li>(a) producers measuring at net realisable value, as in the previous version of IAS 2</li>
+      <li>and (b) commodity broker-traders measuring at fair value less costs to sell (BC7)</li>
+    </ul>
+     To qualify, changes in the recognised amount must be included in profit or loss, consistent with the measurement attribute — particularly appropriate for commodity broker-traders, which seek to profit from fluctuations in prices and trade margins (BC8). <span class="cite cite-official">IAS 2 · para BC6</span> <span class="cite cite-official">IAS 2 · para BC7</span> <span class="cite cite-official">IAS 2 · para BC8</span></li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Holder</th><th>Measurement basis</th><th>Changes in that amount</th><th>Conditions</th></tr></thead>
@@ -590,24 +712,28 @@
 <h3 id="s-1-4">1.4 Costs that do not give rise to inventories<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>Costs to fulfil a contract with a customer that do not give rise to inventories (or to assets within the scope of another Standard) are accounted for under IFRS 15.</strong> <span class="cite cite-official">IAS 2 · para 8</span></p>
 <ul>
-  <li><strong>Contract fulfilment costs — IFRS 15 when no inventory or other Standard’s asset arises.</strong> Costs incurred to fulfil a contract with a customer that do not give rise to inventories, or to assets within the scope of another Standard (for example IAS 16 or IAS 38), are accounted for in accordance with IFRS 15 — the entity considers whether they are costs to fulfil a contract under that Standard. <span class="cite cite-official">IAS 2 · para 8</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.14</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.3</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.10</span></li>
+  <li><strong>Contract fulfilment costs.</strong> Costs incurred to fulfil a contract with a customer that do not give rise to inventories, or to assets within the scope of another Standard (for example IAS 16 or IAS 38), when no inventory or other Standard’s asset arises, are accounted for in accordance with IFRS 15 — the entity considers whether they are costs to fulfil a contract under that Standard. <span class="cite cite-official">IAS 2 · para 8</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.14</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.3</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.10</span></li>
 </ul>
 
 <h4 id="s-1-ex-kpmg-samples">Advertising and promotional items — samples and catalogues</h4>
 <p><strong>Samples and catalogues handed out free of charge for advertising and promotional purposes are not inventories; their cost is recognised as an expense.</strong> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.50</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.60</span> <span class="cite cite-official">IAS 38 · para 69–70</span></p>
-<ul>
-  <li><strong>Manufactured samples — expensed as incurred.</strong> Some entities manufacture samples they intend to hand out free of charge for advertising and promotional purposes (for example beauty products). The costs of manufacturing such samples are expensed as incurred; they are not recognised as inventory. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.50</span> <span class="cite cite-official">IAS 38 · para 69–70</span></li>
-  <li><strong>Purchased samples — expensed on receipt or right of access; prepayment only for payments in advance.</strong> The costs of purchasing samples intended to be handed out free of charge are expensed when the entity receives, or otherwise has the right to access, the samples; they are not recognised as inventory. A prepayment asset is recognised only for payments made in advance of receipt of the samples. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.50</span> <span class="cite cite-official">IAS 38 · para 69–70</span></li>
-  <li><strong>Samples given away by a retailer are inventory of the producer.</strong> If a producer sells products to a retailer and the retailer gives samples to customers free of charge, the samples are treated as inventory of the producer. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.50</span></li>
-  <li><strong>Catalogues — advertising and promotional material, not inventory or PPE.</strong> Catalogues distributed free of charge to prospective customers that describe the entity’s products and services are a form of advertising and promotional material, because their primary objective is to advertise. Their cost is expensed when the entity receives, or otherwise has the right to access, the catalogues; a prepayment asset is recognised only for payments made in advance of receipt. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.60</span> <span class="cite cite-official">IAS 38 · para 69–70</span> <span class="cite cite-official">IAS 38 · para BC46G</span></li>
-</ul>
+<div class="table-wrap"><table class="vis-table">
+    <tbody>
+      <tr><th>Manufactured samples</th><td>Some entities manufacture samples they intend to hand out free of charge for advertising and promotional purposes (for example beauty products). The costs of manufacturing such samples are expensed as incurred; they are not recognised as inventory. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.50</span> <span class="cite cite-official">IAS 38 · para 69–70</span></td></tr>
+      <tr><th>Purchased samples</th><td>The costs of purchasing samples intended to be handed out free of charge are expensed when the entity receives, or otherwise has the right to access, the samples; they are not recognised as inventory. A prepayment asset is recognised only for payments made in advance of receipt of the samples. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.50</span> <span class="cite cite-official">IAS 38 · para 69–70</span></td></tr>
+      <tr><th>Samples given away by a retailer</th><td>If a producer sells products to a retailer and the retailer gives samples to customers free of charge, the samples are treated as inventory of the producer. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.50</span></td></tr>
+      <tr><th>Catalogues</th><td>Advertising and promotional material, not inventory or PPE. Catalogues distributed free of charge to prospective customers that describe the entity’s products and services are a form of advertising and promotional material, because their primary objective is to advertise. Their cost is expensed when the entity receives, or otherwise has the right to access, the catalogues; a prepayment asset is recognised only for payments made in advance of receipt. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.60</span> <span class="cite cite-official">IAS 38 · para 69–70</span> <span class="cite cite-official">IAS 38 · para BC46G</span></td></tr>
+    </tbody>
+  </table></div>
 
 <h3 id="s-1-5">1.5 Scope outcomes<a class="sec-top" href="#page-map">top</a></h3>
-<ul>
-  <li><strong>Within IAS 2, including its measurement requirements.</strong> Inventories are measured at the lower of cost and net realisable value: <a href="ch02.html#s-2-1">Chapter 2</a> (when an item is recognised as inventory), <a href="ch03.html#s-3-1">Chapter 3</a> (cost) and <a href="ch04.html#s-4-1">Chapter 4</a> (net realisable value and write-downs). <span class="cite cite-official">IAS 2 · para 9</span></li>
-  <li><strong>Excluded from the scope of IAS 2.</strong> Financial instruments and biological assets / agricultural produce at the point of harvest are accounted for under IAS 32 and IFRS 9, or IAS 41; no IAS 2 requirement applies. <span class="cite cite-official">IAS 2 · para 2</span></li>
-  <li><strong>Excluded from the measurement requirements only.</strong> Paragraph 3 inventories are measured at net realisable value or at fair value less costs to sell, with changes in profit or loss; presentation and disclosure requirements still apply, including the carrying amount of inventories carried at fair value less costs to sell (<a href="ch06.html#s-6-3">Chapter 6 · 6.3</a>). <span class="cite cite-official">IAS 2 · para 3</span> <span class="cite cite-official">IAS 2 · para 36(c)</span></li>
-</ul>
+<div class="table-wrap"><table class="vis-table">
+    <tbody>
+      <tr><th>Within IAS 2, including its measurement requirements.</th><td>Inventories are measured at the lower of cost and net realisable value: <a href="ch02.html#s-2-1">Chapter 2</a> (when an item is recognised as inventory), <a href="ch03.html#s-3-1">Chapter 3</a> (cost) and <a href="ch04.html#s-4-1">Chapter 4</a> (net realisable value and write-downs). <span class="cite cite-official">IAS 2 · para 9</span></td></tr>
+      <tr><th>Excluded from the scope of IAS 2.</th><td>Financial instruments and biological assets / agricultural produce at the point of harvest are accounted for under IAS 32 and IFRS 9, or IAS 41; no IAS 2 requirement applies. <span class="cite cite-official">IAS 2 · para 2</span></td></tr>
+      <tr><th>Excluded from the measurement requirements only.</th><td>Paragraph 3 inventories are measured at net realisable value or at fair value less costs to sell, with changes in profit or loss; presentation and disclosure requirements still apply, including the carrying amount of inventories carried at fair value less costs to sell (<a href="ch06.html#s-6-3">Chapter 6 · 6.3</a>). <span class="cite cite-official">IAS 2 · para 3</span> <span class="cite cite-official">IAS 2 · para 36(c)</span></td></tr>
+    </tbody>
+  </table></div>
 </article>
 
 <section class="key-terms"><h2 id="key-terms">Key terms</h2><ul>
