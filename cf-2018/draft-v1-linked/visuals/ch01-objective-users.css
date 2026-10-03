@@ -1,0 +1,355 @@
+/* CF 2018 Ch1 Objective & users — Concept Map visual.
+   Loaded only by visuals/ch01-objective-users.html, after shared.css.
+   The teaching arc drives the drawing:
+   1. Scene (primary): Primary users — rely on — GPFS — provided by — Reporting
+      entity, read left to right. Accent = the GPFS route only. Under it, a muted
+      direct path from users to entity, broken where it would deliver tailored
+      reports (users cannot require them). The objective sits inside the GPFS
+      card: it is the purpose of that object, not a further step.
+   2. Decisions (secondary, lighter): three decision columns; both assessments
+      span every column, so "both, for any decision" is drawn, not narrated.
+   3. Lenses (lightest): accrual and cash flows as two halves of one frame.
+   No arrowheads, no inter-section stems, no outer plate, no dashed. Tokens only. */
+
+html,
+body.embed { background: var(--bg); }
+
+.ou-board {
+  --ou-gap: 22px;
+  --ou-inner: 10px;
+  --ou-gutter: 12px;
+  --ou-link: 72px;
+  --ou-lane: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ou-gap);
+}
+.ou-board a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.ou-sec {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ou-inner);
+  min-width: 0;
+}
+
+.ou-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.ou-label a.fb-num {
+  margin-right: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.ou-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.ou-head a.fb-num { margin-right: 0; }
+.ou-sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.ou-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.ou-body strong,
+.ou-emph { color: var(--ink); font-weight: 600; }
+
+/* ---- 1. Scene: users — GPFS — entity, joined by labelled stems ---- */
+.ou-scene {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.25fr) var(--ou-link) minmax(0, 1.35fr) var(--ou-link) minmax(0, .75fr);
+  grid-template-rows: auto auto;
+  column-gap: 0;
+  row-gap: 0;
+}
+
+.ou-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+.ou-gpfs {
+  border: 2px solid var(--accent);
+  background: var(--accent-soft);
+}
+.ou-gpfs > .ou-head {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  color: var(--accent);
+}
+.ou-entity { justify-content: center; }
+
+.ou-cast {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 6px;
+  margin: 0;
+}
+.ou-cast .party {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 8px 4px;
+}
+.ou-need { color: var(--ink); }
+
+.ou-objective {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+.ou-tag {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Stem between cards: meets both edges, label names the relationship */
+.ou-link {
+  position: relative;
+  align-self: center;
+  height: 2px;
+  margin: 0 -1px;
+  padding: 0;
+  background: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--accent);
+  text-align: center;
+}
+.ou-link > span {
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: 6px;
+}
+
+/* Direct users-to-entity path, muted and broken at the tailored-report gap */
+.ou-direct {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: subgrid;
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.ou-direct-end {
+  height: var(--ou-lane);
+  border-bottom: 2px solid var(--line);
+}
+.ou-direct-end:first-child {
+  grid-column: 1;
+  margin-left: 50%;
+  border-left: 2px solid var(--line);
+  border-bottom-left-radius: 6px;
+}
+.ou-direct-end:last-child {
+  grid-column: 5;
+  margin-right: 50%;
+  border-right: 2px solid var(--line);
+  border-bottom-right-radius: 6px;
+}
+.ou-direct-mid {
+  grid-column: 2 / 5;
+  display: flex;
+  align-items: flex-end;
+  height: var(--ou-lane);
+}
+.ou-direct-mid::before,
+.ou-direct-mid::after {
+  content: "";
+  flex: 1 1 12px;
+  min-width: 12px;
+  border-bottom: 2px solid var(--line);
+}
+.ou-direct-mid > span {
+  flex: 0 1 auto;
+  padding: 0 12px;
+  text-align: center;
+  transform: translateY(calc(50% - 1px));
+}
+.ou-direct strong { color: var(--ink); font-weight: 600; }
+
+/* ---- 2. Decisions: three columns; both assessments span all of them ---- */
+.ou-grid {
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+}
+.ou-decisions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ou-decisions li {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.ou-decisions li + li { border-left: 1px solid var(--line); }
+.ou-decisions strong { color: var(--ink); font-weight: 600; }
+
+.ou-assess {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 0;
+  padding: 9px 14px;
+  border-top: 1px solid var(--line);
+  background: var(--band);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.ou-assess a.fb-num { margin-right: 0; }
+.ou-assess > span:not(.ou-note) { flex: 1 1 320px; min-width: 0; }
+.ou-assess strong { color: var(--ink); font-weight: 700; }
+.ou-assess:last-child { border-radius: 0 0 var(--card-radius) var(--card-radius); }
+.ou-note {
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.ou-note em { color: var(--ink); }
+
+/* ---- 3. Lenses: one frame, two halves, shared foot ---- */
+.ou-lenses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+}
+.ou-lens {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 10px 14px;
+}
+.ou-lens + .ou-lens { border-left: 1px solid var(--line); }
+.ou-lens-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.ou-lens-foot {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 8px 14px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---- Narrow: scene stacks with vertical stems; grids restack ---- */
+@media (max-width: 760px) {
+  .ou-scene {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+  .ou-link {
+    align-self: stretch;
+    height: 34px;
+    margin: -1px 0;
+    background: none;
+    text-align: left;
+  }
+  .ou-link::after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 0;
+    bottom: 0;
+    border-left: 2px solid var(--accent);
+  }
+  .ou-link > span {
+    left: 36px;
+    right: auto;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .ou-direct {
+    grid-column: 1;
+    grid-row: auto;
+    display: block;
+    margin: 12px 0 0;
+    padding: 2px 0 2px 12px;
+    border-left: 2px solid var(--line);
+  }
+  .ou-direct-end,
+  .ou-direct-mid::before,
+  .ou-direct-mid::after { display: none; }
+  .ou-direct-mid { display: block; height: auto; }
+  .ou-direct-mid > span {
+    display: block;
+    max-width: none;
+    padding: 0;
+    text-align: left;
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .ou-decisions { grid-template-columns: minmax(0, 1fr); }
+  .ou-decisions li + li { border-left: 0; border-top: 1px solid var(--line); }
+  .ou-lenses { grid-template-columns: minmax(0, 1fr); }
+  .ou-lens + .ou-lens { border-left: 0; border-top: 1px solid var(--line); }
+  .ou-lens-foot { text-align: left; }
+}
+
+@media (max-width: 560px) {
+  .ou-board { --ou-gap: 18px; }
+  .ou-card { padding: 10px 12px; }
+}

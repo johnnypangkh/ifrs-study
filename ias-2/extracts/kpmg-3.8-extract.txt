@@ -1,0 +1,755 @@
+3.8.10 SCOPE AND DEFINITION
+3.8.10.10 Inventories are assets:
+• held for sale in the ordinary course of business (finished goods);
+• in the process of production for sale (work in progress); or
+• in the form of materials or supplies to be consumed in the production process or in the rendering of services (raw materials and
+consumables). [IAS 2.6]
+3.8.10.20 Inventory may include intangible assets that are being produced for resale - e.g. software. Inventory also includes
+properties that have been bought or are being developed for resale in the ordinary course of business (see 3.4.60). If an entity incurs
+costs under a contract with a customer and those costs do not give rise to inventories or assets in the scope of another standard,
+then the entity considers whether those costs represent 'costs to fulfil a contract' under IFRS 15 (see 4.2.270). [IAS 2.8, 38.2-3, 40.5,
+9]
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 27 of 48
+
+3.6 Joint arrangements
+
+3.8.10.30 Financial assets, such as investments held for trading for short-term profit making, are not inventory (see 7.1.30). [IAS
+2.2(b)]
+
+3.8.20 Property, plant and equipment held for sale
+3.8.20.10 Inventories encompass assets bought or constructed with the intention of resale in the ordinary course of business. This
+includes items that would meet the definition of property, plant and equipment - e.g. buildings - had they been bought or constructed
+with the intention of use in the production or supply of goods or services, for rental to others or for administrative purposes. [IAS 2.6,
+8]
+3.8.20.20 However, it is not appropriate to reclassify an existing item of property, plant and equipment - e.g. a building - as inventory
+when the entity decides to sell it. In our view, this is also the case when management, during construction of a building, changes its
+intention in such a way that the building will be sold once construction is finished, unless the entity sells buildings in the ordinary
+course of business. For further discussion of the accounting for non-current assets held for sale, see chapter 5.4. [IFRS 5.3, IAS
+1.66]
+3.8.20.30 Items of property, plant and equipment that are rented and then subsequently sold on a routine basis - e.g. rental cars - are
+transferred to inventories at their carrying amount when they cease to be rented and become held-for-sale (see 3.2.380.40). [IAS
+16.68A]
+
+3.8.25 Investment property
+3.8.25.10 The classification of property as held-for-sale in the ordinary course of business (inventory) or as held-for-capitalappreciation (investment property) can be complex and may require judgement. An entity's business model plays a key role in the
+classification of property on initial recognition (see 3.4.60.30). A property is subsequently reclassified if there is an actual change in
+use (see 3.4.200). [IAS 40.57-58]
+
+3.8.30 Spare parts
+3.8.30.10 Spare parts, stand-by and servicing equipment - e.g. tools and consumable lubricants - are classified as property, plant
+and equipment if they meet the definition, including the requirement to be used over more than one period (see 3.2.10.10-20);
+otherwise, they are classified as inventory. This applies to assets held for use within the entity and to those held to provide
+maintenance services to others. [IAS 16.8, BC12A]
+EXAMPLE 1 - SPARE PARTS USED IN CONNECTION WITH PROPERTY, PLANT AND EQUIPMENT
+3.8.30.20 Company F, an aircraft charter company that offers aircraft maintenance services, has spare parts. Some of the spare
+parts will be used in less than one period in the day-to-day repair and maintenance of aircraft on behalf of customers. Others will be
+used only in connection with F's own aircraft.
+3.8.30.30 The spare parts to be used in the servicing business do not meet the definition of property, plant and equipment,
+because they are consumed in less than one period in rendering maintenance services. Therefore, they are accounted for as
+inventory. Conversely, the spare parts that F will use in its own aircraft meet the definition of property, plant and equipment,
+because they are consumed over more than one period.
+
+3.8.40 Re-usable and returnable packaging or parts
+3.8.40.10 Packaging or parts that are sold to a customer, but will be returned to the seller to be re-used, are not inventory if the items
+will be used over more than one period.
+EXAMPLE 2 - RE-USABLE BOTTLES
+3.8.40.20 Company C produces and distributes bottled drinks. C receives a deposit for the bottles when drinks are sold. C is
+required to buy back empty bottles, which are used again in future periods. Bottles are used over more than one period and are not
+bought for the purposes of resale. Therefore, the bottles are not inventory; they are an item of property, plant and equipment (see
+3.2.10.20).
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 28 of 48
+
+3.6 Joint arrangements
+
+3.8.40.30 For a discussion of the accounting for refundable deposits from customers, see 3.12.370.
+
+3.8.50 Samples
+3.8.50.10 For advertising and promotional purposes, some entities may manufacture samples that they intend to hand out free of
+charge - e.g. beauty products. The costs of manufacturing such samples are expensed as they are incurred; they are not recognised
+as inventory. [IAS 38.69-70]
+3.8.50.20 Other entities may buy such samples that they intend to hand out free of charge. The costs of purchasing those samples
+are expensed when the entity receives, or otherwise has the right to access, the samples; they are not recognised as inventory. A
+prepayment (asset) for such samples can be recognised in the statement of financial position only for payments made in advance of
+the receipt of the samples (see 3.3.150.30). However, if a producer sells products to a retailer and the retailer gives samples to
+customers free of charge, then the samples would be treated as inventory of the producer. [IAS 38.69-70]
+
+3.8.60 Catalogues
+3.8.60.10 Catalogues that are distributed free of charge to prospective customers and describe the entity's products and services
+are not inventory or property, plant and equipment. Instead, catalogues are considered to be a form of advertising and promotional
+material because their primary objective is to advertise. Therefore, the cost of catalogues is recognised as an expense when the
+entity receives, or otherwise has the right to access, the catalogues. A prepayment (asset) can be recognised in the statement of
+financial position only for payments made in advance of the receipt of the catalogues (see also 3.3.150.30-40). [IAS 38.69-70,
+BC46G]
+
+3.8.70 Commodities
+3.8.70.10 The measurement requirements of IAS 2 do not apply to minerals and mineral products held by producers that are
+measured at net realisable value (NRV) in accordance with well-established practices in certain industries. If such inventories are
+measured at NRV, then changes in value are recognised in profit or loss. This exemption applies only to producers of these
+inventories. There is no exemption for entities that process or convert these products. [IAS 2.3(a)]
+3.8.70.20 The measurement requirements of IAS 2 also do not apply to inventories held by commodity broker-traders who measure
+their inventories at fair value less costs to sell. All changes in the fair value less costs to sell of such inventories are recognised in
+profit or loss. Such inventories are normally acquired with the purpose of selling them in the near future and generating a profit from
+fluctuations in price or broker-traders' margin. [IAS 2.3(b), 5]
+3.8.70.25 In assessing whether an entity acts as a commodity broker-trader, the term 'near future' needs to be interpreted. In our
+view, such an assessment may vary from entity to entity and the factors considered in this assessment include the business model of
+the entity. The entity should consider the extent to which it provides additional services related to the underlying commodities, such
+as distribution, storage or repackaging services, as well as the fact that entities that sell goods in the near future after receipt
+generally do not have significant storage capacity. If an entity acts as a commodity broker-trader, then the own-use exemption under
+IFRS 9 will not generally be available (see 7.1.200). [IAS 2.3, 5]
+EXAMPLE 3A - COMMODITIES - RESOLD IN SAME CONDITION
+3.8.70.30 Wholesaler C buys gold and resells it in the same condition a short period after physical delivery. The commodity
+received under such a contract is accounted for under IAS 2, except for the measurement requirements for inventories. The
+commodity is measured at fair value less costs to sell.
+
+EXAMPLE 3B - COMMODITIES - SERVICES PERFORMED BEFORE RESALE
+3.8.70.35 In another example, Company L performs significant services for Company M by cutting and shaping gold into small
+retail units and then selling it. In this case, L accounts for the transaction in accordance with IAS 2, including measurement.
+However, if L is acting as an agent, then it will not recognise any inventories under IAS 2 (see 4.2.340).
+
+3.8.70.40 The presentation and disclosure requirements of IAS 2 apply to items of inventory held by producers or commodity broker © 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 29 of 48
+
+3.6 Joint arrangements
+
+traders. [IAS 2.4, 5]
+
+3.8.73 Emissions allowances
+3.8.73.10 Certain jurisdictions operate a 'cap and trade' scheme, whereby an entity is required to deliver emissions certificates to a
+third party - e.g. a regulator - to be able to emit pollutants legally. The government grants a certain number of emissions certificates to
+an entity for use during a compliance period. The entity can then trade certificates with other parties to ensure that it has sufficient
+emissions certificates to match its emissions. IFRS does not contain specific guidance on accounting for emissions allowances. In
+our view, a participant in a cap and trade scheme should choose an accounting policy, to be applied consistently, to account for
+emissions allowances based on one of the following approaches.
+• As intangible assets: Under this approach, it is argued that emissions allowances are identifiable non-monetary assets that do
+not have physical substance and that therefore they meet the definition of an intangible asset (see 3.3.160).
+• As inventories: Under this approach, it is argued that emissions allowances are effectively an input to be consumed in the
+production process, similar to inventories.
+3.8.73.20 We believe that the accounting policy choice in 3.8.73.10 should be applied regardless of whether emissions allowances
+are bought or received from the government.
+
+3.8.74 Initial recognition
+3.8.74.10 If an entity receives emissions allowances from a government, then it may apply the guidance for government grants. A nonmonetary government grant may be recognised either at fair value or at a nominal amount (see 4.3.50 and 110.10 ). Recognition of a
+non-monetary government grant at the amount paid (often zero) would result in no liability being recognised if the liability is measured
+at the carrying amount (zero) of the related assets. IAS 20 notes that fair value is the usual approach for non-monetary grants. [IAS
+20.23]
+3.8.74.20 Cap and trade schemes typically grant a number of certificates in relation to a specified period over which emissions will
+be measured (compliance period). Under some schemes, the relevant government might have identified a date by which it will
+determine and announce the allocation of the allowances for the next compliance period. This date might be before the date from
+which entities are entitled to their allowances and the date on which they are actually issued. For example, a national government
+announces that it will determine by 14 December 2018 the allocation of allowances to be issued on 28 February 2019. The grant is
+conditional on the entity being in business on 1 January 2019 to receive its allowances. In our view, provided that there are no other
+conditions attached to the grant, the entity should recognise the government grant and the related asset on 1 January 2019 because
+this is the date on which there is reasonable assurance that the entity will comply with the condition attached to the grant and that the
+grant will be received.
+
+3.8.75 Subsequent accounting
+3.8.75.10 If an entity accounts for emissions allowances as inventories to be consumed in the production process, then the general
+requirements for subsequent measurement under IAS 2 apply (see 3.8.330).
+3.8.75.20 In our view, emissions allowances may be classified as commodities. 'Commodities' is not defined in IFRS and an
+emissions allowance is not a financial asset (see 7.1.30), which means that there is no definitional restriction on classifying
+emissions allowances as commodities. [IAS 38.3(a)]
+3.8.75.30 In our view, if such allowances are held as a commodity for resale and they are measured at fair value less costs to sell,
+then we believe that the measurement requirements of IAS 2 do not apply to those emissions allowances (see 3.8.70). [IAS 38.3(a),
+2.3(b), 5]
+
+3.8.76 Disposal
+3.8.76.10 An entity might receive emissions allowances in a cap and trade scheme that are surplus to its expected usage
+requirements. In our view, the income from the sale of these allowances should not be recognised as revenue unless it arises in the
+ordinary course of the activities of the entity (see 4.2.10.10).
+3.8.76.20 For further discussion of the accounting for obligations arising from schemes for emissions allowances, see 3.12.510.
+
+3.8.80 Agricultural produce
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 30 of 48
+
+3.6 Joint arrangements
+
+3.8.80.10 IAS 2 applies to agricultural produce from the point of harvest. For a discussion of the accounting for biological assets
+before harvest, see chapter 3.9. [IAS 2.3(a), 41.3]
+3.8.80.20 However, if the following are measured at NRV in accordance with well-established industry practices, then the
+measurement requirements of IAS 2 do not apply:
+• producers' inventories of agricultural and forest products; and
+• producers' inventories of agricultural produce after harvest. [IAS 2.3]
+3.8.80.30 The presentation and disclosure requirements of IAS 2 apply to such items. [IAS 2.4]
+
+3.8.90 RECOGNITION AND DERECOGNITION
+3.8.90.10 IAS 2 does not include specific guidance on the timing of recognition of purchased inventories. In the absence of specific
+guidance in IAS 2, in our experience entities generally refer to the revenue recognition requirements. Applying that guidance,
+inventory is recognised on the date on which the entity obtains control of it (see 4.2.240). [IFRS 15.31]
+3.8.90.15 An entity has control of inventory when it is able to direct its use and obtain substantially all of its remaining benefits. This
+may occur at a point in time or over time. Indicators that control has passed include the entity having:
+• a present obligation to pay;
+• physical possession;
+• legal title;
+• the risks and rewards of ownership; and
+• accepted the asset. [IFRS 15.38]
+3.8.90.17 The indicators of transfer of control are factors that are often present if an entity has control of inventory. However, they are
+not individually determinative, nor are they a list of conditions that have to be met. An entity needs to evaluate all available evidence
+when determining if it has obtained control of inventory.
+3.8.90.20 A relevant consideration in evaluating at which point in time an entity obtains control of inventory is the shipping terms of
+the arrangement. Shipping terms alone do not determine when control transfers - i.e. an entity considers them along with the other
+indicators of control in 3.8.90.15. However, shipping terms often indicate the point in time when the entity has legal title, the risks and
+rewards of ownership and a present obligation to pay, which are all indicators that control has transferred. For example, when goods
+are shipped 'free on board' (FOB), an entity usually receives the bill of lading and takes over the risk of loss or damage to the goods
+when they are loaded onto the ship. This may indicate that the entity obtains control over the goods when they are loaded onto the
+ship at the port of the seller. If this is the case, then inventory includes items bought FOB that are in transit at the reporting date.
+3.8.90.25 If an entity is an intermediary in an arrangement, then it needs to determine if it acts as a principal or an agent - i.e.
+whether it controls inventory before it is transferred to the customer. To do so, the entity first applies the general guidance on the
+transfer of control. If this assessment is not conclusive, then the entity considers the specific principal vs agent indicators (see
+4.2.340.30-35). If the entity determines that it acts as a principal in the arrangement, then it recognises inventory in its statement of
+financial position. Conversely, if the entity determines that it acts as an agent, then it does not recognise inventory.
+3.8.90.30 The carrying amount of inventories is recognised as an expense when the inventories are sold unless they form part of the
+cost of another asset - e.g. property, plant and equipment under construction. Therefore, derecognition depends on the timing of
+revenue recognition (see chapter 4.2). As such, inventory does not include:
+• items sold, even if a normal level of returns is expected (see 4.2.310); or
+• items shipped to customers on or before the reporting date unless control over those items has not transferred to the buyer - e.g.
+before goods are loaded onto the ship in an FOB arrangement they would be included in inventory of the seller. [IAS 2.34]
+3.8.90.40 For a discussion of sales with a right of return and accounting for an asset for the right to recover returned goods, see
+4.2.310.
+
+3.8.100 Consignment stock
+3.8.100.10 In some cases, a seller may deliver goods to another party but retain control of those goods - e.g. the goods may be
+delivered to a dealer or distributor for sale to an end customer. These types of arrangements are called 'consignment arrangements'.
+Indicators of a consignment arrangement include, but are not limited to, the following:
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 31 of 48
+
+3.6 Joint arrangements
+
+• the goods are controlled by the seller until a specified event occurs - e.g. the sale of the good to a customer of the intermediary or until a specified period expires;
+• the seller is able to require the return of the goods, or transfer the goods to another intermediary; and
+• the intermediary does not have an unconditional obligation to pay for the goods, although it might be required to pay a deposit.
+[IFRS 15.B77-B78]
+3.8.100.20 The principles in 3.8.90 also apply in respect of consignment inventory. Therefore, items controlled by an entity that are
+held on consignment at another entity's premises are included as inventory of the consignor. Items held on consignment on behalf of
+another entity are not included as inventory of the consignee. For a discussion of the recognition of revenue, see 4.2.350.
+
+3.8.110 MEASUREMENT
+3.8.110.10 Inventory is measured at the lower of cost and NRV (see 3.8.120 and 330, respectively). [IAS 2.9]
+3.8.110.20 As an exception to this general rule, producers' inventories of agricultural and forest products and mineral ores may be
+stated at NRV if this is accepted industry practice (see 3.8.70.10). Also, inventory held by commodity broker-traders may be
+measured at fair value less cost to sell (see 3.8.70.20). In these cases, changes in value are recognised in profit or loss. [IAS 2.3]
+3.8.110.30 A group with diverse operating activities could measure the inventories held by commodity broker-traders within the
+group at fair value less costs to sell (see 3.8.70.20) and other inventories at the lower of cost and NRV.
+
+3.8.120 COST
+The cost of inventories comprises:
+• purchase costs (see 3.8.130);
+• production or conversion costs (see 3.8.170); and
+• other costs incurred in bringing inventory to its present location and condition, including attributable non-production overheads
+(see 3.8.220). [IAS 2.10, 15]
+
+3.8.130 Purchase costs
+3.8.130.10 Purchase costs include the purchase price, transport and handling costs, taxes that are not recoverable and other costs
+directly attributable to the purchase. [IAS 2.11]
+3.8.130.20 A purchase price may be attributable to several assets - e.g. if an entity buys all of its inventories from a particular
+supplier. In our view, one possible method is to allocate the purchase price to the individual assets based on their relative fair values.
+
+3.8.140 Sales tax
+3.8.140.10 Sales tax paid - e.g. value added tax - is not included in the cost of inventory if the tax is recoverable. For items on which
+the sales tax is not recoverable, or for entities that are not entitled to a full refund, the non-refundable portion of sales tax paid is
+included as part of the cost of the inventory. [IAS 2.11]
+
+3.8.150 Deferred payment
+3.8.150.10 If payment for inventory is deferred beyond normal credit terms, then the arrangement contains a financing element and
+interest is imputed if the impact is material. [IAS 2.18]
+3.8.150.20 If interest is imputed, then the cost of the inventory is based on a cash price equivalent. Generally, the cash price
+equivalent is the price for normal credit terms. In our view, if a cash price equivalent is not available, then cost should be determined
+by discounting the future cash flows at an interest rate determined with reference to market rates. The difference between the total
+cost and the deemed cost should be recognised as interest expense over the period of financing under the effective interest method
+(see 7.7.270). [IAS 2.18]
+3.8.150.30 In our view, the length of normal credit terms will depend on the entity, the industry and the economic environment.
+Periods of high interest rates or high inflation levels may also affect the length of normal credit terms.
+
+3.8.155 Long-term prepayment
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 32 of 48
+
+3.6 Joint arrangements
+
+3.8.155.10 The IFRS Interpretations Committee discussed whether an entity that makes a long-term prepayment for inventory should
+accrete interest on the prepayment and recognise interest income resulting in an increase in the cost of inventories. The Committee
+did not take the issue onto its agenda and noted that judgement is required to identify when an individual long-term contract contains
+a financing element that should be accounted for separately. [IU 11-15]
+
+3.8.160 Discounts and rebates on purchases
+3.8.160.10 Cash, trade or volume discounts and rebates received are deducted from the cost of purchase. [IAS 2.11, IU 08-02 , 1104]
+3.8.160.20 There is no specific guidance on the timing of recognition of rebates or volume discounts. In our view, if it is probable that
+the rebate or volume discount will be earned and the amount can be estimated reliably, then the discount or rebate should be
+recognised as a reduction in the purchase price when the inventory is bought. This assessment should be reviewed on an ongoing
+basis. [IU 11-04 ]
+EXAMPLE 4A - VOLUME DISCOUNT - PROBABLE TO BE EARNED
+3.8.160.30 Company Z is a furniture retailer. Z buys beds from Company Y at a cost of 100 each. Y has agreed to grant Z a 10%
+refund on all purchases if Z buys at least 10,000 beds in a 12-month period. Based on past experience, it is probable that Z will buy
+10,000 beds from Y. Therefore, we believe that Z should record the beds at the expected cost of 90 per unit and recognise a
+receivable for the anticipated rebate.
+
+3.8.160.40 If it is not probable that the required criteria to earn the rebate will be met, or the amount of the rebate cannot be
+estimated reliably, then we believe that the purchase cost should be measured at the gross amount payable, until such time as it
+becomes probable that a rebate will be received and the amount of that rebate can be estimated reliably.
+3.8.160.50 If the discount or rebate is recognised subsequent to when the item is sold, then in our view the proportion of the discount
+attributable to the sold items should be recognised as an adjustment to cost of sales at the same time as the discount or rebate is
+recognised.
+EXAMPLE 4B - VOLUME DISCOUNT - NOT PROBABLE TO BE EARNED
+3.8.160.60 If, in the fact pattern described in Example 4A, it had not initially been probable that Company Z would buy the required
+10,000 beds, then Z would have recorded each of the beds bought at a gross unit cost of 100 each.
+3.8.160.65 Assume that after nine months, Z has bought 9,000 beds and concludes that it is now probable that it will meet the
+minimum purchase of 10,000 beds and will receive the 10% rebate. At that date, 3,000 beds are still on hand. The other 6,000
+beds have been sold.
+3.8.160.67 We believe that Z should reduce the cost of each of the remaining beds by 10 - i.e. 30,000 (3,000 x 10) of the rebate
+should be allocated to reduce the cost of inventory. The remaining 60,000 should be recognised in profit or loss immediately as a
+reduction of cost of sales.
+
+3.8.160.70 In our view, incentives for early payment (settlement discounts) should be treated as a reduction in the purchase price.
+Generally, when such discounts are not taken, the cost of inventory is the higher amount payable before discount, provided that
+payment is not deferred beyond normal credit terms (see 3.8.150). This approach is consistent with the assumption that there is no
+financing element when payment is within normal credit terms. [IU 11-04 ]
+
+3.8.170 Production or conversion costs
+3.8.170.10 The production or conversion costs include all direct costs such as labour, material and direct overheads and an
+allocation of fixed and variable production overheads. These include the depreciation and maintenance of factory buildings,
+equipment and right-of-use assets; amortisation of intangible assets such as software used in the production process; and the cost
+of factory management and administration. Labour costs include taxes and employee benefit costs associated with labour that is
+involved directly in the production process. The costs do not need to be external or incremental. [IAS 2.12]
+
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 33 of 48
+
+3.6 Joint arrangements
+
+3.8.170.20 The following are recognised as an expense and are not allocated to the cost of inventory in the statement of financial
+position:
+• impairment losses, including goodwill impairment losses;
+• abnormal amounts of wasted material, labour or other production costs (see 3.8.190); and
+• general administration costs unrelated to the production of inventory - e.g. the costs of operating a finance department.
+
+3.8.180 Decommissioning and restoration costs
+3.8.180.10 Decommissioning and restoration costs incurred as a consequence of the production of inventory in a particular period
+are part of the cost of that inventory (see 3.2.70.30). Accordingly, the effect of any changes to an existing obligation for
+decommissioning and restoration costs related to items that have been sold are recognised in profit or loss. [IAS 16.16(c), 18, IFRIC
+1.4]
+
+3.8.190 Allocation of fixed production overheads
+3.8.190.10 The allocation of fixed production overheads is based on the normal capacity of production facilities. Any inefficiency is
+recognised in profit or loss. If an entity classifies expenses based on function, then the inefficiency is allocated to the appropriate
+function. Conversely, if an entity classifies expenses based on nature, then the inefficiency is included in 'other expenses'. [IAS 2.13,
+38]
+3.8.190.20 In determining what constitutes normal capacity, an entity considers the following factors:
+• the nature of the business, economic factors, the status of product life cycles and the reliability of forecasts;
+• the maximum capacity and expected utilisation of production facilities, including planned maintenance and shut-downs; and
+• the expected levels of activity to be achieved on average over a number of periods, adjusted for unusual fluctuations or
+circumstances.
+EXAMPLE 5 - ALLOCATING FIXED PRODUCTION OVERHEADS
+3.8.190.30 Assume that under normal operating conditions Company J expects to produce 100 coffee machines a year. Budgeted
+and actual fixed production overheads for 2019 are 800. Therefore, the fixed overhead cost per machine based on normal
+production levels is 8.
+3.8.190.40 During 2019, because of problems with the production machinery and decreased demand, J produces only 80 coffee
+machines. The production overheads are allocated based on the normal production levels of 100 (i.e. 8 per unit). Therefore, of the
+total production overheads of 800, only 640 (80 x 8) is allocated to inventory. The other 160 is recognised as an expense as it is
+incurred.
+3.8.190.50 However, if during 2019 in response to increased demand for coffee machines J increased production shifts and
+produced 130 machines, then the amount allocated to the inventory would be limited to the actual expenditure. Therefore, if the total
+production overheads remain constant at 800, then a cost of 6.15 (800 / 130) is allocated to each machine.
+
+3.8.190.60 If actual production differs substantially from the normal capacity over a period of time, then an entity considers whether it
+needs to revise the normal capacity used in the allocation of fixed production overheads.
+3.8.190.70 Issues may arise when an entity has a planned plant shut-down. For example, Company F is involved in freezing and
+canning fresh fruit. Production takes place during the first six months of the reporting period when the fresh fruit is picked. During the
+second six months of the reporting period, the production plant is closed and maintenance is performed. No inventory is on hand
+during the shut-down period. The maintenance costs do not comprise a separate component of the plant (see 3.2.250). In
+determining the normal capacity over which production costs will be allocated, F takes into account the annual scheduled plant shutdown.
+3.8.190.80 However, in our view the maintenance cost in the second half of the reporting period cannot be accrued over the
+production in the first six months of the reporting period. This is because a provision cannot be recognised during the first half for the
+maintenance costs to be incurred in the second half of the reporting period (see 3.12.540).
+3.8.190.90 In our view, the maintenance costs also cannot be capitalised and allocated to the following period's production. If F were
+to attribute the maintenance cost incurred in the second half of the reporting period as a cost of producing the inventory in the
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 34 of 48
+
+3.6 Joint arrangements
+
+following reporting period, then this would result in the maintenance costs being recognised as an asset in the statement of financial
+position. We believe that the maintenance costs do not give rise to an asset as defined in the Conceptual Framework (see 1.2.120)
+and therefore they should be expensed as they are incurred.
+
+3.8.200 Common costs as part of inventory
+3.8.200.10 Properties for sale in the ordinary course of business or in the process of construction or development for such sale are
+accounted for under IAS 2 rather than IAS 40 (see 3.4.60.10 and 3.8.10.20). If an entity is constructing individual units as part of a
+single complex with the objective of selling them, then the entity needs to identify and distinguish between costs specifically
+attributable to each unit (e.g. flooring) and common costs attributable to the complex as a whole (e.g. land). In our view, the common
+costs should be allocated to each unit on a systematic and rational basis that provides a reasonable approximation of the cost
+attributable to the individual items of inventory. We believe that the allocation method applied should reflect the construction efforts as
+well as the cost of a unit. [IAS 40.9(a)]
+3.8.200.15 Common costs are allocated to individual items of inventory with reference to the relative fair values of individual items of
+inventory only if fair value is a reasonable approximation of cost. If there is a considerable difference between individual inventory
+items' cost and fair value, then using an allocation of relative fair values could result in a misallocation of common costs. [IAS 2.14]
+
+3.8.205 Right-of-use assets
+3.8.205.10 The presentation guidance for a lessee in IFRS 16 does not address scenarios in which an entity sells a right-of-use
+asset in the course of its ordinary activities as part of inventory - e.g. land leased for the construction of a multi-unit building that is
+transferred to the buyer. In these cases, a question arises whether a right-of-use asset could be presented separately in the
+statement of financial position or directly in inventory. In our view, if an entity sells a right-of-use asset in the course of its ordinary
+activities, then it should choose an accounting policy, to be applied consistently, to include the right-of-use asset directly in inventory
+or present the right-of-use asset separately in the statement of financial position. In our view, if an entity elects to present the right-ofuse asset separately, then it should capitalise any related amortisation in inventory. [IFRS 16.47]
+EXAMPLE 6A - RIGHT-OF-USE ASSET SOLD IN THE COURSE OF ORDINARY ACTIVITIES
+3.8.205.20 Construction Company P leases land to develop a multi-unit condominium complex for sale and recognises a related
+right-of-use asset. The land would not meet the definition of investment property, and therefore P does not apply IAS 40 to account
+for the right-of-use asset (see 3.4.40.10 and 3.8.200).
+3.8.205.30 We believe that P should choose an accounting policy, to be applied consistently, to include the right-of-use asset in the
+cost of inventory or to present the right-of-use asset separately in the statement of financial position. If P elects to present the rightof-use asset separately, then any related amortisation should be capitalised as part of inventory.
+
+3.8.208 Short-term leases and leases of low-value items related to the production of inventory
+3.8.208.10 There is no specific guidance on capitalisation of lease costs incurred in the production of inventory in cases in which an
+entity elects to apply a lease recognition exemption to a short-term lease or a lease of a low-value item (see 5.1.140). In our view, if
+an entity applies a recognition exemption to a lease related to the production of inventory, then it should include the lease costs in the
+cost of inventory. [IFRS 16.A, 5-6]
+EXAMPLE 6B - CAPITALISING LEASE COSTS AS PART OF INVENTORY - SHORT-TERM LEASE
+3.8.208.20 Modifying Example 6A, Construction Company P leases equipment to use in the construction of the multi-unit
+condominium complex. P determines that the equipment leases qualify for the short-term lease recognition exemption and elects
+to apply it.
+3.8.208.30 We believe that P should capitalise the lease payments related to the equipment leases directly into the cost of
+inventory.
+
+3.8.210 Interruptions
+3.8.210.10 Interruptions in production may happen while costs are still being incurred. For example, an entity may continue to pay
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 35 of 48
+
+3.6 Joint arrangements
+
+rent on a factory during an unplanned plant shut-down or labour strike. IAS 2 does not deal specifically with such circumstances, but
+in our view guidance in IAS 23 should be used by analogy (see 4.6.160), because this standard deals specifically with a similar
+issue. [IAS 23.20]
+3.8.210.20 Accordingly, we believe that costs incurred during an interruption should be capitalised to inventory only if:
+• the interruption is planned, is temporary and is a necessary part of getting the inventory ready for sale - e.g. the inventory requires
+time to mature; or
+• the costs are costs of purchase - e.g. purchases of additional raw materials during the shut-down period.
+3.8.210.30 Therefore, in our view rent costs during a strike would not be recognised as part of inventory, but rent costs during
+scheduled maintenance shut-downs might be.
+
+3.8.215 Learning curve costs
+3.8.215.10 In certain industries, 'learning curve costs' are incurred on the early units produced - e.g. in producing multiple units of
+complex goods for sale. Learning curve costs are costs that are expected to be incurred on early units as production issues are
+resolved and are expected to decrease each time a unit is produced. This is based on the observation that repetition of the same
+operation results in less time or effort expended on that operation.
+3.8.215.20 As a result of these learning curve costs, actual production costs on the earlier units produced may exceed the NRV of
+these units and therefore result in losses on initial production. However, profits may be made on later individual units. Losses on the
+earlier units may be incurred even if all these units are sold subject to one contract and that overall contract is profitable.
+3.8.215.30 Abnormal additional costs are expensed as they are incurred (see 3.8.170.20). However, in our view learning curve costs
+incurred in the production process should be included in the cost of inventory (subject to recoverability - see 3.8.335.10) when there
+is clear objective evidence that these costs are not abnormal costs. We believe that such costs are not abnormal if they are planned
+and anticipated as part of the production process, and if they can be measured reliably.
+
+3.8.220 Other costs
+3.8.220.10 Any other costs that are directly related to bringing inventories to the point of sale and getting them ready for sale are
+also allocated to inventories. These may include non-production overheads or the costs of designing products for specific customers
+including, for example, the amortisation of development costs related to a specific product or process. [IAS 2.15, 38.97]
+3.8.220.15 The cost of inventory may include the fair value of a derivative on settlement date of a purchase contract, which does not
+meet the 'own use' scope exception in IFRS 9. For example, an entity may enter into a contract to purchase non-financial items that
+falls in the scope of IFRS 9. The entity accounts for the contract as a derivative measured at fair value through profit or loss. At
+settlement date, the entity physically settles the contract by taking delivery of the non-financial items. If the entity's accounting policy
+for such contracts is to recognise cost of inventory on a gross basis, then it includes cash paid and the fair value of the derivative on
+the settlement date (see 7.10.65.33). [IU 03-19]
+3.8.220.20 Selling and advertising costs cannot be included in the cost of inventory. [IAS 2.16]
+
+3.8.230 Distribution, packaging and transport costs
+3.8.230.10 In some arrangements, an entity delivers goods to a location specified by its customer. In these cases, the entity first
+needs to determine if transporting goods is a separate performance obligation. If so, then it applies the guidance in IFRS 15 (see
+4.2.347.20).
+3.8.230.15 If transport and distribution costs form part of a single performance obligation for the sale of goods, then the entity
+considers if they represent costs that are necessary to get the inventory to its present location or condition for sale. If so, then they
+are included in the cost of inventory. Examples of such costs include, but are not limited to, the following:
+• the cost of transporting goods from the supplier if the entity is an intermediary and acts as a principal in the arrangement;
+• transport or distribution costs that are incurred at an intermediate stage in the production process; and
+• transport or distribution costs to get the inventory from a central warehouse to the point of sale.
+3.8.230.20 Similarly, packaging costs incurred to prepare inventory for sale are part of the cost of inventory.
+3.8.230.30 Other distribution costs and the costs of transporting goods to customers - i.e. those that do not relate to a separate
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 36 of 48
+
+3.6 Joint arrangements
+
+performance obligation and are not necessary to get the inventory to its present location or condition for sale - are recognised as an
+expense as they are incurred; they are not allocated to inventory.
+
+3.8.240 Storage or holding costs
+Storage or holding costs are generally expensed as they are incurred unless:
+• storage is necessary before a further stage in the production process;
+• the inventory is produced as a discrete project - e.g. custom-built furnishings when the storage cost will be charged to the
+customer; or
+• the inventory requires a maturation process to bring it into a saleable condition - e.g. whisky, wine or cheese. [IAS 2.16(b)]
+
+3.8.250 Joint products and by-products
+3.8.250.10 A production process may result in more than one output being produced. For example, in the wine-making process,
+grappa is produced from the liquid distilled from the fermented residue of grapes after they have been pressed. [IAS 2.14]
+3.8.250.20 If the cost related to the individual products cannot be identified, then the total production costs are allocated between the
+products on a rational and consistent basis. One possible method is to allocate the total production costs based on the relative
+selling prices of each product. If this method is used, then it is reasonable to assume the same profit margin for each product unless
+there is a more accurate method of making the allocation. [IAS 2.14]
+3.8.250.30 If a production process results in products that are incidental to the primary product, then the cost allocated to these byproducts may be based on their NRV, which is then deducted from the cost of the main product. [IAS 2.14]
+
+3.8.260 Borrowing costs
+3.8.260.10 Borrowing costs are capitalised as part of the cost of inventories if the inventories are qualifying assets. Inventories that
+are routinely manufactured in large quantities or that are produced on a repetitive basis in a short time are not qualifying assets (see
+4.6.20). [IAS 2.17, 23.4, 5, 7, BC6]
+3.8.260.20 An entity may borrow funds to fulfil its contracts with customers. A question arises whether directly attributable borrowing
+costs may be capitalised under IAS 23 when control transfers to the customer over time, in particular whether an entity may have a
+qualifying asset in such circumstances. The IFRS Interpretations Committee discussed a scenario in which an entity incurs
+borrowing costs in relation to construction of a multi-unit real estate development. Units are marketed and sold to individual
+customers and control of each unit transfers to the customer over time. Some units are sold before construction commences and
+some during the construction - i.e. the entity recognises work in progress for unsold units as inventory. The Committee noted that any
+work in progress for unsold units under construction is ready for its intended sale and therefore not a qualifying asset. This is
+because the entity intends to sell the part-constructed units as soon as it finds suitable customers and control of them will transfer to
+the customers upon entering into a contract. For further discussion of qualifying assets, see 4.6.20. [IAS 23.5, IU 03-19]
+
+3.8.270 Agricultural produce
+3.8.270.10 The fair value less costs to sell of agricultural produce at the date of harvest is the deemed cost of the produce for the
+purpose of applying IAS 2 (see 3.9.90.10). [IAS 2.20]
+
+3.8.280 Cost formulas
+3.8.280.10 If items of inventory are not interchangeable or comprise goods or services produced for specific projects, then cost is
+determined on an individual item basis. This is appropriate for unique items, such as custom-built furnishings, property
+developments, antiques and works of art. [IAS 2.23]
+3.8.280.20 A cost formula may be used when there are many interchangeable items. The cost formula used is first-in, first-out (FIFO)
+or weighted-average. [IAS 2.25]
+3.8.280.30 The last-in, first-out (LIFO) method is prohibited. [IAS 2.BC9]
+3.8.280.40 Under the weighted-average cost formula, the cost of each item is determined from the weighted average of the cost of
+similar items at the beginning of a period and the cost of similar items bought or produced during the period. The average may be
+calculated on a periodic basis or as each additional shipment is received. [IAS 2.27]
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 37 of 48
+
+3.6 Joint arrangements
+
+EXAMPLE 7A - APPLYING COST FORMULAS - FIFO AND WEIGHTED-AVERAGE COST METHODS
+3.8.280.50 This example illustrates the application of each of the methods in an entity that uses a periodic inventory system. The
+following information pertains to December 2019.
+
+3.8.280.60 For a discussion of changes in a cost formula, see 2.8.110.20.
+
+3.8.290 Standard cost method
+3.8.290.10 The standard cost method may be used for convenience if the results approximate actual cost. Under a standard costing
+system, the cost of a product is determined using predetermined rates for the material, labour and overhead expenses based on
+manufacturing specifications. [IAS 2.21]
+3.8.290.20 To be acceptable as a basis for measuring cost, standard costs take into account normal levels of materials and
+supplies, labour efficiency and capacity utilisation, or are adjusted for variances. Standard costs should be reviewed regularly, in our
+view at least at each reporting date, and adjusted to take into account changes in circumstances.
+3.8.290.30 If standard costs are not updated to approximate the actual costs, then it is necessary to analyse the variance accounts
+and to apportion part of the variances to inventory.
+EXAMPLE 7B - APPLYING COST FORMULAS - ADJUSTING STANDARD COSTS FOR VARIANCES
+3.8.290.40 If the standard unit cost in Example 7A was 10, then the closing standard cost of inventory would be 4,000 (400 x 10)
+before adjusting for variances.
+3.8.290.50 Applying FIFO, the adjustment to closing inventory would be an increase of 1,500. The adjustment is computed by
+allocating the purchase-price variance applicable to the 400 units of inventory as follows: 350 x (14 - 10) + 50 x (12 - 10).
+3.8.290.60 Applying the weighted-average cost method, the adjustment to closing inventory would be an increase of 900. The
+adjustment is computed by allocating the purchase-price variance applicable to the 400 units of inventory as follows: 400 x (12.25 10).
+
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 38 of 48
+
+3.6 Joint arrangements
+
+3.8.300 Retail method
+3.8.300.10 The retail method may be used if the result approximates the actual cost. This assessment should be reviewed regularly,
+in our view at least at each reporting date. Under the retail method, inventory is recorded based on its selling price. The cost of the
+inventory is derived by deducting the profit margin from the selling price. Adjustments are made when inventory has been marked
+down to below its original selling price. An average percentage for each retail department may be used if the margins on all the
+products within that department are similar. [IAS 2.21-22]
+EXAMPLE 7C - APPLYING COST FORMULAS - RETAIL METHOD
+3.8.300.20 This example illustrates the retail method.
+
+3.8.300.30 The example does not consider the impact of mark-ups or mark-downs on the selling price, which would add to the
+complexity of the calculation under the retail method.
+
+3.8.310 Base stock method
+3.8.310.10 The base stock method is often used in the hospitality industry - e.g. by hotels and restaurants in accounting for linen or
+silver and glassware. Under the base stock method, the cost of initial purchases of equipment to be used in operations is
+recognised as inventory and carried unamortised as base stock. The cost of replacement items is expensed when they are
+acquired.
+3.8.310.20 IFRS does not specifically allow for the base stock method. In our view, the base stock method may be used for practical
+reasons if the result obtained approximates the result that would be obtained by applying IFRS. This assessment should be reviewed
+regularly, in our view at least at each reporting date.
+3.8.310.30 The treatment that is applied under IFRS depends on whether the equipment will be used for more than one period. If it
+will be used for more than one period, then it meets the definition of property, plant and equipment and is recognised at cost and
+depreciated over its estimated useful life (see 3.2.10). Otherwise, it is treated as inventory. If it is inventory, then it is measured at the
+lower of cost and NRV and items are expensed as they are consumed (replaced).
+
+3.8.315 Minimum inventory levels
+3.8.315.10 Sometimes entities maintain minimum inventory levels. In our view, this does not by itself justify a different cost formula for
+the minimum level of inventory compared with inventory above the minimum level. In our view, a different cost formula for the minimum
+inventory level may be acceptable if, and only if, it reflects the inventory flows in the entity. [IAS 2.24-25, BC15-BC19]
+
+3.8.320 Consistency
+3.8.320.10 The same type of cost formula need not be used for all inventory. However, the same cost formula is applied to all
+inventories having a similar nature and use to the entity. [IAS 2.25]
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 39 of 48
+
+3.6 Joint arrangements
+
+3.8.320.20 A difference in geographic locations does not, by itself, justify different cost formulas. However, raw materials used by
+one segment may have a different use from the same raw materials used in another segment and this may justify a different
+treatment. [IAS 2.26]
+EXAMPLE 8 - COST FORMULAS IN DIFFERENT SEGMENTS
+3.8.320.30 Company J buys gold and refines it. Some of the refined gold is sold by the wholesale segment. The remainder is used
+by a segment that manufactures jewellery. The wholesale and jewellery segments may use different cost formulas to account for the
+refined gold.
+
+3.8.320.40 A change in cost formulas is justified only if it results in reliable and more relevant information (see 2.8.70).
+3.8.320.50 However, if an entity buys inventory items that it did not have in a previous period, then a new method may be used for the
+new inventories if they have a different nature and use from other items of inventory.
+
+3.8.330 NET REALISABLE VALUE
+3.8.330.10 NRV is the estimated selling price in the ordinary course of business less the estimated costs of completion and sale.
+The costs of sale include directly attributable marketing and distribution costs. NRV is an entity-specific value. [IAS 2.6]
+
+3.8.335 Write-downs of inventories and reversals of write-downs
+3.8.335.10 Any write-down of inventories to NRV is recognised as an expense in the period in which the write-down occurs. [IAS
+2.34]
+3.8.335.20 A previous write-down of inventories to their NRV is reversed if it subsequently increases. The amount of the reversal is
+limited to the amount of the original write-down, such that the new carrying amount is the lower of cost and the revised NRV.
+Reversals of previous write-downs are recognised in profit or loss in the period in which the reversal occurs as a reduction in the
+amount of inventories recognised as an expense in the period. [IAS 2.33-34]
+EXAMPLE 9 - WRITE-DOWNS AND REVERSALS
+3.8.335.30 On 31 December 2018, Company P writes down its inventory from a carrying amount of 100 to its NRV of 95. During
+2019, the inventory is still on hand and its NRV increases to 103.
+3.8.335.40 In this example, P recognises a reversal of 5, such that the new carrying amount of the inventory is the lower of its cost
+of 100 and its revised NRV of 103.
+
+3.8.340 Groups of items
+3.8.340.10 NRV write-downs are normally determined on an individual item basis. However, in some cases it may be appropriate to
+evaluate similar products in groups. That may be the case for items of inventory related to the same product line that have similar
+purposes or end uses, are produced and marketed in the same geographic area and cannot be practicably evaluated separately
+from other items in that product line. [IAS 2.29]
+3.8.340.20 In the clothing textile industry it may not be possible to determine selling prices for each textile individually and therefore it
+may be necessary to perform the NRV assessment on all textiles that will be used to produce clothing for a particular season.
+3.8.340.30 However, retailers do not generally determine NRV write-downs on the basis of the whole department store because
+different departments usually have different margins.
+
+3.8.350 Intended use
+3.8.350.10 The estimated selling price takes into account the intended use of the items. [IAS 2.31]
+EXAMPLE 10 - EXCESS MATERIALS IN DETERMINING NRV
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 40 of 48
+
+3.6 Joint arrangements
+
+3.8.350.20 Company B has excess inventories of materials that it will not be able to use in production. B has made the decision to
+sell the excess materials. The NRV of the excess materials is based on their anticipated sale.
+
+3.8.350.25 If materials and other supplies are held for use in the production of inventories, then NRV is based on the estimated
+selling price of the finished products in which they will be incorporated (less the estimated costs of completion and sale). Therefore,
+such materials and supplies are not written down below cost if the finished products in which they will be incorporated are expected
+to be sold at or above cost. If, however, an entity intends to sell materials in their current form rather than incorporate them into
+finished products, then NRV is based on the estimated selling price of the materials in their current form. [IAS 2.32]
+EXAMPLE 11A - CALCULATING NRV - INTENDED USE IS MANUFACTURE
+3.8.350.26 Company P, a cabinet manufacturer, has raw material timber inventory on hand at 31 December 2019 with a carrying
+amount of 100. The current market value of that timber is 95. P intends to use the timber to manufacture cabinets. Therefore, the
+NRV is based on the finished cabinets and not on the timber in its raw material form. P estimates costs to completion and sale of
+50 and a selling price for the cabinets of 160.
+3.8.350.27 P does not write down inventory at 31 December 2019 because the NRV of the timber of 110 (160 - 50) is higher than
+its carrying amount of 100. If, however, P intended to sell the timber in its current raw material form, then it would write down the
+timber by 5 plus the estimated costs of sale.
+
+EXAMPLE 11B - CALCULATING NRV - INTENDED USE IS DEVELOPMENT
+3.8.350.28 Company Q, a property developer, has undeveloped land inventory at 31 December 2019 with a carrying amount of
+1,000. The current market value of that undeveloped land is 950. Q intends to develop houses on the land. In this example, the NRV
+of the land is based on the estimated selling prices of the finished houses less the estimated costs of completion and sale.
+3.8.350.29 Therefore, the land will not be written down at 31 December 2019 if Q estimates that the finished houses will be sold
+above cost. If, however, Q intended to sell the land in its current form, then it would write down the land by 50 plus the estimated
+costs of sale.
+
+3.8.350.30 Operating losses do not result in an automatic write-down of inventory.
+EXAMPLE 12 - OPERATING LOSSES
+3.8.350.40 Company T is a tractor producer and also has a servicing division that is operating at a loss. T has some parts that will
+be used in the servicing business and others that will be used in the production of tractors.
+3.8.350.50 In this example, T evaluates the NRV of the parts to be used in tractors separately from the NRV of the parts to be used
+in the servicing division. The losses in the servicing division may result in a write-down of the parts that will be used by that division,
+but not of those that will be used in production.
+
+3.8.360 Events after reporting date
+3.8.360.10 Estimates of NRV take into consideration fluctuations in price or cost to the extent that they provide evidence of
+conditions existing at the reporting date (see 2.9.20). Events after the reporting date may provide evidence that the cost of inventory
+exceeds its NRV at the reporting date. In these cases, the inventory is written down to its NRV at the reporting date. [IAS 2.30]
+EXAMPLE 13 - EVENT AFTER REPORTING DATE
+3.8.360.20 On 31 December 2019, the carrying amount of Company P's inventory is 100. On that date, P estimates that the NRV
+of the inventory is 110.
+3.8.360.30 Events in January 2020 provide evidence that the NRV of the inventory on 31 December 2019 was 95. Therefore, P
+writes down its inventory to 95 in its 31 December 2019 financial statements.
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 41 of 48
+
+3.6 Joint arrangements
+
+3.8.370 Replacement cost
+3.8.370.10 Lower replacement costs do not lead automatically to a NRV write-down. However, a write-down would be recognised if
+the fall in prices means that the finished products will be sold for less than production cost.
+
+3.8.380 Changes in exchange rates
+3.8.380.10 Changes in exchange rates may require a NRV write-down (see chapter 2.7).
+EXAMPLE 14 - EFFECT OF EXCHANGE RATES ON NRV
+3.8.380.20 Company Z is a book dealer. On 1 December, Z orders 20 books at a cost of foreign currency AC 110 each. The
+expected selling price of the books is functional currency FC 120. The spot exchange rate is AC 1:FC 0.9 on 1 December. On 20
+December when the books are received, the exchange rate is AC 1:FC 1.5 .
+3.8.380.30 Assuming that Z had not hedged the foreign exchange risk on its order, the recorded unit cost of the books would be
+FC 165, because the inventory is measured based on the spot exchange rate at the purchase date. The anticipated selling price of
+FC 120 has not changed. Therefore, Z recognises a NRV write-down of FC 45 on each book, assuming no further costs of sale
+
+3.8.390 Sales contracts
+3.8.390.10 The determination of NRV takes into account firm sales contracts that have been entered into. The NRV of inventory held
+to satisfy firm sales contracts is based on the selling price under those contracts. The NRV of inventory held in excess of firm sales
+contracts is based on general selling prices without regard to the firm sales contracts. [IAS 2.31]
+EXAMPLE 15 - FIRM SALES CONTRACTS
+3.8.390.20 Company P has 100 units of inventory on hand at its annual reporting date recorded at a carrying amount of 10 per unit.
+The current market price is 8 per unit. P has a firm sales contract with Company Q to sell 60 units to Q at 11 per unit, which cannot
+be settled net (see 7.1.200).
+3.8.390.30 P calculates the NRV of the units as follows.
+• For the 60 units that will be sold to Q, NRV is 11 per unit less estimated selling costs.
+• For the remaining 40 units, NRV is 8 per unit less estimated selling costs.
+3.8.390.40 Therefore, P writes down the 40 units by 80 (40 x (10 - 8)) plus estimated selling costs.
+
+EXAMPLE 16 - FIRM SALES CONTRACTS - SALES COMMITMENT DERIVATIVES
+3.8.390.50 Company E manufactures semi-finished copper and copper alloy products. E enters into forward contracts to manage
+its copper inventory level and those forward contracts fall in the scope of IFRS 9 and are accounted for under its guidance (see
+7.1.200.50).
+3.8.390.60 In our view, the NRV of the inventory held to satisfy firm sales contracts should be based on the contract price including
+the fair value of the related sales commitment derivatives (see 7.1.200.50). However, the NRV of inventory held in excess of firm
+sales contracts should be based on the general selling prices without regard to the specific sales contracts.
+
+3.8.390.70 If an entity has a contract to sell inventory for less than the cost of fulfilling the obligations under the contract, then the
+inventory held to satisfy that contract is written down by the amount that the cost of fulfilling the obligations exceeds the selling price. If
+that excess is greater than the carrying amount of the inventory, then the entity considers guidance in IAS 37 on onerous contracts
+(see 3.12.600). [IAS 2.31]
+
+3.8.400 PRESENTATION AND DISCLOSURES
+© 2019 KPMG TFRG Limited, a U.K. company, limited by guarantee. All rights reserved.
+This is page 42 of 48
+
+3.6 Joint arrangements
+
+3.8.400.10 Inventories are current assets. However, an entity discloses the amount of inventories that are expected to be recovered
+after more than 12 months from the reporting date. [IAS 1.61, 66-68]
+3.8.400.20 Advance payments made in respect of purchases of inventories are not classified as inventory. Generally, such payments
+are either a right to receive inventory or a refund of cash.
+3.8.400.30 Advance payments received from customers in respect of goods to be sold are not netted against inventories. Instead,
+an entity recognises a contract liability for its obligation to transfer goods or services to a customer (see 4.2.470). [IFRS 15.105-106]
+
+3.8.400.40 The carrying amount of each class of inventory is disclosed separately. Classes of inventories include raw materials,
+work in progress and finished goods. The inventories of a service provider are normally described as work in progress. [IAS 2.3637]
+3.8.400.50 The amount of inventories recognised as an expense during the period and the amount of any write-down of inventories
+recognised as an expense is disclosed. [IAS 2.36(d)-(e)]
+3.8.400.60 If an entity chooses to allocate expenses by function, then the cost of inventories sold during the period is disclosed. If an
+entity chooses an allocation of expenses by nature, then the costs recognised as an expense for raw materials and consumables,
+labour costs and other costs together with the amount of the net change in inventories for the period are disclosed. For further
+discussion of presentation in the statement of profit or loss and OCI, see chapter 4.1. [IAS 2.36, 39]
+3.8.400.70 In our view, write-downs of inventory to NRV as well as any reversals of such write-downs should be presented in cost of
+sales.
+3.8.400.80 The amount of a reversal of a write-down to NRV is disclosed separately. A gain on the sale of inventory previously
+written down is viewed as evidence of an increase in NRV, triggering this disclosure requirement in the period of sale. [IAS 2.36(f)]
+EXAMPLE 17 - DISCLOSURE OF REVERSALS
+3.8.400.90 Company X owns inventory with an original cost of 100, which was written down to its NRV of 80. In the following
+period, the item is sold for 120. This gain is viewed as evidence of an increase in NRV at the subsequent reporting date.
+Therefore, a reversal of the write-down of 20 is disclosed in the period in which the inventory is sold.
+

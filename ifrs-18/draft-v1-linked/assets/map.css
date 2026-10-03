@@ -1,0 +1,400 @@
+/* IFRS 18 Map — jump board (Standard frame ⊃ three peer pillars + close-out;
+   OpEx contained in the Operating band of the mini P&L; dashed banks see-also only).
+   Loaded only by index.html, after shared.css + draft.css. Night tokens from those files.
+   Solid = frames / peers; dashed = see-also tip only. No floating ↓ / process spine. */
+
+.page.map-page { max-width: 1120px; }
+
+.map-page header.page-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.map-page header.page-header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* ==== board:start — keep byte-identical in assets/map.css and visuals/map-jumpboard.css ==== */
+
+.i18map {
+  --map-gap: 16px;
+  --map-gutter: 12px;
+  --map-inner: 10px;
+}
+.i18map a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---- Standard: sole outer authority frame ---- */
+.i18map .std-frame {
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 14px 16px 18px;
+  background: transparent;
+}
+.i18map .std-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding-bottom: 12px;
+  margin-bottom: var(--map-gap);
+  border-bottom: 1px solid var(--line);
+}
+.i18map .std-rules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.i18map a.std-rule {
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  background: var(--surface);
+}
+.i18map a.std-rule strong { color: var(--ink); }
+.i18map a.std-rule:hover { border-color: var(--accent); text-decoration: none; }
+
+/* ---- Major stack: pillar group (primary) then close-out (secondary) ---- */
+.i18map .map-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--map-gap);
+}
+
+/* ---- Frames (containment) + cells ---- */
+.i18map .contain {
+  border: 2px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 12px 14px 14px;
+  min-width: 0;
+}
+
+.i18map a.frame-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  text-decoration: none;
+}
+.i18map a.frame-title:hover { color: var(--accent); text-decoration: none; }
+.i18map .std-head a.frame-title { font-size: 14px; }
+
+.i18map .fb-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: auto;
+  min-width: 46px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.i18map .cell-grid { display: grid; gap: var(--map-inner); }
+.i18map .g-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.i18map .g-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.i18map .cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  padding: 10px 12px;
+  color: inherit;
+  text-decoration: none;
+}
+.i18map a.cell:hover { border-color: var(--accent); text-decoration: none; }
+.i18map .cell-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.i18map .cell-body {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---- Three peer pillars: same frame, same title row, bottoms aligned ---- */
+.i18map .pillar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.i18map .pillar-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--map-gutter);
+  align-items: stretch;
+}
+.i18map .pillar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--map-inner);
+}
+.i18map .pillar-fill { flex: 1 1 auto; }
+
+/* Shared rule across all three pillars — attached under the row, not a step */
+.i18map .span-bar {
+  margin: 0;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+  text-align: center;
+}
+.i18map .span-bar strong { color: var(--ink); }
+
+/* ---- Mini P&L statement schematic (Structured P&L pillar) ---- */
+.i18map .mini-pnl {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.i18map .mini-pnl-band {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-left-width: 3px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+  text-decoration: none;
+}
+.i18map a.mini-pnl-band:hover { filter: brightness(1.12); text-decoration: none; }
+.i18map .mini-pnl-band.cat-operating {
+  background: var(--cat-operating-soft);
+  border-color: var(--cat-operating);
+}
+.i18map .mini-pnl-band.cat-investing {
+  background: var(--cat-investing-soft);
+  border-color: var(--cat-investing);
+}
+.i18map .mini-pnl-band.cat-financing {
+  background: var(--cat-financing-soft);
+  border-color: var(--cat-financing);
+}
+.i18map .mini-pnl-band.cat-tax {
+  background: var(--cat-tax-soft);
+  border-color: var(--cat-tax);
+}
+.i18map .mini-pnl-band.cat-discontinued {
+  background: var(--cat-discontinued-soft);
+  border-color: var(--cat-discontinued);
+}
+.i18map .mini-pnl-name { min-width: 0; }
+.i18map .mini-pnl-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 1px 6px;
+  background: var(--surface);
+}
+
+/* Operating band contains the OpEx analysis (Ch5): part–whole, not a sixth band */
+.i18map .mini-pnl-band--contain {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 5px 6px 6px 8px;
+}
+.i18map a.mini-pnl-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+.i18map a.mini-pnl-head:hover .mini-pnl-name { color: var(--accent); }
+.i18map a.mini-pnl-nest {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: inherit;
+  text-decoration: none;
+}
+.i18map a.mini-pnl-nest:hover { border-color: var(--accent); text-decoration: none; }
+.i18map .mini-pnl-nest-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.i18map .mini-pnl-nest-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.i18map .mini-pnl-nest-body {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* Required subtotals: statement rules; final total double-ruled */
+.i18map a.mini-pnl-tick {
+  display: block;
+  margin: 0;
+  padding: 2px 4px 1px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--muted);
+  text-decoration: none;
+  border: 0;
+  border-top: 1.5px solid var(--ifrs-subtotal);
+}
+.i18map a.mini-pnl-tick:hover { color: var(--accent); text-decoration: none; }
+.i18map a.mini-pnl-tick--total {
+  padding-bottom: 3px;
+  border-bottom: 3px double var(--ifrs-subtotal);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ---- Dashed = see-also only (banks / insurers → Ch3) ---- */
+.i18map a.tip-note {
+  display: block;
+  margin-top: auto;
+  padding: 7px 10px;
+  border: 1px dashed var(--dash);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+  text-decoration: none;
+  background: transparent;
+}
+.i18map a.tip-note strong { color: var(--ink); }
+.i18map a.tip-note:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+/* ---- Close-out (secondary rank): Other FS ∥ Transition ---- */
+.i18map .close-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--map-gutter);
+  align-items: stretch;
+}
+.i18map .contain.close {
+  display: flex;
+  flex-direction: column;
+  gap: var(--map-inner);
+  border-width: 1px;
+  background: transparent;
+}
+.i18map .close .cell-grid { flex: 1 1 auto; }
+
+/* ---- Narrow ---- */
+@media (max-width: 900px) {
+  .i18map { --map-gap: 14px; }
+  .i18map .pillar-row { grid-template-columns: 1fr; }
+  .i18map .close-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .i18map .g-2,
+  .i18map .g-3 { grid-template-columns: 1fr; }
+  .i18map .std-frame { padding: 12px 10px 14px; }
+  .i18map .contain { padding: 10px 12px 12px; }
+}
+
+/* ==== board:end ==== */
+
+/* ---- Chapter visit path (primary → secondary flow) ---- */
+.i18map .map-visit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+}
+.i18map a.map-visit-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+.i18map a.map-visit-step:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+.i18map .map-visit-arrow {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: var(--accent);
+  position: relative;
+  flex-shrink: 0;
+}
+.i18map .map-visit-arrow::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid var(--accent);
+}
+@media (max-width: 720px) {
+  .i18map .map-visit-arrow { width: 12px; }
+}

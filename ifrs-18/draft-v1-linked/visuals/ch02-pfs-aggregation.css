@@ -1,0 +1,245 @@
+/* Ch2 PFS roles & aggregation — Concept Map visual.
+   Loaded only by visuals/ch02-pfs-aggregation.html, after shared.css.
+   Grammar: primary = equal-rank peer cards (PFS ∥ Notes) on shared rows, with one
+   shared-rules plate attached under the pair (roles + materiality; Extra PFS lines §23–24);
+   secondary = §41 matrix checklist (not a flowchart) with its trap and the
+   labelling tip attached beneath; dashed = labelling tip only.
+   No outer plate (parent fieldset is the frame). No hub on PFS. No process stem. */
+
+/* body.embed is transparent in shared.css; paint the page night canvas so the
+   iframe never shows a white UA backdrop (identical to the fieldset interior). */
+html { background: var(--bg); }
+
+.pa-board {
+  --pa-gap: 20px;
+  --pa-inner: 8px;
+  --pa-gutter: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pa-gap);
+}
+.pa-board a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.pa-sec {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pa-inner);
+  min-width: 0;
+}
+
+.pa-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.pa-label a.fb-num {
+  margin-right: 0;
+  flex-shrink: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---- 2.1 Equal-rank peer cards (primary) ----
+   Subgrid keeps head / role line / detail list aligned across PFS ∥ Notes. */
+.pa-peers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto 1fr;
+  gap: 0 var(--pa-gutter);
+}
+.pa-peer {
+  grid-row: span 3;
+  display: grid;
+  grid-template-rows: subgrid;
+  row-gap: 6px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 2px solid var(--elem-peer);
+  border-radius: var(--card-radius);
+  background: var(--elem-peer-soft);
+}
+.pa-peer-head {
+  margin: 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.pa-peer-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.pa-peer ul {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.pa-peer li { margin: 2px 0; }
+.pa-peer-cite {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+/* Shared rules — one plate attached under both peers; rows, not process tiers */
+.pa-rules {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+}
+.pa-rule {
+  margin: 0;
+  padding: 8px 14px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.pa-rule + .pa-rule { border-top: 1px solid var(--line); }
+.pa-rule strong { color: var(--ink); font-weight: 700; }
+.pa-rule--chip {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.pa-rule--chip a.fb-num { flex-shrink: 0; margin: 0; }
+.pa-rule--chip > span { min-width: 0; padding-top: 3px; }
+
+/* ---- 2.3 §41 matrix checklist (secondary) ---- */
+.pa-matrix {
+  grid-template-columns:
+    minmax(120px, .85fr) minmax(0, 1.7fr) minmax(0, 1.15fr);
+  margin: 0;
+}
+.pa-mx-row { display: contents; }
+.pa-matrix .matrix-cell { min-height: 0; }
+.pa-matrix .matrix-cell.head {
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.pa-matrix .matrix-cell.stub { color: var(--ink); }
+.pa-mx-cite {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 4px;
+  background: var(--band);
+}
+
+/* Trap + labelling tip sit with the matrix they qualify — lighter than the matrix */
+.pa-trap {
+  margin: 0;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--outcome-doubt);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.pa-trap strong { color: var(--warn); font-weight: 700; }
+
+/* 2.4 Labelling — dashed tip only (tip grammar; not nest) */
+.pa-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 7px 12px;
+  border: 1px dashed var(--dash);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.pa-tip a.fb-num { flex-shrink: 0; margin: 0; }
+.pa-tip > span { min-width: 0; padding-top: 3px; }
+.pa-tip strong { color: var(--ink); font-weight: 700; }
+
+/* ---- Narrow ---- */
+@media (max-width: 900px) {
+  .pa-matrix {
+    grid-template-columns:
+      minmax(128px, .85fr) minmax(0, 1.6fr) minmax(0, 1.15fr);
+    overflow-x: visible;
+  }
+}
+@media (max-width: 720px) {
+  .pa-board { --pa-gap: 18px; }
+  .pa-peers {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: var(--pa-gutter);
+  }
+  .pa-peer {
+    grid-row: auto;
+    grid-template-rows: none;
+  }
+}
+/* Phone: each §41 test becomes one card (test + cites, then Ask / Outcome) — no side-scroll */
+@media (max-width: 560px) {
+  .pa-board { --pa-gap: 16px; }
+  .pa-peer { padding: 10px; }
+  .pa-matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pa-mx-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 8px;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--card-radius);
+    background: var(--surface);
+  }
+  .pa-mx-row .matrix-cell {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+  .pa-mx-row.pa-mx-row--head { display: none; }
+  .pa-mx-row .matrix-cell.stub { justify-content: flex-start; }
+  .pa-mx-row .pa-mx-cite {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-end;
+  }
+  .pa-mx-row .matrix-cell[data-label] { grid-column: 1 / -1; }
+  .pa-mx-row .matrix-cell[data-label]::before {
+    content: attr(data-label);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pa-rule,
+  .pa-trap,
+  .pa-tip { padding: 7px 10px; }
+}

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All standards — wireframe v0.1 · Johnny Pang IFRS</title>
+  <style>
+    /* Low-fi dark wireframe — structure over polish. Self-contained; file:// OK. */
+    :root {
+      --bg: #0f1419;
+      --surface: #1a222c;
+      --surface-2: #222b36;
+      --border: #3a4553;
+      --text: #e8eef5;
+      --muted: #8b97a8;
+      --dim: #5c6775;
+      --blue: #6ba3d9;
+      --green: #3dba6e;
+      --green-dim: #2a7a48;
+      --amber: #e09a3d;
+      --amber-dim: #a66d1f;
+      --wire: #c9a227;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.4;
+      min-height: 100vh;
+    }
+
+    /* ---- WIREFRAME chrome ---- */
+    .wire-badge {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 100;
+      background: var(--wire);
+      color: #1a1400;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 6px 10px;
+      border: 2px dashed #1a1400;
+      text-transform: uppercase;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ---- Header ---- */
+    .page-title {
+      font-size: 28px;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .progress {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    /* ---- Find controls (working low-fi demo) ---- */
+    .find-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: end;
+      padding: 12px;
+      margin-bottom: 28px;
+      background: var(--surface-2);
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+    }
+
+    .find-field {
+      display: flex;
+      flex: 1 1 250px;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .find-field.standard-field { flex: 1 1 230px; }
+
+    .find-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .find-input,
+    .find-select {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 10px;
+      background: var(--bg);
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+    }
+
+    .find-input:focus,
+    .find-select:focus {
+      outline: 2px solid var(--blue);
+      outline-offset: 1px;
+    }
+
+    .find-hint {
+      flex: 1 1 100%;
+      color: var(--dim);
+      font-size: 11px;
+    }
+
+    .search-results {
+      flex: 1 1 100%;
+      margin-top: 2px;
+      padding: 10px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .search-results[hidden] { display: none; }
+    .results-heading { margin-bottom: 6px; }
+    .results-list { list-style: none; display: grid; gap: 4px; }
+    .result-button {
+      display: block;
+      width: 100%;
+      border: 1px solid transparent;
+      padding: 5px 6px;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .result-button:hover,
+    .result-button:focus { border-color: var(--blue); background: var(--bg); }
+    .result-code { color: var(--blue); font-weight: 700; margin-right: 6px; }
+    .result-category { color: var(--dim); margin-left: 6px; }
+    .result-empty { color: var(--dim); }
+
+    .category.is-hidden,
+    .card.is-hidden { display: none; }
+
+    .card.is-selected {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    /* ---- Workflow strip ---- */
+    .workflow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .wf-step {
+      flex: 1 1 220px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      min-width: 180px;
+    }
+
+    .wf-step.study {
+      border: 2px solid var(--green);
+      background: #14241a;
+    }
+
+    .wf-label {
+      font-size: 13px;
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+
+    .wf-step.study .wf-label { color: var(--green); }
+
+    .wf-blurb {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .wf-arrow {
+      align-self: center;
+      color: var(--dim);
+      font-size: 18px;
+      flex: 0 0 auto;
+      padding: 0 2px;
+    }
+
+    @media (max-width: 720px) {
+      .wf-arrow { display: none; }
+    }
+
+    /* ---- Category sections ---- */
+    .category {
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #2a3340;
+    }
+
+    .category:last-child {
+      border-bottom: none;
+    }
+
+    .cat-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    .card-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---- Cards ---- */
+    .card {
+      flex: 0 1 200px;
+      width: 200px;
+      min-height: 108px;
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .card.ready {
+      border: 2px solid var(--green);
+    }
+
+    .card.planned {
+      border: 1.5px dashed var(--border);
+      opacity: 0.72;
+    }
+
+    .card.next-up {
+      border: 2px solid var(--amber);
+      background: #1f1a12;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .card-code {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .card.planned .card-code { color: var(--muted); }
+
+    .open-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      white-space: nowrap;
+      /* Wireframe: no real href — shell only */
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .card-title {
+      font-size: 12px;
+      color: var(--muted);
+      flex: 1;
+      line-height: 1.35;
+    }
+
+    .card.planned .card-title { color: var(--dim); }
+
+    .card-status {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: auto;
+    }
+
+    .card.ready .card-status { color: var(--green); }
+    .card.planned .card-status { color: var(--dim); }
+    .card.next-up .card-status { color: var(--amber); }
+
+    .footnote {
+      margin-top: 32px;
+      padding: 12px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--dim);
+      background: var(--surface-2);
+    }
+
+    .footnote strong { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wire-badge" title="Draft structure only">WIREFRAME v0.1</div>
+
+  <main class="page">
+    <h1 class="page-title">All standards</h1>
+    <p class="progress">0 of 21 ready. Select a standard to open its notes.</p>
+
+    <!-- v0.1 demo controls: native select + client-side search; no external dependencies. -->
+    <section class="find-tools" aria-label="Find a standard">
+      <div class="find-field standard-field">
+        <label class="find-label" for="standardSelect">Choose a standard or category</label>
+        <select class="find-select" id="standardSelect">
+          <option value="all">All standards</option>
+          <optgroup label="Categories">
+            <option value="category:framework-and-basis-of-preparation">Framework and basis of preparation</option>
+            <option value="category:presentation">Presentation</option>
+            <option value="category:revenue">Revenue</option>
+            <option value="category:financial-instruments">Financial instruments</option>
+            <option value="category:assets">Assets</option>
+            <option value="category:measurement">Measurement</option>
+            <option value="category:leases">Leases</option>
+            <option value="category:business-combinations">Business combinations</option>
+            <option value="category:share-based-payment">Share-based payment</option>
+            <option value="category:consolidation">Consolidation</option>
+            <option value="category:income-taxes">Income taxes</option>
+            <option value="category:provisions">Provisions</option>
+          </optgroup>
+          <optgroup label="Standards">
+            <option value="card:CF 2018">CF 2018</option>
+            <option value="card:IAS 8">IAS 8</option>
+            <option value="card:IAS 10">IAS 10</option>
+            <option value="card:IFRS 18">IFRS 18</option>
+            <option value="card:IAS 1">IAS 1</option>
+            <option value="card:IFRS 15">IFRS 15</option>
+            <option value="card:IFRS 9">IFRS 9</option>
+            <option value="card:IAS 16">IAS 16</option>
+            <option value="card:IAS 2">IAS 2</option>
+            <option value="card:IAS 36">IAS 36</option>
+            <option value="card:IAS 40">IAS 40</option>
+            <option value="card:IAS 38">IAS 38</option>
+            <option value="card:IFRS 5">IFRS 5</option>
+            <option value="card:IAS 23">IAS 23</option>
+            <option value="card:IFRS 13">IFRS 13</option>
+            <option value="card:IFRS 16">IFRS 16</option>
+            <option value="card:IFRS 3">IFRS 3</option>
+            <option value="card:IFRS 2">IFRS 2</option>
+            <option value="card:IFRS 10">IFRS 10</option>
+            <option value="card:IAS 12">IAS 12</option>
+            <option value="card:IAS 37">IAS 37</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="find-field">
+        <label class="find-label" for="standardSearch">Search standards</label>
+        <input class="find-input" id="standardSearch" type="search" placeholder="Try IFRS 15 or impairment" autocomplete="off" />
+      </div>
+      <p class="find-hint">Demo only: choose a category/standard to filter and jump, or type to show matching cards.</p>
+      <div class="search-results" id="searchResults" aria-live="polite" hidden></div>
+    </section>
+
+    <!-- 1 Sources → 2 Skill → 3 Study notes -->
+    <div class="workflow" role="list" aria-label="Build workflow">
+      <div class="wf-step" role="listitem">
+        <div class="wf-label">1 · Sources</div>
+        <p class="wf-blurb">Standard with its Basis for Conclusions; PwC and Deloitte chapters</p>
+      </div>
+      <span class="wf-arrow" aria-hidden="true">→</span>
+      <div class="wf-step" role="listitem">
+        <div class="wf-label">2 · Skill</div>
+        <p class="wf-blurb">Sourced fact base; firm views tagged; divergences and dated text flagged</p>
+      </div>
+      <span class="wf-arrow" aria-hidden="true">→</span>
+      <div class="wf-step study" role="listitem">
+        <div class="wf-label">3 · Study notes</div>
+        <p class="wf-blurb">Summary flowchart, step trees, matrices, timelines and worked examples — what green READY opens</p>
+      </div>
+    </div>
+
+    <!-- FRAMEWORK -->
+    <section class="category">
+      <h2 class="cat-heading">Framework and basis of preparation</h2>
+      <div class="card-row">
+        <article class="card next-up">
+          <div class="card-top">
+            <span class="card-code">CF 2018</span>
+          </div>
+          <p class="card-title">Conceptual Framework for Financial Reporting</p>
+          <span class="card-status">Next up · map approved</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 8</span></div>
+          <p class="card-title">Accounting policies, changes in estimates and errors</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 10</span></div>
+          <p class="card-title">Events after the reporting period</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- PRESENTATION -->
+    <section class="category">
+      <h2 class="cat-heading">Presentation</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 18</span></div>
+          <p class="card-title">Presentation and disclosure in financial statements</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 1</span></div>
+          <p class="card-title">Presentation of financial statements (legacy / bridge)</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- REVENUE -->
+    <section class="category">
+      <h2 class="cat-heading">Revenue</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 15</span></div>
+          <p class="card-title">Revenue from contracts with customers</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- FINANCIAL INSTRUMENTS -->
+    <section class="category">
+      <h2 class="cat-heading">Financial instruments</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 9</span></div>
+          <p class="card-title">Financial instruments (hub)</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ASSETS -->
+    <section class="category">
+      <h2 class="cat-heading">Assets</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 16</span></div>
+          <p class="card-title">Property, plant and equipment</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 2</span></div>
+          <p class="card-title">Inventories</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 36</span></div>
+          <p class="card-title">Impairment of assets</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 40</span></div>
+          <p class="card-title">Investment property</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 38</span></div>
+          <p class="card-title">Intangible assets</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 5</span></div>
+          <p class="card-title">Non-current assets held for sale and discontinued operations</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 23</span></div>
+          <p class="card-title">Borrowing costs</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- MEASUREMENT -->
+    <section class="category">
+      <h2 class="cat-heading">Measurement</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 13</span></div>
+          <p class="card-title">Fair value measurement</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- LEASES -->
+    <section class="category">
+      <h2 class="cat-heading">Leases</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 16</span></div>
+          <p class="card-title">Leases</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- BUSINESS COMBINATIONS -->
+    <section class="category">
+      <h2 class="cat-heading">Business combinations</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 3</span></div>
+          <p class="card-title">Business combinations</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- SHARE-BASED PAYMENT -->
+    <section class="category">
+      <h2 class="cat-heading">Share-based payment</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 2</span></div>
+          <p class="card-title">Share-based payment</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONSOLIDATION -->
+    <section class="category">
+      <h2 class="cat-heading">Consolidation</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 10</span></div>
+          <p class="card-title">Consolidated financial statements</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- INCOME TAXES -->
+    <section class="category">
+      <h2 class="cat-heading">Income taxes</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 12</span></div>
+          <p class="card-title">Income taxes</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROVISIONS -->
+    <section class="category">
+      <h2 class="cat-heading">Provisions</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 37</span></div>
+          <p class="card-title">Provisions, contingent liabilities and contingent assets</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <p class="footnote">
+      <strong>Wireframe notes:</strong> Dark card-wall structure only. No HKFRS/HKAS dual codes.
+      Statuses are illustrative and honest: <strong>0 READY</strong>; CF 2018 is <strong>NEXT UP</strong> (map approved, study-note body not built).
+      READY cards would show a solid green border and an <em>Open &gt;</em> shell — none on this board yet.
+      The standard picker and search are small offline demo controls; no working deep links or teaching content in scope.
+    </p>
+  </main>
+
+  <script>
+    // Small, dependency-free demo for the v0.1 wireframe. Works from file://.
+    (function () {
+      const select = document.getElementById('standardSelect');
+      const search = document.getElementById('standardSearch');
+      const results = document.getElementById('searchResults');
+      const sections = Array.from(document.querySelectorAll('.category'));
+      const cards = Array.from(document.querySelectorAll('.card')).map(function (card) {
+        const section = card.closest('.category');
+        return {
+          card: card,
+          code: card.querySelector('.card-code').textContent.trim(),
+          title: card.querySelector('.card-title').textContent.trim(),
+          category: section.querySelector('.cat-heading').textContent.trim(),
+          section: section
+        };
+      });
+
+      function categoryKey(label) {
+        return label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      }
+
+      function resetView() {
+        cards.forEach(function (item) {
+          item.card.classList.remove('is-hidden', 'is-selected');
+        });
+        sections.forEach(function (section) { section.classList.remove('is-hidden'); });
+      }
+
+      function setStatus(message) {
+        const progress = document.querySelector('.progress');
+        progress.textContent = message;
+      }
+
+      function hideResults() {
+        results.hidden = true;
+        results.innerHTML = '';
+      }
+
+      function showAll() {
+        resetView();
+        hideResults();
+        setStatus('0 of 21 ready. Select a standard to open its notes.');
+      }
+
+      function selectValue(value, shouldScroll) {
+        search.value = '';
+        select.value = value;
+        resetView();
+        hideResults();
+
+        if (value === 'all') {
+          showAll();
+          return;
+        }
+
+        const parts = value.split(':');
+        if (parts[0] === 'category') {
+          const target = sections.find(function (section) {
+            return categoryKey(section.querySelector('.cat-heading').textContent) === parts[1];
+          });
+          sections.forEach(function (section) {
+            if (section !== target) section.classList.add('is-hidden');
+          });
+          if (target) {
+            setStatus('0 of 21 ready. Showing category: ' + target.querySelector('.cat-heading').textContent + '.');
+            if (shouldScroll) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          return;
+        }
+
+        const target = cards.find(function (item) { return item.code === parts.slice(1).join(':'); });
+        cards.forEach(function (item) {
+          if (item !== target) item.card.classList.add('is-hidden');
+        });
+        sections.forEach(function (section) {
+          if (!target || section !== target.section) section.classList.add('is-hidden');
+        });
+        if (target) {
+          target.card.classList.add('is-selected');
+          setStatus('0 of 21 ready. Showing ' + target.code + ' — ' + target.title + '.');
+          if (shouldScroll) target.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
+      function runSearch() {
+        const query = search.value.trim().toLowerCase();
+        select.value = 'all';
+        resetView();
+        if (!query) {
+          showAll();
+          return;
+        }
+
+        const matches = cards.filter(function (item) {
+          return (item.code + ' ' + item.title + ' ' + item.category).toLowerCase().includes(query);
+        });
+        const matchingSections = new Set(matches.map(function (item) { return item.section; }));
+        cards.forEach(function (item) {
+          if (!matches.includes(item)) item.card.classList.add('is-hidden');
+        });
+        sections.forEach(function (section) {
+          if (!matchingSections.has(section)) section.classList.add('is-hidden');
+        });
+
+        results.hidden = false;
+        if (!matches.length) {
+          results.innerHTML = '<p class="result-empty">No matching standards. Try “IFRS 15” or “impairment”.</p>';
+          setStatus('0 of 21 ready. No standards match “' + search.value.trim() + '”.');
+          return;
+        }
+        const list = matches.map(function (item) {
+          return '<li><button class="result-button" type="button" data-code="' + item.code + '">' +
+            '<span class="result-code">' + item.code + '</span>' + item.title +
+            '<span class="result-category">' + item.category + '</span></button></li>';
+        }).join('');
+        results.innerHTML = '<p class="results-heading">' + matches.length + ' matching standard' + (matches.length === 1 ? '' : 's') + ':</p><ul class="results-list">' + list + '</ul>';
+        results.querySelectorAll('[data-code]').forEach(function (button) {
+          button.addEventListener('click', function () { selectValue('card:' + button.dataset.code, true); });
+        });
+        setStatus('0 of 21 ready. Search results for “' + search.value.trim() + '”.');
+      }
+
+      select.addEventListener('change', function () { selectValue(select.value, true); });
+      search.addEventListener('input', runSearch);
+    }());
+  </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var input = document.querySelector('input[type="search"], input[type="text"], #search, .search-input, [data-search]');
+  if (!input) {
+    var inputs = document.querySelectorAll('input');
+    for (var i=0;i<inputs.length;i++) { if ((inputs[i].placeholder||'').toLowerCase().match(/search|find|準/)) { input=inputs[i]; break; } }
+    if (!input && inputs.length) input = inputs[inputs.length-1];
+  }
+  if (input) {
+    input.value = 'impairment';
+    input.dispatchEvent(new Event('input', {bubbles:true}));
+    input.dispatchEvent(new Event('keyup', {bubbles:true}));
+    input.dispatchEvent(new Event('change', {bubbles:true}));
+  }
+});
+</script>
+</body>
+</html>

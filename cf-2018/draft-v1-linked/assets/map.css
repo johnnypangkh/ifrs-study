@@ -1,0 +1,538 @@
+/* CF 2018 pack Map — containment board with decision walks.
+   Status (Ch11) wraps the board; its head is the 11.2 fork. Objective hub → QC (cost rail).
+   The reporting entity contains its forms (3.6 ∥ Ch9 ∥ Ch10, one boundary bar) and the elements.
+   Recognition is a column-1 walk with terminal leaves in column 3; Measure continues in column 1,
+   Present sits to its right, Capital hangs below Measure.
+   Loaded only by index.html, after shared.css + draft.css. Tokens only; solid = flow, dashed = see-also. */
+
+.page.map-page { max-width: 1120px; }
+
+.map-page header.page-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.map-page header.page-header h1 {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.map-page header.page-header .purpose { margin: 0; }
+
+.cfmap {
+  --stem: var(--accent);
+  /* Decision columns: 1 = continuing route, 2 = labelled arm, 3 = terminal outcome */
+  --c1: minmax(0, 1fr);
+  --c2: 100px;
+  --c3: minmax(0, .8fr);
+  --frame-inset: 16px; /* .contain border (2px) + padding (14px) */
+  --purpose-link: 128px;
+}
+
+/* ---- Section chips ---- */
+.cfmap a.sec {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 18px;
+  padding: 0 6px;
+  margin-right: 6px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: 1px;
+}
+.cfmap a.sec:hover { background: var(--accent); color: var(--surface); text-decoration: none; }
+.cfmap a.sec.sec-sm {
+  min-width: 24px;
+  height: 16px;
+  padding: 0 5px;
+  margin: 0 2px;
+  font-size: 10px;
+}
+.cfmap .sep { margin: 0 8px; color: var(--dash); }
+.cfmap .differ-tag {
+  margin-left: 4px;
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---- Status: sole outer authority frame ---- */
+.cfmap .status-frame {
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 14px 16px 18px;
+  background: transparent;
+}
+.cfmap .status-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.cfmap .status-purpose,
+.cfmap .status-more {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.cfmap .status-more {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.cfmap .status-frame > .dgrid { padding: 0 var(--frame-inset); }
+
+/* ---- Frames (containment) + cells ---- */
+.cfmap .fw-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+.cfmap .contain {
+  border: 2px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 12px 14px 14px;
+  min-width: 0;
+}
+.cfmap .contain.hub { border-color: var(--ink); }
+.cfmap .contain .contain { background: var(--band); }
+.cfmap .contain > * + * { margin-top: 10px; }
+.cfmap .contain > .tier-label + * { margin-top: 6px; }
+
+.cfmap a.frame-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  text-decoration: none;
+}
+.cfmap a.frame-title:hover { color: var(--accent); text-decoration: none; }
+.cfmap .status-head a.frame-title { font-size: 14px; }
+
+.cfmap .fb-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.cfmap .cell-grid { display: grid; gap: 10px; }
+.cfmap .g-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cfmap .g-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.cfmap .cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 10px 12px;
+}
+.cfmap .cell-title,
+.cfmap .cell-body { margin: 0; }
+.cfmap .cell-title {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.cfmap .cell-body {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.cfmap .cell-gap { margin-top: 10px; }
+.cfmap .cell.inner { padding: 8px 10px; }
+
+.cfmap .tier-label {
+  display: block;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cfmap .tier-label a.sec { letter-spacing: 0; }
+.cfmap .tier-gap { margin-top: 12px; }
+
+.cfmap .span-bar {
+  margin: 10px 0 0;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.cfmap .apply-row {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.cfmap .apply-head {
+  margin-right: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cfmap .tip-note {
+  margin: 10px 0 0;
+  padding: 6px 12px;
+  border: 1px dashed var(--dash);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---- Connectors ---- */
+.cfmap .stem-label,
+.cfmap .arm-label {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.cfmap .stem-label strong { color: var(--ink); }
+.cfmap .arm-label { color: var(--ink); }
+
+/* Horizontal arm/stem: line across the link column, arrowhead on the right object, label above */
+.cfmap .harm,
+.cfmap .hstem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 4px;
+}
+.cfmap .harm::before,
+.cfmap .hstem-line {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 6px;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--stem);
+}
+.cfmap .harm::after,
+.cfmap .hstem::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -1px;
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--stem);
+}
+.cfmap .harm .arm-label,
+.cfmap .hstem .stem-label {
+  position: absolute;
+  left: 4px;
+  right: 10px;
+  bottom: calc(50% + 6px);
+  text-align: center;
+}
+
+/* Vertical arm/stem: line centred on column 1, label beside it, arrowhead on the lower object */
+.cfmap .varm,
+.cfmap .vstem,
+.cfmap .drop {
+  display: grid;
+  grid-template-columns: var(--c1) var(--c2) var(--c3);
+  min-height: 44px;
+}
+.cfmap .drop { min-height: 52px; }
+.cfmap .drop-flow,
+.cfmap .phase-grid > .vstem { padding: 0 var(--frame-inset); }
+.cfmap .drop-purpose {
+  grid-template-columns: minmax(0, 1fr) var(--purpose-link) minmax(0, 1.2fr);
+}
+.cfmap .drop-cell {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr);
+  column-gap: 10px;
+}
+.cfmap .drop-cell .vline { grid-column: 2; }
+.cfmap .drop-cell .stem-label { grid-column: 3; align-self: center; }
+
+.cfmap .vline,
+.cfmap .varm::before {
+  position: relative;
+  grid-row: 1;
+  width: 2px;
+  background: var(--stem);
+}
+.cfmap .varm::before {
+  content: "";
+  grid-column: 1;
+  justify-self: center;
+}
+.cfmap .vstem .vline {
+  grid-column: 1;
+  justify-self: center;
+}
+.cfmap .vline::after,
+.cfmap .varm::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid var(--stem);
+}
+.cfmap .varm { position: relative; }
+.cfmap .varm::after {
+  left: auto;
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  justify-self: center;
+  align-self: end;
+  transform: none;
+  bottom: 0;
+  width: 0;
+  height: 0;
+}
+.cfmap .varm .arm-label,
+.cfmap .vstem .stem-label {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  margin-left: calc(50% + 12px);
+  white-space: nowrap;
+}
+
+/* ---- Decision grid ---- */
+.cfmap .dgrid {
+  display: grid;
+  grid-template-columns: var(--c1) var(--c2) var(--c3);
+  align-items: stretch;
+}
+.cfmap .dgrid > .q,
+.cfmap .dgrid > .leaf-cont { grid-column: 1; }
+.cfmap .dgrid > .harm { grid-column: 2; }
+.cfmap .dgrid > .leaf { grid-column: 3; align-self: center; }
+.cfmap .dgrid > .leaf.leaf-cont { grid-column: 1; align-self: stretch; }
+.cfmap .dgrid > .varm { grid-column: 1 / -1; }
+
+.cfmap .q {
+  border: 2px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 10px 12px;
+}
+.cfmap .contain .q { background: var(--band); }
+.cfmap .q-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.cfmap .q-sub {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.cfmap .leaf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 10px 12px;
+}
+.cfmap .leaf-yes { border-color: var(--ink); }
+.cfmap .leaf-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.cfmap .leaf-no .leaf-name { color: var(--muted); }
+.cfmap .leaf-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---- Objective → QC ---- */
+.cfmap .purpose-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--purpose-link) minmax(0, 1.2fr);
+  align-items: stretch;
+}
+.cfmap .qc-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px;
+  gap: 10px;
+  align-items: stretch;
+}
+.cfmap .qc-tiers { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.cfmap .qc-tiers > .tier-label + * { margin-top: -4px; }
+.cfmap .cost-rail {
+  justify-content: center;
+  text-align: center;
+  background: var(--band);
+}
+
+/* ---- Elements equation ---- */
+.cfmap .fb-eq {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1.6fr);
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  align-items: start;
+}
+.cfmap .fb-eq > .cell { grid-row: 1; }
+.cfmap .fb-op {
+  grid-row: 1;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+}
+.cfmap .fb-eq > .cell.equity {
+  grid-column: 5;
+  grid-row: 1 / 3;
+}
+.cfmap .cell.equity .nest { margin-top: 8px; }
+.cfmap .fb-eq > .eq-bar {
+  grid-column: 1 / 4;
+  grid-row: 2;
+  align-self: start;
+}
+
+/* ---- Measure → Present; Capital below Measure ---- */
+.cfmap .phase-grid {
+  display: grid;
+  grid-template-columns: var(--c1) var(--c2) var(--c3);
+  align-items: stretch;
+}
+.cfmap .phase-grid > .vstem { grid-column: 1 / -1; padding: 0; }
+.cfmap .phase-meas,
+.cfmap .phase-capital { grid-column: 1; }
+.cfmap .phase-grid > .hstem { grid-column: 2; align-self: center; }
+.cfmap .phase-pres { grid-column: 3; }
+.cfmap .phase-grid { padding: 0 var(--frame-inset); }
+
+/* ---- Narrow screens: one column; arms turn vertical ---- */
+@media (max-width: 860px) {
+  .cfmap .purpose-row,
+  .cfmap .dgrid,
+  .cfmap .phase-grid,
+  .cfmap .drop-purpose,
+  .cfmap .drop,
+  .cfmap .varm,
+  .cfmap .vstem { grid-template-columns: minmax(0, 1fr); }
+  .cfmap .status-frame > .dgrid,
+  .cfmap .phase-grid,
+  .cfmap .drop-flow { padding: 0; }
+  .cfmap .dgrid > *,
+  .cfmap .phase-grid > * { grid-column: 1; }
+  .cfmap .dgrid > .varm,
+  .cfmap .phase-grid > .vstem { grid-column: 1; }
+  .cfmap .harm,
+  .cfmap .hstem { min-height: 44px; }
+  .cfmap .harm::before,
+  .cfmap .hstem-line {
+    top: 0;
+    bottom: 6px;
+    left: 50%;
+    right: auto;
+    width: 2px;
+    height: auto;
+    margin: 0 0 0 -1px;
+  }
+  .cfmap .harm::after,
+  .cfmap .hstem::after {
+    top: auto;
+    bottom: -1px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--stem);
+    border-bottom: none;
+  }
+  .cfmap .harm .arm-label,
+  .cfmap .hstem .stem-label {
+    top: 50%;
+    bottom: auto;
+    left: calc(50% + 12px);
+    right: auto;
+    transform: translateY(-50%);
+    text-align: left;
+  }
+  .cfmap .qc-body,
+  .cfmap .g-3 { grid-template-columns: minmax(0, 1fr); }
+  .cfmap .fb-eq {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    row-gap: 10px;
+  }
+  .cfmap .fb-eq > *,
+  .cfmap .fb-eq > .cell.equity,
+  .cfmap .fb-eq > .eq-bar { grid-row: auto; grid-column: 1; }
+  .cfmap .varm .arm-label,
+  .cfmap .vstem .stem-label { white-space: normal; }
+}
+@media (max-width: 520px) {
+  .cfmap .g-2 { grid-template-columns: minmax(0, 1fr); }
+  .cfmap .status-frame { padding: 12px 10px 14px; }
+}

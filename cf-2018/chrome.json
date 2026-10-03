@@ -1,0 +1,21 @@
+{
+  "pack": "cf-2018",
+  "title": "Conceptual Framework 2018",
+  "htmlDir": "draft-v1-linked",
+  "home": {
+    "label": "Home",
+    "href": "../../homepage/homepage-wireframe-v0.1.html"
+  },
+  "tags": [
+    { "id": "map", "file": "index.html", "label": "Map" },
+    { "id": "ch01", "file": "ch01.html", "label": "1 Objective &amp; users" },
+    { "id": "ch02", "file": "ch02.html", "label": "2 Qualitative" },
+    { "id": "ch03", "file": "ch03.html", "label": "3 Reporting entity" },
+    { "id": "ch04", "file": "ch04.html", "label": "4 Elements" },
+    { "id": "ch05", "file": "ch05.html", "label": "5 Recognition" },
+    { "id": "ch06", "file": "ch06.html", "label": "6 Measurement" },
+    { "id": "ch07", "file": "ch07.html", "label": "7 Presentation" },
+    { "id": "ch08", "file": "ch08.html", "label": "8 Capital" },
+    { "id": "ch09", "file": "ch09.html", "label": "9 Status" }
+  ]
+}

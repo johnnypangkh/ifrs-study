@@ -1,0 +1,337 @@
+/* Ch1 What’s new vs IAS 1 — Concept Map visual.
+   Loaded only by visuals/ch01-whats-new.html, after shared.css.
+   Grammar: primary = contrast (IAS 1 gaps ∥ IFRS 18 answer) + attached spanning bar;
+   secondary = three equal-rank requirement-set cards on shared rows (not hubs + ▼);
+   tertiary = calendar timeline on a real axis (1 Jan 2027 hinge);
+   dashed = banks/insurers see-also only, inside the Structured P&L card it qualifies.
+   No outer plate (parent fieldset is the frame). No process stem. */
+
+/* body.embed is transparent in shared.css; paint the page night canvas so the
+   iframe never shows a white UA backdrop (identical to the fieldset interior). */
+html { background: var(--bg); }
+
+.wn-board {
+  --wn-gap: 20px;
+  --wn-inner: 8px;
+  --wn-gutter: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wn-gap);
+}
+.wn-board a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.wn-sec {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wn-inner);
+  min-width: 0;
+}
+
+.wn-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.wn-label a.fb-num {
+  margin-right: 0;
+  flex-shrink: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---- 1.1 Contrast (primary) ---- */
+.wn-contrast {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--wn-gutter);
+}
+.wn-gap,
+.wn-answer {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 2px solid var(--line);
+  border-radius: var(--card-radius);
+}
+.wn-gap {
+  border-color: var(--warn);
+  background: var(--outcome-doubt-soft);
+}
+.wn-answer {
+  border-color: var(--ok);
+  background: var(--outcome-yes-soft);
+}
+.wn-card-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.wn-gap .wn-card-title { color: var(--warn); }
+.wn-answer .wn-card-title { color: var(--ok); }
+.wn-gap ul,
+.wn-answer ul {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.wn-gap li,
+.wn-answer li { margin: 2px 0; }
+.wn-foot {
+  margin: auto 0 0;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+/* Shared cue across both contrast cards — attached under the pair, not a step */
+.wn-span-bar {
+  margin: 0;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.wn-span-bar strong { color: var(--ink); font-weight: 700; }
+
+/* ---- 1.2 Three equal-rank requirement sets (secondary) ----
+   Subgrid keeps head / body / pointer rows aligned across the peers. */
+.wn-sets {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto 1fr auto auto;
+  gap: 0 var(--wn-gutter);
+}
+.wn-set {
+  grid-row: span 4;
+  display: grid;
+  grid-template-rows: subgrid;
+  row-gap: 6px;
+  min-width: 0;
+  padding: 10px 12px 12px;
+  border: 1px solid var(--elem-peer);
+  border-radius: var(--card-radius);
+  background: var(--elem-peer-soft);
+}
+.wn-set-head {
+  margin: 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.wn-set-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.wn-set-ptr {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.wn-set-ptr a {
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+.wn-set-ptr a.fb-num,
+.wn-tl-body a.fb-num {
+  margin: 0 2px;
+  color: var(--formula);
+  font-weight: 700;
+}
+.wn-set-ptr a:hover { text-decoration: underline; }
+.wn-set-ptr a.fb-num:hover { text-decoration: none; }
+
+/* Dashed see-also — only dashed element; sits with the categories it qualifies */
+a.wn-see {
+  display: block;
+  margin-top: 4px;
+  padding: 6px 10px;
+  border: 1px dashed var(--dash);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+  text-decoration: none;
+}
+a.wn-see strong { color: var(--ink); }
+a.wn-see:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+/* ---- 1.4 Calendar timeline (tertiary) — axis + markers; accent only on the date ---- */
+.wn-tl {
+  --tl-when: 18px;
+  --tl-axis: 26px;
+  --tl-line: var(--dash);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: var(--wn-gutter);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.wn-tl::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 8px;
+  top: calc(var(--tl-axis) - 1px);
+  border-top: 2px solid var(--tl-line);
+}
+.wn-tl::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: calc(var(--tl-axis) - 6px);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid var(--tl-line);
+}
+.wn-tl-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.wn-tl-node::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: calc(var(--tl-axis) - 6px);
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--tl-line);
+  border-radius: 50%;
+  background: var(--bg);
+}
+.wn-tl-node--eff::before {
+  left: 8px;
+  top: calc(var(--tl-axis) - 8px);
+  width: 16px;
+  height: 16px;
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.wn-tl-when {
+  height: var(--tl-when);
+  margin: 0 0 18px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: var(--tl-when);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.wn-tl-node--eff .wn-tl-when {
+  font-size: 13px;
+  color: var(--accent);
+}
+.wn-tl-card {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+}
+.wn-tl-node--eff .wn-tl-card {
+  border: 2px solid var(--accent);
+  background: var(--accent-soft);
+}
+.wn-tl-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.wn-tl-head a.fb-num { flex-shrink: 0; margin-right: 0; }
+.wn-tl-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---- Narrow: contrast + sets stack; timeline turns vertical on the same axis ---- */
+@media (max-width: 720px) {
+  .wn-board { --wn-gap: 18px; }
+  .wn-contrast { grid-template-columns: 1fr; }
+  .wn-sets {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: var(--wn-gutter);
+  }
+  .wn-set {
+    grid-row: auto;
+    grid-template-rows: none;
+  }
+  .wn-tl {
+    grid-template-columns: 1fr;
+    padding-left: 26px;
+  }
+  .wn-tl::before {
+    left: 7px;
+    right: auto;
+    top: 4px;
+    bottom: 10px;
+    border-top: 0;
+    border-left: 2px solid var(--tl-line);
+  }
+  .wn-tl::after {
+    left: 2px;
+    right: auto;
+    top: auto;
+    bottom: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 9px solid var(--tl-line);
+    border-bottom: 0;
+  }
+  .wn-tl-node::before { left: -24px; top: 3px; }
+  .wn-tl-node--eff::before { left: -26px; top: 1px; }
+  .wn-tl-when { margin-bottom: 6px; }
+}
+@media (max-width: 560px) {
+  .wn-board { --wn-gap: 16px; }
+  .wn-gap,
+  .wn-answer,
+  .wn-set { padding: 10px; }
+}

@@ -1,0 +1,464 @@
+/* Ch5 Operating expenses — Concept Map visual.
+   Loaded only by visuals/ch05-operating-expenses.html, after shared.css.
+   Primary = if→then gate: neutral question plate; No = muted stem to a stop
+   leaf; Yes = green stem into the green leaf, which contains one lens frame
+   (face by function | notes by nature) with a shared double-rule foot
+   (function total = nature total). Narrow-relief strip sits under that frame.
+   Secondary = lighter same-format option cards + trap bar.
+   Green = the route that requires the nature totals note (stem + leaf only). */
+
+/* body.embed is transparent in shared.css; paint the night canvas so the iframe
+   never shows a white UA backdrop. */
+html { background: var(--bg); }
+
+.oe-board {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 780px;
+}
+
+.oe-primary,
+.oe-secondary {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.oe-primary { gap: 0; }
+.oe-secondary { gap: 10px; }
+
+.oe-board p { margin: 0; }
+.oe-board a.fb-num { margin-right: 0; flex-shrink: 0; }
+
+/* ---- Gate (neutral question) ---- */
+.oe-gate {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  border: 1.5px solid var(--stmt-block);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 12px 14px;
+}
+
+.oe-ask {
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.oe-ask strong { font-weight: 800; }
+
+/* ---- Branches: stems leave the gate's bottom edge and meet leaf tops ---- */
+.oe-branches {
+  display: grid;
+  grid-template-columns: minmax(0, .62fr) minmax(0, 1.5fr);
+  column-gap: 14px;
+  align-items: start;
+  min-width: 0;
+}
+
+.oe-branch {
+  --stem: var(--muted);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.oe-branch--yes { --stem: var(--outcome-yes); }
+
+.oe-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding-left: 38px;
+}
+
+.oe-link-stem {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 8px;
+  width: 2px;
+  background: var(--stem);
+}
+.oe-link-stem::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--stem);
+}
+
+.oe-link-label {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.oe-link-label strong { color: var(--ink); font-weight: 800; }
+.oe-branch--yes .oe-link-label strong { color: var(--outcome-yes); }
+
+/* ---- Leaves (outcomes carry the colour) ---- */
+.oe-leaf {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  border-radius: var(--card-radius);
+}
+
+.oe-leaf--stop {
+  border: 1px solid var(--line);
+  background: var(--band);
+  padding: 12px;
+}
+.oe-leaf--stop .oe-leaf-name {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.oe-leaf--stop .oe-leaf-body {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.oe-leaf--yes {
+  gap: 10px;
+  border: 1.5px solid var(--outcome-yes);
+  background: var(--outcome-yes-soft);
+  padding: 14px;
+  container-type: inline-size;
+}
+
+.oe-leaf-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+.oe-leaf--yes .oe-leaf-name {
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--outcome-yes);
+}
+.oe-leaf-head .cite { flex-shrink: 0; }
+
+.oe-thesis {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.oe-thesis strong { font-weight: 800; }
+
+/* ---- One frame, two lenses, shared foot ---- */
+.oe-lens {
+  --lens-cols: minmax(0, 1fr) 30px minmax(0, 1fr);
+  display: grid;
+  grid-template-columns: var(--lens-cols);
+  row-gap: 10px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 12px;
+}
+
+.oe-lens-head {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink);
+}
+
+.oe-half {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.oe-half--face { grid-column: 1; grid-row: 2; }
+.oe-half--note { grid-column: 3; grid-row: 2; }
+
+.oe-lens-split {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: center;
+  width: 1px;
+  background: var(--line);
+}
+
+.oe-half-kicker {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: var(--muted);
+}
+
+.oe-half-note {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.oe-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+}
+
+.oe-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  padding: 6px 9px;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.oe-row .cite { flex-shrink: 0; }
+
+.oe-row--face { border-left: 3px solid var(--cat-operating); }
+
+.oe-row--other {
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  background: none;
+  color: var(--muted);
+}
+.oe-row--other span {
+  font-size: 10.5px;
+  font-weight: 400;
+}
+
+.oe-spec {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  border: 1px solid var(--stmt-block);
+  border-radius: var(--card-radius);
+  padding: 8px;
+}
+.oe-spec-head {
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.oe-spec-foot {
+  border-top: 1px solid var(--line);
+  padding-top: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.oe-foot {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: var(--lens-cols);
+  align-items: center;
+  min-width: 0;
+  margin-top: 2px;
+  border-top: 3px double var(--ink);
+  padding-top: 10px;
+}
+
+.oe-total {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  line-height: 1.3;
+}
+.oe-total strong {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.oe-total span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.oe-eq {
+  justify-self: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--formula);
+}
+
+.oe-relief {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 8px 10px;
+}
+.oe-relief p {
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.oe-relief strong { color: var(--ink); font-weight: 700; }
+.oe-relief p a.fb-num { margin: 0 4px; }
+
+/* ---- Secondary: lighter option peers + trap bar ---- */
+.oe-label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.oe-label a.fb-num { text-transform: none; letter-spacing: 0; }
+.oe-label span { min-width: 0; }
+
+.oe-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  min-width: 0;
+}
+
+.oe-opt {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 10px 12px;
+}
+.oe-opt-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+}
+.oe-opt-head strong {
+  margin-right: auto;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.oe-opt-body {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.oe-opt-eg {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.oe-secondary .oe-trap {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* Lens halves stack when the Yes leaf itself is narrow; foot stays L = R */
+@container (max-width: 440px) {
+  .oe-lens { grid-template-columns: minmax(0, 1fr); }
+  .oe-half--face,
+  .oe-half--note { grid-column: 1; grid-row: auto; }
+  .oe-lens-split { display: none; }
+  .oe-half--note {
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+  }
+}
+
+/* Narrow: trunk down the left gutter, ticks enter each leaf's left edge */
+@media (max-width: 620px) {
+  .oe-board { gap: 16px; }
+  .oe-gate { padding: 12px; }
+  .oe-ask { font-size: 13.5px; }
+
+  .oe-branches { grid-template-columns: minmax(0, 1fr); }
+
+  .oe-branch {
+    position: relative;
+    padding-left: 30px;
+  }
+  .oe-branch + .oe-branch { padding-top: 14px; }
+
+  .oe-branch::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--muted);
+  }
+  .oe-branch--yes::before { bottom: auto; height: calc(14px + 40px + 18px); }
+
+  .oe-link {
+    height: 40px;
+    padding-left: 0;
+  }
+  .oe-link-stem { display: none; }
+
+  .oe-leaf::before {
+    content: "";
+    position: absolute;
+    left: -21px;
+    top: 17px;
+    width: 13px;
+    height: 2px;
+    background: var(--stem);
+  }
+  .oe-leaf::after {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 12px;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 8px solid var(--stem);
+  }
+  .oe-leaf--yes::before { left: -21.5px; }
+  .oe-leaf--yes::after { left: -9.5px; top: 12px; }
+
+  .oe-leaf--yes { padding: 12px; }
+  .oe-options { grid-template-columns: minmax(0, 1fr); }
+}

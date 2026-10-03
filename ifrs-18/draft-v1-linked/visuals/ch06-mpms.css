@@ -1,0 +1,292 @@
+/* Ch6 MPMs — Concept Map visual.
+   Loaded only by visuals/ch06-mpms.html, after shared.css.
+   Grammar: primary = decision tree. Four neutral gates on a spine; each continuing
+   answer is an attached stem into the next gate; each failing answer is a short stub
+   into one shared exit rail that ends in the "Not an MPM" leaf. Colour only on the
+   MPM outcome leaf. Secondary (lighter: 1px, no fill) = reconciliation bridge
+   (MPM ± reconciling items = IFRS anchor) with unboxed operators, then a lean
+   IFRS subtotal vs MPM pair. Ch4 owns the Required / §118 / MPM regime cards.
+   No outer plate (parent fieldset is the frame). No dashed. Tokens only. */
+
+/* body.embed is transparent in shared.css; paint the night canvas so the iframe
+   never shows a white UA backdrop. */
+html { background: var(--bg); }
+
+.mpm-board {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.mpm-board a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.mpm-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.mpm-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.mpm-label a.fb-num {
+  margin-right: 0;
+  flex-shrink: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.mpm-board .cite { margin: 0; }
+
+/* ---- Primary: gate tree ----
+   Two columns, no gaps: connectors must meet object edges. DOM pairs (spine cell,
+   exit cell) fill one row each. */
+.gt {
+  display: grid;
+  --rail-x: 62%;
+  grid-template-columns: minmax(0, 1fr) minmax(104px, .38fr);
+}
+
+.gt-gate {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+.gt-q {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.gt-q a.fb-num {
+  flex-shrink: 0;
+  margin-right: 0;
+}
+.gt-cites {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.gt-sub {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.gt-ans {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+/* Continuing answer: stem down the spine into the next gate's top edge */
+.gt-stem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr);
+  column-gap: 8px;
+  min-height: 28px;
+}
+.gt-stem-line {
+  grid-column: 2;
+  position: relative;
+  background: var(--accent);
+}
+.gt-stem-line::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid var(--accent);
+}
+.gt-stem .gt-ans {
+  grid-column: 3;
+  align-self: center;
+}
+
+/* Failing answer: stub from the gate's right edge into the shared exit rail */
+.gt-exit,
+.gt-run { position: relative; }
+.gt-exit::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: calc(100% - var(--rail-x));
+  top: calc(50% - 1px);
+  border-top: 2px solid var(--dash);
+}
+.gt-exit::after,
+.gt-run::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--rail-x) - 1px);
+  top: 0;
+  bottom: 0;
+  border-left: 2px solid var(--dash);
+}
+.gt-exit--first::after { top: calc(50% - 1px); }
+.gt-exit .gt-ans {
+  position: absolute;
+  left: 6px;
+  bottom: calc(50% + 4px);
+  color: var(--muted);
+}
+.gt-run--end::before {
+  content: "";
+  position: absolute;
+  left: var(--rail-x);
+  bottom: 0;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid var(--dash);
+}
+.gt-run--end::after { bottom: 6px; }
+
+/* Outcome leaves — colour only on the MPM leaf */
+.gt-leaf {
+  align-self: start;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.gt-leaf--mpm {
+  border-color: var(--mpm);
+  background: var(--mpm-soft);
+}
+.gt-leaf--out { margin-left: 10px; }
+.gt-leaf-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.gt-leaf--mpm .gt-leaf-name { color: var(--mpm); }
+.gt-leaf-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---- Secondary: reconciliation bridge (lighter chrome) ---- */
+.rc-bridge {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.15fr) auto minmax(0, 1.3fr);
+  align-items: stretch;
+  gap: 10px;
+}
+.rc-step {
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-left-width: 3px;
+  border-radius: var(--card-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.rc-step--mpm { border-left-color: var(--mpm); }
+.rc-step--ifrs { border-left-color: var(--ifrs-subtotal); }
+.rc-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.rc-step--mpm .rc-name { color: var(--mpm); }
+.rc-step--ifrs .rc-name { color: var(--ifrs-subtotal); }
+.rc-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.rc-op {
+  align-self: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--muted);
+}
+
+/* Why-bridge lead — ties equation to the two regimes */
+.rc-why {
+  margin: 0 0 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.rc-kicker {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rc-step--mpm .rc-kicker { color: var(--mpm); }
+.rc-step--ifrs .rc-kicker { color: var(--ifrs-subtotal); }
+.rc-lens {
+  margin: 2px 0 0;
+  padding-top: 4px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.rc-step--mid {
+  border-style: dashed;
+}
+
+/* ---- Narrow ---- */
+@media (max-width: 640px) {
+  .rc-bridge { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .rc-op { justify-self: start; padding-left: 12px; }
+}
+@media (max-width: 560px) {
+  .gt { grid-template-columns: minmax(0, 1fr) minmax(88px, .34fr); }
+  .gt-gate {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 8px 10px;
+  }
+  .gt-cites { justify-content: flex-start; }
+  .gt-q { font-size: 12px; }
+  .gt-leaf { padding: 8px 10px; }
+  .gt-leaf--out { margin-left: 6px; }
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How these notes are made</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a222c;
+      --surface-2: #222b36;
+      --border: #3a4553;
+      --text: #e8eef5;
+      --muted: #8b97a8;
+      --dim: #5c6775;
+      --blue: #6ba3d9;
+      --green: #3dba6e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .home-link:hover,
+    .home-link:focus {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+
+    .flow {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 28px;
+      counter-reset: step;
+    }
+
+    .flow > li {
+      position: relative;
+      counter-increment: step;
+      background: var(--surface);
+      border: 2px solid var(--green);
+      border-radius: 6px;
+      padding: 16px 14px 18px;
+      min-height: 220px;
+    }
+
+    .flow > li + li::before {
+      content: ">";
+      position: absolute;
+      left: -20px;
+      top: 28px;
+      color: var(--dim);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .step-no {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .step-no::before { content: counter(step); }
+
+    h2 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .flow p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 900px) {
+      .flow {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .flow > li { min-height: 0; }
+
+      .flow > li + li::before {
+        left: 18px;
+        top: -14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="home-link" href="homepage-wireframe-v0.1.html">Home</a>
+    <h1>How these notes are made</h1>
+    <ol class="flow">
+      <li>
+        <span class="step-no" aria-hidden="true"></span>
+        <h2>Sources</h2>
+        <p>Official standard plus the Big4 actually used. A source that was not used is not listed as if it were.</p>
+      </li>
+      <li>
+        <span class="step-no" aria-hidden="true"></span>
+        <h2>Read</h2>
+        <p>Against the standard and Big4, separate requirements from firm view.</p>
+      </li>
+      <li>
+        <span class="step-no" aria-hidden="true"></span>
+        <h2>Shape</h2>
+        <p>What the page shows: Concept Map, sections, cite chips, Illustrations.</p>
+      </li>
+      <li>
+        <span class="step-no" aria-hidden="true"></span>
+        <h2>Check</h2>
+        <p>A cite has to match a source. Invented points are not kept.</p>
+      </li>
+    </ol>
+  </main>
+</body>
+</html>

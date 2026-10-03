@@ -1,0 +1,996 @@
+/* IAS 2 chapter-local visuals. Tokens only. Night via shared.css.
+   Map rules are namespaced .m-*; chapter visuals use the unprefixed kit. */
+
+body.embed {
+  margin: 0;
+  background: var(--bg);
+}
+body.embed .page {
+  max-width: none;
+  margin: 0;
+  padding: 2px 2px 8px;
+}
+
+.ias2 {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: var(--ink);
+  font-size: var(--vis-body);
+  line-height: 1.35;
+}
+.ias2 a { color: inherit; text-decoration: none; }
+.ias2 a.fb-num {
+  color: var(--formula);
+  /* Same stadium pill as shared a.fb-num. Width grows for longer numbers. */
+  width: auto;
+  white-space: nowrap;
+}
+.ias2 .cell-body a.fb-num,
+.ias2 .leaf-note a.fb-num,
+.ias2 .m-row-body a.fb-num,
+.ias2 .bar a.fb-num:not(:first-child) {
+  margin-left: 1px;
+  margin-right: 2px;
+}
+.ias2 .bar a:not(.fb-num),
+.ias2 .thin a,
+.ias2 a.thin {
+  text-decoration: underline;
+  text-decoration-color: var(--dash);
+  text-underline-offset: 2px;
+}
+.ias2 a.thin { display: block; }
+.ias2 a.ias2-mute-chip:hover { color: var(--ink); border-color: var(--muted); }
+
+.stem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-height: 36px;
+  color: var(--muted);
+  font-size: var(--vis-meta);
+  font-weight: 650;
+  width: 100%;
+}
+.stem-shaft {
+  width: 1px;
+  flex: 1;
+  min-height: 10px;
+  background: var(--accent);
+}
+.stem-label { text-align: center; line-height: 1.2; }
+.stem-head {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--accent);
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border: 1px solid var(--accent);
+  border-radius: var(--card-radius);
+  padding: 12px;
+  background: var(--surface);
+}
+
+.ias2-mute-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.55em;
+  height: 1.55em;
+  padding: 0 5px;
+  margin-right: 6px;
+  border: 1px solid var(--dash);
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  background: transparent;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.board-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.eq {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+.arm {
+  border: 1px solid var(--accent);
+  border-radius: var(--card-radius);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  background: var(--surface);
+}
+.arm-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.op {
+  align-self: center;
+  text-align: center;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .01em;
+  color: var(--formula);
+  line-height: 1.15;
+  padding: 0 2px;
+  min-width: 64px;
+}
+.op span { display: block; }
+
+.cells {
+  display: grid;
+  gap: 10px;
+}
+.cells.g2 { grid-template-columns: 1fr 1fr; }
+.cells.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.cells.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cell {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 8px 8px 9px;
+  background: var(--surface);
+  min-width: 0;
+}
+.cell-title { display: flex; align-items: center; flex-wrap: wrap; gap: 0; font-weight: 700; font-size: 12px; margin-bottom: 2px; }
+.cell-body { display: block; color: var(--muted); font-size: var(--vis-meta); }
+
+.missing {
+  display: block;
+  border: 1px solid var(--dash);
+  border-radius: var(--card-radius);
+  padding: 8px;
+  background: transparent;
+  color: var(--muted);
+}
+.missing .cell-title {
+  color: var(--muted);
+  font-weight: 650;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bar {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 7px 8px;
+  font-size: var(--vis-meta);
+  color: var(--ink);
+  background: transparent;
+}
+
+.see {
+  display: block;
+  border: 1px dashed var(--see);
+  border-radius: var(--card-radius);
+  padding: 6px 8px;
+  color: var(--ink);
+  font-size: var(--vis-meta);
+  background: transparent;
+}
+.see strong { color: var(--see); font-weight: 700; }
+
+.disc {
+  border-radius: var(--card-radius);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.disc {
+  border: 1px solid var(--line);
+  background: transparent;
+}
+.thin {
+  margin: 0;
+  font-size: var(--vis-meta);
+  color: var(--muted);
+}
+
+/* Chapter visuals — not a second full-bleed plate around the whole embed */
+.ch-visual { display: flex; flex-direction: column; gap: 14px; }
+.tree {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.q {
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 10px;
+}
+.q-title {
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.branch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.leaf {
+  border-radius: var(--card-radius);
+  padding: 8px;
+  font-size: var(--vis-meta);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.leaf.go { border-color: var(--ok); }
+.leaf.stop { border-color: var(--danger); background: transparent; }
+.leaf .cell-title { font-size: 12px; }
+.leaf.go .cell-title { color: var(--ok); }
+.leaf.stop .cell-title { color: var(--danger); }
+.leaf-note { margin: 4px 0 0; color: var(--muted); }
+
+.contain {
+  border: 1px solid var(--accent);
+  border-radius: var(--card-radius);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--surface);
+}
+.exits {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+.hub-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+.hub {
+  border: 1px solid var(--accent);
+  border-radius: var(--card-radius);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  background: var(--surface);
+}
+.flow-label {
+  font-size: var(--vis-meta);
+  color: var(--muted);
+  font-weight: 650;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0;
+}
+
+@media (max-width: 800px) {
+  .eq, .branch, .exits, .hub-row, .cells.g2, .cells.g3 { grid-template-columns: 1fr; }
+  .cells.g4 { grid-template-columns: 1fr 1fr; }
+  .op { padding: 4px 0; }
+}
+
+.diag { display: flex; flex-direction: column; gap: 12px; }
+.diag .stem {
+  width: calc(50% - 6px);
+  align-self: flex-start;
+  grid-column: auto;
+}
+
+/* Ch1 scope tree (.st): spine column (left) = continuing route; gutter carries
+   side exits; side column (right) = exit leaf and the measurement-only peer. */
+.ias2 a.thin-link {
+  text-decoration: underline;
+  text-decoration-color: var(--dash);
+  text-underline-offset: 2px;
+}
+.ias2 a.thin-link:hover { color: var(--ink); }
+.ias2 a.bar { display: block; }
+.ias2 a.bar:hover { border-color: var(--accent); }
+.classes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: stretch;
+}
+.classes .or {
+  align-self: center;
+  color: var(--formula);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .02em;
+}
+
+.st {
+  --st-gut: 72px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--st-gut) minmax(0, 1fr);
+  align-items: stretch;
+}
+.st-def, .st-fork, .st-span { grid-column: 1 / -1; }
+.st-c1 { grid-column: 1; }
+.st-c2 { grid-column: 2; }
+.st-c3 { grid-column: 3; }
+
+.st-def {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+.st-def .q-title { margin: 0; }
+.st-asset {
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.st-plus {
+  text-align: center;
+  color: var(--formula);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+.st-list { display: grid; gap: 4px; }
+.st-ask { margin: 0 0 8px; color: var(--ink); font-size: var(--vis-meta); font-weight: 650; }
+.st-list .or {
+  justify-self: center;
+  color: var(--formula);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .02em;
+}
+.st-out { display: flex; flex-direction: column; gap: 8px; padding-bottom: 12px; }
+.st-down-mute { min-height: 44px; }
+.st-down-mute .stem-shaft { background: var(--dash); }
+.st-down-mute .stem-head { border-top-color: var(--dash); }
+.leaf.mute { border-color: var(--line); background: transparent; }
+.leaf.mute .cell-title { color: var(--muted); }
+
+.st-down,
+.st-arm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 52px;
+  color: var(--muted);
+  font-size: var(--vis-meta);
+  font-weight: 650;
+}
+/* label sits on the middle of the shaft; the 3px offset keeps it centred
+   on the line rather than on line + arrowhead */
+.st-down .stem-label,
+.st-arm .stem-label {
+  position: absolute;
+  top: calc(50% - 3px);
+  left: 0;
+  right: 0;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1px 5px;
+  transform: translateY(-50%);
+  background: var(--bg);
+  line-height: 1.2;
+  text-align: center;
+}
+.st-fork .st-arm { min-height: 76px; }
+
+.st-h {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  gap: 2px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: var(--vis-meta);
+  font-weight: 650;
+}
+.st-h-label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 6px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0 5px;
+  transform: translateY(-50%);
+  background: var(--bg);
+  text-align: center;
+  line-height: 1.2;
+}
+.st-h-line { display: flex; align-items: center; }
+.st-h-shaft { flex: 1; height: 1px; background: var(--dash); }
+.st-h-head {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 6px solid var(--dash);
+}
+.st-exit {
+  grid-column: 2 / -1;
+  align-self: center;
+  display: grid;
+  grid-template-columns: var(--st-gut) minmax(0, 1fr);
+  row-gap: 8px;
+}
+.st-exit .st-h { grid-column: 1; }
+.st-exit .leaf, .st-exit-see { grid-column: 2; }
+
+/* Decision fork: unlabelled drop from the decision node, then a bar, then one
+   equal-length arm per outcome; each arm carries its own label mid-arm.
+   Default drop is centred (full-width decision node); .st-fork-l drops from
+   the left-column centre (decision node in column 1). */
+.st-fork { position: relative; display: grid; grid-template-columns: inherit; padding-top: 20px; }
+.st-fork-drop {
+  position: absolute;
+  top: 0;
+  left: calc(50% - .5px);
+  width: 1px;
+  height: 20px;
+  background: var(--accent);
+}
+.st-fork-l .st-fork-drop { left: calc((100% - var(--st-gut)) / 4 - .5px); }
+.st-fork-bar {
+  position: absolute;
+  top: 20px;
+  left: calc((100% - var(--st-gut)) / 4);
+  right: calc((100% - var(--st-gut)) / 4);
+  height: 1px;
+  background: var(--accent);
+}
+.st-arm-mute .stem-shaft { background: var(--dash); }
+.st-arm-mute .stem-head { border-top-color: var(--dash); }
+.st-fork-mute3 .st-fork-bar { background: linear-gradient(to right, var(--accent) 50%, var(--dash) 50%); }
+.st-fork-l.st-fork-mute3 .st-fork-bar { background: var(--dash); }
+/* Column-1 continuing route beside a column-3 outcome stack: the tail carries
+   the route from the node down to the next fork. */
+.st-col { display: flex; flex-direction: column; min-width: 0; }
+.st-tail { flex: 1 1 auto; align-self: center; width: 1px; min-height: 0; background: var(--accent); }
+.st-col > .q .see, .q > .see { margin-top: 8px; }
+.st-peer { display: flex; flex-direction: column; }
+.st > .bar { margin-top: 10px; }
+.st-beside { align-self: center; }
+
+@media (max-width: 800px) {
+  .classes { grid-template-columns: minmax(0, 1fr); }
+  .classes .or { justify-self: center; }
+}
+@media (max-width: 560px) {
+  .st { --st-gut: 40px; }
+  .st-h-label { font-size: 10px; padding: 0 3px; }
+  .st-node { grid-column: 1 / -1; }
+  .st-node + .st-beside { grid-column: 1 / -1; margin-top: 8px; }
+  .st-fork .st-arm { min-height: 64px; }
+}
+
+/* ── Concept Map (map-formula-board.html) — namespaced .m-* ──
+   Scope and recognition decisions down the left column, exits to the right;
+   the last arm lands on the board. Board = primary; exit / disclosure lighter. */
+.m-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "scope" "board" "estem" "exit" "disc";
+  row-gap: 0;
+  align-items: stretch;
+}
+.m-scope { grid-area: scope; }
+.m-board { grid-area: board; }
+.m-stem-exit { grid-area: estem; }
+.m-exit { grid-area: exit; }
+.m-disc { grid-area: disc; margin-top: 16px; }
+
+.m-map p { margin: 0; }
+.m-head,
+.m-arm-head,
+.m-board-title,
+.m-row-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  font-weight: 700;
+}
+.m-head { font-size: 13px; }
+.m-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.m-body,
+.m-row-body,
+.m-arm-def { display: block; color: var(--muted); font-size: var(--vis-meta); line-height: 1.4; }
+
+/* Scope spine: decision in column 1, horizontal exit arm in the gutter, exit
+   leaf in column 3 centred on the decision; the continuing arm runs down. */
+.m-scope .q { display: flex; flex-direction: column; gap: 4px; }
+.m-scope .q-title { margin: 0; flex-wrap: nowrap; align-items: flex-start; line-height: 1.3; }
+.m-scope .q-title .fb-num { margin-top: -1px; }
+.m-scope .st-down { min-height: 42px; }
+.m-scope .st-h { align-self: center; min-height: 20px; }
+.m-leaf { align-self: center; min-width: 0; }
+.m-leaf .see { margin-top: 8px; }
+.m-scope-end { min-height: 44px; }
+
+/* Stem from a decision or plate into the next plate */
+.m-stem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 46px;
+  color: var(--muted);
+  font-size: var(--vis-meta);
+  font-weight: 650;
+}
+.m-shaft { width: 1.5px; flex: 1; min-height: 8px; background: var(--accent); }
+.m-stem-label { padding: 2px 0; line-height: 1.2; text-align: center; }
+.m-arrow {
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid var(--accent);
+}
+
+/* Formula board — the primary plate */
+.m-board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 12px 14px;
+  border: 1.5px solid var(--accent);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+.m-board-title { font-size: 15px; color: var(--ink); }
+.m-eq { color: var(--formula); font-weight: 800; padding: 0 4px; }
+
+.m-arms {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: stretch;
+}
+.m-arm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--accent);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+}
+.m-arm-head { font-size: 14px; color: var(--ink); }
+.m-arm-def { font-size: 12px; min-height: 2.8em; }
+
+.m-op {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 58px;
+  color: var(--formula);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.m-plate {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 8px 9px 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+.m-foot { margin-top: auto; }
+.m-plate-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.m-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 42%) minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: start;
+  padding-top: 7px;
+  border-top: 1px solid var(--line);
+}
+.m-plate-title + .m-row { border-top: 0; padding-top: 0; }
+.m-row-title { font-size: 12px; color: var(--ink); }
+.m-row .m-row-body { padding-top: 6px; }
+
+.m-see-tight { padding: 5px 8px; }
+.m-out {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-top: 1px solid var(--line);
+  font-size: var(--vis-meta);
+  color: var(--muted);
+}
+.m-out strong { color: var(--ink); }
+.m-out + .m-out { padding-top: 0; border-top: 0; }
+
+/* Para 10 sum read top to bottom: the operator sits in the chip column
+   between the terms it joins. */
+.m-plus {
+  display: block;
+  width: var(--nx-chip-size);
+  text-align: center;
+  color: var(--formula);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+}
+.m-plus + .m-row { border-top: 0; padding-top: 0; }
+.m-sum .m-row { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
+.m-sum .m-row .m-row-body { padding-top: 0; padding-left: calc(var(--nx-chip-size) + 6px); }
+.m-plate .m-out { align-items: flex-start; }
+.m-plate .m-out > .fb-num, .m-plate .m-out > .fb-num-range { margin-top: 1px; }
+
+/* Decision inside a plate: question, then a centred fork onto two outcomes */
+.m-ask { display: flex; align-items: flex-start; font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.m-ask .fb-num { margin-top: -1px; }
+.m-dec .st { --st-gut: 12px; }
+.m-dec .st-fork { padding-top: 12px; }
+.m-dec .st-fork-drop { height: 12px; }
+.m-dec .st-fork-bar { top: 12px; }
+.m-dec .st-fork .st-arm { min-height: 40px; }
+.m-dec .stem-label { background: var(--surface); }
+.m-dec .m-missing { margin-top: 4px; }
+
+.m-peers { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+.m-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 7px 8px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+}
+a.m-cell:hover { border-color: var(--accent); }
+.m-missing {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px 8px;
+  border: 1px solid var(--dash);
+  border-radius: var(--card-radius);
+  opacity: .78;
+}
+.m-missing .m-row-title { color: var(--muted); font-weight: 650; }
+.m-strike { text-decoration: line-through; text-decoration-color: var(--dash); }
+.m-missing:hover { opacity: 1; }
+
+.m-formula {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 6px;
+}
+.m-term {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.m-term:hover { border-color: var(--accent); }
+.m-minus { align-self: center; color: var(--formula); font-weight: 800; font-size: 14px; }
+.m-note { font-style: italic; }
+
+/* Secondaries: lighter frames, no accent */
+.m-exit {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+}
+/* Para 34 read left to right: sold + write-downs and losses − reversals = expense */
+.m-eqn {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 6px;
+  align-items: stretch;
+}
+.m-eq-op { align-self: center; color: var(--formula); font-size: 15px; font-weight: 800; line-height: 1; }
+.m-eq-res { border-color: var(--accent); }
+.m-eqn .m-row-title,
+.m-sub .m-row-title { flex-wrap: nowrap; align-items: flex-start; line-height: 1.3; }
+.m-eqn .m-row-title .fb-num,
+.m-sub .m-row-title .fb-num { margin-top: -1px; }
+.m-ask-lite { font-weight: 650; color: var(--muted); }
+/* Part nested after its parent outcome (4.7 under the write-down) */
+.m-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 6px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+}
+.m-sub:hover { border-color: var(--accent); }
+.m-thin-route {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+.m-thin-text { font-size: var(--vis-meta); color: var(--muted); }
+.m-thin-text strong { color: var(--ink); }
+.m-thin-text:hover { color: var(--ink); }
+
+.m-disc {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  opacity: .92;
+}
+.m-disc .m-head { font-size: 12px; color: var(--muted); }
+/* Disclosure in the Ch6 Map order: policies, then profit or loss (6.4 → 6.5),
+   then the statement of financial position (6.2, 6.3, 6.6). */
+.m-disc-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 3fr);
+  gap: 0;
+}
+.m-disc-group {
+  display: grid;
+  grid-template-columns: repeat(var(--m-disc-n, 1), minmax(0, 1fr));
+  column-gap: 12px;
+  align-content: start;
+  padding: 0 10px;
+  border-left: 1px solid var(--line);
+}
+.m-disc-group:first-child { border-left: 0; padding-left: 2px; }
+.m-disc-g2 { --m-disc-n: 2; }
+.m-disc-g3 { --m-disc-n: 3; }
+.m-disc-lead { padding-top: 18px; }
+.m-disc-label {
+  grid-column: 1 / -1;
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.m-disc-list a {
+  display: block;
+  font-size: var(--vis-meta);
+  color: var(--muted);
+  line-height: 1.4;
+}
+.m-disc-list a strong { display: flex; align-items: flex-start; color: var(--ink); font-size: 11px; line-height: 1.3; margin-bottom: 2px; }
+.m-disc-list a strong .fb-num { margin-top: -1px; }
+.m-disc-list a:hover strong { text-decoration: underline; }
+
+@media (max-width: 800px) {
+  .m-arms { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .m-foot { margin-top: 0; }
+  .m-op { flex-direction: row; justify-content: center; gap: 5px; padding: 8px 0; }
+  .m-eqn { grid-template-columns: minmax(0, 1fr); }
+  .m-eq-op { justify-self: center; }
+  .m-disc-list { grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
+  .m-disc-group { padding: 10px 0 0 2px; border-left: 0; border-top: 1px solid var(--line); }
+  .m-disc-group:first-child { padding-top: 0; border-top: 0; }
+  .m-disc-lead { padding-top: 0; }
+}
+@media (max-width: 520px) {
+  .m-row { grid-template-columns: minmax(0, 1fr); }
+  .m-row .m-row-body { padding-top: 2px; }
+  .m-peers, .m-thin-route { grid-template-columns: 1fr; }
+  .m-formula { grid-template-columns: minmax(0, 1fr); }
+  .m-minus { justify-self: center; }
+  .m-disc-group { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+}
+
+/* Ch3 map: lead bar above the cost plate; muted dead-end nested in a peer cell */
+.st > .bar.st-top { margin: 0 0 10px; }
+.st-def .bar { margin: 0; }
+.ias2 a.leaf { display: block; }
+.st-peer .st-sub { margin-top: 8px; }
+.st-sub .leaf-note { display: block; }
+.ias2 a.st-sub:hover { border-color: var(--muted); }
+
+/* Ch4 map: lower-of board (cost arm lighter, NRV formula arm primary), then a
+   centred decision fork and the reversal plate. Chips inside link cells are spans
+   (an <a> chip cannot nest inside a link cell). */
+.ias2 span.fb-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  min-width: var(--nx-chip-min);
+  height: var(--nx-chip-height);
+  padding: 0 var(--nx-chip-pad-x);
+  margin-right: 6px;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: var(--nx-chip-border) solid var(--formula);
+  background: var(--accent-soft);
+  color: var(--formula);
+  font-size: var(--nx-chip-font);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
+  line-height: 1;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.st-nrv .eq { grid-template-columns: minmax(0, .85fr) auto minmax(0, 1.5fr); }
+.st-nrv .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: 1.3; }
+.st-nrv .cell-title .fb-num { margin-top: -1px; }
+.st-nrv .arm-lite { border-color: var(--line); background: transparent; }
+.st-nrv .nrv-f {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 6px;
+  align-items: stretch;
+}
+.st-nrv .nrv-term {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7px 6px;
+  border: 1px solid var(--accent);
+  border-radius: var(--card-radius);
+  font-size: var(--vis-meta);
+  font-weight: 650;
+  line-height: 1.25;
+}
+.st-nrv .nrv-minus {
+  align-self: center;
+  color: var(--formula);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+.st-nrv .nrv-ask { margin: 0 0 -6px; }
+.st-nrv .cells.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.st-nrv a.cell:hover,
+.st-nrv a.nrv-term:hover,
+.st-nrv a.leaf:hover { border-color: var(--formula); }
+.st-nrv a.cell:hover span.fb-num,
+.st-nrv a.bar:hover span.fb-num { background: var(--formula); color: var(--on-accent); }
+@media (max-width: 800px) {
+  .st-nrv .eq { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .st-nrv .cells.g3 { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .st-nrv .nrv-f { grid-template-columns: minmax(0, 1fr); }
+  .st-nrv .nrv-minus { justify-self: center; }
+}
+.st .q-title { flex-wrap: nowrap; }
+
+/* Ch5 map: control decision, then the expense board (sold + write-downs and
+   losses − reversals = amount recognised as an expense). */
+.st-exp .exp-f {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 6px;
+  align-items: stretch;
+}
+.st-exp .exp-op {
+  align-self: center;
+  color: var(--formula);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+.st-exp .exp-res { border-color: var(--accent); }
+.st-exp .board-title { flex-wrap: nowrap; align-items: flex-start; }
+.st-exp .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: 1.3; }
+.st-exp .cell-title .fb-num { margin-top: -1px; }
+.st-exp a.cell:hover,
+.st-exp a.leaf:hover { border-color: var(--formula); }
+.st-exp a.cell:hover span.fb-num,
+.st-exp a.bar:hover span.fb-num { background: var(--formula); color: var(--on-accent); }
+@media (max-width: 720px) {
+  .st-exp .exp-f { grid-template-columns: minmax(0, 1fr); }
+  .st-exp .exp-op { justify-self: center; }
+}
+
+/* Ch6 map: para 36(a) policies across the top; carrying amounts beside the
+   amounts recognised in profit or loss; the expense then follows the
+   function-or-nature decision (paras 38, 39). */
+.st-disc .board { gap: 10px; }
+.st-disc .cells { grid-template-columns: minmax(0, 1fr); }
+.st-disc .board-title { flex-wrap: nowrap; align-items: flex-start; line-height: 1.3; }
+.st-disc .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: 1.3; }
+.st-disc .cell-title .fb-num { margin-top: -1px; }
+.st-disc .st-down-x { min-height: 44px; }
+.st-disc a.cell:hover,
+.st-disc a.leaf:hover { border-color: var(--formula); }
+.st-disc a.cell:hover span.fb-num,
+.st-disc a.bar:hover span.fb-num { background: var(--formula); color: var(--on-accent); }
+
+/* Ch3 map: para 10 cost as a left-to-right sum (purchase + conversion + other),
+   the excluded route beneath it, then one stem into the cost-formula decision. */
+.st-cost .cost-f {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 6px;
+  align-items: stretch;
+}
+.st-cost .cost-op {
+  align-self: center;
+  color: var(--formula);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+.st-cost .cost-f .see { margin-top: 8px; }
+.st-cost .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: 1.3; }
+.st-cost .cell-title .fb-num { margin-top: -1px; }
+.st-cost .cost-out .leaf-note { margin-top: 4px; }
+.st-cost .cost-alt .cell { border-color: var(--line); }
+.st-cost .st-down-x { min-height: 44px; }
+.st-cost a.cell:hover { border-color: var(--formula); }
+.st-cost a.cell:hover span.fb-num { background: var(--formula); color: var(--on-accent); }
+@media (max-width: 720px) {
+  .st-cost .cost-f { grid-template-columns: minmax(0, 1fr); }
+  .st-cost .cost-op { justify-self: center; }
+  .st-cost .cost-alt { grid-template-columns: minmax(0, 1fr); }
+}

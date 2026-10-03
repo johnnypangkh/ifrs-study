@@ -1,0 +1,218 @@
+html { background: var(--bg); }
+.mba-board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 760px;
+}
+.mba-sub {
+  margin: 0;
+  font-size: var(--vis-body);
+  line-height: 1.4;
+  color: var(--muted);
+  max-width: 760px;
+}
+/* Ch3 body visual — MBA nest (part–whole). Loaded after shared.css.
+   Promoted from Concept Map into §3.5 body per Johnny (map stays lean). */
+.pc-mba-sub {
+  margin: 0;
+  font-size: var(--vis-body);
+  line-height: 1.4;
+  color: var(--muted);
+  max-width: 760px;
+}
+
+.pc-mba-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 200px);
+  gap: 12px;
+  align-items: stretch;
+  max-width: 760px;
+}
+
+.pc-mba-nest {
+  min-width: 0;
+}
+
+.pc-mba-ops,
+.pc-mba-main,
+.pc-mba-spec {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 10px 12px;
+}
+
+.pc-mba-ops {
+  background: var(--cat-operating-soft);
+  border-color: var(--cat-operating);
+}
+
+.pc-mba-main {
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+.pc-mba-spec {
+  background: var(--ok-soft);
+  border-color: var(--ok);
+  gap: 10px;
+}
+
+.pc-mba-head {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+}
+
+.pc-mba-ops > .pc-mba-head { color: var(--cat-operating); }
+.pc-mba-head--spec { color: var(--ok); }
+
+.pc-mba-tag {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--cat-operating);
+  background: transparent;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--cat-operating);
+  line-height: 1.3;
+}
+
+.pc-mba-body {
+  margin: 0;
+  font-size: var(--vis-body);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.pc-mba-peers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.pc-mba-peer {
+  min-width: 0;
+  border: 1px solid var(--ok);
+  border-radius: var(--card-radius);
+  background: var(--ok-soft);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pc-mba-peer-name {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ok);
+  line-height: 1.3;
+}
+
+.pc-mba-peer-body {
+  margin: 0;
+  font-size: var(--vis-body);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.pc-mba-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.pc-mba-out {
+  flex: 1 1 auto;
+  border: 1px solid var(--cat-tax);
+  border-radius: var(--card-radius);
+  background: var(--cat-tax-soft);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+
+.pc-mba-out-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cat-tax);
+  line-height: 1.3;
+}
+
+.pc-mba-out-body {
+  margin: 0;
+  font-size: var(--vis-body);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.pc-mba-why {
+  border: 1px solid var(--warn);
+  border-radius: var(--card-radius);
+  background: var(--warn-soft);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pc-mba-why-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--warn);
+  line-height: 1.3;
+}
+
+.pc-mba-why-body {
+  margin: 0;
+  font-size: var(--vis-body);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .pc-mba-layout {
+    grid-template-columns: 1fr;
+  }
+  .pc-mba-rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .pc-mba-out,
+  .pc-mba-why {
+    flex: 1 1 160px;
+  }
+}
+
+@media (max-width: 560px) {
+  .pc-mba-peers {
+    grid-template-columns: 1fr;
+  }
+  .pc-mba-ops,
+  .pc-mba-main,
+  .pc-mba-spec {
+    padding: 10px;
+  }
+  .pc-mba-rail {
+    flex-direction: column;
+  }
+}

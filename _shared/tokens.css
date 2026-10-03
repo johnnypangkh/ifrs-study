@@ -1,0 +1,149 @@
+/* IAS 2 Phase 2 shared colour tokens.
+   Extracted from assets/shared.css and assets/draft.css.
+   theme.js remains pack-owned and may set data-theme="dark"; the selectors
+   below preserve the existing light/dark and prefers-color-scheme behaviour.
+   Category/MPM compatibility tokens remain because they were source-defined;
+   no IAS 2 HTML or teaching styling uses them. */
+:root {
+  --bg: #f6f5f2;
+  --surface: #ffffff;
+  --ink: #1f2933;
+  --muted: #5f6b76;
+  --line: #c9ced6;
+  --dash: #9aa3ad;
+  --accent: #2f5d8a;
+  --accent-soft: #e8eef5;
+  --band: #f0eee9;
+  --ok: #3d6b4f;
+  --ok-soft: #e8f2ec;
+  --warn: #8a6a2f;
+  --warn-soft: #fff8e6;
+  --danger: #8a3b3b;
+  --danger-soft: #f8ecec;
+  --nest: #e9edf2;
+  --see: #6b5b8a;
+  --see-soft: #f0ecf5;
+  --card-radius: 8px;
+  --cite-official: #2f5d8a;
+  --cite-official-soft: #e8eef5;
+  --cite-pwc: #a65b35;
+  --cite-pwc-soft: #f8ebe4;
+  --cite-dtt: #0f6b5c;
+  --cite-dtt-soft: #e6f3f0;
+  --cite-kpmg: #3d5a80;
+  --cite-kpmg-soft: #e8eef4;
+  --cite-ey: #8a7320;
+  --cite-ey-soft: #f5f0dc;
+  --on-accent: #ffffff;
+  /* IFRS 18 category + MPM — colour-with-meaning (night remaps below; no day-theme invent).
+     Teaching cue per token (one line): */
+  --cat-operating: #2f5d8a;            /* Operating — main business income/expenses */
+  --cat-operating-soft: #e8eef5;
+  --cat-investing: #0f6b5c;            /* Investing — returns from assets that generate returns largely independently */
+  --cat-investing-soft: #e6f3f0;
+  --cat-financing: #8a6a2f;            /* Financing — financing liabilities / specified equity claims */
+  --cat-financing-soft: #fff8e6;
+  --cat-tax: #5f6b76;                  /* Income taxes — tax category band */
+  --cat-tax-soft: #eef0f2;
+  --cat-discontinued: #6b5b8a;         /* Discontinued operations — presented apart from continuing */
+  --cat-discontinued-soft: #f0ecf5;
+  --ifrs-subtotal: #1f2933;            /* IFRS subtotal — required or specified by IFRS 18 */
+  --ifrs-subtotal-soft: #e9edf2;
+  --mpm: #a65b35;                      /* MPM — management-defined performance measure; reconcile to IFRS */
+  --mpm-soft: #f8ebe4;
+}
+
+/* Night mode — chrome/surfaces/ink only; semantic hues preserved */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151a;
+    --surface: #1c2128;
+    --ink: #e8eaed;
+    --muted: #9aa3ad;
+    --line: #3a4250;
+    --dash: #6b7580;
+    --band: #1a1f26;
+    --accent: #7ba3c9;
+    --accent-soft: #1e2a38;
+    --ok: #6fad87;
+    --ok-soft: #1a2e24;
+    --warn: #c9a35a;
+    --warn-soft: #2e2618;
+    --danger: #c97a7a;
+    --danger-soft: #2e1a1a;
+    --nest: #222830;
+    --see: #a894c4;
+    --see-soft: #241e2e;
+    --cite-official: #7ba3c9;
+    --cite-official-soft: #1e2a38;
+    --cite-pwc: #d4895e;
+    --cite-pwc-soft: #2e2018;
+    --cite-dtt: #4db8a5;
+    --cite-dtt-soft: #163028;
+    --cite-kpmg: #8aa4c0;
+    --cite-kpmg-soft: #1e2834;
+    --cite-ey: #c4ad5a;
+    --cite-ey-soft: #2a2618;
+    --cat-operating: #7ba3c9;
+    --cat-operating-soft: #1e2a38;
+    --cat-investing: #4db8a5;
+    --cat-investing-soft: #163028;
+    --cat-financing: #c9a35a;
+    --cat-financing-soft: #2e2618;
+    --cat-tax: #9aa3ad;
+    --cat-tax-soft: #222830;
+    --cat-discontinued: #a894c4;
+    --cat-discontinued-soft: #241e2e;
+    --ifrs-subtotal: #e8eaed;
+    --ifrs-subtotal-soft: #222830;
+    --mpm: #d4895e;
+    --mpm-soft: #2e2018;
+    --on-accent: #0f1419;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151a;
+  --surface: #1c2128;
+  --ink: #e8eaed;
+  --muted: #9aa3ad;
+  --line: #3a4250;
+  --dash: #6b7580;
+  --band: #1a1f26;
+  --accent: #7ba3c9;
+  --accent-soft: #1e2a38;
+  --ok: #6fad87;
+  --ok-soft: #1a2e24;
+  --warn: #c9a35a;
+  --warn-soft: #2e2618;
+  --danger: #c97a7a;
+  --danger-soft: #2e1a1a;
+  --nest: #222830;
+  --see: #a894c4;
+  --see-soft: #241e2e;
+  --cite-official: #7ba3c9;
+  --cite-official-soft: #1e2a38;
+  --cite-pwc: #d4895e;
+  --cite-pwc-soft: #2e2018;
+  --cite-dtt: #4db8a5;
+  --cite-dtt-soft: #163028;
+  --cite-kpmg: #8aa4c0;
+  --cite-kpmg-soft: #1e2834;
+  --cite-ey: #c4ad5a;
+  --cite-ey-soft: #2a2618;
+  --cat-operating: #7ba3c9;
+  --cat-operating-soft: #1e2a38;
+  --cat-investing: #4db8a5;
+  --cat-investing-soft: #163028;
+  --cat-financing: #c9a35a;
+  --cat-financing-soft: #2e2618;
+  --cat-tax: #9aa3ad;
+  --cat-tax-soft: #222830;
+  --cat-discontinued: #a894c4;
+  --cat-discontinued-soft: #241e2e;
+  --ifrs-subtotal: #e8eaed;
+  --ifrs-subtotal-soft: #222830;
+  --mpm: #d4895e;
+  --mpm-soft: #2e2018;
+  --on-accent: #0f1419;
+}
+

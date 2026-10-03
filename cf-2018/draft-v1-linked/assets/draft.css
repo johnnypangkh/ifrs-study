@@ -1,0 +1,270 @@
+/* CF 2018 pack-owned page, visual, and map rules. Shared tokens/chrome/citations live in ../../_shared/. */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.45;
+  font-size: 14px;
+  min-height: 100vh;
+}
+a { color: var(--accent); }
+a:hover { text-decoration: underline; }
+
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 16px 64px;
+}
+.page-header h1 {
+  margin: 0 0 6px;
+  font-size: 1.35rem;
+}
+.purpose {
+  color: var(--muted);
+  margin: 0 0 16px;
+  font-size: 13px;
+}
+
+/* Concept Map chrome — Windows/fieldset “Style” group box.
+   Sole full-bleed outer box site-wide; embed .visual-shell / .formula-board outer neutralized in visuals/shared.css.
+   Preferred markup (Design):
+     <section class="visual-section">
+       <fieldset class="visual-fieldset">
+         <legend class="visual-legend">Concept Map</legend>
+         <iframe …></iframe>
+       </fieldset>
+     </section>
+   Interim: section + .visual-label (banner retired → legend overlap on section border).
+   Legend grout uses body --bg so the top stroke breaks. Night-only. Do not clip iframe-fit. */
+.visual-section {
+  margin: 0 0 22px;
+  border: none;
+  background: transparent;
+  overflow: visible; /* do not clip auto-fitted iframe */
+  padding: 0;
+}
+.visual-fieldset {
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 12px 12px;
+  background: transparent;
+  overflow: visible;
+}
+.visual-legend {
+  padding: 0 8px;
+  margin-inline-start: 6px;
+  background: var(--bg); /* grout — breaks top stroke against page canvas */
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  /* no heavy uppercase banner band */
+}
+/* Interim until Design lands fieldset: section is the group box; .visual-label = overlap title */
+.visual-section:not(:has(.visual-fieldset)) {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 12px 12px;
+}
+.visual-section > .visual-label {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0 8px;
+  background: var(--bg);
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: none; /* retired uppercase banner */
+  color: var(--muted);
+  line-height: 1.2;
+}
+.visual-section iframe {
+  display: block;
+  width: 100%;
+  border: 0; /* fieldset is the sole rounded group box */
+  border-radius: 0;
+  height: auto; /* iframe-fit.js sets px from content */
+  min-height: 260px; /* floor if fit fails (file:// / late postMessage); JS grows taller */
+  background: transparent; /* no floating card fill inside the fieldset */
+  overflow: hidden; /* no inner chrome scroll; parent grows instead */
+}
+
+.teaching h2 {
+  margin: 22px 0 10px;
+  font-size: 1.05rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+.teaching h3 {
+  display: flex;
+  align-items: baseline;
+  gap: .7em;
+  margin: 18px 0 8px;
+  font-size: .98rem;
+  color: var(--accent);
+}
+.teaching h3 .sec-no {
+  flex: 0 0 3.6em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.teaching h3 .sec-title { flex: 1 1 auto; min-width: 0; }
+.teaching p { margin: 0 0 10px; }
+.teaching ul, .teaching ol { margin: 0 0 12px; padding-left: 1.3em; }
+.teaching li { margin-bottom: 4px; }
+
+pre.ascii-tree {
+  background: var(--band);
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 12px 14px;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.35;
+  margin: 0 0 14px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 0 0 14px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--surface);
+}
+th, td {
+  border: 1px solid var(--line);
+  padding: 7px 9px;
+  text-align: left;
+  vertical-align: top;
+}
+th { background: var(--accent-soft); font-weight: 700; }
+
+.callout {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-radius: var(--card-radius);
+  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  font-size: 13px;
+}
+.callout.see-also {
+  background: var(--see-soft);
+  border-style: dashed;
+  border-color: var(--see);
+  color: var(--ink);
+}
+.callout.lock {
+  background: var(--ok-soft);
+  border-color: var(--ok);
+}
+.callout.start {
+  background: var(--warn-soft);
+  border-color: var(--warn);
+}
+.callout.warn {
+  background: var(--warn-soft);
+  border-color: var(--warn);
+}
+
+.key-terms {
+  margin-top: 28px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.key-terms h2 { margin: 0 0 8px; font-size: 1rem; }
+.key-terms ul { margin: 0; padding-left: 1.2em; columns: 2; gap: 24px; }
+@media (max-width: 640px) {
+  .key-terms ul { columns: 1; }
+}
+
+/* Map view */
+.map-wrap {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 14px;
+}
+.map-band {
+  margin-bottom: 10px;
+  padding: 10px;
+  background: var(--band);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.map-band h3 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.map-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.map-node {
+  flex: 1 1 180px;
+  display: block;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  text-decoration: none;
+  color: inherit;
+  min-height: 72px;
+}
+.map-node:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  text-decoration: none;
+}
+.map-node small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+.map-node strong { display: block; font-size: 13px; }
+.map-node em {
+  display: block;
+  font-style: normal;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+.map-node.primary { border-left: 3px solid var(--accent); }
+.map-note {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+/* ARCHIVE-ONLY map chrome (.nested). Neutralized to solid — do not revive dashed=hierarchy.
+   Live pages use contain* / see-also; only _archive-index-stub.html still references this. */
+.nested {
+  margin: 8px 0 0 12px;
+  padding-left: 10px;
+  border-left: 2px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.nested .map-node { flex: 1 1 140px; min-height: 56px; background: var(--surface); border-style: solid; }
+

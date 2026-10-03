@@ -1,0 +1,222 @@
+/* Ch3 P&L categories — Concept Map visual.
+   Loaded only by visuals/ch03-pnl-categories.html, after shared.css.
+   Grammar: one backbone = statement schematic (five category bands, 2-col name|body,
+   colour = category). Secondary = specified-MBA note attached by a bracket to the two
+   bands it can override (Investing + Financing); lighter chrome, no fill.
+   Ordered tests (§3.7) and the three-term nest (§3.5) live in the chapter body.
+   No outer plate (parent fieldset is the frame). Dashed = Ch4 forward tip only. */
+
+/* body.embed is transparent in shared.css; paint the night canvas so the iframe
+   never shows a white UA backdrop. */
+html { background: var(--bg); }
+
+.pc-board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pc-board a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.pc-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.pc-label a.fb-num {
+  margin-right: 0;
+  flex-shrink: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---- Primary: five-band statement schematic ---- */
+.pc-schematic {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 14px minmax(200px, .5fr);
+  grid-template-rows: repeat(5, auto);
+  gap: 8px 10px;
+}
+.pc-band { grid-column: 1; }
+.pc-band--operating { grid-row: 1; }
+.pc-band--investing { grid-row: 2; }
+.pc-band--financing { grid-row: 3; }
+.pc-band--tax { grid-row: 4; }
+.pc-band--discontinued { grid-row: 5; }
+
+.pc-band {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: var(--card-radius);
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: minmax(190px, .4fr) minmax(0, 1fr);
+  gap: 6px 14px;
+  align-items: center;
+}
+.pc-band--operating {
+  background: var(--cat-operating-soft);
+  border-color: var(--cat-operating);
+}
+.pc-band--investing {
+  background: var(--cat-investing-soft);
+  border-color: var(--cat-investing);
+}
+.pc-band--financing {
+  background: var(--cat-financing-soft);
+  border-color: var(--cat-financing);
+}
+.pc-band--tax {
+  background: var(--cat-tax-soft);
+  border-color: var(--cat-tax);
+}
+.pc-band--discontinued {
+  background: var(--cat-discontinued-soft);
+  border-color: var(--cat-discontinued);
+}
+
+.pc-band-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.3;
+  min-width: 0;
+}
+.pc-band-head a.fb-num {
+  flex-shrink: 0;
+  margin-right: 0;
+}
+.pc-band-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+.pc-band--operating .pc-band-name { color: var(--cat-operating); }
+.pc-band--investing .pc-band-name { color: var(--cat-investing); }
+.pc-band--financing .pc-band-name { color: var(--cat-financing); }
+.pc-band--tax .pc-band-name { color: var(--cat-tax); }
+.pc-band--discontinued .pc-band-name { color: var(--cat-discontinued); }
+
+.pc-band-tag {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--cat-operating);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--cat-operating);
+  line-height: 1.3;
+}
+
+.pc-band-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+  min-width: 0;
+}
+
+/* ---- Secondary: specified-MBA note, bracketed to Investing + Financing ---- */
+.pc-bracket {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  border: 2px solid var(--line);
+  border-left: 0;
+  border-radius: 0 var(--card-radius) var(--card-radius) 0;
+  margin: 10px 0;
+}
+
+.pc-mba {
+  grid-column: 3;
+  grid-row: 2 / 4;
+  align-self: center;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--cat-operating);
+  border-radius: var(--card-radius);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pc-mba-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.pc-mba-title a.fb-num {
+  flex-shrink: 0;
+  margin-right: 0;
+}
+.pc-mba-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.pc-mba-body strong { font-weight: 700; color: var(--ink); }
+.pc-mba-cites {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* ---- Ch4 forward tip (dashed rare) ---- */
+.pc-fwd {
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px dashed var(--dash);
+  border-radius: var(--card-radius);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.pc-fwd a.fb-num {
+  flex-shrink: 0;
+  margin-top: 1px;
+  margin-right: 0;
+}
+.pc-fwd strong { font-weight: 700; color: var(--ink); }
+
+/* ---- Narrow: one column; the note drops in DOM order under Financing, indented ---- */
+@media (max-width: 720px) {
+  .pc-schematic {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+  .pc-schematic > * {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .pc-bracket { display: none; }
+  .pc-mba { margin-left: 16px; }
+}
+@media (max-width: 560px) {
+  .pc-band {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    padding: 10px;
+  }
+  .pc-mba,
+  .pc-fwd { padding: 8px 10px; }
+}

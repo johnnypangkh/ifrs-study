@@ -1,0 +1,286 @@
+/* Ch5 Recognition & derecognition Concept Map — loaded only by visuals/ch05-recognition-derecognition.html,
+   after shared.css. Grammar: decision tree (definition test branches no → leaf; usefulness test forks into
+   two outcome leaves) with Derecognition as the paired plate; attached stems only; no outer plate
+   (parent fieldset is the frame); dashed = see-also only. */
+
+.rc-board-title,
+.rc-head,
+.rc-peer-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.rc-board-title { margin-bottom: 12px; font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.rc-board-title a.fb-num,
+.rc-head a.fb-num,
+.rc-peer-head a.fb-num,
+.rc-bar a.fb-num { margin-right: 0; flex-shrink: 0; }
+
+/* Tree grid: col 1 = continuing route (T→B); col 2 = "no" arm; col 3 = terminal leaf (L→R).
+   Gaps are zero so every stem touches the objects it joins. Derecognition, after Recognise, spans. */
+.rc-tree {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) 56px minmax(168px, .62fr);
+  gap: 0;
+  align-items: stretch;
+}
+.rc-test--definition { grid-column: 1; grid-row: 1; }
+.rc-no-def { grid-column: 2; grid-row: 1; }
+.rc-leaf--def { grid-column: 3; grid-row: 1; }
+.rc-link--trunk { grid-column: 1; grid-row: 2; }
+.rc-test--useful { grid-column: 1; grid-row: 3; }
+.rc-no-useful { grid-column: 2; grid-row: 3; align-self: center; }
+.rc-leaf--useful { grid-column: 3; grid-row: 3; align-self: center; }
+.rc-link--yes { grid-column: 1; grid-row: 4; }
+.rc-leaf--recognise { grid-column: 1; grid-row: 5; }
+.rc-link--later { grid-column: 1; grid-row: 6; }
+.rc-derec { grid-column: 1 / -1; grid-row: 7; }
+
+/* Tests and the derecognition plate: same frame weight */
+.rc-test,
+.rc-derec {
+  min-width: 0;
+  border: 2px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 12px 14px 14px;
+}
+.rc-test--definition { display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+.rc-q { font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.rc-sub {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.rc-test--useful > .rc-head { margin-bottom: 10px; }
+
+/* Relevance + Faithful representation: rows 1–4 shared via subgrid; row 5 = spanning bars */
+.rc-fund {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto auto;
+  column-gap: 10px;
+  row-gap: 8px;
+}
+.rc-peer {
+  min-width: 0;
+  border: 1px solid var(--elem-peer);
+  border-radius: var(--card-radius);
+  background: var(--elem-peer-soft);
+  padding: 12px 14px;
+}
+.rc-fund .rc-peer {
+  grid-row: 1 / 5;
+  display: grid;
+  grid-template-rows: subgrid;
+  row-gap: 8px;
+  align-content: start;
+}
+.rc-relevance { grid-column: 1; }
+.rc-faithful { grid-column: 3; }
+.rc-op {
+  width: 14px;
+  text-align: center;
+  align-self: center;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--formula);
+}
+.rc-fund .rc-op { grid-column: 2; grid-row: 1 / 5; }
+.rc-shared {
+  grid-column: 1 / 4;
+  grid-row: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.rc-name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--elem-peer);
+}
+.rc-def {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.rc-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+}
+.rc-key {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rc-item {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.rc-item strong { color: var(--ink); font-weight: 700; }
+
+.rc-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.rc-bar--plain::before {
+  content: "";
+  flex: 0 0 var(--nx-chip-size);
+}
+.rc-bar--see {
+  border-style: dashed;
+  border-color: var(--dash);
+  background: transparent;
+  color: var(--muted);
+}
+
+/* Outcome leaves: the yes / no colour is named on the leaf itself */
+.rc-leaf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 10px 12px;
+}
+.rc-leaf--yes { border-color: var(--ink); }
+.rc-leaf--no { border-color: var(--line); }
+.rc-leaf-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.rc-leaf--yes .rc-leaf-name { color: var(--ink); }
+.rc-leaf--no .rc-leaf-name { color: var(--muted); }
+.rc-leaf-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---- Connectors ---- */
+.rc-link { position: relative; margin: 0; min-width: 0; }
+.rc-link-stem { display: block; position: relative; background: var(--accent); }
+.rc-link-label {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.rc-link-label strong { color: var(--ink); }
+
+/* Vertical: stem centred in the link box, label to its right, arrowhead on the lower object */
+.rc-link--down {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr);
+  column-gap: 10px;
+  min-height: 44px;
+}
+.rc-link--down .rc-link-stem { grid-column: 2; grid-row: 1; width: 2px; min-height: 44px; }
+.rc-link--down .rc-link-label { grid-column: 3; grid-row: 1; align-self: center; padding: 4px 0; }
+.rc-link--down .rc-link-stem::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid var(--accent);
+}
+/* Stem stays centred in the continuing column, under Recognise */
+.rc-link--later { grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr); }
+
+/* Horizontal: stem spans the column so it touches the test and the side leaf */
+.rc-link--h {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.rc-link--h .rc-link-label { text-align: center; }
+.rc-link--h .rc-link-stem { width: 100%; height: 2px; }
+.rc-link--h .rc-link-stem::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--accent);
+}
+
+/* ---- Derecognition plate ---- */
+.rc-derec { display: flex; flex-direction: column; gap: 10px; }
+.rc-aims {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: stretch;
+}
+.rc-aim { display: flex; flex-direction: column; gap: 4px; }
+.rc-cases {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr);
+  column-gap: 10px;
+}
+.rc-cases > :first-child { grid-column: 1; }
+.rc-cases > :last-child { grid-column: 3; }
+.rc-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 10px 12px;
+}
+.rc-cell-name { margin: 0; font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.rc-cell-body { margin: 0; font-size: 12px; line-height: 1.4; color: var(--muted); }
+
+@media (max-width: 720px) {
+  .rc-tree { grid-template-columns: minmax(0, 1fr) 32px minmax(108px, .72fr); }
+  .rc-link--trunk,
+  .rc-link--yes,
+  .rc-link--later { grid-column: 1; }
+  .rc-fund { display: flex; flex-direction: column; gap: 10px; }
+  .rc-fund .rc-peer { display: flex; flex-direction: column; gap: 8px; }
+  .rc-fund .rc-op,
+  .rc-aims .rc-op { align-self: center; }
+  .rc-relevance { order: 1; }
+  .rc-fund .rc-op { order: 2; }
+  .rc-faithful { order: 3; }
+  .rc-shared { order: 4; }
+  .rc-aims { display: flex; flex-direction: column; gap: 8px; }
+  .rc-cases { display: flex; flex-direction: column; gap: 10px; }
+}

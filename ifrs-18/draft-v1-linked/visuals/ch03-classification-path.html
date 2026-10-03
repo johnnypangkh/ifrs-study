@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ch3 — Classification path — IFRS 18</title>
+<link rel="stylesheet" href="shared.css?v=7b2b-map-chips-20261003" />
+<link rel="stylesheet" href="ch03-classification-path.css" />
+<script src="../assets/theme.js"></script>
+</head>
+<body class="embed">
+<div class="page">
+  <section class="cp-board" aria-label="Classification path — ordered tests">
+    <p class="cp-kicker">Ordered classification tests — income and expenses into categories</p>
+
+    <div class="pc-tree" aria-label="Classification decision tree">
+      <div class="pc-gate">
+        <p class="pc-gate-q">Is the amount income or expense in P&amp;L?</p>
+        <p class="pc-gate-out">If yes, it must sit in one of the five categories.</p>
+      </div>
+
+      <div class="pc-stem" aria-hidden="true">
+        <span class="pc-stem-line"></span>
+        <span class="pc-stem-label">yes → test in order</span>
+      </div>
+
+      <div class="pc-row">
+        <div class="pc-gate">
+          <p class="pc-gate-q">Discontinued operations?</p>
+        </div>
+        <div class="pc-yes" aria-hidden="true">
+          <span class="pc-yes-line"></span>
+          <span class="pc-yes-label">yes</span>
+        </div>
+        <div class="pc-leaf pc-leaf--discontinued">
+          <p class="pc-leaf-name">Discontinued</p>
+        </div>
+      </div>
+
+      <div class="pc-stem" aria-hidden="true">
+        <span class="pc-stem-line"></span>
+        <span class="pc-stem-label">no → continue</span>
+      </div>
+
+      <div class="pc-row">
+        <div class="pc-gate">
+          <p class="pc-gate-q">Specified income taxes?</p>
+        </div>
+        <div class="pc-yes" aria-hidden="true">
+          <span class="pc-yes-line"></span>
+          <span class="pc-yes-label">yes</span>
+        </div>
+        <div class="pc-leaf pc-leaf--tax">
+          <p class="pc-leaf-name">Income taxes</p>
+        </div>
+      </div>
+
+      <div class="pc-stem" aria-hidden="true">
+        <span class="pc-stem-line"></span>
+        <span class="pc-stem-label">no → continue</span>
+      </div>
+
+      <div class="pc-row">
+        <div class="pc-gate">
+          <p class="pc-gate-q">Return from an investing asset?</p>
+          <p class="pc-gate-sub">Answer <strong>no</strong> here if a specified main-business activity already put it in Operating.</p>
+        </div>
+        <div class="pc-yes" aria-hidden="true">
+          <span class="pc-yes-line"></span>
+          <span class="pc-yes-label">yes</span>
+        </div>
+        <div class="pc-leaf pc-leaf--investing">
+          <p class="pc-leaf-name">Investing</p>
+        </div>
+      </div>
+
+      <div class="pc-stem" aria-hidden="true">
+        <span class="pc-stem-line"></span>
+        <span class="pc-stem-label">no → continue</span>
+      </div>
+
+      <div class="pc-row">
+        <div class="pc-gate">
+          <p class="pc-gate-q">Financing amount on a liability?</p>
+          <p class="pc-gate-sub">Answer <strong>no</strong> here if a specified main-business activity already put it in Operating.</p>
+        </div>
+        <div class="pc-yes" aria-hidden="true">
+          <span class="pc-yes-line"></span>
+          <span class="pc-yes-label">yes</span>
+        </div>
+        <div class="pc-leaf pc-leaf--financing">
+          <p class="pc-leaf-name">Financing</p>
+        </div>
+      </div>
+
+      <div class="pc-stem" aria-hidden="true">
+        <span class="pc-stem-line"></span>
+        <span class="pc-stem-label">no → residual</span>
+      </div>
+
+      <div class="pc-leaf pc-leaf--operating pc-leaf--final">
+        <p class="pc-leaf-name">Operating — residual default</p>
+        <p class="pc-leaf-body">Whatever remains after the tests above. Complete operations picture for the period.</p>
+      </div>
+
+      <p class="pc-mba-cue"><a class="fb-num" href="../ch03.html#s-3-5-mba" target="_parent">3.5</a><span>Specified main-business activities can pull some Investing / Financing amounts into <strong>Operating</strong> — see the nest diagram above.</span></p>
+    </div>
+  </section>
+</div>
+</body>
+</html>

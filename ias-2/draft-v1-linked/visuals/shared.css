@@ -1,0 +1,2532 @@
+/* IFRS 18 chapter visuals — solid chrome + dense teaching graphics.
+   (Shared kit twin of CF map family; IFRS 18 category/MPM tokens below.)
+   Grammar: solid = peer / containment; dashed = see-also (or matrix N/A) only.
+   Exception (canon 2026.09.27-6): dashed group plate = Consol FS chrome
+   (.consol-boundary / .fs-consol) — not see-also, not nest hierarchy.
+   Composition (組成) → .contain / .contain-grid / .contain-cell — never dashed hang.
+   Matches CF map family. file:// offline OK via relative link. */
+:root {
+  --bg: #f6f5f2;
+  --surface: #ffffff;
+  --ink: #1f2933;
+  --muted: #5f6b76;
+  --line: #c9ced6;
+  --dash: #9aa3ad;
+  --accent: #2f5d8a;
+  --accent-soft: #e8eef5;
+  --band: #f0eee9;
+  --ok: #3d6b4f;
+  --ok-soft: #e8f2ec;
+  --warn: #8a6a2f;
+  --warn-soft: #fff8e6;
+  --danger: #8a3b3b;
+  --danger-soft: #f8ecec;
+  --nest: #e9edf2;
+  --see: #6b5b8a;
+  --see-soft: #f0ecf5;
+  --card-radius: 8px;
+
+  /* Visual teaching type scale: body copy stays readable; meta remains compact chrome. */
+  --vis-body: 12px;
+  --vis-meta: 11px;
+
+  /* Semantic colour tokens (legend meanings) — mapped onto palette above.
+     Decorative colour cut: hub/peer softs are neutral surface; peer border shared. */
+  --role-entity: var(--accent);
+  --role-entity-soft: var(--surface);
+  --role-party: #5a6f7e;
+  --role-party-soft: var(--surface);
+  --elem-hub: var(--ink);              /* hub / primary — stronger border, no wash */
+  --elem-hub-soft: var(--surface);
+  --elem-nest: var(--surface);         /* quiet demotion fill only — NOT dashed=nest */
+  /* Peers share one border token — meaning gate: no rainbow / no pastel blue wash. */
+  --elem-peer: var(--accent);          /* shared peer border (A, L, E) */
+  --elem-peer-soft: var(--surface);    /* neutral fill */
+  --elem-asset: var(--elem-peer);
+  --elem-asset-soft: var(--elem-peer-soft);
+  --elem-liability: var(--elem-peer);
+  --elem-liability-soft: var(--elem-peer-soft);
+  --elem-equity: var(--elem-peer);
+  --elem-equity-soft: var(--elem-peer-soft);
+  --elem-income: #5a6f7e;              /* Income/Expenses name ink inside Equity containment */
+  --elem-income-soft: var(--surface);  /* solid inner cells; no wash */
+  --on-accent: #ffffff;
+  --outcome-yes: var(--ok);
+  --outcome-yes-soft: var(--ok-soft);
+  --outcome-no: var(--danger);
+  --outcome-no-soft: var(--danger-soft);
+  --outcome-doubt: var(--warn);
+  --outcome-doubt-soft: var(--warn-soft);
+  --link-semantic: var(--accent);      /* relation labels (⟷ etc.) */
+  --see-also: var(--see);
+  --see-also-soft: var(--see-soft);
+  --stmt-block: var(--accent);         /* statement-layout title/border cue */
+  --formula: var(--accent);            /* formula-cue emphasis */
+  /* Section chips are stadium pills, never true circles — including short labels (2, 11).
+     --nx-chip-size stays the layout column (operators / indents). Pill min-width > height. */
+  --nx-chip-size: 28px;
+  --nx-chip-min: 46px;
+  --nx-chip-height: 22px;
+  --nx-chip-pad-x: 8px;
+  --nx-chip-border: 1px;
+  --nx-chip-font: 10px;
+  /* Ch4 consol colour/line (canon 2026.09.27-6) — night-safe aliases only;
+     do not invent a separate day theme. Dashed plate = Consol chrome. */
+  --consol-line: var(--dash);
+  --consol-fill: transparent;
+  --entity-parent-line: var(--accent);
+  --entity-parent-fill: var(--accent-soft);
+  --entity-sub-line: var(--line);
+  --entity-sub-fill: var(--surface);
+  /* Org chart remounts onto entity grammar */
+  --org-parent: var(--entity-parent-line);
+  --org-parent-soft: var(--entity-parent-fill);
+  --org-child: var(--entity-sub-line);
+  --org-child-soft: var(--entity-sub-fill);
+
+  /* IFRS 18 category + MPM — colour-with-meaning (night remaps below; no day-theme invent).
+     Teaching cue per token (one line): */
+  --cat-operating: #2f5d8a;            /* Operating — main business income/expenses */
+  --cat-operating-soft: #e8eef5;
+  --cat-investing: #0f6b5c;            /* Investing — returns from assets that generate returns largely independently */
+  --cat-investing-soft: #e6f3f0;
+  --cat-financing: #8a6a2f;            /* Financing — financing liabilities / specified equity claims */
+  --cat-financing-soft: #fff8e6;
+  --cat-tax: #5f6b76;                  /* Income taxes — tax category band */
+  --cat-tax-soft: #eef0f2;
+  --cat-discontinued: #6b5b8a;         /* Discontinued operations — presented apart from continuing */
+  --cat-discontinued-soft: #f0ecf5;
+  --ifrs-subtotal: #1f2933;            /* IFRS subtotal — required or specified by IFRS 18 */
+  --ifrs-subtotal-soft: #e9edf2;
+  --mpm: #a65b35;                      /* MPM — management-defined performance measure; reconcile to IFRS */
+  --mpm-soft: #f8ebe4;
+
+  /* Citation chips — source class */
+  --cite-official: #2f5d8a;
+  --cite-official-soft: #e8eef5;
+  --cite-pwc: #a65b35;
+  --cite-pwc-soft: #f8ebe4;
+  --cite-dtt: #0f6b5c;
+  --cite-dtt-soft: #e6f3f0;
+  --cite-kpmg: #3d5a80;
+  --cite-kpmg-soft: #e8eef4;
+  --cite-ey: #8a7320;
+  --cite-ey-soft: #f5f0dc;
+}
+
+/* Night mode — chrome/surfaces/ink only; semantic hues preserved */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151a;
+    --surface: #1c2128;
+    --ink: #e8eaed;
+    --muted: #9aa3ad;
+    --line: #3a4250;
+    --dash: #6b7580;
+    --band: #1a1f26;
+    --accent: #7ba3c9;
+    --accent-soft: #1e2a38;
+    --ok: #6fad87;
+    --ok-soft: #1a2e24;
+    --warn: #c9a35a;
+    --warn-soft: #2e2618;
+    --danger: #c97a7a;
+    --danger-soft: #2e1a1a;
+    --nest: #222830;
+    --see: #a894c4;
+    --see-soft: #241e2e;
+    --role-party: #9aa3ad;
+    --role-party-soft: var(--surface);
+    --elem-income: #9aa3ad;
+    --outcome-yes: var(--ok);
+    --outcome-yes-soft: var(--ok-soft);
+    --outcome-no: var(--danger);
+    --outcome-no-soft: var(--danger-soft);
+    --outcome-doubt: var(--warn);
+    --outcome-doubt-soft: var(--warn-soft);
+    --cite-official: #7ba3c9;
+    --cite-official-soft: #1e2a38;
+    --cite-pwc: #d4895e;
+    --cite-pwc-soft: #2e2018;
+    --cite-dtt: #4db8a5;
+    --cite-dtt-soft: #163028;
+    --cite-kpmg: #8aa4c0;
+    --cite-kpmg-soft: #1e2834;
+    --cite-ey: #c4ad5a;
+    --cite-ey-soft: #2a2618;
+    --cat-operating: #7ba3c9;
+    --cat-operating-soft: #1e2a38;
+    --cat-investing: #4db8a5;
+    --cat-investing-soft: #163028;
+    --cat-financing: #c9a35a;
+    --cat-financing-soft: #2e2618;
+    --cat-tax: #9aa3ad;
+    --cat-tax-soft: #222830;
+    --cat-discontinued: #a894c4;
+    --cat-discontinued-soft: #241e2e;
+    --ifrs-subtotal: #e8eaed;
+    --ifrs-subtotal-soft: #222830;
+    --mpm: #d4895e;
+    --mpm-soft: #2e2018;
+    --on-accent: #0f1419;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151a;
+  --surface: #1c2128;
+  --ink: #e8eaed;
+  --muted: #9aa3ad;
+  --line: #3a4250;
+  --dash: #6b7580;
+  --band: #1a1f26;
+  --accent: #7ba3c9;
+  --accent-soft: #1e2a38;
+  --ok: #6fad87;
+  --ok-soft: #1a2e24;
+  --warn: #c9a35a;
+  --warn-soft: #2e2618;
+  --danger: #c97a7a;
+  --danger-soft: #2e1a1a;
+  --nest: #222830;
+  --see: #a894c4;
+  --see-soft: #241e2e;
+  --role-party: #9aa3ad;
+  --role-party-soft: var(--surface);
+  --elem-income: #9aa3ad;
+  --outcome-yes: var(--ok);
+  --outcome-yes-soft: var(--ok-soft);
+  --outcome-no: var(--danger);
+  --outcome-no-soft: var(--danger-soft);
+  --outcome-doubt: var(--warn);
+  --outcome-doubt-soft: var(--warn-soft);
+  --cite-official: #7ba3c9;
+  --cite-official-soft: #1e2a38;
+  --cite-pwc: #d4895e;
+  --cite-pwc-soft: #2e2018;
+  --cite-dtt: #4db8a5;
+  --cite-dtt-soft: #163028;
+  --cite-kpmg: #8aa4c0;
+  --cite-kpmg-soft: #1e2834;
+  --cite-ey: #c4ad5a;
+  --cite-ey-soft: #2a2618;
+  --cat-operating: #7ba3c9;
+  --cat-operating-soft: #1e2a38;
+  --cat-investing: #4db8a5;
+  --cat-investing-soft: #163028;
+  --cat-financing: #c9a35a;
+  --cat-financing-soft: #2e2618;
+  --cat-tax: #9aa3ad;
+  --cat-tax-soft: #222830;
+  --cat-discontinued: #a894c4;
+  --cat-discontinued-soft: #241e2e;
+  --ifrs-subtotal: #e8eaed;
+  --ifrs-subtotal-soft: #222830;
+  --mpm: #d4895e;
+  --mpm-soft: #2e2018;
+  --on-accent: #0f1419;
+}
+
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.4;
+  min-height: 0; /* iframe-first — no 100vh scroll trap */
+  font-size: 14px;
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 16px 56px;
+}
+
+/* Solid page shell (no wireframe framing language) */
+.visual-shell {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 22px 18px 28px;
+  position: relative;
+}
+
+
+header.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.titles h1 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.titles .subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: .88rem;
+}
+.meta-chip {
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--band);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.section {
+  margin: 22px 0 0;
+}
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+.section-hint {
+  font-size: 12px;
+  color: var(--dash);
+  margin: -4px 0 10px;
+}
+
+/* Boxes / cards */
+.box {
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 12px 14px; /* was 10px 12px — Canon 2026.09.27-5 inner air */
+}
+.box.hub { background: var(--elem-hub-soft); border-color: var(--elem-hub); border-width: 2px; }
+.box.band { background: var(--band); }
+/* DEPRECATED — dashed=nest anti-pattern. Prefer .contain* for 組成 / .box.see for see-also.
+   Neutralized to solid quiet so leftovers cannot teach dashed=hierarchy. Do not use on new kit. */
+.box.nest {
+  background: var(--elem-nest);
+  border-style: solid;
+  border-color: var(--line);
+}
+.box.ok { background: var(--outcome-yes-soft); border-color: var(--outcome-yes); }
+
+/* Containment kit (Examples B/C) — mirrored from draft assets/shared.css; iframe has no assets link.
+   Solid outer + solid inner cells; not dashed nest. */
+.contain {
+  border: 2px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 12px;
+}
+.contain-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.contain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.contain-cell {
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .contain-grid { grid-template-columns: 1fr; }
+}
+.box.warn { background: var(--outcome-doubt-soft); border-color: var(--outcome-doubt); }
+.box.danger { background: var(--outcome-no-soft); border-color: var(--outcome-no); }
+.box.see { background: var(--see-also-soft); border: 1px dashed var(--see-also); color: var(--see-also); }
+.box-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.box-body {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+.box ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.box li { margin: 2px 0; }
+
+/* Flow / spine */
+.flow-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px; /* Canon 2026.09.27-5 — major-object rhythm (was 0) */
+  max-width: 640px;
+}
+.flow-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: stretch;
+}
+.flow-row > .box { flex: 1 1 160px; }
+.arrow-down {
+  text-align: center;
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 2px 0;
+  letter-spacing: .05em;
+}
+.arrow-down.muted { color: var(--dash); font-size: 13px; font-weight: 600; }
+.arrow-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+.peer-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 640px) {
+  .peer-pair { grid-template-columns: 1fr; }
+}
+.peer-pair .box { text-align: center; }
+
+/* Grids */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 720px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Tables */
+table.lofi {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--surface);
+}
+table.lofi th, table.lofi td {
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+table.lofi th {
+  background: var(--band);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
+
+/* Callouts */
+.callout {
+  border-radius: var(--card-radius);
+  padding: 10px 12px;
+  font-size: 13px;
+  margin: 8px 0;
+}
+.callout.warn {
+  background: var(--outcome-doubt-soft);
+  border: 1px solid var(--outcome-doubt);
+  color: var(--ink);
+}
+.callout.danger {
+  background: var(--outcome-no-soft);
+  border: 1px solid var(--outcome-no);
+}
+.callout.see {
+  background: var(--see-also-soft);
+  border: 1px dashed var(--see-also);
+  color: var(--see-also);
+  font-size: 12px;
+}
+.callout.ok {
+  background: var(--outcome-yes-soft);
+  border: 1px solid var(--outcome-yes);
+}
+.callout strong { font-weight: 700; }
+.callout .tag-mini {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-right: 6px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(0,0,0,.06);
+}
+
+/* Quiet demoted tip (wording / synonym note) — NOT nest hierarchy */
+.tip-quiet,
+.tip-nest {
+  margin: 8px 0 0 12px;
+  padding: 8px 10px;
+  border-left: 3px solid var(--line);
+  background: var(--band);
+  border-radius: 0 6px 6px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.tip-quiet .tip-label,
+.tip-nest .tip-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+/* Tree / decision branches */
+.tree {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* Canon 2026.09.27-5 — major-object rhythm (was 0) */
+  max-width: 720px;
+}
+.tree-branch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 0; /* parent .tree/.flow-col gap owns rhythm */
+}
+.branch-no { border-color: var(--outcome-no); }
+.branch-yes { border-color: var(--outcome-yes); }
+
+/* Dashed see-also strip */
+.see-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px dashed var(--see-also);
+  border-radius: 999px;
+  background: var(--see-also-soft);
+  color: var(--see-also);
+  font-size: 12px;
+  font-weight: 600;
+  margin: 6px 0;
+}
+.see-strip .arrow { font-weight: 700; }
+.see-strip-note { font-weight: 400; opacity: .85; }
+.see-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Stack hierarchy */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* Canon 2026.09.27-5 — major-object rhythm (was 0) */
+  max-width: 520px;
+}
+.stack .box { text-align: center; }
+
+/* L1 horizontal with nested L2 */
+.l1-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* equal after Boundary slim (no Consol|Unconsol L2 kids) */
+  gap: 10px;
+}
+@media (max-width: 720px) {
+  .l1-row { grid-template-columns: 1fr; }
+}
+.boundary-shell {
+  border: 1px solid var(--role-entity);
+  border-radius: var(--card-radius);
+  background: var(--role-entity-soft);
+  padding: 8px;
+}
+.boundary-shell > .box-title { margin-bottom: 8px; }
+.boundary-kids {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.boundary-kids .box,
+.boundary-kids .contain-cell {
+  background: var(--surface);
+  border-style: solid;
+  border-color: var(--line);
+  font-size: 12px;
+}
+/* Prefer .contain kit on Boundary — keep .boundary-shell as solid outer alias */
+.boundary-shell.contain,
+.l1-row .contain.boundary-shell {
+  border-color: var(--role-entity);
+}
+
+.footer-note {
+  margin-top: 28px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--dash);
+}
+
+.checklist-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+/* Concept-map relations (semantic links, not decision spines) */
+.concept-map {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* Canon 2026.09.27-5 — ~12–16px between major teaching objects (was 0) */
+  max-width: 760px;
+  align-items: stretch;
+}
+.concept-map > .box,
+.concept-map > .grid-2,
+.concept-map > .grid-3,
+.concept-map > .map-hub-wrap,
+.concept-map > .party-cast,
+.concept-map > .contrast-pair,
+.concept-map > .tip-quiet {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* DEPRECATED (Johnny unlock 2026-09-27) — floating glyph labels.
+   Prefer .rel-connect (stem + label). Kept so leftover markup does not explode. */
+.rel-label {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 8px 0 6px;
+  letter-spacing: .02em;
+}
+.rel-label .mark {
+  display: block;
+  color: var(--link-semantic);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+/* Relation connectors — stems kiss adjacent box/hub/band edges.
+   Stem = background line; arrowheads via ::before/::after border triangles.
+   --both: bidirectional · --down: feed/provide · --h: study-path (arrow right).
+   Label sits RIGHT of a centered stem track — no floating glyph-only links. */
+.rel-connect {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2px minmax(140px, 1fr);
+  column-gap: 14px;
+  align-items: stretch;
+  /* Negative block margin cancels parent .concept-map/.stack gap so stem meets box edges;
+     connector height alone spaces the two related boxes (~12–16px air lives in shorter stem). */
+  margin: -14px 0;
+  min-height: 48px; /* was 64 — shorter stem restores object rhythm */
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.rel-connect-stem {
+  grid-column: 2;
+  grid-row: 1;
+  display: block;
+  width: 2px;
+  align-self: stretch;
+  min-height: 48px; /* was 64 */
+  background: var(--link-semantic);
+  position: relative;
+  justify-self: center;
+  flex-shrink: 0;
+}
+.rel-connect-label {
+  grid-column: 3;
+  grid-row: 1;
+  margin: 0;
+  padding: 4px 4px 4px 0; /* was 8px — keep label optically between the two boxes */
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: left;
+  line-height: 1.35;
+  letter-spacing: .02em;
+  max-width: 360px;
+  align-self: center;
+}
+.rel-connect-label strong { color: var(--ink); font-weight: 700; }
+
+/* Arrowheads (border triangles) — night-safe via --link-semantic */
+.rel-connect-stem::before,
+.rel-connect-stem::after {
+  content: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+.rel-connect--both .rel-connect-stem::before {
+  content: "";
+  top: -1px;
+  border-bottom: 8px solid var(--link-semantic);
+}
+.rel-connect--both .rel-connect-stem::after,
+.rel-connect--down .rel-connect-stem::after {
+  content: "";
+  bottom: -1px;
+  border-top: 8px solid var(--link-semantic);
+}
+
+/* Horizontal study-path connector — stem between flex children */
+.rel-connect--h {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  grid-template-columns: none;
+  margin: 0 -1px;
+  padding: 0;
+  min-height: 0;
+  flex: 0 0 36px;
+  width: 36px;
+  max-width: 36px;
+}
+.rel-connect--h .rel-connect-stem {
+  grid-column: auto;
+  width: 100%;
+  height: 2px;
+  min-height: 0;
+  min-width: 28px;
+  background: var(--link-semantic);
+  position: relative;
+}
+.rel-connect--h .rel-connect-stem::before,
+.rel-connect--h .rel-connect-stem::after {
+  border-left: none;
+  border-right: none;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  left: auto;
+  transform: translateY(-50%);
+  top: 50%;
+}
+.rel-connect--h .rel-connect-stem::before { content: none; }
+.rel-connect--h .rel-connect-stem::after {
+  content: "";
+  right: 0;
+  border-left: 8px solid var(--link-semantic);
+}
+/* Horizontal bidirectional (peer row) — arrowheads both ends */
+.rel-connect--h.rel-connect--both {
+  flex: 0 1 auto;
+  width: auto;
+  max-width: 140px;
+  min-width: 56px;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0 -1px;
+  align-self: center;
+}
+.rel-connect--h.rel-connect--both .rel-connect-stem {
+  width: 100%;
+  min-width: 44px;
+}
+.rel-connect--h.rel-connect--both .rel-connect-stem::before {
+  content: "";
+  left: 0;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 8px solid var(--link-semantic);
+  border-left: none;
+}
+.rel-connect--h.rel-connect--both .rel-connect-stem::after {
+  content: "";
+  right: 0;
+  left: auto;
+  border-left: 8px solid var(--link-semantic);
+  border-right: none;
+}
+.rel-connect--h.rel-connect--both .rel-connect-label {
+  grid-column: auto;
+  font-size: 10px;
+  text-align: center;
+  max-width: 120px;
+  line-height: 1.25;
+}
+
+/* Major objects rely on .concept-map gap; zero child margins so gap is the sole spacer */
+.concept-map > .contrast-pair,
+.concept-map > .grid-2,
+.concept-map > .grid-3,
+.concept-map > .map-hub-wrap {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* Org-chart: directed stem from parent to kids */
+.org-chart > .rel-connect {
+  margin: -14px auto; /* cancel .org-chart gap; keep stem centered */
+  max-width: 520px;
+  width: 100%;
+}
+
+.peer-note {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 8px;
+}
+
+/* Party / role cast (icon + label always) */
+.party-cast {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 8px 0 12px;
+}
+.party {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 88px;
+  padding: 8px 10px;
+  border: 1px solid var(--role-party);
+  border-radius: var(--card-radius);
+  background: var(--role-party-soft);
+}
+.party .glyph {
+  font-size: 22px;
+  line-height: 1;
+}
+.party .role {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: center;
+}
+.party .role-sub {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Group / org chart */
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px; /* Canon 2026.09.27-5 — parent / stem / kids rhythm */
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+.org-parent {
+  display: block;
+  max-width: 280px;
+  min-width: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+.box.org-parent {
+  background: var(--org-parent-soft);
+  border-color: var(--org-parent);
+}
+/* DEPRECATED — prefer .rel-connect.rel-connect--down */
+.org-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 6px 0 4px;
+}
+.org-link .mark {
+  display: block;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.org-kids {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.org-kids .box {
+  flex: 1 1 140px;
+  max-width: 200px;
+  text-align: left;
+  background: var(--org-child-soft);
+  border-color: var(--org-child);
+}
+
+/* Consol / entity / FS cards — canon 2026.09.27-6 (reusable Ch4 grammar).
+   Johnny: dashed group plate = Consol FS chrome; Parent solid fill = Unconsol FS fill;
+   subs = outline. Night-only semantic aliases (no day theme invent). */
+.consol-boundary,
+.fs-consol {
+  border: 1px dashed var(--consol-line);
+  border-radius: var(--card-radius);
+  background: var(--consol-fill);
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+.entity-parent,
+.box.entity-parent,
+.fs-unconsol,
+.box.fs-unconsol {
+  background: var(--entity-parent-fill);
+  border: 1px solid var(--entity-parent-line);
+  border-radius: var(--card-radius);
+  box-sizing: border-box;
+}
+.entity-sub,
+.box.entity-sub {
+  background: var(--entity-sub-fill);
+  border: 1px solid var(--entity-sub-line);
+  border-radius: var(--card-radius);
+  box-sizing: border-box;
+}
+/* Prefer explicit class on kids; keep .org-kids .box as soft alias above */
+.org-kids .box.entity-sub {
+  background: var(--entity-sub-fill);
+  border-color: var(--entity-sub-line);
+}
+.box.fs-consol,
+.contain-cell.fs-consol {
+  border: 1px dashed var(--consol-line);
+  background: var(--consol-fill);
+}
+.box.fs-unconsol,
+.contain-cell.fs-unconsol {
+  background: var(--entity-parent-fill);
+  border: 1px solid var(--entity-parent-line);
+}
+
+/* Ch4 org plate + FS side-by-side (canon 2026.09.27-6).
+   Structural only — colour from .consol-boundary / .entity-* / .fs-* Build tokens. */
+.org-fs-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(160px, 0.75fr);
+  gap: 14px; /* Canon 2026.09.27-5 major-object rhythm */
+  align-items: stretch;
+}
+@media (max-width: 720px) {
+  .org-fs-row { grid-template-columns: 1fr; }
+}
+.fs-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+  min-width: 0;
+}
+.consol-boundary .org-chart {
+  max-width: none;
+  margin: 0;
+  gap: 14px;
+}
+.consol-boundary .org-parent {
+  text-align: center; /* Johnny plate: Parent label centered over T-stem */
+}
+/* Branch = fork + kids share one width so legs meet each sub top-center */
+.org-branch {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* connector chrome kisses kid tops (same role as .rel-connect stem) */
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.org-chart > .org-branch {
+  margin-top: -14px; /* cancel .org-chart gap so stem meets Parent bottom */
+}
+.org-branch .org-kids {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  justify-content: stretch;
+}
+.org-branch .org-kids .box {
+  flex: unset;
+  max-width: none;
+  width: 100%;
+  text-align: center;
+}
+/* T-junction / branched stems — NEVER single arrow into empty gap between kids */
+.org-fork {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.org-fork-stem {
+  display: block;
+  width: 2px;
+  height: 16px;
+  background: var(--entity-parent-line);
+  flex-shrink: 0;
+}
+.org-fork-rail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 18px;
+  position: relative;
+}
+.org-fork-rail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  background: var(--entity-parent-line);
+}
+.org-fork-leg {
+  display: block;
+  width: 2px;
+  height: 100%;
+  background: var(--entity-parent-line);
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Formula / identity cues */
+.formula-cue {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--formula);
+  border-radius: 6px;
+  background: var(--elem-hub-soft);
+  font-size: 12px;
+  color: var(--ink);
+}
+.formula-cue .eq {
+  font-weight: 700;
+  font-family: "Segoe UI", system-ui, monospace;
+  color: var(--formula);
+  display: block;
+  margin-bottom: 2px;
+}
+.formula-cue .eq-note {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Statement layout schematic */
+.stmt-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px; /* peer-column rhythm — was 10px */
+}
+@media (max-width: 720px) {
+  .stmt-layout { grid-template-columns: 1fr; }
+}
+.stmt-block {
+  border: 1px solid var(--stmt-block);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 12px 12px; /* was 8px 10px — chips/subtotals must not kiss edges */
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* internal rhythm via child margins below */
+}
+.stmt-block .stmt-title {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--stmt-block);
+  color: var(--stmt-block);
+}
+.stmt-block ul {
+  margin: 0;
+  padding-left: 16px;
+  color: var(--muted);
+}
+.stmt-block li { margin: 3px 0; }
+.stmt-block .subtotal {
+  margin-top: 8px;
+  padding: 5px 8px;
+  background: var(--band);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--ink);
+}
+
+/* IFRS 18 category bands + IFRS-subtotal vs MPM contrast */
+.cat-operating, .box.cat-operating, .band.cat-operating {
+  background: var(--cat-operating-soft);
+  border-color: var(--cat-operating);
+  color: var(--ink);
+}
+.cat-investing, .box.cat-investing, .band.cat-investing {
+  background: var(--cat-investing-soft);
+  border-color: var(--cat-investing);
+  color: var(--ink);
+}
+.cat-financing, .box.cat-financing, .band.cat-financing {
+  background: var(--cat-financing-soft);
+  border-color: var(--cat-financing);
+  color: var(--ink);
+}
+.cat-tax, .box.cat-tax, .band.cat-tax {
+  background: var(--cat-tax-soft);
+  border-color: var(--cat-tax);
+  color: var(--ink);
+}
+.cat-discontinued, .box.cat-discontinued, .band.cat-discontinued {
+  background: var(--cat-discontinued-soft);
+  border-color: var(--cat-discontinued);
+  color: var(--ink);
+}
+.cat-operating .box-title, .band.cat-operating .box-title { color: var(--cat-operating); }
+.cat-investing .box-title, .band.cat-investing .box-title { color: var(--cat-investing); }
+.cat-financing .box-title, .band.cat-financing .box-title { color: var(--cat-financing); }
+.cat-tax .box-title, .band.cat-tax .box-title { color: var(--cat-tax); }
+.cat-discontinued .box-title, .band.cat-discontinued .box-title { color: var(--cat-discontinued); }
+
+.ifrs-subtotal,
+.box.ifrs-subtotal,
+.stmt-block .subtotal.ifrs-subtotal {
+  background: var(--ifrs-subtotal-soft);
+  border: 1px solid var(--ifrs-subtotal);
+  color: var(--ifrs-subtotal);
+  font-weight: 700;
+}
+.mpm,
+.box.mpm,
+.stmt-block .subtotal.mpm {
+  background: var(--mpm-soft);
+  border: 1px solid var(--mpm);
+  color: var(--mpm);
+  font-weight: 700;
+}
+
+/* Design aliases — BEM band + measure contrast (same tokens) */
+.cat-band--operating { background: var(--cat-operating-soft); border-color: var(--cat-operating); }
+.cat-band--investing { background: var(--cat-investing-soft); border-color: var(--cat-investing); }
+.cat-band--financing { background: var(--cat-financing-soft); border-color: var(--cat-financing); }
+.cat-band--tax { background: var(--cat-tax-soft); border-color: var(--cat-tax); }
+.cat-band--discontinued { background: var(--cat-discontinued-soft); border-color: var(--cat-discontinued); }
+.measure-ifrs {
+  background: var(--ifrs-subtotal-soft);
+  border: 1px solid var(--ifrs-subtotal);
+  color: var(--ifrs-subtotal);
+  font-weight: 700;
+}
+.measure-mpm {
+  background: var(--mpm-soft);
+  border: 1px solid var(--mpm);
+  color: var(--mpm);
+  font-weight: 700;
+}
+
+.stmt-block .bracket {
+  font-size: 10px;
+  color: var(--dash);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* Hub spokes for page-tour concept maps */
+.map-hub-wrap { text-align: center; margin-bottom: 0; } /* parent .concept-map gap owns rhythm */
+.map-spokes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+@media (max-width: 720px) {
+  .map-spokes { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .map-spokes { grid-template-columns: 1fr; }
+}
+.map-spokes .box { text-align: left; font-size: 12px; }
+
+/* Ch5 sample: formula board + legend on the right (saves vertical space) */
+.visual-with-legend {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 100%;
+}
+.visual-with-legend .formula-board,
+.visual-with-legend .concept-map,
+.visual-with-legend .stack,
+.visual-with-legend .flow-col,
+.visual-with-legend .l1-row,
+.visual-with-legend .org-chart,
+.visual-with-legend .grid-2,
+.visual-with-legend .grid-3,
+.visual-with-legend .stmt-layout,
+.visual-with-legend .matrix {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+}
+.visual-with-legend > .visual-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.legend.legend-side {
+  flex: 0 0 168px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  max-width: 168px;
+  white-space: normal;
+}
+.legend.legend-side .legend-item {
+  white-space: normal;
+}
+.legend.legend-side .legend-title {
+  margin-right: 0;
+  margin-bottom: 2px;
+}
+
+/* Line styles lock: solid = peer / containment cells; dashed = see-also bridges (+ matrix N/A) only.
+   NEVER dashed = nested / under / hierarchy. Composition → .contain*.
+   Ch5: A/L/E peers + Equity outer + Income/Expenses inner = solid; UoA tip = dashed see-also; ops = no box. */
+.legend.legend-side {
+  border: none;
+  background: transparent;
+  padding: 2px 0 2px 4px;
+}
+
+@media (max-width: 720px) {
+  .visual-with-legend { flex-direction: column; }
+  .legend.legend-side {
+    flex: 1 1 auto;
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* Legend helpers — colour/icon/line key beside visuals */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 0 0 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  font-size: 11px;
+  color: var(--muted);
+  max-width: 760px;
+}
+.legend-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--dash);
+  margin-right: 4px;
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.legend-swatch.hub {
+  background: var(--elem-hub-soft);
+  border-color: var(--elem-hub);
+}
+.legend-swatch.peer {
+  background: var(--elem-peer-soft);
+  border-color: var(--elem-peer);
+}
+/* Containment outer (solid) — replaces old dashed=nest legend cue */
+.legend-swatch.nest,
+.legend-swatch.contain {
+  background: var(--surface);
+  border-style: solid;
+  border-color: var(--line);
+  border-width: 2px;
+}
+.legend-swatch.yes {
+  background: var(--outcome-yes-soft);
+  border-color: var(--outcome-yes);
+}
+.legend-swatch.no {
+  background: var(--outcome-no-soft);
+  border-color: var(--outcome-no);
+}
+.legend-swatch.doubt {
+  background: var(--outcome-doubt-soft);
+  border-color: var(--outcome-doubt);
+}
+.legend-swatch.see {
+  background: var(--see-also-soft);
+  border: 1px dashed var(--see-also);
+}
+.legend-swatch.party {
+  background: var(--role-party-soft);
+  border: 1px solid var(--role-party);
+}
+.legend-swatch.parent {
+  background: var(--org-parent-soft);
+  border-color: var(--org-parent);
+}
+.legend-swatch.child {
+  background: var(--org-child-soft);
+  border-color: var(--org-child);
+}
+.legend-swatch.consol {
+  background: var(--consol-fill);
+  border: 1px dashed var(--consol-line);
+}
+.legend-swatch.entity-parent,
+.legend-swatch.unconsol {
+  background: var(--entity-parent-fill);
+  border-color: var(--entity-parent-line);
+}
+.legend-swatch.entity-sub {
+  background: var(--entity-sub-fill);
+  border-color: var(--entity-sub-line);
+}
+
+.legend-swatch.cat-operating {
+  background: var(--cat-operating-soft);
+  border-color: var(--cat-operating);
+}
+.legend-swatch.cat-investing {
+  background: var(--cat-investing-soft);
+  border-color: var(--cat-investing);
+}
+.legend-swatch.cat-financing {
+  background: var(--cat-financing-soft);
+  border-color: var(--cat-financing);
+}
+.legend-swatch.cat-tax {
+  background: var(--cat-tax-soft);
+  border-color: var(--cat-tax);
+}
+.legend-swatch.cat-discontinued {
+  background: var(--cat-discontinued-soft);
+  border-color: var(--cat-discontinued);
+}
+.legend-swatch.ifrs-subtotal {
+  background: var(--ifrs-subtotal-soft);
+  border-color: var(--ifrs-subtotal);
+}
+.legend-swatch.mpm {
+  background: var(--mpm-soft);
+  border-color: var(--mpm);
+}
+
+.legend-swatch.formula {
+  background: var(--elem-hub-soft);
+  border: 1px solid var(--formula);
+}
+.legend-swatch.stmt {
+  background: var(--surface);
+  border-color: var(--stmt-block);
+}
+.legend-swatch.dashed {
+  background: transparent;
+  border: 1px dashed var(--dash);
+}
+.legend-icon {
+  font-size: 14px;
+  line-height: 1;
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.legend-mark {
+  font-weight: 700;
+  color: var(--link-semantic);
+  font-size: 12px;
+  line-height: 1;
+}
+/* Mini connector swatches for legends (match .rel-connect kinds) */
+.legend-connect {
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.legend-connect.both,
+.legend-connect.down {
+  width: 10px;
+  height: 16px;
+}
+.legend-connect.both {
+  background:
+    linear-gradient(var(--link-semantic), var(--link-semantic)) center / 2px 100% no-repeat;
+}
+.legend-connect.both::before,
+.legend-connect.both::after,
+.legend-connect.down::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+.legend-connect.both::before {
+  top: -1px;
+  border-bottom: 5px solid var(--link-semantic);
+}
+.legend-connect.both::after,
+.legend-connect.down::after {
+  bottom: -1px;
+  border-top: 5px solid var(--link-semantic);
+}
+.legend-connect.down {
+  background:
+    linear-gradient(var(--link-semantic), var(--link-semantic)) center top / 2px calc(100% - 4px) no-repeat;
+}
+.legend-connect.h {
+  width: 18px;
+  height: 10px;
+  background:
+    linear-gradient(var(--link-semantic), var(--link-semantic)) left center / calc(100% - 5px) 2px no-repeat;
+}
+.legend-connect.h::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid var(--link-semantic);
+}
+
+
+/* Embedded iframe visuals — no 100vh page (was forcing scroll inside short iframes) */
+body.embed {
+  min-height: 0;
+  height: auto;
+  overflow: visible; /* parent iframe auto-fits; never silently clip teaching content */
+  background: transparent;
+}
+body.embed .page {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0; /* no gutter that reads as a second plate inside parent fieldset */
+}
+
+/* Embed: parent fieldset.visual-fieldset is the ONLY full-bleed Concept Map outer box.
+   Neutralize .visual-shell if class reappears; Ch5 .formula-board outer must not read as a second plate.
+   Keep peer cards (.fb-term / .contain-cell) bordered. */
+body.embed .visual-shell {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  position: static;
+}
+body.embed .formula-board {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  max-width: none;
+  padding: 4px 2px 6px;
+}
+body.embed .section {
+  margin: 0;
+}
+/* Restore air between stacked teaching sections inside one iframe (Ch8 Aggregation ↔ 8.5 panels) */
+body.embed .section + .section {
+  margin-top: 14px;
+}
+body.embed .visual-with-legend {
+  width: 100%;
+  align-items: flex-start;
+  gap: 10px;
+}
+body.embed .visual-with-legend .formula-board {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: none;
+  padding: 10px 12px 12px;
+}
+
+/* Ch5: equal-WIDTH peer columns (A | L | E); Equity taller OK via containment */
+body.embed .formula-board .fb-eq {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr; /* Asset − Liability = Equity — 1fr peers */
+  align-items: start; /* top */
+  width: 100%;
+  column-gap: 10px;
+  row-gap: 0;
+}
+body.embed .formula-board .fb-term.asset,
+body.embed .formula-board .fb-term.liability,
+body.embed .formula-board .fb-term.equity {
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  justify-self: stretch;
+}
+body.embed .formula-board .fb-op {
+  flex: none;
+  align-self: start;
+  padding-top: 28px; /* optically beside peer card titles */
+}
+body.embed .formula-board .fb-term.asset,
+body.embed .formula-board .fb-term.liability,
+body.embed .formula-board .fb-term.equity {
+  min-height: 132px; /* equal peer header band; Equity grows for inner grid */
+  width: 100%;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.formula-board .fb-related {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
+.formula-board .fb-related-label {
+  margin-right: 4px;
+  color: var(--ink);
+  font-weight: 600;
+}
+body.embed .formula-board .fb-tip {
+  margin-top: 8px;
+  padding: 6px 8px;
+}
+body.embed .legend.legend-side {
+  flex: 0 0 148px;
+  max-width: 148px;
+}
+@media (max-width: 720px) {
+  body.embed .formula-board .fb-eq { grid-template-columns: 1fr; }
+}
+
+/* Formula / equation board (Ch5 backbone) */
+.formula-board {
+  max-width: 760px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 14px 14px 16px;
+  box-shadow: 0 1px 0 rgba(31, 41, 51, 0.04);
+}
+.formula-board .fb-title {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+/* Section chips — stadium pills (not circles), including a short label such as 2 or 11.
+   Reuse on Concept Map / hierarchy / matrix teaching nodes site-wide. */
+a.fb-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  min-width: var(--nx-chip-min);
+  height: var(--nx-chip-height);
+  padding: 0 var(--nx-chip-pad-x);
+  margin-right: 6px;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: var(--nx-chip-border) solid var(--formula);
+  background: var(--accent-soft);
+  color: var(--formula);
+  font-size: var(--nx-chip-font);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: background .14s ease, color .14s ease, border-color .14s ease, box-shadow .14s ease;
+}
+a.fb-num:hover {
+  background: var(--formula);
+  color: var(--on-accent);
+  border-color: var(--formula);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+a.fb-num:focus-visible {
+  outline: 2px solid var(--formula);
+  outline-offset: 2px;
+}
+
+/* Range cites: one section number per circle; separator sits between circles (never inside). */
+.fb-num-range {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-right: 6px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.fb-num-range a.fb-num { margin-right: 0; }
+.fb-num-sep {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  line-height: 1;
+  user-select: none;
+}
+
+
+.box-title,
+.contain-title,
+.fb-title,
+.section-label,
+.matrix-cell.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+.box-title a.fb-num,
+.contain-title a.fb-num,
+.section-label a.fb-num,
+.matrix-cell.head a.fb-num {
+  margin-right: 6px;
+}
+.fb-title-text { display: inline; }
+
+/* N.x jump chips — formula-board keeps colour variants; base look from a.fb-num */
+.formula-board .fb-title a.fb-num,
+.formula-board a.fb-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  min-width: var(--nx-chip-min);
+  height: var(--nx-chip-height);
+  padding: 0 var(--nx-chip-pad-x);
+  border-radius: 999px;
+  white-space: nowrap;
+  border: var(--nx-chip-border) solid var(--formula);
+  background: var(--accent-soft);
+  color: var(--formula);
+  font-size: var(--nx-chip-font);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: background .14s ease, color .14s ease, border-color .14s ease, box-shadow .14s ease;
+}
+.formula-board .fb-title a.fb-num:hover,
+.formula-board a.fb-num:hover {
+  background: var(--formula);
+  color: var(--on-accent);
+  border-color: var(--formula);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+.formula-board .fb-title a.fb-num:focus-visible,
+.formula-board a.fb-num:focus-visible {
+  outline: 2px solid var(--formula);
+  outline-offset: 2px;
+}
+.formula-board .fb-eq {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; /* peer row; Equity containment may be taller */
+  justify-content: center;
+  gap: 8px 10px;
+}
+.formula-board .fb-term {
+  flex: 1 1 140px;
+  max-width: 200px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 10px 12px;
+  text-align: left;
+  background: var(--surface);
+}
+.formula-board .fb-term .fb-name {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.formula-board .fb-term .fb-body {
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.formula-board .fb-term.asset {
+  background: var(--elem-asset-soft);
+  border-color: var(--elem-asset);
+}
+.formula-board .fb-term.asset .fb-name { color: var(--elem-asset); }
+.formula-board .fb-term.liability {
+  background: var(--elem-liability-soft);
+  border-color: var(--elem-liability);
+}
+.formula-board .fb-term.liability .fb-name { color: var(--elem-liability); }
+.formula-board .fb-term.equity {
+  background: var(--elem-equity-soft);
+  border-color: var(--elem-equity);
+  max-width: 220px;
+}
+/* Equity peer + contain kit: keep peer border token; kit supplies inner grid */
+.formula-board .fb-term.equity.contain {
+  max-width: none; /* grows to fit contain-grid; embed grid still equal 1fr width */
+  width: 100%;
+  border-width: 1px; /* peer A/L/E — do not let kit 2px line override --elem-peer */
+  border-color: var(--elem-equity);
+  padding: 10px 12px; /* match sibling peer cards */
+}
+.formula-board .fb-term.equity .fb-name,
+.formula-board .fb-term.equity .contain-title { color: var(--elem-equity); }
+.formula-board .fb-term.equity .contain-title {
+  margin: 0 0 4px; /* peer title spacing, not kit page spacing */
+  font-size: 14px;
+}
+.formula-board .fb-op {
+  align-self: flex-start;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--formula);
+  line-height: 1;
+  padding: 28px 2px 0; /* sit beside Asset/Liability/Equity peer titles */
+  flex: 0 0 auto;
+}
+
+/* Formula-board density on top of mirrored contain kit */
+.formula-board .contain-grid {
+  gap: 6px;
+  margin-top: 8px;
+  width: 100%;
+}
+.formula-board .contain-cell {
+  box-sizing: border-box;
+  min-width: 0;
+  font-size: 11px;
+}
+.formula-board .contain-cell .fb-name {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--elem-income);
+}
+.formula-board .contain-cell .fb-body {
+  margin: 0;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.formula-board .fb-tip {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border: 1px dashed var(--dash);
+  border-radius: 6px;
+  background: var(--elem-nest);
+  font-size: 12px;
+  color: var(--ink);
+}
+
+/* Section pills inherit term colour when inside coloured terms */
+.formula-board .fb-term.asset a.fb-num {
+  border-color: var(--elem-asset);
+  background: var(--elem-asset-soft);
+  color: var(--elem-asset);
+}
+.formula-board .fb-term.asset a.fb-num:hover {
+  background: var(--elem-asset);
+  color: var(--on-accent);
+  border-color: var(--elem-asset);
+  box-shadow: 0 0 0 2px var(--elem-asset-soft);
+}
+.formula-board .fb-term.liability a.fb-num {
+  border-color: var(--elem-liability);
+  background: var(--elem-liability-soft);
+  color: var(--elem-liability);
+}
+.formula-board .fb-term.liability a.fb-num:hover {
+  background: var(--elem-liability);
+  color: var(--on-accent);
+  border-color: var(--elem-liability);
+  box-shadow: 0 0 0 2px var(--elem-liability-soft);
+}
+.formula-board .fb-term.equity a.fb-num {
+  border-color: var(--elem-equity);
+  background: var(--elem-equity-soft);
+  color: var(--elem-equity);
+}
+.formula-board .fb-term.equity a.fb-num:hover {
+  background: var(--elem-equity);
+  color: var(--on-accent);
+  border-color: var(--elem-equity);
+  box-shadow: 0 0 0 2px var(--elem-equity-soft);
+}
+.formula-board .contain-cell a.fb-num {
+  border-color: var(--elem-income);
+  background: var(--elem-income-soft);
+  color: var(--elem-income);
+}
+.formula-board .contain-cell a.fb-num:hover {
+  background: var(--elem-income);
+  color: var(--on-accent);
+  border-color: var(--elem-income);
+  box-shadow: 0 0 0 2px var(--elem-income-soft);
+}
+.formula-board .fb-tip a.fb-num {
+  border-color: var(--dash);
+  background: var(--surface);
+  color: var(--ink);
+}
+.formula-board .fb-tip a.fb-num:hover {
+  background: var(--muted);
+  color: var(--on-accent);
+  border-color: var(--muted);
+  box-shadow: 0 0 0 2px var(--elem-nest);
+}
+.formula-board .fb-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.formula-board .fb-title-text {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.legend-swatch.asset {
+  background: var(--elem-asset-soft);
+  border-color: var(--elem-asset);
+}
+.legend-swatch.liability {
+  background: var(--elem-liability-soft);
+  border-color: var(--elem-liability);
+}
+.legend-swatch.equity {
+  background: var(--elem-equity-soft);
+  border-color: var(--elem-equity);
+}
+.legend-swatch.income {
+  background: var(--elem-income-soft);
+  border-color: var(--elem-income);
+  border-style: solid;
+}
+
+/* Start-here graphic (Ch1 Overview — study path, not map clone) */
+.start-here {
+  max-width: 720px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 14px;
+}
+.start-here .sh-gate {
+  border: 1px solid var(--warn);
+  background: var(--warn-soft);
+  border-radius: var(--card-radius);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+.start-here .sh-gate .sh-kicker {
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--warn);
+}
+.start-here .sh-gate .sh-title {
+  margin: 0 0 2px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.start-here .sh-gate .sh-body {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.start-here .sh-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0;
+  margin: 0 0 12px;
+}
+.start-here .sh-path > .sh-step {
+  margin: 0;
+}
+.start-here .sh-path > .rel-connect--h {
+  margin: 0 -1px;
+}
+.start-here .sh-step {
+  flex: 1 1 100px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--band);
+  padding: 8px 10px;
+  min-width: 90px;
+}
+.start-here .sh-step .n {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.start-here .sh-step .t {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.start-here .sh-step .d {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+/* DEPRECATED — prefer .rel-connect.rel-connect--h */
+.start-here .sh-arrow {
+  align-self: center;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  flex: 0 0 auto;
+}
+.start-here .sh-pointer {
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.start-here .sh-pointer strong { color: var(--accent); }
+.start-here .sh-ias8 {
+  font-size: 12px;
+  color: var(--muted);
+  border-left: 3px solid var(--see-also);
+  padding: 4px 0 4px 10px;
+  margin: 0;
+}
+
+/* ——— Citation chips (Johnny lock 2026-09-27) ———
+   Rounded pills; colour = source class. Official CF/IFRS (§ · SP · BC)
+   vs Big 4 house. Chip + optional one-line extract — no long-quote UI. */
+.cite {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+  margin: 0 2px;
+  padding: 1px 8px;
+  border-radius: 6px;
+  border: 1px solid #9bb4cc;
+  font-family: "Calibri Light", Calibri, "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: .02em;
+  line-height: 1.45;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--cite-official);
+  background: var(--cite-official-soft);
+}
+.cite .cite-house {
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .9;
+}
+.cite-official { color: var(--cite-official); background: var(--cite-official-soft); border-color: #9bb4cc; }
+.cite-pwc { color: var(--cite-pwc); background: var(--cite-pwc-soft); border-color: #d4a88e; }
+.cite-dtt { color: var(--cite-dtt); background: var(--cite-dtt-soft); border-color: #7eb5aa; }
+.cite-kpmg { color: var(--cite-kpmg); background: var(--cite-kpmg-soft); border-color: #9aafc4; }
+.cite-ey { color: var(--cite-ey); background: var(--cite-ey-soft); border-color: #cfc28a; }
+.cite-extract {
+  display: inline;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--muted);
+  margin-left: 2px;
+}
+.cite-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin: 6px 0;
+}
+
+/* ——— Contrast / peer (mirrored from body kit; visuals iframe has no assets link) ———
+   Reuse for A-vs-B plates. Dense = .contrast-pair.dense / .contrast-dense (densifier C). */
+.contrast-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 8px 0 12px;
+  align-items: stretch;
+}
+.contrast-pair > .box {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.contrast-pair .box-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+.contrast-pair .box.ok .box-title { color: var(--ok); }
+.contrast-pair .box.warn .box-title { color: var(--warn); }
+.contrast-pair .box-body {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.45;
+  margin: 0;
+  flex: 1;
+}
+.contrast-pair .kit-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--dash);
+  margin-bottom: 8px;
+}
+@media (max-width: 640px) {
+  .contrast-pair { grid-template-columns: 1fr; }
+}
+
+.peer-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 8px 0 12px;
+  align-items: stretch;
+}
+.peer-row > .box {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.peer-row .box-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+.peer-row .box-body {
+  font-size: 12px;
+  color: var(--ink);
+  line-height: 1.45;
+  margin: 0;
+  flex: 1;
+}
+
+/* Matrix / card-grid (IAS 37-style) — VISUAL-TYPES lock
+   Equal cells · solid peers · dashed = N/A only · optional spectrum cue */
+.matrix {
+  --matrix-cols: 6; /* stub + N bases; override per plate */
+  display: grid;
+  grid-template-columns: minmax(110px, 0.9fr) repeat(calc(var(--matrix-cols) - 1), minmax(0, 1fr));
+  gap: 6px;
+  margin: 8px 0 10px;
+  align-items: stretch;
+}
+.matrix[data-cols="3"] { --matrix-cols: 3; }
+.matrix[data-cols="4"] { --matrix-cols: 4; }
+.matrix[data-cols="5"] { --matrix-cols: 5; }
+.matrix[data-cols="6"] { --matrix-cols: 6; }
+.matrix-spectrum {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 2px 4px 6px;
+}
+.matrix-spectrum .axis {
+  flex: 1;
+  height: 0;
+  border-top: 1px solid var(--line);
+  margin: 0 6px;
+}
+.matrix-cell {
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 8px 9px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2px;
+}
+.matrix-cell.head {
+  background: var(--band);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  min-height: 0;
+  justify-content: center;
+}
+.matrix-cell.stub {
+  background: var(--band);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  justify-content: center;
+}
+.matrix-cell.na {
+  border-style: dashed;
+  background: transparent;
+  color: var(--muted);
+  font-style: italic;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.matrix-cell .mx-kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+.matrix-cell .mx-body {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.matrix-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+@media (max-width: 900px) {
+  .matrix {
+    grid-template-columns: minmax(90px, 0.85fr) repeat(calc(var(--matrix-cols) - 1), minmax(100px, 1fr));
+    overflow-x: auto;
+  }
+}
+
+/* Same-format catalog (cheat / 図鑑) — matrix variant, not free rail */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+.catalog-grid .box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 96px;
+}
+.catalog-grid .cat-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.catalog-grid .cat-band {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--dash);
+}
+.catalog-grid .box-title { margin: 0; font-size: 13px; }
+.catalog-grid .box-body { margin: 0; flex: 1; }
+
+/* Stmt inner classification cues (containment inside schematic blocks) */
+.stmt-block .inner-cue {
+  display: inline-block;
+  margin: 0;
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--band);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.stmt-block .inner-cues {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+/* Hierarchy densify helpers (Ch3) — reuse .contain* */
+.stack .contain {
+  text-align: left;
+}
+.stack .contain > .box-title,
+.stack .contain > .contain-title {
+  text-align: center;
+}
+.stack .contain-grid.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 720px) {
+  .stack .contain-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Concept-map densify: tighter vertical rhythm */
+.concept-map.dense .rel-label {
+  margin: 4px 0;
+  padding: 2px 0;
+}
+.concept-map.dense .rel-connect {
+  min-height: 44px; /* was 60 — denser stem still between the two boxes */
+  margin: -14px 0; /* cancel .concept-map gap so stem meets edges */
+}
+.concept-map.dense .rel-connect-stem {
+  min-height: 44px;
+}
+.concept-map.dense .party-cast {
+  margin-bottom: 0; /* parent gap owns rhythm */
+}
+.concept-map.dense .map-hub-wrap {
+  margin-bottom: 0;
+}
+
+/* ── Densifier trial kit (Johnny unlock 2026-09-27) ──
+   A point-chip · D legend-bar · C contrast dense · B icon-label-cell
+   Hold E IO strip. Night-only tokens; solid borders; dashed rare; no process rails. */
+
+/* A — Point chip（ポイント／注意） — 1-line tip; warn/ok only when label states meaning */
+.point-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  margin: 6px 0;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.point-chip.warn {
+  border-color: var(--warn);
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.point-chip.ok {
+  border-color: var(--ok);
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+/* D — Footer legend bar — omit when nodes are self-labelled */
+.legend-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 10px 0 0;
+  padding: 6px 10px;
+  border-top: 1px solid var(--line);
+  background: var(--band);
+  border-radius: 0 0 var(--card-radius, 8px) var(--card-radius, 8px);
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.legend-bar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-bar-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.legend-bar-swatch.dashed {
+  border-style: dashed;
+  background: transparent;
+}
+.legend-bar-label {
+  color: var(--muted);
+}
+
+/* C — Dense contrast plate — title chip + ≤3 lines/side */
+.contrast-pair.dense,
+.contrast-dense {
+  gap: 6px;
+  margin: 8px 0 12px;
+}
+.contrast-pair.dense > .box,
+.contrast-dense > .box {
+  padding: 8px 10px;
+}
+.contrast-pair.dense .box-title,
+.contrast-dense .box-title {
+  display: inline-block;
+  margin: 0 0 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--band);
+  font-size: 10px;
+  letter-spacing: .04em;
+}
+.contrast-pair.dense .box.ok .box-title,
+.contrast-dense .box.ok .box-title {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+.contrast-pair.dense .box.warn .box-title,
+.contrast-dense .box.warn .box-title {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.contrast-pair.dense .box-body,
+.contrast-dense .box-body {
+  font-size: 12px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.contrast-pair.dense .kit-label,
+.contrast-dense .kit-label {
+  margin-bottom: 4px;
+}
+@media (max-width: 640px) {
+  .contrast-pair.dense,
+  .contrast-dense { grid-template-columns: 1fr; }
+}
+
+/* B — Icon-label cell（ピクト＋短標） — monochrome / single token */
+.icon-label-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+.icon-label-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  padding: 10px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius, 8px);
+  background: var(--surface);
+  min-width: 72px;
+}
+.icon-label-cell .ilc-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--ink);
+  opacity: 0.85;
+}
+.icon-label-cell .ilc-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+.icon-label-cell .ilc-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.25;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------
+   Timeline strip (IFRS 18 Ch1 / Ch8) — promote from page-local P1/P2
+   ------------------------------------------------------------------ */
+.tl-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 10px;
+  max-width: 760px;
+}
+.tl-step {
+  flex: 1 1 130px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 10px 12px;
+  position: relative;
+}
+.tl-step.tl-hub {
+  border: 2px solid var(--accent);
+  background: var(--accent-soft);
+  flex: 1 1 180px;
+}
+.tl-step .tl-when {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 4px;
+}
+.tl-step.tl-hub .tl-when {
+  font-size: 14px;
+  letter-spacing: .01em;
+}
+.tl-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dash);
+  font-size: 14px;
+  font-weight: 700;
+  flex: 0 0 auto;
+  padding: 0 2px;
+}
+@media (max-width: 640px) {
+  .tl-arrow { display: none; }
+}
+
+/* ------------------------------------------------------------------
+   Bridge row + tiny SCF stack (IFRS 18 Ch7) — promote from page-local
+   ------------------------------------------------------------------ */
+.bridge-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 760px;
+}
+@media (max-width: 720px) {
+  .bridge-row { grid-template-columns: 1fr; }
+}
+.scf-tiny {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 420px;
+}
+.scf-tiny .wf-op {
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}

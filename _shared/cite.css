@@ -1,0 +1,45 @@
+/* IAS 2 Phase 2 shared citation chips.
+   Text and chip labels remain pack-owned HTML. Colours are the existing IAS 2
+   values extracted from the pack CSS; no source labels or semantics are added. */
+.cite {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+  margin: 0 2px;
+  padding: 1px 8px;
+  border-radius: 6px;
+  border: 1px solid #9bb4cc;
+  font-family: "Calibri Light", Calibri, "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: .02em;
+  line-height: 1.45;
+  white-space: nowrap;
+  color: var(--cite-official);
+  background: var(--cite-official-soft);
+}
+.cite .cite-house {
+  /* Same size/style as .cite; the firm class controls colour only. */
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  opacity: 1;
+}
+.cite-official { color: var(--cite-official); background: var(--cite-official-soft); border-color: #9bb4cc; }
+.cite-pwc { color: var(--cite-pwc); background: var(--cite-pwc-soft); border-color: #d4a88e; }
+.cite-dtt { color: var(--cite-dtt); background: var(--cite-dtt-soft); border-color: #7eb5aa; }
+.cite-kpmg { color: var(--cite-kpmg); background: var(--cite-kpmg-soft); border-color: #9aafc4; }
+.cite-ey { color: var(--cite-ey); background: var(--cite-ey-soft); border-color: #cfc28a; }
+.cite-extract {
+  display: inline;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--muted);
+  margin-left: 2px;
+}
+.cite-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0; }
+

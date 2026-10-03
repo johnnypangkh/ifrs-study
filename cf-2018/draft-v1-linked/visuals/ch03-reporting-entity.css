@@ -1,0 +1,568 @@
+/* Ch3 Financial statements and the reporting entity — Concept Map.
+   Loaded only by visuals/ch03-reporting-entity.html, after shared.css.
+   Cache: ?v=cf2018-ch03-map-20261003-bold
+
+   Weight grammar (2026-10-03):
+   700 = landmark names of primary objects (plate/section titles, place
+   names, axis tick names, captions, actors, readings).
+   600 = in-sentence locks (<strong>, always ink) and short role labels
+   (decision questions, relationship words, the secondary rail heading).
+   400 = prose, connectives, examples, see-also, criterion chips,
+   and the inline combined-statements label.
+   Do not bold "and" / "or" when it only joins two locks. A negation
+   gate keeps its "not" inside the <strong>. */
+
+   Teaching arc: financial statements (a particular form of general purpose financial
+   report) carry their objective, the places information appears, and the
+   reporting period they are prepared for. Entity perspective and going concern
+   are two readings of those statements, same rank, closed — they do not
+   produce the boundary. One labelled stem, "are about", leaves the statements
+   plate and enters the reporting entity. Inside that plate: the usual
+   parent–subsidiary boundary (org chart beside consolidated and unconsolidated
+   readings) , a lighter harder-boundary rail, and combined statements as a
+   one-line acknowledgement, not a third reading.
+
+   Visit: title → objective and dual use → three places → period axis under
+   them → perspective ∥ going concern (stop) → stem "are about" → entity
+   boundary → consol plate beside the two readings → harder rail → combined note.
+
+   Johnny consol lock (shared.css owns the look): .consol-boundary / .fs-* /
+   .org-fork. Parent fill ↔ unconsolidated fill. Subsidiaries outline.
+   Consolidated border ↔ dashed plate. */
+
+html { background: var(--bg); color-scheme: dark; }
+body.embed {
+  background: var(--bg);
+  min-height: 0;
+  height: auto;
+  overflow: visible;
+}
+
+.re-map {
+  --re-gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Margin only. A `font` shorthand here outranks `.re-name` and the
+   other single-class heading roles, so plate titles rendered at body
+   weight. Role classes below own size and weight. */
+.re-map h2,
+.re-map h3 {
+  margin: 0;
+}
+
+.re-map .re-name {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--elem-peer);
+}
+.re-q {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.re-body,
+.re-scope,
+.re-forward,
+.re-rule,
+.re-plate-note,
+.re-aside,
+.re-tick-what,
+.re-hard-when,
+.re-hard-rule,
+.re-combined-text {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--muted);
+}
+/* One treatment for every lock, whichever plate it sits in.
+   (The dual-use strongs used to miss this list and fall back to
+   user-agent 700 in the muted prose colour.) */
+.re-map strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.re-head,
+.re-cap,
+.re-fs-head,
+.re-obj-head,
+.re-period-head,
+.re-combined {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  min-width: 0;
+}
+.re-head a.fb-num,
+.re-cap a.fb-num,
+.re-fs-head a.fb-num,
+.re-obj-head a.fb-num,
+.re-combined a.fb-num {
+  margin-right: 0;
+  flex-shrink: 0;
+}
+
+/* ---- Statements plate: one object. No arrow inside it. ---- */
+.re-statements,
+.re-entity {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+
+.re-fs-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 8px;
+  row-gap: 2px;
+  align-items: center;
+}
+.re-fs-head .re-scope { grid-column: 2; }
+
+/* 3.2 groups objective, places, and the reporting period — one site anchor. */
+.re-obj {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 2px 0 2px 12px;
+  border-left: 2px solid color-mix(in srgb, var(--accent) 50%, var(--line));
+}
+.re-obj-head .re-name { font-size: 15px; font-weight: 700; }
+
+.re-dual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--muted);
+}
+/* Joins the two usefulness locks. The locks carry the weight. */
+.re-dual-and {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.re-places {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
+.re-place {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+}
+.re-place-name {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.re-fragments {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+/* Reporting period: a time axis under the three places, not a fourth card. */
+.re-period {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2px;
+}
+.re-period-head {
+  align-items: baseline;
+  gap: 10px;
+}
+.re-map .re-period-name {
+  flex-shrink: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--elem-peer);
+}
+.re-period-head .re-body { flex: 1; }
+
+.re-axis {
+  --axis-gap: 10px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--axis-gap);
+  align-items: start;
+}
+.re-axis-line {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  /* Centres of the first and last columns, gaps included. */
+  left: calc((100% - 2 * var(--axis-gap)) / 6);
+  right: calc((100% - 2 * var(--axis-gap)) / 6);
+  height: 2px;
+  background: var(--line);
+}
+.re-tick {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  text-align: center;
+}
+.re-dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border: 2px solid var(--muted);
+  border-radius: 50%;
+  background: var(--surface);
+}
+.re-tick-copy { min-width: 0; }
+.re-tick-when {
+  margin: 0 0 2px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.re-tick--now .re-dot {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+.re-tick--now .re-tick-when { color: var(--ink); }
+.re-tick--now .re-tick-copy {
+  padding: 8px 10px 9px;
+  border-radius: var(--card-radius);
+  background: var(--band);
+}
+.re-tick--now .re-tick-what { color: var(--ink); }
+.re-forward { max-width: 78ch; }
+
+/* Two readings of the same statements. Closed cards — no stem of their own. */
+.re-assumptions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--re-gap);
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.re-assumption {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px 14px;
+  border: 1px solid var(--elem-peer);
+  border-radius: var(--card-radius);
+  background: var(--elem-peer-soft);
+}
+.re-assumption .re-q { margin-top: 2px; }
+.re-aside {
+  margin-top: auto;
+  padding-top: 2px;
+}
+
+/* Relationship stem: statements bottom edge → entity top edge. */
+.re-stem {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  height: 46px;
+  margin: 0;
+}
+.re-stem-line {
+  display: block;
+  width: 2px;
+  height: 100%;
+  background: var(--accent);
+  position: relative;
+}
+.re-stem-line::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -1px);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--accent);
+}
+.re-stem-label {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 14px);
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ---- Entity plate, entered only by the stem ---- */
+.re-entity { position: relative; z-index: 1; }
+
+.re-entity-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.05fr) minmax(200px, 0.85fr);
+  gap: 12px var(--re-gap);
+  align-items: stretch;
+}
+.re-plate { grid-column: 1; }
+.re-views { grid-column: 2; }
+.re-hard { grid-column: 3; }
+
+.re-cap {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.re-plate {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+.re-plate .re-cap { justify-content: center; text-align: center; }
+.re-plate .org-chart { margin-block: auto; }
+.re-org-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--ink);
+}
+.re-plate .org-fork { position: relative; }
+.re-fork-label {
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  white-space: nowrap;
+  background: var(--surface);
+  padding: 0 4px;
+}
+.re-plate-note { text-align: center; }
+
+.box.entity-sub,
+.org-kids .box.entity-sub {
+  background: transparent;
+  border: 1px solid var(--entity-sub-line);
+}
+
+.re-views {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.re-views .fs-stack {
+  flex: 1;
+  gap: 10px;
+}
+.re-views .fs-stack .box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 12px 14px;
+}
+.re-fs-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.re-see {
+  align-self: flex-start;
+  margin: auto 0 0;
+  padding: 3px 9px;
+  border: 1px dashed var(--dash);
+  border-radius: var(--card-radius);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.re-see-note { font-weight: 400; color: var(--dash); }
+.re-rule {
+  padding-top: 2px;
+}
+
+/* Harder boundary: secondary rank, side rail, no fill. */
+.re-hard {
+  min-width: 0;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 2px 0 2px var(--re-gap);
+  border-left: 1px solid var(--line);
+}
+.re-map .re-hard-name {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.re-tests {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.re-tests li {
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+/* Combined: acknowledgement inside the entity, not a third reading card. */
+.re-combined {
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+/* Inline secondary label. The lock sits in the <strong> after it;
+   the name itself stays regular so the acknowledgement is not a fourth title. */
+.re-combined-name {
+  font-weight: 400;
+  color: var(--muted);
+}
+.re-combined-text { padding-top: 4px; }
+
+@media (max-width: 900px) {
+  .re-entity-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+  .re-plate { grid-column: 1; }
+  .re-views { grid-column: 2; }
+  .re-hard {
+    grid-column: 1 / -1;
+    padding: 12px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .re-tests { flex-direction: row; flex-wrap: wrap; }
+}
+
+@media (max-width: 720px) {
+  .re-map { --re-gap: 10px; }
+  .re-statements,
+  .re-entity { padding: 12px 12px 14px; }
+  .re-places { grid-template-columns: minmax(0, 1fr); }
+  .re-entity-grid { grid-template-columns: minmax(0, 1fr); }
+  .re-plate,
+  .re-views,
+  .re-hard { grid-column: 1; }
+}
+
+@media (max-width: 560px) {
+  .re-map { --re-gap: 8px; }
+  .re-assumptions { grid-template-columns: minmax(0, 1fr); }
+  .re-obj { padding-left: 10px; }
+  .re-period-head { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .re-axis {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-left: 0;
+  }
+  .re-axis-line { display: none; }
+  .re-tick {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+  }
+  .re-tick::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: -14px;
+    bottom: 0;
+    width: 2px;
+    background: var(--line);
+    z-index: 0;
+  }
+  .re-tick:first-child::before {
+    top: 8px;
+  }
+  .re-tick:last-child::before {
+    top: -14px;
+    bottom: auto;
+    height: 22px;
+  }
+  .re-dot {
+    position: relative;
+    z-index: 1;
+    margin-top: 3px;
+  }
+  .re-tick--now .re-tick-copy { flex: 1; }
+  .re-forward { max-width: none; }
+  .re-plate .re-cap { font-size: 11px; }
+  .re-org-name { font-size: 12px; }
+  .re-plate .org-kids .box { padding-inline: 6px; }
+  .re-fs-name { font-size: 13px; }
+  .re-stem-label { font-size: 11px; }
+}

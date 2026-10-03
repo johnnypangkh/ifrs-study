@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All standards — wireframe v0 · Johnny Pang IFRS</title>
+  <style>
+    /* Low-fi dark wireframe — structure over polish. Self-contained; file:// OK. */
+    :root {
+      --bg: #0f1419;
+      --surface: #1a222c;
+      --surface-2: #222b36;
+      --border: #3a4553;
+      --text: #e8eef5;
+      --muted: #8b97a8;
+      --dim: #5c6775;
+      --blue: #6ba3d9;
+      --green: #3dba6e;
+      --green-dim: #2a7a48;
+      --amber: #e09a3d;
+      --amber-dim: #a66d1f;
+      --wire: #c9a227;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.4;
+      min-height: 100vh;
+    }
+
+    /* ---- WIREFRAME chrome ---- */
+    .wire-badge {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 100;
+      background: transparent;
+      color: var(--dim);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ---- Header ---- */
+    .page-title {
+      font-size: 28px;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .progress {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    /* ---- Workflow strip ---- */
+    .workflow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .wf-step {
+      flex: 1 1 220px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      min-width: 180px;
+    }
+
+    .wf-step.study {
+      border: 2px solid var(--green);
+      background: #14241a;
+    }
+
+    .wf-label {
+      font-size: 13px;
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+
+    .wf-step.study .wf-label { color: var(--green); }
+
+    .wf-blurb {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .wf-arrow {
+      align-self: center;
+      color: var(--dim);
+      font-size: 18px;
+      flex: 0 0 auto;
+      padding: 0 2px;
+    }
+
+    @media (max-width: 720px) {
+      .wf-arrow { display: none; }
+    }
+
+    /* ---- Category sections ---- */
+    .category {
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #2a3340;
+    }
+
+    .category:last-child {
+      border-bottom: none;
+    }
+
+    .cat-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    .card-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---- Cards ---- */
+    .card {
+      flex: 0 1 200px;
+      width: 200px;
+      min-height: 108px;
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .card.ready {
+      border: 2px solid var(--green);
+    }
+
+    .card.planned {
+      border: 1.5px dashed var(--border);
+      opacity: 0.72;
+    }
+
+    .card.next-up {
+      border: 2px solid var(--amber);
+      background: #1f1a12;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .card-code {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .card.planned .card-code { color: var(--muted); }
+
+    .open-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .open-link:hover,
+    .open-link:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    .card-title {
+      font-size: 12px;
+      color: var(--muted);
+      flex: 1;
+      line-height: 1.35;
+    }
+
+    .card.planned .card-title { color: var(--dim); }
+
+    .card-status {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: auto;
+    }
+
+    .card.ready .card-status { color: var(--green); }
+    .card.planned .card-status { color: var(--dim); }
+    .card.next-up .card-status { color: var(--amber); }
+
+    .footnote {
+      margin-top: 32px;
+      padding: 12px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--dim);
+      background: var(--surface-2);
+    }
+
+    .footnote strong { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wire-badge" title="Preview for Johnny review">Preview</div>
+
+  <main class="page">
+    <h1 class="page-title">All standards</h1>
+    <p class="progress">1 of 21 ready. Select a standard to open its notes.</p>
+
+    <!-- 1 Sources → 2 Skill → 3 Study notes -->
+    <div class="workflow" role="list" aria-label="Build workflow">
+      <div class="wf-step" role="listitem">
+        <div class="wf-label">1 · Sources</div>
+        <p class="wf-blurb">Standard with its Basis for Conclusions; PwC and Deloitte chapters</p>
+      </div>
+      <span class="wf-arrow" aria-hidden="true">→</span>
+      <div class="wf-step" role="listitem">
+        <div class="wf-label">2 · Skill</div>
+        <p class="wf-blurb">Sourced fact base; firm views tagged; divergences and dated text flagged</p>
+      </div>
+      <span class="wf-arrow" aria-hidden="true">→</span>
+      <div class="wf-step study" role="listitem">
+        <div class="wf-label">3 · Study notes</div>
+        <p class="wf-blurb">Summary flowchart, step trees, matrices, timelines and worked examples — what green READY opens</p>
+      </div>
+    </div>
+
+    <!-- FRAMEWORK -->
+    <section class="category">
+      <h2 class="cat-heading">Framework and basis of preparation</h2>
+      <div class="card-row">
+        <article class="card ready">
+          <div class="card-top">
+            <span class="card-code">CF 2018</span>
+            <a class="open-link" href="../cf-2018/draft-v1-linked/index.html">Open &gt;</a>
+          </div>
+          <p class="card-title">Conceptual Framework for Financial Reporting</p>
+          <span class="card-status">Ready</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 8</span></div>
+          <p class="card-title">Accounting policies, changes in estimates and errors</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 10</span></div>
+          <p class="card-title">Events after the reporting period</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- PRESENTATION -->
+    <section class="category">
+      <h2 class="cat-heading">Presentation</h2>
+      <div class="card-row">
+        <article class="card next-up">
+          <div class="card-top"><span class="card-code">IFRS 18</span></div>
+          <p class="card-title">Presentation and disclosure in financial statements</p>
+          <span class="card-status">Next up · notes WIP</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 1</span></div>
+          <p class="card-title">Presentation of financial statements (legacy / bridge)</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- REVENUE -->
+    <section class="category">
+      <h2 class="cat-heading">Revenue</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 15</span></div>
+          <p class="card-title">Revenue from contracts with customers</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- FINANCIAL INSTRUMENTS -->
+    <section class="category">
+      <h2 class="cat-heading">Financial instruments</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 9</span></div>
+          <p class="card-title">Financial instruments (hub)</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ASSETS -->
+    <section class="category">
+      <h2 class="cat-heading">Assets</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 16</span></div>
+          <p class="card-title">Property, plant and equipment</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 2</span></div>
+          <p class="card-title">Inventories</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 36</span></div>
+          <p class="card-title">Impairment of assets</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 40</span></div>
+          <p class="card-title">Investment property</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 38</span></div>
+          <p class="card-title">Intangible assets</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 5</span></div>
+          <p class="card-title">Non-current assets held for sale and discontinued operations</p>
+          <span class="card-status">Planned</span>
+        </article>
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 23</span></div>
+          <p class="card-title">Borrowing costs</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- MEASUREMENT -->
+    <section class="category">
+      <h2 class="cat-heading">Measurement</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 13</span></div>
+          <p class="card-title">Fair value measurement</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- LEASES -->
+    <section class="category">
+      <h2 class="cat-heading">Leases</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 16</span></div>
+          <p class="card-title">Leases</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- BUSINESS COMBINATIONS -->
+    <section class="category">
+      <h2 class="cat-heading">Business combinations</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 3</span></div>
+          <p class="card-title">Business combinations</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- SHARE-BASED PAYMENT -->
+    <section class="category">
+      <h2 class="cat-heading">Share-based payment</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 2</span></div>
+          <p class="card-title">Share-based payment</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONSOLIDATION -->
+    <section class="category">
+      <h2 class="cat-heading">Consolidation</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IFRS 10</span></div>
+          <p class="card-title">Consolidated financial statements</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- INCOME TAXES -->
+    <section class="category">
+      <h2 class="cat-heading">Income taxes</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 12</span></div>
+          <p class="card-title">Income taxes</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROVISIONS -->
+    <section class="category">
+      <h2 class="cat-heading">Provisions</h2>
+      <div class="card-row">
+        <article class="card planned">
+          <div class="card-top"><span class="card-code">IAS 37</span></div>
+          <p class="card-title">Provisions, contingent liabilities and contingent assets</p>
+          <span class="card-status">Planned</span>
+        </article>
+      </div>
+    </section>
+
+    <p class="footnote">
+      <strong>Preview notes:</strong> Dark card-wall structure only. No HKFRS/HKAS dual codes.
+      Statuses are honest: <strong>1 READY</strong> — CF 2018 opens the draft Map;
+      IFRS 18 is <strong>NEXT UP</strong> (notes WIP). Other cards remain PLANNED.
+      (Authoritative board: homepage-wireframe-v0.1.html.)
+    </p>
+  </main>
+</body>
+</html>

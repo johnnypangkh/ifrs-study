@@ -1,0 +1,361 @@
+/* IAS 2 Phase 1 shared page chrome.
+   Pack colours/tokens remain owned by the pack stylesheets. */
+
+.chrome-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--ink) 6%, transparent);
+  padding: 8px 12px 10px;
+}
+
+.chrome-bar-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.chrome-bar-title .chrome-bar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.chrome-home {
+  color: inherit;
+  text-decoration: none;
+  margin-right: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.chrome-home:hover { text-decoration: underline; }
+
+.chrome-title-cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.chrome-last-update {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--band);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: none;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+/* Horizontal tag strip: keep scroll, hide the bar.
+   A quiet ">" sits on the right only while more tags are off that edge. */
+.tag-row-wrap {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  container-type: scroll-state;
+}
+.tag-row-wrap::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.tag-row {
+  display: flex;
+  gap: 7px;
+  min-width: max-content;
+  padding: 1px 1px 4px;
+}
+@container scroll-state(scrollable: inline-end) {
+  .tag-row-wrap::after {
+    content: ">";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 72px;
+    padding-right: 6px;
+    pointer-events: none;
+    color: var(--dash);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: none;
+    background: linear-gradient(to right, transparent 0%, var(--surface) 46%);
+  }
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--band);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.tag:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.tag.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* The disclaimer wording stays pack-owned; this owns only its chrome layout. */
+.callout.pack-disclaimer {
+  margin: 1rem 0 1.25rem;
+  padding: .85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--band);
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.callout.pack-disclaimer > strong:first-child { color: var(--ink); }
+
+.footer-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.footer-nav a {
+  display: inline-flex;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 13px;
+}
+.footer-nav a:hover { border-color: var(--accent); color: var(--accent); }
+.footer-nav .mid { margin-left: auto; margin-right: auto; }
+
+/* Keep keyboard navigation visible on the shared chrome. */
+.chrome-bar a:focus-visible,
+.footer-nav a:focus-visible,
+a.sec-top:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Teaching-section jump back to this page's Concept Map.
+   The link is added on each chapter h3; this rule only places it. */
+article.teaching > h3:has(> a.sec-top) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0;
+  row-gap: 6px;
+}
+article.teaching > h3:has(> a.sec-top) > strong,
+article.teaching > h3:has(> a.sec-top) > .sec-title {
+  flex: 1 1 auto;
+  min-width: 12em;
+  padding-right: 12px;
+}
+a.sec-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+  margin-left: auto;
+  min-width: 46px;
+  min-height: 26px;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--band);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+a.sec-top:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+#page-map,
+h1[id],
+h2[id],
+h3[id],
+h4[id] {
+  scroll-margin-top: 180px;
+}
+
+.chrome-bar { overflow: visible; }
+.chrome-bar .chapter-search {
+  position: relative;
+  z-index: 15;
+  max-width: 720px;
+  margin: 8px 0 0;
+}
+.chapter-search-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted, #8b97a8);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.chapter-search-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.chapter-search-input {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--line, #3a4553);
+  border-radius: 4px;
+  padding: 8px 10px;
+  background: var(--bg, #12151a);
+  color: var(--ink, #e8eaed);
+  font: inherit;
+  font-size: 14px;
+}
+.chapter-search-input:focus {
+  outline: 2px solid var(--accent, #6ba3d9);
+  outline-offset: 1px;
+}
+.chapter-search-clear {
+  flex: none;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--line, #3a4553);
+  border-radius: 4px;
+  background: var(--surface, #1c2128);
+  color: var(--ink, #e8eaed);
+  font: inherit;
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  cursor: pointer;
+}
+.chapter-search-clear:hover,
+.chapter-search-clear:focus {
+  border-color: var(--accent, #6ba3d9);
+  outline: 2px solid var(--accent, #6ba3d9);
+  outline-offset: 1px;
+}
+.chapter-search .search-popover {
+  position: absolute;
+  z-index: 30;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  background: var(--surface, #1c2128);
+  border: 1px solid var(--line, #3a4553);
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+.chapter-search .search-popover[hidden] { display: none; }
+.chapter-search .search-hit {
+  display: block;
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--line, #3a4553);
+  color: var(--ink, #e8eaed);
+  text-decoration: none;
+}
+.chapter-search .search-hit:first-child { border-top: 0; }
+.chapter-search .search-hit:hover,
+.chapter-search .search-hit:focus { background: var(--bg, #12151a); outline: none; }
+.chapter-search .search-hit-chapter {
+  font-size: 14px;
+  font-weight: 650;
+  margin-bottom: 4px;
+}
+.chapter-search .search-hit-sentence {
+  color: var(--muted, #8b97a8);
+  font-size: 13px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.chapter-search .search-hit-sentence + .search-hit-sentence { margin-top: 2px; }
+.chapter-search mark.result-mark {
+  color: #ff5a5a;
+  background: transparent;
+  font-weight: 650;
+}
+.chapter-search .search-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  border-top: 1px solid var(--line, #3a4553);
+  font-size: 13px;
+}
+.chapter-search .search-page-label { color: var(--muted, #8b97a8); }
+.chapter-search .search-next {
+  margin-left: auto;
+  border: 0;
+  background: none;
+  color: var(--accent, #6ba3d9);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.2;
+  text-transform: none;
+  cursor: pointer;
+  padding: 0;
+}
+.chapter-search .search-next:hover,
+.chapter-search .search-next:focus { color: var(--ink, #e8eaed); }
+
+@media (max-width: 480px) {
+  .chrome-bar-title { align-items: flex-start; }
+  .chrome-bar-title .chrome-bar-actions { margin-left: 0; }
+  .footer-nav { gap: 8px; }
+}
+
+/* Component formula — one line, never wrapped. */
+.formula-line {
+  white-space: nowrap;
+  overflow-x: auto;
+  font-weight: 650;
+  margin: 8px 0 12px;
+  line-height: 1.4;
+}

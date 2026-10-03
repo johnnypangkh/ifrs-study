@@ -1,0 +1,237 @@
+/* Ch2 Qualitative characteristics Concept Map — loaded only by visuals/ch02-qualitative-characteristics.html,
+   after shared.css. Grammar: hierarchy stack (Fundamental over Enhancing) with Cost constraint as a
+   side rail spanning both tiers; solid peers within each tier; no outer plate (parent fieldset is the frame). */
+
+.qc-board-title,
+.qc-tier-title,
+.qc-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.qc-board-title { margin-bottom: 12px; font-size: 13px; font-weight: 700; color: var(--ink); }
+.qc-tier-title { margin-bottom: 10px; font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.qc-board-title a.fb-num,
+.qc-tier-title a.fb-num,
+.qc-head a.fb-num,
+.qc-bar a.fb-num { margin-right: 0; flex-shrink: 0; }
+
+/* Main column = tier stack; right column = cost rail running the full height of both tiers.
+   Row gap is zero so the connector stem touches both tier edges. */
+.qc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 190px);
+  grid-template-rows: auto auto auto;
+  column-gap: 12px;
+  row-gap: 0;
+}
+.qc-tier--fundamental { grid-column: 1; grid-row: 1; }
+.qc-link { grid-column: 1; grid-row: 2; }
+.qc-tier--enhancing { grid-column: 1; grid-row: 3; }
+.qc-rail { grid-column: 2; grid-row: 1 / 4; }
+
+.qc-tier,
+.qc-rail {
+  border: 2px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 12px 14px 14px;
+  min-width: 0;
+}
+
+/* Fundamental: rows 1–4 = head · definition · two item groups, shared by both peers via subgrid;
+   row 5 = bars spanning both peers. */
+.qc-fund {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto auto;
+  column-gap: 10px;
+  row-gap: 8px;
+}
+.qc-peer {
+  grid-row: 1 / 5;
+  display: grid;
+  grid-template-rows: subgrid;
+  row-gap: 8px;
+  align-content: start;
+  min-width: 0;
+  border: 1px solid var(--elem-peer);
+  border-radius: var(--card-radius);
+  background: var(--elem-peer-soft);
+  padding: 12px 14px;
+}
+.qc-relevance { grid-column: 1; }
+.qc-faithful { grid-column: 3; }
+.qc-op {
+  grid-column: 2;
+  grid-row: 1 / 5;
+  align-self: center;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--formula);
+}
+.qc-shared {
+  grid-column: 1 / 4;
+  grid-row: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.qc-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--elem-peer);
+}
+.qc-def {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.qc-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+}
+.qc-key {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.qc-item {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.qc-item strong { color: var(--ink); font-weight: 700; }
+
+.qc-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* Attached connector: stem runs down from the Fundamental tier to the Enhancing tier (T→B reading) */
+.qc-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr);
+  column-gap: 10px;
+  min-height: 56px;
+}
+.qc-link-stem {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  width: 2px;
+  min-height: 56px;
+  background: var(--accent);
+}
+.qc-link-stem::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid var(--accent);
+}
+.qc-link-label {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: center;
+  margin: 0;
+  padding: 4px 0;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.qc-link-label strong { color: var(--ink); }
+
+/* Enhancing: four equal peers */
+.qc-enh {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.qc-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 10px 12px;
+}
+.qc-cell-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.qc-cell-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Cost rail */
+.qc-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--band);
+}
+.qc-rail .qc-tier-title { margin-bottom: 0; }
+.qc-rail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+@media (max-width: 860px) {
+  .qc-enh { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .qc-layout { display: flex; flex-direction: column; }
+  .qc-rail { margin-top: 12px; }
+  .qc-fund { display: flex; flex-direction: column; gap: 10px; }
+  .qc-peer { display: flex; flex-direction: column; gap: 8px; }
+  .qc-op { align-self: center; }
+  .qc-relevance { order: 1; }
+  .qc-op { order: 2; }
+  .qc-faithful { order: 3; }
+  .qc-shared { order: 4; }
+}
+@media (max-width: 420px) {
+  .qc-enh { grid-template-columns: minmax(0, 1fr); }
+}

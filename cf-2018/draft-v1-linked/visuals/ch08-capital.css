@@ -1,0 +1,375 @@
+/* Ch8 Capital Concept Map — loaded only by visuals/ch08-capital.html,
+   after shared.css. Cache: ch08-capital.css?v=cap-8c
+   Grammar: primary = shared-lens matrix (Financial ∥ Physical columns);
+   containment = user needs / situation around the peer pair; secondary =
+   three lighter consequence cards; dashed = CF-does-not-override /
+   practice / IAS 29 see-also only. Parent fieldset on the chapter page
+   remains the full-bleed Concept Map frame. */
+
+.cap-board {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cap-board-title,
+.cap-link-head,
+.cap-see {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.cap-board-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.cap-board-title a.fb-num,
+.cap-m-colhead a.fb-num,
+.cap-link-head a.fb-num,
+.cap-see a.fb-num {
+  margin-right: 0;
+  flex-shrink: 0;
+}
+
+/* Containment around the peer pair — lighter than the matrix itself. */
+.cap-plate {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+}
+
+.cap-plate-legend {
+  max-width: calc(100% - 1.5rem);
+  padding: 0 8px;
+  margin-inline-start: 6px;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: normal;
+}
+
+.cap-plate-legend strong {
+  font-weight: 700;
+}
+
+/* Shared-lens matrix. One object: hairline rules, no cell gap. */
+.cap-matrix-wrap {
+  overflow-x: auto;
+  border-radius: var(--card-radius);
+}
+
+.cap-matrix {
+  display: flex;
+  flex-direction: column;
+  min-width: 36rem;
+  border: 1px solid var(--elem-peer);
+  border-radius: var(--card-radius);
+  background: var(--elem-peer-soft);
+  overflow: hidden;
+}
+
+.cap-m-head,
+.cap-m-row {
+  display: grid;
+  grid-template-columns: 12.25rem minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.cap-m-head {
+  background: color-mix(in srgb, var(--elem-peer-soft) 62%, var(--band));
+  border-bottom: 1px solid var(--line);
+}
+
+.cap-m-row + .cap-m-row {
+  border-top: 1px solid var(--line);
+}
+
+.cap-m-corner,
+.cap-m-colhead,
+.cap-m-key,
+.cap-m-cell {
+  padding: 11px 14px;
+  min-width: 0;
+}
+
+.cap-m-corner,
+.cap-m-key {
+  background: color-mix(in srgb, var(--band) 78%, var(--elem-peer-soft));
+  border-right: 1px solid var(--line);
+}
+
+.cap-m-corner {
+  display: flex;
+  align-items: center;
+}
+
+.cap-m-corner-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cap-m-colhead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.cap-m-colhead + .cap-m-colhead {
+  border-left: 1px solid var(--line);
+}
+
+.cap-peer-name {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Same line-height as the cells so a lens label shares the first-line
+   baseline of both peer cells. */
+.cap-m-key {
+  display: flex;
+  align-items: flex-start;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.cap-m-cell {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.cap-m-cell + .cap-m-cell {
+  border-left: 1px solid var(--line);
+}
+
+.cap-m-cell strong {
+  font-weight: 700;
+}
+
+.cap-m-cell em {
+  font-style: italic;
+}
+
+.cap-line,
+.cap-beat {
+  margin: 0;
+}
+
+.cap-line + .cap-line {
+  margin-top: 2px;
+}
+
+/* Qualifier under a rule line (parenthetical) — reads after the rule. */
+.cap-sub {
+  color: var(--muted);
+}
+
+.cap-beat + .cap-beat {
+  margin-top: 8px;
+}
+
+/* Sub-lens key inside a cell: same key grammar as the Lens column
+   (muted, bold) so key vs value stays consistent across the matrix. */
+.cap-k {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  color: var(--muted);
+}
+
+/* Reading aid across the peer pair: trace one lens through both columns. */
+@media (hover: hover) {
+  .cap-m-row:hover .cap-m-cell {
+    background: color-mix(in srgb, var(--elem-peer-soft) 70%, var(--band));
+  }
+}
+
+/* Secondary consequences — lighter chrome, not a next tier. */
+.cap-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cap-link {
+  min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cap-link-head {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.cap-link-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.cap-link-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.cap-link-body em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cap-link-body strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cap-thin {
+  align-self: flex-start;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.cap-thin:hover {
+  text-decoration: underline;
+}
+
+.cap-thin:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* One dashed strip: framework limit + practice + see-also. */
+.cap-see {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px dashed var(--dash);
+  border-radius: var(--card-radius);
+  background: transparent;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+  align-items: flex-start;
+}
+
+.cap-see-bits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  flex: 1;
+  min-width: 0;
+  row-gap: 2px;
+}
+
+/* Wider than the in-text "·" so the three bits read as separate tips. */
+.cap-see-bits > span:not(:last-child)::after {
+  content: "·";
+  margin-inline: 0.75em;
+  color: var(--dash);
+  font-weight: 400;
+}
+
+.cap-see strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* Mid widths: the Lens column gives way first so both peer cells keep room. */
+@media (max-width: 900px) {
+  .cap-m-head,
+  .cap-m-row {
+    grid-template-columns: 11rem minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 840px) {
+  .cap-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Keep both peers on screen. A side-by-side scroll would hide Physical. */
+@media (max-width: 680px) {
+  .cap-board {
+    gap: 12px;
+  }
+
+  .cap-plate {
+    padding: 10px 10px 12px;
+  }
+
+  .cap-matrix {
+    min-width: 0;
+  }
+
+  .cap-m-head,
+  .cap-m-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .cap-m-corner {
+    display: none;
+  }
+
+  .cap-m-key {
+    grid-column: 1 / -1;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+    padding: 6px 10px;
+  }
+
+  .cap-m-colhead,
+  .cap-m-cell {
+    padding: 8px 10px;
+  }
+
+  .cap-m-colhead {
+    font-size: 12px;
+    align-items: flex-start;
+  }
+}
+
+/* Standalone + iframe: paint night so transparent plates don't sit on white chrome. */
+html {
+  background: var(--bg);
+}
+
+body.embed {
+  background: var(--bg);
+}
