@@ -4,7 +4,7 @@
    Gate: iframe height fits content (no silent clip). Night-only unchanged. */
 (function () {
   var MSG = "cf-visual-height";
-  var PAD = 12; /* match theme.js embed notify buffer */
+  var PAD = 2; /* match theme.js embed notify buffer */
   /* Temporary floor only when measure stays 0 (e.g. blocked contentDocument
      before first postMessage). CSS also sets min-height; JS grows taller. */
   var FALLBACK_MIN = 260;
@@ -15,12 +15,10 @@
       var doc = iframe.contentDocument;
       if (doc && doc.documentElement) {
         var body = doc.body;
-        var html = doc.documentElement;
+        /* body only: <html> stretches to the iframe viewport (ratchet) */
         h = Math.max(
           body ? body.scrollHeight : 0,
-          body ? body.offsetHeight : 0,
-          html.scrollHeight || 0,
-          html.offsetHeight || 0
+          body ? Math.ceil(body.getBoundingClientRect().height) : 0
         );
       }
     } catch (e) {}
