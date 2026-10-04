@@ -1,411 +1,12 @@
+
+
 /* CF 2018 pack-owned teaching/layout kit. Shared tokens, chrome, and citation chips live in ../../_shared/. */
 
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-body {
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.4;
-  min-height: 100vh;
-  font-size: 14px;
-}
-
-.page {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 20px 16px 56px;
-}
-
-
-
-header.page-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 18px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line);
-}
-.titles h1 {
-  margin: 0 0 4px;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-.titles .subtitle {
-  margin: 0;
-  color: var(--muted);
-  font-size: .88rem;
-}
-.meta-chip {
-  font-size: 12px;
-  color: var(--muted);
-  background: var(--band);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 6px 10px;
-  white-space: nowrap;
-}
-
-.section {
-  margin: 22px 0 0;
-}
-.section-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 8px;
-}
-.section-hint {
-  font-size: 12px;
-  color: var(--dash);
-  margin: -4px 0 10px;
-}
-
-/* Boxes / cards */
-.box {
-  border: 1px solid var(--line);
-  border-radius: var(--card-radius);
-  background: var(--surface);
-  padding: 10px 12px;
-}
-.box.hub { background: var(--surface); border-color: var(--ink); border-width: 2px; }
-.box.band { background: var(--band); }
-/* DEPRECATED — dashed=nest anti-pattern. Prefer .contain* for 組成 / .box.see for see-also.
-   Neutralized to solid quiet so leftovers cannot teach dashed=hierarchy. Do not use on new kit. */
-.box.nest {
-  background: var(--nest);
-  border-style: solid;
-  border-color: var(--line);
-}
-.box.ok { background: var(--ok-soft); border-color: var(--ok); }
-.box.warn { background: var(--warn-soft); border-color: var(--warn); }
-.box.danger { background: var(--danger-soft); border-color: var(--danger); }
-.box.see { background: var(--see-soft); border: 1px dashed var(--see); color: var(--see); }
-.box-title {
-  font-size: 13px;
-  font-weight: 700;
-  margin: 0 0 4px;
-}
-.box-body {
-  font-size: 12px;
-  color: var(--muted);
-  margin: 0;
-}
-.box ul {
-  margin: 4px 0 0;
-  padding-left: 18px;
-  font-size: 12px;
-  color: var(--muted);
-}
-.box li { margin: 2px 0; }
-
-/* Containment kit (Examples B/C) — solid outer + solid inner cells; not dashed nest */
-.contain {
-  border: 2px solid var(--line);
-  border-radius: var(--card-radius);
-  background: var(--surface);
-  padding: 12px;
-}
-.contain-title {
-  font-size: 13px;
-  font-weight: 700;
-  margin: 0 0 10px;
-  color: var(--ink);
-}
-.contain-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-.contain-cell {
-  border: 1px solid var(--line);
-  border-radius: var(--card-radius);
-  background: var(--band);
-  padding: 8px 10px;
-  font-size: 13px;
-  color: var(--ink);
-}
-@media (max-width: 640px) {
-  .contain-grid { grid-template-columns: 1fr; }
-}
-
-/* Flow / main route */
-.flow-col {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0;
-  max-width: 640px;
-}
-.flow-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: stretch;
-}
-.flow-row > .box { flex: 1 1 160px; }
-.arrow-down {
-  text-align: center;
-  color: var(--accent);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.2;
-  padding: 2px 0;
-  letter-spacing: .05em;
-}
-.arrow-down.muted { color: var(--dash); font-size: 13px; font-weight: 600; }
-.arrow-label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0;
-}
-.peer-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-@media (max-width: 640px) {
-  .peer-pair { grid-template-columns: 1fr; }
-}
-.peer-pair .box { text-align: center; }
-
-/* Grids */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-@media (max-width: 720px) {
-  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 480px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-}
-
-/* Tables */
-table.lofi {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  background: var(--surface);
-}
-table.lofi th, table.lofi td {
-  border: 1px solid var(--line);
-  padding: 8px 10px;
-  text-align: left;
-  vertical-align: top;
-}
-table.lofi th {
-  background: var(--band);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
-
-/* Callouts */
-.callout {
-  border-radius: var(--card-radius);
-  padding: 10px 12px;
-  font-size: 13px;
-  margin: 8px 0;
-}
-.callout.warn {
-  background: var(--warn-soft);
-  border: 1px solid var(--warn);
-  color: var(--ink);
-}
-.callout.danger {
-  background: var(--danger-soft);
-  border: 1px solid var(--danger);
-}
-.callout.see {
-  background: var(--see-soft);
-  border: 1px dashed var(--see);
-  color: var(--see);
-  font-size: 12px;
-}
-.callout.ok {
-  background: var(--ok-soft);
-  border: 1px solid var(--ok);
-}
-.callout strong { font-weight: 700; }
-.callout .tag-mini {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  margin-right: 6px;
-  padding: 1px 6px;
-  border-radius: 4px;
-  background: rgba(0,0,0,.06);
-}
-
-/* Nested tip (demoted) */
-.tip-nest {
-  margin: 8px 0 0 12px;
-  padding: 8px 10px;
-  border-left: 3px solid var(--dash);
-  background: var(--nest);
-  border-radius: 0 6px 6px 0;
-  font-size: 12px;
-  color: var(--muted);
-}
-.tip-nest .tip-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--dash);
-  margin-bottom: 2px;
-}
-
-/* Tree / decision branches */
-.tree {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  max-width: 720px;
-}
-.tree-branch {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 4px;
-}
-.branch-no { border-color: var(--danger); }
-.branch-yes { border-color: var(--ok); }
-
-/* Dashed see-also strip */
-.see-strip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px dashed var(--see);
-  border-radius: 999px;
-  background: var(--see-soft);
-  color: var(--see);
-  font-size: 12px;
-  font-weight: 600;
-  margin: 6px 0;
-}
-.see-strip .arrow { font-weight: 700; }
-
-/* Stack hierarchy */
-.stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  max-width: 520px;
-}
-.stack .box { text-align: center; }
-
-/* L1 horizontal with nested L2 */
-.l1-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1.4fr;
-  gap: 10px;
-}
-@media (max-width: 720px) {
-  .l1-row { grid-template-columns: 1fr; }
-}
-.boundary-shell {
-  border: 1px solid var(--accent);
-  border-radius: var(--card-radius);
-  background: var(--accent-soft);
-  padding: 8px;
-}
-.boundary-shell > .box-title { margin-bottom: 8px; }
-.boundary-kids {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
-.boundary-kids .box,
-.boundary-kids .contain-cell {
-  background: var(--surface);
-  border-style: solid;
-  border-color: var(--line);
-  font-size: 12px;
-}
-
-.footer-note {
-  margin-top: 28px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
-  font-size: 11px;
-  color: var(--dash);
-}
-
-.checklist-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 11px;
-  font-weight: 700;
-  margin-right: 6px;
-  flex-shrink: 0;
-}
 
 /* ── Body presentation kit (Johnny lock 2026-09-27) ──
    Ch5 exemplar first. Reuse .box / .box.ok / .box.warn peers.
    The colour-meaning rule still applies; solid = peer. */
 
-.contrast-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 12px 0 16px;
-  align-items: stretch;
-}
-.contrast-pair > .box {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-}
-.contrast-pair .box-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 6px;
-}
-.contrast-pair .box.ok .box-title { color: var(--ok); }
-.contrast-pair .box.warn .box-title { color: var(--warn); }
-.contrast-pair .box-body {
-  font-size: 13px;
-  color: var(--ink);
-  line-height: 1.45;
-  margin: 0;
-  flex: 1;
-}
-.contrast-pair .kit-label {
-  display: block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--dash);
-  margin-bottom: 8px;
-}
-@media (max-width: 640px) {
-  .contrast-pair { grid-template-columns: 1fr; }
-}
 
 .worked-strip {
   margin: 14px 0 18px;
@@ -414,251 +15,21 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   border-radius: 10px;
   background: var(--band);
 }
+
 .worked-strip-title {
   margin: 0 0 10px;
   font-size: 13px;
   font-weight: 700;
   color: var(--ink);
 }
-.worked-strip-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  align-items: stretch;
-}
-.worked-strip-grid > .box {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-.worked-strip .box-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 6px;
-}
+
+
 .worked-strip .box-body {
   font-size: 13px;
   color: var(--ink);
   line-height: 1.45;
   margin: 0;
   flex: 1;
-}
-@media (max-width: 720px) {
-  .worked-strip-grid { grid-template-columns: 1fr; }
-}
-
-/* Peer card row — equal-rank concepts (no ok/warn rainbow) */
-.peer-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 10px;
-  margin: 12px 0 16px;
-  align-items: stretch;
-}
-.peer-row > .box { text-align: left; display: flex; flex-direction: column; }
-.peer-row .box-title {
-  font-size: 11px; font-weight: 700; letter-spacing: .05em;
-  text-transform: uppercase; color: var(--muted); margin: 0 0 6px;
-}
-.peer-row .box-body {
-  font-size: 13px; color: var(--ink); line-height: 1.45; margin: 0; flex: 1;
-}
-
-/* Containment (組成): outer shell + solid inner peers — never dashed hang */
-.containment {
-  margin: 12px 0 16px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--card-radius);
-  background: var(--band);
-}
-.containment > .box-title {
-  margin: 0 0 6px;
-  font-size: 13px;
-  font-weight: 700;
-}
-.containment > .box-body {
-  margin: 0 0 10px;
-  font-size: 13px;
-  line-height: 1.45;
-}
-.containment-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.containment-inner > .box {
-  background: var(--surface);
-  border-style: solid; /* lock: containment kids are solid peers, not dashed hang */
-}
-@media (max-width: 720px) {
-  .containment-inner { grid-template-columns: 1fr; }
-}
-
-/* ── Densifier trial kit (Johnny unlock 2026-09-27) ──
-   A point-chip · D legend-bar · C contrast dense · B icon-label-cell
-   Hold E IO strip. Night-only tokens; solid borders; dashed rare; no process rails. */
-
-/* A — Point chip（ポイント／注意） — 1-line tip; warn/ok only when label states meaning */
-.point-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  max-width: 100%;
-  margin: 6px 0;
-  padding: 4px 10px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--ink);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.point-chip.warn {
-  border-color: var(--warn);
-  background: var(--warn-soft);
-  color: var(--warn);
-}
-.point-chip.ok {
-  border-color: var(--ok);
-  background: var(--ok-soft);
-  color: var(--ok);
-}
-
-/* D — Footer legend bar — omit when nodes are self-labelled */
-.legend-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 14px;
-  margin: 10px 0 0;
-  padding: 6px 10px;
-  border-top: 1px solid var(--line);
-  background: var(--band);
-  border-radius: 0 0 var(--card-radius, 8px) var(--card-radius, 8px);
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.3;
-}
-.legend-bar-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.legend-bar-swatch {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  flex-shrink: 0;
-}
-.legend-bar-swatch.dashed {
-  border-style: dashed;
-  background: transparent;
-}
-.legend-bar-label {
-  color: var(--muted);
-}
-
-/* C — Dense contrast plate — title chip + ≤3 lines/side */
-.contrast-pair.dense,
-.contrast-dense {
-  gap: 6px;
-  margin: 8px 0 12px;
-}
-.contrast-pair.dense > .box,
-.contrast-dense > .box {
-  padding: 8px 10px;
-}
-.contrast-pair.dense .box-title,
-.contrast-dense .box-title {
-  display: inline-block;
-  margin: 0 0 4px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--band);
-  font-size: 10px;
-  letter-spacing: .04em;
-}
-.contrast-pair.dense .box.ok .box-title,
-.contrast-dense .box.ok .box-title {
-  background: var(--ok-soft);
-  color: var(--ok);
-}
-.contrast-pair.dense .box.warn .box-title,
-.contrast-dense .box.warn .box-title {
-  background: var(--warn-soft);
-  color: var(--warn);
-}
-.contrast-pair.dense .box-body,
-.contrast-dense .box-body {
-  font-size: 12px;
-  line-height: 1.35;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.contrast-pair.dense .kit-label,
-.contrast-dense .kit-label {
-  margin-bottom: 4px;
-}
-@media (max-width: 640px) {
-  .contrast-pair.dense,
-  .contrast-dense { grid-template-columns: 1fr; }
-}
-
-/* B — Icon-label cell（ピクト＋短標） — monochrome / single token */
-.icon-label-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 8px;
-  margin: 8px 0 12px;
-}
-.icon-label-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  text-align: center;
-  padding: 10px 8px;
-  border: 1px solid var(--line);
-  border-radius: var(--card-radius, 8px);
-  background: var(--surface);
-  min-width: 72px;
-}
-.icon-label-cell .ilc-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  color: var(--ink);
-  opacity: 0.85;
-}
-.icon-label-cell .ilc-icon svg {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 1.5;
-}
-.icon-label-cell .ilc-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.25;
-  margin: 0;
 }
 
 
@@ -669,6 +40,7 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   font-size: 12px;
   margin: 0;
 }
+
 .illus-path th,
 .illus-path td {
   border: 1px solid var(--line, #3a4550);
@@ -676,12 +48,15 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   text-align: left;
   vertical-align: top;
 }
+
 .illus-path th {
   font-weight: 600;
   background: var(--panel-2, transparent);
   color: var(--ink, inherit);
 }
+
 .illus-path .muted { color: var(--muted, #9aa3ad); font-weight: 500; }
+
 .illus-steps {
   display: flex;
   flex-wrap: wrap;
@@ -691,6 +66,7 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   padding: 0;
   list-style: none;
 }
+
 .illus-steps > li {
   flex: 1 1 110px;
   border: 1px solid var(--line, #3a4550);
@@ -698,7 +74,9 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   padding: 6px 8px;
   font-size: 12px;
 }
+
 .illus-steps > li strong { display: block; margin-bottom: 2px; }
+
 
 /* Body mini-flow — neutral decision branch kit.
    Reading order: question step → join → bar → one labelled arm per outcome → outcome step.
@@ -710,17 +88,20 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   border-radius: var(--card-radius);
   background: var(--band);
 }
+
 .mini-flow-title {
   margin: 0 0 10px;
   font-size: 13px;
   font-weight: 700;
   color: var(--ink);
 }
+
 .mf-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1.7fr);
   align-items: center;
 }
+
 .mf-step {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -730,8 +111,11 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   line-height: 1.45;
   color: var(--ink);
 }
+
 .mf-step p { margin: 0; }
+
 .mf-step p + p { margin-top: 4px; }
+
 .mf-step .mf-head {
   margin: 0 0 4px;
   font-size: 11px;
@@ -740,14 +124,18 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   text-transform: uppercase;
   color: var(--muted);
 }
+
 .mf-branch { height: 2px; background: var(--line); }
+
 .mf-arms { display: flex; flex-direction: column; gap: 12px; }
+
 .mf-arm {
   position: relative;
   display: grid;
   grid-template-columns: 76px minmax(0, 1fr);
   align-items: center;
 }
+
 .mf-arm::before {
   content: "";
   position: absolute;
@@ -757,8 +145,11 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   width: 2px;
   background: var(--line);
 }
+
 .mf-arm:first-child::before { top: 50%; }
+
 .mf-arm:last-child::before { top: 0; bottom: 50%; }
+
 .mf-arm-line {
   position: relative;
   height: 2px;
@@ -768,6 +159,7 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   justify-content: center;
   align-items: center;
 }
+
 .mf-arm-line::after {
   content: "";
   position: absolute;
@@ -777,6 +169,7 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
 }
+
 .mf-arm-label {
   padding: 0 5px;
   background: var(--band);
@@ -785,7 +178,9 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   color: var(--muted);
   line-height: 1.2;
 }
+
 @media (max-width: 640px) {
   .mf-row { grid-template-columns: 1fr; row-gap: 10px; }
   .mf-branch { display: none; }
 }
+
