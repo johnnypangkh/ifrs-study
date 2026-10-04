@@ -38,15 +38,15 @@
    Script is in <head>, so body may be null at parse time — defer embed check
    until DOM ready. postMessage works on file:// when contentDocument does not. */
 (function () {
-  var PAD = 12; /* fieldset / embed padding buffer so bottom cards are not clipped */
+  var PAD = 2; /* sub-pixel rounding buffer; fieldset padding gives the visual margin */
 
   function notify() {
     if (!document.body || !document.body.classList.contains("embed")) return;
+    /* body only: <html> stretches to the iframe viewport, so measuring it
+       makes the iframe ratchet taller on every notify and never shrink */
     var h = Math.max(
       document.body.scrollHeight || 0,
-      document.body.offsetHeight || 0,
-      document.documentElement ? document.documentElement.scrollHeight : 0,
-      document.documentElement ? document.documentElement.offsetHeight : 0
+      Math.ceil(document.body.getBoundingClientRect().height) || 0
     );
     if (h > 0) h += PAD;
     try {
