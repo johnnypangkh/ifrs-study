@@ -10,7 +10,12 @@ import re
 from html.parser import HTMLParser
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+# Site root is the directory that contains homepage/ and the packs.
+# That is this repo (on disk: ifrs-website-refs/refs/, on GitHub Pages:
+# /ifrs-study/). parents[2] is the folder above that root. Indexing it
+# stored ../../ links to a sibling copy. Those links 404 on GitHub Pages
+# (johnnypangkh.github.io/<pack>/...) and skip the chapters in this tree.
+ROOT = Path(__file__).resolve().parents[1]
 HOME = Path(__file__).resolve().parent
 OUT = HOME / "search-index.js"
 

@@ -178,10 +178,19 @@
     var hash = bits[1] ? '#' + bits[1] : '';
     var target = path.match(/([^/]+)\/draft-v1-linked\/(ch\d+\.html)$/i);
     if (!target) return indexHref;
-    var here = String(location.pathname || '').replace(/\\/g, '/').match(/([^/]+)\/draft-v1-linked\/ch\d+\.html$/i);
-    if (!here) return indexHref;
-    if (here[1] === target[1]) return target[2] + hash;
-    return '../../' + target[1] + '/draft-v1-linked/' + target[2] + hash;
+    var loc = String(location.pathname || '').replace(/\\/g, '/');
+    var here = loc.match(/([^/]+)\/draft-v1-linked\/ch\d+\.html$/i);
+    if (here) {
+      if (here[1].toLowerCase() === target[1].toLowerCase()) return target[2] + hash;
+      return '../../' + target[1] + '/draft-v1-linked/' + target[2] + hash;
+    }
+    // homepage/*.html is one directory under the site root, on GitHub Pages
+    // (/ifrs-study/homepage/) and on OneDrive (.../ifrs-website-refs/refs/homepage/).
+    // A stored ../../ link leaves that root and 404s at johnnypangkh.github.io.
+    if (/\/homepage\/[^/]+$/i.test(loc)) {
+      return '../' + target[1] + '/draft-v1-linked/' + target[2] + hash;
+    }
+    return indexHref;
   }
 
   function markSentence(sentence, qWords) {
