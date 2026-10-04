@@ -11,6 +11,54 @@
 <link rel="stylesheet" href="assets/shared.css?v=ias2-chrome-wire-20261002">
 <link rel="stylesheet" href="assets/draft.css?v=ias2-chrome-wire-20261002">
 <link rel="stylesheet" href="assets/body-sum.css?v=ias2-body-sum-20261003">
+<style>
+/* Mini-flow kit lives in assets/draft.css. Do not re-draw yes/no arms or
+   joins here — chapter + draft both drawing doubles the connectors (status 13).
+   Stretch sequence arrows so the shaft meets both boxes (para 35 stubs). */
+article.teaching .mini-arrow {
+  flex: 0 0 28px;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: flex-start;
+  min-width: 28px;
+  color: inherit;
+  font-weight: inherit;
+}
+article.teaching .mini-arrow::before {
+  content: "";
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  height: 1px;
+  background: var(--muted);
+}
+article.teaching .mini-arrow::after {
+  content: "";
+  flex: 0 0 auto;
+  border-left: 6px solid var(--muted);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+@media (max-width: 720px) {
+  article.teaching .mini-arrow {
+    flex: 0 0 22px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  article.teaching .mini-arrow::before {
+    width: 1px;
+    height: auto;
+    flex: 1 1 auto;
+  }
+  article.teaching .mini-arrow::after {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid var(--muted);
+    border-bottom: 0;
+  }
+}
+</style>
 <script src="assets/theme.js?v=ias2-fit-20261001"></script>
 <script src="assets/iframe-fit.js?v=ias2-fit-20261001"></script>
 </head>
@@ -40,30 +88,36 @@
 <h3 id="s-5-0">5.0 Recognition as an expense<a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>Recognised as an expense.</strong> The carrying amount of inventories is recognised as an expense when:</p>
 <ul>
-  <li>the inventories are sold, written down to net realisable value (NRV) or lost</li>
+  <li>the inventories are
+    <ul>
+      <li>sold</li>
+      <li>written down to net realisable value (NRV)</li>
+      <li>or lost</li>
+    </ul>
+  </li>
   <li>a reversal of a write-down reduces that expense</li>
   <li>inventories allocated to another asset are recognised as an expense during the useful life of that asset</li>
 </ul>
 <p> <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-official">IAS 2 · para 35</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.43</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span></p>
 <ul>
-  <li><strong>Amount of inventories recognised as an expense in the period.</strong> The amount of inventories recognised as an expense in the period will generally be
+  <li><strong>Expense in the period.</strong> The amount of inventories recognised as an expense in the period will generally be
     <div class="cost-sum" role="group" aria-label="Carrying amount of inventories sold, plus write-downs and losses, less reversals">
-      <div class="cost-sum-term">the carrying amount of inventories sold in the period</div>
+      <div class="cost-sum-term">Carrying amount of inventories sold in the period</div>
       <span class="cost-sum-op">+</span>
-      <div class="cost-sum-term">the amount of any write-down of inventories to NRV and all losses of inventories in the period</div>
+      <div class="cost-sum-term">Amount of any write-down of inventories to NRV and all losses of inventories in the period</div>
       <span class="cost-sum-op">−</span>
-      <div class="cost-sum-term">the amount of any reversal in the period of any write-down of inventories arising from an increase in NRV</div>
+      <div class="cost-sum-term">Amount of any reversal in the period of any write-down of inventories arising from an increase in NRV</div>
       <span class="cost-sum-op">=</span>
       <div class="cost-sum-term cost-sum-result">Amount of inventories recognised as an expense</div>
     </div> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
-  <li><strong>Inventories used rather than sold — capitalised as part of the cost of another asset.</strong> Inventories incorporated in the cost of another asset, such as self-constructed property, plant and equipment, are recognised as part of the cost of that asset; their cost is then recognised as an expense through depreciation of that asset (<a href="#s-5-4">5.4</a>). <span class="cite cite-official">IAS 2 · para 35</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.43</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span></li>
-  <li><strong>Reference to the matching principle eliminated.</strong> <q>The Standard eliminates the reference to the matching principle.</q> The timing of the expense on sale is set by paragraph 34 — the period in which the related revenue is recognised (<a href="#s-5-1">5.1</a>). <span class="cite cite-official">IAS 2 · para IN14</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 1</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
+  <li><strong>Another asset.</strong> Inventories used rather than sold are capitalised as part of the cost of another asset. Inventories incorporated in the cost of another asset, such as self-constructed property, plant and equipment, are recognised as part of the cost of that asset; their cost is then recognised as an expense through depreciation of that asset (<a href="#s-5-4">5.4</a>). <span class="cite cite-official">IAS 2 · para 35</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.43</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span></li>
+  <li><strong>Matching principle.</strong> Reference to the matching principle eliminated. <q>The Standard eliminates the reference to the matching principle.</q> The timing of the expense on sale is set by paragraph 34 — the period in which the related revenue is recognised (<a href="#s-5-1">5.1</a>). <span class="cite cite-official">IAS 2 · para IN14</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 1</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
   <li><strong>Amounts disclosed.</strong>
     <ul>
       <li>The amount of inventories recognised as an expense during the period</li>
-      <li>the amount of any write-down recognised as an expense</li>
-      <li>the amount of any reversal recognised as a reduction in the amount of inventories recognised as an expense</li>
-      <li>the circumstances or events that led to the reversal</li>
+      <li>The amount of any write-down recognised as an expense</li>
+      <li>The amount of any reversal recognised as a reduction in the amount of inventories recognised as an expense</li>
+      <li>The circumstances or events that led to the reversal</li>
     </ul>
     (<a href="ch06.html#s-6-4">Chapter 6 · 6.4</a>). <span class="cite cite-official">IAS 2 · para 36(d)–(g)</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 4.2.5</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.400.50</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.400.80</span></li>
 </ul>
@@ -91,7 +145,8 @@
     </div>
   </div>
 </div>
-<p><strong>Effect on inventories and on profit or loss, by event.</strong> <span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-official">IAS 2 · para 35</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.43</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.46.1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span></p>
+  <p>Is the amount of inventories recognised as an expense in the period the carrying amount of inventories sold, any write-down of inventories to NRV and all losses of inventories, less any reversal?</p>
+<p><strong>By event.</strong> Effect on inventories and on profit or loss, by event.</p>
 <div class="table-wrap"><table class="vis-table">
   <thead><tr><th>Event</th><th>Inventories</th><th>Profit or loss</th><th>IAS 2</th><th>Section</th></tr></thead>
   <tbody>
@@ -102,13 +157,14 @@
     <tr><td>Incorporated in the cost of another asset — for example, self-constructed property, plant and equipment</td><td>Derecognised — recognised as part of the cost of that other asset</td><td>Recognised as an expense during the useful life of that asset, through its depreciation</td><td>para 35</td><td><a href="#s-5-4">5.4</a></td></tr>
   </tbody>
 </table></div>
+<p><span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-official">IAS 2 · para 35</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.43</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.46.1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span></p>
 
 <h3 id="s-5-1">5.1 Inventories sold<a class="sec-top" href="#page-map">top</a></h3>
-<p><strong>inventory is derecognised only when control of the asset is transferred to the customer.</strong> <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.45</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span></p>
+<p><strong>Inventory is derecognised only when control of the asset is transferred to the customer. The points below are related revenue, the performance obligation, control of an asset, timing, consignment sales, and reservation of title.</strong> <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.45</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span></p>
 <ul>
-  <li><strong>Carrying amount recognised as an expense in the period in which the related revenue is recognised.</strong> <q>When inventories are sold, the carrying amount of those inventories shall be recognised as an expense in the period in which the related revenue is recognised.</q> Inventories are derecognised when they are sold; at that point they are recognised as an expense in the income statement, in the same period in which the revenue from their sale is recognised. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span></li>
-  <li><strong>Derecognised only when control is transferred to the customer.</strong> Revenue is recognised only when an entity satisfies a performance obligation by transferring a promised good or service (that is, an asset) to a customer; an asset is transferred when (or as) the customer obtains control of that asset. Therefore inventory is derecognised only when control of the asset is transferred to the customer. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.45</span> <span class="cite cite-official">IFRS 15 · para 31</span></li>
-  <li><strong>Control of an asset — and the benefits of an asset.</strong> Control of an asset refers to the ability to direct the use of, and obtain substantially all of the remaining benefits from, the asset; it includes the ability to prevent other entities from directing the use of, and obtaining the benefits from, the asset. The benefits of an asset are the potential cash flows (inflows or savings in outflows) that can be obtained, directly or indirectly, in many ways — for example, by
+  <li><strong>Related revenue.</strong> <q>When inventories are sold, the carrying amount of those inventories shall be recognised as an expense in the period in which the related revenue is recognised.</q> Inventories are derecognised when they are sold; at that point they are recognised as an expense in the income statement, in the same period in which the revenue from their sale is recognised. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span></li>
+  <li><strong>Performance obligation.</strong> Revenue is recognised only when an entity satisfies a performance obligation by transferring a promised good or service (that is, an asset) to a customer; an asset is transferred when (or as) the customer obtains control of that asset. Therefore inventory is derecognised only when control of the asset is transferred to the customer. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.45</span> <span class="cite cite-official">IFRS 15 · para 31</span></li>
+  <li><strong>Control of an asset.</strong> Control of an asset refers to the ability to direct the use of, and obtain substantially all of the remaining benefits from, the asset; it includes the ability to prevent other entities from directing the use of, and obtaining the benefits from, the asset. The benefits of an asset are the potential cash flows (inflows or savings in outflows) that can be obtained, directly or indirectly, in many ways — for example, by
     <ul>
       <li>(a) using the asset to produce goods or provide services (including public services);</li>
       <li>(b) using the asset to enhance the value of other assets;</li>
@@ -117,9 +173,17 @@
       <li>(e) pledging the asset to secure a loan; and</li>
       <li>(f) holding the asset. Indicators that control has passed, and shipping terms: <a href="ch02.html#s-2-2">Chapter 2 · 2.2</a></li>
     </ul> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.45</span> <span class="cite cite-official">IFRS 15 · para 33</span></li>
-  <li><strong>Derecognition depends on the timing of revenue recognition.</strong> The carrying amount of inventories is recognised as an expense when the inventories are sold, unless they form part of the cost of another asset (<a href="#s-5-4">5.4</a>); derecognition therefore depends on the timing of revenue recognition. Items sold — even if a normal level of returns is expected — and items shipped to customers over which control has transferred are not the entity’s inventory at the reporting date; before goods are loaded onto the ship in a free on board (FOB) arrangement they remain the seller’s inventory (<a href="ch02.html#s-2-2">Chapter 2 · 2.2</a>). Sales with a right of return, and the asset for the right to recover returned goods, are dealt with under the revenue requirements. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.40</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
-  <li><strong>Consignment sales — not derecognised on delivery.</strong> Some complex transactions, such as consignment sales or sale and repurchase transactions, require careful consideration as to whether inventory should be derecognised as a result of the transaction. A product delivered to another party that is held on consignment does not give rise to revenue on delivery, and so the manufacturer does not derecognise the inventory on delivery; items controlled by the entity that are held on consignment at another entity’s premises remain the consignor’s inventory. In <a href="ch02.html#s-2-ex-consign">Illustration 2.3.1</a> Manufacturer derecognises the inventory when the products are sold to the consumer, or when they are lost or damaged while in Retailer’s possession. Indicators of a consignment arrangement: <a href="ch02.html#s-2-3">Chapter 2 · 2.3</a>. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.46</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.46.1</span> <span class="cite cite-official">IFRS 15 · para B77</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.4-1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.100.20</span></li>
-  <li><strong>Reservation of title; sale and repurchase; contracts to buy inventories at a future date.</strong> Under a reservation-of-title clause the seller recognises the product as inventory — and the customer does not — until the customer has obtained control; passage of title is one of five indicators of control (<a href="ch02.html#s-2-ex-rot">Chapter 2 · reservation of title</a>). Sale and repurchase arrangements, contracts to buy inventories at a future date and instruments used to hedge risks related to the purchase of inventories are dealt with outside PwC’s inventories chapter — in chapter 11 (paras 232 to 240) and chapter 40 of its manual. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.46.2</span> <span class="cite cite-official">IFRS 15 · para 38</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.46</span></li>
+  <li><strong>Timing.</strong> The carrying amount of inventories is recognised as an expense when the inventories are sold, unless they form part of the cost of another asset (<a href="#s-5-4">5.4</a>); derecognition therefore depends on the timing of revenue recognition. <ul>
+      <li>Items sold — even if a normal level of returns is expected —</li>
+      <li>and items shipped to customers over which control has transferred</li>
+    </ul>
+    are not the entity’s inventory at the reporting date; before goods are loaded onto the ship in a free on board (FOB) arrangement they remain the seller’s inventory (<a href="ch02.html#s-2-2">Chapter 2 · 2.2</a>). Sales with a right of return, and the asset for the right to recover returned goods, are dealt with under the revenue requirements. <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.40</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
+  <li><strong>Consignment sales.</strong> Some complex transactions, such as consignment sales or sale and repurchase transactions, require careful consideration as to whether inventory should be derecognised as a result of the transaction. A product delivered to another party that is held on consignment does not give rise to revenue on delivery, and so the manufacturer does not derecognise the inventory on delivery; items controlled by the entity that are held on consignment at another entity’s premises remain the consignor’s inventory. In <a href="ch02.html#s-2-ex-consign">Illustration 2.3.1</a> Manufacturer derecognises the inventory when the products are sold to the consumer, or when they are lost or damaged while in Retailer’s possession. Indicators of a consignment arrangement: <a href="ch02.html#s-2-3">Chapter 2 · 2.3</a>. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.46</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.46.1</span> <span class="cite cite-official">IFRS 15 · para B77</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 2.4-1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.100.20</span></li>
+  <li><strong>Reservation of title.</strong> Under a reservation-of-title clause the seller recognises the product as inventory — and the customer does not — until the customer has obtained control; passage of title is one of five indicators of control (<a href="ch02.html#s-2-ex-rot">Chapter 2 · reservation of title</a>). <ul>
+      <li>Sale and repurchase arrangements</li>
+      <li>Contracts to buy inventories at a future date</li>
+      <li>and instruments used to hedge risks related to the purchase of inventories</li>
+    </ul> are dealt with outside PwC’s inventories chapter — in chapter 11 (paras 232 to 240) and chapter 40 of its manual. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.46.2</span> <span class="cite cite-official">IFRS 15 · para 38</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.46</span></li>
 </ul>
 <div class="mini-flow" role="group" aria-label="Sale of inventories, IFRS 15 and paragraph 34">
   <p class="vis-title">Sale of inventories — IFRS 15 and paragraph 34</p>
@@ -144,24 +208,39 @@
     </div>
   </div>
 </div>
+  <p>When the customer has obtained control of the inventories, is the carrying amount recognised as an expense in the period in which the related revenue is recognised?</p>
 
 <h3 id="s-5-2">5.2 Write-downs to net realisable value and losses of inventories<a class="sec-top" href="#page-map">top</a></h3>
-<p><strong>The amount of any write-down of inventories to NRV and all losses of inventories are recognised as an expense in the period the write-down or loss occurs.</strong> <span class="cite cite-official">IAS 2 · para 34</span></p>
+<p><strong>The amount of any write-down of inventories to NRV and all losses of inventories are recognised as an expense in the period the write-down or loss occurs. The points below are the write-down to NRV, no future economic value, lost or damaged, measuring the write-down, and presentation and disclosure.</strong> <span class="cite cite-official">IAS 2 · para 34</span></p>
 <ul>
-  <li><strong>Write-down to NRV — an expense in the period the write-down occurs; the inventory is not derecognised.</strong> <q>The amount of any write-down of inventories to net realisable value and all losses of inventories shall be recognised as an expense in the period the write-down or loss occurs.</q> Although the inventory is not derecognised, a write-down to NRV results in the amount of the inventory that has been written down being recognised as an expense in the period in which the write-down occurs; when the NRV of an item is less than its cost, the excess is written off immediately in profit or loss. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.10</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span></li>
-  <li><strong>No future economic value — derecognised.</strong> An entity also derecognises inventory when it has no future economic value — for example, obsolete inventory. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
-  <li><strong>Losses of inventories — products lost or damaged.</strong> In the consignment arrangement in <a href="ch02.html#s-2-ex-consign">Illustration 2.3.1</a>, Manufacturer derecognises the products that are lost or damaged while in Retailer’s possession. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.46.1</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
-  <li><strong>Measuring the write-down — Chapter 4.</strong> Circumstances in which the cost of inventories may not be recoverable (<a href="ch04.html#s-4-3">4.3</a>); item by item or groups of similar or related items, and write-downs calculated by formula (<a href="ch04.html#s-4-4">4.4</a>); estimates of NRV (<a href="ch04.html#s-4-5">4.5</a>). In <a href="ch04.html#s-4-ex-d">Illustration 4.7.1</a>, Company P writes down its inventory from a carrying amount of 100 to its NRV of 95 on 31 December 2018; the write-down is recognised as an expense in that period. <span class="cite cite-official">IAS 2 · para 28</span> <span class="cite cite-official">IAS 2 · para 29</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.30</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
+  <li><strong>Write-down to NRV.</strong> <q>The amount of any write-down of inventories to net realisable value and all losses of inventories shall be recognised as an expense in the period the write-down or loss occurs.</q> Although the inventory is not derecognised, a write-down to NRV results in the amount of the inventory that has been written down being recognised as an expense in the period in which the write-down occurs; when the NRV of an item is less than its cost, the excess is written off immediately in profit or loss. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.10</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span></li>
+  <li><strong>No future economic value.</strong> An entity also derecognises inventory when it has no future economic value — for example, obsolete inventory. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
+  <li><strong>Lost or damaged.</strong> In the consignment arrangement in <a href="ch02.html#s-2-ex-consign">Illustration 2.3.1</a>, Manufacturer derecognises the products that are lost or damaged while in Retailer’s possession. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.46.1</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
+  <li><strong>Measuring the write-down.</strong> Circumstances in which the cost of inventories may not be recoverable (<a href="ch04.html#s-4-3">4.3</a>); item by item or groups of similar or related items, and write-downs calculated by formula (<a href="ch04.html#s-4-4">4.4</a>); estimates of NRV (<a href="ch04.html#s-4-5">4.5</a>). In <a href="ch04.html#s-4-ex-d">Illustration 4.7.1</a>, Company P writes down its inventory from a carrying amount of 100 to its NRV of 95 on 31 December 2018; the write-down is recognised as an expense in that period. <span class="cite cite-official">IAS 2 · para 28</span> <span class="cite cite-official">IAS 2 · para 29</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.30</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
   <li><strong>Presentation and disclosure.</strong> Write-downs to NRV are presented in cost of sales in KPMG’s view (<a href="#s-5-3">5.3</a>); the amount of any write-down of inventories recognised as an expense in the period is disclosed (<a href="ch06.html#s-6-4">Chapter 6 · 6.4</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.400.70</span> <span class="cite cite-official">IAS 2 · para 36(e)</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 4.2.5</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.400.50</span></li>
 </ul>
 
 <h3 id="s-5-3">5.3 Reversals of write-downs<a class="sec-top" href="#page-map">top</a></h3>
-<p><strong>The amount of any reversal of any write-down of inventories, arising from an increase in NRV, is recognised as a reduction in the amount of inventories recognised as an expense in the period in which the reversal occurs.</strong> <span class="cite cite-official">IAS 2 · para 34</span></p>
+<p><strong>The amount of any reversal of any write-down of inventories, arising from an increase in NRV, is recognised as a reduction in the amount of inventories recognised as an expense in the period in which the reversal occurs. The points below are the reduction of the expense, the original write-down, and cost of sales.</strong> <span class="cite cite-official">IAS 2 · para 34</span></p>
 <ul>
-  <li><strong>Reduction in the amount of inventories recognised as an expense in the period of the reversal.</strong> <q>The amount of any reversal of any write-down of inventories, arising from an increase in net realisable value, shall be recognised as a reduction in the amount of inventories recognised as an expense in the period in which the reversal occurs.</q> If and when a write-down is reversed, the reversal is recognised in the income statement in the period in which the reversal occurs and the amount of inventories is increased accordingly; the reversal is offset against the amount of inventories recognised as an expense in the period. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span></li>
-  <li><strong>Limited to the amount of the original write-down.</strong> A new assessment of NRV is made in each subsequent period; when the circumstances that caused the write-down no longer exist, or there is clear evidence of an increase in NRV because of changed economic circumstances, the write-down is reversed so that the new carrying amount is the lower of cost and the revised NRV — the reversal is limited to the amount of the original write-down (<a href="ch04.html#s-4-7">Chapter 4 · 4.7</a>). In <a href="ch04.html#s-4-ex-d">Illustration 4.7.1</a>, Company P’s inventory is still on hand in 2019 and its NRV increases to 103: P recognises a reversal of 5, so that the new carrying amount is the lower of its cost of 100 and its revised NRV of 103. <span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para IN15</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.3</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.40</span></li>
-  <li><strong>Write-downs and reversals presented in cost of sales.</strong> In KPMG’s view, write-downs of inventory to NRV as well as any reversals of such write-downs should be presented in cost of sales. PwC includes the reversal of a provision against inventories in cost of sales, the line against which the original provision had been charged, and presents the related tax effect in the tax line (<a href="#s-5-ex-rev">Illustration 5.3.1</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.400.70</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.42.1</span></li>
-  <li id="s-5-ex-kpmg-rev17"><strong>Disclosure of a reversal — a gain on sale of inventory previously written down is evidence of an increase in NRV.</strong> The amount of any reversal of a write-down is disclosed separately, together with the circumstances or events that led to the reversal. A gain on the sale of inventory previously written down is viewed as evidence of an increase in NRV, triggering this disclosure requirement in the period of sale. In KPMG’s Example 17, inventory with an original cost of 100 was written down to its NRV of 80 and is sold in the following period for 120; a reversal of the write-down of 20 is disclosed in the period in which the inventory is sold (<a href="ch06.html#s-6-ex-kpmg-rev17">Illustration 6.4.1</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.400.80</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · Example 17</span> <span class="cite cite-official">IAS 2 · para 36(f)</span> <span class="cite cite-official">IAS 2 · para 36(g)</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 4.2.5</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 5</span></li>
+  <li><strong>Reduction of the expense.</strong> <q>The amount of any reversal of any write-down of inventories, arising from an increase in net realisable value, shall be recognised as a reduction in the amount of inventories recognised as an expense in the period in which the reversal occurs.</q> If and when a write-down is reversed, the reversal is recognised in the income statement in the period in which the reversal occurs and the amount of inventories is increased accordingly; the reversal is offset against the amount of inventories recognised as an expense in the period. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span></li>
+  <li><strong>Original write-down.</strong> A new assessment of NRV is made in each subsequent period; when the circumstances that caused the write-down no longer exist, or there is clear evidence of an increase in NRV because of changed economic circumstances, the write-down is reversed so that the new carrying amount is the lower of cost and the revised NRV — the reversal is limited to the amount of the original write-down (<a href="ch04.html#s-4-7">Chapter 4 · 4.7</a>). In <a href="ch04.html#s-4-ex-d">Illustration 4.7.1</a>, Company P’s inventory is still on hand in 2019 and its NRV increases to 103: P recognises a reversal of 5, so that the new carrying amount is the lower of its cost of 100 and its revised NRV of 103. <span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para IN15</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.3</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.40</span></li>
+  <li><strong>Cost of sales.</strong>
+    <div class="table-wrap"><table class="vis-table">
+      <thead><tr><th>Firm</th><th>Firm’s view</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>KPMG</td>
+          <td>In KPMG’s view, write-downs of inventory to NRV as well as any reversals of such write-downs should be presented in cost of sales.</td>
+        </tr>
+        <tr>
+          <td>PwC</td>
+          <td>PwC includes the reversal of a provision against inventories in cost of sales, the line against which the original provision had been charged, and presents the related tax effect in the tax line (<a href="#s-5-ex-rev">Illustration 5.3.1</a>).</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.400.70</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.42.1</span></li>
+  <li id="s-5-ex-kpmg-rev17"><strong>Disclosure of a reversal.</strong> The amount of any reversal of a write-down is disclosed separately, together with the circumstances or events that led to the reversal. A gain on the sale of inventory previously written down is viewed as evidence of an increase in NRV, triggering this disclosure requirement in the period of sale. In KPMG’s Example 17, inventory with an original cost of 100 was written down to its NRV of 80 and is sold in the following period for 120; a reversal of the write-down of 20 is disclosed in the period in which the inventory is sold (<a href="ch06.html#s-6-ex-kpmg-rev17">Illustration 6.4.1</a>). <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.400.80</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · Example 17</span> <span class="cite cite-official">IAS 2 · para 36(f)</span> <span class="cite cite-official">IAS 2 · para 36(g)</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 4.2.5</span> <span class="cite cite-ey"><span class="cite-house">EY</span> IGAAP 2026 · Ch23 · section 5</span></li>
 </ul>
 
 <div class="worked-strip" id="s-5-ex-rev">
@@ -209,8 +288,8 @@
 
 <ul>
   <li><strong>Allocated to other asset accounts</strong> <q>Some inventories may be allocated to other asset accounts, for example, inventory used as a component of self-constructed property, plant or equipment. Inventories allocated to another asset in this way are recognised as an expense during the useful life of that asset.</q> The carrying amount of inventories is recognised as an expense when the inventories are sold unless they form part of the cost of another asset — for example, property, plant and equipment under construction. <span class="cite cite-official">IAS 2 · para 35</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span></li>
-  <li><strong>Derecognised when incorporated in the cost of construction of the other asset.</strong> Inventories could be allocated to other assets — for example, inventory that is used in constructing a property for the entity’s own use. In such cases the inventory is derecognised when incorporated in the cost of construction of the other asset and recognised as part of the cost of that other asset. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.43</span> <span class="cite cite-official">IAS 2 · para 35</span></li>
-  <li><strong>Used rather than sold — expense through depreciation.</strong> If inventories are used by the entity rather than being sold, their cost may be capitalised as part of the cost of another asset (for example, property, plant and equipment); their cost is then recognised as an expense through depreciation of that asset. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span></li>
+  <li><strong>Cost of construction.</strong> Inventories could be allocated to other assets — for example, inventory that is used in constructing a property for the entity’s own use. In such cases the inventory is derecognised when incorporated in the cost of construction of the other asset and recognised as part of the cost of that other asset. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.43</span> <span class="cite cite-official">IAS 2 · para 35</span></li>
+  <li><strong>Depreciation.</strong> If inventories are used by the entity rather than being sold, their cost may be capitalised as part of the cost of another asset (for example, property, plant and equipment); their cost is then recognised as an expense through depreciation of that asset. <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span></li>
 </ul>
 <div class="mini-flow" role="group" aria-label="Inventories allocated to another asset, paragraph 35">
   <p class="vis-title">Inventories allocated to another asset — paragraph 35</p>
@@ -232,6 +311,7 @@
     </div>
   </div>
 </div>
+  <p>When inventories are used by the entity rather than sold, are they derecognised when incorporated in the cost of another asset, and is their cost recognised as an expense during the useful life of that asset?</p>
 <aside class="callout see-also"><strong>See also — Chapter 1.</strong> Whether spare parts, stand-by equipment and servicing equipment are inventories or property, plant and equipment in the first place: <a href="ch01.html#s-1-ex-spare">Illustration 1.1.3</a>.</aside>
 </article>
 
