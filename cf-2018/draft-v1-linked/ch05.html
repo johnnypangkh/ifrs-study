@@ -12,6 +12,49 @@
 <title>Ch5 Recognition &amp; derecognition — Conceptual Framework 2018</title>
 <script src="assets/theme.js"></script>
 <script src="assets/iframe-fit.js"></script>
+<style>
+article.teaching .cost-sum {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 10px 8px;
+  margin: 10px 0 12px;
+}
+article.teaching .cost-sum-term {
+  flex: 1 1 160px;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--line, #3a4250);
+  border-radius: var(--card-radius, 8px);
+  background: var(--surface, #1c2128);
+  color: var(--ink, #e8eaed);
+  padding: 8px 10px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.35;
+}
+article.teaching .cost-sum-op {
+  flex: 0 0 auto;
+  align-self: center;
+  color: var(--formula, var(--accent, #7ba3c9));
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+article.teaching .cost-sum-result {
+  border-width: 2px;
+  border-color: var(--ink, #e8eaed);
+}
+@media (max-width: 720px) {
+  article.teaching .cost-sum {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  article.teaching .cost-sum-op {
+    align-self: center;
+  }
+}
+</style>
 </head>
 <body data-pack="cf2018" data-page="chapter" data-chapter="ch05">
 <!-- chrome:start -->
@@ -59,9 +102,26 @@
 
 <h3 id="s-5-1"><span class="sec-no">5.1</span><span class="sec-title">Recognition process — capture, link, no matching objective</span><a class="sec-top" href="#page-map">top</a></h3>
 <p><strong>Recognition captures a defined element in structured summaries.</strong> The amount at which an asset, a liability or equity is recognised in the statement of financial position is its <strong>carrying amount</strong>. The statement of financial position and the statement(s) of financial performance are structured summaries designed to make financial information comparable and understandable; amounts recognised in a statement are included in the totals and, if applicable, subtotals that link the items in it. <span class="cite cite-official">CF 2018 · para 5.1–5.2</span> · <span class="cite cite-ey"><span class="cite-house">EY</span> iGAAP 2026 Ch2 · section 8.1</span></p>
-<p><strong>Recognition links the elements and the statements (Diagram 5.1).</strong> At the beginning and end of the reporting period, total assets minus total liabilities equal total equity; recognised changes in equity during the period comprise income minus expenses, plus contributions from holders of equity claims minus distributions to them.
-<p class="formula-line" style="white-space:nowrap;overflow-x:auto">[Total assets] − [Total liabilities] = [Total equity]</p>
-<p class="formula-line" style="white-space:nowrap;overflow-x:auto">[Income] − [Expenses] + [Contributions from holders of equity claims] − [Distributions to holders of equity claims] = [Recognised changes in equity]</p> <span class="cite cite-official">CF 2018 · para 5.3</span> · <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 1.73</span> · <span class="cite cite-ey"><span class="cite-house">EY</span> iGAAP 2026 Ch2 · section 8.1</span></p>
+<p><strong>Recognition links the elements and the statements (Diagram 5.1).</strong> At the beginning and end of the reporting period, total assets minus total liabilities equal total equity; recognised changes in equity during the period comprise income minus expenses, plus contributions from holders of equity claims minus distributions to them.</p>
+<div class="cost-sum" role="group" aria-label="Total assets minus total liabilities equals total equity">
+  <div class="cost-sum-term">Total assets</div>
+  <span class="cost-sum-op">−</span>
+  <div class="cost-sum-term">Total liabilities</div>
+  <span class="cost-sum-op">=</span>
+  <div class="cost-sum-term cost-sum-result">Total equity</div>
+</div>
+<div class="cost-sum" role="group" aria-label="Income minus expenses plus contributions from holders of equity claims minus distributions to holders of equity claims equals recognised changes in equity">
+  <div class="cost-sum-term">Income</div>
+  <span class="cost-sum-op">−</span>
+  <div class="cost-sum-term">Expenses</div>
+  <span class="cost-sum-op">+</span>
+  <div class="cost-sum-term">Contributions from holders of equity claims</div>
+  <span class="cost-sum-op">−</span>
+  <div class="cost-sum-term">Distributions to holders of equity claims</div>
+  <span class="cost-sum-op">=</span>
+  <div class="cost-sum-term cost-sum-result">Recognised changes in equity</div>
+</div>
+<p><span class="cite cite-official">CF 2018 · para 5.3</span> · <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 1.73</span> · <span class="cite cite-ey"><span class="cite-house">EY</span> iGAAP 2026 Ch2 · section 8.1</span></p>
 <div class="peer-row" role="group" aria-label="Diagram 5.1 — how recognition links the elements">
   <div class="box">
     <p class="box-title">Opening position</p>
@@ -78,10 +138,20 @@
 </div>
 <p><strong>Recognising one item requires recognising, derecognising or changing another.</strong> The statements are linked because recognition of one item (or a change in its carrying amount) requires the recognition or derecognition of one or more other items, or changes in their carrying amounts. <span class="cite cite-official">CF 2018 · para 5.4</span> · <span class="cite cite-ey"><span class="cite-house">EY</span> iGAAP 2026 Ch2 · section 8.1</span></p>
 <div class="table-wrap"><table>
-<thead><tr><th>Recognition of …</th><th>occurs at the same time as …</th><th>Cite</th></tr></thead>
+<thead><tr><th>Recognition of …</th><th>occurs at the same time as …</th></tr></thead>
 <tbody>
-<tr><td>Income</td><td>the initial recognition of an asset, or an increase in its carrying amount; or the derecognition of a liability, or a decrease in its carrying amount</td><td><span class="cite cite-official">CF 2018 · para 5.4(a)</span></td></tr>
-<tr><td>Expenses</td><td>the initial recognition of a liability, or an increase in its carrying amount; or the derecognition of an asset, or a decrease in its carrying amount</td><td><span class="cite cite-official">CF 2018 · para 5.4(b)</span></td></tr>
+<tr><td>Income</td><td>
+<ul>
+<li>The initial recognition of an asset, or an increase in its carrying amount</li>
+<li>Or the derecognition of a liability, or a decrease in its carrying amount</li>
+</ul>
+<span class="cite cite-official">CF 2018 · para 5.4(a)</span></td></tr>
+<tr><td>Expenses</td><td>
+<ul>
+<li>The initial recognition of a liability, or an increase in its carrying amount</li>
+<li>Or the derecognition of an asset, or a decrease in its carrying amount</li>
+</ul>
+<span class="cite cite-official">CF 2018 · para 5.4(b)</span></td></tr>
 </tbody></table></div>
 <p><strong>Matching follows from asset and liability changes — it is not an objective.</strong> Initial recognition of assets or liabilities may bring simultaneous recognition of income and related expenses — a sale of goods for cash recognises income (the cash, an asset recognised) and an expense (the goods sold, an asset derecognised). That pairing is sometimes called matching of costs with income; the Framework produces it when it arises from recognising changes in assets and liabilities, but matching is not an objective, and items that do not meet the definition of an asset, a liability or equity cannot be recognised in the statement of financial position. The asset-liability approach has replaced the matching concept as the driver of recognition, while information about income and expenses remains as important as information about assets and liabilities. <span class="cite cite-official">CF 2018 · para 5.5</span>, <span class="cite cite-official">CF 2018 · para 4.71</span> · <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 1.80</span> · <span class="cite cite-ey"><span class="cite-house">EY</span> iGAAP 2026 Ch2 · section 7.5</span>, <span class="cite cite-ey"><span class="cite-house">EY</span> iGAAP 2026 Ch2 · section 8.1</span></p>
 <aside class="point-chip warn"><strong>Pitfall:</strong> No deferred “matching” asset or liability when no element definition is met. <span class="cite cite-official">CF 2018 · para 5.5</span></aside>
@@ -163,22 +233,22 @@
 <p><strong>The 2010 criteria were probable flow plus reliable measurement — and both caused problems.</strong> The 2010 Framework recognised an item meeting an element definition if it was probable that any future economic benefit would flow to or from the entity, and the item had a cost or value that could be measured with reliability. Standards used the probability criterion inconsistently (“probable”, “more likely than not”, “virtually certain”, “reasonably possible”). Applying it could lose relevant information or mislead — it could prevent recognising some derivatives, and if an entity received cash for a liability to pay a fixed amount on an unlikely future event and did not recognise that liability, it would recognise an immediate gain when no economic gain had occurred; some Standards, such as IFRS 9, therefore applied no probability criterion. “Reliability” was no longer a defined qualitative characteristic, so a reliable-measurement criterion could be read as prohibiting recognition of any item with high measurement uncertainty, even when recognition would be useful. <span class="cite cite-official">CF 2018 · para BC5.1–BC5.2</span></p>
 <p><strong>Same objective, different means.</strong> The 2010 Framework set practical but subjective filters referring to probability and reliability; the 2018 Framework refers directly to the qualitative characteristics and then explains when recognition might lack them — including some, but not necessarily all, cases where the 2010 filters would have said a flow is not probable or reliable measurement is not possible. The Board did not aim to increase or decrease the range of recognised assets and liabilities. <span class="cite cite-official">CF 2018 · para BC5.3–BC5.4</span>, <span class="cite cite-official">CF 2018 · para BC5.9–BC5.10</span> · <span class="cite cite-dtt"><span class="cite-house">DTT</span> A2 2022 · 8.1</span></p>
 <div class="table-wrap"><table>
-<thead><tr><th>Older teaching memory</th><th>2018 Framework</th><th>Cite</th></tr></thead>
+<thead><tr><th>Older teaching memory</th><th>2018 Framework</th></tr></thead>
 <tbody>
-<tr><td>Probability threshold as recognition test</td><td><strong>Removed</strong> — low probability is a relevance <em>indicator</em>, not a threshold</td><td><span class="cite cite-official">CF 2018 · para BC5.19</span>, <span class="cite cite-official">CF 2018 · para 5.15–5.17</span></td></tr>
-<tr><td>“Reliable measurement” as an absolute bar</td><td>Absorbed into the faithful representation discussion — high uncertainty does not automatically prevent recognition</td><td><span class="cite cite-official">CF 2018 · para BC5.2(c)</span>, <span class="cite cite-official">CF 2018 · para BC5.21</span>, <span class="cite cite-official">CF 2018 · para 5.19–5.22</span></td></tr>
-<tr><td>2010 practical filters (probable + reliable)</td><td>Same usefulness goal; 2018 points directly to the qualitative characteristics plus supporting guidance</td><td><span class="cite cite-official">CF 2018 · para BC5.3–BC5.4</span>, <span class="cite cite-official">CF 2018 · para 5.6–5.7</span></td></tr>
-<tr><td>“Expected” flows inside some definitions</td><td>Low probability can still meet the definition; recognition may still fail relevance</td><td><span class="cite cite-official">CF 2018 · para 4.14–4.15</span>, <span class="cite cite-official">CF 2018 · para 4.37–4.38</span>, <span class="cite cite-official">CF 2018 · para 5.12–5.17</span></td></tr>
+<tr><td>Probability threshold as recognition test</td><td><strong>Removed</strong> — low probability is a relevance <em>indicator</em>, not a threshold <span class="cite cite-official">CF 2018 · para BC5.19</span>, <span class="cite cite-official">CF 2018 · para 5.15–5.17</span></td></tr>
+<tr><td>“Reliable measurement” as an absolute bar</td><td>Absorbed into the faithful representation discussion — high uncertainty does not automatically prevent recognition <span class="cite cite-official">CF 2018 · para BC5.2(c)</span>, <span class="cite cite-official">CF 2018 · para BC5.21</span>, <span class="cite cite-official">CF 2018 · para 5.19–5.22</span></td></tr>
+<tr><td>2010 practical filters (probable + reliable)</td><td>Same usefulness goal; 2018 points directly to the qualitative characteristics plus supporting guidance <span class="cite cite-official">CF 2018 · para BC5.3–BC5.4</span>, <span class="cite cite-official">CF 2018 · para 5.6–5.7</span></td></tr>
+<tr><td>“Expected” flows inside some definitions</td><td>Low probability can still meet the definition; recognition may still fail relevance <span class="cite cite-official">CF 2018 · para 4.14–4.15</span>, <span class="cite cite-official">CF 2018 · para 4.37–4.38</span>, <span class="cite cite-official">CF 2018 · para 5.12–5.17</span></td></tr>
 </tbody></table></div>
 <p><strong>Concerns raised in consultation, and the Board’s responses.</strong> Many respondents to the 2013 Discussion Paper and the 2015 Exposure Draft argued that recognition should continue to refer to probability; the Board answered each concern. <span class="cite cite-official">CF 2018 · para BC5.15–BC5.22</span></p>
 <div class="table-wrap"><table>
-<thead><tr><th>Concern raised</th><th>Board’s response</th><th>Cite</th></tr></thead>
+<thead><tr><th>Concern raised</th><th>Board’s response</th></tr></thead>
 <tbody>
-<tr><td>The probability criterion was a practical way to apply the qualitative characteristics; the low-probability guidance was unclear and would lead to doubt and inconsistency. Some suggested a probability filter for some items (patents, research and development) but not others (derivative financial assets, cash acquisitions), with exceptions in Standards for particular financial instruments.</td><td>A probability threshold could be a practical filter, but it would leave unrecognised some items whose recognition could provide relevant information, and a threshold applicable across all Standards and recognition events would be hard to set.</td><td><span class="cite cite-official">CF 2018 · para BC5.15(a)</span>, <span class="cite cite-official">CF 2018 · para BC5.16–BC5.17</span></td></tr>
-<tr><td>Removing probability together with “expected” from the definitions could require more low-probability assets and liabilities to be recognised, and extensive searches for rights and obligations.</td><td>No objective to increase or decrease the range recognised; low probability is discussed as an indicator that recognition may not provide relevant information in some cases.</td><td><span class="cite cite-official">CF 2018 · para BC5.15(b)</span>, <span class="cite cite-official">CF 2018 · para BC5.10</span>, <span class="cite cite-official">CF 2018 · para BC5.19</span></td></tr>
-<tr><td>Low-probability items might have to be measured at expected value — difficult, burdensome and possibly giving an illusion of precision; information about the range of outcomes can be more useful.</td><td>Whatever measurement basis is used would be likely to reflect the low probability — a required basis is unlikely to reflect only the maximum inflow or outflow.</td><td><span class="cite cite-official">CF 2018 · para BC5.15(c)</span>, <span class="cite cite-official">CF 2018 · para BC5.18</span></td></tr>
-<tr><td>“Low probability” is too subjective to be interpreted consistently.</td><td>The aim is to indicate that in some low-probability situations information may not be relevant — not to set a threshold above which information is always relevant and below which it never is.</td><td><span class="cite cite-official">CF 2018 · para BC5.20</span></td></tr>
-<tr><td>A higher level of measurement uncertainty should be tolerable for liabilities and expenses than for assets and income (asymmetric prudence).</td><td>The level beyond which a measure stops being a faithful representation depends on facts and circumstances, so it can be set only when developing Standards.</td><td><span class="cite cite-official">CF 2018 · para BC5.22</span>, <span class="cite cite-official">CF 2018 · para 5.9</span></td></tr>
+<tr><td>The probability criterion was a practical way to apply the qualitative characteristics; the low-probability guidance was unclear and would lead to doubt and inconsistency. Some suggested a probability filter for some items (patents, research and development) but not others (derivative financial assets, cash acquisitions), with exceptions in Standards for particular financial instruments.</td><td>A probability threshold could be a practical filter, but it would leave unrecognised some items whose recognition could provide relevant information, and a threshold applicable across all Standards and recognition events would be hard to set. <span class="cite cite-official">CF 2018 · para BC5.15(a)</span>, <span class="cite cite-official">CF 2018 · para BC5.16–BC5.17</span></td></tr>
+<tr><td>Removing probability together with “expected” from the definitions could require more low-probability assets and liabilities to be recognised, and extensive searches for rights and obligations.</td><td>No objective to increase or decrease the range recognised; low probability is discussed as an indicator that recognition may not provide relevant information in some cases. <span class="cite cite-official">CF 2018 · para BC5.15(b)</span>, <span class="cite cite-official">CF 2018 · para BC5.10</span>, <span class="cite cite-official">CF 2018 · para BC5.19</span></td></tr>
+<tr><td>Low-probability items might have to be measured at expected value — difficult, burdensome and possibly giving an illusion of precision; information about the range of outcomes can be more useful.</td><td>Whatever measurement basis is used would be likely to reflect the low probability — a required basis is unlikely to reflect only the maximum inflow or outflow. <span class="cite cite-official">CF 2018 · para BC5.15(c)</span>, <span class="cite cite-official">CF 2018 · para BC5.18</span></td></tr>
+<tr><td>“Low probability” is too subjective to be interpreted consistently.</td><td>The aim is to indicate that in some low-probability situations information may not be relevant — not to set a threshold above which information is always relevant and below which it never is. <span class="cite cite-official">CF 2018 · para BC5.20</span></td></tr>
+<tr><td>A higher level of measurement uncertainty should be tolerable for liabilities and expenses than for assets and income (asymmetric prudence).</td><td>The level beyond which a measure stops being a faithful representation depends on facts and circumstances, so it can be set only when developing Standards. <span class="cite cite-official">CF 2018 · para BC5.22</span>, <span class="cite cite-official">CF 2018 · para 5.9</span></td></tr>
 </tbody></table></div>
 <div class="contrast-pair" id="s-5-3-ex" role="group" aria-label="Contrast: 2018 relevance and faithful representation vs older probable and reliable memory">
   <div class="box">
@@ -275,7 +345,7 @@
   </div></div></div>
 <aside class="callout see-also"><strong>See also:</strong> Contract modifications → <span class="see-strip">→ IFRS 9 / IFRS 15</span> (and related Standards such as IFRS 16) — the Framework’s discussion does not override their specific requirements. <span class="cite cite-official">CF 2018 · para SP1.2</span> · <span class="cite cite-dtt"><span class="cite-house">DTT</span> A2 2022 · 8.2</span></aside>
 </article>
-<section class="key-terms"><h2 id="key-terms">Key terms</h2><ul><li><strong>recognition</strong> / carrying amount</li><li><strong>relevance</strong> test (recognition)</li><li><strong>faithful representation</strong> test (recognition)</li><li>cost constraint (recognition)</li><li>existence / outcome / measurement uncertainty</li><li>low probability (relevance indicator)</li><li>recognition inconsistency (accounting mismatch)</li><li><strong>derecognition</strong></li><li>twin aims (retained items vs change)</li><li>transferred component / retained component</li><li>control approach / risks-and-rewards approach</li><li>contract modification</li></ul></section>
+<section class="key-terms"><h2 id="key-terms">Key terms</h2><ul><li><strong>Recognition</strong> / carrying amount</li><li><strong>Relevance</strong> test (recognition)</li><li><strong>Faithful representation</strong> test (recognition)</li><li>Cost constraint (recognition)</li><li>Existence / outcome / measurement uncertainty</li><li>Low probability (relevance indicator)</li><li>Recognition inconsistency (accounting mismatch)</li><li><strong>Derecognition</strong></li><li>Twin aims (retained items vs change)</li><li>Transferred component / retained component</li><li>Control approach / risks-and-rewards approach</li><li>Contract modification</li></ul></section>
 
 <aside class="callout pack-disclaimer" id="pack-disclaimer">
   <strong>Disclaimer — personal study pack.</strong>
