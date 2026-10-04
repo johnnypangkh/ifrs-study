@@ -12,56 +12,51 @@
 <link rel="stylesheet" href="assets/draft.css?v=ias2-chrome-wire-20261002">
 <link rel="stylesheet" href="assets/body-sum.css?v=ias2-body-sum-20261003">
 <style>
-/* Sequence steps already used in this chapter. Pack stylesheets are not in this checkout. */
-article.teaching .mini-flow { margin: 12px 0 8px; }
-article.teaching .vis-title { font-weight: 700; margin: 0 0 8px; }
-article.teaching .mini-flow-steps { display: flex; align-items: stretch; gap: 8px; flex-wrap: wrap; }
-article.teaching .mini-step {
-  flex: 1 1 140px;
-  border: 1px solid var(--line, #3a4553);
-  border-radius: 8px;
-  padding: 8px 10px;
-  background: var(--surface, #1c2128);
-  color: var(--ink, #e8eaed);
-}
-article.teaching .mini-step-head { display: block; font-weight: 700; margin-bottom: 4px; }
-article.teaching .mini-arrow,
-article.teaching .mini-op { align-self: center; color: var(--accent, #6ba3d9); font-weight: 700; flex: 0 0 auto; }
-article.teaching .mini-arrow::before { content: "→"; }
-article.teaching .mini-out { display: block; margin-top: 6px; }
-article.teaching .mini-join {
-  align-self: center;
-  width: 18px;
-  height: 2px;
-  background: var(--accent, #6ba3d9);
-  flex: 0 0 auto;
-}
-article.teaching .mini-branch {
-  flex: 1.6 1 220px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 8px 6px;
-  align-items: stretch;
-}
-article.teaching .mini-arm {
+/* Mini-flow kit lives in assets/draft.css. Do not re-draw yes/no arms or
+   joins here — chapter + draft both drawing doubles the connectors (status 13).
+   Stretch sequence arrows so the shaft meets both boxes (para 35 stubs). */
+article.teaching .mini-arrow {
+  flex: 0 0 28px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  color: var(--accent, #6ba3d9);
-  font-weight: 700;
+  align-self: center;
+  justify-content: flex-start;
+  min-width: 28px;
+  color: inherit;
+  font-weight: inherit;
 }
-article.teaching .mini-bar {
-  display: block;
-  width: 14px;
-  height: 2px;
-  background: currentColor;
+article.teaching .mini-arrow::before {
+  content: "";
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  height: 1px;
+  background: var(--muted);
+}
+article.teaching .mini-arrow::after {
+  content: "";
+  flex: 0 0 auto;
+  border-left: 6px solid var(--muted);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
 }
 @media (max-width: 720px) {
-  article.teaching .mini-flow-steps { flex-direction: column; }
-  article.teaching .mini-arrow,
-  article.teaching .mini-op { text-align: center; }
-  article.teaching .mini-arrow::before { content: "↓"; }
-  article.teaching .mini-join { width: 2px; height: 14px; }
+  article.teaching .mini-arrow {
+    flex: 0 0 22px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  article.teaching .mini-arrow::before {
+    width: 1px;
+    height: auto;
+    flex: 1 1 auto;
+  }
+  article.teaching .mini-arrow::after {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid var(--muted);
+    border-bottom: 0;
+  }
 }
 </style>
 <script src="assets/theme.js?v=ias2-fit-20261001"></script>
@@ -165,7 +160,7 @@ article.teaching .mini-bar {
 <p><span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-official">IAS 2 · para 35</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.43</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · FAQ 25.46.1</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span></p>
 
 <h3 id="s-5-1">5.1 Inventories sold<a class="sec-top" href="#page-map">top</a></h3>
-<p><strong>Control transferred.</strong> Inventory is derecognised only when control of the asset is transferred to the customer. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.45</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span></p>
+<p><strong>Inventory is derecognised only when control of the asset is transferred to the customer. The points below are related revenue, the performance obligation, control of an asset, timing, consignment sales, and reservation of title.</strong> <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.45</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.90.30</span></p>
 <ul>
   <li><strong>Related revenue.</strong> <q>When inventories are sold, the carrying amount of those inventories shall be recognised as an expense in the period in which the related revenue is recognised.</q> Inventories are derecognised when they are sold; at that point they are recognised as an expense in the income statement, in the same period in which the revenue from their sale is recognised. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span></li>
   <li><strong>Performance obligation.</strong> Revenue is recognised only when an entity satisfies a performance obligation by transferring a promised good or service (that is, an asset) to a customer; an asset is transferred when (or as) the customer obtains control of that asset. Therefore inventory is derecognised only when control of the asset is transferred to the customer. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.45</span> <span class="cite cite-official">IFRS 15 · para 31</span></li>
@@ -216,7 +211,7 @@ article.teaching .mini-bar {
   <p>When the customer has obtained control of the inventories, is the carrying amount recognised as an expense in the period in which the related revenue is recognised?</p>
 
 <h3 id="s-5-2">5.2 Write-downs to net realisable value and losses of inventories<a class="sec-top" href="#page-map">top</a></h3>
-<p><strong>The amount of any write-down of inventories to NRV and all losses of inventories are recognised as an expense in the period the write-down or loss occurs.</strong> <span class="cite cite-official">IAS 2 · para 34</span></p>
+<p><strong>The amount of any write-down of inventories to NRV and all losses of inventories are recognised as an expense in the period the write-down or loss occurs. The points below are the write-down to NRV, no future economic value, lost or damaged, measuring the write-down, and presentation and disclosure.</strong> <span class="cite cite-official">IAS 2 · para 34</span></p>
 <ul>
   <li><strong>Write-down to NRV.</strong> <q>The amount of any write-down of inventories to net realisable value and all losses of inventories shall be recognised as an expense in the period the write-down or loss occurs.</q> Although the inventory is not derecognised, a write-down to NRV results in the amount of the inventory that has been written down being recognised as an expense in the period in which the write-down occurs; when the NRV of an item is less than its cost, the excess is written off immediately in profit or loss. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.10</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.2</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.4</span></li>
   <li><strong>No future economic value.</strong> An entity also derecognises inventory when it has no future economic value — for example, obsolete inventory. <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-official">IAS 2 · para 34</span></li>
@@ -226,7 +221,7 @@ article.teaching .mini-bar {
 </ul>
 
 <h3 id="s-5-3">5.3 Reversals of write-downs<a class="sec-top" href="#page-map">top</a></h3>
-<p><strong>The amount of any reversal of any write-down of inventories, arising from an increase in NRV, is recognised as a reduction in the amount of inventories recognised as an expense in the period in which the reversal occurs.</strong> <span class="cite cite-official">IAS 2 · para 34</span></p>
+<p><strong>The amount of any reversal of any write-down of inventories, arising from an increase in NRV, is recognised as a reduction in the amount of inventories recognised as an expense in the period in which the reversal occurs. The points below are the reduction of the expense, the original write-down, and cost of sales.</strong> <span class="cite cite-official">IAS 2 · para 34</span></p>
 <ul>
   <li><strong>Reduction of the expense.</strong> <q>The amount of any reversal of any write-down of inventories, arising from an increase in net realisable value, shall be recognised as a reduction in the amount of inventories recognised as an expense in the period in which the reversal occurs.</q> If and when a write-down is reversed, the reversal is recognised in the income statement in the period in which the reversal occurs and the amount of inventories is increased accordingly; the reversal is offset against the amount of inventories recognised as an expense in the period. <span class="cite cite-official">IAS 2 · para 34</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 · 25.42</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span></li>
   <li><strong>Original write-down.</strong> A new assessment of NRV is made in each subsequent period; when the circumstances that caused the write-down no longer exist, or there is clear evidence of an increase in NRV because of changed economic circumstances, the write-down is reversed so that the new carrying amount is the lower of cost and the revised NRV — the reversal is limited to the amount of the original write-down (<a href="ch04.html#s-4-7">Chapter 4 · 4.7</a>). In <a href="ch04.html#s-4-ex-d">Illustration 4.7.1</a>, Company P’s inventory is still on hand in 2019 and its NRV increases to 103: P recognises a reversal of 5, so that the new carrying amount is the lower of its cost of 100 and its revised NRV of 103. <span class="cite cite-official">IAS 2 · para 33</span> <span class="cite cite-official">IAS 2 · para IN15</span> <span class="cite cite-dtt"><span class="cite-house">DTT</span> A11 2022 · 3.3.3</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.20</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.8.335.40</span></li>
