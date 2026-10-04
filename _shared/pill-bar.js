@@ -1,20 +1,10 @@
-/* IFRS 18 chapter pill bar.
-   Single source for every active page in draft-v1-linked.
-   Pages mount an empty nav[data-ifrs18-pill-bar]; this file fills it. */
+/* Shared chapter pill bar.
+   Each pack page loads its own pill list first, which sets window.PACK_PILLS.
+   Pages mount an empty nav[data-ias2-pill-bar], nav[data-ifrs18-pill-bar],
+   or nav[data-cf-pill-bar]; this file fills it. */
 (function () {
-  var PILLS = [
-    { href: "index.html", label: "Map" },
-    { href: "abbreviations.html", label: "Abbreviations" },
-    { href: "ch01.html", label: "1 What’s new" },
-    { href: "ch02.html", label: "2 PFS & aggregation" },
-    { href: "ch03.html", label: "3 P&L categories" },
-    { href: "ch04.html", label: "4 Totals & subtotals" },
-    { href: "ch05.html", label: "5 Operating expenses" },
-    { href: "ch06.html", label: "6 MPMs" },
-    { href: "ch07.html", label: "7 Other FS impacts" },
-    { href: "ch08.html", label: "8 Transition" },
-    { href: "references.html", label: "References" }
-  ];
+  var PILLS = window.PACK_PILLS;
+  if (!PILLS || !PILLS.length) return;
 
   function currentFile() {
     var path = location.pathname || "";
@@ -24,8 +14,16 @@
     return file;
   }
 
+  function readyName(nav) {
+    if (nav.hasAttribute("data-ias2-pill-bar")) return "data-ias2-pill-bar-ready";
+    if (nav.hasAttribute("data-ifrs18-pill-bar")) return "data-ifrs18-pill-bar-ready";
+    if (nav.hasAttribute("data-cf-pill-bar")) return "data-cf-pill-bar-ready";
+    return "data-pill-bar-ready";
+  }
+
   function mount(nav) {
-    if (!nav || nav.getAttribute("data-ifrs18-pill-bar-ready") === "true") return;
+    var ready = readyName(nav);
+    if (!nav || nav.getAttribute(ready) === "true") return;
     var file = currentFile();
     var row = document.createElement("div");
     row.className = "tag-row";
@@ -41,11 +39,13 @@
     }
     while (nav.firstChild) nav.removeChild(nav.firstChild);
     nav.appendChild(row);
-    nav.setAttribute("data-ifrs18-pill-bar-ready", "true");
+    nav.setAttribute(ready, "true");
   }
 
   function boot() {
-    var nodes = document.querySelectorAll("nav[data-ifrs18-pill-bar]");
+    var nodes = document.querySelectorAll(
+      "nav[data-ias2-pill-bar], nav[data-ifrs18-pill-bar], nav[data-cf-pill-bar]"
+    );
     if (!nodes.length) return false;
     for (var i = 0; i < nodes.length; i++) mount(nodes[i]);
     return true;
