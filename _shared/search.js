@@ -158,37 +158,39 @@
     return [sentences[index]];
   }
 
+  var CHAPTER_TREE = 'draft-v1-linked|preview';
+
   function pageKey() {
     var path = String(location.pathname || '').replace(/\\/g, '/');
-    var match = path.match(/([^/]+)\/draft-v1-linked\/(ch\d+)\.html$/i);
+    var match = path.match(new RegExp('([^/]+)/(' + CHAPTER_TREE + ')/(ch\\d+)\\.html$', 'i'));
     if (!match) return '';
-    return match[1] + '/' + match[2].toLowerCase();
+    return match[1] + '/' + match[3].toLowerCase();
   }
 
   function hitKey(href) {
     var path = String(href || '').split('#')[0].replace(/\\/g, '/');
-    var match = path.match(/([^/]+)\/draft-v1-linked\/(ch\d+)\.html$/i);
+    var match = path.match(new RegExp('([^/]+)/(' + CHAPTER_TREE + ')/(ch\\d+)\\.html$', 'i'));
     if (!match) return '';
-    return match[1] + '/' + match[2].toLowerCase();
+    return match[1] + '/' + match[3].toLowerCase();
   }
 
   function hrefForHere(indexHref) {
     var bits = String(indexHref).split('#');
     var path = bits[0];
     var hash = bits[1] ? '#' + bits[1] : '';
-    var target = path.match(/([^/]+)\/draft-v1-linked\/(ch\d+\.html)$/i);
+    var target = path.match(new RegExp('([^/]+)/(' + CHAPTER_TREE + ')/(ch\\d+\\.html)$', 'i'));
     if (!target) return indexHref;
     var loc = String(location.pathname || '').replace(/\\/g, '/');
-    var here = loc.match(/([^/]+)\/draft-v1-linked\/ch\d+\.html$/i);
+    var here = loc.match(new RegExp('([^/]+)/(' + CHAPTER_TREE + ')/ch\\d+\\.html$', 'i'));
     if (here) {
-      if (here[1].toLowerCase() === target[1].toLowerCase()) return target[2] + hash;
-      return '../../' + target[1] + '/draft-v1-linked/' + target[2] + hash;
+      if (here[1].toLowerCase() === target[1].toLowerCase()) return target[3] + hash;
+      return '../../' + target[1] + '/' + here[2] + '/' + target[3] + hash;
     }
     // homepage/*.html is one directory under the site root, on GitHub Pages
     // (/ifrs-study/homepage/) and on OneDrive (.../ifrs-website-refs/refs/homepage/).
     // A stored ../../ link leaves that root and 404s at johnnypangkh.github.io.
     if (/\/homepage\/[^/]+$/i.test(loc)) {
-      return '../' + target[1] + '/draft-v1-linked/' + target[2] + hash;
+      return '../' + target[1] + '/draft-v1-linked/' + target[3] + hash;
     }
     return indexHref;
   }
