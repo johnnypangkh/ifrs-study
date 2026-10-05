@@ -154,14 +154,13 @@
   color: var(--muted);
 }
 
-/* Equal 1fr rows keep the elbow ends on each destination's mid-edge.
-   Column 1 must fit "circumstances" inside the rank padding at 1280
-   (a 68px min let that word paint through the box). */
+/* One fork at every width. Outcome column, top to bottom: P&L, up-arrow,
+   reclassification, up-arrow, OCI. Connector rows reuse the stem size. */
 .pd-route {
   display: grid;
-  grid-template-columns: minmax(8.25rem, 0.52fr) clamp(1rem, 2.8%, 1.25rem) minmax(0, 1.05fr) clamp(1.375rem, 3.8%, 1.6rem) minmax(7.5rem, 0.7fr);
-  grid-template-rows: 1fr 1fr;
-  row-gap: var(--pd-row);
+  grid-template-columns: minmax(0, 1fr) clamp(0.9rem, 5.7%, 1.4rem) minmax(0, 1.3fr);
+  grid-template-rows: 1fr clamp(1rem, 2.8%, 1.25rem) auto clamp(1rem, 2.8%, 1.25rem) 1fr;
+  row-gap: 0;
   column-gap: 0;
 }
 
@@ -186,9 +185,9 @@
   word-break: normal;
 }
 .pd-rank--primary { grid-area: 1 / 1; }
-.pd-rank--excep { grid-area: 2 / 1; }
+.pd-rank--excep { grid-area: 5 / 1; }
 .pd-dest--pl { grid-area: 1 / 3; }
-.pd-dest--oci { grid-area: 2 / 3; }
+.pd-dest--oci { grid-area: 5 / 3; }
 
 .pd-rank--primary,
 .pd-dest--pl {
@@ -212,7 +211,7 @@
   color: var(--elem-peer);
 }
 .pd-stem--primary { grid-area: 1 / 2; }
-.pd-stem--excep { grid-area: 2 / 2; color: var(--dash); }
+.pd-stem--excep { grid-area: 5 / 2; color: var(--dash); }
 .pd-stem::before {
   content: "";
   position: absolute;
@@ -232,37 +231,46 @@
   border-bottom: 5px solid transparent;
 }
 
-/* Recycle elbow: exits OCI right edge, rises in the gutter, tip enters P&L right edge */
+/* Two elbows in the outcome column: up into P&L, and up into reclassification.
+   Subgrid keeps each stroke on its own row, centred by 1fr / auto / 1fr. */
 .pd-gutter {
-  grid-column: 4;
-  grid-row: 1 / 3;
+  grid-column: 3;
+  grid-row: 2 / 5;
   position: relative;
   color: var(--muted);
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  pointer-events: none;
 }
 .pd-elbow {
-  position: absolute;
-  left: 0;
-  right: 9px;
-  top: calc((100% - var(--pd-row)) / 4 - 1px);
-  bottom: calc((100% - var(--pd-row)) / 4 - 1px);
+  grid-column: 2;
+  position: relative;
+  align-self: stretch;
   border: 2px solid currentColor;
   border-left: 0;
-  border-radius: 0 6px 6px 0;
+  border-radius: 0;
+  border-block-width: 0;
 }
+.pd-gutter > .pd-elbow:nth-child(1) { grid-row: 1; }
+.pd-gutter > .pd-elbow:nth-child(2) { grid-row: 3; }
 .pd-elbow::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: -6px;
+  left: 50%;
+  top: 0;
+  bottom: auto;
+  transform: translateX(-50%) rotate(90deg);
   border-right: 9px solid currentColor;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
 }
 
 .pd-reclass {
-  grid-column: 5;
-  grid-row: 1 / 3;
-  align-self: center;
+  grid-column: 3;
+  grid-row: 3;
+  align-self: stretch;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -330,18 +338,6 @@
   color: var(--muted);
 }
 .pd-see .see-bit > span { font-weight: 400; color: var(--dash); }
-
-@container (max-width: 340px) {
-  .pd-route {
-    grid-template-columns: minmax(8.25rem, 0.9fr) clamp(0.9rem, 5.7%, 1.4rem) minmax(0, 1.3fr) clamp(1rem, 6.3%, 1.5rem);
-    grid-template-rows: 1fr 1fr auto;
-  }
-  .pd-reclass {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    align-self: start;
-  }
-}
 
 @media (max-width: 760px) {
   .pd-board { grid-template-columns: minmax(0, 1fr); }
