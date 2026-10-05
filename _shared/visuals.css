@@ -527,22 +527,55 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
 .branch-no { border-color: var(--outcome-no); }
 .branch-yes { border-color: var(--outcome-yes); }
 
-/* Dashed see-also strip */
+/* Dashed see-also strip. Each bit is one item. The leading · is ::before,
+   so it stays with that item and the last item has no trailing ·. */
 .see-strip {
+  --see-pad-block: 6px;
+  --see-pad-inline: 12px;
+  --see-border: 1px;
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px dashed var(--see-also);
-  border-radius: 999px;
+  gap: 2px 0.55em;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: var(--see-pad-block) var(--see-pad-inline);
+  border: var(--see-border) dashed var(--see-also);
+  /* Half of one line, from the same padding and border that size the strip.
+     A single row is a pill. A wrapped strip keeps that corner, so the curve
+     does not follow the strip height and does not cross the text. */
+  border-radius: calc((var(--see-pad-block) * 2 + var(--see-border) * 2 + 1.4em) / 2);
   background: var(--see-also-soft);
   color: var(--see-also);
   font-size: 12px;
   font-weight: 600;
+  line-height: 1.4;
   margin: 6px 0;
 }
-.see-strip .arrow { font-weight: 700; }
+.see-bit {
+  display: inline-flex;
+  align-items: baseline;
+  flex: 0 1 auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.see-bit::before {
+  content: "·\00a0";
+  flex: 0 0 auto;
+}
 .see-strip-note { font-weight: 400; opacity: .85; }
+/* Capital strip: one leading · on each tip, none after the last. */
+.cap-see-bits > span {
+  display: inline-flex;
+  align-items: baseline;
+  max-width: 100%;
+  min-width: 0;
+}
+.cap-see-bits > span::before {
+  content: "·\00a0";
+  flex: 0 0 auto;
+}
 .see-row {
   display: flex;
   flex-wrap: wrap;
@@ -2542,6 +2575,10 @@ a.fb-num:focus-visible {
    A run of pills (visit steps, a chip list, a range) stays on one row.
    A citation later in the same line stays in the sentence. */
 @media (max-width: 560px) {
+  .see-strip {
+    min-width: 0;
+    border-radius: var(--card-radius, 8px);
+  }
   :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) {
     display: block;
   }

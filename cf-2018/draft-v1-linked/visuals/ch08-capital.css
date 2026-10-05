@@ -296,13 +296,7 @@
   row-gap: 2px;
 }
 
-/* Wider than the in-text "·" so the three bits read as separate tips. */
-.cap-see-bits > span:not(:last-child)::after {
-  content: "·";
-  margin-inline: 0.75em;
-  color: var(--dash);
-  font-weight: 400;
-}
+/* Leading · comes from visuals.css (.cap-see-bits > span::before). */
 
 .cap-see strong {
   color: var(--ink);

@@ -329,7 +329,7 @@
   line-height: 1.35;
   color: var(--muted);
 }
-.pd-see span { font-weight: 400; color: var(--dash); }
+.pd-see .see-bit > span { font-weight: 400; color: var(--dash); }
 
 @container (max-width: 340px) {
   .pd-route {
