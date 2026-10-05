@@ -291,8 +291,7 @@ def other_script_srcs(html):
 def pages_loading_stamp():
     """HTML files that load last-update.js, one path per real file.
 
-    preview/ is a symlink to draft-v1-linked/, so both paths name the same
-    page. Resolve and skip duplicates so the stamp is written once.
+    Resolve and skip duplicates so the stamp is written once.
     """
     seen = set()
     pages = []
