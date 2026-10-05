@@ -21,9 +21,11 @@
 
 .cfmap {
   --stem: var(--accent);
-  /* Decision columns: 1 = continuing route, 2 = labelled arm, 3 = terminal outcome */
+  /* Decision columns: 1 = continuing route, 2 = labelled arm, 3 = terminal outcome.
+     The arm is a fraction of the same three tracks, so a further question stays
+     on the next row and the arm scales with the map. */
   --c1: minmax(0, 1fr);
-  --c2: 100px;
+  --c2: 0.2fr;
   --c3: minmax(0, .8fr);
   --frame-inset: 16px; /* .contain border (2px) + padding (14px) */
   --purpose-link: 128px;
