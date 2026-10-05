@@ -343,6 +343,82 @@
   }
 }
 
+/* Wider than the narrow nest: same reclass row as above, but only the three
+   fork columns. The recycle drops out of OCI's bottom into that row, then
+   returns up the outcome column into the bottom of P&L. */
+@container (min-width: 341px) {
+  .pd-route {
+    grid-template-columns: minmax(8.25rem, 0.52fr) clamp(1rem, 2.8%, 1.25rem) minmax(0, 1.05fr);
+    grid-template-rows: 1fr 1fr auto;
+  }
+  .pd-reclass {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    align-self: start;
+    margin-top: 1.25rem;
+  }
+  .pd-gutter {
+    grid-column: 3;
+    grid-row: 1 / 4;
+    display: grid;
+    grid-template-rows: subgrid;
+    pointer-events: none;
+  }
+  .pd-elbow {
+    grid-row: 3;
+    justify-self: center;
+    align-self: start;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 0.125rem;
+    height: calc(1.25rem + var(--pd-row));
+    margin-top: calc(-1 * var(--pd-row));
+    background: currentColor;
+    border: 0;
+    border-radius: 0;
+  }
+  .pd-elbow::before {
+    left: 50%;
+    top: auto;
+    bottom: 0;
+    transform: translateX(-50%);
+    border-right: 0.28rem solid transparent;
+    border-left: 0.28rem solid transparent;
+    border-top: 0.4rem solid currentColor;
+    border-bottom: 0;
+  }
+  .pd-gutter::before {
+    content: "";
+    grid-row: 2;
+    justify-self: end;
+    align-self: start;
+    width: 0;
+    height: 0;
+    margin-top: calc(-1 * var(--pd-row));
+    border-left: 0.28rem solid transparent;
+    border-right: 0.28rem solid transparent;
+    border-bottom: 0.4rem solid currentColor;
+    z-index: 1;
+  }
+  .pd-gutter::after {
+    content: "";
+    grid-row: 2;
+    justify-self: end;
+    align-self: stretch;
+    width: 0.125rem;
+    box-sizing: content-box;
+    margin-top: calc(-1 * var(--pd-row));
+    margin-right: calc(0.28rem - 0.0625rem);
+    margin-bottom: calc(-1 * (var(--pd-row) + 1.25rem));
+    padding-top: var(--pd-row);
+    padding-bottom: calc(var(--pd-row) + 1.25rem);
+    background: currentColor;
+  }
+}
+
 @media (max-width: 760px) {
   .pd-board { grid-template-columns: minmax(0, 1fr); }
   .pd-trade .pd-card,
