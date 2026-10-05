@@ -1,0 +1,26 @@
+name: Search index
+
+on:
+  pull_request:
+    paths:
+      - "**/draft-v1-linked/ch*.html"
+      - homepage/build-search-index.py
+      - .github/workflows/search-index.yml
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild search index
+        run: python3 homepage/build-search-index.py
+      - name: Fail if the index or cache stamps drifted
+        run: |
+          if ! git diff --exit-code; then
+            echo "::error::homepage/search-index.js is out of date with the draft-v1-linked chapters, or a search-index.js ?v= stamp is stale. Run python3 homepage/build-search-index.py and commit the result."
+            git diff --stat
+            exit 1
+          fi
