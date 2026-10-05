@@ -2,7 +2,7 @@
    Writes chrome.css, theme.js, and iframe-fit.js with the same cache query.
    Pages load this file instead of pasting those three lines. */
 (function () {
-  var V = "chrome-include-20261004";
+  var V = "chrome-include-20261005";
   var src = (document.currentScript && document.currentScript.src) || "";
   var dir = src.replace(/[^/?]*(\?.*)?$/, "");
   if (!dir) dir = "../../_shared/";
