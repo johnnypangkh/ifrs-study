@@ -1100,18 +1100,18 @@ article.teaching .cost-sum-result {
   }
 }
 
-/* Narrow teaching text: a pitfall chip wraps inside its container. */
-@media (max-width: 560px) {
-  .teaching .point-chip {
-    display: block;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-    overflow-wrap: break-word;
-    border-radius: var(--card-radius, 8px);
-    line-height: 1.45;
-  }
+/* A teaching pitfall is a full sentence. It wraps inside the bar at every
+   width, and the bar grows with that text. The one-line clamp on .point-chip
+   stays for concept-map chips, which are not inside .teaching. */
+.teaching .point-chip {
+  display: block;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: break-word;
+  border-radius: var(--card-radius, 8px);
+  line-height: 1.45;
 }
