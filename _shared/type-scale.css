@@ -75,6 +75,12 @@
     min-width: 0;
     max-width: 100%;
   }
+  /* A terminal fork has no question of its own, so the flow gap is the
+     space under the continuing box. Cancel that same gap; the stub then
+     starts at the box. Desktop leaves the fork as display:contents. */
+  html .decision-flow.decision-flow > .leaf-cont + .decision-fork {
+    margin-block-start: -0.35em;
+  }
   html .decision-flow.decision-flow .decision-fork > .q {
     flex: 1 1 auto;
     min-width: min(100%, max-content);

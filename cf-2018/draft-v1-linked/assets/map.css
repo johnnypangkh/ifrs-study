@@ -64,7 +64,6 @@
   white-space: nowrap;
   vertical-align: baseline;
 }
-.cfmap .sec-lead .sep { margin-inline: 0.35em; }
 .cfmap .differ-tag {
   margin-left: 4px;
   font-size: calc(11px * var(--type-scale, 1));
@@ -544,4 +543,7 @@
 @media (max-width: 520px) {
   .cfmap .g-2 { grid-template-columns: minmax(0, 1fr); }
   .cfmap .status-frame { padding: 12px 10px 14px; }
+}
+@media (max-width: 560px) {
+  .cfmap .sec-lead .sep { margin-inline: 0.35em; }
 }
