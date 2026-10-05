@@ -42,7 +42,7 @@
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: 1;
@@ -55,12 +55,12 @@
   height: 16px;
   padding: 0 5px;
   margin: 0 2px;
-  font-size: 10px;
+  font-size: calc(10px * var(--type-scale, 1));
 }
 .cfmap .sep { margin: 0 8px; color: var(--dash); }
 .cfmap .differ-tag {
   margin-left: 4px;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-style: italic;
   font-weight: 500;
   color: var(--muted);
@@ -83,7 +83,7 @@
 .cfmap .status-purpose,
 .cfmap .status-more {
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.5;
   color: var(--muted);
 }
@@ -117,14 +117,14 @@
   align-items: center;
   gap: 8px;
   margin: 0;
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.3;
   color: var(--ink);
   text-decoration: none;
 }
 .cfmap a.frame-title:hover { color: var(--accent); text-decoration: none; }
-.cfmap .status-head a.frame-title { font-size: 14px; }
+.cfmap .status-head a.frame-title { font-size: calc(14px * var(--type-scale, 1)); }
 
 .cfmap .fb-num {
   display: inline-flex;
@@ -137,7 +137,7 @@
   border: 1px solid var(--accent);
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: 1;
@@ -160,13 +160,13 @@
 .cfmap .cell-title,
 .cfmap .cell-body { margin: 0; }
 .cfmap .cell-title {
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.35;
   color: var(--ink);
 }
 .cfmap .cell-body {
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
@@ -176,7 +176,7 @@
 .cfmap .tier-label {
   display: block;
   margin: 0;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .04em;
   line-height: 1.5;
@@ -192,19 +192,19 @@
   border: 1px solid var(--line);
   border-radius: var(--card-radius);
   background: var(--band);
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.45;
   color: var(--ink);
 }
 .cfmap .apply-row {
   margin: 10px 0 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.6;
   color: var(--ink);
 }
 .cfmap .apply-head {
   margin-right: 10px;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -215,7 +215,7 @@
   padding: 6px 12px;
   border: 1px dashed var(--dash);
   border-radius: 6px;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   color: var(--muted);
 }
 
@@ -223,7 +223,7 @@
 .cfmap .stem-label,
 .cfmap .arm-label {
   margin: 0;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 600;
   line-height: 1.35;
   color: var(--muted);
@@ -367,14 +367,14 @@
 .cfmap .contain .q { background: var(--band); }
 .cfmap .q-text {
   margin: 0;
-  font-size: 14px;
+  font-size: calc(14px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.35;
   color: var(--ink);
 }
 .cfmap .q-sub {
   margin: 6px 0 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.45;
   color: var(--muted);
 }
@@ -393,7 +393,7 @@
 .cfmap .leaf-yes { border-color: var(--ink); }
 .cfmap .leaf-name {
   margin: 0;
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.35;
   color: var(--ink);
@@ -401,7 +401,7 @@
 .cfmap .leaf-no .leaf-name { color: var(--muted); }
 .cfmap .leaf-body {
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
@@ -441,7 +441,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: calc(22px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1;
   color: var(--accent);

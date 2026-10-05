@@ -1,0 +1,16 @@
+/* Narrow type trial for CF and IFRS 18 maps and visuals.
+   Same 0.85 ratio and 560px breakpoint as IAS 2.
+   Diagram rules multiply their existing sizes by --type-scale.
+   Desktop keeps the fallback 1. Chapter teaching text does not use this variable.
+   body.embed is a visual iframe, so the index page body stays as it is. */
+@media (max-width: 560px) {
+  :root {
+    --type-scale: 0.85;
+    --vis-body: calc(12px * var(--type-scale));
+    --vis-meta: calc(11px * var(--type-scale));
+    --nx-chip-font: calc(10px * var(--type-scale));
+  }
+  body.embed {
+    font-size: calc(14px * var(--type-scale));
+  }
+}

@@ -42,7 +42,7 @@ html { background: var(--bg); color-scheme: dark; }
   gap: 8px;
 }
 .i18map a.std-rule {
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   color: var(--muted);
   text-decoration: none;
   border: 1px solid var(--line);
@@ -75,14 +75,14 @@ html { background: var(--bg); color-scheme: dark; }
   flex-wrap: wrap;
   gap: 8px;
   margin: 0;
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.3;
   color: var(--ink);
   text-decoration: none;
 }
 .i18map a.frame-title:hover { color: var(--accent); text-decoration: none; }
-.i18map .std-head a.frame-title { font-size: 14px; }
+.i18map .std-head a.frame-title { font-size: calc(14px * var(--type-scale, 1)); }
 
 .i18map .fb-num {
   display: inline-flex;
@@ -98,7 +98,7 @@ html { background: var(--bg); color-scheme: dark; }
   border: 1px solid var(--accent);
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
@@ -127,12 +127,12 @@ html { background: var(--bg); color-scheme: dark; }
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 700;
   color: var(--ink);
 }
 .i18map .cell-body {
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
@@ -163,7 +163,7 @@ html { background: var(--bg); color-scheme: dark; }
   border: 1px solid var(--line);
   border-radius: var(--card-radius);
   background: var(--band);
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
   text-align: center;
@@ -187,7 +187,7 @@ html { background: var(--bg); color-scheme: dark; }
   border: 1px solid var(--line);
   border-left-width: 3px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.25;
   color: var(--ink);
@@ -216,7 +216,7 @@ html { background: var(--bg); color-scheme: dark; }
 }
 .i18map .mini-pnl-name { min-width: 0; }
 .i18map .mini-pnl-tag {
-  font-size: 10px;
+  font-size: calc(10px * var(--type-scale, 1));
   font-weight: 600;
   letter-spacing: .02em;
   text-transform: uppercase;
@@ -263,12 +263,12 @@ html { background: var(--bg); color-scheme: dark; }
   min-width: 0;
 }
 .i18map .mini-pnl-nest-title {
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   font-weight: 700;
   color: var(--ink);
 }
 .i18map .mini-pnl-nest-body {
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 400;
   color: var(--muted);
 }
@@ -278,7 +278,7 @@ html { background: var(--bg); color-scheme: dark; }
   display: block;
   margin: 0;
   padding: 2px 4px 1px 6px;
-  font-size: 10px;
+  font-size: calc(10px * var(--type-scale, 1));
   font-weight: 600;
   line-height: 1.25;
   color: var(--muted);
@@ -302,7 +302,7 @@ html { background: var(--bg); color-scheme: dark; }
   border: 1px dashed var(--dash);
   border-radius: 6px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   line-height: 1.4;
   text-decoration: none;
   background: transparent;
@@ -357,7 +357,7 @@ html { background: var(--bg); color-scheme: dark; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   font-weight: 600;
   color: var(--ink);
   text-decoration: none;

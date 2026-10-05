@@ -32,7 +32,7 @@
   align-items: baseline;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 10px;
+  font-size: calc(10px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .08em;
   line-height: 1.2;
@@ -67,13 +67,13 @@
 }
 .pd-head .fb-num-range,
 .pd-head a.fb-num { flex-shrink: 0; margin: 0; }
-.pd-title { font-size: 13px; font-weight: 700; color: var(--ink); }
-.pd-head--sm .pd-title { font-size: 12px; }
+.pd-title { font-size: calc(13px * var(--type-scale, 1)); font-weight: 700; color: var(--ink); }
+.pd-head--sm .pd-title { font-size: calc(12px * var(--type-scale, 1)); }
 
-.pd-body { margin: 0; font-size: 12px; line-height: 1.45; color: var(--muted); }
+.pd-body { margin: 0; font-size: calc(12px * var(--type-scale, 1)); line-height: 1.45; color: var(--muted); }
 .pd-body strong { color: var(--ink); }
 .pd-soft { color: var(--dash); }
-.pd-cue { margin: 0; font-size: 11px; line-height: 1.35; color: var(--dash); }
+.pd-cue { margin: 0; font-size: calc(11px * var(--type-scale, 1)); line-height: 1.35; color: var(--dash); }
 
 /* Goal · trade-off: useful above cost, joined by a two-way balance stem */
 .pd-trade {
@@ -112,7 +112,7 @@
   border: 1px solid var(--elem-peer);
   border-radius: 999px;
   background: var(--surface);
-  font-size: 10px;
+  font-size: calc(10px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -146,7 +146,7 @@
   overflow: visible;
   white-space: normal;
   text-overflow: clip;
-  font-size: 10px;
+  font-size: calc(10px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .06em;
   line-height: 1.4;
@@ -174,7 +174,7 @@
   gap: 2px;
   padding: 8px 10px;
   border-radius: var(--card-radius);
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   line-height: 1.3;
 }
 .pd-rank {
@@ -202,7 +202,7 @@
   background: transparent;
   color: var(--muted);
 }
-.pd-dest strong { font-size: 12px; color: var(--ink); }
+.pd-dest strong { font-size: calc(12px * var(--type-scale, 1)); color: var(--ink); }
 .pd-dest span { color: var(--muted); }
 
 .pd-stem {
@@ -272,7 +272,7 @@
   border-radius: var(--card-radius);
   background: var(--band);
 }
-.pd-reclass > span { font-size: 11px; line-height: 1.35; color: var(--muted); }
+.pd-reclass > span { font-size: calc(11px * var(--type-scale, 1)); line-height: 1.35; color: var(--muted); }
 
 /* Aggregation levels (inside the tool, not a peer) */
 .pd-levels {
@@ -281,11 +281,11 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   line-height: 1.3;
 }
 .pd-levels-tag {
-  font-size: 10px;
+  font-size: calc(10px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -324,7 +324,7 @@
   padding: 6px 10px;
   border: 1px dashed var(--dash);
   border-radius: var(--card-radius);
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.35;
   color: var(--muted);

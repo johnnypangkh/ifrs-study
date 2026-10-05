@@ -44,7 +44,7 @@ html { background: var(--bg); }
 
 .oe-ask {
   min-width: 0;
-  font-size: 14px;
+  font-size: calc(14px * var(--type-scale, 1));
   font-weight: 600;
   line-height: 1.45;
   color: var(--ink);
@@ -96,7 +96,7 @@ html { background: var(--bg); }
 }
 
 .oe-link-label {
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   font-weight: 600;
   line-height: 1.35;
   color: var(--muted);
@@ -120,13 +120,13 @@ html { background: var(--bg); }
   padding: 12px;
 }
 .oe-leaf--stop .oe-leaf-name {
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.3;
   color: var(--muted);
 }
 .oe-leaf--stop .oe-leaf-body {
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
@@ -148,7 +148,7 @@ html { background: var(--bg); }
 }
 .oe-leaf--yes .oe-leaf-name {
   min-width: 0;
-  font-size: 15px;
+  font-size: calc(15px * var(--type-scale, 1));
   font-weight: 800;
   line-height: 1.3;
   color: var(--outcome-yes);
@@ -156,7 +156,7 @@ html { background: var(--bg); }
 .oe-leaf-head .cite { flex-shrink: 0; }
 
 .oe-thesis {
-  font-size: 12.5px;
+  font-size: calc(12.5px * var(--type-scale, 1));
   line-height: 1.45;
   color: var(--ink);
 }
@@ -177,7 +177,7 @@ html { background: var(--bg); }
 
 .oe-lens-head {
   grid-column: 1 / -1;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -203,7 +203,7 @@ html { background: var(--bg); }
 }
 
 .oe-half-kicker {
-  font-size: 10.5px;
+  font-size: calc(10.5px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .05em;
   text-transform: uppercase;
@@ -212,7 +212,7 @@ html { background: var(--bg); }
 }
 
 .oe-half-note {
-  font-size: 11.5px;
+  font-size: calc(11.5px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
@@ -237,7 +237,7 @@ html { background: var(--bg); }
   border-radius: var(--card-radius);
   background: var(--band);
   padding: 6px 9px;
-  font-size: 12.5px;
+  font-size: calc(12.5px * var(--type-scale, 1));
   font-weight: 600;
   line-height: 1.3;
   color: var(--ink);
@@ -253,7 +253,7 @@ html { background: var(--bg); }
   color: var(--muted);
 }
 .oe-row--other span {
-  font-size: 10.5px;
+  font-size: calc(10.5px * var(--type-scale, 1));
   font-weight: 400;
 }
 
@@ -267,7 +267,7 @@ html { background: var(--bg); }
   padding: 8px;
 }
 .oe-spec-head {
-  font-size: 11.5px;
+  font-size: calc(11.5px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.3;
   color: var(--ink);
@@ -275,7 +275,7 @@ html { background: var(--bg); }
 .oe-spec-foot {
   border-top: 1px solid var(--line);
   padding-top: 6px;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
@@ -299,18 +299,18 @@ html { background: var(--bg); }
   line-height: 1.3;
 }
 .oe-total strong {
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 800;
   color: var(--ink);
 }
 .oe-total span {
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   color: var(--muted);
 }
 
 .oe-eq {
   justify-self: center;
-  font-size: 24px;
+  font-size: calc(24px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1;
   color: var(--formula);
@@ -327,7 +327,7 @@ html { background: var(--bg); }
 }
 .oe-relief p {
   min-width: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.45;
   color: var(--muted);
 }
@@ -340,7 +340,7 @@ html { background: var(--bg); }
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -374,24 +374,24 @@ html { background: var(--bg); }
 }
 .oe-opt-head strong {
   margin-right: auto;
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 800;
   color: var(--ink);
 }
 .oe-opt-body {
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--ink);
 }
 .oe-opt-eg {
-  font-size: 11.5px;
+  font-size: calc(11.5px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
 
 .oe-secondary .oe-trap {
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.45;
 }
 
@@ -411,7 +411,7 @@ html { background: var(--bg); }
 @media (max-width: 620px) {
   .oe-board { gap: 16px; }
   .oe-gate { padding: 12px; }
-  .oe-ask { font-size: 13.5px; }
+  .oe-ask { font-size: calc(13.5px * var(--type-scale, 1)); }
 
   .oe-branches { grid-template-columns: minmax(0, 1fr); }
 
