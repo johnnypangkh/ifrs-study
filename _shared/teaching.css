@@ -372,6 +372,10 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
 
 .see-strip .arrow { font-weight: 700; }
 
+/* The bit only groups an arrow with its link, or a link with the · after it.
+   On desktop it draws no box, so the pill's flex items stay as they are. */
+.see-bit { display: contents; }
+
 
 
 /* Stack hierarchy */
@@ -1129,13 +1133,12 @@ article.teaching .cost-sum-result {
     max-width: 100%;
     min-width: 0;
     box-sizing: border-box;
-    /* 999px follows the strip height, so a wrapped strip is an oval and the
-       curve crosses the arrow and the links. Half of one line stays a pill
-       when the strip is still a single row. */
-    border-radius: calc((1.4em + 14px) / 2);
+    /* Fixed corner, the same one wrapped chips use. It does not follow
+       the strip height, so the border stays off the arrow and the links. */
+    border-radius: var(--card-radius, 8px);
   }
-  .see-strip .arrow,
-  .see-strip a {
+  .see-bit {
+    display: block;
     flex: 0 0 auto;
     max-width: 100%;
     white-space: normal;
