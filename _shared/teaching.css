@@ -355,26 +355,50 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
 
 
 
-/* Dashed see-also strip */
+/* Dashed see-also strip. Each bit is one item. The leading · is ::before,
+   so it stays with that item and the last item has no trailing ·. */
 .see-strip {
+  --see-pad-block: 6px;
+  --see-pad-inline: 12px;
+  --see-border: 1px;
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px dashed var(--see);
-  border-radius: 999px;
+  gap: 2px 0.55em;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: var(--see-pad-block) var(--see-pad-inline);
+  border: var(--see-border) dashed var(--see);
+  /* Half of one line, from the same padding and border that size the strip.
+     A single row is a pill. A wrapped strip keeps that corner, so the curve
+     does not follow the strip height and does not cross the text. */
+  border-radius: calc((var(--see-pad-block) * 2 + var(--see-border) * 2 + 1.4em) / 2);
   background: var(--see-soft);
   color: var(--see);
   font-size: 12px;
   font-weight: 600;
+  line-height: 1.4;
   margin: 6px 0;
 }
 
-.see-strip .arrow { font-weight: 700; }
+.see-bit {
+  display: inline-flex;
+  align-items: baseline;
+  flex: 0 1 auto;
+  max-width: 100%;
+  min-width: 0;
+}
 
-/* The bit only groups an arrow with its link, or a link with the · after it.
-   On desktop it draws no box, so the pill's flex items stay as they are. */
-.see-bit { display: contents; }
+.see-bit::before {
+  content: "·\00a0";
+  flex: 0 0 auto;
+}
+
+.see-bit a {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
 
 
 
@@ -1122,27 +1146,12 @@ article.teaching .cost-sum-result {
   }
 }
 
-/* Narrow teaching text: see-also links wrap as whole links, and a pitfall chip
-   wraps inside its container. Desktop stays the one-line pill. */
+/* Narrow teaching text: the See also corner is the card radius, and a pitfall
+   chip wraps inside its container. */
 @media (max-width: 560px) {
   .see-strip {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: fit-content;
-    max-width: 100%;
     min-width: 0;
-    box-sizing: border-box;
-    /* Fixed corner, the same one wrapped chips use. It does not follow
-       the strip height, so the border stays off the arrow and the links. */
     border-radius: var(--card-radius, 8px);
-  }
-  .see-bit {
-    display: block;
-    flex: 0 0 auto;
-    max-width: 100%;
-    white-space: normal;
-    overflow-wrap: break-word;
   }
   .teaching .point-chip {
     display: block;
