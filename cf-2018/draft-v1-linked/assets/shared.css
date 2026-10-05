@@ -132,7 +132,7 @@
 .mf-arm {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(3.25rem, 0.16fr) minmax(0, 1fr);
+  grid-template-columns: minmax(4.75rem, max-content) minmax(0, 1fr);
   align-items: center;
 }
 
@@ -171,6 +171,7 @@
 }
 
 .mf-arm-label {
+  margin-inline: 0.65rem;
   padding: 0 5px;
   background: var(--band);
   font-size: 11px;
