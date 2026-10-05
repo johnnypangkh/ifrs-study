@@ -1,10 +1,12 @@
-name: Search index
+name: Publish checks
 
 on:
   pull_request:
     paths:
-      - "**/draft-v1-linked/ch*.html"
+      - "**/draft-v1-linked/**"
+      - "_shared/**"
       - homepage/build-search-index.py
+      - tools/build-last-update.py
       - .github/workflows/search-index.yml
 
 permissions:
@@ -17,10 +19,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Rebuild search index
         run: python3 homepage/build-search-index.py
-      - name: Fail if the index or cache stamps drifted
+      - name: Rebuild last-update stamps
+        run: python3 tools/build-last-update.py
+      - name: Fail if the index or stamps drifted
         run: |
           if ! git diff --exit-code; then
-            echo "::error::homepage/search-index.js is out of date with the draft-v1-linked chapters, or a search-index.js ?v= stamp is stale. Run python3 homepage/build-search-index.py and commit the result."
+            echo "::error::Search index or last-update stamps are stale. From the repo root, run python3 homepage/build-search-index.py and python3 tools/build-last-update.py, then commit the result. CI does not commit."
             git diff --stat
             exit 1
           fi
