@@ -26,4 +26,21 @@
     max-width: 100%;
     margin-bottom: 6px;
   }
+
+  /* Decision forks stack. A pack rule can pin a later grid column with
+     higher specificity than a one-column template, which opens an implicit
+     column and squeezes the question. Flex drops those column pins.
+     The repeated class outranks a two-class pack rule such as .cfmap .dgrid,
+     and the child rule outranks a three-class align-self on an outcome. */
+  html .decision-flow.decision-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+  }
+  html .decision-flow.decision-flow.decision-flow > * {
+    align-self: stretch;
+    min-width: 0;
+    max-width: 100%;
+  }
 }
