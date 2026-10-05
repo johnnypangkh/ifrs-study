@@ -554,27 +554,26 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
   margin: 6px 0;
 }
 .see-bit {
-  display: inline-flex;
-  align-items: baseline;
+  /* A flex container would drop the spaces between tags inside the bit.
+     Inline layout keeps those spaces. Inside a see-strip the bit is still
+     one flex item, so the bullet and the item wrap together. */
   flex: 0 1 auto;
   max-width: 100%;
   min-width: 0;
+  overflow-wrap: break-word;
 }
 .see-bit::before {
   content: "·\00a0";
-  flex: 0 0 auto;
 }
 .see-strip-note { font-weight: 400; opacity: .85; }
-/* Capital strip: one leading · on each tip, none after the last. */
+/* Capital strip: one leading · on each tip, none after the last.
+   The span stays inline inside the flex row so spaces around tags remain. */
 .cap-see-bits > span {
-  display: inline-flex;
-  align-items: baseline;
   max-width: 100%;
   min-width: 0;
 }
 .cap-see-bits > span::before {
   content: "·\00a0";
-  flex: 0 0 auto;
 }
 .see-row {
   display: flex;

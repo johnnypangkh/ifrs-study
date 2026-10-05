@@ -383,20 +383,21 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
 }
 
 .see-bit {
-  display: inline-flex;
-  align-items: baseline;
+  /* A flex container would drop the spaces between tags inside the bit
+     (strong, em, a following word). Inline layout keeps those spaces.
+     Inside a see-strip the bit is still one flex item, so the bullet
+     and the item wrap together. */
   flex: 0 1 auto;
   max-width: 100%;
   min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .see-bit::before {
   content: "·\00a0";
-  flex: 0 0 auto;
 }
 
 .see-bit a {
-  min-width: 0;
   overflow-wrap: break-word;
 }
 
