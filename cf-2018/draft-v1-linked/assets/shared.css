@@ -98,7 +98,7 @@
 
 .mf-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1.7fr);
+  grid-template-columns: minmax(0, 1fr) 0.085fr minmax(0, 1.7fr);
   align-items: center;
 }
 
@@ -132,7 +132,7 @@
 .mf-arm {
   position: relative;
   display: grid;
-  grid-template-columns: 76px minmax(0, 1fr);
+  grid-template-columns: minmax(3.25rem, 0.16fr) minmax(0, 1fr);
   align-items: center;
 }
 

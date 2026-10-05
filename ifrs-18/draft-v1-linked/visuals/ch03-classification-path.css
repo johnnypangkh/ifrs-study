@@ -45,7 +45,7 @@ html { background: var(--bg); }
 /* Vertical stem between gates */
 .pc-stem {
   display: grid;
-  grid-template-columns: 24px minmax(0, 1fr);
+  grid-template-columns: 1.5rem minmax(0, 1fr);
   column-gap: 8px;
   min-height: 36px;
   align-items: stretch;
@@ -81,7 +81,7 @@ html { background: var(--bg); }
 /* Gate row with side yes-stem → category leaf */
 .pc-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 72px minmax(120px, .5fr);
+  grid-template-columns: minmax(0, 1fr) 0.16fr minmax(7.5rem, .5fr);
   gap: 0;
   align-items: stretch;
 }
@@ -225,7 +225,7 @@ html { background: var(--bg); }
     min-height: 0;
   }
   .pc-yes-line {
-    width: 24px;
+    width: 1.5rem;
     flex-shrink: 0;
   }
   .pc-yes-label {
