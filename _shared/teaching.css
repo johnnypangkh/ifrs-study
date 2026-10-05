@@ -1117,3 +1117,36 @@ article.teaching .cost-sum-result {
     align-self: center;
   }
 }
+
+/* Narrow teaching text: see-also links wrap as whole links, and a pitfall chip
+   wraps inside its container. Desktop stays the one-line pill. */
+@media (max-width: 560px) {
+  .see-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .see-strip .arrow,
+  .see-strip a {
+    flex: 0 0 auto;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+  .teaching .point-chip {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: break-word;
+    border-radius: var(--card-radius, 8px);
+    line-height: 1.45;
+  }
+}

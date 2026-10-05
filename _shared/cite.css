@@ -43,3 +43,34 @@
 }
 .cite-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0; }
 
+/* Narrow cards: a cite chip wraps inside the card and each chip takes its own line.
+   The · or comma between chips is a cite-sep, hidden here so it does not sit alone.
+   Desktop is outside this query, so chips stay on one row with the separator. */
+@media (max-width: 560px) {
+  .box {
+    min-width: 0;
+  }
+  .box .cite {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: left;
+    margin: 4px 0 0;
+  }
+  .box .cite-sep {
+    display: none;
+  }
+  .teaching .point-chip .cite {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+  }
+}
+
