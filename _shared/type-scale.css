@@ -3,6 +3,16 @@
    Diagram rules multiply their existing sizes by --type-scale.
    Desktop keeps the fallback 1. Chapter teaching text does not use this variable.
    body.embed is a visual iframe, so the index page body stays as it is. */
+
+/* Fork wrappers exist so a narrow screen can keep a side branch attached to
+   its question. On the desktop grid they generate no box, and the inner
+   question, arm, outcome, and continuation stay in DOM order. */
+.decision-fork,
+.decision-after,
+.decision-branch {
+  display: contents;
+}
+
 @media (max-width: 560px) {
   :root {
     --type-scale: 0.85;
@@ -26,21 +36,146 @@
     max-width: 100%;
     margin-bottom: 6px;
   }
+  /* Chapter circles (CF Map). The row rule above sets width to the text,
+     which leaves a fixed height and turns the circle into an oval.
+     Stadium chips (border-radius pill, wider than tall) are not matched. */
+  .cfmap :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > span.fb-num {
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: fit-content;
+    height: auto;
+    min-width: 2.2em;
+    min-height: 2.2em;
+  }
 
-  /* Decision forks stack. A pack rule can pin a later grid column with
-     higher specificity than a one-column template, which opens an implicit
-     column and squeezes the question. Flex drops those column pins.
-     The repeated class outranks a two-class pack rule such as .cfmap .dgrid,
-     and the child rule outranks a three-class align-self on an outcome. */
+  /* A fork keeps its side branch. The question and the branch share a row
+     when both fit at this type size; otherwise the branch wraps under the
+     question, indented, with an elbow off the main stem. The stem's label
+     and arrow continue down from the question. A terminal outcome has no
+     arrow leaving it. Repeated classes outrank pack grid rules. */
   html .decision-flow.decision-flow {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     min-width: 0;
+    gap: 0.35em;
   }
   html .decision-flow.decision-flow.decision-flow > * {
     align-self: stretch;
     min-width: 0;
     max-width: 100%;
+  }
+  html .decision-flow.decision-flow .decision-fork {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 0.75em;
+    row-gap: 0.2em;
+    min-width: 0;
+    max-width: 100%;
+  }
+  html .decision-flow.decision-flow .decision-fork > .q {
+    flex: 1 1 auto;
+    min-width: min(100%, max-content);
+    max-width: 100%;
+  }
+  html .decision-flow.decision-flow .decision-after {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1 1 auto;
+    min-width: min(100%, max-content);
+    max-width: 100%;
+    position: relative;
+    border-inline-start: 0.12em solid var(--stem, currentColor);
+    padding-inline-start: 0.7em;
+  }
+  html .decision-flow.decision-flow .decision-after:has(> .varm) {
+    padding-block-end: 0.55em;
+  }
+  html .decision-flow.decision-flow .decision-after:has(> .varm)::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: -0.35em;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-inline-start: 0.35em solid transparent;
+    border-inline-end: 0.35em solid transparent;
+    border-top: 0.45em solid var(--stem, currentColor);
+  }
+  html .decision-flow.decision-flow .decision-after:not(:has(> .varm)) {
+    border-inline-start: none;
+  }
+  html .decision-flow.decision-flow .decision-after:not(:has(> .varm))::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0;
+    width: 0.12em;
+    height: 0.85em;
+    background: var(--stem, currentColor);
+  }
+  html .decision-flow.decision-flow .decision-branch {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.35em 0.5em;
+    position: relative;
+    min-width: 0;
+    max-width: 100%;
+    margin-inline-start: 0.85em;
+    padding-block: 0.15em 0.2em;
+  }
+  html .decision-flow.decision-flow .decision-branch::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: calc(-0.85em - 0.7em);
+    top: 0.7em;
+    width: calc(0.85em + 0.7em);
+    height: 0.12em;
+    background: var(--stem, currentColor);
+  }
+  html .decision-flow.decision-flow .decision-branch > .harm {
+    position: static;
+    display: block;
+    flex: 0 0 auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+  }
+  html .decision-flow.decision-flow .decision-branch > .harm::before,
+  html .decision-flow.decision-flow .decision-branch > .harm::after,
+  html .decision-flow.decision-flow .decision-after > .varm::before,
+  html .decision-flow.decision-flow .decision-after > .varm::after {
+    content: none;
+  }
+  html .decision-flow.decision-flow .decision-branch > .harm .arm-label,
+  html .decision-flow.decision-flow .decision-after > .varm .arm-label {
+    position: static;
+    inset: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    transform: none;
+    margin: 0;
+    text-align: start;
+    white-space: normal;
+  }
+  html .decision-flow.decision-flow .decision-branch > .leaf {
+    flex: 1 1 0;
+    min-width: min-content;
+    max-width: 100%;
+  }
+  html .decision-flow.decision-flow .decision-after > .varm {
+    position: static;
+    display: block;
+    min-height: 0;
+    margin: 0.2em 0 0;
+    padding: 0;
+    background: none;
   }
 }

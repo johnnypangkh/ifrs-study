@@ -351,12 +351,14 @@
   grid-template-columns: var(--c1) var(--c2) var(--c3);
   align-items: stretch;
 }
-.cfmap .dgrid > .q,
-.cfmap .dgrid > .leaf-cont { grid-column: 1; }
-.cfmap .dgrid > .harm { grid-column: 2; }
-.cfmap .dgrid > .leaf { grid-column: 3; align-self: center; }
-.cfmap .dgrid > .leaf.leaf-cont { grid-column: 1; align-self: stretch; }
-.cfmap .dgrid > .varm { grid-column: 1 / -1; }
+/* Descendant (not child) so a display:contents wrapper still places each box.
+   The narrow branch layout lives in type-scale.css; these columns are the desktop grid. */
+.cfmap .dgrid .q,
+.cfmap .dgrid .leaf-cont { grid-column: 1; }
+.cfmap .dgrid .harm { grid-column: 2; }
+.cfmap .dgrid .leaf { grid-column: 3; align-self: center; }
+.cfmap .dgrid .leaf.leaf-cont { grid-column: 1; align-self: stretch; }
+.cfmap .dgrid .varm { grid-column: 1 / -1; }
 
 .cfmap .q {
   border: 2px solid var(--line);
@@ -484,7 +486,7 @@
   .cfmap .drop-flow { padding: 0; }
   .cfmap .dgrid > *,
   .cfmap .phase-grid > * { grid-column: 1; }
-  .cfmap .dgrid > .varm,
+  .cfmap .dgrid .varm,
   .cfmap .phase-grid > .vstem { grid-column: 1; }
   .cfmap .harm,
   .cfmap .hstem { min-height: 44px; }
