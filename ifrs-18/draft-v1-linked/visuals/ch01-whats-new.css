@@ -174,7 +174,7 @@ html { background: var(--bg); }
 .wn-set-ptr a.fb-num:hover { text-decoration: none; }
 
 /* Dashed see-also — only dashed element; sits with the categories it qualifies */
-a.wn-see {
+.wn-see {
   display: block;
   margin-top: 4px;
   padding: 6px 10px;
@@ -186,8 +186,8 @@ a.wn-see {
   color: var(--muted);
   text-decoration: none;
 }
-a.wn-see strong { color: var(--ink); }
-a.wn-see:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.wn-see strong { color: var(--ink); }
+.wn-see:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
 /* ---- 1.4 Calendar timeline (tertiary) — axis + markers; accent only on the date ---- */
 .wn-tl {

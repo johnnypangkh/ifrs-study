@@ -1,0 +1,40 @@
+/* One See also pattern for every pack.
+   The label is text. The leading · is ::before, so it stays with that bit
+   and nothing is typed after the last bit. A bit is an inline block, so
+   the words inside it, including strong and em, keep their spaces. */
+
+.see-also-strip {
+  display: inline;
+}
+
+.see-label {
+  font-weight: 700;
+  color: var(--see);
+}
+
+.see-bit {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: baseline;
+  overflow-wrap: break-word;
+  color: var(--see);
+  font-weight: 600;
+}
+
+.see-bit::before {
+  content: "·\00a0";
+}
+
+.see-bit + .see-bit {
+  margin-inline-start: 0.35em;
+}
+
+.see-bit a {
+  color: inherit;
+  overflow-wrap: break-word;
+}
+
+.see-strip-note {
+  font-weight: 400;
+  opacity: .85;
+}

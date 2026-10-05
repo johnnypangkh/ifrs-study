@@ -7,6 +7,7 @@
    The concept-map iframe keeps height: auto. iframe-fit.js sets the
    used height from the content. The 260px min-height is only the floor
    when that script has not measured yet. */
+@import url("see-also.css?v=see-also-20261005");
 
 /* --- from pack assets/shared.css (identical in IAS 2, IFRS 18, CF 2018) --- */
 * { box-sizing: border-box; }
@@ -352,54 +353,6 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
 .branch-no { border-color: var(--danger); }
 
 .branch-yes { border-color: var(--ok); }
-
-
-
-/* Dashed see-also strip. Each bit is one item. The leading · is ::before,
-   so it stays with that item and the last item has no trailing ·. */
-.see-strip {
-  --see-pad-block: 6px;
-  --see-pad-inline: 12px;
-  --see-border: 1px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2px 0.55em;
-  width: fit-content;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: var(--see-pad-block) var(--see-pad-inline);
-  border: var(--see-border) dashed var(--see);
-  /* Half of one line, from the same padding and border that size the strip.
-     A single row is a pill. A wrapped strip keeps that corner, so the curve
-     does not follow the strip height and does not cross the text. */
-  border-radius: calc((var(--see-pad-block) * 2 + var(--see-border) * 2 + 1.4em) / 2);
-  background: var(--see-soft);
-  color: var(--see);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 6px 0;
-}
-
-.see-bit {
-  /* A flex container would drop the spaces between tags inside the bit
-     (strong, em, a following word). Inline layout keeps those spaces.
-     Inside a see-strip the bit is still one flex item, so the bullet
-     and the item wrap together. */
-  flex: 0 1 auto;
-  max-width: 100%;
-  min-width: 0;
-  overflow-wrap: break-word;
-}
-
-.see-bit::before {
-  content: "·\00a0";
-}
-
-.see-bit a {
-  overflow-wrap: break-word;
-}
 
 
 
@@ -1147,13 +1100,8 @@ article.teaching .cost-sum-result {
   }
 }
 
-/* Narrow teaching text: the See also corner is the card radius, and a pitfall
-   chip wraps inside its container. */
+/* Narrow teaching text: a pitfall chip wraps inside its container. */
 @media (max-width: 560px) {
-  .see-strip {
-    min-width: 0;
-    border-radius: var(--card-radius, 8px);
-  }
   .teaching .point-chip {
     display: block;
     max-width: 100%;

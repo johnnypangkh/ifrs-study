@@ -295,7 +295,7 @@ html { background: var(--bg); color-scheme: dark; }
 }
 
 /* ---- Dashed = see-also only (banks / insurers → Ch3) ---- */
-.i18map a.tip-note {
+.i18map .tip-note {
   display: block;
   margin-top: auto;
   padding: 7px 10px;
@@ -307,8 +307,8 @@ html { background: var(--bg); color-scheme: dark; }
   text-decoration: none;
   background: transparent;
 }
-.i18map a.tip-note strong { color: var(--ink); }
-.i18map a.tip-note:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.i18map .tip-note strong { color: var(--ink); }
+.i18map .tip-note:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
 /* ---- Close-out (secondary rank): Other FS ∥ Transition ---- */
 .i18map .close-row {
