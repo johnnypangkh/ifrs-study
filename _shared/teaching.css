@@ -7,6 +7,7 @@
    The concept-map iframe keeps height: auto. iframe-fit.js sets the
    used height from the content. The 260px min-height is only the floor
    when that script has not measured yet. */
+@import url("see-also.css?v=see-join-20261005");
 
 /* --- from pack assets/shared.css (identical in IAS 2, IFRS 18, CF 2018) --- */
 * { box-sizing: border-box; }
@@ -352,25 +353,6 @@ table.lofi td.num { width: 2.2em; color: var(--muted); font-weight: 600; }
 .branch-no { border-color: var(--danger); }
 
 .branch-yes { border-color: var(--ok); }
-
-
-
-/* Dashed see-also strip */
-.see-strip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px dashed var(--see);
-  border-radius: 999px;
-  background: var(--see-soft);
-  color: var(--see);
-  font-size: 12px;
-  font-weight: 600;
-  margin: 6px 0;
-}
-
-.see-strip .arrow { font-weight: 700; }
 
 
 
@@ -1115,5 +1097,21 @@ article.teaching .cost-sum-result {
   }
   article.teaching .cost-sum-op {
     align-self: center;
+  }
+}
+
+/* Narrow teaching text: a pitfall chip wraps inside its container. */
+@media (max-width: 560px) {
+  .teaching .point-chip {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: break-word;
+    border-radius: var(--card-radius, 8px);
+    line-height: 1.45;
   }
 }

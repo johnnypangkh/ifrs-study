@@ -35,7 +35,7 @@ html { background: var(--bg); }
   align-items: center;
   gap: 8px;
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -75,7 +75,7 @@ html { background: var(--bg); }
 }
 .wn-card-title {
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -87,7 +87,7 @@ html { background: var(--bg); }
 .wn-answer ul {
   margin: 0;
   padding-left: 16px;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--ink);
 }
@@ -97,7 +97,7 @@ html { background: var(--bg); }
   margin: auto 0 0;
   padding-top: 6px;
   border-top: 1px solid var(--line);
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   line-height: 1.35;
   color: var(--muted);
 }
@@ -109,7 +109,7 @@ html { background: var(--bg); }
   border: 1px solid var(--line);
   border-radius: var(--card-radius);
   background: var(--band);
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
@@ -138,14 +138,14 @@ html { background: var(--bg); }
   margin: 0;
   padding-bottom: 5px;
   border-bottom: 1px solid var(--line);
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.3;
   color: var(--ink);
 }
 .wn-set-body {
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
@@ -155,7 +155,7 @@ html { background: var(--bg); }
   flex-wrap: wrap;
   gap: 4px 6px;
   margin: 0;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   line-height: 1.35;
   color: var(--muted);
 }
@@ -174,20 +174,20 @@ html { background: var(--bg); }
 .wn-set-ptr a.fb-num:hover { text-decoration: none; }
 
 /* Dashed see-also — only dashed element; sits with the categories it qualifies */
-a.wn-see {
+.wn-see {
   display: block;
   margin-top: 4px;
   padding: 6px 10px;
   border: 1px dashed var(--dash);
   border-radius: 6px;
   background: transparent;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
   text-decoration: none;
 }
-a.wn-see strong { color: var(--ink); }
-a.wn-see:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.wn-see strong { color: var(--ink); }
+.wn-see:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
 /* ---- 1.4 Calendar timeline (tertiary) — axis + markers; accent only on the date ---- */
 .wn-tl {
@@ -247,14 +247,14 @@ a.wn-see:hover { border-color: var(--accent); color: var(--accent); text-decorat
 .wn-tl-when {
   height: var(--tl-when);
   margin: 0 0 18px;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 700;
   line-height: var(--tl-when);
   color: var(--muted);
   white-space: nowrap;
 }
 .wn-tl-node--eff .wn-tl-when {
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   color: var(--accent);
 }
 .wn-tl-card {
@@ -277,7 +277,7 @@ a.wn-see:hover { border-color: var(--accent); color: var(--accent); text-decorat
   flex-wrap: wrap;
   gap: 6px;
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.35;
   color: var(--ink);
@@ -285,7 +285,7 @@ a.wn-see:hover { border-color: var(--accent); color: var(--accent); text-decorat
 .wn-tl-head a.fb-num { flex-shrink: 0; margin-right: 0; }
 .wn-tl-body {
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }

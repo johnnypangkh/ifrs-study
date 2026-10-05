@@ -34,7 +34,7 @@ html { background: var(--bg); }
   align-items: center;
   gap: 8px;
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -75,7 +75,7 @@ html { background: var(--bg); }
   align-items: center;
   gap: 8px;
   margin: 0;
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.35;
   color: var(--ink);
@@ -93,13 +93,13 @@ html { background: var(--bg); }
 .gt-sub {
   grid-column: 1 / -1;
   margin: 0;
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
 
 .gt-ans {
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .02em;
   line-height: 1.2;
@@ -190,7 +190,7 @@ html { background: var(--bg); }
 .gt-leaf--out { margin-left: 10px; }
 .gt-leaf-name {
   margin: 0;
-  font-size: 14px;
+  font-size: calc(14px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.3;
   color: var(--ink);
@@ -198,7 +198,7 @@ html { background: var(--bg); }
 .gt-leaf--mpm .gt-leaf-name { color: var(--mpm); }
 .gt-leaf-body {
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
@@ -224,7 +224,7 @@ html { background: var(--bg); }
 .rc-step--ifrs { border-left-color: var(--ifrs-subtotal); }
 .rc-name {
   margin: 0;
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1.3;
   color: var(--ink);
@@ -233,13 +233,13 @@ html { background: var(--bg); }
 .rc-step--ifrs .rc-name { color: var(--ifrs-subtotal); }
 .rc-body {
   margin: 0;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--muted);
 }
 .rc-op {
   align-self: center;
-  font-size: 18px;
+  font-size: calc(18px * var(--type-scale, 1));
   font-weight: 700;
   line-height: 1;
   color: var(--muted);
@@ -248,13 +248,13 @@ html { background: var(--bg); }
 /* Why-bridge lead — ties equation to the two regimes */
 .rc-why {
   margin: 0 0 8px;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale, 1));
   line-height: 1.45;
   color: var(--muted);
 }
 .rc-kicker {
   margin: 0;
-  font-size: 10px;
+  font-size: calc(10px * var(--type-scale, 1));
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -266,7 +266,7 @@ html { background: var(--bg); }
   margin: 2px 0 0;
   padding-top: 4px;
   border-top: 1px solid var(--line);
-  font-size: 11px;
+  font-size: calc(11px * var(--type-scale, 1));
   line-height: 1.4;
   color: var(--ink);
 }
@@ -286,7 +286,6 @@ html { background: var(--bg); }
     padding: 8px 10px;
   }
   .gt-cites { justify-content: flex-start; }
-  .gt-q { font-size: 12px; }
   .gt-leaf { padding: 8px 10px; }
   .gt-leaf--out { margin-left: 6px; }
 }

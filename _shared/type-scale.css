@@ -1,0 +1,205 @@
+/* Narrow type trial for CF and IFRS 18 maps and visuals.
+   Same 0.85 ratio and 560px breakpoint as IAS 2.
+   Diagram rules multiply their existing sizes by --type-scale.
+   Desktop keeps the fallback 1. Chapter teaching text does not use this variable.
+   body.embed is a visual iframe, so the index page body stays as it is. */
+
+/* Fork wrappers exist so a narrow screen can keep a side branch attached to
+   its question. On the desktop grid they generate no box, and the inner
+   question, arm, outcome, and continuation stay in DOM order. */
+.decision-fork,
+.decision-after,
+.decision-branch {
+  display: contents;
+}
+
+@media (max-width: 560px) {
+  :root {
+    --type-scale: 0.85;
+    --vis-body: calc(12px * var(--type-scale));
+    --vis-meta: calc(11px * var(--type-scale));
+    --nx-chip-font: calc(10px * var(--type-scale));
+  }
+  body.embed {
+    font-size: calc(14px * var(--type-scale));
+  }
+
+  /* Pill on its own row; the title below uses the full width of the box.
+     Same rule as visuals.css. Index maps load this file and not visuals.css.
+     Desktop is outside this query, so pill and title stay on one row. */
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) {
+    display: block;
+  }
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > :is(a.fb-num, span.fb-num, .fb-num-range) {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 6px;
+  }
+  /* Chapter circles (CF Map). The row rule above sets width to the text,
+     which leaves a fixed height and turns the circle into an oval.
+     Stadium chips (border-radius pill, wider than tall) are not matched. */
+  .cfmap :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > span.fb-num {
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: fit-content;
+    height: auto;
+    min-width: 2.2em;
+    min-height: 2.2em;
+  }
+
+  /* A fork keeps its side branch. The question and the branch share a row
+     when both fit at this type size; otherwise the branch wraps under the
+     question, indented, with an elbow off the main stem. The stem's label
+     and arrow continue down from the question. A terminal outcome has no
+     arrow leaving it. Repeated classes outrank pack grid rules. */
+  html .decision-flow.decision-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+    gap: 0.35em;
+  }
+  html .decision-flow.decision-flow.decision-flow > * {
+    align-self: stretch;
+    min-width: 0;
+    max-width: 100%;
+  }
+  html .decision-flow.decision-flow .decision-fork {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 0.75em;
+    row-gap: 0;
+    min-width: 0;
+    max-width: 100%;
+  }
+  /* A terminal fork has no question of its own, so the flow gap is the
+     space under the continuing box. Cancel that same gap; the stub then
+     starts at the box. Desktop leaves the fork as display:contents. */
+  html .decision-flow.decision-flow > .leaf-cont + .decision-fork {
+    margin-block-start: -0.35em;
+  }
+  html .decision-flow.decision-flow .decision-fork > .q {
+    flex: 1 1 auto;
+    min-width: min(100%, max-content);
+    max-width: 100%;
+  }
+  html .decision-flow.decision-flow .decision-after {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1 1 auto;
+    min-width: min(100%, max-content);
+    max-width: 100%;
+    position: relative;
+    border-inline-start: 0.12em solid var(--stem, currentColor);
+    padding-inline-start: 0.7em;
+  }
+  html .decision-flow.decision-flow .decision-after:has(> .varm) {
+    padding-block-end: 0.55em;
+  }
+  html .decision-flow.decision-flow .decision-after:has(> .varm)::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: -0.35em;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-inline-start: 0.35em solid transparent;
+    border-inline-end: 0.35em solid transparent;
+    border-top: 0.45em solid var(--stem, currentColor);
+  }
+  html .decision-flow.decision-flow .decision-after:not(:has(> .varm)) {
+    border-inline-start: none;
+  }
+  html .decision-flow.decision-flow .decision-after:not(:has(> .varm))::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0;
+    width: 0.12em;
+    height: 0.85em;
+    background: var(--stem, currentColor);
+  }
+  html .decision-flow.decision-flow .decision-branch {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.35em 0.5em;
+    position: relative;
+    min-width: 0;
+    max-width: 100%;
+    margin-inline-start: 0.85em;
+    padding-inline-start: 0.45em;
+    padding-block: 0.15em 0.2em;
+  }
+  html .decision-flow.decision-flow .decision-branch::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: calc(-0.85em - 0.7em);
+    top: 0.7em;
+    width: calc(0.85em + 0.7em);
+    height: 0.12em;
+    background: var(--stem, currentColor);
+  }
+  html .decision-flow.decision-flow .decision-branch > .harm {
+    position: static;
+    display: block;
+    flex: 0 0 auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+  }
+  html .decision-flow.decision-flow .decision-branch > .harm::before,
+  html .decision-flow.decision-flow .decision-branch > .harm::after,
+  html .decision-flow.decision-flow .decision-after > .varm::before,
+  html .decision-flow.decision-flow .decision-after > .varm::after {
+    content: none;
+  }
+  html .decision-flow.decision-flow .decision-branch > .harm .arm-label,
+  html .decision-flow.decision-flow .decision-after > .varm .arm-label {
+    position: static;
+    inset: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    transform: none;
+    margin: 0;
+    text-align: start;
+    white-space: normal;
+  }
+  html .decision-flow.decision-flow .decision-branch > .leaf {
+    flex: 1 1 0;
+    min-width: min-content;
+    max-width: 100%;
+  }
+  html .decision-flow.decision-flow .decision-after > .varm {
+    position: static;
+    display: block;
+    min-height: 0;
+    margin: 0.2em 0 0;
+    padding: 0;
+    background: none;
+  }
+
+  /* A horizontal map stem that stays in a later grid column opens a sliver
+     past the frame. Put it in the single column and keep its label inside. */
+  html .cfmap .phase-grid .hstem {
+    grid-column: 1;
+    max-width: 100%;
+    min-width: 0;
+  }
+  html .cfmap .hstem .stem-label {
+    left: calc(50% + 0.75em);
+    right: 0.5em;
+    width: auto;
+    max-width: none;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: start;
+  }
+}

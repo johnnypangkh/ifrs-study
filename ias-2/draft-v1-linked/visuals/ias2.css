@@ -89,7 +89,7 @@ body.embed .page {
   margin-right: 6px;
   border: 1px solid var(--dash);
   border-radius: 999px;
-  font-size: 10px;
+  font-size: calc(10px * var(--ias2-type, 1));
   font-weight: 700;
   letter-spacing: 0.02em;
   color: var(--muted);
@@ -99,7 +99,7 @@ body.embed .page {
 }
 .board-title {
   margin: 0;
-  font-size: 13px;
+  font-size: calc(13px * var(--ias2-type, 1));
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -125,7 +125,7 @@ body.embed .page {
 .arm-title {
   margin: 0;
   font-weight: 700;
-  font-size: 13px;
+  font-size: calc(13px * var(--ias2-type, 1));
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -134,7 +134,7 @@ body.embed .page {
   align-self: center;
   text-align: center;
   font-weight: 800;
-  font-size: 13px;
+  font-size: calc(13px * var(--ias2-type, 1));
   letter-spacing: .01em;
   color: var(--formula);
   line-height: 1.15;
@@ -158,7 +158,7 @@ body.embed .page {
   background: var(--surface);
   min-width: 0;
 }
-.cell-title { display: flex; align-items: center; flex-wrap: wrap; gap: 0; font-weight: 700; font-size: 12px; margin-bottom: 2px; }
+.cell-title { display: flex; align-items: center; flex-wrap: wrap; gap: 0; font-weight: 700; font-size: calc(12px * var(--ias2-type, 1)); margin-bottom: 2px; }
 .cell-body { display: block; color: var(--muted); font-size: var(--vis-meta); }
 
 .missing {
@@ -231,7 +231,7 @@ body.embed .page {
 .q-title {
   margin: 0 0 8px;
   font-weight: 700;
-  font-size: 13px;
+  font-size: calc(13px * var(--ias2-type, 1));
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -250,7 +250,7 @@ body.embed .page {
 }
 .leaf.go { border-color: var(--ok); }
 .leaf.stop { border-color: var(--danger); background: transparent; }
-.leaf .cell-title { font-size: 12px; }
+.leaf .cell-title { font-size: calc(12px * var(--ias2-type, 1)); }
 .leaf.go .cell-title { color: var(--ok); }
 .leaf.stop .cell-title { color: var(--danger); }
 .leaf-note { margin: 4px 0 0; color: var(--muted); }
@@ -329,7 +329,7 @@ body.embed .page {
   align-self: center;
   color: var(--formula);
   font-weight: 800;
-  font-size: 12px;
+  font-size: calc(12px * var(--ias2-type, 1));
   letter-spacing: .02em;
 }
 
@@ -359,13 +359,13 @@ body.embed .page {
   border: 1px solid var(--line);
   border-radius: var(--card-radius);
   text-align: center;
-  font-size: 12px;
+  font-size: calc(12px * var(--ias2-type, 1));
   font-weight: 700;
 }
 .st-plus {
   text-align: center;
   color: var(--formula);
-  font-size: 16px;
+  font-size: calc(16px * var(--ias2-type, 1));
   font-weight: 800;
   line-height: 1;
 }
@@ -375,7 +375,7 @@ body.embed .page {
   justify-self: center;
   color: var(--formula);
   font-weight: 800;
-  font-size: 12px;
+  font-size: calc(12px * var(--ias2-type, 1));
   letter-spacing: .02em;
 }
 .st-out { display: flex; flex-direction: column; gap: 8px; padding-bottom: 12px; }
@@ -499,8 +499,17 @@ body.embed .page {
   .classes .or { justify-self: center; }
 }
 @media (max-width: 560px) {
+  /* One scale for every IAS 2 map and chapter visual: 0.85 of desktop type.
+     px sizes in this file multiply by --ias2-type. Body, meta, and chip
+     text follow the same ratio through the shared tokens. */
+  .ias2 {
+    --ias2-type: 0.85;
+    --vis-body: calc(12px * var(--ias2-type));
+    --vis-meta: calc(11px * var(--ias2-type));
+    --nx-chip-font: calc(10px * var(--ias2-type));
+  }
   .st { --st-gut: 40px; }
-  .st-h-label { font-size: 10px; padding: 0 3px; }
+  .st-h-label { padding: 0 3px; }
   .st-node { grid-column: 1 / -1; }
   .st-node + .st-beside { grid-column: 1 / -1; margin-top: 8px; }
   .st-fork .st-arm { min-height: 64px; }
@@ -533,8 +542,8 @@ body.embed .page {
   gap: 0;
   font-weight: 700;
 }
-.m-head { font-size: 13px; }
-.m-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.m-head { font-size: calc(13px * var(--ias2-type, 1)); }
+.m-name { font-size: calc(13px * var(--ias2-type, 1)); font-weight: 700; color: var(--ink); }
 .m-body,
 .m-row-body,
 .m-arm-def { display: block; color: var(--muted); font-size: var(--vis-meta); line-height: 1.4; }
@@ -579,7 +588,7 @@ body.embed .page {
   border-radius: var(--card-radius);
   background: var(--surface);
 }
-.m-board-title { font-size: 15px; color: var(--ink); }
+.m-board-title { font-size: calc(15px * var(--ias2-type, 1)); color: var(--ink); }
 .m-eq { color: var(--formula); font-weight: 800; padding: 0 4px; }
 
 .m-arms {
@@ -598,8 +607,8 @@ body.embed .page {
   border-radius: var(--card-radius);
   background: var(--bg);
 }
-.m-arm-head { font-size: 14px; color: var(--ink); }
-.m-arm-def { font-size: 12px; min-height: 2.8em; }
+.m-arm-head { font-size: calc(14px * var(--ias2-type, 1)); color: var(--ink); }
+.m-arm-def { font-size: calc(12px * var(--ias2-type, 1)); min-height: 2.8em; }
 
 .m-op {
   align-self: center;
@@ -608,7 +617,7 @@ body.embed .page {
   align-items: center;
   min-width: 58px;
   color: var(--formula);
-  font-size: 15px;
+  font-size: calc(15px * var(--ias2-type, 1));
   font-weight: 800;
   line-height: 1.1;
 }
@@ -624,7 +633,7 @@ body.embed .page {
 }
 .m-foot { margin-top: auto; }
 .m-plate-title {
-  font-size: 10px;
+  font-size: calc(10px * var(--ias2-type, 1));
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -639,7 +648,7 @@ body.embed .page {
   border-top: 1px solid var(--line);
 }
 .m-plate-title + .m-row { border-top: 0; padding-top: 0; }
-.m-row-title { font-size: 12px; color: var(--ink); }
+.m-row-title { font-size: calc(12px * var(--ias2-type, 1)); color: var(--ink); }
 .m-row .m-row-body { padding-top: 6px; }
 
 .m-see-tight { padding: 5px 8px; }
@@ -661,7 +670,7 @@ body.embed .page {
   width: var(--nx-chip-size);
   text-align: center;
   color: var(--formula);
-  font-size: 15px;
+  font-size: calc(15px * var(--ias2-type, 1));
   font-weight: 800;
   line-height: 1;
 }
@@ -672,7 +681,7 @@ body.embed .page {
 .m-plate .m-out > .fb-num, .m-plate .m-out > .fb-num-range { margin-top: 1px; }
 
 /* Decision inside a plate: question, then a centred fork onto two outcomes */
-.m-ask { display: flex; align-items: flex-start; font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.m-ask { display: flex; align-items: flex-start; font-size: calc(12px * var(--ias2-type, 1)); font-weight: 700; color: var(--ink); line-height: 1.3; }
 .m-ask .fb-num { margin-top: -1px; }
 .m-dec .st { --st-gut: 12px; }
 .m-dec .st-fork { padding-top: 12px; }
@@ -720,12 +729,12 @@ a.m-cell:hover { border-color: var(--accent); }
   border: 1px solid var(--line);
   border-radius: var(--card-radius);
   text-align: center;
-  font-size: 11px;
+  font-size: calc(11px * var(--ias2-type, 1));
   font-weight: 700;
   line-height: 1.25;
 }
 .m-term:hover { border-color: var(--accent); }
-.m-minus { align-self: center; color: var(--formula); font-weight: 800; font-size: 14px; }
+.m-minus { align-self: center; color: var(--formula); font-weight: 800; font-size: calc(14px * var(--ias2-type, 1)); }
 .m-note { font-style: italic; }
 
 /* Secondaries: lighter frames, no accent */
@@ -745,7 +754,7 @@ a.m-cell:hover { border-color: var(--accent); }
   gap: 6px;
   align-items: stretch;
 }
-.m-eq-op { align-self: center; color: var(--formula); font-size: 15px; font-weight: 800; line-height: 1; }
+.m-eq-op { align-self: center; color: var(--formula); font-size: calc(15px * var(--ias2-type, 1)); font-weight: 800; line-height: 1; }
 .m-eq-res { border-color: var(--accent); }
 .m-eqn .m-row-title,
 .m-sub .m-row-title { flex-wrap: nowrap; align-items: flex-start; line-height: 1.3; }
@@ -783,7 +792,7 @@ a.m-cell:hover { border-color: var(--accent); }
   background: transparent;
   opacity: .92;
 }
-.m-disc .m-head { font-size: 12px; color: var(--muted); }
+.m-disc .m-head { font-size: calc(12px * var(--ias2-type, 1)); color: var(--muted); }
 /* Disclosure in the Ch6 Map order: policies, then profit or loss (6.4 → 6.5),
    then the statement of financial position (6.2, 6.3, 6.6). */
 .m-disc-list {
@@ -806,7 +815,7 @@ a.m-cell:hover { border-color: var(--accent); }
 .m-disc-label {
   grid-column: 1 / -1;
   margin: 0 0 4px;
-  font-size: 10px;
+  font-size: calc(10px * var(--ias2-type, 1));
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -818,7 +827,7 @@ a.m-cell:hover { border-color: var(--accent); }
   color: var(--muted);
   line-height: 1.4;
 }
-.m-disc-list a strong { display: flex; align-items: flex-start; color: var(--ink); font-size: 11px; line-height: 1.3; margin-bottom: 2px; }
+.m-disc-list a strong { display: flex; align-items: flex-start; color: var(--ink); font-size: calc(11px * var(--ias2-type, 1)); line-height: 1.3; margin-bottom: 2px; }
 .m-disc-list a strong .fb-num { margin-top: -1px; }
 .m-disc-list a:hover strong { text-decoration: underline; }
 
@@ -876,6 +885,8 @@ a.m-cell:hover { border-color: var(--accent); }
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+.ias2 .fb-num-sep { font-size: calc(11px * var(--ias2-type, 1)); }
 .st-nrv .eq { grid-template-columns: minmax(0, .85fr) auto minmax(0, 1.5fr); }
 .st-nrv .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: 1.3; }
 .st-nrv .cell-title .fb-num { margin-top: -1px; }
@@ -901,7 +912,7 @@ a.m-cell:hover { border-color: var(--accent); }
 .st-nrv .nrv-minus {
   align-self: center;
   color: var(--formula);
-  font-size: 16px;
+  font-size: calc(16px * var(--ias2-type, 1));
   font-weight: 800;
   line-height: 1;
 }
@@ -935,7 +946,7 @@ a.m-cell:hover { border-color: var(--accent); }
 .st-exp .exp-op {
   align-self: center;
   color: var(--formula);
-  font-size: 16px;
+  font-size: calc(16px * var(--ias2-type, 1));
   font-weight: 800;
   line-height: 1;
 }
@@ -977,7 +988,7 @@ a.m-cell:hover { border-color: var(--accent); }
 .st-cost .cost-op {
   align-self: center;
   color: var(--formula);
-  font-size: 16px;
+  font-size: calc(16px * var(--ias2-type, 1));
   font-weight: 800;
   line-height: 1;
 }

@@ -7,11 +7,12 @@
 <link rel="stylesheet" href="../../_shared/tokens.css?v=cf2018-refs-chrome-20261002">
 <script src="../../_shared/chrome-include.js?v=chrome-include-20261005"></script>
 <script src="../../_shared/last-update.js?v=last-update-20261004"></script>
-<link rel="stylesheet" href="../../_shared/cite.css?v=cf2018-refs-chrome-20261002">
-<link rel="stylesheet" href="../../_shared/teaching.css?v=teach-20261004">
+<link rel="stylesheet" href="../../_shared/cite.css?v=cite-join-20261005">
+<link rel="stylesheet" href="../../_shared/teaching.css?v=see-join-20261005">
 <link rel="stylesheet" href="assets/shared.css?v=cf2018-refs-chrome-20261002">
 <link rel="stylesheet" href="assets/draft.css?v=cf2018-chrome-job3-20261002">
-<link rel="stylesheet" href="assets/map.css?v=cf2018-pack-map-20261002">
+<link rel="stylesheet" href="../../_shared/type-scale.css?v=qc-dot-20261005">
+<link rel="stylesheet" href="assets/map.css?v=qc-dot-20261005">
 <title>Conceptual Framework (2018) — Map</title>
 </head>
 <body data-pack="cf2018" data-page="map">
@@ -60,16 +61,22 @@ Visit path (chip order = decision walk; drift log in OPUS-WORKING-MEMORY):
         <p class="status-purpose"><a class="sec" href="ch11.html#s-11-1">11.1</a>Purpose — assist the Board to develop Standards · preparers to develop consistent accounting policies · all parties to understand and interpret the Standards <span class="differ-tag">Sources differ</span></p>
       </div>
 
-      <div class="dgrid" role="group" aria-label="Does a Standard or an Interpretation specifically apply?">
-        <div class="q">
-          <p class="q-text"><a class="sec" href="ch11.html#s-11-2">11.2</a>Does a Standard or an Interpretation specifically apply to the transaction or other event?</p>
+      <div class="dgrid decision-flow" role="group" aria-label="Does a Standard or an Interpretation specifically apply?">
+        <div class="decision-fork">
+          <div class="q">
+            <p class="q-text"><a class="sec" href="ch11.html#s-11-2">11.2</a>Does a Standard or an Interpretation specifically apply to the transaction or other event?</p>
+          </div>
+          <div class="decision-after">
+            <div class="decision-branch">
+              <div class="harm" aria-hidden="true"><span class="arm-label">Yes</span></div>
+              <div class="leaf leaf-yes">
+                <p class="leaf-name">Apply the Standard</p>
+                <p class="leaf-body">The Framework cannot override it or justify contravening it</p>
+              </div>
+            </div>
+            <div class="varm" aria-hidden="true"><span class="arm-label">No</span></div>
+          </div>
         </div>
-        <div class="harm" aria-hidden="true"><span class="arm-label">Yes</span></div>
-        <div class="leaf leaf-yes">
-          <p class="leaf-name">Apply the Standard</p>
-          <p class="leaf-body">The Framework cannot override it or justify contravening it</p>
-        </div>
-        <div class="varm" aria-hidden="true"><span class="arm-label">No</span></div>
         <div class="leaf leaf-yes leaf-cont">
           <p class="leaf-name"><a class="sec" href="ch11.html#s-11-3">11.3</a>IAS 8 judgement</p>
           <p class="leaf-body">Similar and related Standards first, then the Framework’s definitions <a class="sec sec-sm" href="ch04.html#s-4-1">4.1</a>, recognition criteria <a class="sec sec-sm" href="ch05.html#s-5-2">5.2</a> and measurement concepts <a class="sec sec-sm" href="ch06.html#s-6-5">6.5</a></p>
@@ -152,34 +159,52 @@ Visit path (chip order = decision walk; drift log in OPUS-WORKING-MEMORY):
 
         <section class="contain rec-frame" aria-label="Recognition and derecognition">
           <a class="frame-title" href="ch05.html#s-5-1"><span class="fb-num">5</span>Recognition and derecognition</a>
-          <div class="dgrid" role="group" aria-label="Recognition tests">
-            <div class="q">
-              <p class="q-text"><a class="sec" href="ch05.html#s-5-2">5.2</a>Meets an element definition?</p>
+          <div class="dgrid decision-flow" role="group" aria-label="Recognition tests">
+            <div class="decision-fork">
+              <div class="q">
+                <p class="q-text"><a class="sec" href="ch05.html#s-5-2">5.2</a>Meets an element definition?</p>
+              </div>
+              <div class="decision-after">
+                <div class="decision-branch">
+                  <div class="harm" aria-hidden="true"><span class="arm-label">No</span></div>
+                  <div class="leaf leaf-no">
+                    <p class="leaf-name">Not that element</p>
+                    <p class="leaf-body">Not recognised as an asset, liability or equity whose definition it does not meet</p>
+                  </div>
+                </div>
+                <div class="varm" aria-hidden="true"><span class="arm-label">Yes</span></div>
+              </div>
             </div>
-            <div class="harm" aria-hidden="true"><span class="arm-label">No</span></div>
-            <div class="leaf leaf-no">
-              <p class="leaf-name">Not that element</p>
-              <p class="leaf-body">Not recognised as an asset, liability or equity whose definition it does not meet</p>
+            <div class="decision-fork">
+              <div class="q">
+                <p class="q-text"><a class="sec" href="ch05.html#s-5-4">5.4</a><a class="sec" href="ch05.html#s-5-5">5.5</a>Would recognising it provide useful information?</p>
+                <p class="q-sub">Relevance ∥ faithful representation, subject to cost<span class="sec-lead"><span class="sep">·</span><a class="sec sec-sm" href="ch05.html#s-5-3">5.3</a></span>Probability and measurement uncertainty are factors, not thresholds</p>
+              </div>
+              <div class="decision-after">
+                <div class="decision-branch">
+                  <div class="harm" aria-hidden="true"><span class="arm-label">No</span></div>
+                  <div class="leaf leaf-no">
+                    <p class="leaf-name">Do not recognise</p>
+                    <p class="leaf-body">No measurement basis on the face; notes may still give magnitude, timing and uncertainty</p>
+                  </div>
+                </div>
+                <div class="varm" aria-hidden="true"><span class="arm-label">Yes</span></div>
+              </div>
             </div>
-            <div class="varm" aria-hidden="true"><span class="arm-label">Yes</span></div>
-            <div class="q">
-              <p class="q-text"><a class="sec" href="ch05.html#s-5-4">5.4</a><a class="sec" href="ch05.html#s-5-5">5.5</a>Would recognising it provide useful information?</p>
-              <p class="q-sub">Relevance ∥ faithful representation, subject to cost<span class="sep">·</span><a class="sec sec-sm" href="ch05.html#s-5-3">5.3</a>Probability and measurement uncertainty are factors, not thresholds</p>
-            </div>
-            <div class="harm" aria-hidden="true"><span class="arm-label">No</span></div>
-            <div class="leaf leaf-no">
-              <p class="leaf-name">Do not recognise</p>
-              <p class="leaf-body">No measurement basis on the face; notes may still give magnitude, timing and uncertainty</p>
-            </div>
-            <div class="varm" aria-hidden="true"><span class="arm-label">Yes</span></div>
             <div class="leaf leaf-yes leaf-cont">
               <p class="leaf-name"><a class="sec" href="ch05.html#s-5-1">5.1</a>Recognise</p>
               <p class="leaf-body">At a carrying amount; related income, expenses or equity changes recognised with it</p>
             </div>
-            <div class="harm" aria-hidden="true"><span class="arm-label">Later</span></div>
-            <div class="leaf">
-              <p class="leaf-name"><a class="sec" href="ch05.html#s-5-6">5.6</a>Derecognise</p>
-              <p class="leaf-body">When it no longer meets the definition — control lost, or no present obligation</p>
+            <div class="decision-fork">
+              <div class="decision-after">
+                <div class="decision-branch">
+                  <div class="harm" aria-hidden="true"><span class="arm-label">Later</span></div>
+                  <div class="leaf">
+                    <p class="leaf-name"><a class="sec" href="ch05.html#s-5-6">5.6</a>Derecognise</p>
+                    <p class="leaf-body">When it no longer meets the definition — control lost, or no present obligation</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -207,7 +232,7 @@ Visit path (chip order = decision walk; drift log in OPUS-WORKING-MEMORY):
               <div class="cell"><p class="cell-title"><a class="sec" href="ch07.html#s-7-4">7.4</a>Aggregation</p><p class="cell-body">Summarise without obscuring</p></div>
             </div>
             <div class="cell cell-gap"><p class="cell-title"><a class="sec" href="ch07.html#s-7-5">7.5</a>Profit or loss ∥ other comprehensive income (OCI)</p><p class="cell-body">Profit or loss is the primary source of performance information; OCI only in exceptional circumstances, decided by the Board</p></div>
-            <p class="tip-note"><a class="sec" href="ch07.html#s-7-6">7.6</a>See also → IFRS 18</p>
+            <p class="tip-note"><a class="sec" href="ch07.html#s-7-6">7.6</a> <span class="see-also-strip"><span class="see-label">See also</span> <span class="see-bit">IFRS 18</span></span></p>
           </section>
 
           <div class="vstem" role="presentation"><span class="vline" aria-hidden="true"></span><p class="stem-label">measurement basis × capital concept → profit <a class="sec sec-sm" href="ch08.html#s-8-3">8.3</a></p></div>
