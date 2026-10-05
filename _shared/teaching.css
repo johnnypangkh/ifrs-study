@@ -1129,6 +1129,10 @@ article.teaching .cost-sum-result {
     max-width: 100%;
     min-width: 0;
     box-sizing: border-box;
+    /* 999px follows the strip height, so a wrapped strip is an oval and the
+       curve crosses the arrow and the links. Half of one line stays a pill
+       when the strip is still a single row. */
+    border-radius: calc((1.4em + 14px) / 2);
   }
   .see-strip .arrow,
   .see-strip a {
