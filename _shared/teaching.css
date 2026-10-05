@@ -7,7 +7,7 @@
    The concept-map iframe keeps height: auto. iframe-fit.js sets the
    used height from the content. The 260px min-height is only the floor
    when that script has not measured yet. */
-@import url("see-also.css?v=see-also-20261005");
+@import url("see-also.css?v=see-join-20261005");
 
 /* --- from pack assets/shared.css (identical in IAS 2, IFRS 18, CF 2018) --- */
 * { box-sizing: border-box; }

@@ -58,6 +58,13 @@
   font-size: calc(10px * var(--type-scale, 1));
 }
 .cfmap .sep { margin: 0 8px; color: var(--dash); }
+.cfmap .sec-lead {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.cfmap .sec-lead .sep { margin-inline: 0.35em; }
 .cfmap .differ-tag {
   margin-left: 4px;
   font-size: calc(11px * var(--type-scale, 1));

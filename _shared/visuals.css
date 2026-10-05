@@ -10,7 +10,7 @@
    (.consol-boundary / .fs-consol) — not see-also, not nest hierarchy.
    Composition (組成) → .contain / .contain-grid / .contain-cell — never dashed hang.
    Matches CF map family. file:// offline OK via relative link. */
-@import url("see-also.css?v=see-also-20261005");
+@import url("see-also.css?v=see-join-20261005");
 :root {
   --bg: #f6f5f2;
   --surface: #ffffff;
@@ -2527,10 +2527,10 @@ a.fb-num:focus-visible {
    A run of pills (visit steps, a chip list, a range) stays on one row.
    A citation later in the same line stays in the sentence. */
 @media (max-width: 560px) {
-  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) {
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) {
     display: block;
   }
-  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > :is(a.fb-num, span.fb-num, .fb-num-range) {
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > :is(a.fb-num, span.fb-num, .fb-num-range) {
     display: flex;
     width: fit-content;
     max-width: 100%;

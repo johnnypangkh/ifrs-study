@@ -43,15 +43,28 @@
 }
 .cite-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0; }
 
-/* The comma between two cite chips is not typed. cite-comma marks the chip
-   that used to follow a comma; space-separated chips stay unmarked.
-   The comma sits just outside the chip. A middle-dot cite-sep stays in the HTML. */
+/* Separators are not typed. cite-comma marks the chip that used to follow a
+   comma. cite-dot marks the chip that used to be followed by a middle dot.
+   Each mark is drawn from the preceding chip, just outside its border, so a
+   wrap keeps the mark on the line above. Space-separated chips stay unmarked. */
 .cite { position: relative; }
-.cite.cite-comma { margin-left: 0.7em; }
-.cite.cite-comma::before {
+.cite:has(+ .cite.cite-comma) { margin-right: 0.85em; }
+.cite:has(+ .cite.cite-comma)::after {
   content: ",";
   position: absolute;
-  right: calc(100% + 0.2em);
+  left: calc(100% + 0.2em);
+  top: 0.15em;
+  color: var(--ink);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 1;
+}
+.cite.cite-dot { margin-right: 1.15em; }
+.cite.cite-dot::after {
+  content: "·";
+  position: absolute;
+  left: calc(100% + 0.4em);
   top: 0.15em;
   color: var(--ink);
   font-weight: 400;
@@ -61,8 +74,8 @@
 }
 
 /* Narrow cards: a cite chip wraps inside the card and each chip takes its own line.
-   The generated comma, and any remaining middle-dot cite-sep, is hidden so a
-   wrapped row does not start with a comma. Desktop is outside this query. */
+   The generated comma and middle dot are hidden so a wrapped row does not
+   start with a separator. Desktop is outside this query. */
 @media (max-width: 560px) {
   .box {
     min-width: 0;
@@ -77,10 +90,12 @@
     text-align: left;
     margin: 4px 0 0;
   }
-  .cite-sep { display: none; }
-  .cite.cite-comma::before { content: none; }
-  .cite.cite-comma { margin-left: 2px; }
-  .box .cite.cite-comma { margin-left: 0; }
+  .cite:has(+ .cite.cite-comma)::after,
+  .cite.cite-dot::after { content: none; }
+  .cite:has(+ .cite.cite-comma),
+  .cite.cite-dot { margin-right: 2px; }
+  .box .cite:has(+ .cite.cite-comma),
+  .box .cite.cite-dot { margin-right: 0; }
   .teaching .point-chip .cite {
     display: inline-flex;
     width: fit-content;

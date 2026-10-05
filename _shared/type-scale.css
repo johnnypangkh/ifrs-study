@@ -27,10 +27,10 @@
   /* Pill on its own row; the title below uses the full width of the box.
      Same rule as visuals.css. Index maps load this file and not visuals.css.
      Desktop is outside this query, so pill and title stay on one row. */
-  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) {
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) {
     display: block;
   }
-  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > :is(a.fb-num, span.fb-num, .fb-num-range) {
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > :is(a.fb-num, span.fb-num, .fb-num-range) {
     display: flex;
     width: fit-content;
     max-width: 100%;
@@ -39,7 +39,7 @@
   /* Chapter circles (CF Map). The row rule above sets width to the text,
      which leaves a fixed height and turns the circle into an oval.
      Stadium chips (border-radius pill, wider than tall) are not matched. */
-  .cfmap :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > span.fb-num {
+  .cfmap :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > span.fb-num {
     aspect-ratio: 1;
     flex-shrink: 0;
     box-sizing: border-box;
@@ -71,7 +71,7 @@
     flex-wrap: wrap;
     align-items: flex-start;
     column-gap: 0.75em;
-    row-gap: 0.2em;
+    row-gap: 0;
     min-width: 0;
     max-width: 100%;
   }
@@ -126,6 +126,7 @@
     min-width: 0;
     max-width: 100%;
     margin-inline-start: 0.85em;
+    padding-inline-start: 0.45em;
     padding-block: 0.15em 0.2em;
   }
   html .decision-flow.decision-flow .decision-branch::before {
@@ -177,5 +178,22 @@
     margin: 0.2em 0 0;
     padding: 0;
     background: none;
+  }
+
+  /* A horizontal map stem that stays in a later grid column opens a sliver
+     past the frame. Put it in the single column and keep its label inside. */
+  html .cfmap .phase-grid .hstem {
+    grid-column: 1;
+    max-width: 100%;
+    min-width: 0;
+  }
+  html .cfmap .hstem .stem-label {
+    left: calc(50% + 0.75em);
+    right: 0.5em;
+    width: auto;
+    max-width: none;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: start;
   }
 }

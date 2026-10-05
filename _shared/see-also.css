@@ -10,6 +10,7 @@
 .see-label {
   font-weight: 700;
   color: var(--see);
+  white-space: nowrap;
 }
 
 .see-bit {
