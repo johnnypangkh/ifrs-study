@@ -98,7 +98,7 @@
 
 .mf-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1.7fr);
+  grid-template-columns: minmax(0, 1fr) 0.085fr minmax(0, 1.7fr);
   align-items: center;
 }
 
@@ -127,12 +127,17 @@
 
 .mf-branch { height: 2px; background: var(--line); }
 
-.mf-arms { display: flex; flex-direction: column; gap: 12px; }
+.mf-arms {
+  display: grid;
+  grid-template-columns: minmax(4.75rem, max-content) minmax(0, 1fr);
+  row-gap: 0.75rem;
+}
 
 .mf-arm {
   position: relative;
   display: grid;
-  grid-template-columns: 76px minmax(0, 1fr);
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
   align-items: center;
 }
 
@@ -141,7 +146,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  bottom: -12px;
+  bottom: -0.75rem;
   width: 2px;
   background: var(--line);
 }
@@ -171,6 +176,7 @@
 }
 
 .mf-arm-label {
+  margin-inline: 0.65rem;
   padding: 0 5px;
   background: var(--band);
   font-size: 11px;

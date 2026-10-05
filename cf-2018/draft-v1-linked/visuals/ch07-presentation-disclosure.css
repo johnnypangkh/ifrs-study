@@ -159,7 +159,7 @@
    (a 68px min let that word paint through the box). */
 .pd-route {
   display: grid;
-  grid-template-columns: minmax(132px, 0.52fr) 16px minmax(0, 1.05fr) 22px minmax(120px, 0.7fr);
+  grid-template-columns: minmax(8.25rem, 0.52fr) clamp(1rem, 2.8%, 1.25rem) minmax(0, 1.05fr) clamp(1.375rem, 3.8%, 1.6rem) minmax(7.5rem, 0.7fr);
   grid-template-rows: 1fr 1fr;
   row-gap: var(--pd-row);
   column-gap: 0;
@@ -333,7 +333,7 @@
 
 @container (max-width: 340px) {
   .pd-route {
-    grid-template-columns: minmax(132px, 0.9fr) 18px minmax(0, 1.3fr) 20px;
+    grid-template-columns: minmax(8.25rem, 0.9fr) clamp(0.9rem, 5.7%, 1.4rem) minmax(0, 1.3fr) clamp(1rem, 6.3%, 1.5rem);
     grid-template-rows: 1fr 1fr auto;
   }
   .pd-reclass {

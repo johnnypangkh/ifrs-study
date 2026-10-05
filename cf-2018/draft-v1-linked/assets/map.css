@@ -28,7 +28,7 @@
   --c2: 0.2fr;
   --c3: minmax(0, .8fr);
   --frame-inset: 16px; /* .contain border (2px) + padding (14px) */
-  --purpose-link: 128px;
+  --purpose-link: minmax(8rem, 0.3fr);
 }
 
 /* ---- Section chips ---- */
