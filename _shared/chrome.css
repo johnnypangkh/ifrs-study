@@ -65,12 +65,16 @@
   line-height: 1.4;
 }
 
-/* Horizontal tag strip: keep scroll, hide the bar.
-   A quiet ">" sits on the right only while more tags are off that edge. */
+/* Horizontal tag strip: the row slides sideways; the scrollbar stays hidden.
+   A quiet ">" sits on the right only while more tags are off that edge.
+   Do not set overflow-y: hidden. With overflow-x: auto that clips the row
+   and blocks sideways touch scrolling on a narrow screen. */
 .tag-row-wrap {
   position: relative;
+  max-width: 100%;
+  min-width: 0;
   overflow-x: auto;
-  overflow-y: hidden;
+  overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   container-type: scroll-state;
@@ -82,8 +86,10 @@
 }
 .tag-row {
   display: flex;
+  flex-wrap: nowrap;
   gap: 7px;
-  min-width: max-content;
+  width: max-content;
+  min-width: 100%;
   padding: 1px 1px 4px;
 }
 @container scroll-state(scrollable: inline-end) {
@@ -111,6 +117,7 @@
 }
 .tag {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   min-height: 30px;
   padding: 6px 10px;
