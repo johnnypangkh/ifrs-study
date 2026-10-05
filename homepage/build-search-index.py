@@ -103,7 +103,9 @@ def chapter_pages():
     for path in ROOT.glob("*/draft-v1-linked/ch*.html"):
         if path.parent.name != "draft-v1-linked":
             continue
-        if not path.is_file():
+        if "preview" in path.parts:
+            continue
+        if path.is_symlink() or not path.is_file():
             continue
         pages.append(path)
     return sorted(pages)
@@ -129,16 +131,19 @@ def index_stamp(text):
 def pages_loading_index():
     """HTML files that load search-index.js, one path per real file.
 
-    preview/ is a symlink to draft-v1-linked/, so both paths name the same
-    chapter file. Resolve and skip duplicates so the stamp is written once.
+    A preview/ path segment is never a publish target. Skip it before
+    resolve so a symlink or copy under that name cannot be stamped, and
+    cannot become the path written into search-index.js.
     """
     seen = set()
     pages = []
     for path in sorted(ROOT.rglob("*.html")):
-        if not path.is_file():
+        if "preview" in path.parts:
+            continue
+        if path.is_symlink() or not path.is_file():
             continue
         real = path.resolve()
-        if real in seen:
+        if "preview" in real.parts or real in seen:
             continue
         seen.add(real)
         if b"search-index.js" not in real.read_bytes():
@@ -186,6 +191,9 @@ def main():
         if not chapter:
             continue
         href_base = Path(os_relpath(path, HOME)).as_posix()
+        href_path = href_base.split("#", 1)[0]
+        if "/preview/" in href_path or href_path.startswith("preview/"):
+            raise SystemExit(f"refusing to emit a preview path: {href_base}")
         index.append({
             "chapter": chapter,
             "href": href_base + "#chapter-title",
