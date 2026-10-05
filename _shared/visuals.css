@@ -1,3 +1,8 @@
+/* Shared visual kit.
+   Packs load this file instead of a local visuals/shared.css copy.
+   Rules moved from the IAS 2 draft kit, which already included
+   .cat-operating, .ifrs-subtotal, and .mpm.
+*/
 /* IFRS 18 chapter visuals — solid chrome + dense teaching graphics.
    (Shared kit twin of CF map family; IFRS 18 category/MPM tokens below.)
    Grammar: solid = peer / containment; dashed = see-also (or matrix N/A) only.
