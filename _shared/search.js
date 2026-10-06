@@ -1,7 +1,8 @@
-/* Chapter and homepage note search.
+/* Chapter, map, abbreviations, and homepage note search.
    Reads window.HOMEPAGE_SEARCH_INDEX. Does not name packs or chapters.
    On a chapter page, exact hits from that page come first, then exact hits
-   from other pages, then the same split for close matches. */
+   from other pages, then the same split for close matches.
+   Map and abbreviations pages use the same search bar as a chapter. */
 (function () {
   var PAGE_SIZE = 5;
 
@@ -158,11 +159,18 @@
     return [sentences[index]];
   }
 
+  var CHROME_PAGE = /([^/]+)\/draft-v1-linked\/(?:(ch\d+)|index|abbreviations)\.html$/i;
+
   function pageKey() {
     var path = String(location.pathname || '').replace(/\\/g, '/');
-    var match = path.match(/([^/]+)\/draft-v1-linked\/(ch\d+)\.html$/i);
-    if (!match) return '';
+    var match = path.match(CHROME_PAGE);
+    if (!match || !match[2]) return '';
     return match[1] + '/' + match[2].toLowerCase();
+  }
+
+  function showsChromeSearch() {
+    var path = String(location.pathname || '').replace(/\\/g, '/');
+    return CHROME_PAGE.test(path);
   }
 
   function hitKey(href) {
@@ -179,7 +187,7 @@
     var target = path.match(/([^/]+)\/draft-v1-linked\/(ch\d+\.html)$/i);
     if (!target) return indexHref;
     var loc = String(location.pathname || '').replace(/\\/g, '/');
-    var here = loc.match(/([^/]+)\/draft-v1-linked\/ch\d+\.html$/i);
+    var here = loc.match(CHROME_PAGE);
     if (here) {
       if (here[1].toLowerCase() === target[1].toLowerCase()) return target[2] + hash;
       return '../../' + target[1] + '/draft-v1-linked/' + target[2] + hash;
@@ -280,7 +288,7 @@
   }
 
   function ensureChromeSearch() {
-    if (!pageKey()) return;
+    if (!showsChromeSearch()) return;
     var bar = document.querySelector('header.chrome-bar');
     if (!bar) return;
     var box = document.querySelector('.chapter-search');
