@@ -152,6 +152,22 @@ def pages_loading_index():
     return pages
 
 
+MODULE = ROOT / "_shared" / "chrome-include.js"
+INDEX_VAR = re.compile(r'(var INDEX = ")([0-9a-f]{12})(")')
+
+
+def stamp_module(stamp):
+    """Keep the shared chrome include on the same search-index stamp."""
+    text = MODULE.read_text(encoding="utf-8")
+    updated, count = INDEX_VAR.subn(lambda match: f"{match.group(1)}{stamp}{match.group(3)}", text, count=1)
+    if count != 1:
+        raise SystemExit("chrome-include.js must declare var INDEX once")
+    if updated != text:
+        MODULE.write_text(updated, encoding="utf-8")
+        return True
+    return False
+
+
 def stamp_references(stamp):
     """Point every search-index.js script src at ?v=<stamp>."""
     changed = []
@@ -221,6 +237,8 @@ def main():
     OUT.write_text(generated, encoding="utf-8")
     stamp = index_stamp(generated)
     changed, missed = stamp_references(stamp)
+    if stamp_module(stamp):
+        print("stamp", MODULE.relative_to(ROOT))
     print(
         f"pages {len(chapter_pages())} entries {len(index)} "
         f"stamp {stamp} -> {OUT.relative_to(ROOT)}"

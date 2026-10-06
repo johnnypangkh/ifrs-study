@@ -9,6 +9,8 @@
   border-bottom: 1px solid var(--line);
   box-shadow: 0 2px 0 color-mix(in srgb, var(--ink) 6%, transparent);
   padding: 8px 12px 10px;
+  container-type: inline-size;
+  container-name: chrome;
 }
 
 .chrome-bar-title {
@@ -47,7 +49,8 @@
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  min-width: 0;
+  flex: 0 1 auto;
+  min-width: min(100%, max-content);
 }
 .chrome-last-update {
   display: inline-flex;
@@ -232,30 +235,44 @@ h4[id] {
 }
 
 .chrome-bar { overflow: visible; }
-.chrome-bar .chapter-search {
+.chrome-bar-title .chapter-search {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1 1 18rem;
+  min-width: min(100%, 18rem);
+  max-width: 100%;
+  margin: 0;
   position: relative;
   z-index: 15;
-  max-width: 720px;
-  margin: 8px 0 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+@container chrome (width < 48rem) {
+  .chrome-bar-title .chapter-search {
+    flex: 1 0 100%;
+    min-width: 0;
+  }
 }
 .chapter-search-label {
   display: block;
-  margin-bottom: 6px;
+  margin: 0;
+  white-space: nowrap;
   color: var(--muted, #8b97a8);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.chapter-search-row {
-  display: flex;
-  gap: 8px;
-  align-items: stretch;
-}
 .chapter-search-input {
   flex: 1 1 auto;
-  width: 100%;
+  width: auto;
+  min-width: 0;
   min-height: 38px;
+  text-transform: none;
+  letter-spacing: 0;
   border: 1px solid var(--line, #3a4553);
   border-radius: 4px;
   padding: 8px 10px;
@@ -270,6 +287,8 @@ h4[id] {
 }
 .chapter-search-clear {
   flex: none;
+  text-transform: none;
+  letter-spacing: 0;
   min-height: 38px;
   padding: 8px 12px;
   border: 1px solid var(--line, #3a4553);
