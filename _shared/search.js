@@ -1,9 +1,11 @@
-/* Chapter, map, abbreviations, and homepage note search.
+/* Chapter, map, abbreviations, references, and homepage note search.
    Reads window.HOMEPAGE_SEARCH_INDEX. Does not name packs or chapters.
    On a chapter page, exact hits from that page come first, then exact hits
    from other pages, then the same split for close matches.
    Map and abbreviations pages use the same search bar as a chapter. */
 (function () {
+  if (window.__ifrsSearch) return;
+  window.__ifrsSearch = true;
   var PAGE_SIZE = 5;
 
   function escapeHtml(value) {
@@ -159,7 +161,7 @@
     return [sentences[index]];
   }
 
-  var CHROME_PAGE = /([^/]+)\/draft-v1-linked\/(?:(ch\d+)|index|abbreviations)\.html$/i;
+  var CHROME_PAGE = /([^/]+)\/draft-v1-linked\/(?:(ch\d+)|index|abbreviations|references)\.html$/i;
 
   function pageKey() {
     var path = String(location.pathname || '').replace(/\\/g, '/');
@@ -289,20 +291,18 @@
 
   function ensureChromeSearch() {
     if (!showsChromeSearch()) return;
-    var bar = document.querySelector('header.chrome-bar');
-    if (!bar) return;
+    var row = document.querySelector('header.chrome-bar .chrome-bar-title');
+    if (!row) return;
     var box = document.querySelector('.chapter-search');
     if (!box) {
       box = document.createElement('div');
       box.className = 'chapter-search';
       box.innerHTML = '<label class="chapter-search-label" for="chapterSearch">Search</label>' +
-        '<div class="chapter-search-row">' +
         '<input class="chapter-search-input" id="chapterSearch" type="search" autocomplete="off" />' +
         '<button class="chapter-search-clear" id="chapterSearchClear" type="button">clear</button>' +
-        '</div>' +
         '<div class="search-popover" id="chapterSearchPopover" hidden></div>';
     }
-    if (box.parentNode !== bar) bar.appendChild(box);
+    if (box.parentNode !== row) row.appendChild(box);
   }
 
   function mountChapter() {
