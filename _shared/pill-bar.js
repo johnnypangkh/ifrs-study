@@ -1,7 +1,7 @@
 /* Shared chapter pill bar.
    Each pack page loads its own pill list first, which sets window.PACK_PILLS.
-   Pages mount an empty nav[data-ias2-pill-bar], nav[data-ifrs18-pill-bar],
-   or nav[data-cf-pill-bar]; this file fills it. */
+   Pages mount an empty nav[data-ias2-pill-bar], nav[data-ias16-pill-bar],
+   nav[data-ifrs18-pill-bar], or nav[data-cf-pill-bar]; this file fills it. */
 (function () {
   var PILLS = window.PACK_PILLS;
   if (!PILLS || !PILLS.length) return;
@@ -16,6 +16,7 @@
 
   function readyName(nav) {
     if (nav.hasAttribute("data-ias2-pill-bar")) return "data-ias2-pill-bar-ready";
+    if (nav.hasAttribute("data-ias16-pill-bar")) return "data-ias16-pill-bar-ready";
     if (nav.hasAttribute("data-ifrs18-pill-bar")) return "data-ifrs18-pill-bar-ready";
     if (nav.hasAttribute("data-cf-pill-bar")) return "data-cf-pill-bar-ready";
     return "data-pill-bar-ready";
@@ -44,7 +45,7 @@
 
   function boot() {
     var nodes = document.querySelectorAll(
-      "nav[data-ias2-pill-bar], nav[data-ifrs18-pill-bar], nav[data-cf-pill-bar]"
+      "nav[data-ias2-pill-bar], nav[data-ias16-pill-bar], nav[data-ifrs18-pill-bar], nav[data-cf-pill-bar]"
     );
     if (!nodes.length) return false;
     for (var i = 0; i < nodes.length; i++) mount(nodes[i]);

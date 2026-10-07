@@ -1,0 +1,93 @@
+
+
+
+/* IFRS 18 category + MPM (mirror of visuals tokens for chapter chrome) */
+.cat-operating { background: var(--cat-operating-soft); border-color: var(--cat-operating); }
+
+.cat-investing { background: var(--cat-investing-soft); border-color: var(--cat-investing); }
+
+.cat-financing { background: var(--cat-financing-soft); border-color: var(--cat-financing); }
+
+.cat-tax { background: var(--cat-tax-soft); border-color: var(--cat-tax); }
+
+.cat-discontinued { background: var(--cat-discontinued-soft); border-color: var(--cat-discontinued); }
+
+.ifrs-subtotal { background: var(--ifrs-subtotal-soft); border: 1px solid var(--ifrs-subtotal); color: var(--ifrs-subtotal); font-weight: 700; }
+
+.mpm { background: var(--mpm-soft); border: 1px solid var(--mpm); color: var(--mpm); font-weight: 700; }
+
+
+/* ── Body presentation kit (Johnny lock 2026-09-27) ──
+   Ch5 exemplar first. Reuse .box / .box.ok / .box.warn peers.
+   Colour meaning gate still applies; solid = peer. */
+
+
+.worked-strip {
+  margin: 14px 0 18px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface); /* quieter: was --band (Johnny LOCK 2026-10-01) */
+}
+
+
+/* Belt-and-suspenders: Illus peers neutral — leftover ok/warn inside strip paint as surface */
+.worked-strip .box.ok,
+.worked-strip .box.warn {
+  background: var(--surface);
+  border-color: var(--line);
+  color: inherit;
+}
+
+.worked-strip .box.ok .box-title,
+.worked-strip .box.warn .box-title {
+  color: var(--muted); /* match peer column titles */
+}
+
+.worked-strip-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.worked-strip-title > strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.worked-strip-title .cite-row,
+.worked-strip-cites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+}
+
+
+.worked-strip .box-body,
+.worked-strip .box-body ul,
+.worked-strip .box ul,
+.worked-strip .box li {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.worked-strip .box-body {
+  margin: 0;
+  flex: 1;
+}
+
+.worked-strip .box ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+
