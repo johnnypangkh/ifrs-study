@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
-<link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-rail-h-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-pack-rail-h-20261008" />
+<link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-rail-fit-20261008" />
+<link rel="stylesheet" href="ias16.css?v=ias16-pack-rail-fit-20261008" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -16,12 +16,12 @@
 
   <div class="pack-lr">
 
-    <a class="rail-link" href="../ch01.html#s-1-1" target="_parent">Scope</a>
-    <div class="beat">
+    <a class="rail-link" data-phase="scope" href="../ch01.html#s-1-1" target="_parent">Scope</a>
+    <div class="beat" data-phase="scope">
       <div class="scope-stack">
         <div class="dgrid decision-flow def-fork fork-ppe" role="group" aria-label="Decision: is it PPE in IAS 16?">
           <div class="decision-fork">
-            <section class="q">
+            <section class="q" data-phase-start>
               <p class="q-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Is it PPE in IAS 16?</span></p>
             </section>
             <div class="decision-after">
@@ -56,7 +56,7 @@
 
         <div class="dgrid decision-flow def-fork fork-excl" role="group" aria-label="Decision: excluded from IAS 16?">
           <div class="decision-fork">
-            <section class="q">
+            <section class="q" data-phase-end>
               <p class="q-title"><a class="fb-num" href="../ch01.html#s-1-3" target="_parent">1.3</a><span>Excluded from IAS 16?</span></p>
             </section>
             <div class="decision-after">
@@ -74,11 +74,11 @@
       </div>
     </div>
 
-    <a class="rail-link" href="../ch02.html#s-2-0" target="_parent">Recognition</a>
-    <div class="beat">
+    <a class="rail-link" data-phase="recog" href="../ch02.html#s-2-0" target="_parent">Recognition</a>
+    <div class="beat" data-phase="recog">
       <div class="dgrid decision-flow def-fork fork-cap" role="group" aria-label="Decision: capitalise as PPE?">
         <div class="decision-fork">
-          <section class="q">
+          <section class="q" data-phase-start data-phase-end>
             <p class="q-title"><a class="fb-num" href="../ch02.html#s-2-0" target="_parent">2.0</a><span>Capitalise as PPE?</span></p>
             <p class="q-note"><span>Probable future economic benefits and cost measured reliably.</span></p>
             <p class="see"><a class="fb-num" href="../ch02.html#s-2-2" target="_parent">2.2</a><span class="see-label">See also</span> <span class="see-bit">Spare parts — IAS 2</span></p>
@@ -96,9 +96,9 @@
       </div>
     </div>
 
-    <a class="rail-link" href="../ch03.html#s-3-0" target="_parent">Initial cost</a>
-    <div class="beat">
-      <section class="plate" aria-label="Cost equals purchase price plus directly attributable costs plus dismantling">
+    <a class="rail-link" data-phase="cost" href="../ch03.html#s-3-0" target="_parent">Initial cost</a>
+    <div class="beat" data-phase="cost">
+      <section class="plate" data-phase-start data-phase-end aria-label="Cost equals purchase price plus directly attributable costs plus dismantling">
         <p class="plate-title"><a class="fb-num" href="../ch03.html#s-3-0" target="_parent">3.0</a><span>Cost</span></p>
         <div class="cost-eq" role="group" aria-label="Cost equals purchase price plus directly attributable costs plus dismantling, removal and restoration">
           <article class="cost-result">
@@ -127,9 +127,9 @@
       <div class="pack-flow" aria-hidden="true"><div class="pack-flow-line"></div></div>
     </div>
 
-    <a class="rail-link" href="../ch04.html#s-4-0" target="_parent">Models</a>
-    <div class="beat">
-      <section class="plate" aria-label="Cost model and revaluation model, policy by entire class">
+    <a class="rail-link" data-phase="models" href="../ch04.html#s-4-0" target="_parent">Models</a>
+    <div class="beat" data-phase="models">
+      <section class="plate" data-phase-start data-phase-end aria-label="Cost model and revaluation model, policy by entire class">
         <p class="plate-title"><a class="fb-num" href="../ch04.html#s-4-0" target="_parent">4.0</a><span>Subsequent models</span></p>
         <div class="peers peers-2" role="group" aria-label="Cost model and revaluation model">
           <article class="peer">
@@ -150,9 +150,9 @@
       </div>
     </div>
 
-    <a class="rail-link" href="../ch05.html#s-5-0" target="_parent">Depreciation</a>
-    <div class="beat">
-      <section class="plate" aria-label="Depreciable amount equals cost or revalued amount minus residual value">
+    <a class="rail-link" data-phase="dep" href="../ch05.html#s-5-0" target="_parent">Depreciation</a>
+    <div class="beat" data-phase="dep">
+      <section class="plate" data-phase-start data-phase-end aria-label="Depreciable amount equals cost or revalued amount minus residual value">
         <p class="plate-title"><a class="fb-num" href="../ch05.html#s-5-0" target="_parent">5.0</a><span>Depreciation</span></p>
         <div class="cost-eq" role="group" aria-label="Depreciable amount equals cost or revalued amount minus residual value">
           <article class="cost-result">
@@ -180,9 +180,9 @@
       </div>
     </div>
 
-    <a class="rail-link rail-later" href="../ch06.html#s-6-0" target="_parent">Derecognition</a>
-    <div class="beat">
-      <section class="plate pack-exit" aria-label="Derecognition — remove carrying amount">
+    <a class="rail-link rail-later" data-phase="out" href="../ch06.html#s-6-0" target="_parent">Derecognition</a>
+    <div class="beat" data-phase="out">
+      <section class="plate pack-exit" data-phase-start data-phase-end aria-label="Derecognition — remove carrying amount">
         <p class="plate-title"><a class="fb-num" href="../ch06.html#s-6-0" target="_parent">6.0</a><span>Derecognition — remove carrying amount</span></p>
         <p class="limb-note">Disposed of, or no future economic benefits expected.</p>
         <div class="cost-eq" role="group" aria-label="Gain or loss equals proceeds minus carrying amount">
@@ -204,9 +204,11 @@
       </section>
     </div>
 
-    <a class="rail-link rail-sec" href="../ch07.html#s-7-0" target="_parent">Disclosure</a>
-    <div class="beat disc-beat">
-      <section class="disc-band" aria-label="Disclosure by class of PPE">
+    <div class="phase-gap" aria-hidden="true"></div>
+
+    <a class="rail-link rail-sec" data-phase="disc" href="../ch07.html#s-7-0" target="_parent">Disclosure</a>
+    <div class="beat disc-beat" data-phase="disc">
+      <section class="disc-band" data-phase-start data-phase-end aria-label="Disclosure by class of PPE">
         <p class="anno-title"><a class="fb-num" href="../ch07.html#s-7-0" target="_parent">7.0</a><span>Disclosure — by class of PPE</span></p>
         <ul class="disc-lines">
           <li><a class="fb-num" href="../ch07.html#s-7-1" target="_parent">7.1</a><span>Accounting policies</span></li>
@@ -222,5 +224,39 @@
 
 </div>
 </div>
+<script>
+(function () {
+  var root = document.querySelector(".ppe.pack .pack-lr");
+  if (!root) return;
+
+  function fit() {
+    var rails = root.querySelectorAll(".rail-link[data-phase]");
+    for (var i = 0; i < rails.length; i++) {
+      var rail = rails[i];
+      var phase = rail.getAttribute("data-phase");
+      var beat = root.querySelector('.beat[data-phase="' + phase + '"]');
+      if (!beat) continue;
+      var start = beat.querySelector("[data-phase-start]");
+      var end = beat.querySelector("[data-phase-end]");
+      if (!start || !end) continue;
+      var top = start.getBoundingClientRect().top - beat.getBoundingClientRect().top;
+      var height = end.getBoundingClientRect().bottom - start.getBoundingClientRect().top;
+      if (!(height > 0)) continue;
+      var prevTop = parseFloat(rail.style.marginTop);
+      var prevHeight = parseFloat(rail.style.height);
+      if (Math.abs(prevTop - top) < 0.5 && Math.abs(prevHeight - height) < 0.5) continue;
+      rail.style.marginTop = top + "px";
+      rail.style.height = height + "px";
+    }
+  }
+
+  fit();
+  window.addEventListener("resize", fit);
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(root);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fit).catch(function () {});
+  }
+})();
+</script>
 </body>
 </html>

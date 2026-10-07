@@ -1389,13 +1389,13 @@ body.embed {
 }
 
 .ppe.pack .rail-link {
-  align-self: stretch;
+  align-self: start;
   justify-self: stretch;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 3.6em;
+  min-height: 0;
   margin: 0;
   padding: 0.55em 0.45em;
   border: 0.08em solid var(--line);
@@ -1421,8 +1421,10 @@ body.embed {
   background: var(--surface);
 }
 
-.ppe.pack .rail-sec,
-.ppe.pack .disc-beat { margin-top: 1.05rem; }
+.ppe.pack .phase-gap {
+  grid-column: 1 / -1;
+  height: 1.05rem;
+}
 
 .ppe.pack .beat {
   display: flex;
@@ -1648,13 +1650,9 @@ body.embed {
   }
 
   .ppe.pack .rail-link {
-    min-height: 3.2em;
-    margin-top: 0;
     padding: 0.4em 0.28em;
     font-size: 0.74em;
   }
-
-  .ppe.pack .rail-sec { margin-top: 1.05rem; }
 
   .ppe.pack .beat { padding-inline-start: 0.6em; }
 
