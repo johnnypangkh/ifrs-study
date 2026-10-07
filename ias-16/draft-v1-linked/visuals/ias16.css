@@ -678,3 +678,188 @@ body.embed {
 
   .ppe .anno-split { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Ch03 initial measurement. Result-first cost sum.
+   Operators stay unboxed. Continuing exit is column 1.
+   The muted exclusion sits in column 3. */
+
+.ppe .cost-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: 0.85rem 0.75rem;
+  align-items: start;
+}
+
+.ppe .cost-map > .cost-eq { grid-column: 1 / -1; grid-row: 1; }
+.ppe .cost-map > .tip-stack { grid-column: 1 / 3; grid-row: 2; }
+.ppe .cost-map > .cost-out { grid-column: 3; grid-row: 2; align-self: stretch; }
+.ppe .cost-map > .cost-lower { grid-column: 1 / -1; grid-row: 3; }
+.ppe .cost-map > .cost-exit { grid-column: 1; grid-row: 4; }
+
+.ppe .cost-eq {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.55rem 0.4rem;
+  min-width: 0;
+}
+
+.ppe .cost-op {
+  flex: 0 0 auto;
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: 1.35em;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ppe .cost-result,
+.ppe .limb {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 0.55em 0.65em;
+}
+
+.ppe .cost-result {
+  flex: 0.72 1 0;
+  border-width: 0.14em;
+  border-color: var(--accent);
+}
+
+.ppe .limb { flex: 1 1 0; }
+
+.ppe .limb-title,
+.ppe .tip-line,
+.ppe .incidental,
+.ppe .ex-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ppe .limb-title > span,
+.ppe .tip-line > span,
+.ppe .incidental > span,
+.ppe .ex-line > span {
+  flex: 1 1 8em;
+  min-width: 0;
+}
+
+.ppe .limb-title { font-size: 0.95em; }
+.ppe .cost-result .limb-title { font-size: 1.05em; }
+
+.ppe .limb-note,
+.ppe .mute-line,
+.ppe .ex-line {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84em;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.ppe .ex-line { color: var(--ink); font-weight: 650; }
+.ppe .mute-line { font-weight: 650; }
+
+.ppe .limb .see,
+.ppe .cost-result .see,
+.ppe .tip-stack .see,
+.ppe .grant-tip {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.ppe .see .fb-num { margin-right: 0.35em; }
+
+.ppe .cease { margin-top: auto; }
+
+.ppe .cost-lower,
+.ppe .tip-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.ppe .tip-line,
+.ppe .incidental {
+  width: fit-content;
+  max-width: 100%;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.4em 0.55em;
+  font-size: 0.88em;
+  font-weight: 650;
+}
+
+.ppe .incidental {
+  border-style: dashed;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.ppe .cost-map .see-bit,
+.ppe .cost-map .limb-title > span,
+.ppe .cost-map .tip-line > span,
+.ppe .cost-map .anno-title > span,
+.ppe .cost-map .leaf-name > span,
+.ppe .cost-map .ex-line > span,
+.ppe .cost-map .incidental > span {
+  text-wrap: balance;
+}
+
+.ppe .cost-exit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  min-width: 0;
+  margin-top: 0.15rem;
+}
+
+.ppe .cost-exit .exit-name { width: 100%; }
+
+@media (max-width: 800px) {
+  .ppe .cost-map > .cost-lower .annos { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .ppe .cost-map {
+    display: flex;
+    flex-direction: column;
+    padding-inline-start: 0.15em;
+  }
+
+  .ppe .cost-eq {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ppe .cost-op { align-self: center; }
+
+  .ppe .cost-exit {
+    align-self: stretch;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  html .ppe .cost-map .exit-shaft {
+    align-self: flex-start;
+    width: 1.2em;
+    margin-inline-start: 0.85em;
+  }
+}
