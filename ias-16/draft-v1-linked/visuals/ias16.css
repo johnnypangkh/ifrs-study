@@ -863,3 +863,176 @@ body.embed {
     margin-inline-start: 0.85em;
   }
 }
+
+/* Ch04 subsequent measurement — models.
+   Two equal model cards, then the class-policy bar, then the class nest.
+   Continuing exit is column 1. No red leaf. */
+
+.ppe.models {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.ppe.models > .model-entry,
+.ppe.models > .span-bar,
+.ppe.models > .peers,
+.ppe.models > .class-nest,
+.ppe.models > .tips {
+  grid-column: 1 / -1;
+}
+
+.ppe.models > .models-exit { grid-column: 1 / -1; }
+
+.ppe .model-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 0.65em 0.75em;
+}
+
+.ppe .model-peer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+
+.ppe.models .peers { align-items: start; }
+
+.ppe .model-peer > .peer-title,
+.ppe .model-entry > .q-title,
+.ppe .model-nest,
+.ppe .reg-tip,
+.ppe.models .leaf.mute {
+  align-self: stretch;
+  width: 100%;
+}
+
+.ppe .model-nest {
+  width: 100%;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.45em 0.55em;
+}
+
+.ppe .nest-title,
+.ppe .reg-tip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ppe .nest-title { font-size: 0.92em; }
+
+.ppe .reg-tip {
+  width: fit-content;
+  max-width: 100%;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.4em 0.55em;
+  font-size: 0.88em;
+  font-weight: 650;
+}
+
+.ppe .nest-title > span,
+.ppe .reg-tip > span {
+  flex: 1 1 8em;
+  min-width: 0;
+  text-wrap: balance;
+}
+
+.ppe .model-entry .limb-note,
+.ppe .model-nest .limb-note,
+.ppe .model-peer > .thin-tip,
+.ppe .model-nest .thin-tip,
+.ppe .class-nest .thin-tip,
+.ppe .model-entry .see,
+.ppe .model-peer > .see,
+.ppe .model-nest .see,
+.ppe.models > .tips > .see {
+  margin-top: 0;
+}
+
+.ppe .model-nest .limb-note,
+.ppe .model-nest .see,
+.ppe .model-nest .thin-tip { margin-top: 0.4em; }
+
+.ppe .class-nest .thin-tip { margin-top: 0.35em; }
+
+.ppe .model-peer > .see,
+.ppe .model-entry .see,
+.ppe .model-nest .see,
+.ppe.models > .tips > .see {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.ppe.models .leaf.mute { width: 100%; }
+
+.ppe.models .peer-title > span,
+.ppe.models .anno-title > span,
+.ppe.models .q-title > span,
+.ppe.models .span-bar > span,
+.ppe.models .leaf-name > span,
+.ppe.models .tip-title > span,
+.ppe.models .tip-line > span,
+.ppe.models .exit-name {
+  text-wrap: balance;
+}
+
+.ppe .models-exit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  justify-items: center;
+  gap: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+.ppe .models-exit .exit-shaft { grid-column: 1; grid-row: 1; }
+.ppe .models-exit .exit-name {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  width: 100%;
+}
+
+.ppe.models > .tips { margin-top: 0; }
+
+.ppe.models .tip-line a.onward,
+.ppe.models .tip-line a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--dash);
+  text-underline-offset: 0.15em;
+}
+
+@media (max-width: 560px) {
+  .ppe.models {
+    grid-template-columns: minmax(0, 1fr);
+    padding-inline-start: 0.15em;
+  }
+
+  .ppe .models-exit { grid-template-columns: minmax(0, 1fr); }
+
+  html .ppe.models .exit-shaft {
+    justify-self: start;
+    width: 1.2em;
+    margin-inline-start: 0.85em;
+  }
+
+  .ppe.models .span-bar > .fb-num { margin-inline: auto; }
+}
