@@ -425,3 +425,256 @@ body.embed {
     border-right: 0.38em solid var(--accent);
   }
 }
+
+/* Ch02 recognition. Outer fork stays the ch01 three-track grid.
+   Continuing exit sits in column 1 under the plate. */
+
+.ppe .recog > .decision-fork > .q { align-self: stretch; }
+.ppe .recog > .decision-fork > .decision-after > .decision-branch > .harm,
+.ppe .recog > .decision-fork > .decision-after > .decision-branch > .leaf {
+  align-self: start;
+}
+
+.ppe .recog > .exit-shaft { grid-column: 1; grid-row: 4; }
+.ppe .recog > .exit-name { grid-column: 1; grid-row: 5; }
+
+.ppe .q-note,
+.ppe .facet-title,
+.ppe .anno-title,
+.ppe .bridge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ppe .q-note > span,
+.ppe .facet-title > span,
+.ppe .anno-title > span {
+  flex: 1 1 8em;
+  min-width: 0;
+}
+
+.ppe .q-note {
+  margin: 0.45em 0 0;
+  color: var(--muted);
+  font-size: 0.88em;
+  font-weight: 650;
+}
+
+.ppe .recog .q-title > span,
+.ppe .recog .leaf-name > span,
+.ppe .recog .peer-title > span,
+.ppe .recog .facet-title > span,
+.ppe .recog .anno-title > span,
+.ppe .recog .flow-dest,
+.ppe .recog .span-bar > span {
+  text-wrap: balance;
+}
+
+.ppe .peers.peers-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ppe .facets {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.ppe .facet-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 0;
+}
+
+.ppe .facet,
+.ppe .anno {
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.55em 0.65em;
+}
+
+.ppe .facet-title,
+.ppe .anno-title {
+  font-size: 0.92em;
+}
+
+.ppe .facet-note,
+.ppe .anno-out {
+  margin-top: 0.35em;
+  color: var(--muted);
+  font-size: 0.86em;
+  line-height: 1.4;
+}
+
+.ppe .day {
+  margin-top: 0.55em;
+  padding-top: 0.5em;
+  border-top: 0.08em dashed var(--dash);
+}
+
+.ppe .leaf.mute .day .leaf-name { color: var(--muted); }
+
+.ppe .flow-tip {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe .flow-shaft,
+.ppe .exit-shaft {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.ppe .flow-shaft {
+  height: 1.45em;
+}
+
+.ppe .flow-shaft::before,
+.ppe .exit-shaft::before {
+  content: "";
+  position: absolute;
+  top: -0.08em;
+  bottom: 0.4em;
+  width: 0.1em;
+  background: var(--accent);
+}
+
+.ppe .flow-shaft::before {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ppe .flow-shaft::after,
+.ppe .exit-shaft::after {
+  content: "";
+  position: absolute;
+  bottom: -0.06em;
+  border-left: 0.32em solid transparent;
+  border-right: 0.32em solid transparent;
+  border-top: 0.42em solid var(--accent);
+}
+
+.ppe .flow-shaft::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ppe .flow-dest,
+.ppe .exit-name {
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ppe .flow-dest {
+  display: block;
+  padding: 0.4em 0.5em;
+  font-size: 0.84em;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: var(--dash);
+  text-underline-offset: 0.15em;
+}
+
+.ppe .exit-shaft {
+  width: 1.2em;
+  min-height: 1.55em;
+  justify-self: center;
+}
+
+.ppe .exit-shaft::before {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ppe .exit-shaft::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ppe .exit-name {
+  margin: 0;
+  padding: 0.55em 0.65em;
+  font-size: 0.95em;
+  text-align: center;
+}
+
+.ppe .plate-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+  margin-top: 0.15rem;
+  padding-top: 0.8rem;
+  border-top: 0.08em solid var(--line);
+}
+
+.ppe .annos {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.ppe .anno-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.45fr) minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: start;
+  margin-top: 0.45em;
+}
+
+.ppe .anno-split .anno-out,
+.ppe .anno-split .see { margin-top: 0; }
+
+.ppe .anno-out {
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.35em 0.45em;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.ppe .bridge {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.45em 0.6em;
+  font-size: 0.92em;
+  font-weight: 650;
+}
+
+@media (max-width: 800px) {
+  .ppe .peers.peers-2,
+  .ppe .facets,
+  .ppe .annos { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 560px) {
+  /* Room for the elbow arrow, which is drawn just outside the stem. */
+  .ppe .recog { padding-inline-start: 0.6em; }
+
+  html .ppe .decision-flow.decision-flow > .exit-shaft {
+    align-self: flex-start;
+    width: 1.2em;
+    margin-inline-start: 0.85em;
+  }
+
+  .ppe .anno-split { grid-template-columns: minmax(0, 1fr); }
+}
