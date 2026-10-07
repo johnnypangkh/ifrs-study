@@ -1382,31 +1382,43 @@ body.embed {
 
 .ppe.pack .pack-lr {
   display: grid;
-  grid-template-columns: minmax(6.8em, 8.8em) minmax(0, 1fr);
-  column-gap: 0.55em;
+  grid-template-columns: minmax(7.4em, 9.2em) minmax(0, 1fr);
+  column-gap: 0.65em;
   row-gap: 0;
   align-items: start;
 }
 
 .ppe.pack .rail-link {
   align-self: start;
-  margin: 0.7em 0 0;
+  justify-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 3.6em;
+  margin: 0;
+  padding: 0.55em 0.45em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
   color: var(--ink);
-  font-size: 0.92em;
+  font-size: 0.84em;
   font-weight: 750;
-  line-height: 1.25;
-  text-decoration: underline;
-  text-decoration-color: var(--dash);
-  text-underline-offset: 0.18em;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
 }
 
-.ppe.pack .rail-link:hover { color: var(--accent); }
+.ppe.pack .rail-link:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
 
 .ppe.pack .rail-later,
 .ppe.pack .rail-sec {
   color: var(--muted);
   font-weight: 650;
-  font-size: 0.84em;
+  background: var(--surface);
 }
 
 .ppe.pack .rail-sec,
@@ -1631,14 +1643,18 @@ body.embed {
 
 @media (max-width: 560px) {
   .ppe.pack .pack-lr {
-    grid-template-columns: minmax(5.6em, 6.4em) minmax(0, 1fr);
-    column-gap: 0.35em;
+    grid-template-columns: minmax(6.6em, 7.6em) minmax(0, 1fr);
+    column-gap: 0.4em;
   }
 
   .ppe.pack .rail-link {
-    margin-top: 0.45em;
-    font-size: 0.8em;
+    min-height: 3.2em;
+    margin-top: 0;
+    padding: 0.4em 0.28em;
+    font-size: 0.74em;
   }
+
+  .ppe.pack .rail-sec { margin-top: 1.05rem; }
 
   .ppe.pack .beat { padding-inline-start: 0.6em; }
 
