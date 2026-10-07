@@ -1268,7 +1268,7 @@ body.embed {
 }
 
 @media (max-width: 560px) {
-  .ppe .derecog { padding-inline-start: 0.15em; }
+  .ppe .derecog { padding-inline-start: 0.6em; }
 
   html .ppe .derecog > .exit-shaft {
     align-self: flex-start;
