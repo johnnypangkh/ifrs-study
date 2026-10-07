@@ -1303,18 +1303,14 @@ body.embed {
 
 .ppe .limb-run {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.15em 0.35em;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.12em;
   margin: 0.4em 0 0;
   color: var(--muted);
   font-size: 0.82em;
   font-weight: 650;
   line-height: 1.35;
-}
-
-.ppe .limb-run span:not(:last-child)::after {
-  content: " ·";
-  color: var(--dash);
 }
 
 .ppe .side-facets {
