@@ -1169,7 +1169,14 @@ body.embed {
   .ppe.dep-map {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     padding-inline-start: 0.15em;
+  }
+
+  .ppe.dep-map > .cost-eq,
+  .ppe.dep-map > .method-zone,
+  .ppe.dep-map > .model-entry {
+    width: 100%;
   }
 
   .ppe .dep-exit {
