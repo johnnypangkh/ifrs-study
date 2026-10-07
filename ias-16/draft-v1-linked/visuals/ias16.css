@@ -1193,3 +1193,90 @@ body.embed {
 
   .ppe.dep-map .span-bar > .fb-num { margin-inline: auto; }
 }
+
+/* Ch06 derecognition. Yes enters the remove-carrying-amount plate.
+   Trigger cards share an either-of-these bar. Gain or loss is a
+   result-first row inside that plate. Compensation sits beside it.
+   The No leaf is muted. No red on this board. */
+
+.ppe .derecog > .exit-shaft { grid-column: 1; grid-row: 4; }
+.ppe .derecog > .exit-name { grid-column: 1; grid-row: 5; }
+
+.ppe .q-lead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0 0 0.45em;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ppe .q-lead > span,
+.ppe .derecog .plate-title > span {
+  flex: 1 1 8em;
+  min-width: 0;
+  text-wrap: balance;
+}
+
+.ppe .gl-band {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.ppe .gl-band > .cost-eq { grid-column: 1 / 3; }
+.ppe .comp-side {
+  grid-column: 3;
+  border-width: 0.06em;
+}
+
+.ppe .rental-facet { border-width: 0.06em; }
+
+.ppe .derecog .plate .thin-tip { margin-top: 0; }
+.ppe .derecog .q .thin-tip,
+.ppe .derecog .leaf .thin-tip,
+.ppe .derecog .plate > .thin-tip,
+.ppe .rental-facet .see { margin-top: 0.4em; }
+
+.ppe .derecog .q-title > span,
+.ppe .derecog .q-lead > span,
+.ppe .derecog .leaf-name > span,
+.ppe .derecog .peer-title > span,
+.ppe .derecog .span-bar > span,
+.ppe .derecog .anno-title > span,
+.ppe .derecog .limb-title > span,
+.ppe .derecog .tip-line > span,
+.ppe .derecog .exit-name {
+  text-wrap: balance;
+}
+
+.ppe .derecog .dep-sees { margin-top: 0; }
+
+@media (max-width: 800px) {
+  .ppe .gl-band {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+  }
+  .ppe .gl-band > .cost-eq,
+  .ppe .comp-side {
+    grid-column: 1;
+    grid-row: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .ppe .derecog { padding-inline-start: 0.6em; }
+
+  html .ppe .derecog > .exit-shaft {
+    align-self: flex-start;
+    width: 1.2em;
+    margin-inline-start: 0.85em;
+  }
+
+  .ppe .derecog > .exit-name { width: 100%; }
+
+  .ppe .derecog .span-bar > .fb-num { margin-inline: auto; }
+}
