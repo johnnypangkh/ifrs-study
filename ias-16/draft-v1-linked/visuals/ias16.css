@@ -1280,3 +1280,92 @@ body.embed {
 
   .ppe .derecog .span-bar > .fb-num { margin-inline: auto; }
 }
+
+/* Ch07 disclosure. Four mandatory peers under the class bar.
+   Movement limbs stay inside the reconciliation peer.
+   Further amounts sit below that strip. Encouraged is muted.
+   No red on this board. */
+
+.ppe.disc {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.ppe.disc > * { min-width: 0; }
+
+.ppe .peers.peers-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+}
+
+.ppe .limb-run {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.12em;
+  margin: 0.4em 0 0;
+  color: var(--muted);
+  font-size: 0.82em;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.ppe .side-facets {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.ppe .side-facets .anno { border-width: 0.06em; }
+
+.ppe .encouraged,
+.ppe .encouraged .anno-title,
+.ppe .encouraged .limb-note,
+.ppe .encouraged .thin-tip {
+  color: var(--muted);
+}
+
+.ppe.disc .q-title > span,
+.ppe.disc .peer-title > span,
+.ppe.disc .span-bar > span,
+.ppe.disc .nest-title > span,
+.ppe.disc .anno-title > span,
+.ppe.disc .tip-line > span {
+  text-wrap: balance;
+}
+
+.ppe.disc .model-entry .thin-tip,
+.ppe.disc .model-nest .thin-tip,
+.ppe.disc .model-entry .see,
+.ppe.disc .model-peer > .see,
+.ppe.disc .model-nest .see,
+.ppe.disc .anno .see,
+.ppe.disc .anno .thin-tip,
+.ppe.disc .anno .limb-note,
+.ppe.disc .peer .limb-note {
+  margin-top: 0;
+}
+
+.ppe.disc .dep-sees,
+.ppe.disc > .tip-line { margin-top: 0; }
+
+@media (max-width: 800px) {
+  .ppe .peers.peers-4,
+  .ppe .side-facets { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .ppe.disc > .model-entry,
+  .ppe.disc > .peers,
+  .ppe.disc > .side-facets,
+  .ppe.disc > .span-bar,
+  .ppe.disc > .tip-line {
+    width: 100%;
+  }
+
+  .ppe.disc .span-bar > .fb-num { margin-inline: auto; }
+}
