@@ -1369,3 +1369,248 @@ body.embed {
 
   .ppe.disc .span-bar > .fb-num { margin-inline: auto; }
 }
+
+/* Pack map. Five life-arc frames share edges.
+   Derecognition hangs off depreciation.
+   Disclosure is a lighter band under the strip.
+   One red leaf: IAS 16 does not apply. */
+
+.ppe.pack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.ppe .phase-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  align-items: stretch;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+
+.ppe .phase {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0.6em 0.55em 0.65em;
+  border-left: 0.08em solid var(--line);
+  position: relative;
+}
+
+.ppe .phase:first-child { border-left: 0; }
+
+.ppe .phase-title,
+.ppe .pack-stop,
+.ppe .pack-mute,
+.ppe .mini-peer,
+.ppe .phase-join {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ppe .phase-title { font-size: 0.95em; }
+
+.ppe .phase-title > span,
+.ppe .pack-stop > span,
+.ppe .pack-mute > span,
+.ppe .mini-peer > span,
+.ppe.pack .nest-title > span,
+.ppe.pack .plate-title > span,
+.ppe.pack .anno-title > span {
+  flex: 1 1 6em;
+  min-width: 0;
+  text-wrap: balance;
+}
+
+.ppe .phase:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: -0.32em;
+  top: 1.15em;
+  border-top: 0.28em solid transparent;
+  border-bottom: 0.28em solid transparent;
+  border-left: 0.38em solid var(--accent);
+}
+
+.ppe .phase-join {
+  margin-top: auto;
+  color: var(--accent);
+  font-size: 0.78em;
+  text-align: end;
+  justify-content: flex-end;
+}
+
+.ppe .phase-join a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--dash);
+  text-underline-offset: 0.15em;
+}
+
+.ppe .pack-stop {
+  border: 0.08em solid var(--danger);
+  border-radius: var(--card-radius);
+  padding: 0.35em 0.45em;
+  color: var(--danger);
+  background: transparent;
+  font-size: 0.84em;
+}
+
+.ppe .pack-stop .fb-num { color: var(--danger); }
+
+.ppe .pack-mute {
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.3em 0.4em;
+  color: var(--muted);
+  background: transparent;
+  font-size: 0.82em;
+}
+
+.ppe .mini-peers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.35rem;
+}
+
+.ppe .mini-peer {
+  min-width: 0;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.3em 0.4em;
+  font-size: 0.8em;
+}
+
+.ppe.pack .model-nest { padding: 0.4em 0.45em; }
+.ppe.pack .span-bar { padding: 0.3em 0.4em; font-size: 0.8em; }
+.ppe.pack .see { font-size: 0.74em; }
+.ppe.pack .limb-note,
+.ppe.pack .mute-line { margin-top: 0.25em; }
+
+.ppe .late {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+  row-gap: 0;
+  margin-top: 0;
+}
+
+.ppe .late-name {
+  grid-column: 5;
+  grid-row: 1;
+  justify-self: center;
+  align-self: end;
+  max-width: 14em;
+  margin: 0.45em 0.2em 0.2em;
+  color: var(--accent);
+  font-size: 0.78em;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.ppe .late-stem {
+  position: relative;
+  grid-column: 5;
+  grid-row: 2;
+  min-height: 1.7em;
+  display: flex;
+  justify-content: center;
+}
+
+.ppe .late-stem::before {
+  content: "";
+  width: 0.1em;
+  background: var(--accent);
+}
+
+.ppe .late-stem::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.02em;
+  transform: translateX(-50%);
+  border-left: 0.32em solid transparent;
+  border-right: 0.32em solid transparent;
+  border-top: 0.42em solid var(--accent);
+}
+
+.ppe .late > .plate {
+  grid-column: 4 / -1;
+  grid-row: 3;
+}
+
+.ppe .disc-band {
+  margin-top: 0.85rem;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.65em 0.75em;
+}
+
+.ppe .disc-band .anno-title { font-size: 0.95em; }
+.ppe .disc-band .see { margin-top: 0.45em; }
+
+@media (max-width: 800px) {
+  .ppe .phase-strip,
+  .ppe .late { grid-template-columns: minmax(0, 1fr); }
+
+  .ppe .phase {
+    border-left: 0;
+    border-top: 0.08em solid var(--line);
+  }
+
+  .ppe .phase:first-child { border-top: 0; }
+
+  .ppe .phase:not(:last-child)::after {
+    right: auto;
+    left: 1.15em;
+    top: auto;
+    bottom: -0.42em;
+    border-left: 0.28em solid transparent;
+    border-right: 0.28em solid transparent;
+    border-top: 0.38em solid var(--accent);
+    border-bottom: 0;
+  }
+
+  .ppe .phase-join { justify-content: flex-start; text-align: start; }
+
+  .ppe .late-name,
+  .ppe .late-stem,
+  .ppe .late > .plate { grid-column: 1; grid-row: auto; }
+
+  .ppe .late-name {
+    justify-self: start;
+    max-width: none;
+    margin: 0.55em 0 0.15em 0.35em;
+    text-align: start;
+  }
+
+  .ppe .late-stem {
+    align-self: flex-start;
+    justify-content: center;
+    width: 1.2em;
+    min-height: 1.5em;
+    margin-inline-start: 1.15em;
+  }
+
+  .ppe .late-stem::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .ppe .disc-band,
+  .ppe .late > .plate { width: 100%; }
+}
