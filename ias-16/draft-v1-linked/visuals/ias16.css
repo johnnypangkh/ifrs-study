@@ -1389,7 +1389,7 @@ body.embed {
 }
 
 .ppe.pack .rail-link {
-  align-self: start;
+  align-self: stretch;
   justify-self: stretch;
   display: flex;
   align-items: center;
