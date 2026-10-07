@@ -429,7 +429,7 @@ body.embed {
 /* Ch02 recognition. Outer fork stays the ch01 three-track grid.
    Continuing exit sits in column 1 under the plate. */
 
-.ppe .recog > .decision-fork > .q,
+.ppe .recog > .decision-fork > .q { align-self: stretch; }
 .ppe .recog > .decision-fork > .decision-after > .decision-branch > .harm,
 .ppe .recog > .decision-fork > .decision-after > .decision-branch > .leaf {
   align-self: start;
@@ -458,10 +458,20 @@ body.embed {
 }
 
 .ppe .q-note {
-  margin: 0;
+  margin: 0.45em 0 0;
   color: var(--muted);
   font-size: 0.88em;
   font-weight: 650;
+}
+
+.ppe .recog .q-title > span,
+.ppe .recog .leaf-name > span,
+.ppe .recog .peer-title > span,
+.ppe .recog .facet-title > span,
+.ppe .recog .anno-title > span,
+.ppe .recog .flow-dest,
+.ppe .recog .span-bar > span {
+  text-wrap: balance;
 }
 
 .ppe .peers.peers-2 {
@@ -657,6 +667,9 @@ body.embed {
 }
 
 @media (max-width: 560px) {
+  /* Room for the elbow arrow, which is drawn just outside the stem. */
+  .ppe .recog { padding-inline-start: 0.6em; }
+
   html .ppe .decision-flow.decision-flow > .exit-shaft {
     align-self: flex-start;
     width: 1.2em;
