@@ -1376,13 +1376,20 @@ body.embed {
    Disclosure sits below, lighter. One red leaf: IAS 16 does not apply. */
 
 .ppe.pack {
+  --t-chip: calc(10px * var(--type-scale, 1));
+  --t-meta: calc(11px * var(--type-scale, 1));
+  --t-body: calc(12px * var(--type-scale, 1));
+  --t-head: calc(13px * var(--type-scale, 1));
+  --t-plate: calc(14px * var(--type-scale, 1));
+  --t-op: calc(16px * var(--type-scale, 1));
+  --nx-chip-font: var(--t-chip);
   min-width: 0;
   padding-inline-end: 2px;
 }
 
 .ppe.pack .pack-lr {
   display: grid;
-  grid-template-columns: minmax(7.4em, 9.2em) minmax(0, 1fr);
+  grid-template-columns: minmax(8.6em, 11em) minmax(0, 1fr);
   column-gap: 0.65em;
   row-gap: 0;
   align-items: start;
@@ -1392,7 +1399,7 @@ body.embed {
   align-self: start;
   justify-self: stretch;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
   min-height: 0;
@@ -1402,9 +1409,9 @@ body.embed {
   border-radius: var(--card-radius);
   background: var(--surface);
   color: var(--ink);
-  font-size: 0.84em;
-  font-weight: 750;
-  line-height: 1.2;
+  font-size: var(--t-head);
+  font-weight: 700;
+  line-height: 1.25;
   text-align: center;
   text-decoration: none;
 }
@@ -1417,9 +1424,11 @@ body.embed {
 .ppe.pack .rail-later,
 .ppe.pack .rail-sec {
   color: var(--muted);
-  font-weight: 650;
+  font-weight: 700;
   background: var(--surface);
 }
+
+.ppe.pack .disc-beat { padding-top: 1.15rem; }
 
 .ppe.pack .phase-gap {
   grid-column: 1 / -1;
@@ -1475,8 +1484,8 @@ body.embed {
   justify-self: center;
   margin: 0;
   color: var(--accent);
-  font-size: 1.2em;
-  font-weight: 800;
+  font-size: var(--t-op);
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -1509,8 +1518,6 @@ body.embed {
   align-items: center;
   gap: 0.15em 0.35em;
   margin: 0;
-  font-size: 0.95em;
-  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -1548,8 +1555,6 @@ body.embed {
   gap: 0.15em 0.35em;
   margin: 0;
   color: var(--muted);
-  font-size: 0.86em;
-  font-weight: 650;
   line-height: 1.35;
 }
 
@@ -1636,8 +1641,8 @@ body.embed {
   padding: 0.12em 0.45em;
   background: var(--bg);
   color: var(--ink);
-  font-size: 0.84em;
-  font-weight: 700;
+  font-size: var(--t-meta);
+  font-weight: 650;
   line-height: 1.3;
   text-align: center;
 }
@@ -1653,14 +1658,14 @@ body.embed {
    so the outer fit script leaves them alone. */
 .ppe.pack .inner-board {
   display: grid;
-  grid-template-columns: minmax(5.6em, 6.8em) minmax(0, 1fr);
+  grid-template-columns: minmax(7.2em, 9.4em) minmax(0, 1fr);
   gap: 0.45rem;
   align-items: stretch;
   min-width: 0;
 }
 
 .ppe.pack .inner-board-2 {
-  grid-template-columns: minmax(5.1em, 6.2em) minmax(0, 1fr);
+  grid-template-columns: minmax(8em, 11em) minmax(0, 1fr);
 }
 
 .ppe.pack .inner-rail {
@@ -1677,9 +1682,9 @@ body.embed {
   border-radius: var(--card-radius);
   background: var(--nest);
   color: var(--ink);
-  font-size: 0.7em;
-  font-weight: 750;
-  line-height: 1.2;
+  font-size: var(--t-meta);
+  font-weight: 650;
+  line-height: 1.25;
   text-align: center;
   text-decoration: none;
 }
@@ -1696,7 +1701,7 @@ body.embed {
 
 .ppe.pack .inner-board-2 > .inner-rail {
   background: var(--bg);
-  font-size: 0.66em;
+  font-size: var(--t-meta);
 }
 
 .ppe.pack .inner-rail:hover {
@@ -1746,12 +1751,20 @@ body.embed {
   padding: 0.4em 0.4em;
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
+  flex-direction: column;
+  gap: 0.15em;
   background: var(--bg);
   color: var(--ink);
-  font-size: 0.86em;
+  font-size: var(--t-head);
   font-weight: 700;
   line-height: 1.3;
   text-align: center;
+}
+
+.ppe.pack .method-line {
+  font-size: var(--t-body);
+  font-weight: 400;
+  color: var(--ink);
 }
 
 .ppe.pack .chip-line {
@@ -1797,8 +1810,8 @@ body.embed {
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
   background: var(--nest);
-  font-size: 0.9em;
-  font-weight: 750;
+  font-size: var(--t-head);
+  font-weight: 700;
   line-height: 1.3;
   text-align: center;
 }
@@ -1814,8 +1827,8 @@ body.embed {
   border-radius: var(--card-radius);
   background: var(--nest);
   color: var(--ink);
-  font-size: 0.72em;
-  font-weight: 750;
+  font-size: var(--t-meta);
+  font-weight: 650;
   line-height: 1.2;
   text-align: center;
 }
@@ -1837,8 +1850,8 @@ body.embed {
   gap: 0.15em 0.35em;
   margin: 0;
   color: var(--ink);
-  font-size: 0.86em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -1870,15 +1883,6 @@ body.embed {
   min-width: 0;
 }
 
-/* Same x as the Models table's Cost | Revaluation headers.
-   Those headers sit past the policy label column; the split sits past the aspect rail.
-   At 560 the table drops the label column, so the split stays full width of its row. */
-@media (min-width: 561px) {
-  .ppe.pack .model-split {
-    margin-left: calc(0.1em - 0.03rem);
-    margin-right: -0.675em;
-  }
-}
 
 .ppe.pack .split-cell {
   display: flex;
@@ -1901,8 +1905,6 @@ body.embed {
   border-bottom: 0.08em solid var(--line);
   background: var(--nest);
   color: var(--ink);
-  font-size: 0.82em;
-  font-weight: 750;
   line-height: 1.3;
   text-align: center;
 }
@@ -1917,8 +1919,6 @@ body.embed {
   margin: 0;
   padding: 0.45em 0.55em;
   color: var(--ink);
-  font-size: 0.86em;
-  font-weight: 650;
   line-height: 1.35;
 }
 
@@ -1934,8 +1934,8 @@ body.embed {
   gap: 0.3em 0.45em;
   margin: 0.55rem 0 0;
   color: var(--muted);
-  font-size: 0.8em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -1947,6 +1947,9 @@ body.embed {
 }
 
 .ppe.pack .disc-band {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
   border: 0.06em solid var(--line);
   border-radius: var(--card-radius);
   background: transparent;
@@ -1954,9 +1957,9 @@ body.embed {
 }
 
 .ppe.pack .disc-band .anno-title {
-  font-size: 0.95em;
+  font-size: var(--t-head);
   color: var(--muted);
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .ppe.pack .disc-lines {
@@ -1974,8 +1977,8 @@ body.embed {
   align-items: center;
   gap: 0.15em 0.35em;
   color: var(--muted);
-  font-size: 0.86em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -1994,8 +1997,6 @@ body.embed {
 .ppe.pack .peer-line {
   margin: 0.28em 0 0;
   color: var(--muted);
-  font-size: 0.78em;
-  font-weight: 650;
   line-height: 1.3;
 }
 
@@ -2024,22 +2025,22 @@ body.embed {
 
 .ppe.pack .q-body {
   color: var(--ink);
-  font-size: 0.86em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
 }
 
 .ppe.pack .policy-body,
 .ppe.pack .disc-card-body {
   color: var(--muted);
-  font-size: 0.84em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
 }
 
 .ppe.pack .dot-line {
   margin: 0;
   color: var(--ink);
-  font-size: 0.84em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
 }
 
 .ppe.pack .leaf.pack-stop .leaf-body,
@@ -2054,8 +2055,8 @@ body.embed {
   border: 0.08em dashed var(--dash);
   border-radius: var(--card-radius);
   color: var(--muted);
-  font-size: 0.84em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -2074,12 +2075,12 @@ body.embed {
 
 .ppe.pack .cost-out strong {
   color: var(--ink);
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .ppe.pack .case-set {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.4rem;
   align-items: stretch;
 }
@@ -2094,7 +2095,188 @@ body.embed {
   padding: 0.5em 0.55em;
 }
 
-.ppe.pack .case-cell > .limb-note { margin: 0; }
+.ppe.pack .case-cell > .limb-note,
+.ppe.pack .case-cell > .peer-title { margin: 0; }
+
+/* 4.5 increase / decrease. One chip on the nest. Cells in a row share a height. */
+.ppe.pack .rev-nest,
+.ppe.pack .factor-nest,
+.ppe.pack .life-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  min-width: 0;
+}
+
+.ppe.pack .rev-kicker,
+.ppe.pack .life-kicker { margin: 0; }
+
+.ppe.pack .rev-table {
+  display: grid;
+  grid-template-columns: minmax(5.4em, 7.4em) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.28rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe.pack .rev-corner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.ppe.pack .rev-corner > .fb-num { margin: 0; }
+
+.ppe.pack .rev-col,
+.ppe.pack .rev-row,
+.ppe.pack .rev-cell {
+  min-width: 0;
+  margin: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+}
+
+.ppe.pack .rev-col,
+.ppe.pack .rev-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12em;
+  padding: 0.35em 0.35em;
+  background: var(--nest);
+  text-align: center;
+  line-height: 1.25;
+}
+
+.ppe.pack .rev-cell {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.4em 0.45em;
+  background: var(--bg);
+  line-height: 1.35;
+}
+
+.ppe.pack .rev-col > span,
+.ppe.pack .rev-cell > span,
+.ppe.pack .rev-sub { min-width: 0; }
+
+.ppe.pack .rev-foot {
+  margin: 0;
+  text-align: center;
+  line-height: 1.35;
+}
+
+/* 5.3 factors: four equal peers, no stems. */
+.ppe.pack .factor-set {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe.pack .factor-set > .peer {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ppe.pack .factor-set .peer-title {
+  justify-content: center;
+  text-align: center;
+}
+
+.ppe.pack .factor-set .peer-title > span {
+  flex: 0 1 auto;
+  text-align: center;
+}
+
+.ppe.pack .life-detail > .life-def,
+.ppe.pack .life-sub > .item-rows,
+.ppe.pack .consume-wrap > .item-rows { margin-top: 0; }
+
+/* 5.4 is a time axis: name, then name, then name. Not three peer cards. */
+.ppe.pack .life-line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.ppe.pack .life-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(0, 1fr));
+  column-gap: 0.75rem;
+  align-items: start;
+  width: 100%;
+  min-width: 0;
+}
+
+.ppe.pack .life-start {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: calc(1.3 * var(--t-head));
+  margin: 0;
+  padding-right: 0.35em;
+  background: var(--surface);
+}
+
+.ppe.pack .life-track::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0.55em;
+  top: calc(0.65 * var(--t-head));
+  height: 0.1em;
+  background: var(--accent);
+  transform: translateY(-50%);
+}
+
+.ppe.pack .life-track::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  top: calc(0.65 * var(--t-head));
+  transform: translateY(-50%);
+  border-left: 0.42em solid var(--accent);
+  border-top: 0.26em solid transparent;
+  border-bottom: 0.26em solid transparent;
+}
+
+.ppe.pack .life-beat {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.ppe.pack .life-name {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0.35em;
+  background: var(--surface);
+  line-height: 1.3;
+}
+
+.ppe.pack .life-cap {
+  margin: 0.4em 0 0;
+  padding-inline: 0.35em;
+  line-height: 1.35;
+}
+
+.ppe.pack .life-beat > .see { margin-left: 1.15em; }
 
 .ppe.pack span.inner-rail { cursor: default; }
 
@@ -2106,8 +2288,8 @@ body.embed {
 .ppe.pack .disc-group {
   margin: 0.75em 0 0;
   color: var(--ink);
-  font-size: 0.78em;
-  font-weight: 750;
+  font-size: var(--t-head);
+  font-weight: 700;
   line-height: 1.3;
 }
 
@@ -2130,7 +2312,7 @@ body.embed {
 .ppe.pack .disc-card-title {
   margin: 0;
   color: var(--ink);
-  font-size: 0.9em;
+  font-size: var(--t-head);
   font-weight: 700;
 }
 
@@ -2143,8 +2325,8 @@ body.embed {
   gap: 0.15em 0.35em;
   margin: 0.4em 0 0;
   color: var(--muted);
-  font-size: 0.8em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -2159,12 +2341,12 @@ body.embed {
   align-items: center;
   gap: 0.15em 0.35em;
   margin-top: 0.55em;
-  border: 0.08em dashed var(--see);
+  border: 0.06em solid var(--line);
   border-radius: var(--card-radius);
   padding: 0.4em 0.5em;
   color: var(--ink);
-  font-size: 0.84em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -2177,7 +2359,7 @@ body.embed {
 
 .ppe.pack .disc-board {
   display: grid;
-  grid-template-columns: minmax(5.6em, 6.8em) minmax(0, 1fr);
+  grid-template-columns: minmax(8em, 11em) minmax(0, 1fr);
   gap: 0.45rem;
   align-items: stretch;
   min-width: 0;
@@ -2186,11 +2368,44 @@ body.embed {
 .ppe.pack .disc-stack {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35em;
   min-width: 0;
   margin: 0;
-  padding: 0;
-  border: 0;
+  padding: 0.5em 0.6em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+}
+
+.ppe.pack .disc-stack > .item-rows { margin-top: 0; }
+
+.ppe.pack .disc-sub { font-size: var(--t-head); }
+
+.ppe.pack .recon-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 0.8rem;
+  row-gap: 0.28em;
+  align-items: start;
+}
+
+.ppe.pack .rail-encouraged,
+.ppe.pack .rail-encouraged .rail-name { color: var(--muted); }
+
+.ppe.pack .disc-sub.soft-note {
+  margin-top: 0.35em;
+  font-weight: 650;
+}
+
+.ppe.pack .muted-rows { color: var(--muted); }
+
+.ppe.pack .muted-rows li::before { background: var(--dash); }
+
+.ppe.pack div.inner-rail { cursor: default; }
+
+.ppe.pack div.inner-rail:hover {
+  border-color: var(--line);
+  color: var(--ink);
 }
 
 .ppe.pack .item-rows {
@@ -2201,10 +2416,12 @@ body.embed {
   padding: 0;
   list-style: none;
   color: var(--ink);
-  font-size: 0.84em;
+  font-size: var(--t-body);
   font-weight: 400;
   line-height: 1.35;
 }
+
+.ppe.pack .recon-cols > .item-rows { margin-top: 0; }
 
 .ppe.pack .item-rows li {
   position: relative;
@@ -2224,6 +2441,12 @@ body.embed {
   background: var(--muted);
 }
 
+.ppe.pack .item-rows li.chip-line {
+  padding-left: 0;
+}
+
+.ppe.pack .item-rows li.chip-line::before { content: none; }
+
 .ppe.pack .q-note,
 .ppe.pack .limb-note,
 .ppe.pack .peer-line,
@@ -2238,131 +2461,798 @@ body.embed {
   font-weight: 400;
 }
 
-.ppe.pack .cost-op { align-self: center; }
+.ppe.pack .cost-op {
+  align-self: center;
+  font-size: var(--t-op);
+  font-weight: 700;
+}
 
 .ppe.pack .cost-eq > .limb,
 .ppe.pack .cost-eq > .cost-result {
   justify-content: flex-start;
 }
 
-.ppe.pack .cost-out {
-  font-weight: 400;
+/* Kit 4 is the only primary row. Not-costs spans Cost + Purchase.
+   The cut-off band spans DA + Dismantling and is linked from DA. */
+.ppe.pack .cost-identity {
+  --stem: 0.7rem;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) auto minmax(0, 1fr) auto minmax(0, 1.35fr) auto minmax(0, 1fr);
+  grid-template-areas:
+    "result eq buy p1 da p2 dis"
+    "nature nature nature . axis axis axis"
+    "facets facets facets facets facets facets facets";
+  column-gap: 0.4rem;
+  row-gap: var(--stem);
+  align-items: start;
+  min-width: 0;
 }
 
-.ppe.pack .cost-out-title {
+.ppe.pack .cost-identity > .cost-result { grid-area: result; }
+.ppe.pack .cost-identity > .op-eq { grid-area: eq; }
+.ppe.pack .cost-identity > .limb-buy { grid-area: buy; }
+.ppe.pack .cost-identity > .op-p1 { grid-area: p1; }
+.ppe.pack .cost-identity > .da-col { grid-area: da; }
+.ppe.pack .cost-identity > .op-p2 { grid-area: p2; }
+.ppe.pack .cost-identity > .limb-dis { grid-area: dis; }
+.ppe.pack .cost-identity > .nature-nest { grid-area: nature; }
+.ppe.pack .cost-identity > .ready-axis { grid-area: axis; }
+.ppe.pack .cost-identity > .facet-foot { grid-area: facets; }
+
+.ppe.pack .cost-identity > .cost-op { align-self: center; }
+
+.ppe.pack .cost-identity > .limb,
+.ppe.pack .cost-identity > .cost-result,
+.ppe.pack .cost-identity > .da-col,
+.ppe.pack .da-col > .limb {
+  justify-content: flex-start;
+  align-self: stretch;
+}
+
+.ppe.pack .da-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ppe.pack .da-col > .limb {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.ppe.pack .link-stem {
+  display: block;
+  width: 0.1em;
+  background: var(--accent);
+}
+
+.ppe.pack .mini-formula {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.15em 0.35em;
-  margin: 0.15em 0 0;
+  margin: 0;
   color: var(--ink);
-  font-weight: 700;
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
 }
 
-.ppe.pack .cost-out .item-rows { font-size: 1em; }
+.ppe.pack .mini-op {
+  color: var(--accent);
+  font-size: var(--t-op);
+  font-weight: 700;
+  line-height: 1;
+}
 
-.ppe.pack .model-board {
-  --fork: 1.55em;
-  --label: 7.6em;
+.ppe.pack .limb-buy .mini-formula {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.12em;
+}
+
+.ppe.pack .mini-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35em;
+}
+
+.ppe.pack .nature-nest,
+.ppe.pack .after-nest {
+  position: relative;
+  min-width: 0;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.4em 0 0.45em;
+  color: var(--muted);
+}
+
+.ppe.pack .nature-nest {
+  align-self: start;
+  display: grid;
+  grid-template-columns: subgrid;
+  column-gap: 0.4rem;
+}
+
+.ppe.pack .nature-nest > .nest-k { grid-column: 1 / -1; grid-row: 1; padding-inline: 0.45em; }
+.ppe.pack .nature-nest > .item-rows { grid-column: 1 / -1; grid-row: 2; padding-inline: 0.45em; }
+
+.ppe.pack .nature-nest > .link-stem {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  align-self: start;
+  position: relative;
+  z-index: 1;
+  width: 0.1em;
+  height: 0;
+  margin: 0;
+}
+
+.ppe.pack .nature-nest > .link-stem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0.1em;
+  height: calc(var(--stem) + 0.45em);
+  background: var(--accent);
+}
+
+.ppe.pack .nature-nest .item-rows,
+.ppe.pack .after-nest .item-rows {
+  margin-top: 0.28em;
+  color: var(--muted);
+  font-size: var(--t-body);
+}
+
+.ppe.pack .ready-axis {
+  --point-w: calc(18 * 0.8125rem);
+  --band-gap: 0.45rem;
+  --col-gap: 0.4rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: subgrid;
+  column-gap: var(--col-gap);
+  grid-template-rows: auto auto auto auto auto;
+  align-items: start;
+  min-width: 0;
+  padding: 0.4em 0 0.45em;
+  border: 0;
+  border-radius: var(--card-radius);
+  box-shadow: inset 0 0 0 0.06em var(--line);
+  background: transparent;
+}
+
+.ppe.pack .da-stem {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  align-self: start;
+  position: relative;
+  z-index: 2;
+  width: 0.1em;
+  height: 0;
+}
+
+.ppe.pack .da-stem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.35em;
+  width: 0.1em;
+  height: calc(var(--stem) + 0.7em);
+  background: var(--accent);
+}
+
+.ppe.pack .axis-frame {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin: 0 0.45em 0.2em;
+  color: var(--ink);
+  font-size: var(--t-head);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ppe.pack .axis-name {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: start;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--point-w);
+  max-width: var(--point-w);
+  min-height: calc(3 * 1.3 * var(--t-body));
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.ppe.pack .axis-name-text,
+.ppe.pack .axis-name-text > span { display: block; }
+
+@media (min-width: 561px) {
+  .ppe.pack .axis-name-text {
+    position: absolute;
+    left: calc(-1 * var(--col-gap));
+    top: 0;
+    width: 420px;
+    transform: translateX(-50%);
+    background: var(--surface);
+  }
+}
+
+.ppe.pack .axis-rule {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  position: relative;
+  height: 0.85em;
+  margin: calc(6px - 0.35em) 0.45em 0 0;
+}
+
+.ppe.pack .axis-rule::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.42em;
+  top: 0.35em;
+  height: 0.1em;
+  background: var(--accent);
+}
+
+.ppe.pack .axis-rule::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0.16em;
+  border-left: 0.38em solid var(--accent);
+  border-top: 0.24em solid transparent;
+  border-bottom: 0.24em solid transparent;
+}
+
+.ppe.pack .axis-diamond {
+  grid-column: 2;
+  grid-row: 3;
+  justify-self: start;
+  align-self: center;
+  z-index: 1;
+  transform: translateX(calc(-50% - 0.4rem));
+  background: var(--surface);
+  color: var(--accent);
+  font-size: var(--t-op);
+  font-weight: 700;
+  line-height: 1;
+  padding: 0 0.08em;
+}
+
+.ppe.pack .axis-seg {
+  position: relative;
+  z-index: 1;
+  margin: 0.15em 0.45em 0.35em;
+  background: transparent;
+  color: var(--ink);
+  font-size: var(--t-meta);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.ppe.pack .axis-seg-l { grid-column: 1; grid-row: 4; }
+
+/* The box starts at ◆. No stem. ◆ is in the heading. */
+.ppe.pack .point-at {
+  grid-column: 2;
+  grid-row: 5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  justify-self: start;
+  width: var(--point-w);
+  min-width: 0;
+  max-width: none;
+  margin: 0 calc(-1 * var(--point-w)) 0 calc(-1 * var(--col-gap));
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.4em 0.45em 0.45em;
+  z-index: 1;
+}
+
+.ppe.pack .point-mark {
+  display: inline;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.ppe.pack .point-k {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.ppe.pack .point-at > .item-rows { margin-top: 0.28em; }
+
+.ppe.pack .point-at > .link-stem { display: none; }
+
+.ppe.pack .chip-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.15em 0.35em;
+}
+
+.ppe.pack .chip-line > span { flex: 1 1 8em; min-width: 0; }
+
+.ppe.pack .before-nest {
+  grid-column: 1;
+  grid-row: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  align-self: stretch;
+  min-width: 0;
+  margin: 0 var(--band-gap) 0 0;
+}
+
+.ppe.pack .after-col {
+  grid-column: 3;
+  grid-row: 5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-self: stretch;
+  min-width: 0;
+  margin: 0 0 0 calc(var(--band-gap) - 2 * var(--col-gap));
+}
+
+.ppe.pack .after-nest { width: 100%; padding: 0.4em 0.45em; flex: 1 1 auto; }
+
+.ppe.pack .see-cluster {
+  min-width: 0;
+  padding-top: 0.65rem;
+}
+
+.ppe.pack .see-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.28em;
+  margin-top: 0;
+  border: 0.08em dashed var(--see);
+  border-radius: var(--card-radius);
+  padding: 0.4em 0.55em;
+}
+
+.ppe.pack .see-box > .see {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+.ppe.pack .pl-tip,
+.ppe.pack .constraint-tip,
+.ppe.pack .land-tip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.15em 0.35em;
+  min-width: 0;
+  margin: 0;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.4em 0.5em;
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.ppe.pack .before-nest .pl-tip {
+  color: var(--muted);
+  font-size: var(--t-body);
+  padding: 0.35em 0.45em;
+}
+
+.ppe.pack .pl-tip > .item-rows {
+  flex: 1 1 12em;
+  min-width: 0;
+  margin-top: 0;
+}
+
+.ppe.pack .before-nest .pl-tip .item-rows,
+.ppe.pack .before-nest .pl-tip .item-rows li { color: var(--muted); }
+
+@media (min-width: 561px) {
+  .ppe.pack .before-nest > .pl-tip { flex: 1 1 auto; }
+}
+
+.ppe.pack .constraint-tip {
+  border-width: 0.08em;
+  border-color: var(--accent);
+}
+
+.ppe.pack .nest-k {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--t-head);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ppe.pack .nest-k > span {
+  flex: 1 1 6em;
+  min-width: 0;
+}
+
+.ppe.pack .facet-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  margin-top: 0.15rem;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.4em 0.5em 0.5em;
+}
+
+.ppe.pack .facet-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--t-meta);
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.ppe.pack .facet-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  align-items: stretch;
+}
+
+.ppe.pack .facet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0.1em 0.15em;
+}
+
+.ppe.pack .facet-foot .facet-title { font-size: var(--t-head); }
+
+.ppe.pack .facet-foot .limb-note { margin: 0; }
+
+.ppe.pack .consume-wrap,
+.ppe.pack .constraint-tip,
+.ppe.pack .life-line { grid-column: 1 / -1; }
+
+.ppe.pack .consume-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.55em 0.6em;
+}
+
+.ppe.pack .consume-bar { justify-content: center; text-align: center; }
+
+.ppe.pack .consume-wrap > .limb-note { margin: 0; }
+
+/* Link, not a flow: side-exit lines from the parent meet each column head.
+   No arrowhead. Lens rows are a collection: nothing joins them. */
+.ppe.pack .policy-stage {
+  --lens-rail: 9.4em;
+  --lens-gap: 0.45rem;
+  --parent-w: min(28em, 42cqw);
+  --drop: 1.55em;
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
-.ppe.pack .policy-fork,
-.ppe.pack .aspect-row {
+.ppe.pack .policy-arms {
   display: grid;
-  grid-template-columns: var(--label) minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: 0.4rem;
-  row-gap: 0;
+  grid-template-columns:
+    calc((100cqw + var(--lens-rail) + var(--lens-gap) - var(--parent-w)) / 2)
+    var(--parent-w)
+    calc((100cqw - var(--lens-rail) - var(--lens-gap) - var(--parent-w)) / 2);
   align-items: stretch;
   min-width: 0;
 }
 
-.ppe.pack .aspect-row { margin-top: 0.4rem; }
-
 .ppe.pack .policy-parent {
-  grid-column: 2 / 4;
-  grid-row: 1;
   min-width: 0;
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
-  background: transparent;
+  background: var(--bg);
   padding: 0.7em 0.75em 0.75em;
 }
 
-.ppe.pack .policy-join {
-  grid-column: 2 / 4;
-  grid-row: 2;
+.ppe.pack .policy-elbow {
   position: relative;
-  height: var(--fork);
   min-width: 0;
 }
 
-.ppe.pack .policy-fork > .cmp-corner { grid-column: 1; grid-row: 3; }
-
-.ppe.pack .policy-fork > .head-cost { grid-column: 2; grid-row: 3; }
-
-.ppe.pack .policy-fork > .head-reval { grid-column: 3; grid-row: 3; }
-
-.ppe.pack .policy-join::before {
-  content: "";
+.ppe.pack .elbow-h,
+.ppe.pack .elbow-v {
   position: absolute;
-  left: 50%;
-  top: -0.08em;
-  height: calc(50% + 0.08em);
-  width: 0.1em;
   background: var(--accent);
-  transform: translateX(-50%);
 }
 
-.ppe.pack .policy-join::after {
-  content: "";
-  position: absolute;
-  left: calc(25% - 0.1rem);
-  right: calc(25% - 0.1rem);
+.ppe.pack .elbow-h {
   top: 50%;
   height: 0.1em;
-  background: var(--accent);
   transform: translateY(-50%);
 }
 
-.ppe.pack .fork-or {
-  position: absolute;
-  left: 50%;
-  top: 25%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  padding: 0 0.3em;
-  background: var(--surface);
-  color: var(--ink);
-  font-size: 0.78em;
-  font-weight: 700;
-  line-height: 1;
+/* Parent sits on the two model columns, so both arms reach a head centre. */
+.ppe.pack .policy-elbow-l .elbow-h {
+  right: -0.08em;
+  width: calc(max(0px, (100cqw - var(--lens-rail) - 2 * var(--parent-w)) / 4) + 0.08em);
 }
 
-.ppe.pack .policy-fork > .cmp-head {
-  position: relative;
-  flex-direction: column;
-  gap: 0.22em;
+.ppe.pack .policy-elbow-r .elbow-h {
+  left: -0.08em;
+  width: calc(max(0px, (100cqw - var(--lens-rail) - 2 * var(--parent-w)) / 4) + 0.08em);
 }
 
-.ppe.pack .policy-fork > .cmp-head::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 100%;
+.ppe.pack .elbow-v {
+  top: 50%;
+  bottom: calc(var(--drop) * -1 - 0.08em);
   width: 0.1em;
-  height: calc(var(--fork) / 2 + 0.08em);
-  background: var(--accent);
+}
+
+.ppe.pack .policy-elbow-l .elbow-v {
+  right: max(0px, calc((100cqw - var(--lens-rail) - 2 * var(--parent-w)) / 4));
+  transform: translateX(50%);
+}
+
+.ppe.pack .policy-elbow-r .elbow-v {
+  left: max(0px, calc((100cqw - var(--lens-rail) - 2 * var(--parent-w)) / 4));
   transform: translateX(-50%);
+}
+
+.ppe.pack .policy-kids {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+  margin-top: var(--drop);
+}
+
+.ppe.pack .lens-heads,
+.ppe.pack .lens-row {
+  display: grid;
+  grid-template-columns: minmax(7.2em, 9.4em) minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: var(--lens-gap);
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe.pack .lens-row { row-gap: 0.28rem; }
+
+.ppe.pack .lens-head {
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.45em 0.6em;
+}
+
+.ppe.pack .lens-k {
+  grid-column: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.22em;
+  min-width: 0;
+  margin: 0;
+  padding: 0.35em 0.35em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--nest);
+  color: var(--ink);
+  line-height: 1.25;
+  text-align: center;
+}
+
+.ppe.pack .lens-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.5em 0.6em;
+}
+
+.ppe.pack .lens-cell > .item-rows { margin-top: 0; }
+
+.ppe.pack .lens-cell > .limb-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.15em 0.35em;
+  margin: 0;
+}
+
+.ppe.pack .lens-cell > .limb-note > span { flex: 1 1 8em; min-width: 0; }
+
+.ppe.pack .model-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.55em 0.6em;
+}
+
+.ppe.pack .model-child-title,
+.ppe.pack .point-k,
+.ppe.pack .facet-title,
+.ppe.pack .consume-bar,
+.ppe.pack .disc-sub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+  min-width: 0;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.ppe.pack .lens-cell-head { display: none; }
+
+.ppe.pack .model-child-title > span,
+.ppe.pack .facet-title > span,
+.ppe.pack .consume-bar > span,
+.ppe.pack .disc-sub > span,
+.ppe.pack .constraint-tip > span,
+.ppe.pack .land-tip > span,
+.ppe.pack .pl-tip > span {
+  flex: 1 1 8em;
+  min-width: 0;
+}
+
+.ppe.pack .model-child > .limb-note,
+.ppe.pack .reval-nest > .limb-note,
+.ppe.pack .facet > .limb-note { margin: 0; }
+
+.ppe.pack .reval-nest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  min-width: 0;
+  margin-top: 0.1em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--nest);
+  padding: 0.45em 0.5em;
 }
 
 .ppe.pack .cap-wrap { grid-column: 1 / -1; min-width: 0; }
 
+.ppe.pack .term-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.ppe.pack .term {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+  padding: 0.55em 0.45em;
+  text-align: center;
+  font-size: var(--t-head);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ppe.pack .term + .term { border-left: 0.08em solid var(--line); }
+
+.ppe.pack .term > span { flex: 1 1 4em; min-width: 0; }
+
+.ppe.pack .both-bar {
+  margin: 0.55rem 0 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.45em 0.6em;
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* Impairment junction peers sit under the shaft label. The line and arrow
+   stay on the shaft centre (R41); the peers clear that line. */
+.ppe.pack .pack-flow-impair .pack-flow-shaft { grid-row: 1; }
+
+.ppe.pack .impair-peers {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.7em;
+}
+
+.ppe.pack .impair-peers > .impair-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 0.15em 0.35em;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  align-self: stretch;
+  justify-self: stretch;
+  white-space: normal;
+}
+
+.ppe.pack .impair-peers > .impair-strip > .fb-num { margin-right: 0; }
+
+.ppe.pack .impair-comp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28em;
+  min-width: 0;
+  margin: 0;
+  border: 0.08em dashed var(--see);
+  border-radius: var(--card-radius);
+  padding: 0.4em 0.5em;
+  background: transparent;
+  color: var(--ink);
+}
+
+.ppe.pack .impair-comp > .peer-title { margin: 0; }
+
+.ppe.pack .impair-comp > .item-rows { margin-top: 0.2em; }
+
 .ppe.pack .cap {
   display: grid;
-  grid-template-columns: minmax(5.6em, 6.8em) minmax(0, 1fr);
+  grid-template-columns: minmax(7.2em, 9.4em) minmax(0, 1fr);
   gap: 0.45rem;
   align-items: stretch;
   min-width: 0;
@@ -2396,15 +3286,39 @@ body.embed {
   border-radius: var(--card-radius);
   background: var(--nest);
   color: var(--ink);
-  font-size: 0.78em;
-  font-weight: 750;
   line-height: 1.2;
+  text-align: center;
+}
+
+.ppe.pack .cap-row > .cost-eq {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) auto minmax(0, 1.35fr) auto minmax(0, 1.05fr);
+  align-items: stretch;
+  gap: 0.35rem;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.4em;
+  background: transparent;
+}
+
+.ppe.pack .cap-row > .cost-eq > .cost-result,
+.ppe.pack .cap-row > .cost-eq > .limb {
+  min-width: 0;
+  justify-content: center;
+  margin: 0;
+}
+
+.ppe.pack .cap-row > .cost-eq .limb-title {
+  justify-content: center;
   text-align: center;
 }
 
 .ppe.pack .cap-foot {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 0.35em;
   min-width: 0;
   margin: 0;
   padding: 0.5em 0.6em;
@@ -2412,9 +3326,10 @@ body.embed {
   border-radius: var(--card-radius);
   background: transparent;
   color: var(--ink);
-  font-size: 0.84em;
   line-height: 1.35;
 }
+
+.ppe.pack .cap-foot > .item-rows { margin: 0; }
 
 .ppe.pack .cap-surplus { margin: 0.45rem 0 0; }
 
@@ -2423,6 +3338,40 @@ body.embed {
 .ppe.pack .cmp { margin-top: 0.45rem; }
 
 @media (min-width: 561px) {
+  .ppe.pack .pack-flow-impair { position: relative; }
+
+  .ppe.pack .pack-flow-impair .pack-flow-shaft::before,
+  .ppe.pack .pack-flow-impair .pack-flow-shaft::after { content: none; }
+
+  .ppe.pack .pack-flow-impair::before {
+    content: "";
+    position: absolute;
+    left: var(--shaft-x, 26%);
+    top: 0;
+    bottom: 0.4em;
+    width: 0.1em;
+    transform: translateX(-50%);
+    background: var(--accent);
+    z-index: 0;
+  }
+
+  .ppe.pack .pack-flow-impair::after {
+    content: "";
+    position: absolute;
+    left: var(--shaft-x, 26%);
+    bottom: 0;
+    z-index: 1;
+    transform: translateX(-50%);
+    border-left: 0.34em solid transparent;
+    border-right: 0.34em solid transparent;
+    border-top: 0.46em solid var(--accent);
+  }
+
+  .ppe.pack .impair-peers {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding-left: calc(var(--shaft-x, 26%) + 0.65em);
+  }
+
   .ppe.pack .scope-stack {
     display: grid;
     grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
@@ -2445,10 +3394,20 @@ body.embed {
 
   .ppe.pack .fork-excl > .decision-fork > .decision-after > .decision-branch > .leaf { grid-row: 3; }
 
-  .ppe.pack .fork-excl .side-note {
+  .ppe.pack .fork-excl .side-note { display: contents; }
+
+  .ppe.pack .fork-excl .leaf.pack-stop {
     grid-column: 3;
     grid-row: 3;
     align-self: start;
+    min-width: 0;
+  }
+
+  .ppe.pack .fork-excl .see-box {
+    grid-column: 3;
+    grid-row: 4;
+    align-self: start;
+    min-width: 0;
   }
 
   .ppe.pack .fork-excl .pack-no-line {
@@ -2460,6 +3419,11 @@ body.embed {
   }
 
   .ppe.pack .fork-excl > .decision-fork > .decision-after > .varm { grid-row: 4; }
+
+  .ppe.pack .see-cluster {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
+  }
 
   .ppe.pack .varm::before {
     position: absolute;
@@ -2474,16 +3438,17 @@ body.embed {
 
 @media (max-width: 560px) {
   .ppe.pack .pack-lr {
-    grid-template-columns: minmax(6.6em, 7.6em) minmax(0, 1fr);
-    column-gap: 0.4em;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
   }
 
   .ppe.pack .rail-link {
-    padding: 0.4em 0.28em;
-    font-size: 0.74em;
+    align-items: center;
+    margin: 0.7rem 0 0.4rem;
+    padding: 0.4em 0.55em;
   }
 
-  .ppe.pack .beat { padding-inline-start: 0.6em; }
+  .ppe.pack .beat { padding-inline-start: 0; }
 
   html .ppe.pack .decision-flow.decision-flow .decision-fork > .q {
     flex-basis: 100%;
@@ -2545,37 +3510,293 @@ body.embed {
 
   .ppe.pack .inner-board,
   .ppe.pack .disc-board {
-    grid-template-columns: minmax(4.5em, 5.3em) minmax(0, 1fr);
+    grid-template-columns: minmax(6.2em, 7.4em) minmax(0, 1fr);
   }
 
   .ppe.pack .inner-board-2 {
-    grid-template-columns: minmax(4.3em, 5.1em) minmax(0, 1fr);
+    grid-template-columns: minmax(6.4em, 8em) minmax(0, 1fr);
   }
 
   .ppe.pack .method-set,
-  .ppe.pack .case-set { grid-template-columns: minmax(0, 1fr); }
+  .ppe.pack .case-set,
+  .ppe.pack .facet-row,
+  .ppe.pack .policy-kids,
+  .ppe.pack .lens-row,
+  .ppe.pack .term-split,
+  .ppe.pack .factor-set,
+  .ppe.pack .recon-cols { grid-template-columns: minmax(0, 1fr); }
 
-  .ppe.pack .cmp,
-  .ppe.pack .policy-fork,
-  .ppe.pack .aspect-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .ppe.pack .life-track {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.55rem;
+  }
 
-  .ppe.pack .cmp-corner { display: none; }
+  .ppe.pack .life-track::before {
+    left: 0.15em;
+    right: auto;
+    top: calc(0.65 * var(--t-head));
+    bottom: 0.5em;
+    width: 0.1em;
+    height: auto;
+    transform: none;
+  }
 
-  .ppe.pack .aspect-row > .cmp-row,
-  .ppe.pack .cmp > .cmp-row { grid-column: 1 / -1; }
+  .ppe.pack .life-track::after {
+    left: 0.2em;
+    right: auto;
+    top: auto;
+    bottom: 0;
+    transform: translateX(-50%);
+    border-left: 0.28em solid transparent;
+    border-right: 0.28em solid transparent;
+    border-top: 0.42em solid var(--accent);
+    border-bottom: 0;
+  }
 
-  .ppe.pack .policy-fork > .policy-parent,
-  .ppe.pack .policy-fork > .policy-join,
-  .ppe.pack .policy-fork > .head-cost,
-  .ppe.pack .policy-fork > .head-reval,
-  .ppe.pack .policy-fork > .cmp-corner {
+  .ppe.pack .lens-heads { display: none; }
+
+  .ppe.pack .lens-cell-head { display: flex; }
+
+  .ppe.pack .cost-identity {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: none;
+  }
+
+  /* Same selectors as the named areas above (0,3,1). A `> *` reset is only
+     0,2,1 and loses, which stacks every Cost child in one cell. */
+  .ppe.pack .cost-identity > .cost-result,
+  .ppe.pack .cost-identity > .op-eq,
+  .ppe.pack .cost-identity > .limb-buy,
+  .ppe.pack .cost-identity > .op-p1,
+  .ppe.pack .cost-identity > .da-col,
+  .ppe.pack .cost-identity > .op-p2,
+  .ppe.pack .cost-identity > .limb-dis,
+  .ppe.pack .cost-identity > .nature-nest,
+  .ppe.pack .cost-identity > .ready-axis,
+  .ppe.pack .cost-identity > .facet-foot {
+    grid-area: auto;
     grid-column: auto;
     grid-row: auto;
   }
 
-  .ppe.pack .policy-fork > .policy-parent,
-  .ppe.pack .policy-fork > .policy-join { grid-column: 1 / -1; }
+  .ppe.pack .nature-nest > .nest-k,
+  .ppe.pack .nature-nest > .item-rows,
+  .ppe.pack .nature-nest > .link-stem {
+    grid-column: auto;
+    grid-row: auto;
+  }
 
-  .ppe.pack .cap,
+  .ppe.pack .ready-axis,
+  .ppe.pack .nature-nest {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+  }
+
+  .ppe.pack .ready-axis > * {
+    grid-column: auto;
+    grid-row: auto;
+    width: auto;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .ppe.pack .axis-name,
+  .ppe.pack .axis-diamond {
+    transform: none;
+    align-self: center;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .ppe.pack .axis-name { align-items: stretch; }
+
+  .ppe.pack .axis-name-text { max-width: 100%; }
+
+  .ppe.pack .axis-rule,
+  .ppe.pack .axis-diamond { display: none; }
+
+  .ppe.pack .point-mark {
+    display: inline;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .ppe.pack .before-nest,
+  .ppe.pack .point-at,
+  .ppe.pack .after-col { margin-top: 0.45rem; }
+
+  .ppe.pack .da-stem,
+  .ppe.pack .nature-nest > .link-stem,
+  .ppe.pack .after-col > .link-stem,
+  .ppe.pack .point-at > .link-stem { display: none; }
+
+
+  .ppe.pack .policy-arms { display: block; }
+
+  .ppe.pack .policy-elbow { display: none; }
+
+  .ppe.pack .policy-parent { width: 100%; }
+
+  .ppe.pack .policy-kids { margin-top: 0.55rem; }
+
+  .ppe.pack .cap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .ppe.pack .cap-row { grid-template-columns: minmax(0, 1fr); }
+
+  .ppe.pack .term + .term {
+    border-left: 0;
+    border-top: 0.08em solid var(--line);
+  }
+
+  /* Desktop flex-basis 0 shares a row. In a column it collapses any limb
+     whose overflow is hidden, so the split term paints over the next row. */
+  .ppe.pack .cost-eq > .cost-result,
+  .ppe.pack .cost-eq > .limb,
+  .ppe.pack .cost-eq > .cost-op {
+    flex: 0 0 auto;
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    position: relative;
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0.4em;
+    width: 0.12em;
+    background: var(--accent);
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair::after {
+    content: "";
+    position: absolute;
+    left: 0.06em;
+    bottom: 0;
+    transform: translateX(-50%);
+    border-left: 0.34em solid transparent;
+    border-right: 0.34em solid transparent;
+    border-top: 0.46em solid var(--accent);
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair .pack-flow-shaft {
+    grid-row: 1;
+    min-height: 3.2em;
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair .pack-flow-shaft::before,
+  .ppe.pack .pack-flow.pack-flow-impair .pack-flow-shaft::after { content: none; }
+
+  .ppe.pack .pack-flow.pack-flow-impair .impair-peers {
+    grid-column: 1;
+    grid-row: 2;
+    grid-template-columns: minmax(0, 1fr);
+    margin: 0 0 0.7em 0.55em;
+    max-width: calc(100% - 0.55em);
+    padding-left: 0;
+    position: relative;
+    z-index: 1;
+  }
 }
+
+/* Six-step pack type scale. Shared chapter rules stay on their own sizes. */
+.ppe.pack .q-title,
+.ppe.pack .peer-title,
+.ppe.pack .leaf-name,
+.ppe.pack .limb-title,
+.ppe.pack .policy-title,
+.ppe.pack .model-child-title,
+.ppe.pack .point-k,
+.ppe.pack .nest-k,
+.ppe.pack .facet-title,
+.ppe.pack .split-head,
+.ppe.pack .cap-model,
+.ppe.pack .disc-sub,
+.ppe.pack .consume-bar,
+.ppe.pack .cost-result .limb-title,
+.ppe.pack .rev-row,
+.ppe.pack .life-name {
+  font-size: var(--t-head);
+  font-weight: 700;
+}
+
+.ppe.pack .plate-title {
+  font-size: var(--t-plate);
+  font-weight: 700;
+}
+
+.ppe.pack .arm-label,
+.ppe.pack .see,
+.ppe.pack .facet-label,
+.ppe.pack .lens-k,
+.ppe.pack .axis-seg,
+.ppe.pack .inner-rail,
+.ppe.pack .pack-flow-label,
+.ppe.pack .rev-col {
+  font-size: var(--t-meta);
+  font-weight: 650;
+}
+
+.ppe.pack .item-rows,
+.ppe.pack .limb-note,
+.ppe.pack .leaf-body,
+.ppe.pack .peer-line,
+.ppe.pack .pl-tip,
+.ppe.pack .land-tip,
+.ppe.pack .constraint-tip,
+.ppe.pack .split-body,
+.ppe.pack .q-note,
+.ppe.pack .spare-row,
+.ppe.pack .soft-note,
+.ppe.pack .cap-foot,
+.ppe.pack .axis-name,
+.ppe.pack .method-line,
+.ppe.pack .both-bar,
+.ppe.pack .mini-formula,
+.ppe.pack .nature-nest .item-rows,
+.ppe.pack .after-nest .item-rows,
+.ppe.pack .rev-cell,
+.ppe.pack .rev-sub,
+.ppe.pack .rev-foot,
+.ppe.pack .life-cap {
+  font-size: var(--t-body);
+  font-weight: 400;
+}
+
+.ppe.pack .limb-note,
+.ppe.pack .leaf .limb-note,
+.ppe.pack .q-note,
+.ppe.pack .peer-line,
+.ppe.pack .split-body { color: var(--ink); }
+
+.ppe.pack .soft-note,
+.ppe.pack .nature-nest,
+.ppe.pack .after-nest,
+.ppe.pack .before-nest .pl-tip,
+.ppe.pack .facet-label,
+.ppe.pack .muted-rows { color: var(--muted); }
+
+.ppe.pack .cost-op,
+.ppe.pack .crit-op,
+.ppe.pack .mini-op,
+.ppe.pack .axis-diamond,
+.ppe.pack .point-mark {
+  font-size: var(--t-op);
+  font-weight: 700;
+}
+
+.ppe.pack .axis-name { font-weight: 700; }
+
+.ppe.pack .see-label,
+.ppe.pack .see-bit,
+.ppe.pack .see-bit a { font-weight: 650; }
+
+.ppe.pack .leaf.mute .leaf-body { font-weight: 400; }
