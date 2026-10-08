@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-pack-r22-r32-20261008" />
+<link rel="stylesheet" href="ias16.css?v=ias16-pack-r33-r39-20261008" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -26,7 +26,6 @@
               <div class="criteria" data-eq role="group" aria-label="Tangible plus held for use plus more than one period">
                 <div class="peer" data-eq-cell>
                   <p class="peer-title"><span>Tangible</span></p>
-                  <p class="peer-line">Tangible items.</p>
                 </div>
                 <span class="crit-op" aria-hidden="true">+</span>
                 <div class="peer" data-eq-cell>
@@ -226,14 +225,10 @@
             <span class="da-stem" aria-hidden="true"></span>
             <p class="axis-frame">Directly attributable costs: when recognition ceases</p>
             <p class="axis-name">
-              <span class="axis-name-text">
-                <span>Capable of operating in the manner intended by management</span>
-                <span>in the location and condition necessary</span>
-              </span>
+              <span class="axis-name-text">Recognition of costs in the carrying amount ceases when the asset is in the location and condition necessary for it to be capable of operating in the manner intended by management.</span>
             </p>
             <div class="axis-rule" aria-hidden="true"></div>
             <span class="axis-diamond" aria-hidden="true">◆</span>
-            <span class="axis-seg axis-seg-l">Bringing to the location and condition necessary</span>
             <div class="before-nest">
               <div class="pl-tip">
                 <a class="fb-num" href="../ch03.html#s-3-5" target="_parent">3.5</a>
@@ -248,7 +243,7 @@
               <p class="point-k"><span class="point-mark" aria-hidden="true">◆</span><span>At this point</span></p>
               <ul class="item-rows">
                 <li>Recognition of costs in the carrying amount ceases.</li>
-                <li class="chip-line"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a><span>Depreciation begins: the asset is available for use, in the location and condition necessary for it to be capable of operating in the manner intended by management.</span></li>
+                <li class="chip-line"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a><span>Depreciation begins when the asset is available for use.</span></li>
               </ul>
             </div>
             <div class="after-col">
@@ -357,7 +352,21 @@
               <article class="lens-cell" data-eq-cell>
                 <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
                 <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-4" target="_parent">4.4</a><span>Restate the gross carrying amount consistently, or eliminate accumulated depreciation against it.</span></p>
-                <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a><span>An increase is recognised in other comprehensive income (revaluation surplus), and in profit or loss to the extent it reverses a past decrease. A decrease is recognised in profit or loss, and in other comprehensive income up to the surplus. Same asset only.</span></p>
+                <div class="rev-nest">
+                  <p class="rev-kicker"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a></p>
+                  <div class="rev-table" role="group" aria-label="Revaluation increase and decrease">
+                    <span class="rev-corner" aria-hidden="true"></span>
+                    <p class="rev-col" role="columnheader"><span>Other comprehensive income</span></p>
+                    <p class="rev-col" role="columnheader"><span>Profit or loss</span></p>
+                    <p class="rev-row" role="rowheader"><span class="rev-k">Increase</span><span class="rev-sub">(carrying amount rises)</span></p>
+                    <p class="rev-cell" role="cell"><span>Recognise in OCI and accumulate in equity under revaluation surplus</span></p>
+                    <p class="rev-cell" role="cell"><span>Recognise in profit or loss to the extent it reverses a revaluation decrease of the same asset previously recognised in profit or loss</span></p>
+                    <p class="rev-row" role="rowheader"><span class="rev-k">Decrease</span><span class="rev-sub">(carrying amount falls)</span></p>
+                    <p class="rev-cell" role="cell"><span>Recognise in OCI to the extent of any credit balance in the revaluation surplus for that asset (reduces the surplus)</span></p>
+                    <p class="rev-cell" role="cell"><span>Recognise in profit or loss</span></p>
+                  </div>
+                  <p class="rev-foot">Same asset only.</p>
+                </div>
                 <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-6" target="_parent">4.6</a><span>The surplus may be transferred directly to retained earnings on derecognition, or as the asset is used. It is never transferred through profit or loss.</span></p>
               </article>
             </div>
@@ -424,7 +433,12 @@
               <div class="inner-rail">
                 <span class="rail-name">Residual value</span>
               </div>
-              <p class="cap-foot"><span>Current amount, not forecast inflation. If residual value is greater than or equal to the carrying amount, the depreciation charge is zero.</span></p>
+              <div class="cap-foot">
+                <ul class="item-rows">
+                  <li>The residual value of an asset is the estimated amount that an entity would currently obtain from disposal of the asset, after deducting the estimated costs of disposal, if the asset were already of the age and in the condition expected at the end of its useful life.</li>
+                  <li>If the residual value increases to an amount equal to or greater than the carrying amount, the depreciation charge is zero unless and until the residual value subsequently decreases to an amount below the carrying amount.</li>
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -450,17 +464,39 @@
             <a class="fb-num" href="../ch05.html#s-5-3" target="_parent">5.3</a>
             <span class="rail-name">Useful life</span>
           </div>
-          <div class="inner-detail">
-            <ul class="item-rows">
-              <li>The period the asset is available for use, or the number of production or similar units expected.</li>
-              <li>Useful life may be shorter than economic life.</li>
-              <li>Expected usage</li>
-              <li>Physical wear and tear</li>
-              <li>Technical or commercial obsolescence</li>
-              <li>Legal or similar limits on use</li>
-              <li>Land has an unlimited useful life, except quarries and landfill sites.</li>
-              <li>Land and buildings are separable assets.</li>
+          <div class="inner-detail life-detail">
+            <ul class="item-rows life-def">
+              <li>Useful life is the period over which an asset is expected to be available for use by an entity, or the number of production or similar units expected to be obtained from the asset by an entity.</li>
+              <li>The useful life of an asset may be shorter than its economic life.</li>
             </ul>
+            <div class="factor-nest">
+              <p class="nest-k"><span>Factors considered in determining useful life</span></p>
+              <div class="factor-set" data-eq role="group" aria-label="Factors considered in determining useful life">
+                <article class="peer" data-eq-cell>
+                  <p class="peer-title"><span>Expected usage</span></p>
+                  <p class="peer-line">Assessed by reference to the asset’s expected capacity or physical output</p>
+                </article>
+                <article class="peer" data-eq-cell>
+                  <p class="peer-title"><span>Expected physical wear and tear</span></p>
+                  <p class="peer-line">Depends on operational factors (for example shifts, repair and maintenance, and care while idle)</p>
+                </article>
+                <article class="peer" data-eq-cell>
+                  <p class="peer-title"><span>Technical or commercial obsolescence</span></p>
+                  <p class="peer-line">From changes or improvements in production, or from a change in market demand for the asset’s output</p>
+                </article>
+                <article class="peer" data-eq-cell>
+                  <p class="peer-title"><span>Legal or similar limits</span></p>
+                  <p class="peer-line">For example the expiry dates of related leases</p>
+                </article>
+              </div>
+            </div>
+            <div class="life-sub">
+              <p class="nest-k"><span>Land and buildings</span></p>
+              <ul class="item-rows">
+                <li>Land has an unlimited useful life and is not depreciated, with some exceptions such as quarries and sites used for landfill.</li>
+                <li>Land and buildings are separable assets and are accounted for separately, even when acquired together. Buildings have a limited useful life and are depreciable.</li>
+              </ul>
+            </div>
           </div>
 
           <div class="consume-wrap">
@@ -472,10 +508,29 @@
             </div>
             <p class="soft-note"><a class="fb-num" href="../ch05.html#s-5-6" target="_parent">5.6</a><span>A revenue-based method is not appropriate.</span></p>
             <p class="limb-note"><a class="fb-num" href="../ch05.html#s-5-8" target="_parent">5.8</a><span>Review residual value and useful life, and the method, at least at each financial year-end. A change is a change in accounting estimate (IAS 8).</span></p>
-            <p class="limb-note"><span>Depreciate even if fair value exceeds carrying amount. Repair and maintenance do not remove the need to depreciate.</span></p>
+            <ul class="item-rows">
+              <li>Repair and maintenance of an asset do not negate the need to depreciate it.</li>
+            </ul>
           </div>
 
-          <p class="constraint-tip"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a><span>Depreciation begins when the asset is available for use. It ceases at the earlier of the date the asset is classified as held for sale and the date it is derecognised. It continues when the asset is idle, unless the method is usage-based.</span></p>
+          <div class="life-line" role="group" aria-label="Depreciation begins, continues, and ceases">
+            <p class="life-kicker"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a></p>
+            <div class="life-track">
+              <div class="life-beat">
+                <p class="life-name">Begins</p>
+                <p class="life-cap">Depreciation begins when the asset is available for use.</p>
+              </div>
+              <div class="life-beat">
+                <p class="life-name">Continues</p>
+                <p class="life-cap">Depreciation does not cease when the asset becomes idle or is retired from active use unless the asset is fully depreciated. Under usage methods the depreciation charge can be zero while there is no production.</p>
+              </div>
+              <div class="life-beat">
+                <p class="life-name">Ceases</p>
+                <p class="life-cap">Depreciation ceases at the earlier of the date the asset is classified as held for sale (or included in a disposal group classified as held for sale) and the date the asset is derecognised.</p>
+                <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch05.html#s-5-4" target="_parent">IFRS 5</a></span></p>
+              </div>
+            </div>
+          </div>
         </div>
         <p class="see"><a class="fb-num" href="../ch05.html#s-5-9" target="_parent">5.9</a><span class="see-label">See also</span> <span class="see-bit">IFRS 16</span> <span class="see-bit"><a href="../ch05.html#s-5-4" target="_parent">IFRS 5</a></span></p>
       </section>
@@ -522,16 +577,10 @@
               </article>
             </div>
             <p class="limb-note"><a class="fb-num" href="../ch06.html#s-6-2" target="_parent">6.2</a><span>Consideration is determined under the IFRS 15 transaction-price requirements. Later changes follow IFRS 15.</span></p>
-            <div class="model-split" role="group" aria-label="Carrying amount under the cost model and the revaluation model">
-              <div class="split-cell">
-                <p class="split-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
-                <p class="split-body"><span>Carrying amount is cost less accumulated depreciation and impairment.</span></p>
-              </div>
-              <div class="split-cell">
-                <p class="split-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
-                <p class="split-body"><a class="fb-num" href="../ch04.html#s-4-6" target="_parent">4.6</a><span>Carrying amount is the revalued amount. Any remaining revaluation surplus may be transferred directly to retained earnings. It is not reclassified to profit or loss.</span></p>
-              </div>
-            </div>
+            <ul class="item-rows">
+              <li class="chip-line"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Remove the carrying amount determined under the entity’s model.</span></li>
+              <li class="chip-line"><a class="fb-num" href="../ch04.html#s-4-6" target="_parent">4.6</a><span>The revaluation surplus may be transferred directly to retained earnings when the asset is derecognised (or as the asset is used). Transfers from revaluation surplus to retained earnings are not made through profit or loss.</span></li>
+            </ul>
           </div>
 
           <div class="inner-rail">
@@ -543,10 +592,10 @@
           </div>
 
           <div class="inner-rail">
-            <span class="rail-name">Replaced parts, rental assets sold, compensation</span>
+            <span class="rail-name">Particular applications</span>
           </div>
           <div class="inner-detail">
-            <div class="case-set" data-eq role="group" aria-label="Replaced parts, assets held for rental then sold, and third-party compensation">
+            <div class="case-set" data-eq role="group" aria-label="Particular applications">
               <div class="case-cell" data-eq-cell>
                 <p class="limb-note"><a class="fb-num" href="../ch06.html#s-6-5" target="_parent">6.5</a><span>The carrying amount of a replaced part is derecognised.</span></p>
               </div>
@@ -891,7 +940,23 @@
     strip.style.top = top + "px";
   }
 
+  function sizeAxisName() {
+    var name = root.querySelector(".axis-name");
+    var text = name && name.querySelector(".axis-name-text");
+    if (!name || !text) return;
+    if (window.matchMedia("(max-width: 560px)").matches) {
+      if (name.style.minHeight) name.style.minHeight = "";
+      return;
+    }
+    var h = text.getBoundingClientRect().height;
+    if (!(h > 0)) return;
+    var prev = parseFloat(name.style.minHeight);
+    if (Math.abs(prev - h) < 0.5) return;
+    name.style.minHeight = h + "px";
+  }
+
   function fit() {
+    sizeAxisName();
     equalise();
     joinCut();
     joinPoint();
