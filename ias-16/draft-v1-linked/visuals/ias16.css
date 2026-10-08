@@ -2117,6 +2117,63 @@ body.embed {
 
 .ppe.pack .disc-card-body { margin-top: 0.28em; }
 
+.ppe.pack .thin-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0.4em 0 0;
+  color: var(--muted);
+  font-size: 0.8em;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.ppe.pack .thin-line > span {
+  flex: 1 1 10em;
+  min-width: 0;
+}
+
+.ppe.pack .spare-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin-top: 0.55em;
+  border: 0.08em dashed var(--see);
+  border-radius: var(--card-radius);
+  padding: 0.4em 0.5em;
+  color: var(--ink);
+  font-size: 0.84em;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.ppe.pack .spare-row > span {
+  flex: 1 1 12em;
+  min-width: 0;
+}
+
+.ppe.pack .plate-follow { margin-top: 0.65rem; }
+
+.ppe.pack .disc-board {
+  display: grid;
+  grid-template-columns: minmax(5.6em, 6.8em) minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe.pack .disc-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 @media (min-width: 561px) {
   .ppe.pack .scope-stack {
     display: grid;
@@ -2140,11 +2197,18 @@ body.embed {
 
   .ppe.pack .fork-excl > .decision-fork > .decision-after > .decision-branch > .leaf { grid-row: 3; }
 
-  .ppe.pack .fork-excl .pack-see-stop {
+  .ppe.pack .fork-excl .side-note {
     grid-column: 3;
-    grid-row: 4;
+    grid-row: 3;
     align-self: start;
-    margin-top: 0.35em;
+  }
+
+  .ppe.pack .fork-excl .pack-no-line {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    align-self: center;
+    margin: 0 0.4em 0 32%;
+    z-index: 1;
   }
 
   .ppe.pack .fork-excl > .decision-fork > .decision-after > .varm { grid-row: 4; }
@@ -2167,10 +2231,15 @@ body.embed {
     flex-basis: 100%;
   }
 
-  .ppe.pack .fork-ppe .side-note {
+  .ppe.pack .fork-ppe .side-note,
+  .ppe.pack .fork-excl .side-note {
     flex: 1 1 0;
     min-width: min-content;
     max-width: 100%;
+  }
+
+  .ppe.pack .pack-no-line {
+    margin: 0.2em 0 0.15em 0.35em;
   }
 
   .ppe.pack .side-note .pack-see-not { flex: 0 0 auto; }
@@ -2216,7 +2285,8 @@ body.embed {
     text-align: start;
   }
 
-  .ppe.pack .inner-board {
+  .ppe.pack .inner-board,
+  .ppe.pack .disc-board {
     grid-template-columns: minmax(4.5em, 5.3em) minmax(0, 1fr);
   }
 
