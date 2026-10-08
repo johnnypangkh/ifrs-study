@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-pack-r33-r39-20261008" />
+<link rel="stylesheet" href="ias16.css?v=ias16-pack-r40-r46-20261008" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -239,7 +239,6 @@
               </div>
             </div>
             <div class="point-at">
-              <span class="link-stem" aria-hidden="true"></span>
               <p class="point-k"><span class="point-mark" aria-hidden="true">◆</span><span>At this point</span></p>
               <ul class="item-rows">
                 <li>Recognition of costs in the carrying amount ceases.</li>
@@ -352,10 +351,22 @@
               <article class="lens-cell" data-eq-cell>
                 <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
                 <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-4" target="_parent">4.4</a><span>Restate the gross carrying amount consistently, or eliminate accumulated depreciation against it.</span></p>
+                <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-6" target="_parent">4.6</a><span>The surplus may be transferred directly to retained earnings on derecognition, or as the asset is used. It is never transferred through profit or loss.</span></p>
+              </article>
+            </div>
+            <div class="lens-row" data-eq>
+              <p class="lens-k">Revaluation increase or decrease</p>
+              <article class="lens-cell" data-eq-cell>
+                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
+                <ul class="item-rows">
+                  <li>No revaluation; fair value changes are not recognised.</li>
+                </ul>
+              </article>
+              <article class="lens-cell" data-eq-cell>
+                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
                 <div class="rev-nest">
-                  <p class="rev-kicker"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a></p>
                   <div class="rev-table" role="group" aria-label="Revaluation increase and decrease">
-                    <span class="rev-corner" aria-hidden="true"></span>
+                    <span class="rev-corner"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a></span>
                     <p class="rev-col" role="columnheader"><span>Other comprehensive income</span></p>
                     <p class="rev-col" role="columnheader"><span>Profit or loss</span></p>
                     <p class="rev-row" role="rowheader"><span class="rev-k">Increase</span><span class="rev-sub">(carrying amount rises)</span></p>
@@ -367,7 +378,6 @@
                   </div>
                   <p class="rev-foot">Same asset only.</p>
                 </div>
-                <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-6" target="_parent">4.6</a><span>The surplus may be transferred directly to retained earnings on derecognition, or as the asset is used. It is never transferred through profit or loss.</span></p>
               </article>
             </div>
             <div class="lens-row" data-eq>
@@ -514,8 +524,8 @@
           </div>
 
           <div class="life-line" role="group" aria-label="Depreciation begins, continues, and ceases">
-            <p class="life-kicker"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a></p>
             <div class="life-track">
+              <p class="life-start"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a></p>
               <div class="life-beat">
                 <p class="life-name">Begins</p>
                 <p class="life-cap">Depreciation begins when the asset is available for use.</p>
@@ -532,7 +542,7 @@
             </div>
           </div>
         </div>
-        <p class="see"><a class="fb-num" href="../ch05.html#s-5-9" target="_parent">5.9</a><span class="see-label">See also</span> <span class="see-bit">IFRS 16</span> <span class="see-bit"><a href="../ch05.html#s-5-4" target="_parent">IFRS 5</a></span></p>
+        <p class="see"><a class="fb-num" href="../ch05.html#s-5-9" target="_parent">5.9</a><span class="see-label">See also</span> <span class="see-bit">IFRS 16</span></p>
       </section>
       <div class="pack-flow pack-flow-impair">
         <div class="pack-flow-shaft">
@@ -933,7 +943,7 @@
     var flowBox = flow.getBoundingClientRect();
     var shaftBox = shaft.getBoundingClientRect();
     var labelBox = label.getBoundingClientRect();
-    var left = (shaftBox.left + shaftBox.width / 2) - flowBox.left + 8;
+    var left = labelBox.right - flowBox.left + 8;
     var top = (labelBox.top + labelBox.height / 2) - flowBox.top;
     if (!isFinite(left) || !isFinite(top)) return;
     strip.style.left = left + "px";
@@ -943,16 +953,28 @@
   function sizeAxisName() {
     var name = root.querySelector(".axis-name");
     var text = name && name.querySelector(".axis-name-text");
+    var rule = root.querySelector(".axis-rule");
+    var diamond = root.querySelector(".axis-diamond");
     if (!name || !text) return;
     if (window.matchMedia("(max-width: 560px)").matches) {
       if (name.style.minHeight) name.style.minHeight = "";
+      if (rule && rule.style.marginTop) rule.style.marginTop = "";
       return;
     }
     var h = text.getBoundingClientRect().height;
-    if (!(h > 0)) return;
-    var prev = parseFloat(name.style.minHeight);
-    if (Math.abs(prev - h) < 0.5) return;
-    name.style.minHeight = h + "px";
+    if (h > 0) {
+      var prev = parseFloat(name.style.minHeight);
+      if (!(Math.abs(prev - h) < 0.5)) name.style.minHeight = h + "px";
+    }
+    if (!rule || !diamond || getComputedStyle(diamond).display === "none") return;
+    void name.offsetHeight;
+    var ruleStyle = getComputedStyle(rule, "::before");
+    var lineTop = rule.getBoundingClientRect().top + parseFloat(ruleStyle.top);
+    var limit = Math.min(diamond.getBoundingClientRect().top, lineTop);
+    var gap = limit - text.getBoundingClientRect().bottom;
+    if (gap >= 7.5) return;
+    var mt = parseFloat(getComputedStyle(rule).marginTop) || 0;
+    rule.style.marginTop = (mt + (8 - gap)) + "px";
   }
 
   function fit() {
