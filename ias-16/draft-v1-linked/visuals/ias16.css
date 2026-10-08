@@ -2857,7 +2857,13 @@ body.embed {
   text-align: center;
 }
 
-.ppe.pack .impair-strip { display: flex; width: 100%; }
+.ppe.pack .pack-flow .impair-strip {
+  grid-column: 2 / -1;
+  align-self: center;
+  justify-self: stretch;
+  width: auto;
+  margin: 0.35em 0.45em;
+}
 
 .ppe.pack .cap {
   display: grid;
@@ -3076,7 +3082,29 @@ body.embed {
     grid-template-areas: none;
   }
 
-  .ppe.pack .cost-identity > * { grid-area: auto; }
+  /* Same selectors as the named areas above (0,3,1). A `> *` reset is only
+     0,2,1 and loses, which stacks every Cost child in one cell. */
+  .ppe.pack .cost-identity > .cost-result,
+  .ppe.pack .cost-identity > .op-eq,
+  .ppe.pack .cost-identity > .limb-buy,
+  .ppe.pack .cost-identity > .op-p1,
+  .ppe.pack .cost-identity > .da-col,
+  .ppe.pack .cost-identity > .op-p2,
+  .ppe.pack .cost-identity > .limb-dis,
+  .ppe.pack .cost-identity > .nature-nest,
+  .ppe.pack .cost-identity > .ready-axis,
+  .ppe.pack .cost-identity > .facet-foot {
+    grid-area: auto;
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .ppe.pack .nature-nest > .nest-k,
+  .ppe.pack .nature-nest > .item-rows,
+  .ppe.pack .nature-nest > .link-stem {
+    grid-column: auto;
+    grid-row: auto;
+  }
 
   .ppe.pack .ready-axis,
   .ppe.pack .nature-nest {
@@ -3123,6 +3151,61 @@ body.embed {
   .ppe.pack .term + .term {
     border-left: 0;
     border-top: 0.08em solid var(--line);
+  }
+
+  /* Desktop flex-basis 0 shares a row. In a column it collapses any limb
+     whose overflow is hidden, so the split term paints over the next row. */
+  .ppe.pack .cost-eq > .cost-result,
+  .ppe.pack .cost-eq > .limb,
+  .ppe.pack .cost-eq > .cost-op {
+    flex: 0 0 auto;
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    position: relative;
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0.4em;
+    width: 0.12em;
+    background: var(--accent);
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair::after {
+    content: "";
+    position: absolute;
+    left: 0.06em;
+    bottom: 0;
+    transform: translateX(-50%);
+    border-left: 0.34em solid transparent;
+    border-right: 0.34em solid transparent;
+    border-top: 0.46em solid var(--accent);
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair .pack-flow-shaft {
+    grid-row: 1;
+    min-height: 3.2em;
+  }
+
+  .ppe.pack .pack-flow.pack-flow-impair .pack-flow-shaft::before,
+  .ppe.pack .pack-flow.pack-flow-impair .pack-flow-shaft::after { content: none; }
+
+  .ppe.pack .pack-flow.pack-flow-impair .impair-strip {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    align-self: start;
+    width: auto;
+    max-width: calc(100% - 0.55em);
+    margin: 0 0 0.7em 0.55em;
+    position: relative;
+    z-index: 1;
   }
 }
 
