@@ -2080,7 +2080,7 @@ body.embed {
 
 .ppe.pack .case-set {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.4rem;
   align-items: stretch;
 }
@@ -2095,7 +2095,8 @@ body.embed {
   padding: 0.5em 0.55em;
 }
 
-.ppe.pack .case-cell > .limb-note { margin: 0; }
+.ppe.pack .case-cell > .limb-note,
+.ppe.pack .case-cell > .peer-title { margin: 0; }
 
 /* 4.5 increase / decrease. One chip on the nest. Cells in a row share a height. */
 .ppe.pack .rev-nest,
@@ -3198,14 +3199,56 @@ body.embed {
   text-align: center;
 }
 
-.ppe.pack .pack-flow .impair-strip {
-  grid-column: 2 / -1;
-  align-self: center;
-  justify-self: start;
-  width: max-content;
-  max-width: min(22em, 46%);
-  margin: 0.35em 0 0.35em 0.55em;
+/* Impairment junction peers sit under the shaft label. The line and arrow
+   stay on the shaft centre (R41); the peers clear that line. */
+.ppe.pack .pack-flow-impair .pack-flow-shaft { grid-row: 1; }
+
+.ppe.pack .impair-peers {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.7em;
 }
+
+.ppe.pack .impair-peers > .impair-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 0.15em 0.35em;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  align-self: stretch;
+  justify-self: stretch;
+  white-space: normal;
+}
+
+.ppe.pack .impair-peers > .impair-strip > .fb-num { margin-right: 0; }
+
+.ppe.pack .impair-comp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28em;
+  min-width: 0;
+  margin: 0;
+  border: 0.08em dashed var(--see);
+  border-radius: var(--card-radius);
+  padding: 0.4em 0.5em;
+  background: transparent;
+  color: var(--ink);
+}
+
+.ppe.pack .impair-comp > .peer-title { margin: 0; }
+
+.ppe.pack .impair-comp > .item-rows { margin-top: 0.2em; }
 
 .ppe.pack .cap {
   display: grid;
@@ -3297,18 +3340,36 @@ body.embed {
 @media (min-width: 561px) {
   .ppe.pack .pack-flow-impair { position: relative; }
 
-  .ppe.pack .pack-flow-impair .impair-strip {
-    grid-column: 1 / -1;
-    grid-row: 1;
+  .ppe.pack .pack-flow-impair .pack-flow-shaft::before,
+  .ppe.pack .pack-flow-impair .pack-flow-shaft::after { content: none; }
+
+  .ppe.pack .pack-flow-impair::before {
+    content: "";
     position: absolute;
-    width: max-content;
-    max-width: none;
-    margin: 0;
-    z-index: 2;
-    top: 50%;
-    left: 0;
-    white-space: nowrap;
-    transform: translateY(-50%);
+    left: var(--shaft-x, 26%);
+    top: 0;
+    bottom: 0.4em;
+    width: 0.1em;
+    transform: translateX(-50%);
+    background: var(--accent);
+    z-index: 0;
+  }
+
+  .ppe.pack .pack-flow-impair::after {
+    content: "";
+    position: absolute;
+    left: var(--shaft-x, 26%);
+    bottom: 0;
+    z-index: 1;
+    transform: translateX(-50%);
+    border-left: 0.34em solid transparent;
+    border-right: 0.34em solid transparent;
+    border-top: 0.46em solid var(--accent);
+  }
+
+  .ppe.pack .impair-peers {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding-left: calc(var(--shaft-x, 26%) + 0.65em);
   }
 
   .ppe.pack .scope-stack {
@@ -3634,14 +3695,13 @@ body.embed {
   .ppe.pack .pack-flow.pack-flow-impair .pack-flow-shaft::before,
   .ppe.pack .pack-flow.pack-flow-impair .pack-flow-shaft::after { content: none; }
 
-  .ppe.pack .pack-flow.pack-flow-impair .impair-strip {
+  .ppe.pack .pack-flow.pack-flow-impair .impair-peers {
     grid-column: 1;
     grid-row: 2;
-    justify-self: start;
-    align-self: start;
-    width: auto;
-    max-width: calc(100% - 0.55em);
+    grid-template-columns: minmax(0, 1fr);
     margin: 0 0 0.7em 0.55em;
+    max-width: calc(100% - 0.55em);
+    padding-left: 0;
     position: relative;
     z-index: 1;
   }

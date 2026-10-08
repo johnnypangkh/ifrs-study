@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-pack-r40-r46-20261008" />
+<link rel="stylesheet" href="ias16.css?v=ias16-pack-r47-20261008" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -548,7 +548,16 @@
         <div class="pack-flow-shaft">
           <p class="pack-flow-label"><a class="onward" href="../ch06.html#s-6-0" target="_parent">Derecognise on disposal or when no future benefits are expected</a></p>
         </div>
-        <p class="see impair-strip"><a class="fb-num" href="../ch04.html#s-4-8" target="_parent">4.8</a><span class="see-label">See also</span> <span class="see-bit">Impairment: apply IAS 36</span></p>
+        <div class="impair-peers" data-eq role="group" aria-label="Impairment and compensation for impairment">
+          <p class="see impair-strip" data-eq-cell><a class="fb-num" href="../ch04.html#s-4-8" target="_parent">4.8</a><span class="see-label">See also</span> <span class="see-bit">Impairment: apply IAS 36</span></p>
+          <article class="impair-comp" data-eq-cell>
+            <p class="peer-title"><a class="fb-num" href="../ch06.html#s-6-6" target="_parent">6.6</a><span>Compensation for impairment</span></p>
+            <ul class="item-rows">
+              <li>Compensation from third parties for items of property, plant and equipment that were impaired, lost or given up is included in profit or loss when the compensation becomes receivable.</li>
+              <li>Impairments or losses of items of property, plant and equipment, related claims for or payments of compensation from third parties, and any subsequent purchase or construction of replacement assets are separate economic events.</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </div>
 
@@ -602,18 +611,24 @@
           </div>
 
           <div class="inner-rail">
-            <span class="rail-name">Particular applications</span>
+            <span class="rail-name">Where carrying amount or proceeds go</span>
           </div>
           <div class="inner-detail">
-            <div class="case-set" data-eq role="group" aria-label="Particular applications">
+            <div class="case-set" data-eq role="group" aria-label="Where carrying amount or proceeds go">
               <div class="case-cell" data-eq-cell>
-                <p class="limb-note"><a class="fb-num" href="../ch06.html#s-6-5" target="_parent">6.5</a><span>The carrying amount of a replaced part is derecognised.</span></p>
+                <p class="peer-title"><a class="fb-num" href="../ch06.html#s-6-5" target="_parent">6.5</a><span>Replaced part</span></p>
+                <ul class="item-rows">
+                  <li>The carrying amount of the replaced part is derecognised, whether or not the replaced part had been depreciated separately.</li>
+                  <li>If it is not practicable to determine that carrying amount, the cost of the replacement may be used as an indication of what the cost of the replaced part was at the time it was acquired or constructed.</li>
+                </ul>
               </div>
               <div class="case-cell" data-eq-cell>
-                <p class="limb-note"><a class="fb-num" href="../ch06.html#s-6-3" target="_parent">6.3</a><span>An asset held for rental and routinely sold in the ordinary course of business is transferred to inventories at its carrying amount. Proceeds are revenue.</span></p>
-              </div>
-              <div class="case-cell" data-eq-cell>
-                <p class="limb-note"><a class="fb-num" href="../ch06.html#s-6-6" target="_parent">6.6</a><span>Compensation from third parties for items that were impaired, lost or given up is recognised in profit or loss when it becomes receivable. Impairment, compensation, and a replacement asset are separate economic events.</span></p>
+                <p class="peer-title"><a class="fb-num" href="../ch06.html#s-6-3" target="_parent">6.3</a><span>Held for rental then sold</span></p>
+                <ul class="item-rows">
+                  <li>Transfer such assets to inventories at their carrying amount when they cease to be rented and become held for sale.</li>
+                  <li>The proceeds from the sale of such assets are recognised as revenue in accordance with IFRS 15.</li>
+                  <li>IFRS 5 does not apply when assets that are held for sale in the ordinary course of business are transferred to inventories.</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -920,10 +935,8 @@
     var flow = root.querySelector(".pack-flow-impair");
     if (!flow) return;
     var strip = flow.querySelector(".impair-strip");
-    var label = flow.querySelector(".pack-flow-label");
     var shaft = flow.querySelector(".pack-flow-shaft");
-    if (!strip || !label || !shaft) return;
-    if (window.matchMedia("(max-width: 560px)").matches) {
+    if (strip) {
       strip.style.position = "";
       strip.style.left = "";
       strip.style.top = "";
@@ -931,23 +944,17 @@
       strip.style.margin = "";
       strip.style.transform = "";
       strip.style.maxWidth = "";
+    }
+    if (!shaft) return;
+    if (window.matchMedia("(max-width: 560px)").matches) {
+      flow.style.removeProperty("--shaft-x");
       return;
     }
-    strip.style.position = "absolute";
-    strip.style.width = "max-content";
-    strip.style.margin = "0";
-    strip.style.transform = "translateY(-50%)";
-    strip.style.left = "0px";
-    strip.style.top = "0px";
-    void flow.offsetHeight;
     var flowBox = flow.getBoundingClientRect();
     var shaftBox = shaft.getBoundingClientRect();
-    var labelBox = label.getBoundingClientRect();
-    var left = labelBox.right - flowBox.left + 8;
-    var top = (labelBox.top + labelBox.height / 2) - flowBox.top;
-    if (!isFinite(left) || !isFinite(top)) return;
-    strip.style.left = left + "px";
-    strip.style.top = top + "px";
+    var x = (shaftBox.left + shaftBox.width / 2) - flowBox.left;
+    if (!isFinite(x)) return;
+    flow.style.setProperty("--shaft-x", x + "px");
   }
 
   function sizeAxisName() {
@@ -979,10 +986,10 @@
 
   function fit() {
     sizeAxisName();
+    dockImpair();
     equalise();
     joinCut();
     joinPoint();
-    dockImpair();
     var narrow = window.matchMedia("(max-width: 560px)").matches;
     var rails = root.querySelectorAll(".rail-link[data-phase]");
     for (var i = 0; i < rails.length; i++) {
