@@ -2261,21 +2261,211 @@ body.embed {
   justify-content: flex-start;
 }
 
-.ppe.pack .cost-out {
-  font-weight: 400;
+/* Kit 4 is the only primary row. The readiness axis hangs off the DA column.
+   Nature hangs off Cost, off that axis. Facets are a lighter foot. */
+.ppe.pack .cost-identity {
+  --stem: 0.7rem;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) auto minmax(0, 1fr) auto minmax(0, 1.35fr) auto minmax(0, 1fr);
+  grid-template-areas:
+    "result eq buy p1 da p2 dis"
+    "nature . . . axis . ."
+    "facets facets facets facets facets facets facets";
+  column-gap: 0.4rem;
+  row-gap: var(--stem);
+  align-items: stretch;
+  min-width: 0;
 }
 
-.ppe.pack .cost-out-title {
+.ppe.pack .cost-identity > .cost-result { grid-area: result; }
+.ppe.pack .cost-identity > .op-eq { grid-area: eq; }
+.ppe.pack .cost-identity > .limb-buy { grid-area: buy; }
+.ppe.pack .cost-identity > .op-p1 { grid-area: p1; }
+.ppe.pack .cost-identity > .da-col { grid-area: da; }
+.ppe.pack .cost-identity > .op-p2 { grid-area: p2; }
+.ppe.pack .cost-identity > .limb-dis { grid-area: dis; }
+.ppe.pack .cost-identity > .nature-nest { grid-area: nature; }
+.ppe.pack .cost-identity > .ready-axis { grid-area: axis; }
+.ppe.pack .cost-identity > .facet-foot { grid-area: facets; }
+
+.ppe.pack .cost-identity > .cost-op { align-self: center; }
+
+.ppe.pack .cost-identity > .limb,
+.ppe.pack .cost-identity > .cost-result,
+.ppe.pack .da-col > .limb {
+  justify-content: flex-start;
+  align-self: stretch;
+}
+
+.ppe.pack .da-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ppe.pack .da-col > .limb {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.ppe.pack .link-stem {
+  display: block;
+  width: 0.1em;
+  background: var(--accent);
+}
+
+.ppe.pack .nature-nest,
+.ppe.pack .after-nest {
+  position: relative;
+  min-width: 0;
+  border: 0.08em dashed var(--dash);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.4em 0.45em;
+  color: var(--muted);
+}
+
+.ppe.pack .nature-nest { align-self: start; }
+
+.ppe.pack .nature-nest > .link-stem {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--stem) * -1 - 0.08em);
+  height: calc(var(--stem) + 0.08em);
+  transform: translateX(-50%);
+}
+
+.ppe.pack .nature-nest .item-rows,
+.ppe.pack .after-nest .item-rows {
+  margin-top: 0.28em;
+  color: var(--muted);
+  font-size: 0.92em;
+}
+
+.ppe.pack .ready-axis {
+  position: relative;
+  min-width: 0;
+}
+
+.ppe.pack .ready-axis::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--stem) * -1 - 0.08em);
+  left: 50%;
+  width: 0.1em;
+  height: calc(var(--stem) + 0.55em);
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+
+.ppe.pack .axis-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 0.45rem;
+  align-items: start;
+  min-width: 0;
+  padding-top: 1.35em;
+}
+
+.ppe.pack .axis-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.42em;
+  top: 0.42em;
+  height: 0.1em;
+  background: var(--accent);
+}
+
+.ppe.pack .axis-track::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0.22em;
+  border-left: 0.38em solid var(--accent);
+  border-top: 0.24em solid transparent;
+  border-bottom: 0.24em solid transparent;
+}
+
+.ppe.pack .axis-seg {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.72em;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.ppe.pack .axis-seg-l { grid-column: 1; }
+
+.ppe.pack .axis-seg-r { grid-column: 2; text-align: end; }
+
+.ppe.pack .axis-diamond {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 0.02em;
+  transform: translateX(-50%);
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 1.15em;
+  line-height: 1;
+  padding: 0 0.1em;
+}
+
+.ppe.pack .axis-name {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.15em 0.35em;
-  margin: 0.15em 0 0;
+  width: 100%;
+  margin: 0 0 0.35em;
+  padding-right: 0.35em;
   color: var(--ink);
+  font-size: 0.75em;
   font-weight: 700;
+  line-height: 1.3;
+  text-align: end;
 }
 
-.ppe.pack .cost-out .item-rows { font-size: 1em; }
+.ppe.pack .axis-name > span {
+  flex: 1 1 6em;
+  min-width: 0;
+}
+
+.ppe.pack .axis-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.4rem;
+  align-items: start;
+  margin-top: 0.4rem;
+}
+
+.ppe.pack .before-nest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.ppe.pack .after-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.ppe.pack .after-col > .link-stem {
+  height: 0.85em;
+  margin-left: calc(-0.2rem - 0.05em);
+  margin-bottom: -0.08em;
+}
+
+.ppe.pack .after-nest { width: 100%; }
 
 .ppe.pack .see-cluster {
   min-width: 0;
@@ -2299,65 +2489,6 @@ body.embed {
   padding: 0;
 }
 
-.ppe.pack .cut-bar {
-  min-width: 0;
-  border: 0.08em solid var(--line);
-  border-radius: var(--card-radius);
-  background: transparent;
-  padding: 0.55em 0.65em;
-}
-
-.ppe.pack .cut-title { margin-bottom: 0.45em; }
-
-.ppe.pack .cut-track {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr) minmax(0, 1fr);
-  gap: 0.4rem;
-  align-items: stretch;
-}
-
-.ppe.pack .cut-beat,
-.ppe.pack .cut-mark {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.22em;
-  min-width: 0;
-  margin: 0;
-  padding: 0.45em 0.5em;
-  border-radius: var(--card-radius);
-  font-size: 0.84em;
-  font-weight: 400;
-  line-height: 1.35;
-}
-
-.ppe.pack .cut-beat {
-  border: 0.08em solid var(--line);
-  background: var(--bg);
-  color: var(--ink);
-}
-
-.ppe.pack .cut-mark {
-  border: 0.08em solid var(--accent);
-  background: var(--nest);
-  color: var(--ink);
-  font-weight: 700;
-  text-align: center;
-}
-
-.ppe.pack .cut-k {
-  color: var(--ink);
-  font-size: 0.86em;
-  font-weight: 700;
-}
-
-.ppe.pack .pl-tips {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0.4rem;
-  align-items: stretch;
-}
-
 .ppe.pack .pl-tip,
 .ppe.pack .constraint-tip,
 .ppe.pack .land-tip {
@@ -2376,35 +2507,39 @@ body.embed {
   line-height: 1.35;
 }
 
-.ppe.pack .not-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0.45rem;
-  align-items: stretch;
+.ppe.pack .before-nest .pl-tip {
+  color: var(--muted);
+  font-size: 0.75em;
+  padding: 0.28em 0.35em;
 }
 
-.ppe.pack .not-nest {
-  min-width: 0;
-  border: 0.08em solid var(--line);
-  border-radius: var(--card-radius);
-  background: var(--bg);
-  padding: 0.45em 0.5em;
-}
-
-.ppe.pack .not-k {
-  display: block;
+.ppe.pack .nest-k {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
   margin: 0;
   color: var(--ink);
-  font-size: 0.95em;
+  font-size: 0.82em;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
-.ppe.pack .facet-board {
+.ppe.pack .nest-k > span {
+  flex: 1 1 6em;
+  min-width: 0;
+}
+
+.ppe.pack .facet-foot {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35rem;
   min-width: 0;
+  margin-top: 0.15rem;
+  border: 0.06em dashed var(--dash);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.4em 0.5em 0.5em;
 }
 
 .ppe.pack .facet-label {
@@ -2425,13 +2560,17 @@ body.embed {
 .ppe.pack .facet {
   display: flex;
   flex-direction: column;
-  gap: 0.3em;
+  gap: 0.2em;
   min-width: 0;
-  border: 0.08em solid var(--line);
-  border-radius: var(--card-radius);
-  background: var(--bg);
-  padding: 0.5em 0.55em;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0.1em 0.15em;
 }
+
+.ppe.pack .facet-foot .facet-title { font-size: 0.82em; }
+
+.ppe.pack .facet-foot .limb-note { margin: 0; }
 
 .ppe.pack .consume-wrap,
 .ppe.pack .constraint-tip { grid-column: 1 / -1; }
@@ -2538,7 +2677,6 @@ body.embed {
 
 .ppe.pack .model-child-title,
 .ppe.pack .facet-title,
-.ppe.pack .cut-title,
 .ppe.pack .consume-bar,
 .ppe.pack .disc-sub {
   display: flex;
@@ -2555,7 +2693,6 @@ body.embed {
 
 .ppe.pack .model-child-title > span,
 .ppe.pack .facet-title > span,
-.ppe.pack .cut-title > span,
 .ppe.pack .consume-bar > span,
 .ppe.pack .disc-sub > span,
 .ppe.pack .constraint-tip > span,
@@ -2784,11 +2921,29 @@ body.embed {
 
   .ppe.pack .method-set,
   .ppe.pack .case-set,
-  .ppe.pack .cut-track,
-  .ppe.pack .pl-tips,
-  .ppe.pack .not-split,
+  .ppe.pack .axis-body,
   .ppe.pack .facet-row,
   .ppe.pack .policy-kids { grid-template-columns: minmax(0, 1fr); }
+
+  .ppe.pack .cost-identity {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "result"
+      "eq"
+      "buy"
+      "p1"
+      "da"
+      "axis"
+      "p2"
+      "dis"
+      "nature"
+      "facets";
+  }
+
+  .ppe.pack .ready-axis::before,
+  .ppe.pack .nature-nest > .link-stem,
+  .ppe.pack .after-col > .link-stem { display: none; }
+
 
   .ppe.pack .policy-arms { display: block; }
 

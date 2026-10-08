@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-pack-c2226-20261008" />
+<link rel="stylesheet" href="ias16.css?v=ias16-pack-c2226-axis-20261008" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -161,84 +161,90 @@
     <div class="beat" data-phase="cost">
       <section class="plate" data-phase-start data-phase-end aria-label="Cost equals purchase price plus directly attributable costs plus dismantling">
         <p class="plate-title"><a class="fb-num" href="../ch03.html#s-3-0" target="_parent">3.0</a><span>Cost</span></p>
-        <div class="cost-eq" role="group" aria-label="Cost equals purchase price plus directly attributable costs plus dismantling, removal and restoration">
+        <div class="cost-identity">
           <article class="cost-result">
             <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-0" target="_parent">3.0</a><span>Cost</span></p>
             <p class="limb-note">Measured at cost when recognised.</p>
           </article>
-          <span class="cost-op" aria-hidden="true">=</span>
-          <article class="limb">
+          <span class="cost-op op-eq" aria-hidden="true">=</span>
+          <article class="limb limb-buy">
             <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-1" target="_parent">3.1</a><span>Purchase price</span></p>
             <p class="limb-note">Incl. import duties and non-refundable purchase taxes, after trade discounts and rebates.</p>
           </article>
-          <span class="cost-op" aria-hidden="true">+</span>
-          <article class="limb">
-            <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-2" target="_parent">3.2</a><span>Directly attributable costs</span></p>
-            <p class="limb-note">Location and condition to operate as intended.</p>
-            <ul class="item-rows">
-              <li>Employee benefits</li>
-              <li>Site preparation</li>
-              <li>Delivery and handling</li>
-              <li>Installation and assembly</li>
-              <li>Testing</li>
-              <li>Professional fees</li>
-            </ul>
-          </article>
-          <span class="cost-op" aria-hidden="true">+</span>
-          <article class="limb">
+          <span class="cost-op op-p1" aria-hidden="true">+</span>
+          <div class="da-col">
+            <article class="limb">
+              <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-2" target="_parent">3.2</a><span>Directly attributable costs</span></p>
+              <p class="limb-note">Location and condition to operate as intended.</p>
+              <ul class="item-rows">
+                <li>Employee benefits</li>
+                <li>Site preparation</li>
+                <li>Delivery and handling</li>
+                <li>Installation and assembly</li>
+                <li>Testing</li>
+                <li>Professional fees</li>
+              </ul>
+            </article>
+          </div>
+          <span class="cost-op op-p2" aria-hidden="true">+</span>
+          <article class="limb limb-dis">
             <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-4" target="_parent">3.4</a><span>Dismantling, removal and restoration</span></p>
             <p class="limb-note">Obligation on acquisition or from use other than producing inventories (inventory use → IAS 2).</p>
           </article>
-        </div>
-        <div class="cut-bar">
-          <p class="cut-title"><a class="fb-num" href="../ch03.html#s-3-2" target="_parent">3.2</a><span>Cease capitalising when capable of operating as intended</span></p>
-          <div class="cut-track" data-eq>
-            <p class="cut-beat" data-eq-cell><span class="cut-k">Before</span><span>Bringing the asset to the location and condition for intended operation.</span></p>
-            <p class="cut-mark" data-eq-cell><span>Capable of operating as intended by management</span></p>
-            <p class="cut-beat" data-eq-cell><span class="cut-k">After</span><span>Using the asset, redeploying it, or running below full capacity.</span></p>
+
+          <div class="nature-nest">
+            <span class="link-stem" aria-hidden="true"></span>
+            <p class="nest-k"><a class="fb-num" href="../ch03.html#s-3-3" target="_parent">3.3</a><span>Nature (never)</span></p>
+            <ul class="item-rows">
+              <li>Opening a new facility</li>
+              <li>Introducing a new product or service (including advertising)</li>
+              <li>New location or class of customer (including training)</li>
+              <li>Administration and general overheads</li>
+            </ul>
           </div>
-        </div>
-        <div class="pl-tips">
-          <p class="pl-tip"><a class="fb-num" href="../ch03.html#s-3-5" target="_parent">3.5</a><span>Proceeds from items produced while bringing the asset to capable, and the cost of those items, go to profit or loss. Do not deduct them from cost.</span></p>
-          <p class="pl-tip"><a class="fb-num" href="../ch03.html#s-3-5" target="_parent">3.5</a><span>Incidental operations that are not needed to bring the asset to capable go to profit or loss.</span></p>
-        </div>
-        <div class="cost-out">
-          <p class="cost-out-title"><a class="fb-num" href="../ch03.html#s-3-3" target="_parent">3.3</a><span>Not in cost</span></p>
-          <div class="not-split" data-eq>
-            <div class="not-nest" data-eq-cell>
-              <p class="not-k">Nature (never)</p>
-              <ul class="item-rows">
-                <li>Opening a new facility</li>
-                <li>Introducing a new product or service (including advertising)</li>
-                <li>New location or class of customer (including training)</li>
-                <li>Administration and general overheads</li>
-              </ul>
+
+          <div class="ready-axis" role="group" aria-label="Readiness cut-off on directly attributable costs">
+            <div class="axis-track">
+              <span class="axis-seg axis-seg-l">Bringing to capable</span>
+              <span class="axis-diamond" aria-hidden="true">◆</span>
+              <span class="axis-seg axis-seg-r">After capable (cease capitalising)</span>
             </div>
-            <div class="not-nest" data-eq-cell>
-              <p class="not-k">After capable</p>
-              <ul class="item-rows">
-                <li>Costs while the asset is capable but not yet in use, or is operated below full capacity</li>
-                <li>Initial operating losses</li>
-                <li>Costs of relocating or reorganising operations</li>
-              </ul>
+            <div class="axis-body">
+              <div class="before-nest">
+                <p class="axis-name"><a class="fb-num" href="../ch03.html#s-3-2" target="_parent">3.2</a><span>Capable of operating in the manner intended by management</span></p>
+                <p class="pl-tip"><a class="fb-num" href="../ch03.html#s-3-5" target="_parent">3.5</a><span>Proceeds from items produced while bringing the asset to capable, and the cost of those items, go to profit or loss. Do not deduct them from cost.</span></p>
+                <p class="pl-tip"><a class="fb-num" href="../ch03.html#s-3-5" target="_parent">3.5</a><span>Incidental operations that are not needed to bring the asset to capable go to profit or loss.</span></p>
+              </div>
+              <div class="after-col">
+                <span class="link-stem" aria-hidden="true"></span>
+                <div class="after-nest">
+                  <p class="nest-k"><a class="fb-num" href="../ch03.html#s-3-3" target="_parent">3.3</a><span>After capable</span></p>
+                  <ul class="item-rows">
+                    <li>Costs while the asset is capable but not yet in use, or is operated below full capacity</li>
+                    <li>Initial operating losses</li>
+                    <li>Costs of relocating or reorganising operations</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="facet-board" aria-label="Other ways to measure the same cost">
-          <p class="facet-label">Same cost — other measurement</p>
-          <div class="facet-row" data-eq>
-            <article class="facet" data-eq-cell>
-              <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-6" target="_parent">3.6</a><span>Self-constructed</span></p>
-              <p class="limb-note">Same cost principles. Eliminate internal profits. Abnormal waste is excluded.</p>
-            </article>
-            <article class="facet" data-eq-cell>
-              <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-7" target="_parent">3.7</a><span>Deferred payment</span></p>
-              <p class="limb-note">Cost is the cash price equivalent. The difference is interest.</p>
-            </article>
-            <article class="facet" data-eq-cell>
-              <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-8" target="_parent">3.8</a><span>Exchange</span></p>
-              <p class="limb-note">Fair value, unless there is no commercial substance or fair value cannot be measured reliably — then the carrying amount of the asset given up.</p>
-            </article>
+
+          <div class="facet-foot">
+            <p class="facet-label">Same cost — other measurement</p>
+            <div class="facet-row" data-eq>
+              <article class="facet" data-eq-cell>
+                <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-6" target="_parent">3.6</a><span>Self-constructed</span></p>
+                <p class="limb-note">Same cost principles. Eliminate internal profits. Abnormal waste is excluded.</p>
+              </article>
+              <article class="facet" data-eq-cell>
+                <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-7" target="_parent">3.7</a><span>Deferred payment</span></p>
+                <p class="limb-note">Cost is the cash price equivalent. The difference is interest.</p>
+              </article>
+              <article class="facet" data-eq-cell>
+                <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-8" target="_parent">3.8</a><span>Exchange</span></p>
+                <p class="limb-note">Fair value, unless there is no commercial substance or fair value cannot be measured reliably — then the carrying amount of the asset given up.</p>
+              </article>
+            </div>
           </div>
         </div>
         <p class="see"><a class="fb-num" href="../ch03.html#s-3-10" target="_parent">3.10</a><span class="see-label">See also</span> <span class="see-bit"><a href="../ch03.html#s-3-10" target="_parent">IAS 23</a></span> <span class="see-bit"><a href="../ch03.html#s-3-4" target="_parent">IFRIC 1</a></span> <span class="see-bit"><a href="../ch03.html#s-3-4" target="_parent">IAS 37</a></span></p>
@@ -611,8 +617,43 @@
     }
   }
 
+  function joinCut() {
+    var axis = root.querySelector(".ready-axis");
+    if (!axis) return;
+    var track = axis.querySelector(".axis-track");
+    var stem = axis.querySelector(".after-col > .link-stem");
+    var nest = axis.querySelector(".after-nest");
+    if (!track || !stem || !nest) return;
+    if (getComputedStyle(stem).display === "none") {
+      stem.style.position = "";
+      stem.style.top = "";
+      stem.style.height = "";
+      stem.style.left = "";
+      stem.style.width = "";
+      stem.style.margin = "";
+      stem.style.transform = "";
+      return;
+    }
+    stem.style.position = "absolute";
+    stem.style.left = "50%";
+    stem.style.width = "0.1em";
+    stem.style.margin = "0";
+    stem.style.transform = "translateX(-50%)";
+    stem.style.height = "0px";
+    void axis.offsetHeight;
+    var top = track.getBoundingClientRect().top + parseFloat(getComputedStyle(track, "::before").top) - axis.getBoundingClientRect().top;
+    var h = nest.getBoundingClientRect().top - (axis.getBoundingClientRect().top + top) + 1;
+    if (!(h > 0)) return;
+    var prevT = parseFloat(stem.style.top);
+    var prevH = parseFloat(stem.style.height);
+    if (Math.abs(prevT - top) < 0.5 && Math.abs(prevH - h) < 0.5) return;
+    stem.style.top = top + "px";
+    stem.style.height = h + "px";
+  }
+
   function fit() {
     equalise();
+    joinCut();
     var rails = root.querySelectorAll(".rail-link[data-phase]");
     for (var i = 0; i < rails.length; i++) {
       var rail = rails[i];
