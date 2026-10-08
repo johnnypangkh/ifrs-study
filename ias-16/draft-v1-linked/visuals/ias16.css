@@ -1841,7 +1841,7 @@ body.embed {
   font-weight: 700;
 }
 
-/* Section difference only. Sits in the detail column, not a new phase rail. */
+/* Section difference only. The By model rail is the paired inner-rail cell. */
 .ppe.pack .cmp.cmp-mini {
   grid-column: 2;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -2012,6 +2012,4 @@ body.embed {
   .ppe.pack .cmp-corner { display: none; }
 
   .ppe.pack .cmp-row { grid-column: 1 / -1; }
-
-  .ppe.pack .cmp.cmp-mini { grid-column: 1 / -1; }
 }
