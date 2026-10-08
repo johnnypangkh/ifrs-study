@@ -1841,6 +1841,23 @@ body.embed {
   font-weight: 700;
 }
 
+/* Section difference only. Sits in the detail column, not a new phase rail. */
+.ppe.pack .cmp.cmp-mini {
+  grid-column: 2;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.35rem;
+  margin-top: 0;
+}
+
+.ppe.pack .cmp.cmp-mini .cmp-head {
+  font-size: 0.82em;
+  padding: 0.28em 0.4em;
+}
+
+.ppe.pack .cmp.cmp-mini .cmp-cell { padding: 0.4em 0.5em; }
+
+.ppe.pack .cmp-span { grid-column: 1 / -1; }
+
 .ppe.pack .disc-band {
   border: 0.06em solid var(--line);
   border-radius: var(--card-radius);
@@ -1995,4 +2012,6 @@ body.embed {
   .ppe.pack .cmp-corner { display: none; }
 
   .ppe.pack .cmp-row { grid-column: 1 / -1; }
+
+  .ppe.pack .cmp.cmp-mini { grid-column: 1 / -1; }
 }
