@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
-<link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-rail-fit-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-pack-rail-fit-20261008" />
+<link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-criteria-20261008" />
+<link rel="stylesheet" href="ias16.css?v=ias16-pack-criteria-20261008" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -23,35 +23,34 @@
           <div class="decision-fork">
             <section class="q" data-phase-start>
               <p class="q-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Is it PPE in IAS 16?</span></p>
+              <div class="criteria" role="group" aria-label="Tangible plus held for use plus more than one period">
+                <div class="peer">
+                  <p class="peer-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Tangible</span></p>
+                </div>
+                <span class="crit-op" aria-hidden="true">+</span>
+                <div class="peer">
+                  <p class="peer-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Held for use</span></p>
+                </div>
+                <span class="crit-op" aria-hidden="true">+</span>
+                <div class="peer">
+                  <p class="peer-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>More than one period</span></p>
+                </div>
+              </div>
+              <p class="see"><a class="fb-num" href="../ch01.html#s-1-4" target="_parent">1.4</a><span class="see-label">See also</span> <span class="see-bit">IAS 40</span> <span class="see-bit"><a href="../ch01.html#s-1-7" target="_parent">IFRS 16</a></span></p>
             </section>
             <div class="decision-after">
               <div class="decision-branch">
                 <div class="harm harm-mute" aria-hidden="true"><span class="arm-label">No</span></div>
-                <div class="leaf mute">
-                  <p class="leaf-name"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Not PPE</span></p>
+                <div class="side-note">
+                  <div class="leaf mute">
+                    <p class="leaf-name"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Not PPE</span></p>
+                  </div>
+                  <p class="see pack-see-not"><a class="fb-num" href="../ch01.html#s-1-3" target="_parent">1.3</a><span class="see-label">See also</span> <span class="see-bit">IAS 38</span></p>
                 </div>
-                <p class="see pack-see-not"><a class="fb-num" href="../ch01.html#s-1-3" target="_parent">1.3</a><span class="see-label">See also</span> <span class="see-bit">IAS 38</span></p>
               </div>
               <div class="varm" aria-hidden="true"><span class="arm-label">Yes</span></div>
             </div>
           </div>
-
-          <section class="plate pack-def" aria-label="All of the PPE definition">
-            <div class="peers" role="group" aria-label="All of these">
-              <div class="peer">
-                <p class="peer-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Tangible</span></p>
-              </div>
-              <div class="peer">
-                <p class="peer-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Held for use</span></p>
-              </div>
-              <div class="peer">
-                <p class="peer-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>More than one period</span></p>
-              </div>
-            </div>
-            <p class="span-bar"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>All of these</span></p>
-            <p class="see"><a class="fb-num" href="../ch01.html#s-1-4" target="_parent">1.4</a><span class="see-label">See also</span> <span class="see-bit">IAS 40</span> <span class="see-bit"><a href="../ch01.html#s-1-7" target="_parent">IFRS 16</a></span></p>
-          </section>
-          <div class="pack-join" aria-hidden="true"></div>
         </div>
 
         <div class="dgrid decision-flow def-fork fork-excl" role="group" aria-label="Decision: excluded from IAS 16?">
@@ -131,17 +130,20 @@
     <div class="beat" data-phase="models">
       <section class="plate" data-phase-start data-phase-end aria-label="Cost model and revaluation model, policy by entire class">
         <p class="plate-title"><a class="fb-num" href="../ch04.html#s-4-0" target="_parent">4.0</a><span>Subsequent models</span></p>
-        <div class="peers peers-2" role="group" aria-label="Cost model and revaluation model">
-          <article class="peer">
-            <p class="peer-title"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
-            <p class="limb-note">Cost less accumulated depreciation and impairment.</p>
-          </article>
-          <article class="peer">
-            <p class="peer-title"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
-            <p class="limb-note">Fair value less subsequent depreciation and impairment.</p>
-          </article>
-        </div>
-        <p class="span-bar"><a class="fb-num" href="../ch04.html#s-4-1" target="_parent">4.1</a><span>Policy by entire class</span></p>
+        <section class="policy" aria-label="Policy by entire class">
+          <p class="policy-title"><a class="fb-num" href="../ch04.html#s-4-1" target="_parent">4.1</a><span>Policy by entire class</span></p>
+          <div class="criteria criteria-2" role="group" aria-label="Cost model or revaluation model">
+            <article class="peer">
+              <p class="peer-title"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
+              <p class="limb-note">Cost less accumulated depreciation and impairment.</p>
+            </article>
+            <span class="crit-op" aria-hidden="true">or</span>
+            <article class="peer">
+              <p class="peer-title"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
+              <p class="limb-note">Fair value less subsequent depreciation and impairment.</p>
+            </article>
+          </div>
+        </section>
         <p class="see"><a class="fb-num" href="../ch04.html#s-4-8" target="_parent">4.8</a><span class="see-label">See also</span> <span class="see-bit">IAS 36</span> <span class="see-bit"><a href="../ch04.html#s-4-3" target="_parent">IFRS 13</a></span> <span class="see-bit"><a href="../ch01.html#s-1-4" target="_parent">IAS 40</a></span></p>
       </section>
       <div class="pack-flow">
