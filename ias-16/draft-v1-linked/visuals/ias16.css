@@ -146,6 +146,26 @@ body.embed {
   background: transparent;
 }
 
+/* Ch01 scope zoom only. Pack peer-lines stay on .ppe.pack. */
+.ppe.scope-map .peer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ppe.scope-map .peer-line {
+  margin: 0.28em 0 0;
+  color: var(--muted);
+  font-size: 0.86em;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.ppe.scope-map .leaf.stop .leaf-body {
+  color: var(--danger);
+  font-weight: 400;
+}
+
 .ppe .plate {
   display: flex;
   flex-direction: column;
