@@ -1582,19 +1582,62 @@ body.embed {
   border-top: 0.46em solid var(--accent);
 }
 
+/* Phase stem: same three tracks as the yes-down spine, shaft in column 1.
+   The line runs the full gap; the label sits on the shaft and masks it. */
 .ppe.pack .pack-flow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 2.5em;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
+  align-items: stretch;
+  min-height: 0;
   color: var(--accent);
-  font-size: 0.84em;
   font-weight: 700;
 }
 
+.ppe.pack .pack-flow-shaft {
+  grid-column: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 4.4em;
+  margin: 0;
+  padding-block: 0.85em;
+}
+
+.ppe.pack .pack-flow-shaft::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0.4em;
+  left: 50%;
+  width: 0.1em;
+  transform: translateX(-50%);
+  background: var(--accent);
+}
+
+.ppe.pack .pack-flow-shaft::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 1;
+  transform: translateX(-50%);
+  border-left: 0.34em solid transparent;
+  border-right: 0.34em solid transparent;
+  border-top: 0.46em solid var(--accent);
+}
+
 .ppe.pack .pack-flow-label {
-  max-width: 18em;
-  margin: 0.4em 0.4em 0.2em;
+  position: relative;
+  z-index: 1;
+  max-width: calc(100% - 0.6em);
+  margin: 0;
+  padding: 0.12em 0.45em;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 0.84em;
+  font-weight: 700;
   line-height: 1.3;
   text-align: center;
 }
@@ -1606,23 +1649,196 @@ body.embed {
   text-underline-offset: 0.15em;
 }
 
-.ppe.pack .pack-flow-line {
-  position: relative;
-  width: 0.1em;
-  flex: 1 1 auto;
-  min-height: 0.85em;
-  background: var(--accent);
+/* Inner rails. Smaller filled cells than the page rail. Not .rail-link,
+   so the outer fit script leaves them alone. */
+.ppe.pack .inner-board {
+  display: grid;
+  grid-template-columns: minmax(5.6em, 6.8em) minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
 }
 
-.ppe.pack .pack-flow-line::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  border-left: 0.34em solid transparent;
-  border-right: 0.34em solid transparent;
-  border-top: 0.46em solid var(--accent);
+.ppe.pack .inner-board-2 {
+  grid-template-columns: minmax(5.1em, 6.2em) minmax(0, 1fr);
+}
+
+.ppe.pack .inner-rail {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  margin: 0;
+  padding: 0.35em 0.35em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--nest);
+  color: var(--ink);
+  font-size: 0.7em;
+  font-weight: 750;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.ppe.pack .inner-board-2 > .inner-rail {
+  background: var(--bg);
+  font-size: 0.66em;
+}
+
+.ppe.pack .inner-rail:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.ppe.pack .inner-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.5em 0.6em;
+}
+
+.ppe.pack .inner-span {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.ppe.pack .inner-detail > .limb-note,
+.ppe.pack .inner-detail > .anno-title,
+.ppe.pack .inner-detail > .soft-note { margin-top: 0; }
+
+.ppe.pack .inner-detail .cost-eq { min-width: 0; }
+
+.ppe.pack .method-set {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  align-items: stretch;
+}
+
+.ppe.pack .method-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 2.4em;
+  margin: 0;
+  padding: 0.4em 0.4em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 0.86em;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.ppe.pack .chip-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  margin: 0;
+}
+
+.ppe.pack .pack-exit .inner-rail { background: var(--surface); }
+
+.ppe.pack .pack-exit .inner-detail {
+  background: var(--surface);
+}
+
+.ppe.pack .pack-exit .inner-detail .limb,
+.ppe.pack .pack-exit .inner-detail .cost-result { background: var(--bg); }
+
+/* Cost model and revaluation model, one life-cycle row at a time. */
+.ppe.pack .cmp {
+  display: grid;
+  grid-template-columns: minmax(6.4em, 7.6em) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.4rem;
+  align-items: stretch;
+  min-width: 0;
+  margin-top: 0.65rem;
+}
+
+.ppe.pack .cmp-head,
+.ppe.pack .cmp-row,
+.ppe.pack .cmp-cell {
+  min-width: 0;
+  margin: 0;
+}
+
+.ppe.pack .cmp-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15em 0.35em;
+  padding: 0.4em 0.5em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--nest);
+  font-size: 0.9em;
+  font-weight: 750;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.ppe.pack .cmp-row {
+  display: flex;
+  align-items: center;
+  padding: 0.2em 0.15em;
+  color: var(--muted);
+  font-size: 0.78em;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.ppe.pack .cmp-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.5em 0.6em;
+}
+
+.ppe.pack .cmp-cell p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.86em;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.ppe.pack .cmp-cell p > span {
+  flex: 1 1 8em;
+  min-width: 0;
+}
+
+.ppe.pack .cmp-na {
+  border-style: dashed;
+  border-color: var(--dash);
+  background: transparent;
+  color: var(--muted);
+}
+
+.ppe.pack .cmp-na p {
+  justify-content: center;
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .ppe.pack .disc-band {
@@ -1739,4 +1955,44 @@ body.embed {
 
   .ppe.pack .criteria,
   .ppe.pack .criteria-2 { grid-template-columns: minmax(0, 1fr); }
+
+  .ppe.pack .pack-flow { display: block; }
+
+  .ppe.pack .pack-flow-shaft {
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    min-height: 3.8em;
+  }
+
+  .ppe.pack .pack-flow-shaft::before {
+    left: 0;
+    width: 0.12em;
+    transform: none;
+  }
+
+  .ppe.pack .pack-flow-shaft::after {
+    left: 0.06em;
+  }
+
+  .ppe.pack .pack-flow-label {
+    margin-left: 0.55em;
+    text-align: start;
+  }
+
+  .ppe.pack .inner-board {
+    grid-template-columns: minmax(4.5em, 5.3em) minmax(0, 1fr);
+  }
+
+  .ppe.pack .inner-board-2 {
+    grid-template-columns: minmax(4.3em, 5.1em) minmax(0, 1fr);
+  }
+
+  .ppe.pack .method-set { grid-template-columns: minmax(0, 1fr); }
+
+  .ppe.pack .cmp { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+
+  .ppe.pack .cmp-corner { display: none; }
+
+  .ppe.pack .cmp-row { grid-column: 1 / -1; }
 }
