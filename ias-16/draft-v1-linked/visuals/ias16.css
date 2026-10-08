@@ -1967,6 +1967,156 @@ body.embed {
 
 .ppe.pack .disc-band .see { margin-top: 0.55em; }
 
+.ppe.pack .criteria > .peer {
+  display: flex;
+  flex-direction: column;
+}
+
+.ppe.pack .peer-line {
+  margin: 0.28em 0 0;
+  color: var(--muted);
+  font-size: 0.78em;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.ppe.pack .q-body,
+.ppe.pack .policy-body,
+.ppe.pack .dot-line,
+.ppe.pack .disc-card-title,
+.ppe.pack .disc-card-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0.4em 0 0;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.ppe.pack .q-body > span,
+.ppe.pack .policy-body > span,
+.ppe.pack .dot-line > span,
+.ppe.pack .disc-card-title > span,
+.ppe.pack .disc-card-body > span {
+  flex: 1 1 8em;
+  min-width: 0;
+}
+
+.ppe.pack .q-body {
+  color: var(--ink);
+  font-size: 0.86em;
+  font-weight: 650;
+}
+
+.ppe.pack .policy-body,
+.ppe.pack .disc-card-body {
+  color: var(--muted);
+  font-size: 0.84em;
+  font-weight: 650;
+}
+
+.ppe.pack .dot-line {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.84em;
+  font-weight: 650;
+}
+
+.ppe.pack .leaf.pack-stop .leaf-body,
+.ppe.pack .leaf.pack-stop .leaf-body .fb-num { color: var(--danger); }
+
+.ppe.pack .cost-out {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  margin: 0;
+  padding: 0.55em 0.65em;
+  border: 0.08em dashed var(--dash);
+  border-radius: var(--card-radius);
+  color: var(--muted);
+  font-size: 0.84em;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.ppe.pack .cost-out p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+}
+
+.ppe.pack .cost-out p > span {
+  flex: 1 1 12em;
+  min-width: 0;
+}
+
+.ppe.pack .cost-out strong {
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.ppe.pack .case-set {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  align-items: stretch;
+}
+
+.ppe.pack .case-cell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.5em 0.55em;
+}
+
+.ppe.pack .case-cell > .limb-note { margin: 0; }
+
+.ppe.pack span.inner-rail { cursor: default; }
+
+.ppe.pack span.inner-rail:hover {
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.ppe.pack .disc-group {
+  margin: 0.75em 0 0;
+  color: var(--ink);
+  font-size: 0.78em;
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.ppe.pack .disc-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.4em;
+  min-width: 0;
+}
+
+.ppe.pack .disc-card {
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 0.5em 0.6em;
+}
+
+.ppe.pack .disc-card-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.9em;
+  font-weight: 700;
+}
+
+.ppe.pack .disc-card-body { margin-top: 0.28em; }
+
 @media (min-width: 561px) {
   .ppe.pack .scope-stack {
     display: grid;
@@ -2074,7 +2224,8 @@ body.embed {
     grid-template-columns: minmax(4.3em, 5.1em) minmax(0, 1fr);
   }
 
-  .ppe.pack .method-set { grid-template-columns: minmax(0, 1fr); }
+  .ppe.pack .method-set,
+  .ppe.pack .case-set { grid-template-columns: minmax(0, 1fr); }
 
   .ppe.pack .cmp { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 

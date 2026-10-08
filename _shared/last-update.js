@@ -12,9 +12,9 @@
       "fingerprint": "2b85d8d674fceffdfef50765222a179007d5adbb2bfd15ab20220e5bc96cb85c"
     },
     "ias16": {
-      "text": "Last update · 2026-10-08 12:52 HKT",
-      "iso": "2026-10-08T12:52:00+08:00",
-      "fingerprint": "113e5becf9a847dfd88ef35065edee13ebc5198e8efcdb2cd4e695580be5ed14"
+      "text": "Last update · 2026-10-08 14:34 HKT",
+      "iso": "2026-10-08T14:34:00+08:00",
+      "fingerprint": "afb96954ae965214a70a2c1eb44543ef803dc524571b92cbb08b895851a1b593"
     },
     "ias2": {
       "text": "Last update · 2026-10-07 21:38 HKT",
