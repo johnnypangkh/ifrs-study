@@ -3003,9 +3003,35 @@ body.embed {
   text-align: center;
 }
 
+.ppe.pack .cap-row > .cost-eq {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) auto minmax(0, 1.35fr) auto minmax(0, 1.05fr);
+  align-items: stretch;
+  gap: 0.35rem;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.4em;
+  background: transparent;
+}
+
+.ppe.pack .cap-row > .cost-eq > .cost-result,
+.ppe.pack .cap-row > .cost-eq > .limb {
+  min-width: 0;
+  justify-content: center;
+  margin: 0;
+}
+
+.ppe.pack .cap-row > .cost-eq .limb-title {
+  justify-content: center;
+  text-align: center;
+}
+
 .ppe.pack .cap-foot {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 0.35em;
   min-width: 0;
   margin: 0;
   padding: 0.5em 0.6em;
@@ -3015,6 +3041,8 @@ body.embed {
   color: var(--ink);
   line-height: 1.35;
 }
+
+.ppe.pack .cap-foot > span { flex: 1 1 12em; min-width: 0; }
 
 .ppe.pack .cap-surplus { margin: 0.45rem 0 0; }
 
@@ -3244,7 +3272,10 @@ body.embed {
 
   .ppe.pack .policy-kids { margin-top: 0.55rem; }
 
-  .ppe.pack .cap,
+  .ppe.pack .cap {
+    grid-template-columns: minmax(6.2em, 7.4em) minmax(0, 1fr);
+  }
+
   .ppe.pack .cap-row { grid-template-columns: minmax(0, 1fr); }
 
   .ppe.pack .term + .term {

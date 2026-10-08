@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-pack-r20-r21-20261008" />
+<link rel="stylesheet" href="ias16.css?v=ias16-pack-dep-rows-20261008" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -388,31 +388,42 @@
                 <a class="fb-num" href="../ch05.html#s-5-1" target="_parent">5.1</a>
                 <span class="rail-name">Depreciable amount</span>
               </div>
-              <div class="cost-eq" role="group" aria-label="Depreciable amount equals cost or revalued amount minus residual value">
-                <article class="cost-result"><p class="limb-title"><span>Depreciable amount</span></p></article>
-                <span class="cost-op" aria-hidden="true">=</span>
-                <div class="limb term-split">
-                  <p class="term"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost</span></p>
-                  <p class="term"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revalued amount</span></p>
+              <div class="cap-rows" data-eq data-eq-stack>
+                <div class="cap-row" data-eq-cell>
+                  <p class="cap-model"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
+                  <div class="cost-eq" role="group" aria-label="Depreciable amount equals cost minus residual value">
+                    <article class="cost-result"><p class="limb-title"><span>Depreciable amount</span></p></article>
+                    <span class="cost-op" aria-hidden="true">=</span>
+                    <article class="limb"><p class="limb-title"><span>Cost</span></p></article>
+                    <span class="cost-op" aria-hidden="true">−</span>
+                    <article class="limb"><p class="limb-title"><span>Residual value</span></p></article>
+                  </div>
                 </div>
-                <span class="cost-op" aria-hidden="true">−</span>
-                <article class="limb"><p class="limb-title"><span>Residual value</span></p></article>
+                <div class="cap-row" data-eq-cell>
+                  <p class="cap-model"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
+                  <div class="cost-eq" role="group" aria-label="Depreciable amount equals revalued amount minus residual value">
+                    <article class="cost-result"><p class="limb-title"><span>Depreciable amount</span></p></article>
+                    <span class="cost-op" aria-hidden="true">=</span>
+                    <article class="limb"><p class="limb-title"><span>Revalued amount</span></p></article>
+                    <span class="cost-op" aria-hidden="true">−</span>
+                    <article class="limb"><p class="limb-title"><span>Residual value</span></p></article>
+                  </div>
+                </div>
               </div>
               <div class="inner-rail">
+                <a class="fb-num" href="../ch05.html#s-5-1" target="_parent">5.1</a>
                 <span class="rail-name">Residual value</span>
               </div>
-              <div class="inner-detail">
-                <p class="limb-note"><span>The amount obtainable currently, net of disposal costs, as if the asset were already of the age and in the condition expected at the end of its useful life.</span></p>
-                <p class="limb-note"><span>If residual value is greater than or equal to carrying amount, the charge is zero until residual value falls below carrying amount.</span></p>
-              </div>
-              <div class="inner-rail">
-                <a class="fb-num" href="../ch05.html#s-5-7" target="_parent">5.7</a>
-                <span class="rail-name">Charge location</span>
-              </div>
-              <div class="inner-detail">
-                <p class="limb-note"><span>The charge is recognised in profit or loss, unless it is included in the carrying amount of another asset (inventories under IAS 2; intangible assets under IAS 38).</span></p>
-              </div>
+              <p class="cap-foot"><a class="fb-num" href="../ch05.html#s-5-1" target="_parent">5.1</a><span>Current amount, not forecast inflation. If residual value is greater than or equal to the carrying amount, the depreciation charge is zero.</span></p>
             </div>
+          </div>
+
+          <div class="inner-rail">
+            <a class="fb-num" href="../ch05.html#s-5-7" target="_parent">5.7</a>
+            <span class="rail-name">Charge location</span>
+          </div>
+          <div class="inner-detail">
+            <p class="limb-note"><span>The charge is recognised in profit or loss, unless it is included in the carrying amount of another asset (inventories under IAS 2; intangible assets under IAS 38).</span></p>
           </div>
 
           <div class="inner-rail">
