@@ -1376,13 +1376,20 @@ body.embed {
    Disclosure sits below, lighter. One red leaf: IAS 16 does not apply. */
 
 .ppe.pack {
+  --t-chip: calc(10px * var(--type-scale, 1));
+  --t-meta: calc(11px * var(--type-scale, 1));
+  --t-body: calc(12px * var(--type-scale, 1));
+  --t-head: calc(13px * var(--type-scale, 1));
+  --t-plate: calc(14px * var(--type-scale, 1));
+  --t-op: calc(16px * var(--type-scale, 1));
+  --nx-chip-font: var(--t-chip);
   min-width: 0;
   padding-inline-end: 2px;
 }
 
 .ppe.pack .pack-lr {
   display: grid;
-  grid-template-columns: minmax(7.4em, 9.2em) minmax(0, 1fr);
+  grid-template-columns: minmax(8.6em, 11em) minmax(0, 1fr);
   column-gap: 0.65em;
   row-gap: 0;
   align-items: start;
@@ -1392,7 +1399,7 @@ body.embed {
   align-self: start;
   justify-self: stretch;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
   min-height: 0;
@@ -1402,9 +1409,9 @@ body.embed {
   border-radius: var(--card-radius);
   background: var(--surface);
   color: var(--ink);
-  font-size: 0.84em;
-  font-weight: 750;
-  line-height: 1.2;
+  font-size: var(--t-head);
+  font-weight: 700;
+  line-height: 1.25;
   text-align: center;
   text-decoration: none;
 }
@@ -1417,9 +1424,11 @@ body.embed {
 .ppe.pack .rail-later,
 .ppe.pack .rail-sec {
   color: var(--muted);
-  font-weight: 650;
+  font-weight: 700;
   background: var(--surface);
 }
+
+.ppe.pack .disc-beat { padding-top: 1.15rem; }
 
 .ppe.pack .phase-gap {
   grid-column: 1 / -1;
@@ -1475,8 +1484,8 @@ body.embed {
   justify-self: center;
   margin: 0;
   color: var(--accent);
-  font-size: 1.2em;
-  font-weight: 800;
+  font-size: var(--t-op);
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -1509,8 +1518,6 @@ body.embed {
   align-items: center;
   gap: 0.15em 0.35em;
   margin: 0;
-  font-size: 0.95em;
-  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -1548,8 +1555,6 @@ body.embed {
   gap: 0.15em 0.35em;
   margin: 0;
   color: var(--muted);
-  font-size: 0.86em;
-  font-weight: 650;
   line-height: 1.35;
 }
 
@@ -1636,8 +1641,8 @@ body.embed {
   padding: 0.12em 0.45em;
   background: var(--bg);
   color: var(--ink);
-  font-size: 0.84em;
-  font-weight: 700;
+  font-size: var(--t-meta);
+  font-weight: 650;
   line-height: 1.3;
   text-align: center;
 }
@@ -1653,14 +1658,14 @@ body.embed {
    so the outer fit script leaves them alone. */
 .ppe.pack .inner-board {
   display: grid;
-  grid-template-columns: minmax(5.6em, 6.8em) minmax(0, 1fr);
+  grid-template-columns: minmax(7.2em, 9.4em) minmax(0, 1fr);
   gap: 0.45rem;
   align-items: stretch;
   min-width: 0;
 }
 
 .ppe.pack .inner-board-2 {
-  grid-template-columns: minmax(5.1em, 6.2em) minmax(0, 1fr);
+  grid-template-columns: minmax(8em, 11em) minmax(0, 1fr);
 }
 
 .ppe.pack .inner-rail {
@@ -1677,9 +1682,9 @@ body.embed {
   border-radius: var(--card-radius);
   background: var(--nest);
   color: var(--ink);
-  font-size: 0.7em;
-  font-weight: 750;
-  line-height: 1.2;
+  font-size: var(--t-meta);
+  font-weight: 650;
+  line-height: 1.25;
   text-align: center;
   text-decoration: none;
 }
@@ -1696,7 +1701,7 @@ body.embed {
 
 .ppe.pack .inner-board-2 > .inner-rail {
   background: var(--bg);
-  font-size: 0.66em;
+  font-size: var(--t-meta);
 }
 
 .ppe.pack .inner-rail:hover {
@@ -1746,12 +1751,20 @@ body.embed {
   padding: 0.4em 0.4em;
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
+  flex-direction: column;
+  gap: 0.15em;
   background: var(--bg);
   color: var(--ink);
-  font-size: 0.86em;
+  font-size: var(--t-head);
   font-weight: 700;
   line-height: 1.3;
   text-align: center;
+}
+
+.ppe.pack .method-line {
+  font-size: var(--t-body);
+  font-weight: 400;
+  color: var(--ink);
 }
 
 .ppe.pack .chip-line {
@@ -1797,8 +1810,8 @@ body.embed {
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
   background: var(--nest);
-  font-size: 0.9em;
-  font-weight: 750;
+  font-size: var(--t-head);
+  font-weight: 700;
   line-height: 1.3;
   text-align: center;
 }
@@ -1814,8 +1827,8 @@ body.embed {
   border-radius: var(--card-radius);
   background: var(--nest);
   color: var(--ink);
-  font-size: 0.72em;
-  font-weight: 750;
+  font-size: var(--t-meta);
+  font-weight: 650;
   line-height: 1.2;
   text-align: center;
 }
@@ -1837,8 +1850,8 @@ body.embed {
   gap: 0.15em 0.35em;
   margin: 0;
   color: var(--ink);
-  font-size: 0.86em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -1892,8 +1905,6 @@ body.embed {
   border-bottom: 0.08em solid var(--line);
   background: var(--nest);
   color: var(--ink);
-  font-size: 0.82em;
-  font-weight: 750;
   line-height: 1.3;
   text-align: center;
 }
@@ -1908,8 +1919,6 @@ body.embed {
   margin: 0;
   padding: 0.45em 0.55em;
   color: var(--ink);
-  font-size: 0.86em;
-  font-weight: 650;
   line-height: 1.35;
 }
 
@@ -1925,8 +1934,8 @@ body.embed {
   gap: 0.3em 0.45em;
   margin: 0.55rem 0 0;
   color: var(--muted);
-  font-size: 0.8em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -1948,9 +1957,9 @@ body.embed {
 }
 
 .ppe.pack .disc-band .anno-title {
-  font-size: 0.95em;
+  font-size: var(--t-head);
   color: var(--muted);
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .ppe.pack .disc-lines {
@@ -1968,8 +1977,8 @@ body.embed {
   align-items: center;
   gap: 0.15em 0.35em;
   color: var(--muted);
-  font-size: 0.86em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -1988,8 +1997,6 @@ body.embed {
 .ppe.pack .peer-line {
   margin: 0.28em 0 0;
   color: var(--muted);
-  font-size: 0.78em;
-  font-weight: 650;
   line-height: 1.3;
 }
 
@@ -2018,22 +2025,22 @@ body.embed {
 
 .ppe.pack .q-body {
   color: var(--ink);
-  font-size: 0.86em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
 }
 
 .ppe.pack .policy-body,
 .ppe.pack .disc-card-body {
   color: var(--muted);
-  font-size: 0.84em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
 }
 
 .ppe.pack .dot-line {
   margin: 0;
   color: var(--ink);
-  font-size: 0.84em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
 }
 
 .ppe.pack .leaf.pack-stop .leaf-body,
@@ -2048,8 +2055,8 @@ body.embed {
   border: 0.08em dashed var(--dash);
   border-radius: var(--card-radius);
   color: var(--muted);
-  font-size: 0.84em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -2068,7 +2075,7 @@ body.embed {
 
 .ppe.pack .cost-out strong {
   color: var(--ink);
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .ppe.pack .case-set {
@@ -2100,8 +2107,8 @@ body.embed {
 .ppe.pack .disc-group {
   margin: 0.75em 0 0;
   color: var(--ink);
-  font-size: 0.78em;
-  font-weight: 750;
+  font-size: var(--t-head);
+  font-weight: 700;
   line-height: 1.3;
 }
 
@@ -2124,7 +2131,7 @@ body.embed {
 .ppe.pack .disc-card-title {
   margin: 0;
   color: var(--ink);
-  font-size: 0.9em;
+  font-size: var(--t-head);
   font-weight: 700;
 }
 
@@ -2137,8 +2144,8 @@ body.embed {
   gap: 0.15em 0.35em;
   margin: 0.4em 0 0;
   color: var(--muted);
-  font-size: 0.8em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -2153,12 +2160,12 @@ body.embed {
   align-items: center;
   gap: 0.15em 0.35em;
   margin-top: 0.55em;
-  border: 0.08em dashed var(--see);
+  border: 0.06em solid var(--line);
   border-radius: var(--card-radius);
   padding: 0.4em 0.5em;
   color: var(--ink);
-  font-size: 0.84em;
-  font-weight: 650;
+  font-size: var(--t-body);
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -2171,7 +2178,7 @@ body.embed {
 
 .ppe.pack .disc-board {
   display: grid;
-  grid-template-columns: minmax(5.6em, 6.8em) minmax(0, 1fr);
+  grid-template-columns: minmax(8em, 11em) minmax(0, 1fr);
   gap: 0.45rem;
   align-items: stretch;
   min-width: 0;
@@ -2191,7 +2198,17 @@ body.embed {
 
 .ppe.pack .disc-stack > .item-rows { margin-top: 0; }
 
-.ppe.pack .disc-sub { font-size: 0.9em; }
+.ppe.pack .disc-sub { font-size: var(--t-head); }
+
+.ppe.pack .recon-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 0.8rem;
+  row-gap: 0.28em;
+}
+
+.ppe.pack .rail-encouraged,
+.ppe.pack .rail-encouraged .rail-name { color: var(--muted); }
 
 .ppe.pack .disc-sub.soft-note {
   margin-top: 0.35em;
@@ -2217,9 +2234,16 @@ body.embed {
   padding: 0;
   list-style: none;
   color: var(--ink);
-  font-size: 0.84em;
+  font-size: var(--t-body);
   font-weight: 400;
   line-height: 1.35;
+}
+
+.ppe.pack ul.item-rows.recon-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 0.8rem;
+  row-gap: 0.28em;
 }
 
 .ppe.pack .item-rows li {
@@ -2254,26 +2278,30 @@ body.embed {
   font-weight: 400;
 }
 
-.ppe.pack .cost-op { align-self: center; }
+.ppe.pack .cost-op {
+  align-self: center;
+  font-size: var(--t-op);
+  font-weight: 700;
+}
 
 .ppe.pack .cost-eq > .limb,
 .ppe.pack .cost-eq > .cost-result {
   justify-content: flex-start;
 }
 
-/* Kit 4 is the only primary row. The readiness axis hangs off the DA column.
-   Nature hangs off Cost, off that axis. Facets are a lighter foot. */
+/* Kit 4 is the only primary row. Not-costs spans Cost + Purchase.
+   The cut-off band spans DA + Dismantling and is linked from DA. */
 .ppe.pack .cost-identity {
   --stem: 0.7rem;
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) auto minmax(0, 1fr) auto minmax(0, 1.35fr) auto minmax(0, 1fr);
   grid-template-areas:
     "result eq buy p1 da p2 dis"
-    "nature . . . axis . ."
+    "nature nature nature . axis axis axis"
     "facets facets facets facets facets facets facets";
   column-gap: 0.4rem;
   row-gap: var(--stem);
-  align-items: stretch;
+  align-items: start;
   min-width: 0;
 }
 
@@ -2292,6 +2320,7 @@ body.embed {
 
 .ppe.pack .cost-identity > .limb,
 .ppe.pack .cost-identity > .cost-result,
+.ppe.pack .cost-identity > .da-col,
 .ppe.pack .da-col > .limb {
   justify-content: flex-start;
   align-self: stretch;
@@ -2314,158 +2343,225 @@ body.embed {
   background: var(--accent);
 }
 
+.ppe.pack .mini-formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.ppe.pack .mini-op {
+  color: var(--accent);
+  font-size: var(--t-op);
+  font-weight: 700;
+  line-height: 1;
+}
+
 .ppe.pack .nature-nest,
 .ppe.pack .after-nest {
   position: relative;
   min-width: 0;
-  border: 0.08em dashed var(--dash);
+  border: 0.06em solid var(--line);
   border-radius: var(--card-radius);
   background: transparent;
-  padding: 0.4em 0.45em;
+  padding: 0.4em 0 0.45em;
   color: var(--muted);
 }
 
-.ppe.pack .nature-nest { align-self: start; }
+.ppe.pack .nature-nest {
+  align-self: start;
+  display: grid;
+  grid-template-columns: subgrid;
+  column-gap: 0.4rem;
+}
+
+.ppe.pack .nature-nest > .nest-k { grid-column: 1 / -1; grid-row: 1; padding-inline: 0.45em; }
+.ppe.pack .nature-nest > .item-rows { grid-column: 1 / -1; grid-row: 2; padding-inline: 0.45em; }
 
 .ppe.pack .nature-nest > .link-stem {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  align-self: start;
+  position: relative;
+  z-index: 1;
+  width: 0.1em;
+  height: 0;
+  margin: 0;
+}
+
+.ppe.pack .nature-nest > .link-stem::before {
+  content: "";
   position: absolute;
-  left: 50%;
-  top: calc(var(--stem) * -1 - 0.08em);
-  height: calc(var(--stem) + 0.08em);
-  transform: translateX(-50%);
+  left: 0;
+  bottom: 0;
+  width: 0.1em;
+  height: calc(var(--stem) + 0.45em);
+  background: var(--accent);
 }
 
 .ppe.pack .nature-nest .item-rows,
 .ppe.pack .after-nest .item-rows {
   margin-top: 0.28em;
   color: var(--muted);
-  font-size: 0.92em;
+  font-size: var(--t-body);
 }
 
 .ppe.pack .ready-axis {
   position: relative;
-  min-width: 0;
-}
-
-.ppe.pack .ready-axis::before {
-  content: "";
-  position: absolute;
-  top: calc(var(--stem) * -1 - 0.08em);
-  left: 50%;
-  width: 0.1em;
-  height: calc(var(--stem) + 0.55em);
-  background: var(--accent);
-  transform: translateX(-50%);
-}
-
-.ppe.pack .axis-track {
-  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: 0.45rem;
+  grid-template-columns: subgrid;
+  column-gap: 0.4rem;
+  grid-template-rows: auto auto auto auto auto;
   align-items: start;
   min-width: 0;
-  padding-top: 1.35em;
+  padding: 0.4em 0 0.45em;
+  border: 0;
+  border-radius: var(--card-radius);
+  box-shadow: inset 0 0 0 0.06em var(--line);
+  background: transparent;
 }
 
-.ppe.pack .axis-track::before {
+.ppe.pack .da-stem {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  align-self: start;
+  position: relative;
+  z-index: 2;
+  width: 0.1em;
+  height: 0;
+}
+
+.ppe.pack .da-stem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.35em;
+  width: 0.1em;
+  height: calc(var(--stem) + 0.7em);
+  background: var(--accent);
+}
+
+.ppe.pack .axis-frame {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin: 0 0.45em 0.2em;
+  color: var(--ink);
+  font-size: var(--t-head);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ppe.pack .axis-name {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: start;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  max-width: 18em;
+  margin: 0;
+  padding: 0 0.35em;
+  transform: translateX(calc(-50% - 0.4rem));
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.ppe.pack .axis-name > span { display: block; }
+
+.ppe.pack .axis-rule {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  position: relative;
+  height: 0.85em;
+  margin: 0 0.45em 0 0;
+}
+
+.ppe.pack .axis-rule::before {
   content: "";
   position: absolute;
   left: 0;
   right: 0.42em;
-  top: 0.42em;
+  top: 0.35em;
   height: 0.1em;
   background: var(--accent);
 }
 
-.ppe.pack .axis-track::after {
+.ppe.pack .axis-rule::after {
   content: "";
   position: absolute;
   right: 0;
-  top: 0.22em;
+  top: 0.16em;
   border-left: 0.38em solid var(--accent);
   border-top: 0.24em solid transparent;
   border-bottom: 0.24em solid transparent;
 }
 
+.ppe.pack .axis-diamond {
+  grid-column: 2;
+  grid-row: 3;
+  justify-self: start;
+  align-self: center;
+  z-index: 1;
+  transform: translateX(calc(-50% - 0.4rem));
+  background: var(--surface);
+  color: var(--accent);
+  font-size: var(--t-op);
+  font-weight: 700;
+  line-height: 1;
+  padding: 0 0.08em;
+}
+
 .ppe.pack .axis-seg {
   position: relative;
   z-index: 1;
-  margin: 0;
+  margin: 0.15em 0.45em 0.35em;
   background: transparent;
   color: var(--ink);
-  font-size: 0.72em;
+  font-size: var(--t-meta);
   font-weight: 650;
   line-height: 1.25;
 }
 
-.ppe.pack .axis-seg-l { grid-column: 1; }
+.ppe.pack .axis-seg-l { grid-column: 1; grid-row: 4; }
 
-.ppe.pack .axis-seg-r { grid-column: 2; text-align: end; }
-
-.ppe.pack .axis-diamond {
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 0.02em;
-  transform: translateX(-50%);
-  background: var(--surface);
-  color: var(--accent);
-  font-size: 1.15em;
-  line-height: 1;
-  padding: 0 0.1em;
-}
-
-.ppe.pack .axis-name {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.15em 0.35em;
-  width: 100%;
-  margin: 0 0 0.35em;
-  padding-right: 0.35em;
-  color: var(--ink);
-  font-size: 0.75em;
-  font-weight: 700;
-  line-height: 1.3;
-  text-align: end;
-}
-
-.ppe.pack .axis-name > span {
-  flex: 1 1 6em;
-  min-width: 0;
-}
-
-.ppe.pack .axis-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0.4rem;
-  align-items: start;
-  margin-top: 0.4rem;
-}
+.ppe.pack .axis-seg-r { grid-column: 3; grid-row: 4; text-align: end; }
 
 .ppe.pack .before-nest {
+  grid-column: 1;
+  grid-row: 5;
   display: flex;
   flex-direction: column;
   gap: 0.28rem;
   min-width: 0;
+  margin: 0;
 }
 
 .ppe.pack .after-col {
+  grid-column: 3;
+  grid-row: 5;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   min-width: 0;
+  margin: 0;
 }
 
-.ppe.pack .after-col > .link-stem {
-  height: 0.85em;
-  margin-left: calc(-0.2rem - 0.05em);
-  margin-bottom: -0.08em;
-}
-
-.ppe.pack .after-nest { width: 100%; }
+.ppe.pack .after-nest { width: 100%; padding: 0.4em 0.45em; }
 
 .ppe.pack .see-cluster {
   min-width: 0;
@@ -2498,19 +2594,24 @@ body.embed {
   gap: 0.15em 0.35em;
   min-width: 0;
   margin: 0;
-  border: 0.08em dashed var(--dash);
+  border: 0.06em solid var(--line);
   border-radius: var(--card-radius);
   padding: 0.4em 0.5em;
   color: var(--ink);
-  font-size: 0.84em;
+  font-size: var(--t-body);
   font-weight: 400;
   line-height: 1.35;
 }
 
 .ppe.pack .before-nest .pl-tip {
   color: var(--muted);
-  font-size: 0.75em;
-  padding: 0.28em 0.35em;
+  font-size: var(--t-body);
+  padding: 0.35em 0.45em;
+}
+
+.ppe.pack .constraint-tip {
+  border-width: 0.08em;
+  border-color: var(--accent);
 }
 
 .ppe.pack .nest-k {
@@ -2520,7 +2621,7 @@ body.embed {
   gap: 0.15em 0.35em;
   margin: 0;
   color: var(--ink);
-  font-size: 0.82em;
+  font-size: var(--t-head);
   font-weight: 700;
   line-height: 1.3;
 }
@@ -2536,7 +2637,7 @@ body.embed {
   gap: 0.35rem;
   min-width: 0;
   margin-top: 0.15rem;
-  border: 0.06em dashed var(--dash);
+  border: 0.06em solid var(--line);
   border-radius: var(--card-radius);
   background: transparent;
   padding: 0.4em 0.5em 0.5em;
@@ -2545,8 +2646,8 @@ body.embed {
 .ppe.pack .facet-label {
   margin: 0;
   color: var(--muted);
-  font-size: 0.78em;
-  font-weight: 700;
+  font-size: var(--t-meta);
+  font-weight: 650;
   line-height: 1.3;
 }
 
@@ -2568,7 +2669,7 @@ body.embed {
   padding: 0.1em 0.15em;
 }
 
-.ppe.pack .facet-foot .facet-title { font-size: 0.82em; }
+.ppe.pack .facet-foot .facet-title { font-size: var(--t-head); }
 
 .ppe.pack .facet-foot .limb-note { margin: 0; }
 
@@ -2686,8 +2787,6 @@ body.embed {
   margin: 0;
   min-width: 0;
   color: var(--ink);
-  font-size: 0.95em;
-  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -2720,9 +2819,49 @@ body.embed {
 
 .ppe.pack .cap-wrap { grid-column: 1 / -1; min-width: 0; }
 
+.ppe.pack .term-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.ppe.pack .term {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15em 0.35em;
+  margin: 0;
+  padding: 0.55em 0.45em;
+  text-align: center;
+  font-size: var(--t-head);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ppe.pack .term + .term { border-left: 0.08em solid var(--line); }
+
+.ppe.pack .term > span { flex: 1 1 4em; min-width: 0; }
+
+.ppe.pack .both-bar {
+  margin: 0.55rem 0 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.45em 0.6em;
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.ppe.pack .impair-strip { display: flex; width: 100%; }
+
 .ppe.pack .cap {
   display: grid;
-  grid-template-columns: minmax(5.6em, 6.8em) minmax(0, 1fr);
+  grid-template-columns: minmax(7.2em, 9.4em) minmax(0, 1fr);
   gap: 0.45rem;
   align-items: stretch;
   min-width: 0;
@@ -2756,8 +2895,6 @@ body.embed {
   border-radius: var(--card-radius);
   background: var(--nest);
   color: var(--ink);
-  font-size: 0.78em;
-  font-weight: 750;
   line-height: 1.2;
   text-align: center;
 }
@@ -2772,7 +2909,6 @@ body.embed {
   border-radius: var(--card-radius);
   background: transparent;
   color: var(--ink);
-  font-size: 0.84em;
   line-height: 1.35;
 }
 
@@ -2805,10 +2941,20 @@ body.embed {
 
   .ppe.pack .fork-excl > .decision-fork > .decision-after > .decision-branch > .leaf { grid-row: 3; }
 
-  .ppe.pack .fork-excl .side-note {
+  .ppe.pack .fork-excl .side-note { display: contents; }
+
+  .ppe.pack .fork-excl .leaf.pack-stop {
     grid-column: 3;
     grid-row: 3;
     align-self: start;
+    min-width: 0;
+  }
+
+  .ppe.pack .fork-excl .see-box {
+    grid-column: 3;
+    grid-row: 4;
+    align-self: start;
+    min-width: 0;
   }
 
   .ppe.pack .fork-excl .pack-no-line {
@@ -2826,8 +2972,6 @@ body.embed {
     grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
   }
 
-  .ppe.pack .see-box { grid-column: 1; }
-
   .ppe.pack .varm::before {
     position: absolute;
     top: 0;
@@ -2841,16 +2985,17 @@ body.embed {
 
 @media (max-width: 560px) {
   .ppe.pack .pack-lr {
-    grid-template-columns: minmax(6.6em, 7.6em) minmax(0, 1fr);
-    column-gap: 0.4em;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
   }
 
   .ppe.pack .rail-link {
-    padding: 0.4em 0.28em;
-    font-size: 0.74em;
+    align-items: center;
+    margin: 0.7rem 0 0.4rem;
+    padding: 0.4em 0.55em;
   }
 
-  .ppe.pack .beat { padding-inline-start: 0.6em; }
+  .ppe.pack .beat { padding-inline-start: 0; }
 
   html .ppe.pack .decision-flow.decision-flow .decision-fork > .q {
     flex-basis: 100%;
@@ -2912,35 +3057,54 @@ body.embed {
 
   .ppe.pack .inner-board,
   .ppe.pack .disc-board {
-    grid-template-columns: minmax(4.5em, 5.3em) minmax(0, 1fr);
+    grid-template-columns: minmax(6.2em, 7.4em) minmax(0, 1fr);
   }
 
   .ppe.pack .inner-board-2 {
-    grid-template-columns: minmax(4.3em, 5.1em) minmax(0, 1fr);
+    grid-template-columns: minmax(6.4em, 8em) minmax(0, 1fr);
   }
 
   .ppe.pack .method-set,
   .ppe.pack .case-set,
-  .ppe.pack .axis-body,
   .ppe.pack .facet-row,
-  .ppe.pack .policy-kids { grid-template-columns: minmax(0, 1fr); }
+  .ppe.pack .policy-kids,
+  .ppe.pack .term-split,
+  .ppe.pack ul.item-rows.recon-cols { grid-template-columns: minmax(0, 1fr); }
 
   .ppe.pack .cost-identity {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "result"
-      "eq"
-      "buy"
-      "p1"
-      "da"
-      "axis"
-      "p2"
-      "dis"
-      "nature"
-      "facets";
+    grid-template-areas: none;
   }
 
-  .ppe.pack .ready-axis::before,
+  .ppe.pack .cost-identity > * { grid-area: auto; }
+
+  .ppe.pack .ready-axis,
+  .ppe.pack .nature-nest {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+  }
+
+  .ppe.pack .ready-axis > * {
+    grid-column: auto;
+    grid-row: auto;
+    width: auto;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .ppe.pack .axis-name,
+  .ppe.pack .axis-diamond {
+    transform: none;
+    align-self: center;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .ppe.pack .axis-seg-r { text-align: start; }
+
+  .ppe.pack .da-stem,
   .ppe.pack .nature-nest > .link-stem,
   .ppe.pack .after-col > .link-stem { display: none; }
 
@@ -2955,4 +3119,93 @@ body.embed {
 
   .ppe.pack .cap,
   .ppe.pack .cap-row { grid-template-columns: minmax(0, 1fr); }
+
+  .ppe.pack .term + .term {
+    border-left: 0;
+    border-top: 0.08em solid var(--line);
+  }
 }
+
+/* Six-step pack type scale. Shared chapter rules stay on their own sizes. */
+.ppe.pack .q-title,
+.ppe.pack .peer-title,
+.ppe.pack .leaf-name,
+.ppe.pack .limb-title,
+.ppe.pack .policy-title,
+.ppe.pack .model-child-title,
+.ppe.pack .nest-k,
+.ppe.pack .facet-title,
+.ppe.pack .split-head,
+.ppe.pack .cap-model,
+.ppe.pack .disc-sub,
+.ppe.pack .consume-bar,
+.ppe.pack .cost-result .limb-title {
+  font-size: var(--t-head);
+  font-weight: 700;
+}
+
+.ppe.pack .plate-title {
+  font-size: var(--t-plate);
+  font-weight: 700;
+}
+
+.ppe.pack .arm-label,
+.ppe.pack .see,
+.ppe.pack .facet-label,
+.ppe.pack .axis-seg,
+.ppe.pack .inner-rail,
+.ppe.pack .pack-flow-label {
+  font-size: var(--t-meta);
+  font-weight: 650;
+}
+
+.ppe.pack .item-rows,
+.ppe.pack .limb-note,
+.ppe.pack .leaf-body,
+.ppe.pack .peer-line,
+.ppe.pack .pl-tip,
+.ppe.pack .land-tip,
+.ppe.pack .constraint-tip,
+.ppe.pack .split-body,
+.ppe.pack .q-note,
+.ppe.pack .spare-row,
+.ppe.pack .soft-note,
+.ppe.pack .cap-foot,
+.ppe.pack .axis-name,
+.ppe.pack .method-line,
+.ppe.pack .both-bar,
+.ppe.pack .mini-formula,
+.ppe.pack .nature-nest .item-rows,
+.ppe.pack .after-nest .item-rows {
+  font-size: var(--t-body);
+  font-weight: 400;
+}
+
+.ppe.pack .limb-note,
+.ppe.pack .leaf .limb-note,
+.ppe.pack .q-note,
+.ppe.pack .peer-line,
+.ppe.pack .split-body { color: var(--ink); }
+
+.ppe.pack .soft-note,
+.ppe.pack .nature-nest,
+.ppe.pack .after-nest,
+.ppe.pack .before-nest .pl-tip,
+.ppe.pack .facet-label,
+.ppe.pack .muted-rows { color: var(--muted); }
+
+.ppe.pack .cost-op,
+.ppe.pack .crit-op,
+.ppe.pack .mini-op,
+.ppe.pack .axis-diamond {
+  font-size: var(--t-op);
+  font-weight: 700;
+}
+
+.ppe.pack .axis-name { font-weight: 700; }
+
+.ppe.pack .see-label,
+.ppe.pack .see-bit,
+.ppe.pack .see-bit a { font-weight: 650; }
+
+.ppe.pack .leaf.mute .leaf-body { font-weight: 400; }
