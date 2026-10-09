@@ -51,7 +51,8 @@
     "ledgersAligned": "side-by-side tops match within 1px"
   },
   "ch05Rail": {
-    "label": "Depreciation method",
+    "ch05Label": "Pattern of consumption",
+    "masterLabel": "Depreciation method",
     "lead": "Reflect the pattern of consumption of future economic benefits",
     "where": ["ch05-depreciation.html .inner-rail", "master-concept-map.html Dep beat .inner-rail"]
   },
@@ -62,7 +63,12 @@
     "afterNakedTails": 0,
     "afterSecondFullChips": 13
   },
-  "ch05Hold": "5.5 left rail is Depreciation method. The consumption sentence stays above the three method boxes. The 5.4 timeline is unchanged.",
+  "ch05Hold": "5.5 is its own rail, Pattern of consumption, after 5.3 and before 5.4. 5.4 is the depreciation-period timeline. Master Dep beat still says Depreciation method.",
+  "ch05Period": {
+    "note": "Begins card left edge and both lanes start at the Begins marker centre. Ceases card right edge and both lane border-boxes (chevron tip) end at the Ceases marker centre. Faded dashes and the time label sit outside that span. At 390 the axis, stems, and year-end ticks are hidden; milestones and the three continues points stack, and the lanes are full width.",
+    "922": {"markerStartPx": 182.22, "markerEndPx": 835.95, "lane1StartPx": 182.22, "lane1EndPx": 835.95, "lane2StartPx": 182.22, "lane2EndPx": 835.95, "startDeltaPx": 0, "endDeltaPx": 0},
+    "1280": {"markerStartPx": 182.22, "markerEndPx": 1193.95, "lane1StartPx": 182.22, "lane1EndPx": 1193.95, "lane2StartPx": 182.22, "lane2EndPx": 1193.95, "startDeltaPx": 0, "endDeltaPx": 0}
+  },
   "ch05LifeRail": {
     "outer": "5.3 Useful life",
     "rows": ["Definition", "Factors", "Special considerations for land and buildings"],

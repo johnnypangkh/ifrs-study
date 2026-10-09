@@ -7,7 +7,7 @@
 <title>Ch5 Depreciation — IAS 16</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-ch05-map-20261009" />
-<link rel="stylesheet" href="ias16.css?v=ias16-ch05-life-20261009" />
+<link rel="stylesheet" href="ias16.css?v=ias16-ch05-period-20261009" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -138,48 +138,72 @@
 
       <div class="inner-rail">
         <a class="fb-num" href="../ch05.html#s-5-5" target="_parent">5.5</a>
-        <span class="rail-name">Depreciation method</span>
+        <span class="rail-name">Pattern of consumption</span>
       </div>
-      <div class="inner-detail consume-wrap">
+      <div class="method-band">
         <p class="consume-bar"><span>Reflect the pattern of consumption of future economic benefits</span></p>
         <div class="method-set" data-eq role="group" aria-label="Straight-line, diminishing balance, and units of production">
           <p class="method-name" data-eq-cell><span class="method-k">Straight-line</span><span class="method-line">Constant charge</span></p>
           <p class="method-name" data-eq-cell><span class="method-k">Diminishing balance</span><span class="method-line">Decreasing charge</span></p>
           <p class="method-name" data-eq-cell><span class="method-k">Units of production</span><span class="method-line">Based on expected use or output</span></p>
         </div>
-        <p class="limb-note"><span>Select the method that most closely reflects the expected pattern of consumption of the future economic benefits. Apply that method consistently from period to period unless the expected pattern of consumption changes.</span></p>
         <p class="soft-note"><a class="fb-num" href="../ch05.html#s-5-6" target="_parent">5.6</a><span>A revenue-based method is not appropriate.</span></p>
-        <p class="soft-sub">Revenue generally reflects factors other than the consumption of the asset (other inputs and processes, selling activities, changes in sales volumes and prices, and inflation).</p>
-        <p class="limb-note"><a class="fb-num" href="../ch05.html#s-5-8" target="_parent">5.8</a><span>Review residual value and useful life, and the method, at least at each financial year-end. A change is a change in accounting estimate (IAS 8).</span></p>
-        <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 8</span></p>
-        <ul class="item-rows">
-          <li>Repair and maintenance of an asset do not negate the need to depreciate it.</li>
-        </ul>
       </div>
 
-      <div class="life-line" role="group" aria-label="Depreciation begins, continues, and ceases">
-        <div class="life-track" data-eq>
-          <p class="life-start"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a></p>
-          <div class="life-rule" data-axis aria-hidden="true"></div>
-          <div class="life-beat" data-eq-cell>
-            <p class="life-name">Begins</p>
-            <p class="life-cap">Depreciation begins when the asset is available for use.</p>
-            <p class="life-cap">Available for use means in the location and condition necessary for it to be capable of operating in the manner intended by management.</p>
-            <p class="see"><a class="fb-num" href="../ch03.html#s-3-2" target="_parent">3.2</a><span class="see-label">See also</span> <span class="see-bit">At this point</span></p>
+      <div class="inner-rail">
+        <a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a>
+        <span class="rail-name">Depreciation period</span>
+      </div>
+      <div class="period-band">
+        <div class="period-tl">
+          <div class="period-snaps" data-eq>
+            <article class="period-snap period-snap-begin" data-eq-cell>
+              <p class="period-snap-k">Begins</p>
+              <p class="period-snap-line">When the asset is available for use</p>
+            </article>
+            <article class="period-snap period-snap-end" data-eq-cell>
+              <p class="period-snap-k">Ceases</p>
+              <p class="period-snap-line">Earlier of: classified as held for sale or derecognised</p>
+              <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch05.html#s-5-4" target="_parent">IFRS 5</a></span></p>
+            </article>
           </div>
-          <div class="life-beat" data-eq-cell>
-            <p class="life-name">Continues</p>
-            <p class="life-cap">Depreciation does not cease when the asset becomes idle or is retired from active use unless the asset is fully depreciated. Under usage methods the depreciation charge can be zero while there is no production.</p>
+          <div class="period-flags" aria-hidden="true">
+            <span class="period-flag period-flag-l" data-axis></span>
+            <span class="period-flag period-flag-r" data-axis></span>
           </div>
-          <div class="life-beat" data-eq-cell>
-            <p class="life-name">Ceases</p>
-            <p class="life-cap">Depreciation ceases at the earlier of the date the asset is classified as held for sale (or included in a disposal group classified as held for sale) and the date the asset is derecognised.</p>
-            <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch05.html#s-5-4" target="_parent">IFRS 5</a></span></p>
+          <div class="period-axis">
+            <span class="period-fade period-fade-l" data-axis></span>
+            <span class="period-solid" data-axis></span>
+            <span class="period-fade period-fade-r" data-axis></span>
+            <span class="period-time">time →</span>
+            <span class="period-ring period-ring-l" data-axis></span>
+            <span class="period-ring period-ring-r" data-axis></span>
+          </div>
+          <div class="period-flows">
+            <div class="period-lane period-lane-1">
+              <p class="period-lane-k">Continues — depreciation charged</p>
+              <div class="period-points">
+                <p>Idle or retired from active use: still depreciated</p>
+                <p>Usage methods: charge can be zero</p>
+                <p>Repair and maintenance do not negate depreciation</p>
+              </div>
+            </div>
+            <div class="period-lane period-lane-2">
+              <div class="period-yearends" aria-hidden="true">
+                <span class="period-tick" style="left:25%" data-axis><span class="period-tick-lab">Year-end</span></span>
+                <span class="period-tick" style="left:50%" data-axis><span class="period-tick-lab">Year-end</span></span>
+                <span class="period-tick" style="left:75%" data-axis><span class="period-tick-lab">Year-end</span></span>
+              </div>
+              <div class="period-lane-body">
+                <p class="period-lane-k"><a class="fb-num" href="../ch05.html#s-5-8" target="_parent">5.8</a><span>Review at each financial year-end</span></p>
+                <p class="period-lane-line">Review residual value and useful life, and the method, at least at each financial year-end. A change is a change in accounting estimate (IAS 8).</p>
+              </div>
+            </div>
           </div>
         </div>
+        <p class="see period-end"><a class="fb-num" href="../ch05.html#s-5-9" target="_parent">5.9</a><span class="see-label">See also</span> <span class="see-bit">IFRS 16</span></p>
       </div>
     </div>
-    <p class="see see-wide"><a class="fb-num" href="../ch05.html#s-5-9" target="_parent">5.9</a><span class="see-label">See also</span> <span class="see-bit">IFRS 16</span><span class="see-line">Lessee right-of-use asset — depreciation often uses IAS 16 requirements.</span></p>
   </section>
 
   <div class="junction">
