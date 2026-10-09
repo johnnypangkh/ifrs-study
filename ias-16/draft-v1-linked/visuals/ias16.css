@@ -5217,6 +5217,33 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .dgrid {
   align-items: stretch;
 }
 
+/* 5.3 inner rail: Definition, Factors, land and buildings. */
+.ppe.dep-map .life-rows > .inner-detail > .item-rows { margin-top: 0; }
+
+.ppe.dep-map .land-set {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.4rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe.dep-map .land-set > .peer {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ppe.dep-map .land-set .peer-title {
+  justify-content: center;
+  text-align: center;
+}
+
+.ppe.dep-map .land-set .peer-title > span {
+  flex: 0 1 auto;
+  text-align: center;
+}
+
 .ppe.dep-map .cap-mute,
 .ppe.dep-map .soft-sub {
   margin: 0;
@@ -5242,6 +5269,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .dgrid {
 }
 
 @media (max-width: 800px) {
+  .ppe.dep-map .land-set { grid-template-columns: minmax(0, 1fr); }
+
   .ppe.dep-map > .junction > .see {
     grid-column: 2;
     justify-self: start;

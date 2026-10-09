@@ -62,6 +62,12 @@
     "afterNakedTails": 0,
     "afterSecondFullChips": 13
   },
-  "ch05Hold": "5.5 left rail is now Depreciation method. The consumption sentence stays above the three method boxes. Method boxes and the 5.4 timeline are otherwise unchanged.",
+  "ch05Hold": "5.5 left rail is Depreciation method. The consumption sentence stays above the three method boxes. The 5.4 timeline is unchanged.",
+  "ch05LifeRail": {
+    "outer": "5.3 Useful life",
+    "rows": ["Definition", "Factors", "Special considerations for land and buildings"],
+    "922": {"factorHeights": [165.9, 165.9, 165.9, 165.9], "landHeights": [84, 84]},
+    "1280": {"factorHeights": [101.5, 101.5, 101.5, 101.5], "landHeights": [68.4, 68.4]}
+  },
   "ch06ch07": "Probe failures on ch06 and ch07 match origin/main. This diff does not restyle those maps."
 }
