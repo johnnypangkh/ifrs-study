@@ -277,6 +277,8 @@ body[data-pack="ias16"] .chrome-bar-title.chrome-row-primary {
   align-items: flex-start;
   flex-wrap: nowrap;
   gap: 12px;
+  width: 100%;
+  min-width: 0;
   max-width: 980px;
   margin: 0 auto 6px;
   color: inherit;
@@ -334,10 +336,12 @@ body[data-pack="ias16"] .chrome-meta-sep {
   user-select: none;
 }
 body[data-pack="ias16"] .chrome-actions {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
+  max-width: 100%;
   margin-left: auto;
   padding-top: 4px;
 }
@@ -387,6 +391,8 @@ body[data-pack="ias16"] h4[id] {
     justify-content: flex-end;
     margin-left: 0;
     padding-top: 0;
+    min-width: 0;
+    max-width: 100%;
   }
   body[data-pack="ias16"] .chrome-actions .chapter-search {
     flex: 1 1 auto;
