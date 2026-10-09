@@ -1,8 +1,6 @@
-/* Prev/next footer from the pack page chain.
-   chrome-packs.js is the shared list. PACK_PILLS still wins if a page sets it. */
+/* Prev/next footer from the shared pack list in chrome-packs.js. */
 (function () {
   function packChain() {
-    if (window.PACK_PILLS && window.PACK_PILLS.length) return window.PACK_PILLS;
     var packs = window.CHROME_PACKS || {};
     var id = document.body && document.body.getAttribute("data-pack");
     if (!id || !packs[id]) {

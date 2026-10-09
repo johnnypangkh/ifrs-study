@@ -7,7 +7,7 @@
 <title>Ch5 Depreciation — IAS 16</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-ch05-map-20261009" />
-<link rel="stylesheet" href="ias16.css?v=ias16-option-b2-20261010" />
+<link rel="stylesheet" href="ias16.css?v=ias16-qc-r2-20261010" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -57,14 +57,6 @@
             <p class="cap-mute">In practice, residual value is often insignificant and immaterial to the depreciable amount.</p>
           </div>
         </div>
-      </div>
-
-      <div class="inner-rail">
-        <a class="fb-num" href="../ch05.html#s-5-7" target="_parent">5.7</a>
-        <span class="rail-name">Charge location</span>
-      </div>
-      <div class="inner-detail">
-        <p class="limb-note"><span>Recognised in profit or loss, unless included in the carrying amount of another asset (inventories under IAS 2; intangible assets under IAS 38).</span></p>
       </div>
 
       <div class="inner-rail">
@@ -265,6 +257,14 @@
         <p class="soft-note"><a class="fb-num" href="../ch05.html#s-5-6" target="_parent">5.6</a><span>A revenue-based method is not appropriate.</span></p>
       </div>
 
+      <div class="inner-rail">
+        <a class="fb-num" href="../ch05.html#s-5-7" target="_parent">5.7</a>
+        <span class="rail-name">Charge location</span>
+      </div>
+      <div class="inner-detail">
+        <p class="limb-note"><span>Recognised in profit or loss, unless included in the carrying amount of another asset (inventories under IAS 2; intangible assets under IAS 38).</span></p>
+      </div>
+
     </div>
 
   <div class="junction foot-row">
@@ -283,8 +283,9 @@
 Ias16Cx.mount(document.querySelector(".ppe.dep-map"), function (cx) {
   var plate = cx.root.querySelector(".plate");
   var hand = cx.root.querySelector(".handoff");
-  if (cx.shown(plate) && cx.shown(hand)) {
-    var from = cx.boxOf(plate);
+  var edge = cx.root.querySelector(".plate > .junction") || plate;
+  if (cx.shown(edge) && cx.shown(hand)) {
+    var from = cx.boxOf(edge);
     var to = cx.boxOf(hand);
     var lab = cx.root.querySelector(".exit-label");
     if (Math.abs(from.cx - to.cx) <= 3) cx.vFlow(from.cx, from.b, to.t, lab);

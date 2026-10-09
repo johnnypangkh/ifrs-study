@@ -1,1 +1,0 @@
-/* Chapter pills for this pack live in _shared/chrome-packs.js. */

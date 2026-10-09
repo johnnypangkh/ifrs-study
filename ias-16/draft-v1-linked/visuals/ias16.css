@@ -1362,15 +1362,16 @@ body.embed {
    Disclosure sits below, lighter. One red leaf: IAS 16 does not apply. */
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) {
-  --t-chip: calc(10px * var(--type-scale, 1));
-  --t-meta: calc(11px * var(--type-scale, 1));
-  --t-body: calc(12px * var(--type-scale, 1));
-  --t-head: calc(13px * var(--type-scale, 1));
-  --t-plate: calc(14px * var(--type-scale, 1));
-  --t-op: calc(16px * var(--type-scale, 1));
+  --t-chip: calc(0.6875rem * var(--type-scale, 1));
+  --t-meta: calc(0.8125rem * var(--type-scale, 1));
+  --t-body: calc(0.875rem * var(--type-scale, 1));
+  --t-head: calc(1rem * var(--type-scale, 1));
+  --t-plate: calc(1.125rem * var(--type-scale, 1));
+  --t-op: calc(1rem * var(--type-scale, 1));
   --nx-chip-font: var(--t-chip);
+  --nx-chip-height: 1.25rem;
   min-width: 0;
-  padding-inline-end: 2px;
+  padding-inline-end: 0.125rem;
 }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-lr {
@@ -5015,9 +5016,16 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     max-width: none;
   }
 
-  .ppe.scope-map .scope-stack > .scope-bearer {
+  .ppe.scope-map .scope-stack > .scope-tip {
     grid-column: 1;
     grid-row: 5;
+    align-self: start;
+    margin-top: 0.4rem;
+  }
+
+  .ppe.scope-map .scope-stack > .scope-bearer {
+    grid-column: 1;
+    grid-row: 6;
     align-self: start;
     margin-top: 0.4rem;
   }
@@ -5050,7 +5058,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     min-width: 0;
   }
 
-  .ppe.scope-map .scope-bearer { margin-top: 1.6rem; }
+  .ppe.scope-map .scope-stack > .scope-tip { margin-top: 1.6rem; }
+  .ppe.scope-map .scope-bearer { margin-top: 0.45rem; }
 
   .ppe.scope-map .carve-set { grid-template-columns: minmax(0, 1fr); }
 
@@ -5539,18 +5548,18 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  gap: 5px;
+  gap: 0.3125rem;
   width: max-content;
   height: 1.25em;
   background: none;
-  transform: translateX(-1px);
+  transform: translateX(-0.0625rem);
 }
 
 .ppe.dep-map .period-tick::before {
   content: "";
   flex: 0 0 auto;
-  width: 2px;
-  height: 11px;
+  width: 0.125rem;
+  height: 0.6875rem;
   background: var(--ink);
 }
 
@@ -5725,7 +5734,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   visibility: hidden;
   height: 0;
   overflow: hidden;
-  padding-left: 15px;
+  padding-left: 0.9375rem;
   font-size: var(--t-meta);
   line-height: 1.15;
   white-space: nowrap;
@@ -5736,7 +5745,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   left: 0;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.3125rem;
   color: var(--muted);
   font-size: var(--t-meta);
   line-height: 1.15;
@@ -5751,8 +5760,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.dep-map .v-year::before {
   content: "";
   flex: 0 0 auto;
-  width: 10px;
-  height: 2px;
+  width: 0.625rem;
+  height: 0.125rem;
   background: var(--ink);
 }
 
@@ -5940,4 +5949,168 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border-color: var(--bg);
   background: var(--bg);
   box-shadow: none;
+}
+
+/* QC R2. Badges sit on the title line. Row labels are plain text, top-left.
+   Arrow labels are muted text. Narrow maps are one column. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) a.fb-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  block-size: 1.25rem;
+  min-inline-size: 1.25rem;
+  margin: 0 0.35rem 0.35rem 0;
+  padding-inline: 0.25rem;
+  font-size: 0.6875rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board {
+  align-items: start;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: start;
+  text-align: start;
+  border: 0;
+  background: var(--band);
+  min-height: 0;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > a.fb-num,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cmp-row > a.fb-num,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-model > a.fb-num {
+  margin-inline: 0 0.35rem;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-detail,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .method-name {
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: start;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cmp-na,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-na {
+  align-self: start;
+  min-height: 0;
+  height: auto;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cmp-na p {
+  justify-content: flex-start;
+  font-weight: 400;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see.see-wide,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-mute {
+  border-style: solid;
+  border-color: var(--line);
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .onward,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-label,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-label .onward,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .arm-label,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .exit-label,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .thin-tip a {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.ppe.dep-map > .plate { padding-bottom: 0; }
+.ppe.dep-map > .handoff { margin-top: 5rem; }
+.ppe.dep-map > .exit-label { max-width: 16rem; }
+
+@media (min-width: 50.0625rem) {
+  .ppe:is(.pack,.cost-map) .cost-identity > .nature-nest {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    margin-top: 1.15rem;
+  }
+  .ppe:is(.pack,.cost-map) .cost-identity > .cost-split {
+    grid-column: 5 / -1;
+    grid-row: 3;
+    display: block;
+    margin-top: 1.15rem;
+  }
+  .ppe:is(.pack,.cost-map) .nature-nest > .port-tab { grid-column: 1 / -1; }
+  .ppe:is(.pack,.cost-map) .cost-identity > .facet-foot {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    margin-top: 0.75rem;
+  }
+  .ppe:is(.pack,.cost-map) .axis-body {
+    grid-template-columns: minmax(14ch, 1fr);
+  }
+  .ppe:is(.pack,.cost-map) .axis-body > .before-nest,
+  .ppe:is(.pack,.cost-map) .axis-body > .point-at,
+  .ppe:is(.pack,.cost-map) .axis-body > .after-col {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .ppe:is(.pack,.models) .lens-row:has(.rev-table) {
+    grid-template-columns: minmax(7.2em, 9.4em) minmax(14ch, 1fr);
+  }
+  .ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 40rem) {
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board-2,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .factor-set,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .land-set,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .method-set,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-or,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .model-split,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .facet-row,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .criteria,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peers,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-lr,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity {
+    grid-template-columns: minmax(14ch, 1fr);
+  }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-detail,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .limb,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) article {
+    min-inline-size: 14ch;
+  }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail {
+    margin-bottom: 0.25rem;
+  }
+  .ppe:is(.pack,.dep-map) .cap-row > .cost-eq {
+    grid-template-columns: minmax(14ch, 1fr);
+  }
+}
+
+.ppe.dep-map .v-lane .period-lane-k,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nest-k {
+  display: block;
+  min-inline-size: 0;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .before-nest .pl-tip,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .after-nest {
+  padding-inline: 0.55rem;
+}
+.ppe.dep-map .v-points p,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer-line,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .item-rows li,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nest-k,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nest-k > span,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .period-lane-k,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-col {
+  overflow-wrap: anywhere;
+  min-inline-size: 0;
+}
+
+@media (max-width: 50rem) {
+  .ppe.dep-map > .handoff { margin-top: 5rem; }
 }

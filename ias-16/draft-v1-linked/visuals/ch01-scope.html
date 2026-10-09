@@ -7,7 +7,7 @@
 <title>Ch1 Scope — IAS 16</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-ch01-map-20261007" />
-<link rel="stylesheet" href="ias16.css?v=ias16-option-b2-20261010" />
+<link rel="stylesheet" href="ias16.css?v=ias16-qc-r2-20261010" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -91,11 +91,15 @@
               </div>
             </div>
           </div>
-          <div class="varm"><p class="arm-label"><span>No</span> · <a class="onward" href="../ch02.html#s-2-0" target="_parent">PPE in scope</a></p></div>
+          <div class="varm"><p class="arm-label"><span>No</span> · <span class="onward">PPE in scope</span></p></div>
         </div>
       </div>
     </div>
 
+    <article class="tip scope-tip">
+      <p class="tip-title"><a class="fb-num" href="../ch01.html#s-1-4" target="_parent">1.4</a><span>Cost-model investment property uses the IAS 16 cost model</span></p>
+      <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 40</span></p>
+    </article>
     <div class="bearer scope-bearer">
       <p class="leaf-name"><a class="fb-num" href="../ch01.html#s-1-5" target="_parent">1.5</a><span>Bearer plants stay in IAS 16 — produce on them stays in IAS 41</span></p>
       <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 41 — produce on bearer plants</span></p>
@@ -105,16 +109,12 @@
 
   <div class="tips" aria-label="Measurement bridge and other Standards">
     <article class="tip">
-      <p class="tip-title"><a class="fb-num" href="../ch01.html#s-1-4" target="_parent">1.4</a><span>Cost-model investment property uses the IAS 16 cost model</span></p>
-      <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 40</span></p>
-    </article>
-    <article class="tip">
       <p class="tip-title"><a class="fb-num" href="../ch01.html#s-1-7" target="_parent">1.7</a><span>Lessee right-of-use asset — depreciation uses IAS 16</span></p>
       <p class="see"><span class="see-label">See also</span> <span class="see-bit">IFRS 16</span></p>
     </article>
     <article class="tip">
       <p class="tip-title"><a class="fb-num" href="../ch01.html#s-1-8" target="_parent">1.8</a><span>Spare parts, stand-by equipment and servicing equipment</span></p>
-      <p class="tip-body">Meet the PPE definition? <a class="onward" href="../ch02.html#s-2-2" target="_parent">→ Recognition</a></p>
+      <p class="tip-body">Meet the PPE definition? <span class="onward">→ Recognition</span></p>
       <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 2 — otherwise inventory</span></p>
     </article>
   </div>
@@ -149,18 +149,12 @@ Ias16Cx.mount(document.querySelector(".ppe.scope-map"), function (cx) {
     if (cx.narrow) cx.hFlow(leaf3.cy, q3.cx, leaf3.l, yesLab, "stop");
     else cx.hFlow(q3.cy, q3.r, leaf3.l, yesLab, "stop");
   }
-  if (cx.shown(exclQ) && cx.shown(bearer)) {
+  var land = root.querySelector(".scope-tip");
+  if (cx.shown(exclQ) && cx.shown(land)) {
     var src = cx.boxOf(exclQ);
-    var dest = cx.boxOf(bearer);
+    var dest = cx.boxOf(land);
     var lab = root.querySelector(".fork-excl .varm .arm-label");
-    if (Math.abs(src.cx - dest.cx) <= 3) cx.vFlow(src.cx, src.b, dest.t, lab);
-    else {
-      var mid = (src.b + dest.t) / 2;
-      cx.v(src.cx, src.b, mid, true);
-      cx.h(mid, src.cx, dest.cx, "link");
-      cx.vFlow(dest.cx, mid, dest.t, null);
-      cx.placeLabel(lab, src.cx + cx.em(0.55), (src.b + mid) / 2, cx.narrow ? "left" : "right");
-    }
+    cx.vFlow(src.cx, src.b, dest.t, lab);
   }
 });
 </script>

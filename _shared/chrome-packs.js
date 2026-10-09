@@ -43,12 +43,12 @@ window.CHROME_PACKS = {
     map: "index.html",
     chapters: [
       { href: "ch01.html", label: "1 What’s new" },
-      { href: "ch02.html", label: "2 PFS & aggregation" },
-      { href: "ch03.html", label: "3 P&L categories" },
-      { href: "ch04.html", label: "4 Totals & subtotals" },
-      { href: "ch05.html", label: "5 Operating expenses" },
+      { href: "ch02.html", label: "2 Aggregation" },
+      { href: "ch03.html", label: "3 Categories" },
+      { href: "ch04.html", label: "4 Subtotals" },
+      { href: "ch05.html", label: "5 Expenses" },
       { href: "ch06.html", label: "6 MPMs" },
-      { href: "ch07.html", label: "7 Other FS impacts" },
+      { href: "ch07.html", label: "7 Other FS" },
       { href: "ch08.html", label: "8 Transition" }
     ],
     meta: [
@@ -61,15 +61,15 @@ window.CHROME_PACKS = {
     search: "Find in the Framework…",
     map: "index.html",
     chapters: [
-      { href: "ch01.html", label: "1 Objective & users" },
+      { href: "ch01.html", label: "1 Objective" },
       { href: "ch02.html", label: "2 Qualitative" },
-      { href: "ch03.html", label: "3 Reporting entity" },
+      { href: "ch03.html", label: "3 Entity" },
       { href: "ch04.html", label: "4 Elements" },
       { href: "ch05.html", label: "5 Recognition" },
       { href: "ch06.html", label: "6 Measurement" },
       { href: "ch07.html", label: "7 Presentation" },
       { href: "ch08.html", label: "8 Capital" },
-      { href: "ch09.html", label: "9 Combined FS" },
+      { href: "ch09.html", label: "9 Combined" },
       { href: "ch10.html", label: "10 Carve-out" },
       { href: "ch11.html", label: "11 Status" }
     ],

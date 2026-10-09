@@ -190,8 +190,18 @@
 
   function wirePills(nav, scroller, prev, next) {
     var lock = false;
+    function wideBar() {
+      try { return window.matchMedia("(min-width: 40.0625rem)").matches; } catch (err) { return false; }
+    }
     function tune(resize) {
       if (lock) return;
+      if (wideBar()) {
+        nav.classList.remove("is-overflowing");
+        if (scroller.scrollLeft) scroller.scrollLeft = 0;
+        next.hidden = true;
+        prev.hidden = true;
+        return;
+      }
       if (resize || !nav.classList.contains("is-overflowing")) {
         lock = true;
         var wasEnd = false;
@@ -319,27 +329,46 @@
     });
     idn.insertAdjacentElement("afterend", group);
 
+    function idle() {
+      var narrow = false;
+      try { narrow = window.matchMedia("(max-width: 40rem)").matches; } catch (err) {}
+      return !hasMap || narrow;
+    }
+
     function apply(mode, persist) {
+      var off = idle();
       var name = mode === "mobile" ? "mobile" : "desktop";
-      if (viewport) viewport.setAttribute("data-view", name);
-      if (hint) hint.classList.toggle("is-on", hasMap && name === "mobile");
+      if (off) group.setAttribute("data-map", "off");
+      else group.removeAttribute("data-map");
+      group.title = off ? "Map only" : "";
+      if (!off && viewport) viewport.setAttribute("data-view", name);
+      if (hint) hint.classList.toggle("is-on", !off && name === "mobile");
       var buttons = group.querySelectorAll(".view-switch-btn");
       for (var i = 0; i < buttons.length; i++) {
-        var on = buttons[i].getAttribute("data-view") === name;
-        buttons[i].setAttribute("aria-pressed", on ? "true" : "false");
+        var btn = buttons[i];
+        if (off) {
+          btn.setAttribute("aria-disabled", "true");
+          btn.setAttribute("aria-pressed", "false");
+          btn.title = "Map only";
+        } else {
+          btn.removeAttribute("aria-disabled");
+          btn.removeAttribute("title");
+          btn.setAttribute("aria-pressed", btn.getAttribute("data-view") === name ? "true" : "false");
+        }
       }
-      if (persist && hasMap) writeView(id, name);
-      if (hasMap) refit();
+      if (persist && !off) writeView(id, name);
+      if (!off) refit();
       tuneScroll(bar);
     }
 
     group.addEventListener("click", function (event) {
-      if (!hasMap) return;
+      if (idle()) return;
       var btn = event.target.closest(".view-switch-btn");
       if (!btn || !group.contains(btn)) return;
       apply(btn.getAttribute("data-view"), true);
     });
     apply(readView(id), false);
+    window.addEventListener("resize", function () { apply(readView(id), false); });
   }
 
   function boot() {
