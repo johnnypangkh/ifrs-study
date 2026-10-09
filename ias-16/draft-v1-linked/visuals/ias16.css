@@ -2945,6 +2945,11 @@ body.embed {
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .consume-wrap > .limb-note { margin: 0; }
 
+/* 5.5 is a left rail (Depreciation method) plus the detail, not a full-width bar. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .inner-board > .inner-detail.consume-wrap {
+  grid-column: auto;
+}
+
 /* Link, not a flow: side-exit lines from the parent meet each column head.
    No arrowhead. Lens rows are a collection: nothing joins them. */
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .policy-stage {
@@ -5161,21 +5166,22 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .dgrid {
   .ppe.models > .handoff { margin-top: 2.4rem; }
 }
 
-/* Chapter maps fill the concept-map frame.
-   The master pack keeps --parent-w: min(28em, 42cqw) so the policy card
-   sits on the two model columns. Chapter ch04 has no side columns in that
-   card, so the card uses the plate width. Columns inside the card stay. */
+/* Chapter maps fill the concept-map frame. Master keeps the narrow policy card. */
 .ppe:is(.scope-map,.recog-map,.cost-map,.models,.dep-map) {
   width: 100%;
   max-width: none;
 }
 
+/* Ch04 4.1 spans the two model-head columns, not the lens rail.
+   The existing arm formula then puts the card centre on the 4.2/4.3 midpoint. */
 @media (min-width: 801px) {
-  .ppe.models .policy-arms { display: block; }
+  .ppe.models .policy-stage {
+    --parent-w: calc(100cqw - var(--lens-rail) - var(--lens-gap));
+  }
 
-  .ppe.models .policy-parent {
-    width: 100%;
-    max-width: none;
+  .ppe.models .lens-heads,
+  .ppe.models .lens-row {
+    grid-template-columns: var(--lens-rail) minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 
