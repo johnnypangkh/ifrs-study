@@ -5470,8 +5470,10 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe.dep-map .period-lane-1 {
+  --ye-pad-l: 0.75em;
+  --ye-pad-r: 1.9em;
   background: var(--nest);
-  padding: 0.55em 1.9em 0.6em 0.75em;
+  padding: 0.55em var(--ye-pad-r) 0.6em var(--ye-pad-l);
 }
 
 .ppe.dep-map .period-lane-2 { position: relative; min-width: 0; }
@@ -5519,27 +5521,30 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   line-height: 1.35;
 }
 
-/* Year-end ticks live inside the lane, clear of every edge. */
+/* Year-end ticks live inside the lane, clear of every edge.
+   The row is pulled out to the Begins and Ceases ring centres, so
+   left 25/50/75 places each mark on that span. The label always
+   sits to the right of the mark, at the same gap. */
 .ppe.dep-map .period-lane-1 { position: relative; }
 
 .ppe.dep-map .period-yearends {
   position: relative;
   display: block;
   height: 1.25em;
-  margin: 0.55rem 0 0.15rem;
+  margin: 0.55rem calc(-1 * var(--ye-pad-r)) 0.15rem calc(-1 * var(--ye-pad-l));
 }
 
 .ppe.dep-map .period-tick {
   position: absolute;
   top: 0;
   display: inline-flex;
+  flex-direction: row;
   align-items: center;
   gap: 5px;
   width: max-content;
-  max-width: 34%;
   height: 1.25em;
   background: none;
-  transform: none;
+  transform: translateX(-1px);
 }
 
 .ppe.dep-map .period-tick::before {
@@ -5556,11 +5561,6 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   font-size: var(--t-meta);
   line-height: 1.15;
   white-space: nowrap;
-}
-
-.ppe.dep-map .period-tick:last-child {
-  flex-direction: row-reverse;
-  transform: translateX(-100%);
 }
 
 .ppe.dep-map .period-end {
@@ -5690,7 +5690,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ppe.dep-map .v-lanes {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.1fr) max-content minmax(0, 1fr);
   gap: 8px;
   align-items: stretch;
   min-width: 0;
@@ -5710,24 +5710,44 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border-left: 2px solid var(--line);
 }
 
+/* The column stretches to the Begins and Ceases ring centres
+   (the 0.45rem gaps above and below the span). Each label sits
+   to the right of its tick, at the same gap, on 25/50/75. */
 .ppe.dep-map .v-yearends {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.4rem;
-  margin: 0 0 0.55rem;
+  position: relative;
+  align-self: stretch;
+  width: max-content;
+  margin: -0.45rem 0;
 }
 
-.ppe.dep-map .v-year {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  max-width: 100%;
-  color: var(--muted);
+.ppe.dep-map .v-yearends::before {
+  content: "Year-end";
+  display: inline-block;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  padding-left: 15px;
   font-size: var(--t-meta);
   line-height: 1.15;
   white-space: nowrap;
 }
+
+.ppe.dep-map .v-year {
+  position: absolute;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: var(--t-meta);
+  line-height: 1.15;
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+
+.ppe.dep-map .v-year:nth-child(1) { top: 25%; }
+.ppe.dep-map .v-year:nth-child(2) { top: 50%; }
+.ppe.dep-map .v-year:nth-child(3) { top: 75%; }
 
 .ppe.dep-map .v-year::before {
   content: "";

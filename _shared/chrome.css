@@ -453,6 +453,32 @@ header.chrome-bar.is-shared {
   max-width: none;
   margin: 8px auto 0;
 }
+/* 922 and 1280 show every chapter pill. The row wraps instead of scrolling. */
+@media (min-width: 721px) {
+  .chrome-bar.is-shared > .tag-row-wrap {
+    overflow: visible;
+    container-type: normal;
+  }
+  .chrome-bar.is-shared .tag-row {
+    flex-wrap: wrap;
+    width: 100%;
+    min-width: 0;
+  }
+}
+/* 390 keeps a sideways scroller. A fade on the trailing edge marks the rest. */
+@media (max-width: 720px) {
+  .chrome-bar.is-shared > .tag-row-wrap {
+    container-type: scroll-state;
+  }
+}
+@container scroll-state(scrollable: inline-end) {
+  .chrome-bar.is-shared > .tag-row-wrap::after {
+    content: "";
+    width: 64px;
+    padding-right: 0;
+    background: linear-gradient(to right, transparent 0%, var(--surface) 72%);
+  }
+}
 .chrome-bar.is-shared .chrome-brand { display: contents; }
 .chrome-bar.is-shared .chrome-title-line {
   grid-column: 1;

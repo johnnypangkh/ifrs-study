@@ -3,7 +3,7 @@
    Pack pages load this file instead of pasting those tags.
    INDEX is the search-index.js stamp. build-search-index.py rewrites it. */
 (function () {
-  var V = "chrome-bar-20261009";
+  var V = "chrome-pills-wrap2-20261009";
   var INDEX = "565346593b07";
   var src = (document.currentScript && document.currentScript.src) || "";
   var dir = src.replace(/[^/?]*(\?.*)?$/, "");
