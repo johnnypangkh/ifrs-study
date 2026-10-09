@@ -31,19 +31,32 @@
       "667": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
       "922": {"nArrows": 5, "nFail": 0, "nHard": 0, "nLayout": 0},
       "1280": {"nArrows": 5, "nFail": 0, "nHard": 0, "nLayout": 0}
+    },
+    "ch05-depreciation": {
+      "390": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "667": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "922": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "1280": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0}
     }
   },
-  "ch04Geometry": {
-    "arms": "wide only; hidden at max-width 800px",
-    "922": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0, "ruleWidthMatchesResult": true},
-    "1280": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0, "ruleWidthMatchesResult": true},
-    "masterLedgerTopDeltaPx": {"922": 0, "1280": 0},
-    "ledgersAligned": "side-by-side tops match within 1px; gate-line sits under the revalued-amount ledger"
+  "chapterMapWidth": {
+    "note": "Policy card (.policy-parent) on the chapter Models map. Before: min(28em, 42cqw) = 364px. After: 100% of the plate stage. Map document widths.",
+    "922": {"beforeParentPx": 364, "afterParentPx": 895.9, "stagePx": 895.9},
+    "1280": {"beforeParentPx": 364, "afterParentPx": 1253.9, "stagePx": 1253.9}
   },
-  "ledgerRules": "single rule after the last subtraction, double rule under the total, result column only",
-  "pixelSameVs54a349aCss": {
-    "note": "ch01–ch03 and ch05–ch07 were pixel-identical before the ledger rules. Those maps have no .vledger. Master and ch04 now include the rules.",
-    "widths": [390, 1280],
-    "maps": ["ch01-scope", "ch02-recognition", "ch03-initial", "ch05-depreciation", "ch06-derecognition", "ch07-disclosure"]
-  }
+  "ch04Geometry": {
+    "arms": "wide only; hidden at max-width 800px. Policy card is full stage width, so its centre sits left of the two model-head midpoint by the lens-rail offset. The bus still joins both heads.",
+    "922": {"parentCentreMinusHeadMidpointPx": -64.7, "costLedgerTop": 543, "revalLedgerTop": 543, "ledgerTopDeltaPx": 0},
+    "1280": {"parentCentreMinusHeadMidpointPx": -64.7, "costLedgerTop": 515.7, "revalLedgerTop": 515.7, "ledgerTopDeltaPx": 0},
+    "ledgersAligned": "side-by-side tops match within 1px"
+  },
+  "citeChips": {
+    "note": "Teaching tables only. Naked secondary tails replaced with a second full chip. No ranges invented.",
+    "beforeNakedParaTails": {"ch03": 3, "ch04": 2, "ch05": 2, "ch06": 3, "total": 10},
+    "beforeNakedOtherStandardTails": {"ch06": 2, "ch07": 1, "total": 3},
+    "afterNakedTails": 0,
+    "afterSecondFullChips": 13
+  },
+  "ch05Hold": "5.5 method band and 5.4 Begins/Continues/Ceases are on the master spine and left without further polish. A redesign brief is expected.",
+  "ch06ch07": "Probe failures on ch06 and ch07 match origin/main. This diff does not restyle those maps."
 }
