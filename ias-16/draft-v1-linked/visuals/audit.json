@@ -63,17 +63,22 @@
     "afterNakedTails": 0,
     "afterSecondFullChips": 13
   },
-  "ch05Hold": "5.5 is its own rail, Depreciation method, after 5.3 and before 5.4. The lead line stays Reflect the pattern of consumption of future economic benefits. Master Dep beat uses the same rail label.",
+  "ch05Hold": "5.5 is its own rail, Depreciation method, after 5.3 and before 5.4. The lead line stays Reflect the pattern of consumption of future economic benefits. Each method box has a 120×48 chart between the name and the caption. Master Dep beat uses the same rail label and does not use the charts.",
   "ch05Period": {
-    "note": "Begins card left edge and both lanes start at the Begins marker centre. Ceases card right edge and both lane border-boxes (chevron tip) end at the Ceases marker centre. Faded dashes and the time label sit outside that span. At 390 the axis, stems, and year-end ticks are hidden; milestones and the three continues points stack, and the lanes are full width.",
-    "922": {"markerStartPx": 182.22, "markerEndPx": 835.95, "lane1StartPx": 182.22, "lane1EndPx": 835.95, "lane2StartPx": 182.22, "lane2EndPx": 835.95, "startDeltaPx": 0, "endDeltaPx": 0},
-    "1280": {"markerStartPx": 182.22, "markerEndPx": 1193.95, "lane1StartPx": 182.22, "lane1EndPx": 1193.95, "lane2StartPx": 182.22, "lane2EndPx": 1193.95, "startDeltaPx": 0, "endDeltaPx": 0}
+    "note": "Desktop (922 and 1280): both cards fly right from their markers, equal width. Lane border-boxes start at the Begins ring centre and the chevron tip (border-box right) ends at the Ceases ring centre. The Ceases card overhangs to the right of its marker and stays inside the content box. Dashed tail and arrowhead run past Ceases under that card. No time label. At max-width 800 (390 and 667) the timeline is vertical: lane top equals the Begins ring centre and lane bottom (point) equals the Ceases ring centre.",
+    "922": {"markerStartPx": 191.81, "markerEndPx": 717.16, "lane1StartPx": 191.81, "lane1EndPx": 717.16, "lane2StartPx": 191.81, "lane2EndPx": 717.16, "startDeltaPx": 0, "endDeltaPx": 0, "arrowPastCeasesPx": 76},
+    "1280": {"markerStartPx": 191.81, "markerEndPx": 1075.16, "lane1StartPx": 191.81, "lane1EndPx": 1075.16, "lane2StartPx": 191.81, "lane2EndPx": 1075.16, "startDeltaPx": 0, "endDeltaPx": 0, "arrowPastCeasesPx": 76},
+    "390vertical": {"laneTopMinusBeginsCentrePx": 0, "laneBottomMinusCeasesCentrePx": 0},
+    "667vertical": {"laneTopMinusBeginsCentrePx": 0, "laneBottomMinusCeasesCentrePx": 0}
   },
   "ch05LifeRail": {
     "outer": "5.3 Useful life",
     "rows": ["Definition", "Factors", "Special considerations for land and buildings"],
-    "922": {"factorHeights": [165.9, 165.9, 165.9, 165.9], "landHeights": [84, 84]},
-    "1280": {"factorHeights": [101.5, 101.5, 101.5, 101.5], "landHeights": [68.4, 68.4]}
+    "definition": "Two equal peer boxes with a centred OR, then May be shorter than its economic life.",
+    "factors": "2×2 above 800px with an 8px gap; one per row at max-width 800. All four share one height.",
+    "922": {"factorHeights": [84, 84, 84, 84], "landHeights": [84, 84], "definitionOrOffsetPx": 0},
+    "1280": {"factorHeights": [68.4, 68.4, 68.4, 68.4], "landHeights": [68.4, 68.4]}
   },
+  "stuckRails": "Consecutive left-rail cells share a border. Inner rails overlap by the row gap plus one border (about -0.9px). Master phase rails fill the beat and overlap the next rail by 1px. Content boxes keep the 0.45rem row gap.",
   "ch06ch07": "Probe failures on ch06 and ch07 match origin/main. This diff does not restyle those maps."
 }

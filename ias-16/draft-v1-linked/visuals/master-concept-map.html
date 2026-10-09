@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-ch05-rail-20261009" />
+<link rel="stylesheet" href="ias16.css?v=ias16-ch05-v7-20261009" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -1276,13 +1276,16 @@
       var start = beat.querySelector("[data-phase-start]");
       var end = beat.querySelector("[data-phase-end]");
       if (!start || !end) continue;
-      var top = start.getBoundingClientRect().top - beat.getBoundingClientRect().top;
-      var height = end.getBoundingClientRect().bottom - start.getBoundingClientRect().top;
+      var border = parseFloat(getComputedStyle(rail).borderBottomWidth) || 0;
+      var last = i === rails.length - 1;
+      var top = 0;
+      var height = beat.getBoundingClientRect().height + (last ? 0 : border);
       if (!(height > 0)) continue;
       var prevTop = parseFloat(rail.style.marginTop);
       var prevHeight = parseFloat(rail.style.height);
-      if (Math.abs(prevTop - top) < 0.5 && Math.abs(prevHeight - height) < 0.5) continue;
+      if (prevTop === top && Math.abs(prevHeight - height) < 0.5) continue;
       rail.style.marginTop = top + "px";
+      rail.style.marginBottom = last ? "" : (-border) + "px";
       rail.style.height = height + "px";
     }
     drawConnectors();
