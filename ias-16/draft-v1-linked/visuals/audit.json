@@ -35,13 +35,15 @@
   },
   "ch04Geometry": {
     "arms": "wide only; hidden at max-width 800px",
-    "922": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0},
-    "1280": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0},
+    "922": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0, "ruleWidthMatchesResult": true},
+    "1280": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0, "ruleWidthMatchesResult": true},
+    "masterLedgerTopDeltaPx": {"922": 0, "1280": 0},
     "ledgersAligned": "side-by-side tops match within 1px; gate-line sits under the revalued-amount ledger"
   },
+  "ledgerRules": "single rule after the last subtraction, double rule under the total, result column only",
   "pixelSameVs54a349aCss": {
+    "note": "ch01–ch03 and ch05–ch07 were pixel-identical before the ledger rules. Those maps have no .vledger. Master and ch04 now include the rules.",
     "widths": [390, 1280],
-    "maps": ["master-concept-map", "ch01-scope", "ch02-recognition", "ch03-initial", "ch05-depreciation", "ch06-derecognition", "ch07-disclosure"],
-    "result": "SAME"
+    "maps": ["ch01-scope", "ch02-recognition", "ch03-initial", "ch05-depreciation", "ch06-derecognition", "ch07-disclosure"]
   }
 }

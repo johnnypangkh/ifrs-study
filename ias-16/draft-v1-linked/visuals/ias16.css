@@ -4463,16 +4463,29 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models) .dgrid {
   min-width: 0;
 }
 
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models) .vresult {
-  border-width: 0.12em;
-  border-color: var(--accent);
-  border-top: 0.1em solid var(--ink);
-  padding-bottom: 0.22em;
+/* Accounting total: one rule under the last subtraction, a double rule under the total.
+   Lines are drawn in the result column only. The host is taller than the stroke
+   so the stroke is not read as a connector. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models) .vrule {
+  grid-column: 2;
+  display: block;
+  height: 0.5em;
+  min-height: 7px;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: center;
 }
 
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models) .vresult > span {
-  border-bottom: 0.08em double var(--ink);
-  padding-bottom: 0.1em;
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models) .vrule-2 {
+  height: 0.7em;
+  min-height: 9px;
+  background-image: linear-gradient(var(--ink), var(--ink)), linear-gradient(var(--ink), var(--ink));
+  background-size: 100% 1px, 100% 1px;
+  background-position: center calc(50% - 2px), center calc(50% + 2px);
 }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models) .na-line {
