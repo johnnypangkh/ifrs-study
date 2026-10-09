@@ -5209,10 +5209,10 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 0.45rem;
+  margin-top: 2.5rem;
 }
 
-.ppe.dep-map > .junction {
+.ppe.dep-map > .plate > .junction {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -5221,7 +5221,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   margin-top: 0.35rem;
 }
 
-.ppe.dep-map > .junction > .see {
+.ppe.dep-map > .plate > .junction > .see {
   width: fit-content;
   max-width: 100%;
   margin: 0;
@@ -5812,11 +5812,11 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
   .ppe.dep-map .period-v { display: block; }
 
-  .ppe.dep-map > .junction > .see {
+  .ppe.dep-map > .plate > .junction > .see {
     margin: 0;
   }
 
-  .ppe.dep-map > .handoff { margin-top: 0.45rem; }
+  .ppe.dep-map > .handoff { margin-top: 2.5rem; }
 }
 
 /* Ch06 Derecognition chapter map. Plate grammar comes from the pack
@@ -5933,10 +5933,11 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   font-weight: 400;
 }
 
-/* One outer frame: the parent fieldset. The plate is the map, not a second box. */
+/* The page fieldset is the visible frame. The plate keeps its box so arrows
+   still meet an edge, but the stroke and fill match the page so it does not
+   read as a second frame. */
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) > .plate {
-  border: 0;
-  padding: 0;
-  background: none;
+  border-color: var(--bg);
+  background: var(--bg);
   box-shadow: none;
 }

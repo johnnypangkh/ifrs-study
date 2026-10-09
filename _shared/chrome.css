@@ -456,7 +456,7 @@ header.chrome-bar.is-shared {
   align-items: center;
   gap: 0.625rem;
   min-inline-size: 0;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
 }
 .chrome-bar.is-shared .chrome-home {
   display: inline-flex;
@@ -782,7 +782,9 @@ header.page-header > h1 {
   .chrome-bar.is-shared .chrome-home-txt,
   .chrome-bar.is-shared .chrome-home-sep { display: none; }
   .chrome-bar.is-shared .chrome-home {
+    flex: none;
     inline-size: 2rem;
+    min-inline-size: 2rem;
     justify-content: center;
     font-size: 1rem;
   }
