@@ -231,7 +231,7 @@ h1[id],
 h2[id],
 h3[id],
 h4[id] {
-  scroll-margin-top: 180px;
+  scroll-margin-top: var(--chrome-sticky-offset, 180px);
 }
 
 .chrome-bar { overflow: visible; }
@@ -377,8 +377,7 @@ h4[id] {
   .footer-nav { gap: 8px; }
 }
 
-/* Inert until a pack mounts .view-switch. No pack shows this control
-   unless its own script creates the element. */
+/* The shared top bar mounts .view-switch beside the pack title. */
 .view-switch {
   display: inline-flex;
   align-items: stretch;
@@ -425,4 +424,202 @@ h4[id] {
   font-weight: 650;
   margin: 8px 0 12px;
   line-height: 1.4;
+}
+
+/* Shared chapter top bar. chrome-bar.js adds .is-shared on every pack page. */
+header.chrome-bar.is-shared {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 12px 16px 12px;
+}
+.chrome-bar.is-shared .chrome-bar-title.chrome-row-primary {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 2px;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin: 0 auto 6px;
+  color: inherit;
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.chrome-bar.is-shared > .tag-row-wrap {
+  max-width: none;
+  margin: 8px auto 0;
+}
+.chrome-bar.is-shared .chrome-brand { display: contents; }
+.chrome-bar.is-shared .chrome-title-line {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+.chrome-bar.is-shared .chrome-brand-label {
+  flex: 0 1 auto;
+  min-width: min(100%, max-content);
+  max-width: 100%;
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-transform: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chrome-bar.is-shared .chrome-brand-meta {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.chrome-bar.is-shared .chrome-home {
+  margin-right: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-transform: none;
+}
+.chrome-bar.is-shared .chrome-home::before {
+  content: "← ";
+  color: var(--dash);
+}
+.chrome-bar.is-shared .chrome-home:hover { color: var(--accent); }
+.chrome-bar.is-shared .chrome-meta-sep {
+  color: var(--dash);
+  font-size: 11px;
+  user-select: none;
+}
+.chrome-bar.is-shared .chrome-actions {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+  width: 100%;
+  margin-left: 0;
+  padding-top: 0;
+  align-self: center;
+}
+.chrome-bar.is-shared .chrome-actions .chapter-search {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  gap: 8px;
+}
+.chrome-bar.is-shared .chapter-search-label { flex: 0 0 auto; }
+.chrome-bar.is-shared .chapter-search-input {
+  flex: 1 1 320px;
+  width: 1px;
+  min-width: 0;
+  max-width: none;
+}
+.chrome-bar.is-shared .chapter-search-input,
+.chrome-bar.is-shared .chapter-search-clear {
+  min-height: 32px;
+  height: 32px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.chrome-bar.is-shared .chapter-search-clear {
+  flex: 0 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+/* Shorter than the title cap (about 15px at 1.35rem). */
+.chrome-bar.is-shared .view-switch {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  align-self: center;
+  align-items: center;
+  height: 13px;
+  padding: 0;
+  border-radius: 4px;
+}
+.chrome-bar.is-shared .view-switch-btn {
+  box-sizing: border-box;
+  min-height: 0;
+  height: 11px;
+  padding: 0 5px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0;
+  line-height: 11px;
+}
+.view-switch-hint {
+  display: none;
+  clear: both;
+  margin: 0 0 10px;
+  padding: 0 2px;
+  color: var(--dash);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.view-switch-hint.is-on { display: block; }
+.map-viewport {
+  clear: both;
+  margin: 8px auto 0;
+  width: 922px;
+  max-width: 100%;
+}
+.map-viewport[data-view="mobile"] { width: 390px; }
+.map-viewport iframe { width: 100%; }
+@media (min-width: 721px) and (max-width: 1040px) {
+  .chrome-bar.is-shared .chrome-brand-label {
+    max-width: 20.5rem;
+    white-space: normal;
+  }
+}
+@container chrome (max-width: 560px) {
+  .chrome-bar.is-shared .chrome-brand-label {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+}
+@media (max-width: 720px) {
+  .chrome-bar.is-shared .chrome-bar-title.chrome-row-primary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .chrome-bar.is-shared .chrome-title-line { grid-column: 1; grid-row: 1; }
+  .chrome-bar.is-shared .chrome-brand-meta { grid-column: 1; grid-row: 2; }
+  .chrome-bar.is-shared .chrome-actions {
+    grid-column: 1;
+    grid-row: 3;
+    width: 100%;
+    justify-content: stretch;
+  }
+  .chrome-bar.is-shared .chapter-search-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+  }
+  .chrome-bar.is-shared .chrome-brand-label { font-size: 1.2rem; }
+  .chrome-bar.is-shared .view-switch { height: 12px; }
+  .chrome-bar.is-shared .view-switch-btn {
+    height: 10px;
+    line-height: 10px;
+    font-size: 9px;
+  }
 }

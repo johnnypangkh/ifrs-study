@@ -1695,72 +1695,11 @@ body.embed {
   color: var(--ink);
 }
 
-/* Consecutive left-rail cells share one border on the wide map only.
-   Below 801px they keep the board row gap (positive), with full corner
-   radius. The content cell in column 2 keeps that same row gap at every
-   width. A full-width block can hide the next rail from the sibling rule;
-   those cross-block rails join on the wide map too. .cap is one column
-   below 801px, so its rails only join on the wide map. */
+/* No shared-border rails at any width. Inner boards already use
+   gap: 0.45rem (~7.19px). Wide master phase rows use that same gap
+   instead of a 1px overlap. Corners stay fully rounded. */
 @media (min-width: 801px) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.inner-board, .disc-board) > .inner-rail:has(~ .inner-rail) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.inner-board, .disc-board) > .inner-rail ~ .inner-rail {
-    margin-top: calc(-0.45rem - 0.08em);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  /* Disclosure nests are separate board rows. The first rail of a later nest
-     continues the previous nest's last rail. The stack beside it does not move. */
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .disc-board > .disc-nest:has(~ .disc-nest) > .inner-board > .inner-rail:not(:has(~ .inner-rail)) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .disc-board > .disc-nest ~ .disc-nest > .inner-board > .inner-rail:first-child {
-    margin-top: calc(-0.45rem - 0.08em);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap > .inner-rail:has(~ .inner-rail) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap > .inner-rail ~ .inner-rail {
-    margin-top: calc(-0.45rem - 0.08em);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  /* .cap-wrap is one full-width row. Residual value and the next outer rail
-     are not siblings, so pull only that rail. The foot and the next detail
-     keep the board gap. */
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board > .cap-wrap:has(+ .inner-rail) > .cap > .inner-rail:not(:has(~ .inner-rail)) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board > .cap-wrap + .inner-rail {
-    margin-top: calc(-0.45rem - 0.08em);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  .ppe.pack .pack-lr > .rail-link:not(:last-of-type) {
-    margin-bottom: -0.08em;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe.pack .pack-lr > .rail-link ~ .rail-link {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
+  .ppe.pack .pack-lr { row-gap: 0.45rem; }
 }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-detail {
@@ -3221,9 +3160,9 @@ body.embed {
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term-split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0;
+  gap: 0.45rem;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term {
@@ -3234,13 +3173,15 @@ body.embed {
   gap: 0.15em 0.35em;
   margin: 0;
   padding: 0.55em 0.45em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
   text-align: center;
   font-size: var(--t-head);
   font-weight: 700;
   line-height: 1.3;
 }
 
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term + .term { border-left: 0.08em solid var(--line); }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term > span { flex: 1 1 4em; min-width: 0; }
 
@@ -3708,11 +3649,6 @@ body.embed {
   }
 
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-row { grid-template-columns: minmax(0, 1fr); }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term + .term {
-    border-left: 0;
-    border-top: 0.08em solid var(--line);
-  }
 
   /* Desktop flex-basis 0 shares a row. In a column it collapses any limb
      whose overflow is hidden, so the split term paints over the next row. */
@@ -5045,7 +4981,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     grid-template-rows: subgrid;
     grid-row: 1 / span 2;
     column-gap: 0;
-    row-gap: 0;
+    row-gap: 0.45rem;
     align-self: stretch;
     width: auto;
     min-width: 0;
@@ -5253,7 +5189,20 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 /* Ch05 Depreciation chapter map. Plate grammar comes from the pack selectors.
-   The continuing shaft is drawn by ias16-cx.js onto the handoff. */
+   The continuing shaft is drawn by ias16-cx.js onto the handoff.
+   The 5.0 title is a full-width header of the plate, not a short left chip. */
+.ppe.dep-map > .plate { width: 100%; align-self: stretch; }
+.ppe.dep-map > .plate > .plate-title {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  align-self: stretch;
+  box-sizing: border-box;
+  border-bottom: 0.08em solid var(--line);
+  padding-bottom: 0.4em;
+}
+.ppe.dep-map > .plate > .plate-title > span { flex: 1 1 auto; min-width: 0; }
+
 .ppe.dep-map > .cx-layer { position: absolute; }
 
 .ppe.dep-map > .handoff {
@@ -5570,31 +5519,48 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   line-height: 1.35;
 }
 
+/* Year-end ticks live inside the lane, clear of every edge. */
+.ppe.dep-map .period-lane-1 { position: relative; }
+
 .ppe.dep-map .period-yearends {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 0;
+  position: relative;
+  display: block;
+  height: 1.25em;
+  margin: 0.55rem 0 0.15rem;
 }
 
 .ppe.dep-map .period-tick {
   position: absolute;
-  top: -8px;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  max-width: 34%;
+  height: 1.25em;
+  background: none;
+  transform: none;
+}
+
+.ppe.dep-map .period-tick::before {
+  content: "";
+  flex: 0 0 auto;
   width: 2px;
-  height: 10px;
+  height: 11px;
   background: var(--ink);
-  transform: translateX(-50%);
 }
 
 .ppe.dep-map .period-tick-lab {
-  position: absolute;
-  left: 5px;
-  top: -1px;
+  position: static;
   color: var(--muted);
   font-size: var(--t-meta);
   line-height: 1.15;
   white-space: nowrap;
+}
+
+.ppe.dep-map .period-tick:last-child {
+  flex-direction: row-reverse;
+  transform: translateX(-100%);
 }
 
 .ppe.dep-map .period-end {
@@ -5637,8 +5603,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border-radius: var(--card-radius);
 }
 
-.ppe.dep-map .v-begin .period-snap { border-bottom-left-radius: 0; }
-.ppe.dep-map .v-cease .period-snap { border-top-left-radius: 0; }
+.ppe.dep-map .v-cease { margin-top: 0.45rem; }
 
 .ppe.dep-map .v-ring {
   position: absolute;
@@ -5710,7 +5675,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe.dep-map .v-span {
-  margin: 0;
+  margin: 0.45rem 0 0;
   padding-left: 56px;
 }
 
@@ -5743,6 +5708,33 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.dep-map .v-lane-2 {
   background: var(--band);
   border-left: 2px solid var(--line);
+}
+
+.ppe.dep-map .v-yearends {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin: 0 0 0.55rem;
+}
+
+.ppe.dep-map .v-year {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  color: var(--muted);
+  font-size: var(--t-meta);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.ppe.dep-map .v-year::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 10px;
+  height: 2px;
+  background: var(--ink);
 }
 
 .ppe.dep-map .v-points p {
