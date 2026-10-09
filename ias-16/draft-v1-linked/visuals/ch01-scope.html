@@ -7,29 +7,30 @@
 <title>Ch1 Scope — IAS 16</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-ch01-map-20261007" />
-<link rel="stylesheet" href="ias16.css?v=ias16-ch01-arrow-20261009" />
+<link rel="stylesheet" href="ias16.css?v=ias16-ch01-03-r1-20261009" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
 <div class="page">
 <div class="ppe scope-map" aria-label="IAS 16 scope: PPE definition, exclusions, and items that stay in IAS 16">
+  <div class="cx-layer" aria-hidden="true"></div>
 
   <div class="scope-stack">
     <div class="dgrid decision-flow def-fork fork-ppe" role="group" aria-label="Decision: is it PPE in IAS 16?">
       <div class="decision-fork">
         <section class="q">
           <p class="q-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Is it PPE in IAS 16?</span></p>
-          <div class="criteria" role="group" aria-label="Tangible plus held for use plus more than one period">
-            <div class="peer">
+          <div class="criteria" data-eq role="group" aria-label="Tangible plus held for use plus more than one period">
+            <div class="peer" data-eq-cell>
               <p class="peer-title"><span>Tangible</span></p>
             </div>
             <span class="crit-op" aria-hidden="true">+</span>
-            <div class="peer">
+            <div class="peer" data-eq-cell>
               <p class="peer-title"><span>Held for use</span></p>
               <p class="peer-line">Held for use in the production or supply of goods or services, for rental to others, or for administrative purposes.</p>
             </div>
             <span class="crit-op" aria-hidden="true">+</span>
-            <div class="peer">
+            <div class="peer" data-eq-cell>
               <p class="peer-title"><span>More than one period</span></p>
               <p class="peer-line">Expected to be used during more than one period.</p>
             </div>
@@ -90,14 +91,8 @@
               </div>
             </div>
           </div>
-          <div class="varm" aria-hidden="true"><span class="arm-label">No</span></div>
+          <div class="varm"><p class="arm-label"><span>No</span> · <a class="onward" href="../ch02.html#s-2-0" target="_parent">PPE in scope</a></p></div>
         </div>
-      </div>
-    </div>
-
-    <div class="pack-flow">
-      <div class="pack-flow-shaft">
-        <p class="pack-flow-label"><a class="onward" href="../ch02.html#s-2-0" target="_parent">PPE in scope</a></p>
       </div>
     </div>
 
@@ -126,5 +121,48 @@
 
 </div>
 </div>
+<script src="ias16-cx.js?v=ias16-ch01-03-r1-20261009"></script>
+<script>
+Ias16Cx.mount(document.querySelector(".ppe.scope-map"), function (cx) {
+  var root = cx.root;
+  var ppeQ = root.querySelector(".fork-ppe .q");
+  var exclQ = root.querySelector(".fork-excl .q");
+  var ppeLeaf = root.querySelector(".fork-ppe .leaf");
+  var exclLeaf = root.querySelector(".fork-excl .leaf");
+  var bearer = root.querySelector(".scope-bearer");
+  if (cx.shown(ppeQ) && cx.shown(ppeLeaf)) {
+    var q1 = cx.boxOf(ppeQ);
+    var leaf1 = cx.boxOf(ppeLeaf);
+    var noLab = root.querySelector(".fork-ppe .harm .arm-label");
+    if (cx.narrow) cx.hFlow(leaf1.cy, q1.cx, leaf1.l, noLab, "mute");
+    else cx.hFlow(q1.cy, q1.r, leaf1.l, noLab, "mute");
+  }
+  if (cx.shown(ppeQ) && cx.shown(exclQ)) {
+    var from = cx.boxOf(ppeQ);
+    var to = cx.boxOf(exclQ);
+    cx.vFlow(from.cx, from.b, to.t, root.querySelector(".fork-ppe .varm .arm-label"));
+  }
+  if (cx.shown(exclQ) && cx.shown(exclLeaf)) {
+    var q3 = cx.boxOf(exclQ);
+    var leaf3 = cx.boxOf(exclLeaf);
+    var yesLab = root.querySelector(".fork-excl .harm .arm-label");
+    if (cx.narrow) cx.hFlow(leaf3.cy, q3.cx, leaf3.l, yesLab, "stop");
+    else cx.hFlow(q3.cy, q3.r, leaf3.l, yesLab, "stop");
+  }
+  if (cx.shown(exclQ) && cx.shown(bearer)) {
+    var src = cx.boxOf(exclQ);
+    var dest = cx.boxOf(bearer);
+    var lab = root.querySelector(".fork-excl .varm .arm-label");
+    if (Math.abs(src.cx - dest.cx) <= 3) cx.vFlow(src.cx, src.b, dest.t, lab);
+    else {
+      var mid = (src.b + dest.t) / 2;
+      cx.v(src.cx, src.b, mid, true);
+      cx.h(mid, src.cx, dest.cx, "link");
+      cx.vFlow(dest.cx, mid, dest.t, null);
+      cx.placeLabel(lab, src.cx + cx.em(0.55), (src.b + mid) / 2, cx.narrow ? "left" : "right");
+    }
+  }
+});
+</script>
 </body>
 </html>

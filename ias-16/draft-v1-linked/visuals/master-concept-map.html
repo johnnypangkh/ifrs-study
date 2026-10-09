@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-master-r2-20261009" />
+<link rel="stylesheet" href="ias16.css?v=ias16-ch01-03-r1-20261009" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -208,6 +208,7 @@
           <span class="formula-stem stem-cost" aria-hidden="true"></span>
           <span class="formula-stem stem-da" aria-hidden="true"></span>
 
+          <div class="cost-split">
           <div class="nature-nest">
             <p class="port-tab"><a class="fb-num" href="../ch03.html#s-3-3" target="_parent">3.3</a><span>Not costs of PPE</span></p>
             <div class="nature-body">
@@ -255,6 +256,7 @@
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
           <div class="facet-foot">
@@ -1154,6 +1156,26 @@
         vFlow(plate.cx, mid, plate.t, null);
         placeLabel(yesLab, qYes.cx + em(0.5), (qYes.b + mid) / 2, "right");
       }
+    }
+
+    if (!narrow) {
+      linkStem(root.querySelector(".cost-result"), root.querySelector(".nature-nest > .port-tab"));
+      linkStem(root.querySelector(".da-col"), root.querySelector(".ready-axis > .axis-port"));
+    }
+    function linkStem(src, tab) {
+      if (!shown(src) || !shown(tab)) return;
+      var A = boxOf(src);
+      var B = boxOf(tab);
+      var gap = B.t - A.b;
+      if (gap < 16) return;
+      if (Math.abs(A.cx - B.cx) <= 3) {
+        v(A.cx, A.b, B.t, true);
+        return;
+      }
+      var mid = A.b + gap * 0.5;
+      v(A.cx, A.b, mid, true);
+      h(mid, A.cx, B.cx, "link");
+      v(B.cx, mid, B.t, true);
     }
 
     var flows = root.querySelectorAll(".beat > .pack-flow");
