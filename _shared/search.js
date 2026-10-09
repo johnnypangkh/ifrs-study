@@ -291,19 +291,18 @@
 
   function ensureChromeSearch() {
     if (!showsChromeSearch()) return;
-    /* Prefer the actions slot when a pack opts into it (IAS 16 view switch).
-       Other packs keep the title row as the mount. */
-    var row = document.querySelector('header.chrome-bar .chrome-actions')
+    if (document.querySelector('header.chrome-bar .chapter-search')) return;
+    var row = document.querySelector('header.chrome-bar .chrome-row1')
+      || document.querySelector('header.chrome-bar .chrome-actions')
       || document.querySelector('header.chrome-bar .chrome-bar-actions')
       || document.querySelector('header.chrome-bar .chrome-bar-title');
     if (!row) return;
     var box = document.querySelector('.chapter-search');
     if (!box) {
-      box = document.createElement('div');
+      box = document.createElement('label');
       box.className = 'chapter-search';
-      box.innerHTML = '<label class="chapter-search-label" for="chapterSearch">Search</label>' +
-        '<input class="chapter-search-input" id="chapterSearch" type="search" autocomplete="off" />' +
-        '<button class="chapter-search-clear" id="chapterSearchClear" type="button">clear</button>' +
+      box.innerHTML = '<input class="chapter-search-input" id="chapterSearch" type="search" autocomplete="off" />' +
+        '<button class="chapter-search-clear" id="chapterSearchClear" type="button" aria-label="Clear search">✕</button>' +
         '<div class="search-popover" id="chapterSearchPopover" hidden></div>';
     }
     if (box.parentNode !== row) row.appendChild(box);
@@ -328,6 +327,7 @@
       clearButton.addEventListener('click', function () {
         input.value = '';
         close(popover);
+        input.focus();
       });
     }
   }

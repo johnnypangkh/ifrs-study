@@ -5213,19 +5213,18 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe.dep-map > .junction {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  min-height: 2.6rem;
+  gap: 0.45rem;
+  min-height: 0;
   margin-top: 0.35rem;
 }
 
 .ppe.dep-map > .junction > .see {
-  grid-column: 1;
-  justify-self: end;
   width: fit-content;
-  max-width: calc(100% - 1rem);
-  margin: 0 1rem 0 0;
+  max-width: 100%;
+  margin: 0;
 }
 
 .ppe.dep-map .cap-foot {
@@ -5814,9 +5813,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   .ppe.dep-map .period-v { display: block; }
 
   .ppe.dep-map > .junction > .see {
-    grid-column: 2;
-    justify-self: start;
-    margin: 0 0 0 1rem;
+    margin: 0;
   }
 
   .ppe.dep-map > .handoff { margin-top: 0.45rem; }
@@ -5928,10 +5925,18 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   align-self: flex-start;
   width: fit-content;
   max-width: 100%;
-  border: 0.06em dashed var(--dash);
+  border: 0.06em solid var(--line);
   border-radius: var(--card-radius);
   padding: 0.45em 0.55em;
   color: var(--muted);
   font-size: var(--t-meta);
   font-weight: 400;
+}
+
+/* One outer frame: the parent fieldset. The plate is the map, not a second box. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) > .plate {
+  border: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
 }

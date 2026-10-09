@@ -1,43 +1,47 @@
 /* Pack titles and chapter pills for the shared top bar.
-   Chapter pages do not copy this markup. chrome-bar.js reads it. */
+   Chapter pages do not copy this markup. chrome-bar.js reads it.
+   chapters = row 2 pills. meta = links under the page H1. */
 window.CHROME_PACKS = {
   ias16: {
-    title: "IAS 16 · Property, Plant and Equipment",
+    title: "IAS 16 Property, Plant and Equipment",
     search: "Find in IAS 16…",
-    pills: [
-      { href: "index.html", label: "Map" },
-      { href: "abbreviations.html", label: "Abbreviations" },
+    map: "index.html",
+    chapters: [
       { href: "ch01.html", label: "1 Scope" },
       { href: "ch02.html", label: "2 Recognition" },
       { href: "ch03.html", label: "3 Initial measurement" },
       { href: "ch04.html", label: "4 Subsequent — models" },
       { href: "ch05.html", label: "5 Depreciation" },
       { href: "ch06.html", label: "6 Derecognition" },
-      { href: "ch07.html", label: "7 Disclosure" },
+      { href: "ch07.html", label: "7 Disclosure" }
+    ],
+    meta: [
+      { href: "abbreviations.html", label: "Abbreviations" },
       { href: "references.html", label: "References" }
     ]
   },
   ias2: {
     title: "IAS 2 Inventories",
     search: "Find in IAS 2…",
-    pills: [
-      { href: "index.html", label: "Map" },
-      { href: "abbreviations.html", label: "Abbreviations" },
+    map: "index.html",
+    chapters: [
       { href: "ch01.html", label: "1 Scope" },
       { href: "ch02.html", label: "2 Recognition" },
       { href: "ch03.html", label: "3 Initial measurement" },
       { href: "ch04.html", label: "4 Subsequent" },
       { href: "ch05.html", label: "5 Derecognition" },
-      { href: "ch06.html", label: "6 Disclosure" },
+      { href: "ch06.html", label: "6 Disclosure" }
+    ],
+    meta: [
+      { href: "abbreviations.html", label: "Abbreviations" },
       { href: "references.html", label: "References" }
     ]
   },
   ifrs18: {
     title: "IFRS 18 Presentation and Disclosure",
     search: "Find in IFRS 18…",
-    pills: [
-      { href: "index.html", label: "Map" },
-      { href: "abbreviations.html", label: "Abbreviations" },
+    map: "index.html",
+    chapters: [
       { href: "ch01.html", label: "1 What’s new" },
       { href: "ch02.html", label: "2 PFS & aggregation" },
       { href: "ch03.html", label: "3 P&L categories" },
@@ -45,15 +49,18 @@ window.CHROME_PACKS = {
       { href: "ch05.html", label: "5 Operating expenses" },
       { href: "ch06.html", label: "6 MPMs" },
       { href: "ch07.html", label: "7 Other FS impacts" },
-      { href: "ch08.html", label: "8 Transition" },
+      { href: "ch08.html", label: "8 Transition" }
+    ],
+    meta: [
+      { href: "abbreviations.html", label: "Abbreviations" },
       { href: "references.html", label: "References" }
     ]
   },
   cf2018: {
     title: "Conceptual Framework 2018",
     search: "Find in the Framework…",
-    pills: [
-      { href: "index.html", label: "Map" },
+    map: "index.html",
+    chapters: [
       { href: "ch01.html", label: "1 Objective & users" },
       { href: "ch02.html", label: "2 Qualitative" },
       { href: "ch03.html", label: "3 Reporting entity" },
@@ -64,7 +71,9 @@ window.CHROME_PACKS = {
       { href: "ch08.html", label: "8 Capital" },
       { href: "ch09.html", label: "9 Combined FS" },
       { href: "ch10.html", label: "10 Carve-out" },
-      { href: "ch11.html", label: "11 Status" },
+      { href: "ch11.html", label: "11 Status" }
+    ],
+    meta: [
       { href: "references.html", label: "References" }
     ]
   }
