@@ -377,6 +377,47 @@ h4[id] {
   .footer-nav { gap: 8px; }
 }
 
+/* Inert until a pack mounts .view-switch. No pack shows this control
+   unless its own script creates the element. */
+.view-switch {
+  display: inline-flex;
+  align-items: stretch;
+  flex: 0 0 auto;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--band);
+  gap: 0;
+}
+.view-switch-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  margin: 0;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-transform: none;
+  cursor: pointer;
+  line-height: 1;
+}
+.view-switch-btn:hover { color: var(--ink); }
+.view-switch-btn[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 10%, transparent);
+}
+.view-switch-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
 /* Component formula — one line, never wrapped. */
 .formula-line {
   white-space: nowrap;
