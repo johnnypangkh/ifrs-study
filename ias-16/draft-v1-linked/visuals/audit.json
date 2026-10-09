@@ -79,6 +79,24 @@
     "922": {"factorHeights": [84, 84, 84, 84], "landHeights": [84, 84], "definitionOrOffsetPx": 0},
     "1280": {"factorHeights": [68.4, 68.4, 68.4, 68.4], "landHeights": [68.4, 68.4]}
   },
-  "stuckRails": "Consecutive left-rail cells share a border. Inner rails overlap by the row gap plus one border (about -0.9px). Master phase rails fill the beat and overlap the next rail by 1px. Content boxes keep the 0.45rem row gap.",
+  "stuckRails": "Consecutive left-rail cells share a border, including across a full-width block. Inner rails overlap by the row gap plus one border. Master phase rails fill the beat and overlap the next rail by 1px. Content boxes keep the 0.45rem row gap.",
+  "railJunctions": {
+    "note": "Same-column consecutive inner rails. Before is the content-row gap leaking into the rail. After matches the sibling overlap (about -0.9px above 800px, -0.75px at 390). Content gap is the box beside the upper rail to the box beside the lower rail.",
+    "residualToCharge": {
+      "where": "Residual value to 5.7 Charge location. Wide map only: .cap is one column at max-width 800, so those rails are not in the same column at 390 or 667.",
+      "master922": {"beforePx": 7.18, "afterPx": -0.89, "contentBeforePx": 7.18, "contentAfterPx": 7.18},
+      "master1280": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19},
+      "ch05922": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19},
+      "ch051280": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19}
+    },
+    "reconToRestrictions": {
+      "where": "master disclosure, 7.3 Reconciliation to 7.4 Restrictions, all four widths",
+      "390": {"beforePx": 7.19, "afterPx": -0.75, "contentBeforePx": 7.19, "contentAfterPx": 7.19},
+      "667": {"beforePx": 7.18, "afterPx": -0.89, "contentBeforePx": 7.18, "contentAfterPx": 7.18},
+      "922": {"beforePx": 7.18, "afterPx": -0.89, "contentBeforePx": 7.18, "contentAfterPx": 7.19},
+      "1280": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19}
+    },
+    "otherSameColumn": "Every other same-column inner-rail pair on master and ch01–ch05 was already on the shared border (about -0.9px, -0.75px at 390). Phase rails Scope through Disclosure stay at -1px. ch01, ch03, and ch04 have no stacked inner rails. At ≤800 the 5.5 and 5.4 bands stay full-width headers and do not pull up."
+  },
   "ch06ch07": "Probe failures on ch06 and ch07 match origin/main. This diff does not restyle those maps."
 }

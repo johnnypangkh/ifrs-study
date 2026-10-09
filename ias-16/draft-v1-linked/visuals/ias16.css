@@ -1697,14 +1697,28 @@ body.embed {
 }
 
 /* Consecutive left-rail cells share one border. The row gap stays, so the
-   content cell in column 2 keeps its own gap. .cap is one column below 801px,
-   so its rails only join on the wide map. */
+   content cell in column 2 keeps its own gap. A full-width block can hide
+   the next rail from the sibling rule; those cross-block rails join too.
+   .cap is one column below 801px, so its rails only join on the wide map. */
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) :is(.inner-board, .disc-board) > .inner-rail:has(~ .inner-rail) {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) :is(.inner-board, .disc-board) > .inner-rail ~ .inner-rail {
+  margin-top: calc(-0.45rem - 0.08em);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Disclosure nests are separate board rows. The first rail of a later nest
+   continues the previous nest's last rail. The stack beside it does not move. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .disc-board > .disc-nest:has(~ .disc-nest) > .inner-board > .inner-rail:not(:has(~ .inner-rail)) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .disc-board > .disc-nest ~ .disc-nest > .inner-board > .inner-rail:first-child {
   margin-top: calc(-0.45rem - 0.08em);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -1717,6 +1731,20 @@ body.embed {
   }
 
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .cap > .inner-rail ~ .inner-rail {
+    margin-top: calc(-0.45rem - 0.08em);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  /* .cap-wrap is one full-width row. Residual value and the next outer rail
+     are not siblings, so pull only that rail. The foot and the next detail
+     keep the board gap. */
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .inner-board > .cap-wrap:has(+ .inner-rail) > .cap > .inner-rail:not(:has(~ .inner-rail)) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map) .inner-board > .cap-wrap + .inner-rail {
     margin-top: calc(-0.45rem - 0.08em);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
