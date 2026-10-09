@@ -31,19 +31,72 @@
       "667": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
       "922": {"nArrows": 5, "nFail": 0, "nHard": 0, "nLayout": 0},
       "1280": {"nArrows": 5, "nFail": 0, "nHard": 0, "nLayout": 0}
+    },
+    "ch05-depreciation": {
+      "390": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "667": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "922": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "1280": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0}
     }
   },
-  "ch04Geometry": {
-    "arms": "wide only; hidden at max-width 800px",
-    "922": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0, "ruleWidthMatchesResult": true},
-    "1280": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0, "ruleWidthMatchesResult": true},
-    "masterLedgerTopDeltaPx": {"922": 0, "1280": 0},
-    "ledgersAligned": "side-by-side tops match within 1px; gate-line sits under the revalued-amount ledger"
+  "chapterMapWidth": {
+    "note": "Policy card (.policy-parent) on the chapter Models map. Before: min(28em, 42cqw) = 364px. After: the two model-head columns (stage minus the lens rail and gap). Map document widths.",
+    "922": {"beforeParentPx": 364, "afterParentPx": 766.5, "stagePx": 895.91},
+    "1280": {"beforeParentPx": 364, "afterParentPx": 1124.5, "stagePx": 1253.91}
   },
-  "ledgerRules": "single rule after the last subtraction, double rule under the total, result column only",
-  "pixelSameVs54a349aCss": {
-    "note": "ch01–ch03 and ch05–ch07 were pixel-identical before the ledger rules. Those maps have no .vledger. Master and ch04 now include the rules.",
-    "widths": [390, 1280],
-    "maps": ["ch01-scope", "ch02-recognition", "ch03-initial", "ch05-depreciation", "ch06-derecognition", "ch07-disclosure"]
-  }
+  "ch04Geometry": {
+    "arms": "At min-width 801px the 4.1 card spans the two model-head columns. Its centre is the 4.2/4.3 head midpoint. The lens rail stays to the left of both.",
+    "922": {"parentCentrePx": 524.69, "headMidpointPx": 524.69, "parentCentreMinusHeadMidpointPx": 0, "costLedgerTop": 559.2, "revalLedgerTop": 559.2, "ledgerTopDeltaPx": 0},
+    "1280": {"parentCentrePx": 703.69, "headMidpointPx": 703.69, "parentCentreMinusHeadMidpointPx": 0, "costLedgerTop": 531.33, "revalLedgerTop": 531.33, "ledgerTopDeltaPx": 0},
+    "ledgersAligned": "side-by-side tops match within 1px"
+  },
+  "ch05Rail": {
+    "ch05Label": "Depreciation method",
+    "masterLabel": "Depreciation method",
+    "lead": "Reflect the pattern of consumption of future economic benefits",
+    "where": ["ch05-depreciation.html .inner-rail", "master-concept-map.html Dep beat .inner-rail"]
+  },
+  "citeChips": {
+    "note": "Teaching tables only. Naked secondary tails replaced with a second full chip. No ranges invented.",
+    "beforeNakedParaTails": {"ch03": 3, "ch04": 2, "ch05": 2, "ch06": 3, "total": 10},
+    "beforeNakedOtherStandardTails": {"ch06": 2, "ch07": 1, "total": 3},
+    "afterNakedTails": 0,
+    "afterSecondFullChips": 13
+  },
+  "ch05Hold": "5.5 is its own rail, Depreciation method, after 5.3 and before 5.4. The lead line stays Reflect the pattern of consumption of future economic benefits. Each method box has a 120×48 chart between the name and the caption. Master Dep beat uses the same rail label and does not use the charts.",
+  "ch05Period": {
+    "note": "Desktop (922 and 1280): both cards fly right from their markers, equal width. Lane border-boxes start at the Begins ring centre and the chevron tip (border-box right) ends at the Ceases ring centre. The Ceases card overhangs to the right of its marker and stays inside the content box. Dashed tail and arrowhead run past Ceases under that card. No time label. At max-width 800 (390 and 667) the timeline is vertical: lane top equals the Begins ring centre and lane bottom (point) equals the Ceases ring centre.",
+    "922": {"markerStartPx": 191.81, "markerEndPx": 717.16, "lane1StartPx": 191.81, "lane1EndPx": 717.16, "lane2StartPx": 191.81, "lane2EndPx": 717.16, "startDeltaPx": 0, "endDeltaPx": 0, "arrowPastCeasesPx": 76},
+    "1280": {"markerStartPx": 191.81, "markerEndPx": 1075.16, "lane1StartPx": 191.81, "lane1EndPx": 1075.16, "lane2StartPx": 191.81, "lane2EndPx": 1075.16, "startDeltaPx": 0, "endDeltaPx": 0, "arrowPastCeasesPx": 76},
+    "390vertical": {"laneTopMinusBeginsCentrePx": 0, "laneBottomMinusCeasesCentrePx": 0},
+    "667vertical": {"laneTopMinusBeginsCentrePx": 0, "laneBottomMinusCeasesCentrePx": 0}
+  },
+  "ch05LifeRail": {
+    "outer": "5.3 Useful life",
+    "rows": ["Definition", "Factors", "Special considerations for land and buildings"],
+    "definition": "Two equal peer boxes with a centred OR, then May be shorter than its economic life.",
+    "factors": "2×2 above 800px with an 8px gap; one per row at max-width 800. All four share one height.",
+    "922": {"factorHeights": [84, 84, 84, 84], "landHeights": [84, 84], "definitionOrOffsetPx": 0},
+    "1280": {"factorHeights": [68.4, 68.4, 68.4, 68.4], "landHeights": [68.4, 68.4]}
+  },
+  "stuckRails": "Consecutive left-rail cells share a border, including across a full-width block. Inner rails overlap by the row gap plus one border. Master phase rails fill the beat and overlap the next rail by 1px. Content boxes keep the 0.45rem row gap.",
+  "railJunctions": {
+    "note": "Same-column consecutive inner rails. Before is the content-row gap leaking into the rail. After matches the sibling overlap (about -0.9px above 800px, -0.75px at 390). Content gap is the box beside the upper rail to the box beside the lower rail.",
+    "residualToCharge": {
+      "where": "Residual value to 5.7 Charge location. Wide map only: .cap is one column at max-width 800, so those rails are not in the same column at 390 or 667.",
+      "master922": {"beforePx": 7.18, "afterPx": -0.89, "contentBeforePx": 7.18, "contentAfterPx": 7.18},
+      "master1280": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19},
+      "ch05922": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19},
+      "ch051280": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19}
+    },
+    "reconToRestrictions": {
+      "where": "master disclosure, 7.3 Reconciliation to 7.4 Restrictions, all four widths",
+      "390": {"beforePx": 7.19, "afterPx": -0.75, "contentBeforePx": 7.19, "contentAfterPx": 7.19},
+      "667": {"beforePx": 7.18, "afterPx": -0.89, "contentBeforePx": 7.18, "contentAfterPx": 7.18},
+      "922": {"beforePx": 7.18, "afterPx": -0.89, "contentBeforePx": 7.18, "contentAfterPx": 7.19},
+      "1280": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19}
+    },
+    "otherSameColumn": "Every other same-column inner-rail pair on master and ch01–ch05 was already on the shared border (about -0.9px, -0.75px at 390). Phase rails Scope through Disclosure stay at -1px. ch01, ch03, and ch04 have no stacked inner rails. At ≤800 the 5.5 and 5.4 bands stay full-width headers and do not pull up."
+  },
+  "ch06ch07": "Probe failures on ch06 and ch07 match origin/main. This diff does not restyle those maps."
 }
