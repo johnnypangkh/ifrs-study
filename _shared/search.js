@@ -291,7 +291,11 @@
 
   function ensureChromeSearch() {
     if (!showsChromeSearch()) return;
-    var row = document.querySelector('header.chrome-bar .chrome-bar-title');
+    /* Prefer the actions slot when a pack opts into it (IAS 16 view switch).
+       Other packs keep the title row as the mount. */
+    var row = document.querySelector('header.chrome-bar .chrome-actions')
+      || document.querySelector('header.chrome-bar .chrome-bar-actions')
+      || document.querySelector('header.chrome-bar .chrome-bar-title');
     if (!row) return;
     var box = document.querySelector('.chapter-search');
     if (!box) {
