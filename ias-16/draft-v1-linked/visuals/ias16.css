@@ -3497,10 +3497,15 @@ body.embed {
     left: 0;
     width: 0.12em;
     transform: none;
+    /* Cross the phase rail (0.7rem + 0.4rem margins, 0.4em + 0.4em
+       padding, 1.25 line, 0.08em borders) so the tip meets the next box. */
+    bottom: calc(0.4em - 1.1rem - 2.21em);
   }
 
   .ppe.pack .pack-flow-shaft::after {
-    left: 0.06em;
+    left: 0;
+    bottom: calc(-1.1rem - 2.21em);
+    transform: none;
   }
 
   .ppe.pack .pack-flow-label {
@@ -3671,7 +3676,7 @@ body.embed {
     position: absolute;
     left: 0;
     top: 0;
-    bottom: 0.4em;
+    bottom: calc(0.4em - 1.1rem - 2.21em);
     width: 0.12em;
     background: var(--accent);
   }
@@ -3679,9 +3684,9 @@ body.embed {
   .ppe.pack .pack-flow.pack-flow-impair::after {
     content: "";
     position: absolute;
-    left: 0.06em;
-    bottom: 0;
-    transform: translateX(-50%);
+    left: 0;
+    bottom: calc(-1.1rem - 2.21em);
+    transform: none;
     border-left: 0.34em solid transparent;
     border-right: 0.34em solid transparent;
     border-top: 0.46em solid var(--accent);
@@ -4407,5 +4412,100 @@ body.embed {
   .ppe.recog-map .pack-flow-label {
     margin-left: 0.7em;
     text-align: start;
+  }
+}
+
+/* 390 only. The shared elbow draws a short stub that stops before the
+   leaf. Extend every fork arm on the pack and the recognition map to the
+   leaf edge, centre it on that side, and keep the label on the midpoint.
+   Desktop rules stay outside this query. */
+@media (max-width: 560px) {
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 2em;
+    row-gap: 0.35em;
+    align-items: center;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch::before,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch::before {
+    content: none;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-after:has(> .varm)::after {
+    inset-inline-start: 0;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .side-note {
+    display: contents;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .harm,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch > .harm {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    justify-self: start;
+    z-index: 1;
+    width: max-content;
+    min-width: max-content;
+    min-height: 1.2em;
+    margin: 0;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .harm .arm-label,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch > .harm .arm-label {
+    position: static;
+    inset: auto;
+    transform: none;
+    display: inline-block;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .leaf,
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .side-note > .leaf,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch > .leaf {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  html .ppe.pack .decision-flow.decision-flow .decision-branch > .side-note > .see,
+  html .ppe.pack .decision-flow.decision-flow .decision-branch > .side-note > .see-box {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    min-width: 0;
+  }
+
+  html .ppe.pack .decision-flow.decision-flow .decision-branch > .harm::before,
+  html .ppe.recog-map .decision-flow.decision-flow .decision-branch > .harm::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: calc(-0.45em - 0.85em - 0.7em);
+    right: calc(-2em + 0.38em);
+    height: 0.12em;
+    transform: translateY(-50%);
+    background: var(--arm, var(--stem, var(--dash)));
+  }
+
+  html .ppe.pack .decision-flow.decision-flow .decision-branch > .harm::after,
+  html .ppe.recog-map .decision-flow.decision-flow .decision-branch > .harm::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -2em;
+    width: 0;
+    height: 0;
+    transform: translateY(-50%);
+    border-top: 0.28em solid transparent;
+    border-bottom: 0.28em solid transparent;
+    border-left: 0.38em solid var(--arm, var(--stem, var(--dash)));
   }
 }
