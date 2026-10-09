@@ -58,6 +58,25 @@
     }
   }
 
+  function alignLedgers(root) {
+    var leds = root.querySelectorAll(".carry-row .vledger");
+    var terms = [];
+    for (var i = 0; i < leds.length; i++) terms.push(leds[i].querySelectorAll(".vterm, .vresult"));
+    var narrow = window.matchMedia("(max-width: 800px)").matches;
+    for (var g = 0; g < terms.length; g++) {
+      for (var j = 0; j < terms[g].length; j++) terms[g][j].style.minHeight = "0px";
+    }
+    if (narrow || terms.length < 2) return;
+    void root.offsetHeight;
+    var n = Math.min(terms[0].length, terms[1].length);
+    for (var k = 0; k < n; k++) {
+      var h = Math.max(terms[0][k].getBoundingClientRect().height, terms[1][k].getBoundingClientRect().height);
+      if (!(h > 0)) continue;
+      terms[0][k].style.minHeight = h + "px";
+      terms[1][k].style.minHeight = h + "px";
+    }
+  }
+
   function mount(root, spec) {
     if (!root) return;
     var layer = root.querySelector(".cx-layer");
@@ -174,6 +193,8 @@
     }
 
     function fit() {
+      equalise(root);
+      alignLedgers(root);
       equalise(root);
       draw();
     }
