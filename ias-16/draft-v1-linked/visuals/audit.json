@@ -91,7 +91,7 @@
     "922": {"factorHeights": [84, 84, 84, 84], "landHeights": [84, 84], "definitionOrOffsetPx": 0},
     "1280": {"factorHeights": [68.4, 68.4, 68.4, 68.4], "landHeights": [68.4, 68.4]}
   },
-  "stuckRails": "Consecutive left-rail cells share a border, including across a full-width block. Inner rails overlap by the row gap plus one border. Master phase rails fill the beat and overlap the next rail by 1px. Content boxes keep the 0.45rem row gap.",
+  "stuckRails": "From min-width 801px, consecutive left-rail cells share a border, including across a full-width block. Inner rails overlap by the row gap plus one border. Below 801px they keep the 0.45rem row gap (about 7.19px) and full corner radius. Master phase rails fill the beat and overlap the next rail by 1px on the wide map. Content boxes keep the 0.45rem row gap at every width.",
   "railJunctions": {
     "note": "Same-column consecutive inner rails. Before is the content-row gap leaking into the rail. After matches the sibling overlap (about -0.9px above 800px, -0.75px at 390). Content gap is the box beside the upper rail to the box beside the lower rail.",
     "residualToCharge": {
@@ -106,14 +106,15 @@
       "390": {"beforePx": 7.19, "afterPx": -0.75, "contentBeforePx": 7.19, "contentAfterPx": 7.19},
       "667": {"beforePx": 7.18, "afterPx": -0.89, "contentBeforePx": 7.18, "contentAfterPx": 7.18},
       "922": {"beforePx": 7.18, "afterPx": -0.89, "contentBeforePx": 7.18, "contentAfterPx": 7.19},
-      "1280": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19}
+      "1280": {"beforePx": 7.19, "afterPx": -0.89, "contentBeforePx": 7.19, "contentAfterPx": 7.19},
+      "mobileHold": "Below 801px the overlap is off again. 7.3 to 7.4 is +7.19px at 390 and 667 on master and ch07. Desktop stays -0.89. Content gap stays 7.19."
     },
-    "otherSameColumn": "Every other same-column inner-rail pair on master and ch01–ch05 was already on the shared border (about -0.9px, -0.75px at 390). Phase rails Scope through Disclosure stay at -1px. ch01, ch03, and ch04 have no stacked inner rails. At ≤800 the 5.5 and 5.4 bands stay full-width headers and do not pull up. ch07 outer and nested rails share that overlap: 9 pairs, no positive gap."
+    "otherSameColumn": "From min-width 801px, same-column inner rails share a border (about -0.9px). Below 801px they keep the row gap (about 7.19px). Phase rails Scope through Disclosure stay at -1px on the wide map. ch01, ch03, and ch04 have no stacked inner rails. At ≤800 the 5.5 and 5.4 bands stay full-width headers."
   },
   "ch06": {
     "spine": "Plate 6.0 Derecognition — remove carrying amount. Four stuck rails. Horizontal cost-eq. Case-set 6.5 beside 6.3. Foot see IFRS 15 / IFRS 16 / IAS 2 / IFRS 5. No decision-fork, span-bar, exit-shaft, or fifth rail.",
     "rails": ["When to derecognise", "6.1 Gain or loss measured", "Presentation of gain or loss", "Where carrying amount or proceeds go"],
-    "railGapPx": {"390": -0.75, "667": -0.89, "922": -0.89, "1280": -0.89},
+    "railGapPx": {"390": 7.19, "667": 7.19, "922": -0.89, "1280": -0.89},
     "caseHeights": {"922": [216.7, 216.7], "1280": [184.33, 184.33]},
     "whenPairHeights": {"390": [29.03, 29.03], "922": [33.84, 33.84], "1280": [33.84, 33.84]},
     "compensation": "6.6 nest under the plate foot, dashed, not an inner-rail and not a third case-cell",
@@ -122,7 +123,8 @@
   },
   "ch07": {
     "spine": "Disc-band 7.0 Disclosure. Outer rail Required for each class nests 7.1 / 7.2 / 7.3. Outer rail Also required nests 7.4, Depreciation and accumulated depreciation, and Changes in estimates. Condition rails 7.5 / 7.6 / 7.7 Encouraged muted. Foot see IAS 36 and IAS 23. No model-entry, span-bar, peers-4, side-facets, limb-run, or tip-line 7.8.",
-    "railGapPx": {"390": -0.75, "667": -0.89, "922": -0.89, "1280": -0.89},
+    "railGapPx": {"390": 7.19, "667": 7.19, "922": -0.89, "1280": -0.89},
+    "railGapBeforePx": {"390": -0.75, "667": -0.89, "922": -0.89, "1280": -0.89},
     "contentGapPx": 7.19,
     "reconHeights": {"922": [142.94, 142.94], "1280": [110.56, 110.56]},
     "red": 0,
