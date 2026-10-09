@@ -7,24 +7,25 @@
 <title>Ch2 Recognition — IAS 16</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-ch02-map-20261007" />
-<link rel="stylesheet" href="ias16.css?v=ias16-ch02-noarm-20261009" />
+<link rel="stylesheet" href="ias16.css?v=ias16-ch01-03-r1-20261009" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
 <div class="page">
 <div class="ppe recog-map" aria-label="IAS 16 recognition: capitalise as PPE when both limbs are met, otherwise expense">
+  <div class="cx-layer" aria-hidden="true"></div>
 
   <div class="dgrid decision-flow def-fork fork-cap" role="group" aria-label="Decision: capitalise as PPE?">
     <div class="decision-fork">
       <section class="q">
         <p class="q-title"><a class="fb-num" href="../ch02.html#s-2-0" target="_parent">2.0</a><span>Capitalise as PPE?</span></p>
-        <div class="criteria criteria-2" role="group" aria-label="Probable future economic benefits plus cost measured reliably">
-          <div class="peer">
+        <div class="criteria criteria-2" data-eq role="group" aria-label="Probable future economic benefits plus cost measured reliably">
+          <div class="peer" data-eq-cell>
             <p class="peer-title"><span>Probable future economic benefits</span></p>
             <p class="peer-line">It is probable that future economic benefits associated with the item will flow to the entity.</p>
           </div>
           <span class="crit-op" aria-hidden="true">+</span>
-          <div class="peer">
+          <div class="peer" data-eq-cell>
             <p class="peer-title"><span>Cost measured reliably</span></p>
             <p class="peer-line">The cost of the item can be measured reliably.</p>
           </div>
@@ -50,46 +51,78 @@
 
   <section class="plate" aria-label="Recognised as an asset, then subsequent applications of the same test">
     <p class="plate-title"><span>Recognised as an asset</span></p>
-    <div class="inner-board">
-      <div class="inner-rail">
+    <div class="inner-board" data-eq>
+      <div class="inner-rail" data-eq-cell>
         <a class="fb-num" href="../ch02.html#s-2-6" target="_parent">2.6</a>
         <span class="rail-name">Replacement of parts</span>
       </div>
-      <div class="inner-detail">
+      <div class="inner-detail" data-eq-cell>
         <p class="limb-note"><span>Recognise the cost when incurred if the criteria are met.</span></p>
         <p class="limb-note"><span>Derecognise the replaced part's carrying amount, whether or not it was depreciated separately.</span></p>
         <p class="thin-tip"><a href="../ch06.html#s-6-0" target="_parent">Derecognise replaced part → Derecognition</a></p>
       </div>
-      <div class="inner-rail">
+      <div class="inner-rail" data-eq-cell>
         <a class="fb-num" href="../ch02.html#s-2-7" target="_parent">2.7</a>
         <span class="rail-name">Major inspections</span>
       </div>
-      <div class="inner-detail">
+      <div class="inner-detail" data-eq-cell>
         <p class="limb-note"><span>Recognise a major inspection as a replacement.</span></p>
         <p class="limb-note"><span>Derecognise any remaining carrying amount of the previous inspection.</span></p>
         <p class="see"><span class="see-label">See also</span> <span class="see-bit">Not an IAS 37 provision</span></p>
       </div>
-      <div class="inner-rail">
+      <div class="inner-rail" data-eq-cell>
         <a class="fb-num" href="../ch02.html#s-2-4" target="_parent">2.4</a>
         <span class="rail-name">Safety or environmental items</span>
       </div>
-      <div class="inner-detail">
+      <div class="inner-detail" data-eq-cell>
         <p class="limb-note"><span>A safety or environmental item qualifies because it enables benefits from related assets.</span></p>
         <p class="limb-note"><span>The combined carrying amount is reviewed under IAS 36.</span></p>
         <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 36</span></p>
       </div>
     </div>
+    <p class="thin-tip parts-bridge"><a class="fb-num" href="../ch02.html#s-2-8" target="_parent">2.8</a> <a class="onward" href="../ch05.html#s-5-0" target="_parent">Significant parts → Depreciation</a></p>
   </section>
 
-  <div class="pack-flow">
-    <div class="pack-flow-shaft">
-      <p class="pack-flow-label"><a class="onward" href="../ch03.html#s-3-0" target="_parent">Measure at cost</a></p>
-    </div>
-  </div>
-
-  <p class="bridge"><a class="fb-num" href="../ch02.html#s-2-8" target="_parent">2.8</a><a class="onward" href="../ch05.html#s-5-0" target="_parent">Significant parts → Depreciation</a></p>
+  <p class="arm-label exit-label"><span>Measure at cost</span></p>
+  <a class="rail-link handoff" href="../ch03.html#s-3-0" target="_parent">Measurement at recognition</a>
 
 </div>
 </div>
+<script src="ias16-cx.js?v=ias16-ch01-03-r1-20261009"></script>
+<script>
+Ias16Cx.mount(document.querySelector(".ppe.recog-map"), function (cx) {
+  var root = cx.root;
+  var q = root.querySelector(".fork-cap .q");
+  var leaf = root.querySelector(".fork-cap .leaf");
+  var plate = root.querySelector(".plate");
+  var hand = root.querySelector(".handoff");
+  if (cx.shown(q) && cx.shown(leaf)) {
+    var qB = cx.boxOf(q);
+    var leafB = cx.boxOf(leaf);
+    var noLab = root.querySelector(".fork-cap .harm .arm-label");
+    if (cx.narrow) cx.hFlow(leafB.cy, qB.cx, leafB.l, noLab, "mute");
+    else cx.hFlow(qB.cy, qB.r, leafB.l, noLab, "mute");
+  }
+  if (cx.shown(q) && cx.shown(plate)) {
+    var qYes = cx.boxOf(q);
+    var plateB = cx.boxOf(plate);
+    var yesLab = root.querySelector(".fork-cap .varm .arm-label");
+    if (cx.narrow || Math.abs(qYes.cx - plateB.cx) <= 3) {
+      cx.vFlow(qYes.cx, qYes.b, plateB.t, yesLab);
+    } else {
+      var mid = (qYes.b + plateB.t) / 2;
+      cx.v(qYes.cx, qYes.b, mid, true);
+      cx.h(mid, qYes.cx, plateB.cx, "link");
+      cx.vFlow(plateB.cx, mid, plateB.t, null);
+      cx.placeLabel(yesLab, qYes.cx + cx.em(0.55), (qYes.b + mid) / 2, "right");
+    }
+  }
+  if (cx.shown(plate) && cx.shown(hand)) {
+    var from = cx.boxOf(plate);
+    var to = cx.boxOf(hand);
+    cx.vFlow(from.cx, from.b, to.t, root.querySelector(".exit-label"));
+  }
+});
+</script>
 </body>
 </html>
