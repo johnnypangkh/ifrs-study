@@ -5977,8 +5977,10 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   align-self: start;
   text-align: start;
   border: 0;
-  background: var(--band);
-  min-height: 0;
+  background: transparent;
+  box-shadow: none;
+  min-height: 0 !important;
+  height: auto !important;
 }
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-k,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-model {
@@ -5991,8 +5993,14 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border: 0;
   background: transparent;
   box-shadow: none;
-  min-height: 0;
-  height: auto;
+  min-height: 0 !important;
+  height: auto !important;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > .rail-name,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > span,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-model > span {
+  min-inline-size: 0;
+  flex: 1 1 0;
 }
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > a.fb-num,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cmp-row > a.fb-num,
