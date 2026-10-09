@@ -35,9 +35,9 @@
   },
   "ch04Geometry": {
     "arms": "wide only; hidden at max-width 800px",
-    "922": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6},
-    "1280": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6},
-    "ledgersAligned": true
+    "922": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0},
+    "1280": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6, "costLedgerTop": 785.9, "revalLedgerTop": 785.9, "ledgerTopDeltaPx": 0},
+    "ledgersAligned": "side-by-side tops match within 1px; gate-line sits under the revalued-amount ledger"
   },
   "pixelSameVs54a349aCss": {
     "widths": [390, 1280],
