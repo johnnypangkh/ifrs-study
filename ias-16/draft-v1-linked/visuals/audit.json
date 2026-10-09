@@ -37,6 +37,12 @@
       "667": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
       "922": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
       "1280": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0}
+    },
+    "ch06-derecognition": {
+      "390": {"nArrows": 0, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "667": {"nArrows": 0, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "922": {"nArrows": 0, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "1280": {"nArrows": 0, "nFail": 0, "nHard": 0, "nLayout": 0}
     }
   },
   "chapterMapWidth": {
@@ -98,5 +104,15 @@
     },
     "otherSameColumn": "Every other same-column inner-rail pair on master and ch01–ch05 was already on the shared border (about -0.9px, -0.75px at 390). Phase rails Scope through Disclosure stay at -1px. ch01, ch03, and ch04 have no stacked inner rails. At ≤800 the 5.5 and 5.4 bands stay full-width headers and do not pull up."
   },
-  "ch06ch07": "Probe failures on ch06 and ch07 match origin/main. This diff does not restyle those maps."
+  "ch06": {
+    "spine": "Plate 6.0 Derecognition — remove carrying amount. Four stuck rails. Horizontal cost-eq. Case-set 6.5 beside 6.3. Foot see IFRS 15 / IFRS 16 / IAS 2 / IFRS 5. No decision-fork, span-bar, exit-shaft, or fifth rail.",
+    "rails": ["When to derecognise", "6.1 Gain or loss measured", "Presentation of gain or loss", "Where carrying amount or proceeds go"],
+    "railGapPx": {"390": -0.75, "667": -0.89, "922": -0.89, "1280": -0.89},
+    "caseHeights": {"922": [216.7, 216.7], "1280": [184.33, 184.33]},
+    "whenPairHeights": {"390": [29.03, 29.03], "922": [33.84, 33.84], "1280": [33.84, 33.84]},
+    "compensation": "6.6 nest under the plate foot, dashed, not an inner-rail and not a third case-cell",
+    "onward": "Disclosure text link to ch07 7.0. No pack-flow shaft.",
+    "red": 0
+  },
+  "ch07": "Not restyled in this diff."
 }
