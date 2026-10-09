@@ -3497,10 +3497,15 @@ body.embed {
     left: 0;
     width: 0.12em;
     transform: none;
+    /* Cross the phase rail (0.7rem + 0.4rem margins, 0.4em + 0.4em
+       padding, 1.25 line, 0.08em borders) so the tip meets the next box. */
+    bottom: calc(0.4em - 1.1rem - 2.21em);
   }
 
   .ppe.pack .pack-flow-shaft::after {
-    left: 0.06em;
+    left: 0;
+    bottom: calc(-1.1rem - 2.21em);
+    transform: none;
   }
 
   .ppe.pack .pack-flow-label {
@@ -3671,7 +3676,7 @@ body.embed {
     position: absolute;
     left: 0;
     top: 0;
-    bottom: 0.4em;
+    bottom: calc(0.4em - 1.1rem - 2.21em);
     width: 0.12em;
     background: var(--accent);
   }
@@ -3679,9 +3684,9 @@ body.embed {
   .ppe.pack .pack-flow.pack-flow-impair::after {
     content: "";
     position: absolute;
-    left: 0.06em;
-    bottom: 0;
-    transform: translateX(-50%);
+    left: 0;
+    bottom: calc(-1.1rem - 2.21em);
+    transform: none;
     border-left: 0.34em solid transparent;
     border-right: 0.34em solid transparent;
     border-top: 0.46em solid var(--accent);
@@ -4238,5 +4243,353 @@ body.embed {
     margin: 0;
     max-width: calc(100% - 1.2em);
     text-align: center;
+  }
+}
+
+/* Ch02 Recognition. Same capitalise decision, inner rails, and cost shaft
+   as the pack Recognition beat, without the pack rail or the pack type scale. */
+.ppe.recog-map {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ppe.recog-map .fork-cap { margin: 0; }
+
+.ppe.recog-map .fork-cap > .decision-fork > .q,
+.ppe.recog-map .fork-cap > .decision-fork > .decision-after > .decision-branch > .harm,
+.ppe.recog-map .fork-cap > .decision-fork > .decision-after > .decision-branch > .leaf {
+  align-self: start;
+}
+
+.ppe.recog-map .criteria {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.55rem 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+  margin-top: 0.7rem;
+}
+
+.ppe.recog-map .criteria > .peer {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ppe.recog-map .q .peer { background: var(--bg); }
+
+.ppe.recog-map .crit-op {
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.23em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ppe.recog-map .peer-line {
+  margin: 0.28em 0 0;
+  color: var(--muted);
+  font-size: 0.92em;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.ppe.recog-map .q-note {
+  margin: 0.45em 0 0;
+  color: var(--ink);
+  font-size: 0.92em;
+  font-weight: 400;
+}
+
+.ppe.recog-map .q > .thin-tip { margin-top: 0.28em; }
+
+.ppe.recog-map .spare-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin-top: 0.55em;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.4em 0.5em;
+  color: var(--ink);
+  font-size: 0.92em;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.ppe.recog-map .spare-row > span:not(.spare-split) {
+  flex: 1 1 12em;
+  min-width: 0;
+}
+
+.ppe.recog-map .spare-split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35em 0.5em;
+  flex: 1 1 100%;
+  margin-top: 0.15em;
+}
+
+.ppe.recog-map .spare-bit {
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.2em 0.45em;
+  color: var(--ink);
+  font-size: 0.92em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ppe.recog-map .spare-split .see { margin-top: 0; }
+
+.ppe.recog-map .leaf .limb-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.35em;
+  margin-top: 0.4em;
+}
+
+.ppe.recog-map .leaf .limb-note > span {
+  flex: 1 1 8em;
+  min-width: 0;
+}
+
+.ppe.recog-map .plate { margin-top: 0; }
+
+.ppe.recog-map .inner-board {
+  display: grid;
+  grid-template-columns: minmax(7.2em, 9.4em) minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe.recog-map .inner-rail {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.22em;
+  min-width: 0;
+  margin: 0;
+  padding: 0.35em 0.35em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--nest);
+  color: var(--ink);
+  font-size: 0.86em;
+  font-weight: 650;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.ppe.recog-map .inner-rail > a.fb-num { margin-inline: auto; }
+
+.ppe.recog-map .rail-name { display: block; max-width: 100%; }
+
+.ppe.recog-map .inner-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35em;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: transparent;
+  padding: 0.5em 0.6em;
+}
+
+.ppe.recog-map .inner-detail > .limb-note,
+.ppe.recog-map .inner-detail > .thin-tip,
+.ppe.recog-map .inner-detail > .see { margin-top: 0; }
+
+.ppe.recog-map .inner-detail .limb-note {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.ppe.recog-map .pack-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
+  align-items: stretch;
+  min-width: 0;
+  margin: 0;
+  color: var(--accent);
+}
+
+.ppe.recog-map .pack-flow-shaft {
+  grid-column: 1;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  min-height: 3.4em;
+  margin: 0;
+  padding: 0.85em 0.4em 0.15em;
+}
+
+.ppe.recog-map .pack-flow-shaft::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0.85em;
+  left: 50%;
+  width: 0.1em;
+  transform: translateX(-50%);
+  background: var(--accent);
+}
+
+.ppe.recog-map .pack-flow-shaft::after { content: none; }
+
+.ppe.recog-map .pack-flow-label {
+  position: relative;
+  z-index: 1;
+  max-width: calc(100% - 0.6em);
+  margin: 0;
+  padding: 0.12em 0.45em;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 0.86em;
+  font-weight: 650;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.ppe.recog-map .bridge {
+  align-self: start;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 560px) {
+  .ppe.recog-map { padding-inline-start: 0.45em; }
+
+  .ppe.recog-map .criteria { grid-template-columns: minmax(0, 1fr); }
+
+  .ppe.recog-map .inner-board {
+    grid-template-columns: minmax(6.2em, 7.4em) minmax(0, 1fr);
+  }
+
+  .ppe.recog-map .pack-flow { display: block; }
+
+  .ppe.recog-map .pack-flow-shaft {
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    min-height: 3.2em;
+    padding: 0.7em 0 0.15em;
+  }
+
+  .ppe.recog-map .pack-flow-shaft::before {
+    left: 0;
+    width: 0.12em;
+    transform: none;
+  }
+
+  .ppe.recog-map .pack-flow-label {
+    margin-left: 0.7em;
+    text-align: start;
+  }
+}
+
+/* 390 only. The shared elbow draws a short stub that stops before the
+   leaf. Extend every fork arm on the pack and the recognition map to the
+   leaf edge, centre it on that side, and keep the label on the midpoint.
+   Desktop rules stay outside this query. */
+@media (max-width: 560px) {
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 2em;
+    row-gap: 0.35em;
+    align-items: center;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch::before,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch::before {
+    content: none;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-after:has(> .varm)::after {
+    inset-inline-start: 0;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .side-note {
+    display: contents;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .harm,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch > .harm {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    justify-self: start;
+    z-index: 1;
+    width: max-content;
+    min-width: max-content;
+    min-height: 1.2em;
+    margin: 0;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .harm .arm-label,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch > .harm .arm-label {
+    position: static;
+    inset: auto;
+    transform: none;
+    display: inline-block;
+  }
+
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .leaf,
+  html .ppe.pack .def-fork.decision-flow.decision-flow .decision-branch > .side-note > .leaf,
+  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch > .leaf {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  html .ppe.pack .decision-flow.decision-flow .decision-branch > .side-note > .see,
+  html .ppe.pack .decision-flow.decision-flow .decision-branch > .side-note > .see-box {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    min-width: 0;
+  }
+
+  html .ppe.pack .decision-flow.decision-flow .decision-branch > .harm::before,
+  html .ppe.recog-map .decision-flow.decision-flow .decision-branch > .harm::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: calc(-0.45em - 0.85em - 0.7em);
+    right: calc(-2em + 0.38em);
+    height: 0.12em;
+    transform: translateY(-50%);
+    background: var(--arm, var(--stem, var(--dash)));
+  }
+
+  html .ppe.pack .decision-flow.decision-flow .decision-branch > .harm::after,
+  html .ppe.recog-map .decision-flow.decision-flow .decision-branch > .harm::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -2em;
+    width: 0;
+    height: 0;
+    transform: translateY(-50%);
+    border-top: 0.28em solid transparent;
+    border-bottom: 0.28em solid transparent;
+    border-left: 0.38em solid var(--arm, var(--stem, var(--dash)));
   }
 }
