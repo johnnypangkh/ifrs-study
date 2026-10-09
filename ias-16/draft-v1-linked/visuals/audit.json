@@ -1,142 +1,47 @@
 {
- "probe": "v2.1",
- "widths": [
-  390,
-  667,
-  922,
-  1280
- ],
- "maps": {
-  "master-concept-map": {
-   "390": {
-    "nArrows": 15,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "667": {
-    "nArrows": 15,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "922": {
-    "nArrows": 22,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "1280": {
-    "nArrows": 22,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   }
+  "probe": "v2.1",
+  "widths": [390, 667, 922, 1280],
+  "maps": {
+    "master-concept-map": {
+      "390": {"nArrows": 15, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "667": {"nArrows": 15, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "922": {"nArrows": 22, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "1280": {"nArrows": 22, "nFail": 0, "nHard": 0, "nLayout": 0}
+    },
+    "ch01-scope": {
+      "390": {"nArrows": 4, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "667": {"nArrows": 4, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "922": {"nArrows": 4, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "1280": {"nArrows": 4, "nFail": 0, "nHard": 0, "nLayout": 0}
+    },
+    "ch02-recognition": {
+      "390": {"nArrows": 3, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "667": {"nArrows": 3, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "922": {"nArrows": 5, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "1280": {"nArrows": 5, "nFail": 0, "nHard": 0, "nLayout": 0}
+    },
+    "ch03-initial": {
+      "390": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "667": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "922": {"nArrows": 7, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "1280": {"nArrows": 7, "nFail": 0, "nHard": 0, "nLayout": 0}
+    },
+    "ch04-models": {
+      "390": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "667": {"nArrows": 1, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "922": {"nArrows": 5, "nFail": 0, "nHard": 0, "nLayout": 0},
+      "1280": {"nArrows": 5, "nFail": 0, "nHard": 0, "nLayout": 0}
+    }
   },
-  "ch01-scope": {
-   "390": {
-    "nArrows": 4,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "667": {
-    "nArrows": 4,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "922": {
-    "nArrows": 4,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "1280": {
-    "nArrows": 4,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   }
+  "ch04Geometry": {
+    "arms": "wide only; hidden at max-width 800px",
+    "922": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6},
+    "1280": {"parentCentreMinusHeadMidpointPx": 0, "headTopGapPx": 25.6},
+    "ledgersAligned": true
   },
-  "ch02-recognition": {
-   "390": {
-    "nArrows": 3,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "667": {
-    "nArrows": 3,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "922": {
-    "nArrows": 5,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "1280": {
-    "nArrows": 5,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   }
-  },
-  "ch03-initial": {
-   "390": {
-    "nArrows": 1,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "667": {
-    "nArrows": 1,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "922": {
-    "nArrows": 7,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   },
-   "1280": {
-    "nArrows": 7,
-    "nFail": 0,
-    "nLayout": 0,
-    "layout": [],
-    "fails": []
-   }
+  "pixelSameVs54a349aCss": {
+    "widths": [390, 1280],
+    "maps": ["master-concept-map", "ch01-scope", "ch02-recognition", "ch03-initial", "ch05-depreciation", "ch06-derecognition", "ch07-disclosure"],
+    "result": "SAME"
   }
- },
- "knownBadControl": {
-  "commit": "2404ac8",
-  "map": "ch01-scope",
-  "note": "v2.1 still FAILs the pre-fix chapter map",
-  "results": {
-   "390": "2/5",
-   "667": "1/5",
-   "922": "1/5",
-   "1280": "1/5"
-  }
- }
 }
