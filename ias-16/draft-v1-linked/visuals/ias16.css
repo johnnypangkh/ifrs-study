@@ -3913,7 +3913,13 @@ body.embed {
 
 .ppe.scope-map .fork-excl .decision-branch { --stem: var(--danger); }
 
-.ppe.scope-map .scope-bearer { margin-top: 0; }
+.ppe.scope-map .scope-bearer {
+  margin-top: 0;
+  padding: 0.6em 0.7em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
 
 .ppe.scope-map .pack-flow {
   display: block;
@@ -3971,54 +3977,6 @@ body.embed {
   text-align: start;
 }
 
-.ppe.scope-map .pack-flow > .recover {
-  position: relative;
-  display: block;
-  align-self: stretch;
-  min-height: 0;
-  margin: 0.15em 0 0.45em 0.7em;
-  padding: 0;
-  background: transparent;
-}
-
-.ppe.scope-map .pack-flow > .recover::before {
-  content: "";
-  position: absolute;
-  left: -0.7em;
-  top: 0.55em;
-  right: auto;
-  bottom: auto;
-  width: 0.7em;
-  height: 0.1em;
-  background: var(--accent);
-}
-
-.ppe.scope-map .pack-flow > .recover::after {
-  content: "";
-  position: absolute;
-  left: -0.7em;
-  top: 0.55em;
-  right: auto;
-  bottom: auto;
-  transform: translateY(-50%);
-  border-top: 0.28em solid transparent;
-  border-bottom: 0.28em solid transparent;
-  border-right: 0.38em solid var(--accent);
-  border-left: 0;
-}
-
-.ppe.scope-map .pack-flow > .recover .recover-label {
-  position: relative;
-  display: block;
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-size: 0.86em;
-  font-weight: 650;
-  line-height: 1.35;
-  text-align: start;
-}
-
 @media (min-width: 561px) {
   .ppe.scope-map .scope-stack {
     display: grid;
@@ -4033,13 +3991,27 @@ body.embed {
   .ppe.scope-map .fork-ppe > .decision-fork > .q,
   .ppe.scope-map .fork-excl > .decision-fork > .q,
   .ppe.scope-map .fork-ppe > .decision-fork > .decision-after > .decision-branch > .harm,
-  .ppe.scope-map .fork-excl > .decision-fork > .decision-after > .decision-branch > .harm,
-  .ppe.scope-map .fork-ppe .side-note,
-  .ppe.scope-map .fork-excl .side-note { align-self: start; }
+  .ppe.scope-map .fork-excl > .decision-fork > .decision-after > .decision-branch > .harm {
+    align-self: stretch;
+  }
 
+  /* Centre the outcome on the question so the horizontal arm meets both
+     side midpoints. The see-also hangs in the space under that centred leaf. */
   .ppe.scope-map .fork-ppe .side-note {
     grid-column: 3;
     grid-row: 1;
+    align-self: stretch;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .ppe.scope-map .fork-ppe .side-note > .leaf { grid-row: 2; }
+
+  .ppe.scope-map .fork-ppe .side-note > .pack-see-not {
+    grid-row: 3;
+    align-self: start;
+    margin-top: 0.45em;
   }
 
   .ppe.scope-map .fork-excl > .decision-fork > .q {
@@ -4052,9 +4024,22 @@ body.embed {
     grid-row: 3;
   }
 
-  .ppe.scope-map .fork-excl .side-note {
+  /* The carve cards sit beside the continuing No, not inside the question
+     row, so that stem starts on the question's bottom edge. */
+  .ppe.scope-map .fork-excl .side-note { display: contents; }
+
+  .ppe.scope-map .fork-excl .leaf.pack-stop {
     grid-column: 3;
     grid-row: 3;
+    align-self: center;
+    min-width: 0;
+  }
+
+  .ppe.scope-map .fork-excl .carve-set {
+    grid-column: 3;
+    grid-row: 4;
+    align-self: start;
+    min-width: 0;
   }
 
   .ppe.scope-map .fork-excl > .decision-fork > .decision-after > .varm {
@@ -4066,7 +4051,7 @@ body.embed {
     grid-column: 1 / -1;
     grid-row: 5;
     display: grid;
-    grid-template-columns: minmax(0, 0.625fr) minmax(0, 0.625fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
     align-items: stretch;
   }
 
@@ -4091,68 +4076,32 @@ body.embed {
     position: absolute;
     top: 0;
     bottom: 0.4em;
-    left: auto;
-    right: -0.05em;
+    left: 50%;
     width: 0.1em;
-    transform: none;
+    transform: translateX(-50%);
     background: var(--accent);
   }
 
   .ppe.scope-map .pack-flow-shaft::after {
     content: "";
     position: absolute;
-    left: auto;
-    right: -0.34em;
+    left: 50%;
     bottom: 0;
     z-index: 1;
-    transform: none;
+    transform: translateX(-50%);
     border-left: 0.34em solid transparent;
     border-right: 0.34em solid transparent;
     border-top: 0.46em solid var(--accent);
   }
 
   .ppe.scope-map .pack-flow-label {
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    width: max-content;
-    max-width: none;
-    margin: 0;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  .ppe.scope-map .pack-flow > .recover {
-    grid-column: 2 / 5;
-    margin: 0;
-    min-height: 4.6em;
-  }
-
-  .ppe.scope-map .pack-flow > .recover::before {
-    left: 0;
-    right: 0.45em;
-    top: 0.72em;
-    width: auto;
-    height: 0.1em;
-  }
-
-  .ppe.scope-map .pack-flow > .recover::after {
-    left: 0;
-    top: 0.77em;
-    border-top-width: 0.32em;
-    border-bottom-width: 0.32em;
-    border-right-width: 0.46em;
-  }
-
-  .ppe.scope-map .pack-flow > .recover .recover-label {
-    position: absolute;
+    position: relative;
     left: auto;
-    right: 0.45em;
-    top: 0.77em;
-    width: max-content;
-    max-width: calc(100% - 1.4em);
-    transform: translateY(-50%);
-    padding: 0.08em 0.4em;
+    top: auto;
+    width: auto;
+    max-width: calc(100% - 0.6em);
+    margin: 0;
+    transform: none;
     text-align: center;
   }
 }
@@ -4160,6 +4109,141 @@ body.embed {
 @media (max-width: 560px) {
   .ppe.scope-map .criteria,
   .ppe.scope-map .carve-set { grid-template-columns: minmax(0, 1fr); }
+
+  /* Narrow spine: the continuing stem drops from the centre of the question
+     and enters the next box at the centre of its top edge. The outcome elbows
+     off that stem into the leaf's left edge, at the leaf's vertical centre. */
+  html .ppe.scope-map .decision-flow.decision-flow .decision-after {
+    border-inline-start: none;
+    padding-inline-start: 0;
+  }
+
+  html .ppe.scope-map .decision-flow.decision-flow .decision-after::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0.42em;
+    width: 0.12em;
+    height: auto;
+    transform: translateX(-50%);
+    background: var(--stem, var(--accent));
+  }
+
+  html .ppe.scope-map .decision-flow.decision-flow .decision-after:has(> .varm)::after {
+    inset-inline-start: 50%;
+    left: 50%;
+    right: auto;
+    bottom: 0;
+    transform: translateX(-50%);
+  }
+
+  html .ppe.scope-map .decision-flow.decision-flow .decision-after > .varm {
+    position: absolute;
+    left: auto;
+    right: calc(50% + 0.4em);
+    top: 50%;
+    bottom: auto;
+    width: max-content;
+    max-width: calc(50% - 0.8em);
+    margin: 0;
+    transform: translateY(-50%);
+    text-align: end;
+  }
+
+  html .ppe.scope-map .decision-flow.decision-flow .decision-branch {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 0.5em;
+    row-gap: 0.35em;
+    align-items: start;
+    width: calc(50% - 0.85em);
+    max-width: calc(50% - 0.85em);
+    min-width: 0;
+    margin-inline-start: calc(50% + 0.55em);
+    padding-inline-start: 0;
+  }
+
+  html .ppe.scope-map .decision-flow.decision-flow .decision-branch::before {
+    content: none;
+  }
+
+  html .ppe.scope-map .fork-ppe .side-note,
+  html .ppe.scope-map .fork-excl .side-note { display: contents; }
+
+  html .ppe.scope-map .decision-flow.decision-flow .decision-branch > .harm {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  html .ppe.scope-map .fork-ppe .leaf.mute,
+  html .ppe.scope-map .fork-excl .leaf.pack-stop {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  html .ppe.scope-map .fork-ppe .pack-see-not,
+  html .ppe.scope-map .fork-excl .carve-set {
+    grid-column: 2;
+    grid-row: 2;
+    min-width: 0;
+  }
+
+  html .ppe.scope-map .decision-flow.decision-flow .decision-branch > .harm::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: -0.55em;
+    right: calc(-0.5em + 0.38em);
+    height: 0.12em;
+    transform: translateY(-50%);
+    background: var(--stem, var(--accent));
+  }
+
+  html .ppe.scope-map .decision-flow.decision-flow .decision-branch > .harm::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -0.5em;
+    width: 0;
+    height: 0;
+    transform: translateY(-50%);
+    border-top: 0.28em solid transparent;
+    border-bottom: 0.28em solid transparent;
+    border-left: 0.38em solid var(--stem, var(--accent));
+  }
+
+  html .ppe.scope-map .pack-flow {
+    min-height: 3.6em;
+  }
+
+  html .ppe.scope-map .pack-flow::before {
+    left: 50%;
+    width: 0.12em;
+    transform: translateX(-50%);
+  }
+
+  html .ppe.scope-map .pack-flow::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  html .ppe.scope-map .pack-flow-shaft {
+    justify-content: center;
+    width: 100%;
+    min-height: 3.6em;
+  }
+
+  html .ppe.scope-map .pack-flow-label {
+    margin: 0;
+    max-width: calc(100% - 1.2em);
+    text-align: center;
+  }
 }
 
 /* Ch02 Recognition. Same capitalise decision, inner rails, and cost shaft
