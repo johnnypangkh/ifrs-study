@@ -8013,3 +8013,252 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     border-top-right-radius: var(--card-radius) !important;
   }
 }
+
+/* Scope, Cost, and Models — chapter-owned blocks on the chapter visual
+   and on the master include. Wrap at spaces. Inset stays inside the box. */
+.ppe .ch01-scope,
+.ppe .ch01-scope *,
+.ppe .ch03-cost,
+.ppe .ch03-cost *,
+.ppe .ch04-models,
+.ppe .ch04-models * {
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  hyphens: none !important;
+}
+
+.ch01-scope {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+  width: 100%;
+}
+
+.ch01-scope .carve-set {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2, 0.45rem);
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe .ch01-scope .see,
+.ppe .ch03-cost .see,
+.ppe .ch04-models .see,
+.ppe .ch04-models .lens-k,
+.ppe .ch04-models .lens-head,
+.ppe .ch04-models .class-token,
+.ppe .ch04-models .rev-cell,
+.ppe .ch04-models .rev-col,
+.ppe .ch04-models .rev-row,
+.ppe .ch01-scope .carve,
+.ppe .ch01-scope .scope-bearer,
+.ppe .ch01-scope .tip,
+.ppe .ch03-cost .limb,
+.ppe .ch03-cost .cost-result,
+.ppe .ch03-cost .facet,
+.ppe .ch03-cost .peer {
+  padding: 0.55em 0.65em !important;
+}
+
+.ch01-scope .carve {
+  min-width: 0;
+  padding: 0.55em 0.65em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+}
+
+.ch01-scope .carve-name,
+.ch01-scope .carve .peer-line {
+  margin: 0;
+  color: var(--ink);
+}
+
+.ch01-scope .scope-bearer {
+  margin-top: 0;
+  padding: 0.6em 0.7em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+
+.ch01-scope .scope-stack > .scope-tip {
+  margin-top: 2.2rem;
+}
+
+@media (min-width: 50.0625rem) {
+  .ch01-scope .scope-stack > .scope-tip {
+    grid-column: 1;
+    grid-row: 5;
+    align-self: start;
+  }
+
+  .ch01-scope .scope-stack > .scope-bearer {
+    grid-column: 1;
+    grid-row: 6;
+    align-self: start;
+    margin-top: 0.4rem;
+  }
+
+  .ch01-scope .fork-excl .carve-set {
+    grid-column: 3;
+    grid-row: 4;
+    align-self: start;
+  }
+}
+
+@media (max-width: 50rem) {
+  .ch01-scope .carve-set {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.ch03-cost .waste-mute { color: var(--muted); }
+
+.ch03-cost .da-col .thin-tip { margin: 0.45em 0 0; }
+
+.ch03-cost .facet-foot > .facet-dense {
+  width: 100%;
+  margin: 0;
+}
+
+.ch03-cost .facet-dense .src-differ {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.45rem 0.55rem;
+  align-items: stretch;
+  margin: 0.35rem 0 0.15rem;
+}
+
+.ch03-cost .facet-dense .src-differ > .peer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+  padding: 0.55em 0.65em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+}
+
+.ch03-cost .facet-dense .differ-op {
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.ch03-cost .facet-dense .span-rule { margin-top: 0.15rem; }
+
+@media (max-width: 50rem) {
+  .ch03-cost .facet-dense .src-differ {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ch03-cost .facet-dense .differ-op {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+}
+
+.ch04-models .mini-k { margin: 0.6rem 0 0; }
+
+.ch04-models .class-tokens {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  min-width: 0;
+}
+
+.ch04-models .class-token {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  margin: 0;
+  padding: 0.5em 0.55em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  text-align: center;
+}
+
+.ch04-models .policy-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  min-width: 0;
+}
+
+.ch04-models .policy-foot .see,
+.ch04-models .see.see-wide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15em 0.35em;
+  max-width: 100%;
+}
+
+.ch04-models .see-line {
+  flex: 1 1 12em;
+  min-width: 0;
+  font-weight: 400;
+}
+
+.ch04-models .gate-line,
+.ch04-models .pair-foot {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.ch04-models .gate-line { color: var(--muted); }
+
+.ch04-models .both-zone {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+  margin-top: 0.55rem;
+  min-width: 0;
+}
+
+.ch04-models .both-zone .both-bar,
+.ch04-models .both-zone .see {
+  min-width: 0;
+  margin: 0;
+  padding: 0.55em 0.65em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+}
+
+@media (max-width: 50rem) {
+  .ch04-models .both-zone { grid-template-columns: minmax(0, 1fr); }
+
+  .ch04-models .lens-row:has(.rev-table) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .ch04-models .rev-table {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .ch04-models .rev-corner,
+  .ch04-models .rev-col,
+  .ch04-models .rev-row,
+  .ch04-models .rev-cell {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+}
+
+@media (max-width: 40rem) {
+  .ch04-models .class-tokens { grid-template-columns: minmax(0, 1fr); }
+}
