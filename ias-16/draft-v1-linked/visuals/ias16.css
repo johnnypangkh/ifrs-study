@@ -7473,14 +7473,13 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   }
 }
 
-/* #63 Ch06 follow-master v11. Chapter map only (.ch06-map).
-   Five framed rails, map-gap, When title/bullets rows, formula context cells.
-   No mock banner, no viewport lock. */
-.ppe.derecog-map.ch06-map {
+/* #63 Ch06 follow-master v11. Scoped to .ch06-map: the chapter map root
+   and the master Derecognition plate. Other master plates are outside it. */
+.ch06-map {
   --map-gap: 0.45rem;
 }
 
-.ppe.derecog-map.ch06-map .master-echo {
+.ch06-map .master-echo {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -7493,7 +7492,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .echo-k {
+.ch06-map .echo-k {
   color: var(--muted);
   font-size: 0.82em;
   font-weight: 650;
@@ -7501,7 +7500,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   text-transform: uppercase;
 }
 
-.ppe.derecog-map.ch06-map .echo-steps {
+.ch06-map .echo-steps {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -7511,7 +7510,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   list-style: none;
 }
 
-.ppe.derecog-map.ch06-map .echo-step {
+.ch06-map .echo-step {
   display: inline-flex;
   align-items: center;
   margin: 0;
@@ -7525,9 +7524,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .echo-step.echo-done { color: var(--ink); }
+.ch06-map .echo-step.echo-done { color: var(--ink); }
 
-.ppe.derecog-map.ch06-map .echo-step.echo-now {
+.ch06-map .echo-step.echo-now {
   color: var(--ink);
   border-color: var(--accent);
   background: var(--surface);
@@ -7535,9 +7534,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   font-weight: 700;
 }
 
-.ppe.derecog-map.ch06-map .echo-step.echo-later { opacity: 0.55; }
+.ch06-map .echo-step.echo-later { opacity: 0.55; }
 
-.ppe.derecog-map.ch06-map .echo-step:not(:last-child)::after {
+.ch06-map .echo-step:not(:last-child)::after {
   content: "→";
   margin-left: 0.45em;
   color: var(--muted);
@@ -7545,14 +7544,14 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   opacity: 0.7;
 }
 
-.ppe.derecog-map.ch06-map > .pack-flow-in {
+.ch06-map > .pack-flow-in {
   display: flex;
   justify-content: center;
   min-height: 0;
   margin: 0 0 0.55rem;
 }
 
-.ppe.derecog-map.ch06-map > .pack-flow-in .pack-flow-shaft {
+.ch06-map > .pack-flow-in .pack-flow-shaft {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7563,7 +7562,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   padding: 0;
 }
 
-.ppe.derecog-map.ch06-map > .pack-flow-in .pack-flow-label {
+.ch06-map > .pack-flow-in .pack-flow-label {
   position: static;
   left: auto;
   top: auto;
@@ -7578,7 +7577,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map > .plate {
+.ch06-map > .plate,
+.plate.ch06-map {
   border: 0.12em solid var(--accent);
   background: var(--surface);
   box-shadow: none;
@@ -7588,20 +7588,20 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   max-width: calc(100% - 0.35rem);
 }
 
-.ppe.derecog-map.ch06-map .pack-exit .inner-board {
+.ch06-map .pack-exit .inner-board {
   row-gap: var(--map-gap);
   column-gap: var(--map-gap);
 }
 
-.ppe.derecog-map.ch06-map .pack-exit .inner-board > .inner-rail,
-.ppe.derecog-map.ch06-map .pack-exit .inner-board > .inner-detail {
+.ch06-map .pack-exit .inner-board > .inner-rail,
+.ch06-map .pack-exit .inner-board > .inner-detail {
   margin: 0;
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .pack-exit .inner-board > .inner-detail {
+.ch06-map .pack-exit .inner-board > .inner-detail {
   background: var(--surface);
   display: flex;
   flex-direction: column;
@@ -7609,7 +7609,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   min-width: 0;
 }
 
-.ppe.derecog-map.ch06-map .when-pair {
+.ch06-map .when-pair {
   display: grid;
   grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
   grid-template-rows: auto auto;
@@ -7620,12 +7620,12 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   margin: 0;
 }
 
-.ppe.derecog-map.ch06-map .when-pair > .when-t1 { grid-area: t1; }
-.ppe.derecog-map.ch06-map .when-pair > .when-t2 { grid-area: t2; }
-.ppe.derecog-map.ch06-map .when-pair > .when-b1 { grid-area: b1; }
-.ppe.derecog-map.ch06-map .when-pair > .when-b2 { grid-area: b2; }
+.ch06-map .when-pair > .when-t1 { grid-area: t1; }
+.ch06-map .when-pair > .when-t2 { grid-area: t2; }
+.ch06-map .when-pair > .when-b1 { grid-area: b1; }
+.ch06-map .when-pair > .when-b2 { grid-area: b2; }
 
-.ppe.derecog-map.ch06-map .when-pair > .when-or {
+.ch06-map .when-pair > .when-or {
   grid-area: or;
   position: static;
   align-self: center;
@@ -7641,7 +7641,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   line-height: 1.2;
 }
 
-.ppe.derecog-map.ch06-map .when-pair > .when-cell {
+.ch06-map .when-pair > .when-cell {
   display: block;
   margin: 0;
   min-width: 0;
@@ -7653,7 +7653,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .when-pair .peer-title {
+.ch06-map .when-pair .peer-title {
   justify-content: flex-start;
   align-items: flex-start;
   height: auto;
@@ -7663,24 +7663,24 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   font-weight: 700;
 }
 
-.ppe.derecog-map.ch06-map .when-pair .peer-title > span {
+.ch06-map .when-pair .peer-title > span {
   flex: 0 1 auto;
   text-align: left;
 }
 
-.ppe.derecog-map.ch06-map .when-pair .peer-notes {
+.ch06-map .when-pair .peer-notes {
   margin: 0;
   color: var(--muted);
   font-size: 0.88em;
 }
 
-.ppe.derecog-map.ch06-map .idle-note {
+.ch06-map .idle-note {
   margin: 0;
   color: var(--muted);
   font-size: 0.88em;
 }
 
-.ppe.derecog-map.ch06-map .cost-eq.fx-grid {
+.ch06-map .cost-eq.fx-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
   grid-template-areas: "a o1 b o2 c" ". . cb . cc";
@@ -7689,16 +7689,16 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   inline-size: 100%;
 }
 
-.ppe.derecog-map.ch06-map .fx-a { grid-area: a; }
-.ppe.derecog-map.ch06-map .fx-o1 { grid-area: o1; align-self: center; }
-.ppe.derecog-map.ch06-map .fx-b { grid-area: b; }
-.ppe.derecog-map.ch06-map .fx-o2 { grid-area: o2; align-self: center; }
-.ppe.derecog-map.ch06-map .fx-c { grid-area: c; }
-.ppe.derecog-map.ch06-map .fx-ctx-b { grid-area: cb; }
-.ppe.derecog-map.ch06-map .fx-ctx-c { grid-area: cc; }
+.ch06-map .fx-a { grid-area: a; }
+.ch06-map .fx-o1 { grid-area: o1; align-self: center; }
+.ch06-map .fx-b { grid-area: b; }
+.ch06-map .fx-o2 { grid-area: o2; align-self: center; }
+.ch06-map .fx-c { grid-area: c; }
+.ch06-map .fx-ctx-b { grid-area: cb; }
+.ch06-map .fx-ctx-c { grid-area: cc; }
 
-.ppe.derecog-map.ch06-map .cost-eq > .cost-result,
-.ppe.derecog-map.ch06-map .cost-eq > .limb {
+.ch06-map .cost-eq > .cost-result,
+.ch06-map .cost-eq > .limb {
   align-self: stretch;
   min-height: 2.75em;
   border: 0.08em solid var(--line);
@@ -7707,7 +7707,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .fx-ctx {
+.ch06-map .fx-ctx {
   display: flex;
   flex-direction: column;
   gap: 0.3em;
@@ -7720,15 +7720,15 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .ctx-line {
+.ch06-map .ctx-line {
   margin: 0;
   font-size: 0.88em;
   line-height: 1.4;
 }
 
-.ppe.derecog-map.ch06-map .ctx-mute { color: var(--muted); }
+.ch06-map .ctx-mute { color: var(--muted); }
 
-.ppe.derecog-map.ch06-map .goes-pair {
+.ch06-map .goes-pair {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--map-gap);
@@ -7736,7 +7736,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   min-width: 0;
 }
 
-.ppe.derecog-map.ch06-map .goes-cell {
+.ch06-map .goes-cell {
   display: flex;
   flex-direction: column;
   gap: 0.25em;
@@ -7749,42 +7749,42 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .goes-cell .peer-title { margin: 0; font-weight: 700; }
-.ppe.derecog-map.ch06-map .goes-line { margin: 0; font-weight: 600; }
-.ppe.derecog-map.ch06-map .goes-tip {
+.ch06-map .goes-cell .peer-title { margin: 0; font-weight: 700; }
+.ch06-map .goes-line { margin: 0; font-weight: 600; }
+.ch06-map .goes-tip {
   margin: 0;
   color: var(--muted);
   font-size: 0.86em;
   line-height: 1.4;
 }
 
-.ppe.derecog-map.ch06-map .limb-note,
-.ppe.derecog-map.ch06-map .soft-note {
+.ch06-map .limb-note,
+.ch06-map .soft-note {
   margin: 0;
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .case-set,
-.ppe.derecog-map.ch06-map .src-differ {
+.ch06-map .case-set,
+.ch06-map .partial-nest .src-differ {
   gap: var(--map-gap);
   align-items: stretch;
 }
 
-.ppe.derecog-map.ch06-map .case-cell {
+.ch06-map .case-cell {
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
   background: var(--bg);
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .case-set > .case-cell {
+.ch06-map .case-set > .case-cell {
   height: 100%;
   align-self: stretch;
 }
 
-.ppe.derecog-map.ch06-map .partial-nest {
+.ch06-map .partial-nest {
   display: flex;
   flex-direction: column;
   gap: var(--map-gap);
@@ -7796,20 +7796,20 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .partial-nest > .peer-title,
-.ppe.derecog-map.ch06-map .partial-nest > .limb-note,
-.ppe.derecog-map.ch06-map .partial-nest > .thin-tip { margin: 0; }
+.ch06-map .partial-nest > .peer-title,
+.ch06-map .partial-nest > .limb-note,
+.ch06-map .partial-nest > .thin-tip { margin: 0; }
 
-.ppe.derecog-map.ch06-map .partial-nest .src-differ { margin: 0; }
+.ch06-map .partial-nest .src-differ { margin: 0; }
 
-.ppe.derecog-map.ch06-map .partial-nest .src-differ > .peer {
+.ch06-map .partial-nest .src-differ > .peer {
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
   background: var(--surface);
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .see {
+.ch06-map .see {
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
@@ -7820,20 +7820,20 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-.ppe.derecog-map.ch06-map .see > .fb-num { flex: 0 0 auto; }
+.ch06-map .see > .fb-num { flex: 0 0 auto; }
 
-.ppe.derecog-map.ch06-map .see > .see-text {
+.ch06-map .see > .see-text {
   display: block;
   flex: 1 1 auto;
   min-width: 0;
 }
 
-.ppe.derecog-map.ch06-map .see > .see-text > * {
+.ch06-map .see > .see-text > * {
   display: inline;
   position: static;
 }
 
-.ppe.derecog-map.ch06-map > .comp-nest {
+.ch06-map > .comp-nest {
   display: flex;
   flex-direction: column;
   gap: 0.28em;
@@ -7848,17 +7848,17 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   max-width: calc(100% - 0.35rem);
 }
 
-.ppe.derecog-map.ch06-map > .comp-nest > .peer-title {
+.ch06-map > .comp-nest > .peer-title {
   margin: 0;
   color: var(--ink);
   font-weight: 650;
 }
 
-.ppe.derecog-map.ch06-map > .comp-nest > .item-rows {
+.ch06-map > .comp-nest > .item-rows {
   margin-top: 0.2em;
 }
 
-.ppe.derecog-map.ch06-map > .soft-onward {
+.ch06-map > .soft-onward {
   display: inline-flex;
   align-self: flex-start;
   margin: 0;
@@ -7873,13 +7873,13 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 @media (max-width: 40rem) {
-  .ppe.derecog-map.ch06-map .inner-board {
+  .ch06-map .inner-board {
     row-gap: var(--map-gap) !important;
     column-gap: var(--map-gap) !important;
   }
 
-  .ppe.derecog-map.ch06-map .inner-board > .inner-rail,
-  .ppe.derecog-map.ch06-map .inner-board > .inner-detail {
+  .ch06-map .inner-board > .inner-rail,
+  .ch06-map .inner-board > .inner-detail {
     margin: 0 !important;
     border-width: 0.08em !important;
     border-style: solid !important;
@@ -7887,36 +7887,36 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     border-radius: var(--card-radius) !important;
   }
 
-  .ppe.derecog-map.ch06-map .echo-steps { width: 100%; }
-  .ppe.derecog-map.ch06-map .echo-step { flex: 1 1 auto; }
+  .ch06-map .echo-steps { width: 100%; }
+  .ch06-map .echo-step { flex: 1 1 auto; }
 
-  .ppe.derecog-map.ch06-map .when-pair {
+  .ch06-map .when-pair {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
     grid-template-areas: "t1" "b1" "or" "t2" "b2";
   }
 
-  .ppe.derecog-map.ch06-map .cost-eq.fx-grid {
+  .ch06-map .cost-eq.fx-grid {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "a" "o1" "b" "cb" "o2" "c" "cc";
   }
 
-  .ppe.derecog-map.ch06-map .fx-o1,
-  .ppe.derecog-map.ch06-map .fx-o2 { justify-self: center; }
+  .ch06-map .fx-o1,
+  .ch06-map .fx-o2 { justify-self: center; }
 
-  .ppe.derecog-map.ch06-map .goes-pair {
+  .ch06-map .goes-pair {
     grid-template-columns: minmax(0, 1fr);
   }
 
   /* Shared narrow rule stacks a single chip above its text. See also stays one row. */
-  .ppe.derecog-map.ch06-map .see {
+  .ch06-map .see {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     align-items: flex-start !important;
   }
 
-  .ppe.derecog-map.ch06-map .see > .fb-num {
+  .ch06-map .see > .fb-num {
     margin-bottom: 0 !important;
   }
 }
