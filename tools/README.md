@@ -49,7 +49,7 @@ Whitespace, `data-phase-*` attributes, and `?v=` are ignored when the include is
 
 The Derecognition chapter section and the master copy matched after collapsing whitespace and ignoring `data-phase-*` and `?v=`. The only token the master added was the class `ch06-map`, which is the styling hook for that plate. It stays on the included root via `inject-class`. The wrapper carries `data-phase-start` and `data-phase-end`.
 
-The Depreciation plate matches the same way. The chapter and the master differed by one sentence before the include: the master said “Leased assets: IFRS 16”; the chapter continued “— lessee right-of-use asset depreciation often uses IAS 16”. Both now say “Lessee right-of-use asset — depreciation applies IAS 16, subject to IFRS 16 (useful life / lease term)”. No class is injected. The master wrapper keeps `dep-port`, `data-phase-start`, and `data-phase-end`, and also carries `map-include`. The during-use axis (`5.4` Begins/Ceases) is marked inside that plate, so the Depreciation include is the one master copy.
+The Depreciation plate matches the same way. The chapter and the master differed by one sentence before the include: the master said “Leased assets: IFRS 16”; the chapter continued “— lessee right-of-use asset depreciation often uses IAS 16”. Both now say “Lessee right-of-use asset — depreciation applies IAS 16, subject to IFRS 16 (useful life / lease term)”. No class is injected. The master wrapper keeps `dep-port`, `data-phase-start`, and `data-phase-end`. It does not also take `map-include`: that class zeros padding, and `.dep-port` is a `.ppe` that keeps the pack's end padding. The during-use axis (`5.4` Begins/Ceases) is marked inside that plate, so the Depreciation include is the one master copy.
 
 ### Master-owned
 

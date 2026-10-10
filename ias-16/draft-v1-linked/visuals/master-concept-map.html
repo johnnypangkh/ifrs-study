@@ -440,7 +440,7 @@
 
     <a class="rail-link" data-phase="dep" href="../ch05.html#s-5-0" target="_parent">Depreciation</a>
     <div class="beat" data-phase="dep">
-      <div class="ppe dep-map dep-port map-include" data-phase-start data-phase-end>
+      <div class="ppe dep-map dep-port" data-phase-start data-phase-end>
         <!-- include:ch05-depreciation.html#ch05-dep:start -->
         <section class="plate" aria-label="Depreciable amount equals cost or revalued amount minus residual value">
           <p class="plate-title"><a class="fb-num" href="../ch05.html#s-5-0" target="_parent">5.0</a><span>Depreciation</span></p>
@@ -1351,9 +1351,10 @@
 
     /* flow-v3: XOR pack-flow-fork removed — Models→Dep is a single .pack-flow.
        .map-include is the master-owned phase wrapper around a spliced plate.
-       Depreciation keeps .dep-port as that wrapper (it also carries map-include).
-       The Models shaft meets the port, and the Impairment shaft meets the
-       Derecognition plate inside its own map-include. */
+       Depreciation keeps .dep-port as that wrapper. It is not also .map-include:
+       that class zeros padding, and .dep-port is a .ppe that keeps the pack's
+       end padding. The Models shaft meets the port, and the Impairment shaft
+       meets the Derecognition plate inside its own map-include. */
     function beatBoard(beat) {
       if (!beat) return null;
       var port = beat.querySelector(":scope > .dep-port");
