@@ -4,7 +4,7 @@
    INDEX is the search-index.js stamp. build-search-index.py rewrites it. */
 (function () {
   var V = "chrome-qc-r2-20261010";
-  var INDEX = "5bb29c7188fd";
+  var INDEX = "248de7c07e9e";
   var src = (document.currentScript && document.currentScript.src) || "";
   var dir = src.replace(/[^/?]*(\?.*)?$/, "");
   if (!dir) dir = "../../_shared/";

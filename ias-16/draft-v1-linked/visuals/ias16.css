@@ -6680,3 +6680,149 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .lc-head-axis { position: relative; }
 .ppe .lc-head-axis > .lc-drop { position: absolute; width: 2px; transform: translateX(-50%); background: var(--accent); pointer-events: none; z-index: 0; }
 @media (max-width: 40rem) { .ppe .lc-head-axis > .lc-axis { margin-block: 0.9rem !important; } }
+
+/* Impairment outer rail. Solid plate, framed cards, dashed see-also only. */
+.ppe.pack .impair-board {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+}
+
+.ppe.pack .impair-board > * {
+  width: 100%;
+  min-width: 0;
+}
+
+.ppe.pack .lc-key-imp {
+  color: var(--accent);
+}
+
+.ppe.pack .impair-cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: stretch;
+}
+
+.ppe.pack .impair-core,
+.ppe.pack .impair-comp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 0.55em 0.65em;
+}
+
+.ppe.pack .impair-plate .card-k {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3em;
+  margin: 0;
+  font-weight: 700;
+}
+
+.ppe.pack .impair-ca-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.4rem;
+  align-items: stretch;
+}
+
+.ppe.pack .impair-ca-cell {
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.45em 0.5em;
+  text-align: center;
+}
+
+.ppe.pack .impair-ca-k,
+.ppe.pack .impair-ca-sub,
+.ppe.pack .impair-route-line {
+  margin: 0;
+}
+
+.ppe.pack .impair-ca-k {
+  font-weight: 700;
+}
+
+.ppe.pack .impair-ca-sub {
+  margin-top: 0.15em;
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
+.ppe.pack .impair-ca-arrow {
+  align-self: center;
+  justify-self: center;
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ppe.pack .impair-routes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+}
+
+.ppe.pack .impair-route {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.45em 0.5em;
+}
+
+.ppe.pack .impair-route-line {
+  margin-top: 0.3em;
+}
+
+.ppe.pack .impair-core > .see {
+  margin-top: auto;
+}
+
+.ppe.models .impair-tips {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.ppe.models .impair-tips > .tip-dashed {
+  border-style: dashed;
+  border-color: var(--see);
+}
+
+.ppe.dep-map .tip-post-impair {
+  margin-top: 0.45rem;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.4em 0.55em;
+}
+
+@media (max-width: 800px) {
+  .ppe.pack .impair-cards,
+  .ppe.pack .impair-routes,
+  .ppe.pack .impair-ca-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ppe.pack .impair-ca-arrow {
+    transform: rotate(90deg);
+  }
+}
