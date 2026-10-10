@@ -6,7 +6,8 @@ on:
       - "**/draft-v1-linked/**"
       - "_shared/**"
       - homepage/build-search-index.py
-      - tools/build-last-update.py
+      - ias-16/**
+      - tools/**
       - .github/workflows/search-index.yml
 
 permissions:
@@ -17,14 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Rebuild search index
-        run: python3 homepage/build-search-index.py
-      - name: Rebuild last-update stamps
-        run: python3 tools/build-last-update.py
-      - name: Fail if the index or stamps drifted
+      - name: Rebuild map includes, stamps, search index, and last-update
+        run: bash tools/build-all.sh
+      - name: Fail if generated files drifted
         run: |
           if ! git diff --exit-code; then
-            echo "::error::Search index or last-update stamps are stale. From the repo root, run python3 homepage/build-search-index.py and python3 tools/build-last-update.py, then commit the result. CI does not commit."
+            echo "::error::Generated files are stale. From the repo root, run bash tools/build-all.sh, then commit the result. CI does not commit."
             git diff --stat
             exit 1
           fi
+      - name: Fail on duplicated plates or bad cache stamps
+        run: python3 tools/check-duplicates.py
