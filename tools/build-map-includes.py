@@ -24,7 +24,6 @@ Master blocks with no include comment are left untouched.
 """
 
 import sys
-from pathlib import Path
 
 from map_sections import (
     PACK,
@@ -108,5 +107,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
     sys.exit(main())
