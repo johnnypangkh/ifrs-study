@@ -6720,7 +6720,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ppe.pack .impair-cards {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.65fr) minmax(11em, 0.85fr);
   gap: 0.55rem;
   align-items: stretch;
 }
@@ -6803,16 +6803,24 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border: 0.08em solid var(--line);
   border-radius: var(--card-radius);
   background: var(--bg);
-  padding: 0.45em 0.5em;
+  padding: 0.4em 0.35em;
   text-align: center;
   box-sizing: border-box;
+  container-type: inline-size;
 }
 
 .ppe.pack .impair-ca-k,
 .ppe.pack .impair-ca-sub,
 .ppe.pack .impair-route-line { margin: 0; }
 
-.ppe.pack .impair-ca-k { font-weight: 700; }
+.ppe.pack .impair-ca-k {
+  font-weight: 700;
+  overflow-wrap: break-word;
+}
+
+@container (max-width: 9em) {
+  .ppe.pack .impair-ca-k { font-size: 0.84em; }
+}
 
 .ppe.pack .impair-ca-sub {
   margin-top: 0.15em;
@@ -6934,9 +6942,25 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.pack .cap-rows {
   border: 0.08em solid var(--line) !important;
   border-radius: var(--card-radius);
-  padding: 0.45em 0.55em;
+  padding: 0.3em 0;
   box-sizing: border-box;
   background: transparent;
+}
+
+.ppe.pack .cap-row > .cost-eq {
+  grid-template-columns: minmax(7.4em, 1.35fr) auto minmax(0, 1.15fr) auto minmax(0, 1.15fr);
+}
+
+.ppe.pack .cap-row .limb-title > span {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ppe.pack .cap-row .cost-result .limb-title { font-size: 0.92em; }
+
+.ppe.pack .cap-row > .cost-eq > .cost-result,
+.ppe.pack .cap-row > .cost-eq > .limb {
+  padding: 0.45em 0.32em;
 }
 
 .ppe.pack .pack-lr {
