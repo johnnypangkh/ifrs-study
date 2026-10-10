@@ -8321,6 +8321,12 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     white-space: normal !important;
     max-width: 100%;
   }
+
+  /* A Reval cell narrower than two 7.75rem peers wraps each freq-peer
+     onto its own track so the longest word stays inside the box. */
+  .ppe.pack .beat[data-phase="models"] > .map-include .lens-cell .freq-peers {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.75rem), 1fr));
+  }
 }
 
 /* A narrow Reval column still keeps the 2×2. The type scale steps down
