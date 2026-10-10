@@ -7936,3 +7936,80 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     margin-bottom: 0 !important;
   }
 }
+
+/* Depreciation formula at narrow widths. Scoped to the chapter plate
+   (.ch05-dep), which the master include copies. 922 and above stay
+   on the desktop tracks. Operators stay between the boxes they join.
+   Formula text wraps inside the box. The 5.1 rail keeps a token gap.
+   The visual iframe does not load tokens.css, so each var() has the
+   token's own value as a fallback. */
+@media (max-width: 42.5rem) {
+  .ch05-dep .cap-rows .cap-row.cap-row {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .ch05-dep .cap-rows .cap-row > .cost-eq.cost-eq {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1.15fr) auto minmax(0, 1.05fr) !important;
+    align-items: stretch;
+    justify-items: stretch;
+    gap: 0.35rem;
+    min-width: 0;
+    padding: max(var(--space-1, 0.25rem), 0.4em);
+  }
+
+  .ch05-dep .cap-rows .cap-row > .cost-eq > .cost-op {
+    justify-self: center;
+    align-self: center;
+  }
+
+  .ch05-dep .cap-rows .cap-row > .cost-eq > .cost-result,
+  .ch05-dep .cap-rows .cap-row > .cost-eq > .limb {
+    min-width: 0;
+    min-inline-size: 0 !important;
+    max-inline-size: 100%;
+    padding: max(var(--space-1, 0.25rem), 0.45em);
+    box-sizing: border-box;
+  }
+
+  .ch05-dep .cap-rows .cap-row > .cost-eq .limb-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+    text-align: center;
+  }
+
+  .ch05-dep .cap-rows .cap-row > .cost-eq .limb-title > span {
+    flex: 1 1 auto;
+    flex-basis: min(8em, 100%);
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+    text-align: center;
+  }
+}
+
+@media (max-width: 40rem) {
+  .ch05-dep .cap > .inner-rail:has(+ .cap-rows) {
+    border-bottom-left-radius: var(--card-radius) !important;
+    border-bottom-right-radius: var(--card-radius) !important;
+  }
+
+  .ch05-dep .cap > .inner-rail + .cap-rows {
+    margin-top: var(--space-2, 0.5rem) !important;
+    border-top-width: 0.08em !important;
+    border-top-left-radius: var(--card-radius) !important;
+    border-top-right-radius: var(--card-radius) !important;
+  }
+}
