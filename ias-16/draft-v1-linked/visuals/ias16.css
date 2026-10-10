@@ -2903,6 +2903,53 @@ body.embed {
   padding: 0.4em 0.5em 0.5em;
 }
 
+/* Ch03 only. Kit 3 densify under the three Measurement peers. */
+.ppe:is(.cost-map) .facet-foot { gap: 0.65rem; }
+
+.ppe:is(.cost-map) .facet-foot > .facet-dense {
+  width: 100%;
+  margin: 0;
+}
+
+.ppe:is(.cost-map) .facet-dense .src-differ {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.45rem 0.55rem;
+  align-items: stretch;
+  margin: 0.35rem 0 0.15rem;
+}
+
+.ppe:is(.cost-map) .facet-dense .src-differ > .peer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.ppe:is(.cost-map) .facet-dense .differ-op {
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+.ppe:is(.cost-map) .facet-dense .span-rule { margin-top: 0.15rem; }
+
+@media (max-width: 800px) {
+  .ppe:is(.cost-map) .facet-dense .src-differ {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ppe:is(.cost-map) .facet-dense .differ-op {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+}
+
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .facet-label {
   margin: 0;
   color: var(--muted);
