@@ -35,6 +35,18 @@
   --cite-ey: #8a7320;
   --cite-ey-soft: #f5f0dc;
   --on-accent: #ffffff;
+  --t-meta: .75rem;
+  --t-body: .875rem;
+  --t-head: 1rem;
+  --t-plate: 1.125rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --page-max: 61.25rem;
+  --pad-inline: clamp(1rem, 3vw, 1.5rem);
   /* IFRS 18 category + MPM — colour-with-meaning (night remaps below; no day-theme invent).
      Teaching cue per token (one line): */
   --cat-operating: #2f5d8a;            /* Operating — main business income/expenses */

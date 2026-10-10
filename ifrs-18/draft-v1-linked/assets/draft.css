@@ -37,15 +37,5 @@
   line-height: 1.45;
 }
 
-/* Eleven long labels are ~22px wider than the bar in a 1280px window
-   (scrollbar included). The scroll-hint fade then covers References.
-   2px less side padding lets that last pill sit fully inside the bar.
-   Wider windows keep the shared 10px padding. */
-@media (max-width: 1312px) {
-  .tag-row .tag {
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-}
 
 

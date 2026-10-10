@@ -1362,15 +1362,16 @@ body.embed {
    Disclosure sits below, lighter. One red leaf: IAS 16 does not apply. */
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) {
-  --t-chip: calc(10px * var(--type-scale, 1));
-  --t-meta: calc(11px * var(--type-scale, 1));
-  --t-body: calc(12px * var(--type-scale, 1));
-  --t-head: calc(13px * var(--type-scale, 1));
-  --t-plate: calc(14px * var(--type-scale, 1));
-  --t-op: calc(16px * var(--type-scale, 1));
+  --t-chip: calc(0.6875rem * var(--type-scale, 1));
+  --t-meta: calc(0.8125rem * var(--type-scale, 1));
+  --t-body: calc(0.875rem * var(--type-scale, 1));
+  --t-head: calc(1rem * var(--type-scale, 1));
+  --t-plate: calc(1.125rem * var(--type-scale, 1));
+  --t-op: calc(1rem * var(--type-scale, 1));
   --nx-chip-font: var(--t-chip);
+  --nx-chip-height: 1.25rem;
   min-width: 0;
-  padding-inline-end: 2px;
+  padding-inline-end: 0.125rem;
 }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-lr {
@@ -1695,72 +1696,11 @@ body.embed {
   color: var(--ink);
 }
 
-/* Consecutive left-rail cells share one border on the wide map only.
-   Below 801px they keep the board row gap (positive), with full corner
-   radius. The content cell in column 2 keeps that same row gap at every
-   width. A full-width block can hide the next rail from the sibling rule;
-   those cross-block rails join on the wide map too. .cap is one column
-   below 801px, so its rails only join on the wide map. */
+/* No shared-border rails at any width. Inner boards already use
+   gap: 0.45rem (~7.19px). Wide master phase rows use that same gap
+   instead of a 1px overlap. Corners stay fully rounded. */
 @media (min-width: 801px) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.inner-board, .disc-board) > .inner-rail:has(~ .inner-rail) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.inner-board, .disc-board) > .inner-rail ~ .inner-rail {
-    margin-top: calc(-0.45rem - 0.08em);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  /* Disclosure nests are separate board rows. The first rail of a later nest
-     continues the previous nest's last rail. The stack beside it does not move. */
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .disc-board > .disc-nest:has(~ .disc-nest) > .inner-board > .inner-rail:not(:has(~ .inner-rail)) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .disc-board > .disc-nest ~ .disc-nest > .inner-board > .inner-rail:first-child {
-    margin-top: calc(-0.45rem - 0.08em);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap > .inner-rail:has(~ .inner-rail) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap > .inner-rail ~ .inner-rail {
-    margin-top: calc(-0.45rem - 0.08em);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  /* .cap-wrap is one full-width row. Residual value and the next outer rail
-     are not siblings, so pull only that rail. The foot and the next detail
-     keep the board gap. */
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board > .cap-wrap:has(+ .inner-rail) > .cap > .inner-rail:not(:has(~ .inner-rail)) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board > .cap-wrap + .inner-rail {
-    margin-top: calc(-0.45rem - 0.08em);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  .ppe.pack .pack-lr > .rail-link:not(:last-of-type) {
-    margin-bottom: -0.08em;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ppe.pack .pack-lr > .rail-link ~ .rail-link {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
+  .ppe.pack .pack-lr { row-gap: 0.45rem; }
 }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-detail {
@@ -3221,9 +3161,9 @@ body.embed {
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term-split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0;
+  gap: 0.45rem;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term {
@@ -3234,13 +3174,15 @@ body.embed {
   gap: 0.15em 0.35em;
   margin: 0;
   padding: 0.55em 0.45em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
   text-align: center;
   font-size: var(--t-head);
   font-weight: 700;
   line-height: 1.3;
 }
 
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term + .term { border-left: 0.08em solid var(--line); }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term > span { flex: 1 1 4em; min-width: 0; }
 
@@ -3708,11 +3650,6 @@ body.embed {
   }
 
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-row { grid-template-columns: minmax(0, 1fr); }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term + .term {
-    border-left: 0;
-    border-top: 0.08em solid var(--line);
-  }
 
   /* Desktop flex-basis 0 shares a row. In a column it collapses any limb
      whose overflow is hidden, so the split term paints over the next row. */
@@ -5045,7 +4982,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     grid-template-rows: subgrid;
     grid-row: 1 / span 2;
     column-gap: 0;
-    row-gap: 0;
+    row-gap: 0.45rem;
     align-self: stretch;
     width: auto;
     min-width: 0;
@@ -5079,9 +5016,16 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     max-width: none;
   }
 
-  .ppe.scope-map .scope-stack > .scope-bearer {
+  .ppe.scope-map .scope-stack > .scope-tip {
     grid-column: 1;
     grid-row: 5;
+    align-self: start;
+    margin-top: 0.4rem;
+  }
+
+  .ppe.scope-map .scope-stack > .scope-bearer {
+    grid-column: 1;
+    grid-row: 6;
     align-self: start;
     margin-top: 0.4rem;
   }
@@ -5114,7 +5058,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     min-width: 0;
   }
 
-  .ppe.scope-map .scope-bearer { margin-top: 1.6rem; }
+  .ppe.scope-map .scope-stack > .scope-tip { margin-top: 1.6rem; }
+  .ppe.scope-map .scope-bearer { margin-top: 0.45rem; }
 
   .ppe.scope-map .carve-set { grid-template-columns: minmax(0, 1fr); }
 
@@ -5253,30 +5198,42 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 /* Ch05 Depreciation chapter map. Plate grammar comes from the pack selectors.
-   The continuing shaft is drawn by ias16-cx.js onto the handoff. */
+   The continuing shaft is drawn by ias16-cx.js onto the handoff.
+   The 5.0 title is a full-width header of the plate, not a short left chip. */
+.ppe.dep-map > .plate { width: 100%; align-self: stretch; }
+.ppe.dep-map > .plate > .plate-title {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  align-self: stretch;
+  box-sizing: border-box;
+  border-bottom: 0.08em solid var(--line);
+  padding-bottom: 0.4em;
+}
+.ppe.dep-map > .plate > .plate-title > span { flex: 1 1 auto; min-width: 0; }
+
 .ppe.dep-map > .cx-layer { position: absolute; }
 
 .ppe.dep-map > .handoff {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 0.45rem;
+  margin-top: 2.5rem;
 }
 
-.ppe.dep-map > .junction {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+.ppe.dep-map > .plate > .junction {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  min-height: 2.6rem;
+  gap: 0.45rem;
+  min-height: 0;
   margin-top: 0.35rem;
 }
 
-.ppe.dep-map > .junction > .see {
-  grid-column: 1;
-  justify-self: end;
+.ppe.dep-map > .plate > .junction > .see {
   width: fit-content;
-  max-width: calc(100% - 1rem);
-  margin: 0 1rem 0 0;
+  max-width: 100%;
+  margin: 0;
 }
 
 .ppe.dep-map .cap-foot {
@@ -5521,8 +5478,10 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe.dep-map .period-lane-1 {
+  --ye-pad-l: 0.75em;
+  --ye-pad-r: 1.9em;
   background: var(--nest);
-  padding: 0.55em 1.9em 0.6em 0.75em;
+  padding: 0.55em var(--ye-pad-r) 0.6em var(--ye-pad-l);
 }
 
 .ppe.dep-map .period-lane-2 { position: relative; min-width: 0; }
@@ -5570,27 +5529,42 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   line-height: 1.35;
 }
 
+/* Year-end ticks live inside the lane, clear of every edge.
+   The row is pulled out to the Begins and Ceases ring centres, so
+   left 25/50/75 places each mark on that span. The label always
+   sits to the right of the mark, at the same gap. */
+.ppe.dep-map .period-lane-1 { position: relative; }
+
 .ppe.dep-map .period-yearends {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 0;
+  position: relative;
+  display: block;
+  height: 1.25em;
+  margin: 0.55rem calc(-1 * var(--ye-pad-r)) 0.15rem calc(-1 * var(--ye-pad-l));
 }
 
 .ppe.dep-map .period-tick {
   position: absolute;
-  top: -8px;
-  width: 2px;
-  height: 10px;
+  top: 0;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3125rem;
+  width: max-content;
+  height: 1.25em;
+  background: none;
+  transform: translateX(-0.0625rem);
+}
+
+.ppe.dep-map .period-tick::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.125rem;
+  height: 0.6875rem;
   background: var(--ink);
-  transform: translateX(-50%);
 }
 
 .ppe.dep-map .period-tick-lab {
-  position: absolute;
-  left: 5px;
-  top: -1px;
+  position: static;
   color: var(--muted);
   font-size: var(--t-meta);
   line-height: 1.15;
@@ -5637,8 +5611,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border-radius: var(--card-radius);
 }
 
-.ppe.dep-map .v-begin .period-snap { border-bottom-left-radius: 0; }
-.ppe.dep-map .v-cease .period-snap { border-top-left-radius: 0; }
+.ppe.dep-map .v-cease { margin-top: 0.45rem; }
 
 .ppe.dep-map .v-ring {
   position: absolute;
@@ -5710,7 +5683,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe.dep-map .v-span {
-  margin: 0;
+  margin: 0.45rem 0 0;
   padding-left: 56px;
 }
 
@@ -5725,7 +5698,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ppe.dep-map .v-lanes {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.1fr) max-content minmax(0, 1fr);
   gap: 8px;
   align-items: stretch;
   min-width: 0;
@@ -5743,6 +5716,53 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.dep-map .v-lane-2 {
   background: var(--band);
   border-left: 2px solid var(--line);
+}
+
+/* The column stretches to the Begins and Ceases ring centres
+   (the 0.45rem gaps above and below the span). Each label sits
+   to the right of its tick, at the same gap, on 25/50/75. */
+.ppe.dep-map .v-yearends {
+  position: relative;
+  align-self: stretch;
+  width: max-content;
+  margin: -0.45rem 0;
+}
+
+.ppe.dep-map .v-yearends::before {
+  content: "Year-end";
+  display: inline-block;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  padding-left: 0.9375rem;
+  font-size: var(--t-meta);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.ppe.dep-map .v-year {
+  position: absolute;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  color: var(--muted);
+  font-size: var(--t-meta);
+  line-height: 1.15;
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+
+.ppe.dep-map .v-year:nth-child(1) { top: 25%; }
+.ppe.dep-map .v-year:nth-child(2) { top: 50%; }
+.ppe.dep-map .v-year:nth-child(3) { top: 75%; }
+
+.ppe.dep-map .v-year::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.625rem;
+  height: 0.125rem;
+  background: var(--ink);
 }
 
 .ppe.dep-map .v-points p {
@@ -5801,13 +5821,11 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
   .ppe.dep-map .period-v { display: block; }
 
-  .ppe.dep-map > .junction > .see {
-    grid-column: 2;
-    justify-self: start;
-    margin: 0 0 0 1rem;
+  .ppe.dep-map > .plate > .junction > .see {
+    margin: 0;
   }
 
-  .ppe.dep-map > .handoff { margin-top: 0.45rem; }
+  .ppe.dep-map > .handoff { margin-top: 2.5rem; }
 }
 
 /* Ch06 Derecognition chapter map. Plate grammar comes from the pack
@@ -5916,10 +5934,251 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   align-self: flex-start;
   width: fit-content;
   max-width: 100%;
-  border: 0.06em dashed var(--dash);
+  border: 0.06em solid var(--line);
   border-radius: var(--card-radius);
   padding: 0.45em 0.55em;
   color: var(--muted);
   font-size: var(--t-meta);
   font-weight: 400;
+}
+
+/* The page fieldset is the visible frame. The plate keeps its box so arrows
+   still meet an edge, but the stroke and fill match the page so it does not
+   read as a second frame. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) > .plate {
+  border-color: var(--bg);
+  background: var(--bg);
+  box-shadow: none;
+}
+
+/* QC R2. Badges sit on the title line. Row labels are plain text, top-left.
+   Arrow labels are muted text. Narrow maps are one column. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) a.fb-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  block-size: 1.25rem;
+  min-inline-size: 1.25rem;
+  margin: 0 0.35rem 0.35rem 0;
+  padding-inline: 0.25rem;
+  font-size: 0.6875rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board {
+  align-items: start;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: start;
+  text-align: start;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  min-height: 0 !important;
+  height: auto !important;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-k,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-model {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: start;
+  text-align: start;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  min-height: 0 !important;
+  height: auto !important;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > .rail-name,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > span,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-model > span {
+  min-inline-size: 0;
+  flex: 1 1 0;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > a.fb-num,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cmp-row > a.fb-num,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-model > a.fb-num {
+  margin-inline: 0 0.35rem;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-detail,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .method-name {
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: start;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cmp-na,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-na {
+  align-self: start;
+  min-height: 0;
+  height: auto;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cmp-na p {
+  justify-content: flex-start;
+  font-weight: 400;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see.see-wide,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-mute {
+  border-style: solid;
+  border-color: var(--line);
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .onward,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-label,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-label .onward,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .arm-label,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .exit-label,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .thin-tip a {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.ppe.dep-map > .plate { padding-bottom: 0; }
+.ppe.dep-map > .handoff { margin-top: 5rem; }
+.ppe.dep-map > .exit-label { max-width: 16rem; }
+
+@media (min-width: 50.0625rem) {
+  .ppe:is(.pack,.cost-map) .cost-identity > .nature-nest {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    margin-top: 1.15rem;
+  }
+  .ppe:is(.pack,.cost-map) .cost-identity > .cost-split {
+    grid-column: 5 / -1;
+    grid-row: 3;
+    display: block;
+    margin-top: 1.15rem;
+  }
+  .ppe:is(.pack,.cost-map) .nature-nest > .port-tab { grid-column: 1 / -1; }
+  .ppe:is(.pack,.cost-map) .cost-identity > .facet-foot {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    margin-top: 0.75rem;
+  }
+  .ppe:is(.pack,.cost-map) .axis-body {
+    grid-template-columns: minmax(14ch, 1fr);
+  }
+  .ppe:is(.pack,.cost-map) .axis-body > .before-nest,
+  .ppe:is(.pack,.cost-map) .axis-body > .point-at,
+  .ppe:is(.pack,.cost-map) .axis-body > .after-col {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .ppe:is(.pack,.models) .lens-row:has(.rev-table) {
+    grid-template-columns: minmax(7.2em, 9.4em) minmax(14ch, 1fr);
+  }
+  .ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 40rem) {
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board-2,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .factor-set,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .land-set,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .method-set,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-or,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .model-split,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .facet-row,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .criteria,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peers,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-lr,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity {
+    grid-template-columns: minmax(14ch, 1fr);
+  }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-detail,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .limb,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) article {
+    min-inline-size: 14ch;
+  }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail {
+    margin-bottom: 0.25rem;
+  }
+  .ppe:is(.pack,.dep-map) .cap-row > .cost-eq {
+    grid-template-columns: minmax(14ch, 1fr);
+  }
+}
+
+.ppe.dep-map .v-lane .period-lane-k,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nest-k {
+  display: block;
+  min-inline-size: 0;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .before-nest .pl-tip,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .after-nest {
+  padding-inline: 0.55rem;
+}
+.ppe.dep-map .v-points p,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer-line,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .item-rows li,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nest-k,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nest-k > span,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .period-lane-k,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-col {
+  overflow-wrap: anywhere;
+  min-inline-size: 0;
+}
+
+@media (max-width: 50rem) {
+  .ppe.dep-map > .handoff { margin-top: 5rem; }
+}
+
+/* QC R3. A third visible border is only for a formula ledger row or a
+   See-also chip. On the master map the plate is the outer frame, so the
+   extra card inside a content band is flattened. */
+.ppe.pack .pl-tip,
+.ppe.pack .point-at,
+.ppe.pack .after-nest,
+.ppe.pack .freq-peer,
+.ppe.pack .inner-detail,
+.ppe.pack .lens-cell:has(.rev-table) {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.ppe.disc .disc-stack > .land-tip,
+.ppe.pack .disc-stack > .land-tip,
+.ppe.disc .disc-stack > .soft-note,
+.ppe.pack .disc-stack > .soft-note,
+.ppe.recog-map .spare-bit {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (max-width: 40rem) {
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-table {
+    grid-template-columns: minmax(14ch, 1fr);
+  }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-corner,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-col,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-row,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell {
+    grid-column: 1;
+    overflow-wrap: normal;
+    word-break: normal;
+    text-align: start;
+    align-items: flex-start;
+  }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-k,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-sub,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-col > span,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell > span {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
 }

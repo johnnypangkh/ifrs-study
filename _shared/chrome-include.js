@@ -3,7 +3,7 @@
    Pack pages load this file instead of pasting those tags.
    INDEX is the search-index.js stamp. build-search-index.py rewrites it. */
 (function () {
-  var V = "ias16-chrome-20261009";
+  var V = "chrome-qc-r2-20261010";
   var INDEX = "565346593b07";
   var src = (document.currentScript && document.currentScript.src) || "";
   var dir = src.replace(/[^/?]*(\?.*)?$/, "");
@@ -18,5 +18,7 @@
   document.write('<script src="' + asset("theme.js") + '"><\/script>');
   document.write('<script src="' + asset("iframe-fit.js") + '"><\/script>');
   document.write('<script src="' + root + 'homepage/search-index.js?v=' + INDEX + '"><\/script>');
+  document.write('<script src="' + asset("chrome-packs.js") + '"><\/script>');
+  document.write('<script src="' + asset("chrome-bar.js") + '"><\/script>');
   document.write('<script src="' + asset("search.js") + '"><\/script>');
 })();

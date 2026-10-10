@@ -816,6 +816,9 @@ a:hover { text-decoration: underline; }
   background: transparent;
   overflow: visible;
 }
+@media (max-width: 40rem) {
+  .visual-fieldset { padding-inline: 0.5rem; }
+}
 
 .visual-legend {
   padding: 0 8px;

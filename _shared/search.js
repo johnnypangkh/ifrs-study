@@ -116,15 +116,36 @@
     return 'close';
   }
 
+  function wordHit(qWord, gotWord) {
+    if (qWord === gotWord) return 'exact';
+    if (pluralS(qWord, gotWord) || sameTense(qWord, gotWord) || oneTypo(qWord, gotWord)) return 'close';
+    return '';
+  }
+
   function classifyText(text, qWords) {
     var words = wordSpans(text).map(function (span) { return span.norm; });
-    var close = false;
-    for (var i = 0; i + qWords.length <= words.length; i++) {
-      var kind = windowKind(qWords, words.slice(i, i + qWords.length));
-      if (kind === 'exact') return 'exact';
-      if (kind === 'close') close = true;
+    var used = {};
+    var closes = 0;
+    for (var q = 0; q < qWords.length; q++) {
+      var best = '';
+      var at = -1;
+      for (var i = 0; i < words.length; i++) {
+        if (used[i]) continue;
+        var kind = wordHit(qWords[q], words[i]);
+        if (kind === 'exact') { best = 'exact'; at = i; break; }
+        if (kind === 'close' && !best) { best = 'close'; at = i; }
+      }
+      if (!best) return '';
+      used[at] = true;
+      if (best === 'close') closes++;
     }
-    return close ? 'close' : '';
+    if (!closes) {
+      for (var n = 0; n + qWords.length <= words.length; n++) {
+        if (windowKind(qWords, words.slice(n, n + qWords.length)) === 'exact') return 'exact';
+      }
+      return 'spread';
+    }
+    return 'close';
   }
 
   function proseSentences(text) {
@@ -206,13 +227,17 @@
   function markSentence(sentence, qWords) {
     var spans = wordSpans(sentence);
     var ranges = [];
-    for (var i = 0; i + qWords.length <= spans.length; i++) {
-      var got = [];
-      for (var j = 0; j < qWords.length; j++) got.push(spans[i + j].norm);
-      if (!windowKind(qWords, got)) continue;
-      ranges.push([spans[i].start, spans[i + qWords.length - 1].end]);
-      i += qWords.length - 1;
-    }
+    var used = {};
+    qWords.forEach(function (qWord) {
+      for (var i = 0; i < spans.length; i++) {
+        if (used[i]) continue;
+        if (!wordHit(qWord, spans[i].norm)) continue;
+        ranges.push([spans[i].start, spans[i].end]);
+        used[i] = true;
+        break;
+      }
+    });
+    ranges.sort(function (a, b) { return a[0] - b[0]; });
     var html = '';
     var cursor = 0;
     ranges.forEach(function (range) {
@@ -269,6 +294,8 @@
     var here = pageKey();
     var exactHere = [];
     var exactOther = [];
+    var spreadHere = [];
+    var spreadOther = [];
     var closeHere = [];
     var closeOther = [];
     if (!qWords.length) return [];
@@ -284,26 +311,26 @@
       };
       var mine = here && hitKey(entry.href) === here;
       if (kind === 'exact') (mine ? exactHere : exactOther).push(hit);
+      else if (kind === 'spread') (mine ? spreadHere : spreadOther).push(hit);
       else (mine ? closeHere : closeOther).push(hit);
     }
-    return exactHere.concat(exactOther, closeHere, closeOther);
+    return exactHere.concat(exactOther, spreadHere, spreadOther, closeHere, closeOther);
   }
 
   function ensureChromeSearch() {
     if (!showsChromeSearch()) return;
-    /* Prefer the actions slot when a pack opts into it (IAS 16 view switch).
-       Other packs keep the title row as the mount. */
-    var row = document.querySelector('header.chrome-bar .chrome-actions')
+    if (document.querySelector('header.chrome-bar .chapter-search')) return;
+    var row = document.querySelector('header.chrome-bar .chrome-row1')
+      || document.querySelector('header.chrome-bar .chrome-actions')
       || document.querySelector('header.chrome-bar .chrome-bar-actions')
       || document.querySelector('header.chrome-bar .chrome-bar-title');
     if (!row) return;
     var box = document.querySelector('.chapter-search');
     if (!box) {
-      box = document.createElement('div');
+      box = document.createElement('label');
       box.className = 'chapter-search';
-      box.innerHTML = '<label class="chapter-search-label" for="chapterSearch">Search</label>' +
-        '<input class="chapter-search-input" id="chapterSearch" type="search" autocomplete="off" />' +
-        '<button class="chapter-search-clear" id="chapterSearchClear" type="button">clear</button>' +
+      box.innerHTML = '<input class="chapter-search-input" id="chapterSearch" type="search" autocomplete="off" />' +
+        '<button class="chapter-search-clear" id="chapterSearchClear" type="button" aria-label="Clear search">✕</button>' +
         '<div class="search-popover" id="chapterSearchPopover" hidden></div>';
     }
     if (box.parentNode !== row) row.appendChild(box);
@@ -316,18 +343,26 @@
     var popover = document.getElementById('chapterSearchPopover');
     if (!input || !popover) return;
     function run() {
-      var query = input.value.trim().toLowerCase();
+      var shown = input.value.trim();
+      var query = shown.toLowerCase();
       if (!query) {
         close(popover);
         return;
       }
-      render(popover, hits(query), 0, query);
+      var found = hits(query);
+      if (!found.length) {
+        popover.hidden = false;
+        popover.innerHTML = '<p class="result-empty">No results for ' + escapeHtml(shown) + '</p>';
+        return;
+      }
+      render(popover, found, 0, query);
     }
     input.addEventListener('input', run);
     if (clearButton) {
       clearButton.addEventListener('click', function () {
         input.value = '';
         close(popover);
+        input.focus();
       });
     }
   }
