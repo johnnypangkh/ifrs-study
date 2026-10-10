@@ -7479,6 +7479,22 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   --map-gap: 0.45rem;
 }
 
+/* Master include wrapper. Phase hooks sit here; the plate is the chapter
+   section. No padding or border, so the rail measures the same box as the
+   plate that used to carry data-phase-start / data-phase-end. */
+.ppe.pack .beat > .map-include {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
 .ch06-map .master-echo {
   display: flex;
   flex-wrap: wrap;
