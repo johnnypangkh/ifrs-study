@@ -6136,3 +6136,49 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 @media (max-width: 50rem) {
   .ppe.dep-map > .handoff { margin-top: 5rem; }
 }
+
+/* QC R3. A third visible border is only for a formula ledger row or a
+   See-also chip. On the master map the plate is the outer frame, so the
+   extra card inside a content band is flattened. */
+.ppe.pack .pl-tip,
+.ppe.pack .point-at,
+.ppe.pack .after-nest,
+.ppe.pack .freq-peer,
+.ppe.pack .inner-detail,
+.ppe.pack .lens-cell:has(.rev-table) {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.ppe.disc .disc-stack > .land-tip,
+.ppe.pack .disc-stack > .land-tip,
+.ppe.disc .disc-stack > .soft-note,
+.ppe.pack .disc-stack > .soft-note,
+.ppe.recog-map .spare-bit {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (max-width: 40rem) {
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-table {
+    grid-template-columns: minmax(14ch, 1fr);
+  }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-corner,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-col,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-row,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell {
+    grid-column: 1;
+    overflow-wrap: normal;
+    word-break: normal;
+    text-align: start;
+    align-items: flex-start;
+  }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-k,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-sub,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-col > span,
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell > span {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+}
