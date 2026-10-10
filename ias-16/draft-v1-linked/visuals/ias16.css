@@ -7113,6 +7113,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe.dep-map.ch05-map .factor-rows {
+  width: 100%;
+  align-self: stretch;
   column-gap: 0.45rem;
   row-gap: 0.45rem;
 }
@@ -7165,7 +7167,12 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   }
 
   .ppe.dep-map.ch05-map .cap-row {
-    grid-template-columns: 12.25em minmax(0, 1fr) !important;
+    grid-template-columns: 15em minmax(0, 1fr) !important;
+  }
+
+  .ppe.dep-map.ch05-map .cap-model {
+    padding: 0.45em 0.7em;
+    box-sizing: border-box;
   }
 
   .ppe.dep-map.ch05-map .cap-row > .cost-eq {
