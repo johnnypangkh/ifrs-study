@@ -8272,6 +8272,16 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   }
 }
 
+/* Chapter .ppe.scope-map sizes. The pack type scale does not match them. */
+.ppe.pack .beat[data-phase="scope"] > .map-include .peer-line,
+.ppe.pack .beat[data-phase="scope"] > .map-include .item-rows {
+  font-size: 0.92em;
+}
+
+.ppe.pack .beat[data-phase="scope"] > .map-include .crit-op {
+  font-size: 1.23em;
+}
+
 @media (min-width: 40.0625rem) {
   .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) {
     grid-template-columns: 11em minmax(0, 1fr) minmax(0, 1fr) !important;
@@ -8290,6 +8300,20 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) {
     grid-column: 3 !important;
     grid-row: 1 !important;
+  }
+}
+
+/* Chapter type sizes for Models text whose .ppe.models rules do not
+   match the pack. The 4.5 sub-line uses the chapter's 0.88em of the heading. */
+.ppe.pack .beat[data-phase="models"] > .map-include .class-token,
+.ppe.pack .beat[data-phase="models"] > .map-include .gate-line,
+.ppe.pack .beat[data-phase="models"] > .map-include .pair-foot {
+  font-size: var(--t-body);
+}
+
+@media (min-width: 40.0625rem) {
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-sub {
+    font-size: 0.88em;
   }
 }
 
@@ -8329,18 +8353,18 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   }
 }
 
-/* A narrow Reval column still keeps the 2×2. The type scale steps down
-   so the longest word stays inside the cell. */
+/* A Reval cell narrower than the chapter 2×2 at the type scale stacks
+   the grid. Headings and cells stay on --t-head and --t-body. */
 @container rev-fit (max-width: 24rem) {
   .ppe.pack .beat[data-phase="models"] > .map-include .rev-table {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) !important;
-    gap: 0.2rem !important;
+    grid-template-columns: minmax(0, 1fr) !important;
   }
 
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-corner,
   .ppe.pack .beat[data-phase="models"] > .map-include .rev-col,
   .ppe.pack .beat[data-phase="models"] > .map-include .rev-row,
   .ppe.pack .beat[data-phase="models"] > .map-include .rev-cell {
-    font-size: 0.62em !important;
-    padding: 0.55em 0.5em !important;
+    grid-column: 1 !important;
+    grid-row: auto !important;
   }
 }
