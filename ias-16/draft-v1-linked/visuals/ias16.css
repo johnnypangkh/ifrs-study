@@ -6968,3 +6968,261 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
   box-shadow: inset -0.08em 0 0 var(--line);
 }
+
+/* #61 Ch05 follow-master. Chapter map only (.ch05-map).
+   Do not restyle Master .dep-port or other chapter maps. */
+.ppe.dep-map.ch05-map .master-echo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.75rem;
+  margin: 0 0 0.75rem;
+  padding: 0.5em 0.65em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-sizing: border-box;
+}
+
+.ppe.dep-map.ch05-map .echo-k {
+  color: var(--muted);
+  font-size: 0.82em;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.ppe.dep-map.ch05-map .echo-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ppe.dep-map.ch05-map .echo-step {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.28em 0.55em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 0.88em;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.ppe.dep-map.ch05-map .echo-step.echo-done {
+  color: var(--ink);
+}
+
+.ppe.dep-map.ch05-map .echo-step.echo-now {
+  color: var(--ink);
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 0.06em var(--accent);
+  font-weight: 700;
+}
+
+.ppe.dep-map.ch05-map .echo-step.echo-later {
+  opacity: 0.55;
+}
+
+.ppe.dep-map.ch05-map .echo-step:not(:last-child)::after {
+  content: "→";
+  margin-left: 0.45em;
+  color: var(--muted);
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.ppe.dep-map.ch05-map > .pack-flow-in {
+  display: flex !important;
+  justify-content: center;
+  min-height: 0;
+  margin: 0 0 0.55rem;
+}
+
+.ppe.dep-map.ch05-map > .pack-flow-in .pack-flow-shaft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 12em;
+  max-width: 100%;
+  min-height: 0;
+  padding: 0;
+}
+
+.ppe.dep-map.ch05-map > .pack-flow-in .pack-flow-shaft::before,
+.ppe.dep-map.ch05-map > .pack-flow-in .pack-flow-shaft::after {
+  content: none !important;
+}
+
+.ppe.dep-map.ch05-map > .pack-flow-in .pack-flow-label {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  max-width: none;
+  margin: 0;
+  padding: 0.35em 0.65em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.ppe.dep-map.ch05-map > .plate {
+  border: 0.12em solid var(--accent) !important;
+  border-color: var(--accent) !important;
+  background: var(--surface) !important;
+  box-shadow: none !important;
+  box-sizing: border-box;
+  margin-right: 0.35rem;
+  max-width: calc(100% - 0.35rem);
+  width: 100%;
+}
+
+.ppe.dep-map.ch05-map .cap-rows {
+  border: 0.08em solid var(--line) !important;
+  border-radius: var(--card-radius);
+  padding: 0.45em 0.35em;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.ppe.dep-map.ch05-map .factor-rows,
+.ppe.dep-map.ch05-map .life-rows {
+  align-items: stretch;
+}
+
+.ppe.dep-map.ch05-map .factor-rows > .inner-rail,
+.ppe.dep-map.ch05-map .factor-rows > .inner-detail,
+.ppe.dep-map.ch05-map .life-rows > .inner-rail,
+.ppe.dep-map.ch05-map .life-rows > .inner-detail {
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-sizing: border-box;
+}
+
+.ppe.dep-map.ch05-map .life-rows,
+.ppe.dep-map.ch05-map .life-rows > .inner-detail,
+.ppe.dep-map.ch05-map .factor-rows {
+  min-width: 0 !important;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ppe.dep-map.ch05-map .factor-rows {
+  width: 100%;
+  align-self: stretch;
+  column-gap: 0.45rem;
+  row-gap: 0.45rem;
+}
+
+.ppe.dep-map.ch05-map .factor-rows > .inner-rail,
+.ppe.dep-map.ch05-map .factor-rows > .inner-detail {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  align-self: stretch;
+}
+
+.ppe.dep-map.ch05-map .factor-rows > .inner-rail .rail-name {
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.ppe.dep-map.ch05-map > .junction-tip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15em 0.35em;
+  width: 100%;
+  max-width: 100%;
+  margin: 0.65rem 0 0;
+  padding: 0.4em 0.55em !important;
+  border: 0.08em dashed var(--see) !important;
+  border-radius: var(--card-radius);
+  background: transparent;
+  color: var(--muted);
+  box-sizing: border-box;
+}
+
+.ppe.dep-map.ch05-map > .handoff {
+  border: 0.1em solid var(--accent);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-sizing: border-box;
+}
+
+/* Mid widths keep two columns. The 20.5em rail only fits once the
+   nested life-rows detail is wide enough (≥922). */
+@media (min-width: 40.0625rem) and (max-width: 57.5625rem) {
+  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"] {
+    grid-template-columns: minmax(0, 1fr) minmax(7.5rem, 1.35fr) !important;
+  }
+
+  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"] {
+    grid-template-columns: minmax(0, 0.42fr) minmax(7.5rem, 1.35fr) !important;
+  }
+}
+
+@media (min-width: 57.625rem) {
+  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"] {
+    grid-template-columns: 20.5em minmax(0, 1fr) !important;
+  }
+
+  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"] {
+    grid-template-columns: 6.75em minmax(0, 1fr) !important;
+  }
+}
+
+@media (min-width: 40.0625rem) {
+  .ppe.dep-map.ch05-map .cap-row {
+    grid-template-columns: 15em minmax(0, 1fr) !important;
+  }
+
+  .ppe.dep-map.ch05-map .cap-model {
+    padding: 0.45em 0.7em;
+    box-sizing: border-box;
+  }
+
+  .ppe.dep-map.ch05-map .cap-row > .cost-eq {
+    grid-template-columns: minmax(7.2em, 1.2fr) auto minmax(0, 1fr) auto minmax(0, 1fr) !important;
+  }
+
+  .ppe.dep-map.ch05-map .lc-head-axis {
+    align-items: stretch;
+  }
+
+  .ppe.dep-map.ch05-map .lc-head-axis > .lc-begin,
+  .ppe.dep-map.ch05-map .lc-head-axis > .lc-cease {
+    align-self: stretch !important;
+    min-block-size: 100%;
+  }
+}
+
+@media (max-width: 40rem) {
+  .ppe.dep-map.ch05-map .echo-steps {
+    width: 100%;
+  }
+
+  .ppe.dep-map.ch05-map .echo-step {
+    flex: 1 1 auto;
+  }
+
+  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"],
+  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
