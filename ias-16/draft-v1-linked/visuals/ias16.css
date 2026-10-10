@@ -8484,3 +8484,22 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   letter-spacing: normal;
   line-height: 1;
 }
+
+/* 7.3 split-additions tip: the sentence uses the note width; chips follow inline. */
+.ch07-disc .disc-stack > .soft-note:has(> .cite) {
+  display: block;
+}
+
+.ch07-disc .disc-stack > .soft-note:has(> .cite) > span:not(.cite) {
+  display: inline;
+  flex: none;
+  min-width: 0;
+}
+
+.ch07-disc.disc-band .disc-stack > .soft-note:has(> .cite) > .cite {
+  display: inline-flex;
+  flex: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  max-width: 100%;
+}
