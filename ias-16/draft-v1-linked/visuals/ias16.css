@@ -8488,6 +8488,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 /* 7.3 split-additions tip: the sentence uses the note width; chips follow inline. */
 .ch07-disc .disc-stack > .soft-note:has(> .cite) {
   display: block;
+  container-type: inline-size;
+  container-name: ch07-split;
 }
 
 .ch07-disc .disc-stack > .soft-note:has(> .cite) > span:not(.cite) {
@@ -8502,4 +8504,17 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   vertical-align: middle;
   white-space: nowrap;
   max-width: 100%;
+}
+
+/* Wrapped cite chips use the same 0.45rem row gap as the disclosure grid.
+   When the note is wide enough that both chips share a line, the margin
+   stays off so that line's geometry does not change. */
+.ch07-disc .disc-stack > .soft-note:has(> .cite) > .cite:has(+ .cite) {
+  margin-bottom: 0.45rem;
+}
+
+@container ch07-split (min-width: 36rem) {
+  .ch07-disc .disc-stack > .soft-note:has(> .cite) > .cite:has(+ .cite) {
+    margin-bottom: 0;
+  }
 }
