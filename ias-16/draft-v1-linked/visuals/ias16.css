@@ -6660,9 +6660,29 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.pack .pack-flow-fork .pack-flow-shaft { min-height: 5.2em; }
 .ppe.pack .pack-flow-fork .pack-flow-shaft::before, .ppe.pack .pack-flow-fork .pack-flow-shaft::after { content: none !important; }
 .ppe.pack .pack-flow-fork .pack-flow-label { position: absolute !important; z-index: 2; white-space: nowrap; max-width: none; }
-.ppe.pack .beat[data-phase="dep"] > .dep-port { margin-right: 1.8rem !important; }
+.ppe.pack .beat[data-phase="dep"] > .dep-port {
+  width: calc(100% - 0.65rem);
+  max-width: calc(100% - 0.65rem);
+  min-width: 0;
+  margin-right: 0 !important;
+  align-self: flex-start;
+  box-sizing: border-box;
+}
+@media (max-width: 800px) {
+  .ppe.pack .rail-link[data-phase="dep"] {
+    width: calc(100% - 0.65rem);
+    max-width: calc(100% - 0.65rem);
+    margin-right: 0 !important;
+    justify-self: start;
+    box-sizing: border-box;
+  }
+}
+.ppe .lc-head-axis > .lc-end {
+  align-self: stretch;
+  height: 100%;
+  box-sizing: border-box;
+}
 .ppe.pack .fork-gap { min-height: 2.6em; }
-@media (max-width: 800px) { .ppe.pack .rail-link[data-phase="dep"] { margin-right: 1.8rem !important; } }
 @media (min-width: 40.0625rem) { .ppe .reval-plate .plate-title { display: flex !important; flex-wrap: nowrap !important; } .ppe .reval-plate .plate-title .lane-tag { white-space: nowrap; flex: none; } }
 @media (max-width: 40rem) { .ppe.dep-map .exit-label { max-width: calc(50vw - 1.6rem) !important; white-space: normal !important; text-align: right; } }
 .ppe .reval-plate .plate-title { justify-content: flex-start !important; }

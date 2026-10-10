@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-impair-b-20261010" />
+<link rel="stylesheet" href="ias16.css?v=ias16-impair-b2-20261010" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -1341,18 +1341,20 @@
       var tD = narrow ? fDr : fD, tR = narrow ? fRr : fR;
       if (shown(fS) && shown(tD) && shown(tR)) {
         var A = boxOf(fS), Dd = boxOf(tD), Rr = boxOf(tR), Dp = boxOf(fD);
+        var beatR = boxOf(fD.parentElement).r;
         var bus = A.b + (Dd.t - A.b) * 0.42;
-        var gx = Dp.r + (A.r - Dp.r) / 2;
-        var dx = A.cx;
+        var gutter = Math.max(0, beatR - Dp.r);
+        var gx = Dp.r + Math.max(gutter / 2, em(0.28));
+        var dropX = Dd.cx;
         v(A.cx, A.b, bus, true);
-        h(bus, dx, gx, "link");
-        v(dx, bus, Dd.t, false);
-        placeLabel(fk.querySelector(".fork-dep"), dx - em(0.55), (bus + Dd.t) / 2, "left");
+        h(bus, Math.min(A.cx, dropX), Math.max(gx, A.cx, dropX), "link");
+        v(dropX, bus, Dd.t, false);
+        placeLabel(fk.querySelector(".fork-dep"), dropX - em(0.55), (bus + Dd.t) / 2, "left");
         var lowY = Rr.t - em(1.3);
         v(gx, bus, lowY, true);
-        h(lowY, Rr.cx, gx, "link");
+        h(lowY, Math.min(Rr.cx, gx), Math.max(Rr.cx, gx), "link");
         v(Rr.cx, lowY, Rr.t, false);
-        placeLabel(fk.querySelector(".fork-rev"), (dx + gx) / 2, bus - em(0.2), "above");
+        placeLabel(fk.querySelector(".fork-rev"), (A.cx + gx) / 2, bus - em(0.2), "above");
         if (narrow && shown(fDr)) { var q = boxOf(fDr); v(q.cx, q.b, Dp.t, false); }
         if (narrow && shown(fRr) && shown(fR)) { var q2 = boxOf(fRr), r2 = boxOf(fR); v(q2.cx, q2.b, r2.t, false); }
       }
