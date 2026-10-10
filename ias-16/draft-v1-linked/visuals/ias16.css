@@ -8485,7 +8485,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   line-height: 1;
 }
 
-/* 7.3 split-additions tip: the sentence uses the note width; chips follow inline. */
+/* 7.3 split-additions tip: the sentence uses the note width; the chip run is a block under it. */
 .ch07-disc .disc-stack > .soft-note:has(> .cite-run) {
   display: block;
 }
@@ -8496,18 +8496,16 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   min-width: 0;
 }
 
-/* Chip run wraps on its own, so the vertical gap does not depend on the note width.
-   column-gap is the disclosure-grid token. The comma margin keeps the shared-line
-   distance equal to the previous comma plus its space. */
+/* The chip run is its own line under the sentence at every width.
+   Gaps are the disclosure-grid token. The comma margin keeps the
+   shared-line distance equal to the previous comma plus its space. */
 .ch07-disc .cite-run {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
-  vertical-align: middle;
   max-width: 100%;
   row-gap: 0.45rem;
   column-gap: 0.45rem;
-  /* Same disclosure-grid token above the run as between chip rows. */
   margin-block-start: 0.45rem;
 }
 
