@@ -6655,14 +6655,15 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .lc-top > .lc-head-k:not(.lc-band-k) { grid-row: 1; } .ppe .lc-top > .lc-head-axis { grid-row: 1; }
 .ppe .lc-top > .lc-band-k { grid-row: 2; } .ppe .lc-top > .lc-band { grid-row: 2; }
 @media (max-width: 40rem) { .ppe .lc-top > * { grid-row: auto !important; } }
-/* final: fork from Measurement after recognition to Depreciation (both models) and Revaluation (revaluation model only) */
+/* flow v3: single Models→Dep shaft. Dep port is full width (XOR gutter removed). */
 .ppe.pack { position: relative; }
-.ppe.pack .pack-flow-fork .pack-flow-shaft { min-height: 5.2em; }
-.ppe.pack .pack-flow-fork .pack-flow-shaft::before, .ppe.pack .pack-flow-fork .pack-flow-shaft::after { content: none !important; }
-.ppe.pack .pack-flow-fork .pack-flow-label { position: absolute !important; z-index: 2; white-space: nowrap; max-width: none; }
-.ppe.pack .beat[data-phase="dep"] > .dep-port { margin-right: 1.8rem !important; }
-.ppe.pack .fork-gap { min-height: 2.6em; }
-@media (max-width: 800px) { .ppe.pack .rail-link[data-phase="dep"] { margin-right: 1.8rem !important; } }
+.ppe.pack .beat[data-phase="dep"] > .dep-port {
+  width: 100%;
+  max-width: 100%;
+  margin-right: 0;
+  align-self: stretch;
+  box-sizing: border-box;
+}
 @media (min-width: 40.0625rem) { .ppe .reval-plate .plate-title { display: flex !important; flex-wrap: nowrap !important; } .ppe .reval-plate .plate-title .lane-tag { white-space: nowrap; flex: none; } }
 @media (max-width: 40rem) { .ppe.dep-map .exit-label { max-width: calc(50vw - 1.6rem) !important; white-space: normal !important; text-align: right; } }
 .ppe .reval-plate .plate-title { justify-content: flex-start !important; }
@@ -6680,3 +6681,266 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .lc-head-axis { position: relative; }
 .ppe .lc-head-axis > .lc-drop { position: absolute; width: 2px; transform: translateX(-50%); background: var(--accent); pointer-events: none; z-index: 0; }
 @media (max-width: 40rem) { .ppe .lc-head-axis > .lc-axis { margin-block: 0.9rem !important; } }
+
+/* Master flow v3: Dep→Reval spacer, Impairment formula contrast, Derecog two paths, four-side frames. */
+.ppe.pack .rail-stack-gap { min-height: 1.2em; }
+
+.ppe.pack .rail-link.rail-impair {
+  border-style: solid;
+  border-color: var(--line);
+  color: inherit;
+  font-weight: 700;
+  background: var(--surface);
+}
+
+.ppe.pack .impair-plate {
+  border-style: solid;
+  border-color: var(--accent);
+  height: auto;
+  align-self: start;
+}
+
+.ppe.pack .beat[data-phase="impair"] { align-self: start; }
+
+.ppe.pack .impair-board {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+  grid-template-columns: none !important;
+}
+
+.ppe.pack .impair-board > * {
+  grid-column: 1 / -1 !important;
+  width: 100%;
+  min-width: 0;
+}
+
+.ppe.pack .lc-key-imp { color: var(--accent); }
+
+.ppe.pack .impair-cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: stretch;
+}
+
+.ppe.pack .impair-core,
+.ppe.pack .impair-comp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0.08em solid var(--line) !important;
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 0.55em 0.65em;
+}
+
+.ppe.pack .impair-plate .card-k {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3em;
+  margin: 0;
+  font-weight: 700;
+}
+
+.ppe.pack .impair-formula-contrast {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+}
+
+.ppe.pack .impair-formula-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0.45em 0.5em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  box-sizing: border-box;
+}
+
+.ppe.pack .impair-formula-contrast-cell {
+  border-style: dashed !important;
+  border-color: var(--see) !important;
+  background: transparent;
+}
+
+.ppe.pack .impair-formula-tag {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.92em;
+  line-height: 1.3;
+}
+
+.ppe.pack .impair-formula-note,
+.ppe.pack .impair-seq-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88em;
+  line-height: 1.35;
+}
+
+.ppe.pack .impair-seq-note { margin-top: 0.15em; font-size: 0.9em; }
+
+.ppe.pack .impair-ca-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.4rem;
+  align-items: stretch;
+}
+
+.ppe.pack .impair-ca-cell {
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.45em 0.5em;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.ppe.pack .impair-ca-k,
+.ppe.pack .impair-ca-sub,
+.ppe.pack .impair-route-line { margin: 0; }
+
+.ppe.pack .impair-ca-k { font-weight: 700; }
+
+.ppe.pack .impair-ca-sub {
+  margin-top: 0.15em;
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
+.ppe.pack .impair-ca-arrow {
+  align-self: center;
+  justify-self: center;
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ppe.pack .impair-ca-arrow-mute {
+  color: var(--muted) !important;
+  opacity: 0.85;
+}
+
+.ppe.pack .impair-routes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+}
+
+.ppe.pack .impair-route {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.45em 0.5em;
+}
+
+.ppe.pack .impair-route-line { margin-top: 0.3em; }
+
+.ppe.pack .impair-core > .see { margin-top: auto; }
+
+.ppe.pack .derecog-two-paths {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.45rem;
+  margin: 0.55rem 0 0.35rem;
+  align-items: stretch;
+}
+
+.ppe.pack .derecog-path {
+  margin: 0;
+  padding: 0.45em 0.55em;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.ppe.pack .derecog-path-k {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ppe.pack .derecog-path-line {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ppe.pack .derecog-path-sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88em;
+  line-height: 1.35;
+}
+
+@media (max-width: 50rem) {
+  .ppe.pack .impair-formula-contrast,
+  .ppe.pack .derecog-two-paths,
+  .ppe.pack .impair-cards,
+  .ppe.pack .impair-routes,
+  .ppe.pack .impair-ca-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ppe.pack .impair-ca-arrow { transform: rotate(90deg); }
+}
+
+/* Visible four-side plate frames, including the nested Depreciation plate.
+   Chapter-map rule paints .dep-map > .plate with --bg, which hides the stroke. */
+.ppe.pack .plate,
+.ppe.pack .ppe.dep-map > .plate,
+.ppe.dep-map.dep-port > .plate {
+  border: 0.12em solid var(--accent) !important;
+  border-color: var(--accent) !important;
+  background: var(--surface) !important;
+  box-shadow: none !important;
+  box-sizing: border-box;
+  margin-right: 0.35rem;
+  max-width: calc(100% - 0.35rem);
+}
+
+.ppe.pack .plate.pack-exit {
+  border-color: var(--line) !important;
+  background: transparent !important;
+}
+
+.ppe.pack :is(.lc-end, .impair-formula-cell, .derecog-path, .impair-core, .impair-ca-cell, .impair-route, .cost-result, .limb) {
+  box-sizing: border-box;
+}
+
+.ppe.pack .cap-rows {
+  border: 0.08em solid var(--line) !important;
+  border-radius: var(--card-radius);
+  padding: 0.45em 0.55em;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.ppe.pack .pack-lr {
+  padding-right: 1rem;
+  box-sizing: border-box;
+  box-shadow: inset -0.08em 0 0 var(--line);
+}

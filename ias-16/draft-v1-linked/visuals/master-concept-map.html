@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-60a-20261010" />
+<link rel="stylesheet" href="ias16.css?v=ias16-flow-v3-20261010" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -428,13 +428,12 @@
               </article>
             </div>
           </div>
-          <p class="both-bar">Both models: depreciate; test for impairment under IAS 36.</p>
+          <p class="both-bar">Both models continue into depreciation and may face impairment (IAS 36). Revaluation is a separate during-use event — revaluation model only.</p>
         </div>
       </section>
-      <div class="pack-flow pack-flow-fork">
+      <div class="pack-flow pack-flow-to-dep">
         <div class="pack-flow-shaft">
-          <p class="pack-flow-label fork-dep"><span class="onward">Both models</span></p>
-          <p class="pack-flow-label fork-rev"><span class="onward">Revaluation model only</span></p>
+          <p class="pack-flow-label"><span class="onward">Depreciate under both models</span></p>
         </div>
       </div>
     </div>
@@ -591,12 +590,11 @@
     </div>
 
   <div class="junction foot-row">
-    <p class="see"><a class="fb-num" href="../ch04.html#s-4-8" target="_parent">4.8</a><span class="see-label">See also</span> <span class="see-bit">Impairment: apply IAS 36</span></p>
     <p class="see"><a class="fb-num" href="../ch05.html#s-5-9" target="_parent">5.9</a><span class="see-label">See also</span> <span class="see-bit">Leased assets: IFRS 16</span></p>
   </div>
   </section>
       </div>
-      <div class="fork-gap" aria-hidden="true"></div>
+      <div class="rail-stack-gap" aria-hidden="true"></div>
     </div>
 
     <a class="rail-link" data-phase="reval" href="../ch04.html#s-4-5" target="_parent">Revaluation</a>
@@ -627,12 +625,93 @@
             
     </div>
   </section>
+      <div class="pack-flow pack-flow-to-impair">
+        <div class="pack-flow-shaft">
+          <p class="pack-flow-label"><span class="onward">If impaired (both models)</span></p>
+        </div>
+      </div>
+    </div>
+
+    <a class="rail-link rail-impair" data-phase="impair" href="../ch04.html#s-4-8" target="_parent">Impairment</a>
+    <div class="beat" data-phase="impair">
+      <section class="plate impair-plate" data-phase-start data-phase-end aria-label="Impairment">
+        <p class="plate-title"><a class="fb-num" href="../ch04.html#s-4-8" target="_parent">4.8</a><span>Impairment</span></p>
+        <div class="inner-board impair-board">
+          <div class="lc-head lc-top" role="group" aria-label="During use, with the impairment date">
+            <div class="lc-head-k"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a><span>During use</span></div>
+            <div class="lc-head-axis">
+              <article class="lc-end lc-begin"><p class="lc-end-k">Begins</p><p class="lc-end-line">When the asset is available for use</p></article>
+              <article class="lc-end lc-cease"><p class="lc-end-k">Ceases</p><p class="lc-end-line">Earlier of: classified as held for sale or derecognised</p><p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch05.html#s-5-4" target="_parent">IFRS 5</a></span></p></article>
+              <div class="lc-axis"><span class="lc-ring lc-ring-l"></span><span class="lc-line"></span><span class="lc-ring lc-ring-r"></span><span class="lc-arrow"></span></div>
+            </div>
+            <p class="lc-head-k lc-band-k"><span class="lc-key lc-key-imp" aria-hidden="true">◆</span><span>Impairment date</span></p>
+            <div class="lc-band lc-band-imp"><span class="lc-dia" style="left:50%">◆<span class="lc-tick-lab">Impairment date</span></span></div>
+          </div>
+          <div class="impair-cards" data-eq role="group" aria-label="Impairment event and compensation">
+            <article class="impair-core" data-eq-cell>
+              <p class="card-k"><span>Write-down · formula and inputs</span></p>
+              <div class="impair-formula-contrast" data-eq role="group" aria-label="Impairment write-down versus ordinary revaluation decrease">
+                <article class="impair-formula-cell" data-eq-cell>
+                  <p class="impair-formula-tag">Impairment</p>
+                  <div class="impair-ca-flow" role="group" aria-label="Carrying amount reduced to recoverable amount">
+                    <div class="impair-ca-cell">
+                      <p class="impair-ca-k">Carrying amount</p>
+                      <p class="impair-ca-sub">before</p>
+                    </div>
+                    <span class="impair-ca-arrow" aria-label="reduced to">→</span>
+                    <div class="impair-ca-cell impair-ca-after">
+                      <p class="impair-ca-k">Recoverable amount</p>
+                      <p class="impair-ca-sub">write-down target</p>
+                    </div>
+                  </div>
+                  <p class="impair-formula-note">Input from IAS 36 · both models</p>
+                </article>
+                <article class="impair-formula-cell impair-formula-contrast-cell" data-eq-cell>
+                  <p class="impair-formula-tag">≠ Ordinary reval decrease</p>
+                  <div class="impair-ca-flow" role="group" aria-label="Carrying amount moved to revalued amount or fair value">
+                    <div class="impair-ca-cell">
+                      <p class="impair-ca-k">Carrying amount</p>
+                      <p class="impair-ca-sub">before</p>
+                    </div>
+                    <span class="impair-ca-arrow impair-ca-arrow-mute" aria-label="moved to">→</span>
+                    <div class="impair-ca-cell">
+                      <p class="impair-ca-k">Revalued amount / FV</p>
+                      <p class="impair-ca-sub">reval-down target</p>
+                    </div>
+                  </div>
+                  <p class="see"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a><span class="see-label">See also</span> <span class="see-bit">Revaluation board</span></p>
+                </article>
+              </div>
+              <p class="impair-seq-note">Surplus-first sequencing on a revalued asset can look the same · trigger and measurement still differ.</p>
+              <div class="impair-routes" data-eq role="group" aria-label="Continue under the chosen model">
+                <article class="impair-route" data-eq-cell>
+                  <p class="card-k"><a class="fb-num" href="../ch05.html#s-5-1" target="_parent">5.1</a><span>Cost model</span></p>
+                  <p class="impair-route-line">Subsequent depreciation on impaired carrying amount − residual</p>
+                </article>
+                <article class="impair-route" data-eq-cell>
+                  <p class="card-k"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a><span>Revaluation model</span></p>
+                  <p class="impair-route-line">Surplus first, excess profit or loss · not the same event as reval decrease</p>
+                </article>
+              </div>
+              <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 36</span></p>
+            </article>
+            <article class="impair-comp" data-eq-cell>
+              <p class="card-k"><a class="fb-num" href="../ch06.html#s-6-6" target="_parent">6.6</a><span>Compensation for impairment</span></p>
+              <ul class="item-rows">
+                <li>Compensation from third parties for impaired, lost or given-up items → profit or loss when receivable.</li>
+                <li>Impairment, compensation claim/payment, and replacement are separate economic events.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
       <div class="pack-flow pack-flow-impair">
         <div class="pack-flow-shaft">
           <p class="pack-flow-label"><span class="onward">Derecognise on disposal or when no future benefits are expected</span></p>
         </div>
       </div>
     </div>
+
     <a class="rail-link rail-later" data-phase="out" href="../ch06.html#s-6-0" target="_parent">Derecognition</a>
     <div class="beat" data-phase="out">
       <section class="plate pack-exit" data-phase-start data-phase-end aria-label="Derecognition — remove carrying amount">
@@ -667,8 +746,20 @@
                 <p class="limb-title"><span>Carrying amount</span></p>
               </article>
             </div>
+            <div class="derecog-two-paths" data-eq role="group" aria-label="Two paths on derecognition">
+              <article class="derecog-path" data-eq-cell>
+                <p class="derecog-path-k">Gain or loss</p>
+                <p class="derecog-path-line">→ Profit or loss · both models</p>
+                <p class="derecog-path-sub">IAS 16.68 / .71 · not revenue</p>
+              </article>
+              <article class="derecog-path" data-eq-cell>
+                <p class="derecog-path-k">Revaluation surplus</p>
+                <p class="derecog-path-line">→ Retained earnings · may</p>
+                <p class="derecog-path-sub">Not through profit or loss · no recycling</p>
+              </article>
+            </div>
             <p class="soft-note gl-note"><a class="fb-num" href="../ch06.html#s-6-2" target="_parent">6.2</a><span>Consideration is determined under the IFRS 15 transaction-price requirements. Later changes follow IFRS 15.</span></p>
-<p class="soft-note gl-note"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Remove the carrying amount determined under the entity’s model.</span></p>
+<p class="soft-note gl-note"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Remove the carrying amount determined under the entity’s model. No forced true-up ritual before disposal.</span></p>
 </div>
 <div class="inner-rail"><a class="fb-num" href="../ch04.html#s-4-6" target="_parent">4.6</a><span class="rail-name">Revaluation surplus</span></div>
 <div class="inner-detail"><p class="chip-line soft-note"><span>The revaluation surplus may be transferred directly to retained earnings when the asset is derecognised. Transfers from revaluation surplus to retained earnings are not made through profit or loss.</span></p>
@@ -731,11 +822,6 @@
               <p class="thin-tip">Numbers stay in Illus 6.0A.1 — Map stays categorical.</p>
             </article>
           </div>
-          <div class="inner-rail"><a class="fb-num" href="../ch06.html#s-6-6" target="_parent">6.6</a><span class="rail-name">Compensation for impairment</span></div>
-          <div class="inner-detail"><ul class="item-rows">
-              <li>Compensation from third parties for items of property, plant and equipment that were impaired, lost or given up is included in profit or loss when the compensation becomes receivable.</li>
-              <li>Impairments or losses of items of property, plant and equipment, related claims for or payments of compensation from third parties, and any subsequent purchase or construction of replacement assets are separate economic events.</li>
-            </ul></div>
         </div>
         <p class="see"><a class="fb-num" href="../ch06.html#s-6-2" target="_parent">6.2</a><span class="see-label">See also</span> <span class="see-bit">IFRS 15</span> <span class="see-bit"><a href="../ch06.html#s-6-4" target="_parent">IFRS 16</a></span> <span class="see-bit"><a href="../ch06.html#s-6-3" target="_parent">IAS 2</a></span> <span class="see-bit"><a href="../ch06.html#s-6-7" target="_parent">IFRS 5</a></span></p>
       </section>
@@ -1248,7 +1334,8 @@
       v(B.cx, mid, B.t, true);
     }
 
-    var flows = root.querySelectorAll(".beat > .pack-flow:not(.pack-flow-fork)");
+    /* flow-v3: XOR pack-flow-fork removed — Models→Dep is a single .pack-flow */
+    var flows = root.querySelectorAll(".beat > .pack-flow");
     for (var f = 0; f < flows.length; f++) {
       var flow = flows[f];
       var beat = flow.parentElement;
@@ -1266,42 +1353,6 @@
         vFlow(R.cx, R.b, T.t, null);
       } else {
         vFlow(S.cx, S.b, T.t, flowLab);
-        if (flow.classList.contains("pack-flow-impair")) {
-          var peers = flow.querySelector(".impair-peers");
-          if (shown(peers)) {
-            var pb = boxOf(peers);
-            placeLabel(flowLab, S.cx + em(0.6), pb.t, "right");
-            var lh = flowLab.getBoundingClientRect().height;
-            placeLabel(flowLab, S.cx + em(0.6), pb.t - lh / 2 - 6, "right");
-          }
-        }
-      }
-    }
-
-    var fk = root.querySelector(".pack-flow-fork");
-    if (fk) {
-      var fS = root.querySelector('.beat[data-phase="models"] > .plate');
-      var fDr = root.querySelector('.rail-link[data-phase="dep"]');
-      var fRr = root.querySelector('.rail-link[data-phase="reval"]');
-      var fD = root.querySelector('.beat[data-phase="dep"] > .dep-port');
-      var fR = root.querySelector('.beat[data-phase="reval"] > .plate');
-      var tD = narrow ? fDr : fD, tR = narrow ? fRr : fR;
-      if (shown(fS) && shown(tD) && shown(tR)) {
-        var A = boxOf(fS), Dd = boxOf(tD), Rr = boxOf(tR), Dp = boxOf(fD);
-        var bus = A.b + (Dd.t - A.b) * 0.42;
-        var gx = Dp.r + (A.r - Dp.r) / 2;
-        var dx = A.cx;
-        v(A.cx, A.b, bus, true);
-        h(bus, dx, gx, "link");
-        v(dx, bus, Dd.t, false);
-        placeLabel(fk.querySelector(".fork-dep"), dx - em(0.55), (bus + Dd.t) / 2, "left");
-        var lowY = Rr.t - em(1.3);
-        v(gx, bus, lowY, true);
-        h(lowY, Rr.cx, gx, "link");
-        v(Rr.cx, lowY, Rr.t, false);
-        placeLabel(fk.querySelector(".fork-rev"), (dx + gx) / 2, bus - em(0.2), "above");
-        if (narrow && shown(fDr)) { var q = boxOf(fDr); v(q.cx, q.b, Dp.t, false); }
-        if (narrow && shown(fRr) && shown(fR)) { var q2 = boxOf(fRr), r2 = boxOf(fR); v(q2.cx, q2.b, r2.t, false); }
       }
     }
 
