@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=ias16-impair-b2-20261010" />
+<link rel="stylesheet" href="ias16.css?v=ias16-impair-b3-20261010" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -1088,32 +1088,6 @@
     stem.style.height = height + "px";
   }
 
-  function dockImpair() {
-    var flow = root.querySelector(".pack-flow-impair");
-    if (!flow) return;
-    var strip = flow.querySelector(".impair-strip");
-    var shaft = flow.querySelector(".pack-flow-shaft");
-    if (strip) {
-      strip.style.position = "";
-      strip.style.left = "";
-      strip.style.top = "";
-      strip.style.width = "";
-      strip.style.margin = "";
-      strip.style.transform = "";
-      strip.style.maxWidth = "";
-    }
-    if (!shaft) return;
-    if (window.matchMedia("(max-width: 800px)").matches) {
-      flow.style.removeProperty("--shaft-x");
-      return;
-    }
-    var flowBox = flow.getBoundingClientRect();
-    var shaftBox = shaft.getBoundingClientRect();
-    var x = (shaftBox.left + shaftBox.width / 2) - flowBox.left;
-    if (!isFinite(x)) return;
-    flow.style.setProperty("--shaft-x", x + "px");
-  }
-
   function sizeAxisName() {
     var name = root.querySelector(".axis-name");
     var text = name && name.querySelector(".axis-name-text");
@@ -1319,15 +1293,6 @@
         vFlow(R.cx, R.b, T.t, null);
       } else {
         vFlow(S.cx, S.b, T.t, flowLab);
-        if (flow.classList.contains("pack-flow-impair")) {
-          var peers = flow.querySelector(".impair-peers");
-          if (shown(peers)) {
-            var pb = boxOf(peers);
-            placeLabel(flowLab, S.cx + em(0.6), pb.t, "right");
-            var lh = flowLab.getBoundingClientRect().height;
-            placeLabel(flowLab, S.cx + em(0.6), pb.t - lh / 2 - 6, "right");
-          }
-        }
       }
     }
 
@@ -1340,22 +1305,33 @@
       var fR = root.querySelector('.beat[data-phase="reval"] > .plate');
       var tD = narrow ? fDr : fD, tR = narrow ? fRr : fR;
       if (shown(fS) && shown(tD) && shown(tR)) {
-        var A = boxOf(fS), Dd = boxOf(tD), Rr = boxOf(tR), Dp = boxOf(fD);
+        var A = boxOf(fS), Rr = boxOf(tR);
+        var plateEl = fD.querySelector("section.plate") || fD;
+        var Plate = boxOf(plateEl);
         var beatR = boxOf(fD.parentElement).r;
-        var bus = A.b + (Dd.t - A.b) * 0.42;
-        var gutter = Math.max(0, beatR - Dp.r);
-        var gx = Dp.r + Math.max(gutter / 2, em(0.28));
-        var dropX = Dd.cx;
-        v(A.cx, A.b, bus, true);
-        h(bus, Math.min(A.cx, dropX), Math.max(gx, A.cx, dropX), "link");
-        v(dropX, bus, Dd.t, false);
-        placeLabel(fk.querySelector(".fork-dep"), dropX - em(0.55), (bus + Dd.t) / 2, "left");
+        var stemX = Plate.cx;
+        var land = narrow && shown(fDr) ? boxOf(fDr).t : Plate.t;
+        var bus = A.b + (land - A.b) * 0.42;
+        var edge = Plate.r;
+        if (narrow && shown(fDr)) edge = Math.max(edge, boxOf(fDr).r);
+        var room = Math.max(0, beatR - edge);
+        var gx = edge + Math.max(em(0.24), Math.min(room * 0.55, room - em(0.12)));
+        v(stemX, A.b, bus, true);
+        h(bus, stemX, gx, "link");
+        if (narrow && shown(fDr)) {
+          var q = boxOf(fDr);
+          v(stemX, bus, q.t, true);
+          v(stemX, q.b, Plate.t, false);
+          placeLabel(fk.querySelector(".fork-dep"), stemX - em(0.55), (q.b + Plate.t) / 2, "left");
+        } else {
+          v(stemX, bus, Plate.t, false);
+          placeLabel(fk.querySelector(".fork-dep"), stemX - em(0.55), (bus + Plate.t) / 2, "left");
+        }
         var lowY = Rr.t - em(1.3);
         v(gx, bus, lowY, true);
         h(lowY, Math.min(Rr.cx, gx), Math.max(Rr.cx, gx), "link");
         v(Rr.cx, lowY, Rr.t, false);
-        placeLabel(fk.querySelector(".fork-rev"), (A.cx + gx) / 2, bus - em(0.2), "above");
-        if (narrow && shown(fDr)) { var q = boxOf(fDr); v(q.cx, q.b, Dp.t, false); }
+        placeLabel(fk.querySelector(".fork-rev"), (stemX + gx) / 2, bus - em(0.2), "above");
         if (narrow && shown(fRr) && shown(fR)) { var q2 = boxOf(fRr), r2 = boxOf(fR); v(q2.cx, q2.b, r2.t, false); }
       }
     }

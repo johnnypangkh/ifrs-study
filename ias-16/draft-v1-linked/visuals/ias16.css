@@ -3250,39 +3250,7 @@ body.embed {
   text-align: center;
 }
 
-/* Impairment junction peers sit under the shaft label. The line and arrow
-   stay on the shaft centre (R41); the peers clear that line. */
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair .pack-flow-shaft { grid-row: 1; }
-
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-peers {
-  grid-column: 1 / -1;
-  grid-row: 2;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.45rem;
-  align-items: stretch;
-  min-width: 0;
-  position: relative;
-  z-index: 1;
-  margin: 0 0 0.7em;
-}
-
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-peers > .impair-strip {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: center;
-  justify-content: flex-start;
-  gap: 0.15em 0.35em;
-  width: auto;
-  max-width: none;
-  margin: 0;
-  align-self: stretch;
-  justify-self: stretch;
-  white-space: normal;
-}
-
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-peers > .impair-strip > .fb-num { margin-right: 0; }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-comp {
   display: flex;
@@ -3416,11 +3384,6 @@ body.embed {
     border-left: 0.34em solid transparent;
     border-right: 0.34em solid transparent;
     border-top: 0.46em solid var(--accent);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-peers {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    padding-left: calc(var(--shaft-x, 26%) + 0.65em);
   }
 
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .scope-stack {
@@ -3745,17 +3708,6 @@ body.embed {
 
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair .pack-flow-shaft::before,
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair .pack-flow-shaft::after { content: none; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair .impair-peers {
-    grid-column: 1;
-    grid-row: 2;
-    grid-template-columns: minmax(0, 1fr);
-    margin: 0 0 0.7em 0.55em;
-    max-width: calc(100% - 0.55em);
-    padding-left: 0;
-    position: relative;
-    z-index: 1;
-  }
 }
 
 /* Six-step pack type scale. Shared chapter rules stay on their own sizes. */
@@ -4748,13 +4700,6 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body > .axis-mark,
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body > .axis-rule { grid-column: 1 / -1; }
 
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-peers {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: 1.6rem;
-    padding-left: 0;
-    margin-top: 4.6rem;
-  }
-
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track {
     grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: auto auto;
@@ -4895,13 +4840,6 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow { min-height: 2.2rem; }
 
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair .impair-peers {
-    margin-left: calc(50% + 0.7rem);
-    width: auto;
-    max-width: calc(50% - 0.7rem);
-    padding-left: 0;
-  }
-
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track {
     position: relative;
     display: flex;
@@ -4969,13 +4907,6 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis { padding: 0.6em 0.75em; }
 
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell { padding: 0.55em 0.7em; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair .impair-peers {
-    margin: 0 0 0.7em calc(50% + 0.85rem);
-    width: auto;
-    max-width: calc(50% - 0.85rem);
-    padding-left: 0;
-  }
 }
 
 /* M-R3-1. The row under the Cost formula is its own 40/60 split.
@@ -6665,7 +6596,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   max-width: calc(100% - 0.65rem);
   min-width: 0;
   margin-right: 0 !important;
-  align-self: flex-start;
+  align-self: center;
   box-sizing: border-box;
 }
 @media (max-width: 800px) {
@@ -6673,7 +6604,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     width: calc(100% - 0.65rem);
     max-width: calc(100% - 0.65rem);
     margin-right: 0 !important;
-    justify-self: start;
+    justify-self: center;
     box-sizing: border-box;
   }
 }
