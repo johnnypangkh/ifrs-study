@@ -687,16 +687,7 @@ header.chrome-bar.is-shared {
   font-weight: 600;
 }
 @media (min-width: 40.0625rem) {
-  .chrome-bar.is-shared .pill-bar > .tag-row-wrap {
-    overflow: visible;
-  }
-  .chrome-bar.is-shared .tag-row {
-    flex-wrap: wrap;
-    width: auto;
-    min-width: 0;
-  }
-  .chrome-bar.is-shared .pill-bar.is-overflowing .tag-row { padding-inline-end: 0; }
-  .chrome-bar.is-shared .pill-chevron { display: none; }
+  /* Johnny 2026-10-10: one row at every width; overflow scrolls with < > chevrons. */
   .chrome-bar.is-shared .tag {
     font-size: 0.75rem;
     padding-inline: 0.5rem;
@@ -865,4 +856,14 @@ header.page-header > h1 {
     height: 2.75rem;
   }
   .chrome-bar.is-shared .tag { block-size: 2.75rem; min-height: 2.75rem; padding-inline: 0.75rem; }
+}
+
+/* T5 pill group divider: Map | Abbreviations | 1 … n | References. */
+.tag-row > .tag-sep {
+  flex: 0 0 auto;
+  align-self: center;
+  inline-size: 0.0625rem;
+  block-size: 1.25rem;
+  margin-inline: 0.125rem;
+  background: var(--line);
 }

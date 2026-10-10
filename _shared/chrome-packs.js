@@ -1,6 +1,6 @@
 /* Pack titles and chapter pills for the shared top bar.
    Chapter pages do not copy this markup. chrome-bar.js reads it.
-   chapters = row 2 pills. meta = links under the page H1. */
+   chapters = row 2 pills. meta = Abbreviations (before chapters) and References (after) pills, T5. */
 window.CHROME_PACKS = {
   ias16: {
     title: "IAS 16 Property, Plant and Equipment",

@@ -1,8 +1,9 @@
 /* Shared chapter top bar. Loaded by chrome-include.js on every pack page.
    Title, pills, and the search placeholder come from chrome-packs.js.
-   Option B: Home / pack title (links to the pack Map), Desktop|Mobile
-   beside the title on every page, search with the clear control inside,
-   chapter pills only. Abbreviations and References sit under the H1.
+   T5 (Johnny lock): row 2 pills in order Map | Abbreviations | 1 … n |
+   References, with a divider between groups. Desktop|Mobile beside the
+   title, search with the clear control inside. Only Last update sits
+   under the H1.
    The switch slot is always the same size. Without a map iframe it
    does not change layout and does not scroll a map.
    Pill chevrons scroll the row to the end so the last pill clears the fade. */
@@ -117,16 +118,38 @@
     scroller.setAttribute("data-pill-bar", "");
     var pills = document.createElement("div");
     pills.className = "tag-row";
-    var chapters = pack.chapters || [];
-    for (var i = 0; i < chapters.length; i++) {
-      var pill = chapters[i];
-      var link = document.createElement("a");
-      var active = pill.href === file;
-      link.className = active ? "tag active" : "tag";
-      link.href = pill.href;
-      link.textContent = pill.label;
-      if (active) link.setAttribute("aria-current", "page");
-      pills.appendChild(link);
+    var meta = pack.meta || [];
+    var lead = [], tail = [];
+    for (var m = 0; m < meta.length; m++) {
+      (/references/i.test(meta[m].href) ? tail : lead).push(meta[m]);
+    }
+    var groups = [
+      pack.map ? [{ href: pack.map, label: "Map" }] : [],
+      lead,
+      pack.chapters || [],
+      tail
+    ];
+    var first = true;
+    for (var g = 0; g < groups.length; g++) {
+      var group = groups[g];
+      if (!group.length) continue;
+      if (!first) {
+        var sep = document.createElement("span");
+        sep.className = "tag-sep";
+        sep.setAttribute("aria-hidden", "true");
+        pills.appendChild(sep);
+      }
+      first = false;
+      for (var i = 0; i < group.length; i++) {
+        var pill = group[i];
+        var link = document.createElement("a");
+        var active = pill.href === file;
+        link.className = active ? "tag active" : "tag";
+        link.href = pill.href;
+        link.textContent = pill.label;
+        if (active) link.setAttribute("aria-current", "page");
+        pills.appendChild(link);
+      }
     }
     scroller.appendChild(pills);
     var prev = chevron("prev");
@@ -156,7 +179,7 @@
     var last = document.createElement("span");
     last.className = "chrome-last-update";
     line.appendChild(last);
-    var links = pack.meta || [];
+    var links = [];
     for (var i = 0; i < links.length; i++) {
       var sep = document.createElement("span");
       sep.className = "chrome-meta-sep";
@@ -190,18 +213,9 @@
 
   function wirePills(nav, scroller, prev, next) {
     var lock = false;
-    function wideBar() {
-      try { return window.matchMedia("(min-width: 40.0625rem)").matches; } catch (err) { return false; }
-    }
     function tune(resize) {
       if (lock) return;
-      if (wideBar()) {
-        nav.classList.remove("is-overflowing");
-        if (scroller.scrollLeft) scroller.scrollLeft = 0;
-        next.hidden = true;
-        prev.hidden = true;
-        return;
-      }
+      /* One row at every width (Johnny 2026-10-10): chevrons on wide bars too. */
       if (resize || !nav.classList.contains("is-overflowing")) {
         lock = true;
         var wasEnd = false;
