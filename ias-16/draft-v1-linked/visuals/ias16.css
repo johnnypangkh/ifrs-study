@@ -6018,36 +6018,6 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   line-height: 1;
   vertical-align: middle;
 }
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board {
-  align-items: start;
-}
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail {
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  align-self: start;
-  text-align: start;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-  min-height: 0 !important;
-  height: auto !important;
-}
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-k,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-model {
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: start;
-  text-align: start;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-  min-height: 0 !important;
-  height: auto !important;
-}
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > .rail-name,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > span,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-model > span {
@@ -6172,45 +6142,11 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .after-nest {
   padding-inline: 0.55rem;
 }
-.ppe.dep-map .v-points p,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer-line,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .item-rows li,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nest-k,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nest-k > span,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .period-lane-k,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-col {
-  overflow-wrap: anywhere;
-  min-inline-size: 0;
-}
 
 @media (max-width: 50rem) {
   .ppe.dep-map > .handoff { margin-top: 5rem; }
 }
 
-/* QC R3. A third visible border is only for a formula ledger row or a
-   See-also chip. On the master map the plate is the outer frame, so the
-   extra card inside a content band is flattened. */
-.ppe.pack .pl-tip,
-.ppe.pack .point-at,
-.ppe.pack .after-nest,
-.ppe.pack .freq-peer,
-.ppe.pack .inner-detail,
-.ppe.pack .lens-cell:has(.rev-table) {
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-}
-.ppe.disc .disc-stack > .land-tip,
-.ppe.pack .disc-stack > .land-tip,
-.ppe.disc .disc-stack > .soft-note,
-.ppe.pack .disc-stack > .soft-note,
-.ppe.recog-map .spare-bit {
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-}
 
 @media (max-width: 40rem) {
   .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-table {
@@ -6396,3 +6332,351 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     transform: rotate(90deg);
   }
 }
+
+/* LOCK #59 (Johnny 2026-10-10, "use grid to wrap a concept or object"):
+   no borderless notes or See-also. Pre-#85 tokens only. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .soft-note {
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.35em 0.55em;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see.see-wide {
+  border: 0.08em dashed var(--see) !important;
+  border-radius: var(--card-radius);
+}
+.ppe:is(.pack,.disc) .disc-board > .inner-rail { margin-block: 0; }
+/* Each See-also is its own dashed chip; the group box is not a second frame. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see { padding: 0.25em 0.45em !important; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see-box { border: 0 !important; padding: 0; display: grid; gap: 0.35em; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see-box > .see { margin-top: 0; }
+/* 5.3 Factors / Land and buildings as rail|detail rows (Johnny 2026-10-10). */
+.ppe:is(.pack,.dep-map) .factor-rows { grid-template-columns: 12em minmax(0, 1fr) !important; margin-bottom: 0.45rem; }
+.ppe:is(.pack,.dep-map) .factor-rows > .inner-detail > .peer-line { margin: 0; }
+@media (max-width: 40rem) { .ppe:is(.pack,.dep-map) .factor-rows { grid-template-columns: minmax(0, 1fr) !important; } }
+
+/* LOCK (mock-topbar-grid v3): no mid-word breaks in revaluation table; Scope 1.1 criteria wide enough for prose. */
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-table {
+  grid-template-columns: minmax(9.5em, max-content) minmax(0, 1fr) minmax(0, 1fr) !important;
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-row .rev-k { white-space: nowrap; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-row,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-sub {
+  overflow-wrap: normal !important; word-break: normal !important; hyphens: manual !important;
+}
+@media (min-width: 40.0625rem) {
+  .ppe .def-fork { grid-template-columns: minmax(0, 2fr) minmax(4.75em, 0.28fr) minmax(12em, 0.75fr); }
+}
+
+/* LOCK (mock-topbar-grid v3): rail labels top-aligned, cells stretch to row height, rails span their row. */
+@media (min-width: 40.0625rem) {
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .scope-stack {
+    grid-template-columns: minmax(0, 2fr) minmax(4.75em, 0.28fr) minmax(12em, 0.75fr) !important;
+  }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row { align-items: stretch !important; }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row > .lens-cell { align-self: stretch !important; height: auto !important; }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.lens-k,.inner-rail,.cap-model,.band-rail) {
+    align-self: stretch !important; display: flex !important; flex-direction: column !important;
+    justify-content: flex-start !important; text-align: left;
+  }
+  .ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-k { grid-column: 1; grid-row: 1 / span 2; }
+  .ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell:nth-of-type(1) { grid-row: 1; }
+  .ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) { grid-row: 2; }
+}
+/* consistent vertical gap between outer rows (Johnny 14:17) */
+.ppe.pack .pack-lr { row-gap: 1.5rem !important; }
+.ppe.pack .pack-lr > .beat { padding-block-start: 0 !important; }
+@media (min-width: 40.0625rem) {
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.lens-k,.inner-rail,.cap-model,.band-rail) { text-align: left !important; align-items: flex-start !important; }
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.lens-k,.inner-rail,.cap-model,.band-rail) > * { text-align: left !important; justify-content: flex-start !important; }
+}
+/* LOCK (v4): rail columns wide enough that no label goes one word per line at >=922 */
+@media (min-width: 40.0625rem) {
+  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.inner-board,.cap,.disc-board) { grid-template-columns: 13em minmax(0, 1fr) !important; }
+  .ppe:is(.pack,.dep-map) .factor-rows { grid-template-columns: 13em minmax(0, 1fr) !important; }
+  .ppe:is(.pack,.models) .lens-row { grid-template-columns: 11em minmax(0,1fr) minmax(0,1fr) !important; }
+  .ppe:is(.pack,.models) .lens-row:has(.rev-table) { grid-template-columns: 11em minmax(14ch, 1fr) !important; }
+}
+/* v4: 6.2 / 4.2-4.3 notes sit under the gain-or-loss formula, same width, framed */
+.ppe .gl-note { display:flex; gap:.4em; align-items:flex-start; margin-top:.35rem; box-sizing:border-box; inline-size:100%; }
+.ppe .inner-detail:has(> .gl-note) > .cost-eq { inline-size: 100%; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr); display: grid; }
+
+/* LOCK (v5, Johnny 14:27 + R45→R23 B): the cost-split band is NOT linked to the formula boxes,
+   so it sits on its own full-width grid and does not inherit formula column edges.
+   Cut-off box: Before (~258px) | ◆ At this point | After — the box starts at ◆. */
+@media (min-width: 50.0625rem) {
+  .ppe:is(.pack,.cost-map) .cost-identity > .cost-split {
+    grid-column: 1 / -1 !important; grid-row: 3;
+    display: grid !important;
+    grid-template-columns: minmax(16em, 0.8fr) minmax(0, 2.2fr) !important;
+    gap: 0.45rem 1rem; align-items: start !important; width: 100%;
+  }
+  .ppe:is(.pack,.cost-map) .cost-split > .nature-nest { grid-column: 1 !important; grid-row: 1 !important; align-self: start !important; }
+  .ppe:is(.pack,.cost-map) .cost-split > .ready-axis  { grid-column: 2 !important; grid-row: 1 !important; align-self: start !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body {
+    display: grid !important;
+    grid-template-columns: 16em minmax(0, 1fr) minmax(0, 1fr) !important;
+    align-items: start !important; height: auto !important;
+  }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > :is(.axis-name,.axis-rule) { grid-column: 1 / -1 !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-mark { grid-column: 2 !important; justify-self: start !important; margin-inline-start: -0.45em !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .before-nest { grid-column: 1 !important; grid-row: auto; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .point-at   { grid-column: 2 !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .after-col  { grid-column: 3 !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > :is(.before-nest,.point-at,.after-col) { grid-row: 4 !important; align-self: start !important; height: auto !important; }
+  .ppe:is(.pack,.cost-map) .formula-stem { display: none; }
+}
+@media (min-width: 50.0625rem) {
+  .ppe:is(.pack,.cost-map) .cost-split > :is(.nature-nest,.ready-axis) { display: flex !important; flex-direction: column !important; gap: 0.45rem !important; }
+  .ppe:is(.pack,.cost-map) .cost-split > :is(.nature-nest,.ready-axis) > * { grid-area: auto !important; width: 100% !important; box-sizing: border-box; }
+  .ppe:is(.pack,.cost-map) .cost-split > :is(.nature-nest,.ready-axis) > .link-stem { display: none !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body { grid-template-columns: minmax(258px, 1.35fr) minmax(0, 1fr) minmax(0, 1fr) !important; }
+}
+@media (min-width: 50.0625rem) {
+  .ppe:is(.pack,.cost-map) .cost-identity > .cost-split { grid-template-columns: minmax(14em, 0.72fr) minmax(0, 2.28fr) !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-mark { text-align: left !important; width: auto !important; order: 0; grid-row: 3 !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-rule { grid-row: 3 !important; align-self: center; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-name { grid-row: 1 !important; }
+}
+@media (min-width: 50.0625rem) and (max-width: 75rem) {
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body { grid-template-columns: minmax(16em, 1.15fr) minmax(0, 1fr) !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .before-nest { grid-row: 4 / span 2 !important; }
+  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .after-col { grid-column: 2 !important; grid-row: 5 !important; }
+}
+/* v5: 4.2/4.3 header shares the lens-row column grid (one-to-one link) */
+@media (min-width: 40.0625rem) {
+  .ppe:is(.pack,.models) .lens-heads { display: grid !important; grid-template-columns: 11em minmax(0,1fr) minmax(0,1fr) !important; column-gap: var(--lens-gap, 0.45rem) !important; }
+  .ppe:is(.pack,.models) .lens-row { column-gap: var(--lens-gap, 0.45rem) !important; }
+  .ppe:is(.pack,.models) .lens-heads > *, .ppe:is(.pack,.models) .lens-row > * { margin-inline: 0 !important; box-sizing: border-box; }
+}
+/* v5: revaluation = event on the depreciation timeline (revaluation model only) */
+.ppe .reval-event { margin-top: 0.7rem; border: 0.06em dashed var(--accent); border-radius: var(--card-radius); padding: 0.5em 0.55em; }
+.ppe .reval-k { display: flex; flex-wrap: wrap; gap: 0.4em; align-items: baseline; margin-bottom: 0.45rem; }
+.ppe .reval-mark { color: var(--accent); }
+.ppe .reval-tag { font-size: 0.8em; color: var(--muted); border: 0.06em solid var(--line); border-radius: 999px; padding: 0 0.5em; }
+.ppe .reval-tick .period-tick-lab { color: var(--accent); font-weight: 700; }
+.ppe .reval-tick { border-color: var(--accent) !important; background: var(--accent) !important; }
+.ppe .reval-rows { margin: 0; }
+.ppe .reval-rows .soft-note + .soft-note, .ppe .reval-rows .soft-note + .rev-foot { margin-top: 0.3rem; }
+.ppe .period-axis { position: relative; }
+.ppe .reval-pin { position: absolute; top: 50%; transform: translate(-50%, -55%); color: var(--accent); font-weight: 700; line-height: 1; z-index: 2; }
+.ppe .reval-pin-lab { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); margin-bottom: 0.15em; font-size: 0.72em; white-space: nowrap; }
+.ppe .reval-rows .soft-note { display: block; inline-size: 100%; box-sizing: border-box; }
+/* v6: revaluation 2x2 matrix (aligned only to itself) */
+.ppe .reval-rows > .reval-matrix { grid-column: 1 / -1; display: grid; grid-template-columns: 9.5em minmax(0,1fr) minmax(0,1fr); gap: 0.3rem; align-items: stretch; }
+.ppe .reval-matrix > * { margin: 0; }
+.ppe .rm-corner { display:flex; align-items:center; justify-content:center; }
+.ppe .rm-col { border: 0.06em solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: 0.3em 0.5em; font-weight: 700; font-size: 0.85em; text-align: center; }
+.ppe .rm-row { border: 0.06em solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: 0.45em 0.5em; display: flex; flex-direction: column; gap: 0.3em; align-items: flex-start; }
+.ppe .rm-k { font-weight: 700; }
+.ppe .rm-ind { font-size: 0.78em; border-radius: 999px; padding: 0 0.45em; border: 0.06em solid currentColor; white-space: nowrap; }
+.ppe .rm-up { color: #6fbf8e; } .ppe .rm-down { color: #d98b7a; }
+.ppe .rm-cell { border: 0.06em solid var(--line); border-radius: var(--card-radius); padding: 0.45em 0.55em; display: flex; gap: 0.45em; align-items: flex-start; }
+.ppe .rm-ord { flex: 0 0 auto; inline-size: 1.35em; block-size: 1.35em; border-radius: 50%; border: 0.06em solid var(--accent); color: var(--accent); font-size: 0.75em; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.ppe .rm-foot { grid-column: 1 / -1; text-align: center; font-size: 0.85em; color: var(--muted); border: 0.06em solid var(--line); border-radius: var(--card-radius); padding: 0.25em; }
+@media (max-width: 40rem) {
+  .ppe .reval-rows > .reval-matrix { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  .ppe .rm-corner { display: none; }
+  .ppe .rm-row { grid-column: 1 / -1; flex-direction: row; align-items: center; }
+}
+@media (max-width: 40rem) {
+  .ppe .reval-matrix > .rm-corner { display: none !important; }
+  .ppe .reval-matrix > .rm-row { grid-column: 1 / -1 !important; }
+}
+.ppe .rm-sub { font-size: 0.82em; color: var(--muted); }
+.ppe .rm-down { color: var(--muted) !important; }
+@media (max-width: 40rem) { .ppe .reval-matrix > .rm-row { flex-wrap: wrap; column-gap: 0.45em; } }
+/* v6d: narrow widths — each rail|detail pair reads as ONE unit (compact heading strip attached to its content) */
+@media (max-width: 40rem) {
+  .ppe :is(.inner-board,.factor-rows,.disc-board,.cap,.lens-row) { row-gap: 0 !important; }
+  .ppe :is(.inner-rail,.lens-k,.cap-model,.band-rail) {
+    display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important;
+    gap: 0.45em; text-align: left !important; min-height: 0 !important; height: auto !important;
+    padding: 0.3em 0.55em !important; margin: 0 !important;
+    border-bottom-left-radius: 0 !important; border-bottom-right-radius: 0 !important;
+  }
+  .ppe :is(.inner-rail,.lens-k,.cap-model,.band-rail) > * { text-align: left !important; margin: 0 !important; }
+  .ppe :is(.inner-rail,.lens-k,.cap-model,.band-rail) + * {
+    margin-top: 0 !important; border-top-width: 0 !important;
+    border-top-left-radius: 0 !important; border-top-right-radius: 0 !important;
+    margin-bottom: 0.7rem !important;
+  }
+  .ppe :is(.inner-rail,.lens-k,.cap-model,.band-rail) + *:last-child { margin-bottom: 0 !important; }
+}
+/* v6e: 3-column matrix, neutral */
+.ppe .reval-rows > .reval-matrix { grid-template-columns: 10.5em minmax(0,1fr) minmax(0,1fr) !important; }
+.ppe .reval-matrix .rm-ind { color: var(--muted) !important; border-color: var(--line) !important; }
+.ppe .reval-matrix .rm-col { display:flex; align-items:center; justify-content:center; gap:.35em; }
+@media (max-width: 40rem) {
+  .ppe .reval-rows > .reval-matrix { grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important; }
+  .ppe .reval-matrix > .rm-col:first-child { display: none !important; }
+  .ppe .reval-matrix > .rm-row { grid-column: 1 / -1 !important; border-radius: var(--card-radius) !important; border-width: 0.06em !important; margin-bottom: 0 !important; }
+  .ppe .reval-matrix > .rm-row + * { border-top-width: 0.06em !important; border-radius: var(--card-radius) !important; margin-bottom: 0 !important; }
+}
+@media (max-width: 40rem) {
+  .ppe * + :is(.inner-rail,.lens-k,.cap-model,.band-rail):not(:first-child) { margin-top: 0.8rem !important; }
+}
+@media (max-width: 40rem) {
+  .ppe:is(.pack,.disc) .disc-board { grid-template-columns: minmax(0,1fr) !important; }
+  .ppe:is(.pack,.disc) .disc-board > * { grid-column: 1 !important; grid-row: auto !important; }
+}
+/* v7: life cycle = one axis + two PEER event lanes (Depreciation | Revaluation), same frame/heading/width */
+.ppe .period-flows .period-lane-1 > :not(.period-yearends), .ppe .period-flows .period-lane-2 { visibility: hidden; }
+.ppe .period-flows .period-lane-2 { display: none; }
+.ppe .period-flows .period-lane-1 { background: transparent !important; clip-path: none !important; min-height: 0 !important; padding-block: 0 !important; }
+.ppe .period-flows .period-lane-1 > .period-points, .ppe .period-flows .period-lane-1 > .period-lane-k { display: none; }
+.ppe .period-flows .period-yearends { visibility: visible; position: relative; }
+.ppe .v-lanes > .v-lane { display: none; }
+.ppe .life-lanes { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.8rem; }
+.ppe .life-lane { border: 0.06em solid var(--line) !important; border-radius: var(--card-radius); background: transparent; padding: 0.5em 0.55em; margin: 0 !important; inline-size: 100%; box-sizing: border-box; }
+.ppe .lane-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4em; margin: 0 0 0.45rem; font-weight: 700; font-size: 1em; }
+.ppe .lane-mark { color: var(--accent); }
+.ppe .lane-tag { font-weight: 400; font-size: 0.8em; color: var(--muted); border: 0.06em solid var(--line); border-radius: 999px; padding: 0 0.5em; }
+.ppe .lane-points { display: flex; flex-direction: column; gap: 0.3rem; }
+.ppe .period-flows .period-lane-1 { inline-size: min(30em, 100%) !important; }
+.ppe .period-yearends { min-block-size: 1.4em; }
+.ppe .v-span { min-block-size: 10rem; }
+.ppe .v-yearends { display: flex; flex-direction: column; justify-content: space-around; min-block-size: 9rem; }
+.ppe .period-band > .period-tl { inline-size: 64% !important; }
+.ppe .period-flows .period-lane-1 { inline-size: 100% !important; }
+
+/* v8 LIFE CYCLE (designed from scratch): one full-width axis, two PEER event bands, rules hang beneath */
+.ppe .lc { display: flex; flex-direction: column; gap: 0.9rem; min-width: 0; }
+.ppe .lc-track { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); column-gap: 0.6rem; row-gap: 0.5rem; align-items: center; }
+.ppe .lc-begin { grid-column: 2; grid-row: 1; justify-self: start; }
+.ppe .lc-cease { grid-column: 2; grid-row: 1; justify-self: end; }
+.ppe .lc-end { max-inline-size: 46%; border: 0.06em solid var(--line); border-radius: var(--card-radius); padding: 0.4em 0.55em; box-sizing: border-box; }
+.ppe .lc-end-k { font-weight: 700; margin: 0; }
+.ppe .lc-end-line { margin: 0.15em 0 0; font-size: 0.9em; }
+.ppe .lc-end .see { margin-top: 0.3em; }
+.ppe .lc-lab { margin: 0; font-weight: 700; font-size: 0.85em; display: flex; align-items: center; gap: 0.4em; }
+.ppe .lc-lab-axis { grid-column: 1; grid-row: 2; }
+.ppe .lc-axis { grid-column: 2; grid-row: 2; position: relative; block-size: 1.2em; }
+.ppe .lc-line { position: absolute; left: 0.5em; right: 1.2em; top: 50%; border-top: 0.14em solid var(--fg, #e6e6e6); }
+.ppe .lc-ring { position: absolute; top: 50%; inline-size: 0.9em; block-size: 0.9em; border: 0.14em solid var(--fg, #e6e6e6); border-radius: 50%; background: var(--bg); transform: translateY(-50%); z-index: 1; box-sizing: border-box; }
+.ppe .lc-ring-l { left: 0; } .ppe .lc-ring-r { right: 0.75em; }
+.ppe .lc-arrow { position: absolute; right: 0; top: 50%; transform: translateY(-50%); border-left: 0.5em solid var(--muted); border-block: 0.3em solid transparent; }
+.ppe .lc-lab-dep { grid-column: 1; grid-row: 3; } .ppe .lc-band-dep { grid-column: 2; grid-row: 3; }
+.ppe .lc-lab-rev { grid-column: 1; grid-row: 4; } .ppe .lc-band-rev { grid-column: 2; grid-row: 4; }
+.ppe .lc-band { position: relative; block-size: 2.4em; border: 0.06em solid var(--line); border-radius: var(--card-radius); background: var(--band); margin-inline: 0 1.2em; }
+.ppe .lc-tick { position: absolute; top: 0.35em; bottom: 0.35em; border-left: 0.16em solid var(--fg, #e6e6e6); }
+.ppe .lc-tick-lab { position: absolute; left: 0.35em; top: 50%; transform: translateY(-50%); font-size: 0.75em; white-space: nowrap; color: var(--fg, #e6e6e6); }
+.ppe .lc-dia { position: absolute; top: 50%; transform: translate(-50%, -50%); color: var(--accent); font-size: 1.35em; line-height: 1; font-weight: 700; }
+.ppe .lc-dia .lc-tick-lab { left: 1.1em; font-size: 0.55em; color: var(--accent); font-weight: 700; }
+.ppe .lc-key-dep { display: inline-block; inline-size: 0.16em; block-size: 1em; background: var(--fg, #e6e6e6); }
+.ppe .lc-key-rev { color: var(--accent); }
+.ppe .lc-lanes { display: flex; flex-direction: column; gap: 0.8rem; }
+.ppe .lc .life-lane { border: 0.06em solid var(--line) !important; border-radius: var(--card-radius); padding: 0.55em 0.6em; }
+/* minimal matrix */
+.ppe .rmx { grid-column: 1 / -1; display: grid; grid-template-columns: 11em minmax(0,1fr) minmax(0,1fr); gap: 0.3rem 0.4rem; align-items: stretch; }
+.ppe .rmx-head { grid-column: 1 / -1; display: flex; gap: 0.4em; align-items: center; }
+.ppe .rmx-cite { font-size: 0.78em; border: 0.06em solid var(--line); border-radius: 999px; padding: 0 0.5em; }
+.ppe .rmx-col { margin: 0; font-weight: 700; font-size: 0.85em; text-align: center; border: 0.06em solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: 0.3em 0.4em; }
+.ppe .rmx-row { margin: 0; font-weight: 700; border: 0.06em solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: 0.45em 0.5em; display: flex; align-items: center; justify-content: space-between; gap: 0.4em; }
+.ppe .rmx-dir { font-size: 1.1em; }
+.ppe .rmx-flow { grid-column: 2 / 4; display: grid; grid-template-columns: minmax(0,1fr) 0 minmax(0,1fr); column-gap: 0.4rem; position: relative; }
+.ppe .rmx-cell { margin: 0; border: 0.06em solid var(--line); border-radius: var(--card-radius); padding: 0.5em 0.6em; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 600; }
+.ppe .rmx-arrow { position: relative; align-self: center; justify-self: center; z-index: 2; background: var(--bg); border: 0.06em solid var(--accent); color: var(--accent); border-radius: 50%; inline-size: 1.6em; block-size: 1.6em; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+@media (max-width: 40rem) {
+  .ppe .lc-track { grid-template-columns: minmax(0,1fr); }
+  .ppe .lc-track > * { grid-column: 1 !important; grid-row: auto !important; }
+  .ppe .lc-end { max-inline-size: none; }
+  .ppe .lc-band { margin-inline: 0; }
+  .ppe .lc-lab { margin-top: 0.3rem; }
+  .ppe .rmx { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  .ppe .rmx-col:first-of-type { display: none; }
+  .ppe .rmx-row { grid-column: 1 / -1; }
+  .ppe .rmx-flow { grid-column: 1 / -1; }
+}
+.ppe .lc > * { align-self: stretch !important; inline-size: 100% !important; box-sizing: border-box; }
+.ppe .lc-band, .ppe .lc-axis { inline-size: auto !important; justify-self: stretch; }
+.ppe .lc-dia .lc-tick-lab { left: 1.5em !important; transform: translateY(-55%); }
+@media (max-width: 40rem) {
+  .ppe .lc-track { display: flex !important; flex-direction: column; align-items: stretch; }
+  .ppe .lc-begin { order: 1; } .ppe .lc-lab-axis { order: 2; } .ppe .lc-axis { order: 3; } .ppe .lc-cease { order: 4; align-self: flex-end; }
+  .ppe .lc-lab-dep { order: 5; } .ppe .lc-band-dep { order: 6; } .ppe .lc-lab-rev { order: 7; } .ppe .lc-band-rev { order: 8; }
+  .ppe .lc-axis { block-size: 1.2em; }
+}
+.ppe .lc-end { align-self: start; }
+/* v9: 4-column matrix + mark polish */
+.ppe .rmx { grid-template-columns: 6.5em 7.5em minmax(0,1fr) minmax(0,1fr) !important; }
+.ppe .rmx-flow { grid-column: 3 / 5 !important; }
+.ppe .rmx-row { justify-content: center !important; }
+.ppe .rmx-ca { margin: 0; border: 0.06em solid var(--line); border-radius: var(--card-radius); display: flex; align-items: center; justify-content: center; font-weight: 600; padding: 0.4em; white-space: nowrap; }
+.ppe .lc-dia .lc-tick-lab { left: 2.1em !important; }
+@media (max-width: 40rem) {
+  .ppe .rmx { grid-template-columns: 4.5em 5.5em minmax(0,1fr) minmax(0,1fr) !important; font-size: 0.9em; }
+  .ppe .rmx-col:first-of-type { display: flex !important; align-items:center; justify-content:center; }
+  .ppe .rmx-row { grid-column: auto !important; }
+  .ppe .rmx-flow { grid-column: 3 / 5 !important; grid-template-columns: minmax(0,1fr) 0 minmax(0,1fr); }
+  .ppe .rmx-col { font-size: 0.72em; padding: 0.3em 0.2em; }
+  .ppe .lc-band-dep { block-size: 3.4em; }
+  .ppe .lc-band-dep .lc-tick-lab { top: auto; bottom: -0.1em; transform: none; left: 0.25em; font-size: 0.68em; }
+  .ppe .lc-band-dep .lc-tick { top: 0.35em; bottom: 1.3em; }
+}
+.ppe .rmx-col { display:flex; align-items:center; justify-content:center; }
+/* v10: axis = shared header band; Depreciation / Revaluation = peer rail rows; bands align to axis */
+.ppe .lc-head { grid-column: 1 / -1; display: grid; grid-template-columns: 13em minmax(0,1fr); column-gap: inherit; gap: 0 var(--lc-gap, 0.45rem); border: 0.06em solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: 0.5em 0; }
+.ppe .lc-head-k { display: flex; align-items: center; gap: 0.4em; font-weight: 700; padding-inline: 0.55em; align-self: end; }
+.ppe .lc-head-axis { display: grid; grid-template-columns: 1fr 1fr; row-gap: 0.45rem; padding-inline: 0.6em; }
+.ppe .lc-head-axis > .lc-begin { grid-column: 1; grid-row: 1; justify-self: start; max-inline-size: 95%; }
+.ppe .lc-head-axis > .lc-cease { grid-column: 2; grid-row: 1; justify-self: end; max-inline-size: 95%; }
+.ppe .lc-head-axis > .lc-axis { grid-column: 1 / -1; grid-row: 2; }
+.ppe .lc-detail { display: flex; flex-direction: column; gap: 0.5rem; }
+.ppe .lc-detail > .lc-band { margin: 0 !important; }
+.ppe .lc-rail { flex-direction: column; align-items: flex-start; gap: 0.3em; }
+.ppe .lc-rail .lane-tag { font-weight: 400; }
+.ppe .lc-rail .lc-key { margin-bottom: 0.1em; }
+@media (min-width: 40.0625rem) { .ppe .lc-rail { flex-direction: column !important; } }
+@media (max-width: 40rem) {
+  .ppe .lc-head { grid-template-columns: minmax(0,1fr); padding: 0.45em 0.5em; }
+  .ppe .lc-head-axis { padding-inline: 0; grid-template-columns: minmax(0,1fr); }
+  .ppe .lc-head-axis > .lc-begin { grid-row: 1; } .ppe .lc-head-axis > .lc-axis { grid-row: 2; } .ppe .lc-head-axis > .lc-cease { grid-column: 1; grid-row: 3; }
+  .ppe .lc-rail { flex-direction: row !important; align-items: center !important; }
+}
+.ppe .lc-detail > .lc-band { align-self: stretch !important; inline-size: auto !important; display: block; }
+.ppe .inner-rail.lc-rail { display: block !important; }
+.ppe .inner-rail.lc-rail > * { display: inline-block !important; vertical-align: middle; flex: none !important; inline-size: auto !important; block-size: auto !important; min-block-size: 0 !important; }
+.ppe .inner-rail.lc-rail > .lc-key-dep { inline-size: 0.18em !important; block-size: 1em !important; margin-right: 0.35em; }
+.ppe .inner-rail.lc-rail > .lc-key-rev { margin-right: 0.3em; }
+.ppe .inner-rail.lc-rail > .lane-tag { display: table !important; margin-top: 0.35em !important; border-radius: 999px !important; padding: 0 0.5em !important; }
+.ppe .lc-detail > .lc-band { order: 0 !important; }
+/* v11: Depreciation and Revaluation as top-level boards; shared-kind axis at top of each */
+.ppe .lc-top { grid-row: auto; margin-bottom: 0.2rem; row-gap: 0.45rem !important; }
+.ppe .lc-top > .lc-band-k { grid-column: 1; align-self: center; font-size: 0.85em; }
+.ppe .lc-top > .lc-band { grid-column: 2; margin-inline: 0.6em !important; }
+.ppe .reval-plate .plate-title { display: flex; align-items: center; gap: 0.5em; flex-wrap: wrap; }
+.ppe .reval-plate .plate-title .lane-tag { font-size: 0.72em; font-weight: 400; }
+@media (min-width: 40.0625rem) { .ppe .reval-plate > .inner-board { grid-template-columns: 13em minmax(0,1fr); } }
+@media (max-width: 40rem) {
+  .ppe .lc-top > .lc-band-k, .ppe .lc-top > .lc-band { grid-column: 1; margin-inline: 0 !important; }
+}
+@media (max-width: 40rem) { .ppe .reval-plate > .inner-board { grid-template-columns: minmax(0,1fr) !important; } .ppe .reval-plate > .inner-board > * { grid-column: 1 !important; } }
+.ppe .lc-top > .lc-head-k:not(.lc-band-k) { grid-row: 1; } .ppe .lc-top > .lc-head-axis { grid-row: 1; }
+.ppe .lc-top > .lc-band-k { grid-row: 2; } .ppe .lc-top > .lc-band { grid-row: 2; }
+@media (max-width: 40rem) { .ppe .lc-top > * { grid-row: auto !important; } }
+/* final: fork from Measurement after recognition to Depreciation (both models) and Revaluation (revaluation model only) */
+.ppe.pack { position: relative; }
+.ppe.pack .pack-flow-fork .pack-flow-shaft { min-height: 5.2em; }
+.ppe.pack .pack-flow-fork .pack-flow-shaft::before, .ppe.pack .pack-flow-fork .pack-flow-shaft::after { content: none !important; }
+.ppe.pack .pack-flow-fork .pack-flow-label { position: absolute !important; z-index: 2; white-space: nowrap; max-width: none; }
+.ppe.pack .beat[data-phase="dep"] > .dep-port { margin-right: 1.8rem !important; }
+.ppe.pack .fork-gap { min-height: 2.6em; }
+@media (max-width: 800px) { .ppe.pack .rail-link[data-phase="dep"] { margin-right: 1.8rem !important; } }
+@media (min-width: 40.0625rem) { .ppe .reval-plate .plate-title { display: flex !important; flex-wrap: nowrap !important; } .ppe .reval-plate .plate-title .lane-tag { white-space: nowrap; flex: none; } }
+@media (max-width: 40rem) { .ppe.dep-map .exit-label { max-width: calc(50vw - 1.6rem) !important; white-space: normal !important; text-align: right; } }
+.ppe .reval-plate .plate-title { justify-content: flex-start !important; }
+.ppe .reval-plate .plate-title > span:not(.lane-tag) { flex: none !important; }
+.ppe .reval-plate .plate-title .lane-tag { margin-left: 0.4em !important; }
+@media (max-width: 40rem) { .ppe .reval-plate .plate-title .lane-tag { flex-basis: 100%; margin-left: 0 !important; width: max-content; max-width: 100%; } }
+.ppe .reval-plate .plate-title .lane-tag { flex: 0 0 auto !important; white-space: nowrap !important; width: auto !important; }
+@media (max-width: 40rem) { .ppe .reval-plate .plate-title { display: flex !important; flex-wrap: wrap !important; row-gap: 0.3em; } .ppe .reval-plate .plate-title .lane-tag { flex-basis: auto !important; } }
+/* final QC: model labels never wrap one word per line */
+.ppe .cap-model > :not(.fb-num) { white-space: nowrap !important; }
+@media (min-width: 40.0625rem) { .ppe .cap-row { grid-template-columns: max-content minmax(0,1fr) !important; } .ppe .cap .cap-model { min-inline-size: 9.5em; } }
+@media (min-width: 40.0625rem) { .ppe .cap-row { grid-template-columns: 12em minmax(0,1fr) !important; } .ppe .cap .cap-model { min-inline-size: 0; } }
+.ppe .cap-row * { overflow-wrap: normal !important; word-break: normal !important; }
+/* Begins/Ceases drop lines to the axis rings */
+.ppe .lc-head-axis { position: relative; }
+.ppe .lc-head-axis > .lc-drop { position: absolute; width: 2px; transform: translateX(-50%); background: var(--accent); pointer-events: none; z-index: 0; }
+@media (max-width: 40rem) { .ppe .lc-head-axis > .lc-axis { margin-block: 0.9rem !important; } }
