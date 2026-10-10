@@ -8507,6 +8507,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   max-width: 100%;
   row-gap: 0.45rem;
   column-gap: 0.45rem;
+  /* Same disclosure-grid token above the run as between chip rows. */
+  margin-block-start: 0.45rem;
 }
 
 .ch07-disc .cite-run > .cite {
