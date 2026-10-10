@@ -7,7 +7,7 @@
 <title>IAS 16 — Map</title>
 <link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
 <link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=efe618024c8b" />
+<link rel="stylesheet" href="ias16.css?v=e8c6695a9787" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -19,73 +19,115 @@
 
     <a class="rail-link" data-phase="scope" href="../ch01.html#s-1-1" target="_parent">Scope</a>
     <div class="beat" data-phase="scope">
-      <div class="scope-stack" data-phase-start data-phase-end>
-        <div class="dgrid decision-flow def-fork fork-ppe" role="group" aria-label="Decision: is it PPE in IAS 16?">
-          <div class="decision-fork">
-            <section class="q">
-              <p class="q-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Is it PPE in IAS 16?</span></p>
-              <div class="criteria" data-eq role="group" aria-label="Tangible plus held for use plus more than one period">
-                <div class="peer" data-eq-cell>
-                  <p class="peer-title"><span>Tangible</span></p>
-                </div>
-                <span class="crit-op" aria-hidden="true">+</span>
-                <div class="peer" data-eq-cell>
-                  <p class="peer-title"><span>Held for use</span></p>
-                  <p class="peer-line">Held for use in the production or supply of goods or services, for rental to others, or for administrative purposes.</p>
-                </div>
-                <span class="crit-op" aria-hidden="true">+</span>
-                <div class="peer" data-eq-cell>
-                  <p class="peer-title"><span>More than one period</span></p>
-                  <p class="peer-line">Expected to be used during more than one period.</p>
-                </div>
-              </div>
-            </section>
-            <div class="decision-after">
-              <div class="decision-branch">
-                <div class="harm harm-mute" aria-hidden="true"><span class="arm-label">No</span></div>
-                <div class="side-note">
-                  <div class="leaf mute">
-                    <p class="leaf-name"><span>Not PPE</span></p>
-                    <p class="leaf-body"><span>May be inventory, an intangible asset, or a financial asset.</span></p>
+      <div class="map-include" data-phase-start data-phase-end>
+        <!-- include:ch01-scope.html#ch01-scope:start -->
+        <div class="ch01-scope">
+        <div class="scope-stack">
+          <div class="dgrid decision-flow def-fork fork-ppe" role="group" aria-label="Decision: is it PPE in IAS 16?">
+            <div class="decision-fork">
+              <section class="q">
+                <p class="q-title"><a class="fb-num" href="../ch01.html#s-1-1" target="_parent">1.1</a><span>Is it PPE in IAS 16?</span></p>
+                <div class="criteria" data-eq role="group" aria-label="Tangible plus held for use plus more than one period">
+                  <div class="peer" data-eq-cell>
+                    <p class="peer-title"><span>Tangible</span></p>
                   </div>
-                  <p class="see pack-see-not"><span class="see-label">See also</span> <span class="see-bit">IAS 38</span></p>
+                  <span class="crit-op" aria-hidden="true">+</span>
+                  <div class="peer" data-eq-cell>
+                    <p class="peer-title"><span>Held for use</span></p>
+                    <p class="peer-line">Held for use in the production or supply of goods or services, for rental to others, or for administrative purposes.</p>
+                  </div>
+                  <span class="crit-op" aria-hidden="true">+</span>
+                  <div class="peer" data-eq-cell>
+                    <p class="peer-title"><span>More than one period</span></p>
+                    <p class="peer-line">Expected to be used during more than one period.</p>
+                  </div>
                 </div>
+              </section>
+              <div class="decision-after">
+                <div class="decision-branch">
+                  <div class="harm harm-mute" aria-hidden="true"><span class="arm-label">No</span></div>
+                  <div class="side-note">
+                    <div class="leaf mute">
+                      <p class="leaf-name"><span>Not PPE</span></p>
+                      <p class="leaf-body">May be inventory, an intangible asset, or a financial asset.</p>
+                    </div>
+                    <p class="see pack-see-not"><span class="see-label">See also</span> <span class="see-bit">IAS 38</span></p>
+                  </div>
+                </div>
+                <div class="varm" aria-hidden="true"><span class="arm-label">Yes</span></div>
               </div>
-              <div class="varm" aria-hidden="true"><span class="arm-label">Yes</span></div>
             </div>
+          </div>
+
+          <div class="dgrid decision-flow def-fork fork-excl" role="group" aria-label="Decision: excluded from IAS 16?">
+            <div class="decision-fork">
+              <section class="q">
+                <p class="q-title"><a class="fb-num" href="../ch01.html#s-1-3" target="_parent">1.3</a><span>Excluded from IAS 16?</span></p>
+                <ul class="item-rows">
+                  <li>PPE classified as held for sale (IFRS 5)</li>
+                  <li>Biological assets other than bearer plants (IAS 41)</li>
+                  <li>Recognition and measurement of exploration and evaluation assets (IFRS 6)</li>
+                  <li>Mineral rights and mineral reserves</li>
+                </ul>
+              </section>
+              <div class="decision-after">
+                <div class="decision-branch">
+                  <div class="harm harm-stop" aria-hidden="true"><span class="arm-label">Yes</span></div>
+                  <div class="side-note">
+                    <div class="leaf pack-stop">
+                      <p class="leaf-name"><span>IAS 16 does not apply</span></p>
+                      <p class="leaf-body">PPE used to develop or maintain those assets stays in IAS 16.</p>
+                    </div>
+                    <div class="carve-set" role="group" aria-label="Items excluded from IAS 16">
+                      <div class="carve">
+                        <p class="carve-name">PPE classified as held for sale</p>
+                        <p class="see"><span class="see-label">See also</span> <span class="see-bit">IFRS 5</span></p>
+                      </div>
+                      <div class="carve">
+                        <p class="carve-name">Biological assets other than bearer plants</p>
+                        <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 41</span></p>
+                      </div>
+                      <div class="carve">
+                        <p class="carve-name">Recognition and measurement of exploration and evaluation assets</p>
+                        <p class="see"><span class="see-label">See also</span> <span class="see-bit">IFRS 6</span></p>
+                      </div>
+                      <div class="carve">
+                        <p class="carve-name">Mineral rights and mineral reserves</p>
+                        <p class="peer-line">Such as oil, natural gas and similar non-regenerative resources</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="varm"><p class="arm-label"><span>No</span> · <span class="onward">PPE in scope</span></p></div>
+              </div>
+            </div>
+          </div>
+
+          <article class="tip scope-tip">
+            <p class="tip-title"><a class="fb-num" href="../ch01.html#s-1-4" target="_parent">1.4</a><span>Cost-model investment property uses the IAS 16 cost model</span></p>
+            <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 40</span></p>
+          </article>
+          <div class="bearer scope-bearer">
+            <p class="leaf-name"><a class="fb-num" href="../ch01.html#s-1-5" target="_parent">1.5</a><span>Bearer plants stay in IAS 16 — produce on them stays in IAS 41</span></p>
+            <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 41 — produce on bearer plants</span></p>
+            <p class="thin-tip"><a href="../ch03.html#s-3-6" target="_parent">Initial measurement — before the bearer plant can operate as intended</a></p>
           </div>
         </div>
 
-        <div class="dgrid decision-flow def-fork fork-excl" role="group" aria-label="Decision: excluded from IAS 16?">
-          <div class="decision-fork">
-            <section class="q">
-              <p class="q-title"><a class="fb-num" href="../ch01.html#s-1-3" target="_parent">1.3</a><span>Excluded from IAS 16?</span></p>
-              <ul class="item-rows">
-                <li>PPE classified as held for sale (IFRS 5)</li>
-                <li>Biological assets other than bearer plants (IAS 41)</li>
-                <li>Recognition and measurement of exploration and evaluation assets (IFRS 6)</li>
-                <li>Mineral rights and mineral reserves</li>
-              </ul>
-            </section>
-            <div class="decision-after">
-              <div class="decision-branch">
-                <div class="harm harm-stop" aria-hidden="true"><span class="arm-label">Yes</span></div>
-                <div class="side-note">
-                  <div class="leaf pack-stop">
-                    <p class="leaf-name"><span>IAS 16 does not apply</span></p>
-                    <p class="leaf-body"><span>PPE used to develop or maintain those assets stays in IAS 16.</span></p>
-                  </div>
-                  <div class="see-box">
-                    <p class="see"><a class="fb-num" href="../ch01.html#s-1-4" target="_parent">1.4</a><span class="see-label">See also</span> <span class="see-bit">Cost-model investment property uses the IAS 16 cost model</span></p>
-                    <p class="see"><a class="fb-num" href="../ch01.html#s-1-7" target="_parent">1.7</a><span class="see-label">See also</span> <span class="see-bit">Lessee right-of-use asset — depreciation uses IAS 16</span></p>
-                    <p class="see"><a class="fb-num" href="../ch01.html#s-1-5" target="_parent">1.5</a><span class="see-label">See also</span> <span class="see-bit">Bearer plants stay in IAS 16 — produce on them stays in IAS 41</span></p>
-                  </div>
-                </div>
-              </div>
-              <div class="varm"><p class="arm-label"><span>No</span> · <span class="onward">PPE in scope</span></p></div>
-            </div>
-          </div>
+        <div class="tips" aria-label="Measurement bridge and other Standards">
+          <article class="tip">
+            <p class="tip-title"><a class="fb-num" href="../ch01.html#s-1-7" target="_parent">1.7</a><span>Lessee right-of-use asset — depreciation uses IAS 16</span></p>
+            <p class="see"><span class="see-label">See also</span> <span class="see-bit">IFRS 16</span></p>
+          </article>
+          <article class="tip">
+            <p class="tip-title"><a class="fb-num" href="../ch01.html#s-1-8" target="_parent">1.8</a><span>Spare parts, stand-by equipment and servicing equipment</span></p>
+            <p class="tip-body">Meet the PPE definition? <span class="onward">→ Recognition</span></p>
+            <p class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 2 — otherwise inventory</span></p>
+          </article>
         </div>
+        </div>
+
+        <!-- include:ch01-scope.html#ch01-scope:end -->
       </div>
     </div>
 
@@ -160,146 +202,175 @@
 
     <a class="rail-link" data-phase="cost" href="../ch03.html#s-3-0" target="_parent">Measurement at recognition</a>
     <div class="beat" data-phase="cost">
-      <section class="plate" data-phase-start data-phase-end aria-label="Cost equals purchase price plus directly attributable costs plus dismantling">
-        <p class="plate-title"><a class="fb-num" href="../ch03.html#s-3-0" target="_parent">3.0</a><span>Cost</span></p>
-        <div class="cost-identity">
-          <article class="cost-result">
-            <p class="limb-title"><span>Cost</span></p>
-            <ul class="item-rows">
-              <li>Cash or cash equivalents paid, or fair value of other consideration given, at acquisition or construction.</li>
-              <li>Cash price equivalent at the recognition date.</li>
-            </ul>
-          </article>
-          <span class="cost-op op-eq" aria-hidden="true">=</span>
-          <article class="limb limb-buy">
-            <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-1" target="_parent">3.1</a><span>Purchase price</span></p>
-            <p class="mini-formula">
-              <span class="mini-line"><span>Purchase price</span></span>
-              <span class="mini-line"><span class="mini-op" aria-hidden="true">+</span><span>Import duties</span></span>
-              <span class="mini-line"><span class="mini-op" aria-hidden="true">+</span><span>Non-refundable purchase taxes</span></span>
-              <span class="mini-line"><span class="mini-op" aria-hidden="true">−</span><span>Trade discounts and rebates</span></span>
-            </p>
-          </article>
-          <span class="cost-op op-p1" aria-hidden="true">+</span>
-          <div class="da-col">
-            <article class="limb">
-              <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-2" target="_parent">3.2</a><span>Directly attributable costs</span></p>
-              <p class="limb-note">Bringing the asset to the location and condition necessary for it to be capable of operating in the manner intended by management.</p>
+      <div class="map-include" data-phase-start data-phase-end>
+        <!-- include:ch03-initial.html#ch03-cost:start -->
+        <section class="plate ch03-cost" aria-label="Cost equals purchase price plus directly attributable costs plus dismantling">
+          <p class="plate-title"><a class="fb-num" href="../ch03.html#s-3-0" target="_parent">3.0</a><span>Cost</span></p>
+          <div class="cost-identity">
+            <article class="cost-result">
+              <p class="limb-title"><span>Cost</span></p>
               <ul class="item-rows">
-                <li>Employee benefits arising directly from construction or acquisition</li>
-                <li>Site preparation</li>
-                <li>Initial delivery and handling</li>
-                <li>Installation and assembly</li>
-                <li>Testing whether the asset is functioning properly</li>
-                <li>Professional fees</li>
+                <li>Cash or cash equivalents paid, or fair value of other consideration given, at acquisition or construction.</li>
+                <li>Cash price equivalent at the recognition date.</li>
               </ul>
             </article>
-          </div>
-          <span class="cost-op op-p2" aria-hidden="true">+</span>
-          <article class="limb limb-dis">
-            <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-4" target="_parent">3.4</a><span>Dismantling, removal and restoration</span></p>
-            <ul class="item-rows">
-              <li>Initial estimate of dismantling, removal and site restoration.</li>
-              <li>Obligation incurred on acquisition, or through use in a period other than to produce inventories.</li>
-              <li>Obligation from producing inventories: IAS 2.</li>
-            </ul>
-            <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch03.html#s-3-4" target="_parent">IAS 37</a></span> <span class="see-bit"><a href="../ch03.html#s-3-4" target="_parent">IFRIC 1</a></span></p>
-          </article>
-          <span class="formula-stem stem-cost" aria-hidden="true"></span>
-          <span class="formula-stem stem-da" aria-hidden="true"></span>
-
-          <div class="cost-split">
-          <div class="nature-nest">
-            <p class="port-tab"><a class="fb-num" href="../ch03.html#s-3-3" target="_parent">3.3</a><span>Not costs of PPE</span></p>
-            <div class="nature-body">
-              <ul class="item-rows">
-                <li>Opening a new facility</li>
-                <li>Introducing a new product or service (including advertising)</li>
-                <li>New location or class of customer (including training)</li>
-                <li>Administration and general overheads</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="ready-axis" role="group" aria-label="When recognition of directly attributable costs in the carrying amount ceases, and depreciation begins">
-            <p class="port-tab axis-port">Directly attributable costs: when recognition ceases</p>
-            <div class="axis-body">
-              <p class="axis-name">
-                <span class="axis-name-text">Recognition of costs in the carrying amount ceases when the asset is in the location and condition necessary for it to be capable of operating in the manner intended by management.</span>
+            <span class="cost-op op-eq" aria-hidden="true">=</span>
+            <article class="limb limb-buy">
+              <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-1" target="_parent">3.1</a><span>Purchase price</span></p>
+              <p class="mini-formula">
+                <span class="mini-line"><span>Purchase price</span></span>
+                <span class="mini-line"><span class="mini-op" aria-hidden="true">+</span><span>Import duties</span></span>
+                <span class="mini-line"><span class="mini-op" aria-hidden="true">+</span><span>Non-refundable purchase taxes</span></span>
+                <span class="mini-line"><span class="mini-op" aria-hidden="true">−</span><span>Trade discounts and rebates</span></span>
               </p>
-              <p class="axis-mark" aria-hidden="true">◆</p>
-              <div class="axis-rule" data-axis aria-hidden="true"></div>
-              <div class="before-nest">
-                <div class="pl-tip">
-                  <a class="fb-num" href="../ch03.html#s-3-5" target="_parent">3.5</a>
-                  <ul class="item-rows">
-                    <li>Proceeds from items produced while bringing the asset to that location and condition, and the cost of those items, are recognised in profit or loss. Do not deduct them from cost.</li>
-                    <li>Incidental operations that are not needed to bring the asset to that location and condition are recognised in profit or loss.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="point-at">
-                <p class="point-k"><span class="point-mark" aria-hidden="true">◆</span><span>At this point</span></p>
+            </article>
+            <span class="cost-op op-p1" aria-hidden="true">+</span>
+            <div class="da-col">
+              <article class="limb">
+                <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-2" target="_parent">3.2</a><span>Directly attributable costs</span></p>
+                <p class="limb-note">Bringing the asset to the location and condition necessary for it to be capable of operating in the manner intended by management.</p>
                 <ul class="item-rows">
-                  <li>Recognition of costs in the carrying amount ceases.</li>
-                  <li class="chip-line"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a><span>Depreciation begins when the asset is available for use.</span></li>
+                  <li>Employee benefits arising directly from construction or acquisition</li>
+                  <li>Site preparation</li>
+                  <li>Initial delivery and handling</li>
+                  <li>Installation and assembly</li>
+                  <li>Testing whether the asset is functioning properly</li>
+                  <li>Professional fees</li>
                 </ul>
-              </div>
-              <div class="after-col">
-                <div class="after-nest">
-                  <p class="nest-k"><span>Not included: costs of using or redeploying the item</span></p>
-                  <ul class="item-rows">
-                    <li>Costs while capable of operating as intended but not yet brought into use, or operated below full capacity</li>
-                    <li>Initial operating losses</li>
-                    <li>Costs of relocating or reorganising operations</li>
-                  </ul>
-                </div>
-              </div>
+                <p class="thin-tip">Depreciation of right-of-use assets used to construct, add to, replace part of or service PPE may form part of cost.</p>
+                <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch03.html#s-3-2" target="_parent">IFRS 16</a></span></p>
+              </article>
             </div>
-          </div>
-          </div>
+            <span class="cost-op op-p2" aria-hidden="true">+</span>
+            <article class="limb limb-dis">
+              <p class="limb-title"><a class="fb-num" href="../ch03.html#s-3-4" target="_parent">3.4</a><span>Dismantling, removal and restoration</span></p>
+              <ul class="item-rows">
+                <li>Initial estimate of dismantling, removal and site restoration.</li>
+                <li>Obligation incurred on acquisition, or through use in a period other than to produce inventories.</li>
+                <li>Obligation from producing inventories: IAS 2.</li>
+              </ul>
+              <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch03.html#s-3-4" target="_parent">IAS 2</a></span></p>
+              <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch03.html#s-3-4" target="_parent">IAS 37</a></span> <span class="see-bit"><a href="../ch03.html#s-3-4" target="_parent">IFRIC 1</a></span></p>
+            </article>
 
-          <div class="facet-foot">
-            <p class="facet-label">Measurement of cost</p>
-            <div class="facet-row" data-eq>
-              <article class="facet" data-eq-cell>
-                <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-6" target="_parent">3.6</a><span>Self-constructed asset</span></p>
+            <span class="formula-stem stem-cost" aria-hidden="true"></span>
+            <span class="formula-stem stem-da" aria-hidden="true"></span>
+
+            <div class="cost-split">
+            <div class="nature-nest">
+              <p class="port-tab"><a class="fb-num" href="../ch03.html#s-3-3" target="_parent">3.3</a><span>Not costs of PPE</span></p>
+              <div class="nature-body">
                 <ul class="item-rows">
-                  <li>Same principles as an acquired asset.</li>
-                  <li>Similar assets made for sale: usually the cost of constructing an asset for sale.</li>
-                  <li>Internal profits are eliminated. Abnormal waste is excluded.</li>
-                  <li>Bearer plants: same as a self-constructed asset until capable of operating as intended.</li>
+                  <li>Opening a new facility</li>
+                  <li>Introducing a new product or service (including advertising)</li>
+                  <li>New location or class of customer (including training)</li>
+                  <li>Administration and general overheads</li>
                 </ul>
-              </article>
-              <article class="facet" data-eq-cell>
-                <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-7" target="_parent">3.7</a><span>Payment deferred beyond normal credit terms</span></p>
-                <ul class="item-rows">
-                  <li>Cost is the cash price equivalent.</li>
-                  <li>The difference to total payment is interest over the credit period, unless it is capitalised under IAS 23.</li>
-                </ul>
-              </article>
-              <article class="facet" data-eq-cell>
-                <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-8" target="_parent">3.8</a><span>Exchange of non-monetary assets</span></p>
-                <ul class="item-rows">
-                  <li>Measured at fair value unless the exchange lacks commercial substance, or neither fair value is reliably measurable; then the carrying amount of the asset given up.</li>
-                  <li>Commercial substance: the cash-flow configuration differs, or entity-specific value changes, and the difference is significant.</li>
-                  <li>Fair value of the asset given up is used unless the asset received is more clearly evident.</li>
-                </ul>
-              </article>
-              <article class="facet" data-eq-cell>
+              </div>
+            </div>
+
+            <div class="ready-axis" role="group" aria-label="When recognition of directly attributable costs in the carrying amount ceases, and depreciation begins">
+              <p class="port-tab axis-port">Directly attributable costs: when recognition ceases</p>
+              <div class="axis-body">
+                <p class="axis-name">
+                  <span class="axis-name-text">Recognition of costs in the carrying amount ceases when the asset is in the location and condition necessary for it to be capable of operating in the manner intended by management.</span>
+                </p>
+                <p class="axis-mark" aria-hidden="true">◆</p>
+                <div class="axis-rule" data-axis aria-hidden="true"></div>
+                <div class="before-nest">
+                  <div class="pl-tip">
+                    <a class="fb-num" href="../ch03.html#s-3-5" target="_parent">3.5</a>
+                    <ul class="item-rows">
+                      <li>Proceeds from items produced while bringing the asset to that location and condition, and the cost of those items, are recognised in profit or loss. Do not deduct them from cost.</li>
+                      <li>Incidental operations that are not needed to bring the asset to that location and condition are recognised in profit or loss.</li>
+                    </ul>
+                    <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch03.html#s-3-5" target="_parent">IAS 2</a></span></p>
+                    <p class="thin-tip">Testing costs may form part of cost.</p>
+                  </div>
+                </div>
+                <div class="point-at">
+                  <p class="point-k"><span class="point-mark" aria-hidden="true">◆</span><span>At this point</span></p>
+                  <ul class="item-rows">
+                    <li>Recognition of costs in the carrying amount ceases.</li>
+                    <li class="chip-line"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a><span>Depreciation begins when the asset is available for use.</span></li>
+                  </ul>
+                </div>
+                <div class="after-col">
+                  <div class="after-nest">
+                    <p class="nest-k"><span>Not included: costs of using or redeploying the item</span></p>
+                    <ul class="item-rows">
+                      <li>Costs while capable of operating as intended but not yet brought into use, or operated below full capacity</li>
+                      <li>Initial operating losses</li>
+                      <li>Costs of relocating or reorganising operations</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="facet-foot">
+              <p class="facet-label">Measurement of cost</p>
+              <div class="facet-row" data-eq>
+                <article class="facet" data-eq-cell>
+                  <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-6" target="_parent">3.6</a><span>Self-constructed asset</span></p>
+                  <ul class="item-rows">
+                    <li>Same principles as an acquired asset.</li>
+                    <li>Similar assets made for sale: usually the cost of constructing an asset for sale.</li>
+                    <li>Internal profits are eliminated. <span class="waste-mute">Abnormal waste is excluded.</span></li>
+                    <li>Bearer plants: same as a self-constructed asset until capable of operating as intended.</li>
+                  </ul>
+                  <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch03.html#s-3-10" target="_parent">IAS 23</a></span></p>
+                </article>
+                <article class="facet" data-eq-cell>
+                  <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-7" target="_parent">3.7</a><span>Payment deferred beyond normal credit terms</span></p>
+                  <ul class="item-rows">
+                    <li>Cost is the cash price equivalent.</li>
+                    <li>The difference to total payment is interest over the credit period, unless it is capitalised under IAS 23.</li>
+                  </ul>
+                  <p class="see"><span class="see-label">See also</span> <span class="see-bit"><a href="../ch03.html#s-3-10" target="_parent">IAS 23</a></span></p>
+                </article>
+                <article class="facet" data-eq-cell>
+                  <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-8" target="_parent">3.8</a><span>Exchange of non-monetary assets</span></p>
+                  <ul class="item-rows">
+                    <li>Measured at fair value unless the exchange lacks commercial substance, or neither fair value is reliably measurable; then the carrying amount of the asset given up.</li>
+                    <li>Commercial substance: the cash-flow configuration differs, or entity-specific value changes, and the difference is significant.</li>
+                    <li>Fair value of the asset given up is used unless the asset received is more clearly evident.</li>
+                    </ul>
+                </article>
+              </div>
+              <article class="facet facet-dense">
                 <p class="facet-title"><a class="fb-num" href="../ch03.html#s-3-7a" target="_parent">3.7A</a><span>Contingent / variable consideration</span></p>
-                <ul class="item-rows">
-                  <li>When the future payment relates to asset cost: two approaches observed (not reconciled).</li>
-                  <li>Cost accumulation ∥ financial-liability model.</li>
-                  <li>Apply one policy consistently; disclose when material.</li>
-                </ul>
+                <p class="limb-note">When the future payment relates to the cost of the asset: two approaches observed.</p>
+                <div class="src-differ" data-eq role="group" aria-label="Two approaches for contingent consideration related to asset cost, not reconciled">
+                  <article class="peer" data-eq-cell>
+                    <p class="peer-title"><span>Cost accumulation</span></p>
+                    <ul class="item-rows">
+                      <li>Not included on initial recognition.</li>
+                      <li>Added to cost when incurred, or when a related liability is remeasured.</li>
+                    </ul>
+                  </article>
+                  <span class="differ-op" aria-hidden="true">∥</span>
+                  <article class="peer" data-eq-cell>
+                    <p class="peer-title"><span>Financial-liability model</span></p>
+                    <ul class="item-rows">
+                      <li>Estimate recorded with a matching liability on initial recognition.</li>
+                      <li>Remeasurements and further payments → profit or loss, or capitalised.</li>
+                    </ul>
+                  </article>
+                </div>
+                <p class="thin-tip span-rule">Shown side by side and not reconciled. Apply one policy consistently; disclose when material.</p>
+                <p class="thin-tip">Subsequent change: capitalise only if linked to the asset initially received.</p>
               </article>
             </div>
           </div>
-        </div>
-        <p class="see"><a class="fb-num" href="../ch03.html#s-3-9" target="_parent">3.9</a><span class="see-label">See also</span> <span class="see-bit">Government grants may reduce the carrying amount (IAS 20)</span></p>
-        <p class="see"><a class="fb-num" href="../ch03.html#s-3-10" target="_parent">3.10</a><span class="see-label">See also</span> <span class="see-bit">Borrowing costs: IAS 23</span></p>
-      </section>
+          <p class="see"><a class="fb-num" href="../ch03.html#s-3-9" target="_parent">3.9</a><span class="see-label">See also</span> <span class="see-bit">Government grants may reduce the carrying amount (IAS 20)</span></p>
+          <p class="see"><a class="fb-num" href="../ch03.html#s-3-10" target="_parent">3.10</a><span class="see-label">See also</span> <span class="see-bit">Borrowing costs: IAS 23</span></p>
+          <p class="thin-tip"><span class="onward">Subsequent expenditure → Recognition</span></p>
+        </section>
+
+        <!-- include:ch03-initial.html#ch03-cost:end -->
+      </div>
       <div class="pack-flow">
         <div class="pack-flow-shaft">
           <p class="pack-flow-label"><span class="onward">After recognition</span></p>
@@ -309,132 +380,205 @@
 
     <a class="rail-link" data-phase="models" href="../ch04.html#s-4-0" target="_parent">Measurement after recognition</a>
     <div class="beat" data-phase="models">
-      <section class="plate" data-phase-start data-phase-end aria-label="Accounting policy for an entire class, cost model or revaluation model">
-        <p class="plate-title"><a class="fb-num" href="../ch04.html#s-4-0" target="_parent">4.0</a><span>Measurement after recognition</span></p>
-        <div class="policy-stage">
-          <div class="policy-arms">
-            <div class="policy-parent">
-              <p class="policy-title"><a class="fb-num" href="../ch04.html#s-4-1" target="_parent">4.1</a><span>Accounting policy for an entire class</span></p>
-              <ul class="item-rows">
-                <li>Choose the cost model or the revaluation model as the accounting policy, and apply that policy to an entire class (similar nature and use).</li>
-                <li>If the revaluation model is used for an item, revalue the entire class.</li>
-                <li>Revalue the class simultaneously. A rolling basis is permitted if the class is revalued within a short period and kept up to date.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="policy-bridge" aria-hidden="true"></div>
-          <div class="policy-kids">
-            <div class="lens-heads" data-eq>
-              <span class="lens-rail-gap" aria-hidden="true"></span>
-              <p class="model-child-title lens-head" data-eq-cell><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
-              <p class="model-child-title lens-head" data-eq-cell><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
-            </div>
-            <div class="lens-row carry-row" data-eq>
-              <p class="lens-k">Carrying amount</p>
-              <article class="lens-cell" data-eq-cell>
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
-                <div class="vledger" role="group" aria-label="Carrying amount equals cost minus accumulated depreciation minus accumulated impairment losses">
-                  <span class="vop" aria-hidden="true"></span>
-                  <p class="vterm"><span>Cost</span></p>
-                  <span class="vop" aria-hidden="true">−</span>
-                  <p class="vterm"><span>Accumulated depreciation</span></p>
-                  <span class="vop" aria-hidden="true">−</span>
-                  <p class="vterm"><span>Accumulated impairment losses</span></p>
-                  <span class="vrule" aria-hidden="true"></span>
-                  <span class="vop" aria-hidden="true">=</span>
-                  <p class="vresult"><span>Carrying amount</span></p>
-                  <span class="vrule vrule-2" aria-hidden="true"></span>
+      <div class="map-include" data-phase-start data-phase-end>
+        <!-- include:ch04-models.html#ch04-models:start -->
+        <section class="plate ch04-models" aria-label="Accounting policy for an entire class, cost model or revaluation model">
+          <p class="plate-title"><a class="fb-num" href="../ch04.html#s-4-0" target="_parent">4.0</a><span>Measurement after recognition</span></p>
+          <div class="policy-stage">
+            <div class="policy-arms">
+              <div class="policy-parent">
+                <p class="policy-title"><a class="fb-num" href="../ch04.html#s-4-1" target="_parent">4.1</a><span>Accounting policy for an entire class</span></p>
+                <ul class="item-rows">
+                  <li>Choose the cost model or the revaluation model as the accounting policy, and apply that policy to an entire class (similar nature and use).</li>
+                </ul>
+                <p class="nest-k mini-k"><span>Examples of separate classes</span></p>
+                <div class="class-tokens" data-eq data-eq-stack>
+                  <p class="class-token" data-eq-cell>Land</p>
+                  <p class="class-token" data-eq-cell>Land and buildings</p>
+                  <p class="class-token" data-eq-cell>Machinery</p>
+                  <p class="class-token" data-eq-cell>Ships</p>
+                  <p class="class-token" data-eq-cell>Aircraft</p>
+                  <p class="class-token" data-eq-cell>Motor vehicles</p>
+                  <p class="class-token" data-eq-cell>Furniture and fixtures</p>
+                  <p class="class-token" data-eq-cell>Office equipment</p>
+                  <p class="class-token" data-eq-cell>Bearer plants</p>
                 </div>
-                <p class="see"><a class="fb-num" href="../ch01.html#s-1-4" target="_parent">1.4</a><span class="see-label">See also</span> <span class="see-bit">IAS 40</span></p>
-              </article>
-              <article class="lens-cell" data-eq-cell>
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
-                <div class="vledger" role="group" aria-label="Revalued amount equals fair value at the date of the revaluation minus subsequent accumulated depreciation minus subsequent accumulated impairment losses">
-                  <span class="vop" aria-hidden="true"></span>
-                  <p class="vterm"><span>Fair value at the date of the revaluation</span></p>
-                  <span class="vop" aria-hidden="true">−</span>
-                  <p class="vterm"><span>Subsequent accumulated depreciation</span></p>
-                  <span class="vop" aria-hidden="true">−</span>
-                  <p class="vterm"><span>Subsequent accumulated impairment losses</span></p>
-                  <span class="vrule" aria-hidden="true"></span>
-                  <span class="vop" aria-hidden="true">=</span>
-                  <p class="vresult"><span>Revalued amount</span></p>
-                  <span class="vrule vrule-2" aria-hidden="true"></span>
-                </div>
-              </article>
-            </div>
-            <div class="lens-row" data-eq>
-              <p class="lens-k">Frequency of revaluation</p>
-              <article class="lens-na lens-cell">
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
-                <p class="na-line">Not applicable — the cost model does not revalue.</p>
-              </article>
-              <article class="lens-cell" data-eq-cell>
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
-                <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>With sufficient regularity that the carrying amount does not differ materially from fair value at the end of the reporting period.</span></p>
+                <ul class="item-rows">
+                  <li>If the revaluation model is used for an item, revalue the entire class.</li>
+                </ul>
+                <p class="nest-k mini-k"><span>How the class is revalued</span></p>
                 <div class="freq-peers" data-eq>
                   <article class="freq-peer" data-eq-cell>
-                    <p class="peer-title"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Significant and volatile changes in fair value</span></p>
-                    <p class="freq-result">Annual revaluation</p>
+                    <p class="peer-title"><span>Simultaneously</span></p>
+                    <p class="freq-result">Avoids selective revaluation and amounts that mix costs and values as at different dates.</p>
                   </article>
                   <article class="freq-peer" data-eq-cell>
-                    <p class="peer-title"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Only insignificant changes in fair value</span></p>
-                    <p class="freq-result">Revaluation may be needed only every three or five years</p>
+                    <p class="peer-title"><span>Rolling basis</span></p>
+                    <p class="freq-result">Permitted if the class is revalued within a short period and the revaluations are kept up to date.</p>
                   </article>
                 </div>
-              </article>
+                <div class="policy-foot">
+                  <p class="see see-wide"><a class="fb-num" href="../ch04.html#s-4-0" target="_parent">4.0</a><span class="see-line">First adoption of the revaluation model is a revaluation under IAS 16, not a restatement under IAS 8.</span><span class="see-label">See also</span> <span class="see-bit">IAS 8</span></p>
+                  <p class="see see-wide"><span class="see-line">A lessee may apply the revaluation model to all right-of-use assets that relate to a class it revalues.</span><span class="see-label">See also</span> <span class="see-bit">IFRS 16</span></p>
+                  <p class="see see-wide policy-mute"><a class="fb-num" href="../ch04.html#s-4-7" target="_parent">4.7</a><span class="see-line">Owner-occupied property in certain investment funds or insurance underlying items may be measured using the fair value model in IAS 40, as a separate class.</span><span class="see-label">See also</span> <span class="see-bit">IAS 40</span></p>
+                </div>
+              </div>
             </div>
-            <div class="lens-row" data-eq>
-              <p class="lens-k">When fair value changes</p>
-              <article class="lens-cell" data-eq-cell>
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
-                <ul class="item-rows">
-                  <li>Depreciation is still recognised even if fair value exceeds the carrying amount, as long as the residual value does not exceed the carrying amount.</li>
-                </ul>
-              </article>
-              <article class="lens-cell" data-eq-cell>
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
-                <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-4" target="_parent">4.4</a><span>Restate the gross carrying amount consistently, or eliminate accumulated depreciation against it.</span></p>
-                <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-6" target="_parent">4.6</a><span>The surplus may be transferred directly to retained earnings on derecognition, or as the asset is used. It is never transferred through profit or loss.</span></p>
-              </article>
+            <div class="policy-bridge" aria-hidden="true"></div>
+            <div class="policy-kids">
+              <div class="lens-heads" data-eq>
+                <span class="lens-rail-gap" aria-hidden="true"></span>
+                <p class="model-child-title lens-head" data-eq-cell><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
+                <p class="model-child-title lens-head" data-eq-cell><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
+              </div>
+              <div class="lens-row carry-row" data-eq>
+                <p class="lens-k">Carrying amount</p>
+                <article class="lens-cell" data-eq-cell>
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
+                  <div class="vledger" role="group" aria-label="Carrying amount equals cost minus accumulated depreciation minus accumulated impairment losses">
+                    <span class="vop" aria-hidden="true"></span>
+                    <p class="vterm"><span>Cost</span></p>
+                    <span class="vop" aria-hidden="true">−</span>
+                    <p class="vterm"><span>Accumulated depreciation</span></p>
+                    <span class="vop" aria-hidden="true">−</span>
+                    <p class="vterm"><span>Accumulated impairment losses</span></p>
+                    <span class="vrule" aria-hidden="true"></span>
+                    <span class="vop" aria-hidden="true">=</span>
+                    <p class="vresult"><span>Carrying amount</span></p>
+                    <span class="vrule vrule-2" aria-hidden="true"></span>
+                  </div>
+                  <p class="see"><a class="fb-num" href="../ch01.html#s-1-4" target="_parent">1.4</a><span class="see-label">See also</span> <span class="see-bit">IAS 40</span></p>
+                </article>
+                <article class="lens-cell" data-eq-cell>
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
+                  <div class="vledger" role="group" aria-label="Revalued amount equals fair value at the date of the revaluation minus subsequent accumulated depreciation minus subsequent accumulated impairment losses">
+                    <span class="vop" aria-hidden="true"></span>
+                    <p class="vterm"><span>Fair value at the date of the revaluation</span></p>
+                    <span class="vop" aria-hidden="true">−</span>
+                    <p class="vterm"><span>Subsequent accumulated depreciation</span></p>
+                    <span class="vop" aria-hidden="true">−</span>
+                    <p class="vterm"><span>Subsequent accumulated impairment losses</span></p>
+                    <span class="vrule" aria-hidden="true"></span>
+                    <span class="vop" aria-hidden="true">=</span>
+                    <p class="vresult"><span>Revalued amount</span></p>
+                    <span class="vrule vrule-2" aria-hidden="true"></span>
+                  </div>
+                  <p class="gate-line">Applies to items whose fair value can be measured reliably.</p>
+                  <p class="see see-wide"><span class="see-label">See also</span> <span class="see-bit">Fair value measurement and the fair value hierarchy: IFRS 13</span></p>
+                </article>
+              </div>
+              <div class="lens-row" data-eq>
+                <p class="lens-k">Frequency of revaluation</p>
+                <article class="lens-na lens-cell">
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
+                  <p class="na-line">Not applicable — the cost model does not revalue.</p>
+                </article>
+                <article class="lens-cell" data-eq-cell>
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
+                  <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>With sufficient regularity that the carrying amount does not differ materially from fair value at the end of the reporting period.</span></p>
+                  <div class="freq-peers" data-eq>
+                    <article class="freq-peer" data-eq-cell>
+                      <p class="peer-title"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Significant and volatile changes in fair value</span></p>
+                      <p class="freq-result">Annual revaluation</p>
+                    </article>
+                    <article class="freq-peer" data-eq-cell>
+                      <p class="peer-title"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Only insignificant changes in fair value</span></p>
+                      <p class="freq-result">Revaluation may be needed only every three or five years</p>
+                    </article>
+                  </div>
+                </article>
+              </div>
+              <div class="lens-row" data-eq>
+                <p class="lens-k">When fair value changes</p>
+                <article class="lens-cell" data-eq-cell>
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
+                  <ul class="item-rows">
+                    <li>Depreciation is still recognised even if fair value exceeds the carrying amount, as long as the residual value does not exceed the carrying amount.</li>
+                  </ul>
+                </article>
+                <article class="lens-cell" data-eq-cell>
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
+                  <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-4" target="_parent">4.4</a><span>Restate the gross carrying amount consistently, or eliminate accumulated depreciation against it.</span></p>
+                  <div class="freq-peers" data-eq>
+                    <article class="freq-peer" data-eq-cell>
+                      <p class="peer-title"><span>Restate the gross carrying amount</span></p>
+                      <p class="freq-result">Adjust the gross carrying amount consistently with the revaluation (by observable market data or proportionately). Accumulated depreciation = gross carrying amount − carrying amount after accumulated impairment losses.</p>
+                    </article>
+                    <article class="freq-peer" data-eq-cell>
+                      <p class="peer-title"><span>Eliminate accumulated depreciation</span></p>
+                      <p class="freq-result">Eliminate accumulated depreciation against the gross carrying amount.</p>
+                    </article>
+                  </div>
+                  <p class="pair-foot">The adjustment to accumulated depreciation forms part of the increase or decrease (4.5).</p>
+                  <p class="limb-note"><a class="fb-num" href="../ch04.html#s-4-6" target="_parent">4.6</a><span>The surplus may be transferred directly to retained earnings on derecognition, or as the asset is used. It is never transferred through profit or loss.</span></p>
+                  <p class="see see-wide"><span class="see-label">See also</span> <span class="see-bit">Tax effects of the revaluation: IAS 12</span></p>
+                  <div class="freq-peers" data-eq>
+                    <article class="freq-peer" data-eq-cell>
+                      <p class="peer-title"><span>On derecognition</span></p>
+                      <p class="freq-result">The whole surplus may be transferred when the asset is retired or disposed of.</p>
+                    </article>
+                    <article class="freq-peer" data-eq-cell>
+                      <p class="peer-title"><span>As the asset is used</span></p>
+                      <p class="freq-result">Amount = depreciation on the revalued carrying amount − depreciation on the original cost.</p>
+                    </article>
+                  </div>
+                </article>
+              </div>
+              <div class="lens-row" data-eq>
+                <p class="lens-k">Revaluation increase or decrease</p>
+                <article class="lens-cell" data-eq-cell>
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
+                  <ul class="item-rows">
+                    <li>No revaluation; fair value changes are not recognised.</li>
+                  </ul>
+                </article>
+                <article class="lens-cell" data-eq-cell>
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
+                  <div class="rev-nest">
+                    <div class="rev-table" role="group" aria-label="Revaluation increase and decrease">
+                      <span class="rev-corner"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a></span>
+                      <p class="rev-col" role="columnheader"><span>Other comprehensive income</span></p>
+                      <p class="rev-col" role="columnheader"><span>Profit or loss</span></p>
+                      <p class="rev-row" role="rowheader"><span class="rev-k">Increase</span><span class="rev-sub">(carrying amount rises)</span></p>
+                      <p class="rev-cell" role="cell"><span>Recognise in other comprehensive income and accumulate in equity under the heading of revaluation surplus</span></p>
+                      <p class="rev-cell" role="cell"><span>Recognise in profit or loss to the extent it reverses a revaluation decrease of the same asset previously recognised in profit or loss</span></p>
+                      <p class="rev-row" role="rowheader"><span class="rev-k">Decrease</span><span class="rev-sub">(carrying amount falls)</span></p>
+                      <p class="rev-cell" role="cell"><span>Recognise in other comprehensive income to the extent of any credit balance in the revaluation surplus for that asset; this reduces the revaluation surplus</span></p>
+                      <p class="rev-cell" role="cell"><span>Recognise in profit or loss</span></p>
+                    </div>
+                    <p class="rev-foot">Same asset only.</p>
+                  </div>
+                </article>
+              </div>
+              <div class="lens-row" data-eq>
+                <p class="lens-k">Fair value disclosure</p>
+                <article class="lens-cell" data-eq-cell>
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
+                  <ul class="item-rows muted-rows">
+                    <li class="chip-line"><a class="fb-num" href="../ch07.html#s-7-7" target="_parent">7.7</a><span>Encouraged: disclose fair value when it is materially different from the carrying amount.</span></li>
+                  </ul>
+                </article>
+                <article class="lens-cell" data-eq-cell>
+                  <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
+                  <ul class="item-rows muted-rows">
+                    <li class="chip-line"><a class="fb-num" href="../ch07.html#s-7-6" target="_parent">7.6</a><span>Required, in addition to IFRS 13.</span></li>
+                  </ul>
+                  <p class="see"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span class="see-label">See also</span> <span class="see-bit">IFRS 13</span></p>
+                </article>
+              </div>
             </div>
-            <div class="lens-row" data-eq>
-              <p class="lens-k">Revaluation increase or decrease</p>
-              <article class="lens-cell" data-eq-cell>
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
-                <ul class="item-rows">
-                  <li>No revaluation; fair value changes are not recognised.</li>
-                </ul>
-              </article>
-              <article class="lens-cell" data-eq-cell>
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
-                <p class="see"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a><span class="see-label">See also</span> <span class="see-bit">Revaluation board</span></p>
-              </article>
-            </div>
-            <div class="lens-row" data-eq>
-              <p class="lens-k">Fair value disclosure</p>
-              <article class="lens-cell" data-eq-cell>
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span>Cost model</span></p>
-                <ul class="item-rows muted-rows">
-                  <li class="chip-line"><a class="fb-num" href="../ch07.html#s-7-7" target="_parent">7.7</a><span>Encouraged: disclose fair value when it is materially different from the carrying amount.</span></li>
-                </ul>
-              </article>
-              <article class="lens-cell" data-eq-cell>
-                <p class="model-child-title lens-cell-head"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span>Revaluation model</span></p>
-                <ul class="item-rows muted-rows">
-                  <li class="chip-line"><a class="fb-num" href="../ch07.html#s-7-6" target="_parent">7.6</a><span>Required, in addition to IFRS 13.</span></li>
-                </ul>
-                <p class="see"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span class="see-label">See also</span> <span class="see-bit">IFRS 13</span></p>
-              </article>
+            <div class="both-zone">
+              <p class="both-bar">Both models continue into depreciation and may face impairment (IAS 36). Revaluation is a separate during-use event — revaluation model only.</p>
+              <p class="see see-wide"><a class="fb-num" href="../ch04.html#s-4-9" target="_parent">4.9</a><span class="see-label">See also</span> <span class="see-bit">Changes in existing decommissioning liabilities: IFRIC 1 (cost model adjusts cost; revaluation model adjusts the surplus or deficit)</span></p>
             </div>
           </div>
-          <p class="both-bar">Both models continue into depreciation and may face impairment (IAS 36). Revaluation is a separate during-use event — revaluation model only.</p>
-        </div>
-      </section>
+        </section>
+        <p class="arm-label exit-label"><span>Depreciate under both models</span></p>
+
+        <!-- include:ch04-models.html#ch04-models:end -->
+      </div>
       <div class="pack-flow pack-flow-to-dep">
-        <div class="pack-flow-shaft">
-          <p class="pack-flow-label"><span class="onward">Depreciate under both models</span></p>
-        </div>
+        <div class="pack-flow-shaft"></div>
       </div>
     </div>
 
@@ -1293,13 +1437,11 @@
       else hFlow(q3.cy, q3.r, leaf3.l, yesLab, "stop");
     }
     var recogRail = root.querySelector('.rail-link[data-phase="recog"]');
-    if (shown(exclQ)) {
+    var scopeNext = root.querySelector(".scope-tip");
+    if (shown(exclQ) && shown(scopeNext)) {
       var src = boxOf(exclQ);
-      var destEl = narrow ? recogRail : capQ;
-      if (shown(destEl)) {
-        var dest = boxOf(destEl);
-        vFlow(src.cx, src.b, dest.t, root.querySelector(".fork-excl .varm .arm-label"));
-      }
+      var dest = boxOf(scopeNext);
+      vFlow(src.cx, src.b, dest.t, root.querySelector(".fork-excl .varm .arm-label"));
     }
     if (narrow && shown(recogRail) && shown(capQ)) {
       var railB = boxOf(recogRail);
@@ -1369,7 +1511,7 @@
       var rail = beat.nextElementSibling;
       var nextBeat = rail && rail.nextElementSibling;
       var target = beatBoard(nextBeat);
-      var flowLab = flow.querySelector(".pack-flow-label");
+      var flowLab = beat.querySelector(".exit-label") || flow.querySelector(".pack-flow-label");
       if (!shown(source) || !shown(target)) continue;
       var S = boxOf(source);
       var T = boxOf(target);
