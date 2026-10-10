@@ -7950,7 +7950,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
   .ch05-dep .cap-rows .cap-row > .cost-eq.cost-eq {
     display: grid !important;
-    grid-template-columns: minmax(0, 1.25fr) auto minmax(0, 1.2fr) auto minmax(0, 1.05fr) !important;
+    grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1.15fr) auto minmax(0, 1.05fr) !important;
     align-items: stretch;
     justify-items: stretch;
     gap: 0.35rem;
@@ -7981,8 +7981,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     min-width: 0;
     max-width: 100%;
     white-space: normal !important;
-    overflow-wrap: break-word !important;
+    overflow-wrap: normal !important;
     word-break: normal !important;
+    hyphens: none !important;
     text-align: center;
   }
 
@@ -7992,8 +7993,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     min-width: 0;
     max-width: 100%;
     white-space: normal !important;
-    overflow-wrap: break-word !important;
+    overflow-wrap: normal !important;
     word-break: normal !important;
+    hyphens: none !important;
     text-align: center;
   }
 }
