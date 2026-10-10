@@ -2918,6 +2918,11 @@ body.embed {
   align-items: stretch;
 }
 
+/* Master only. Four Measurement-of-cost peers; chapter maps stay three across. */
+.ppe.pack .facet-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .facet {
   display: flex;
   flex-direction: column;
