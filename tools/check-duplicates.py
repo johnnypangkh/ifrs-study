@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fail the IAS 16 tree when a map plate is duplicated or a local ?v= is stale.
 
-Three checks:
+Four checks:
 
 - DRIFT. The normalised body of an include region must match its chapter
   map-section. data-phase-* attributes, ?v=, and classes or attributes
@@ -11,11 +11,19 @@ Three checks:
   twice outside a matching include region. A drifted include does not
   count as matching, so the edited master copy and the chapter source
   are both counted.
+- AXIS. The during-use life-cycle block (map-section:ch05-axis, the
+  5.4 Begins/Ceases axis) must not appear twice outside a matching
+  include. Whitespace between tags is ignored, so a pretty-printed
+  copy still counts. A copy inside .reval-plate or .impair-plate is
+  deferred until those plates move to chapter 4: it must still match
+  the chapter axis, and it is not itself a failure. Any other copy
+  outside a matching include fails.
 - STAMP. A local .css / .js / .html ?v= under ias-16/draft-v1-linked/
   must be 12 lowercase hex digits. search-index.js and last-update.js
   are owned by their own generators and are not checked here.
 """
 
+import re
 import sys
 
 from map_sections import (
@@ -29,6 +37,15 @@ from map_sections import (
     section_inside,
     strip_injected,
 )
+
+# These master plates still draw the shared Begins/Ceases axis so the
+# revaluation-date and impairment-date bands keep their scale. The plates
+# move to ch04 in a later pass. Until then a matching copy inside them is
+# listed, not failed. A drifted copy, or a copy anywhere else outside a
+# matching include, fails.
+AXIS_ID = "ch05-axis"
+DEFERRED_AXIS_PLATES = ("reval-plate", "impair-plate")
+TAG = re.compile(r"<(/?)([A-Za-z][\w:-]*)\b([^>]*)>")
 
 
 def pack_html_files():
@@ -173,6 +190,124 @@ def check_duplicates(html_files, regions):
     return errors
 
 
+def axis_key(text):
+    """Normalise an axis block, including whitespace between tags."""
+    return re.sub(r">\s+<", "><", normalise(text))
+
+
+def element_end(html, start):
+    match = re.match(r"<([A-Za-z][\w:-]*)\b([^>]*)>", html[start:])
+    if not match:
+        return None
+    name = match.group(1).lower()
+    if match.group(2).rstrip().endswith("/"):
+        return start + match.end()
+    depth = 1
+    i = start + match.end()
+    while depth and i < len(html):
+        token = TAG.search(html, i)
+        if not token:
+            return None
+        closing = bool(token.group(1))
+        same = token.group(2).lower() == name
+        self_close = (not closing) and token.group(3).rstrip().endswith("/")
+        if same and not self_close:
+            depth += -1 if closing else 1
+        i = token.end()
+    return i if depth == 0 else None
+
+
+def iter_axis_blocks(html):
+    """Yield (start, end, raw) for each 5.4 During use + Begins/Ceases pair."""
+    cursor = 0
+    needle = '<div class="lc-head-k">'
+    while True:
+        start = html.find(needle, cursor)
+        if start < 0:
+            return
+        cursor = start + len(needle)
+        first_end = element_end(html, start)
+        if first_end is None:
+            continue
+        second = first_end
+        while second < len(html) and html[second].isspace():
+            second += 1
+        if not html.startswith('<div class="lc-head-axis">', second):
+            continue
+        end = element_end(html, second)
+        if end is None:
+            continue
+        yield start, end, html[start:end]
+
+
+def plate_name(start, sections):
+    for section in sections:
+        if section["start"] <= start < section["end"]:
+            for name in DEFERRED_AXIS_PLATES:
+                if name in section["raw"][:160]:
+                    return name
+    return ""
+
+
+def axis_source(html_files):
+    marker = f"<!-- map-section:{AXIS_ID}:start -->"
+    for path in html_files:
+        text = path.read_text(encoding="utf-8")
+        if marker not in text:
+            continue
+        body = extract_map_section(text, AXIS_ID, rel(path))
+        return axis_key(body), path
+    return None, None
+
+
+def check_axis(html_files, regions):
+    """Fail when the during-use axis is copied outside a matching include.
+
+    The chapter section is the one allowed copy. The master Depreciation
+    include holds the same block and is skipped. Copies inside the
+    Revaluation and Impairment plates are deferred: they must still match
+    the chapter axis, and any other copy is a failure.
+    """
+    errors = []
+    canonical, source = axis_source(html_files)
+    if canonical is None:
+        errors.append(f"AXIS: no map-section:{AXIS_ID} in the IAS 16 pack")
+        return errors
+    kept = []
+    deferred = []
+    for path in html_files:
+        text = path.read_text(encoding="utf-8")
+        spans = regions.get(path, [])
+        matching = [(begin, end) for begin, end, ok, _include in spans if ok]
+        sections = find_plate_sections(text)
+        for start, _end, raw in iter_axis_blocks(text):
+            if section_inside(start, matching):
+                continue
+            key = axis_key(raw)
+            where = plate_name(start, sections)
+            place = rel(path) + (f" {where}" if where else "")
+            if key != canonical:
+                errors.append(
+                    "AXIS: "
+                    f"{place} during-use axis does not match "
+                    f"{rel(source)} map-section:{AXIS_ID}"
+                )
+                continue
+            if where:
+                deferred.append(place)
+            else:
+                kept.append(place)
+    if len(kept) != 1:
+        lines = "\n".join(f"  - {place}" for place in kept) or "  - (none)"
+        errors.append(
+            f"AXIS: map-section:{AXIS_ID} appears {len(kept)} times "
+            f"outside a matching include (expected the chapter source once)\n{lines}"
+        )
+    for place in deferred:
+        print(f"deferred axis (PR 4): {place}")
+    return errors
+
+
 def check_stamps(files):
     errors = []
     for path in files:
@@ -195,6 +330,7 @@ def main():
     html_files = pack_html_files()
     errors, regions = check_includes(html_files)
     errors.extend(check_duplicates(html_files, regions))
+    errors.extend(check_axis(html_files, regions))
     errors.extend(check_stamps(pack_text_files()))
     if errors:
         for error in errors:
