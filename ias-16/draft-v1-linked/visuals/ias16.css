@@ -7112,6 +7112,14 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
+.ppe.dep-map.ch05-map .life-rows,
+.ppe.dep-map.ch05-map .life-rows > .inner-detail,
+.ppe.dep-map.ch05-map .factor-rows {
+  min-width: 0 !important;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 .ppe.dep-map.ch05-map .factor-rows {
   width: 100%;
   align-self: stretch;
@@ -7157,7 +7165,19 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-@media (min-width: 40.0625rem) {
+/* Mid widths keep two columns. The 20.5em rail only fits once the
+   nested life-rows detail is wide enough (≥922). */
+@media (min-width: 40.0625rem) and (max-width: 57.5625rem) {
+  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"] {
+    grid-template-columns: minmax(0, 1fr) minmax(7.5rem, 1.35fr) !important;
+  }
+
+  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"] {
+    grid-template-columns: minmax(0, 0.42fr) minmax(7.5rem, 1.35fr) !important;
+  }
+}
+
+@media (min-width: 57.625rem) {
   .ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"] {
     grid-template-columns: 20.5em minmax(0, 1fr) !important;
   }
@@ -7165,7 +7185,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   .ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"] {
     grid-template-columns: 6.75em minmax(0, 1fr) !important;
   }
+}
 
+@media (min-width: 40.0625rem) {
   .ppe.dep-map.ch05-map .cap-row {
     grid-template-columns: 15em minmax(0, 1fr) !important;
   }
