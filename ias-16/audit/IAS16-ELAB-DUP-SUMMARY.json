@@ -1,0 +1,159 @@
+{
+  "title": "IAS 16 Layer-2 teaching-body audit — elaboration sufficiency and duplication",
+  "date": "2026-10-10",
+  "timezone": "Asia/Shanghai",
+  "workbook": "#56",
+  "parent_workbook": "#42",
+  "layer": 2,
+  "prior_layer": "Layer-1 refs completeness (workbook #54). Not re-run.",
+  "base_sha": "da186539208ff424dd3446a6f63e6e4d551d30dc",
+  "base_subject": "Densify five IAS 16 medium teaching gaps (#86)",
+  "study_surface": [
+    "ias-16/draft-v1-linked/ch01.html",
+    "ias-16/draft-v1-linked/ch02.html",
+    "ias-16/draft-v1-linked/ch03.html",
+    "ias-16/draft-v1-linked/ch04.html",
+    "ias-16/draft-v1-linked/ch05.html",
+    "ias-16/draft-v1-linked/ch06.html",
+    "ias-16/draft-v1-linked/ch07.html",
+    "ias-16/draft-v1-linked/abbreviations.html"
+  ],
+  "audit_md": "ias-16/audit/IAS16-ELAB-DUP-AUDIT.md",
+  "summary_json": "ias-16/audit/IAS16-ELAB-DUP-SUMMARY.json",
+  "html_edited": false,
+  "source_stocktake_rerun": false,
+  "overall_verdict": "BOTH",
+  "verdict_plain": "The teaching spine is dense enough to study, and most Illustrations carry a distinct test or unique numbers. Dedupe is required for nine units that repeat the same point, including one Critical pair (EY Illustration 3-3 pumps in Ch2 and Ch6). Densify is required for a small set of named DTT initial-cost plates that are still absent or one line.",
+  "counts": {
+    "units_walked": 154,
+    "sections": 77,
+    "illustrations": 76,
+    "abbreviations_units": 1,
+    "ok_units": 145,
+    "dup_units": 9,
+    "thin_existing_units": 1,
+    "thin_missing_plates": 4,
+    "critical": 1,
+    "medium": 9,
+    "nice": 8
+  },
+  "illustration_counts": {
+    "ch01": 5,
+    "ch02": 10,
+    "ch03": 16,
+    "ch04": 12,
+    "ch05": 20,
+    "ch06": 7,
+    "ch07": 6,
+    "total": 76
+  },
+  "chapter_one_liners": [
+    {"id": "abbreviations", "verdict": "OK", "one_liner": "Glossary table only; chapters do not re-teach the defined terms."},
+    {"id": "ch01", "verdict": "NEEDS DEDUPE", "one_liner": "Scope, exclusions, bearer and boundary Illustrations are distinct; paragraph 5 is taught in both 1.2 and 1.4."},
+    {"id": "ch02", "verdict": "NEEDS DEDUPE", "one_liner": "Recognition spine is dense; safety Illustrations 2.4.1 and 2.4.2 are the same test, and the pump plate is repeated in Chapter 6."},
+    {"id": "ch03", "verdict": "BOTH", "one_liner": "Cost build, 20A and exchanges are sufficient; customer-contribution and contingent Illustrations restate their sections, and four DTT cost plates are still absent."},
+    {"id": "ch04", "verdict": "NEEDS DEDUPE", "one_liner": "Class, mechanics and surplus Illustrations use distinct numbers; Illustration 4.0.1 restates the new policy heading with no journal."},
+    {"id": "ch05", "verdict": "OK", "one_liner": "Component, residual, method and estimate plates keep unique numbers; units-of-production stays prose because the KPMG method tables are blank."},
+    {"id": "ch06", "verdict": "NEEDS DEDUPE", "one_liner": "Undivided-interest fraction, rental fleet, insurance and IFRS 5 are distinct; the pump plate and the physical-part Illustration repeat earlier prose."},
+    {"id": "ch07", "verdict": "NEEDS DEDUPE", "one_liner": "Reconciliation mapping and 74A(a) use an extra test; commitments and 74A(b) Illustrations restate the section and carry no amounts."}
+  ],
+  "top_10": [
+    {
+      "rank": 1,
+      "severity": "Critical",
+      "kind": "DUP",
+      "units": ["ch02 Illustration 2.6.2", "ch06 Illustration 6.5.1"],
+      "issue": "Same EY Illustration 3-3 pump plate (CU10 million, CU200,000, CU170,000, CU51,000) written twice. Chapter 6 adds only that the CU51,000 write-off is a paragraph 68/71 loss."
+    },
+    {
+      "rank": 2,
+      "severity": "Medium",
+      "kind": "DUP",
+      "units": ["ch03 §3.1A", "ch03 Illustration 3.1A.1"],
+      "issue": "Customer-contribution Illustration repeats control, fair value, stand-alone selling price, and the tooling / utility / outsourcing examples already in the section. No currency plate."
+    },
+    {
+      "rank": 3,
+      "severity": "Medium",
+      "kind": "DUP",
+      "units": ["ch03 §3.7A Sources differ", "ch03 Illustration 3.7A.1"],
+      "issue": "Contingent-consideration Illustration repeats the two observed approaches already set out side by side. No currency plate. Illustration 3.7A.2 is a later test and can stay."
+    },
+    {
+      "rank": 4,
+      "severity": "Medium",
+      "kind": "DUP",
+      "units": ["ch04 h4 s-4-0-policy-change", "ch04 Illustration 4.0.1"],
+      "issue": "Policy-change Illustration repeats cost-to-revaluation versus revaluation-to-cost with no worked journal."
+    },
+    {
+      "rank": 5,
+      "severity": "Medium",
+      "kind": "DUP",
+      "units": ["ch07 §7.4", "ch07 Illustration 7.4.1"],
+      "issue": "Commitments Illustration repeats paragraph 74(a)–(c) and the DTT cumulative-CIP reading already in the section, and states that the sources give no amounts."
+    },
+    {
+      "rank": 6,
+      "severity": "Medium",
+      "kind": "DUP",
+      "units": ["ch07 §7.5", "ch07 Illustration 7.5.2"],
+      "issue": "74A(b) Illustration repeats the disclosure limb and points at Illustration 3.5.1, with no proceeds or cost figure. Illustration 7.5.1 stays: it splits Company W’s 800 from the 200."
+    },
+    {
+      "rank": 7,
+      "severity": "Medium",
+      "kind": "DUP",
+      "units": ["ch06 §6.0A", "ch06 Illustration 6.0A.2"],
+      "issue": "Physical-part Illustration repeats the section’s allocation rule and states that no currency amount is given. Illustration 6.0A.1 stays: 25% leaves and 75% remains."
+    },
+    {
+      "rank": 8,
+      "severity": "Medium",
+      "kind": "DUP",
+      "units": ["ch01 §1.2", "ch01 §1.4"],
+      "issue": "Paragraph 5 cost-model investment property, fair-value investment property staying in IAS 40, and investment property under construction are taught in both sections."
+    },
+    {
+      "rank": 9,
+      "severity": "Medium",
+      "kind": "DUP",
+      "units": ["ch02 Illustration 2.4.1", "ch02 Illustration 2.4.2"],
+      "issue": "Chemical-handling and emissions-filter plates are the same paragraph 11 capitalise-and-review-combined-carrying-amount test. KPMG Example 16 adds no distinct view and no numbers."
+    },
+    {
+      "rank": 10,
+      "severity": "Medium",
+      "kind": "THIN",
+      "units": ["ch03 §3.3–3.6 absent", "ch03 §3.4 asbestos bullet"],
+      "issue": "DTT A7 4.2.6 reimbursement, 4.2.7 broker rebate, 4.2.8 utility capacity fee and 4.2.9-2 occupation approval are absent. New obligations after acquisition (DTT 4.2.10-1, KPMG Example 7) are one sentence."
+    }
+  ],
+  "remediation": {
+    "critical": [
+      "Keep one pump plate. Put the paragraph 68/71 loss sentence on the home plate (Illustration 2.6.2) and replace Illustration 6.5.1 with a one-line pointer that keeps id s-6-ex-replace-pump."
+    ],
+    "medium": [
+      "Collapse agreeing #55 Illustrations that have no unique numbers into the section already written: 3.1A.1, 3.7A.1, 4.0.1, 6.0A.2, 7.4.1, 7.5.2. Keep chips on the surviving unit.",
+      "Make §1.4 the only home of paragraph 5; reduce §1.2 to a one-line pointer.",
+      "Fold KPMG Example 16 into Illustration 2.4.1 as a second fact chip, or drop Illustration 2.4.2.",
+      "Densify from extractable DTT text only: reimbursement, broker rebate, utility capacity fee, occupation approval, and the asbestos / new-obligation example. No invented currency."
+    ],
+    "nice": [
+      "Shorten §4.10 to a one-line pointer to Chapter 6.",
+      "Units-of-production numeric plate only if a non-blank firm table is attached (KPMG Examples 12A–12C are blank).",
+      "IFRIC 1 revaluation-model journals only if KPMG Examples 6B–6D tables are no longer blank.",
+      "Optional later tips: EY 4.2.2 liquidated damages, EY 3.1.3 pre-permission, PwC FAQ 22.22.5, PwC FAQ 22.71.2, EY section 6.5 ROU revaluation.",
+      "Strip author-meta sentences from new Illustrations (sources state no amount; this plate is not an extract)."
+    ]
+  },
+  "out_of_scope_respected": [
+    "No Chrome or Map edits",
+    "ch04 4.2/4.3 numbering left as-is",
+    "IAS 38 and IAS 40 packs not opened",
+    "No merging",
+    "No invented financial-statement plates",
+    "No source-PDF stocktake"
+  ],
+  "proposed_workbook_56_remarks": "Layer-2 body audit on main da18653 (post #86). Verdict BOTH. Critical DUP: EY Illustration 3-3 pumps live as Illustration 2.6.2 and Illustration 6.5.1 with the same CU. Medium DUP: six #55-era Illustrations restate their own section with no unique numbers (3.1A.1, 3.7A.1, 4.0.1, 6.0A.2, 7.4.1, 7.5.2), paragraph 5 is in both 1.2 and 1.4, and safety Illustrations 2.4.1 and 2.4.2 are one test. Medium THIN: DTT 4.2.6–4.2.9-2 absent; asbestos / new-obligation is one sentence. 145 of 154 walked units are OK, including the distinct-number plates in Chapters 4 and 5 and the extra-test disclosure plates 7.3.1 and 7.5.1. Do not invent FS images or blank KPMG journals. HTML not edited in this workbook."
+}
