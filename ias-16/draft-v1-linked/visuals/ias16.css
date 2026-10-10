@@ -8262,3 +8262,79 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 @media (max-width: 40rem) {
   .ch04-models .class-tokens { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Master-owned include wrappers. These match the pack beat around a
+   spliced chapter section. Chapter visuals are .ppe.scope-map and
+   .ppe.models, so they do not match. */
+@media (max-width: 50rem) {
+  .ppe.pack .beat[data-phase="scope"] > .map-include .scope-bearer {
+    margin-top: 0.45rem;
+  }
+}
+
+@media (min-width: 40.0625rem) {
+  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) {
+    grid-template-columns: 11em minmax(0, 1fr) minmax(0, 1fr) !important;
+  }
+
+  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-k {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(1) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+  }
+}
+
+@media (min-width: 50.0625rem) {
+  .ppe.pack .beat[data-phase="models"] > .map-include .policy-stage {
+    --parent-w: calc(100cqw - var(--lens-rail) - var(--lens-gap));
+  }
+
+  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) {
+    container-type: inline-size;
+    container-name: rev-fit;
+  }
+
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-table {
+    grid-template-columns: minmax(7.75em, 8.5em) minmax(0, 1fr) minmax(0, 1fr) !important;
+  }
+
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-corner,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-col,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-cell {
+    min-width: 0;
+  }
+
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-k,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-col > span,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-cell > span,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-sub {
+    white-space: normal !important;
+    max-width: 100%;
+  }
+}
+
+/* A narrow Reval column still keeps the 2×2. The type scale steps down
+   so the longest word stays inside the cell. */
+@container rev-fit (max-width: 24rem) {
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-table {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 0.2rem !important;
+  }
+
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-col,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-cell {
+    font-size: 0.62em !important;
+    padding: 0.55em 0.5em !important;
+  }
+}
