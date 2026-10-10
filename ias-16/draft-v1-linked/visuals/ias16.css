@@ -8486,35 +8486,38 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 /* 7.3 split-additions tip: the sentence uses the note width; chips follow inline. */
-.ch07-disc .disc-stack > .soft-note:has(> .cite) {
+.ch07-disc .disc-stack > .soft-note:has(> .cite-run) {
   display: block;
-  container-type: inline-size;
-  container-name: ch07-split;
 }
 
-.ch07-disc .disc-stack > .soft-note:has(> .cite) > span:not(.cite) {
+.ch07-disc .disc-stack > .soft-note:has(> .cite-run) > span:not(.cite):not(.cite-run) {
   display: inline;
   flex: none;
   min-width: 0;
 }
 
-.ch07-disc.disc-band .disc-stack > .soft-note:has(> .cite) > .cite {
+/* Chip run wraps on its own, so the vertical gap does not depend on the note width.
+   column-gap is the disclosure-grid token. The comma margin keeps the shared-line
+   distance equal to the previous comma plus its space. */
+.ch07-disc .cite-run {
   display: inline-flex;
-  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
   vertical-align: middle;
-  white-space: nowrap;
   max-width: 100%;
+  row-gap: 0.45rem;
+  column-gap: 0.45rem;
 }
 
-/* Wrapped cite chips use the same 0.45rem row gap as the disclosure grid.
-   When the note is wide enough that both chips share a line, the margin
-   stays off so that line's geometry does not change. */
-.ch07-disc .disc-stack > .soft-note:has(> .cite) > .cite:has(+ .cite) {
-  margin-bottom: 0.45rem;
+.ch07-disc .cite-run > .cite {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-@container ch07-split (min-width: 36rem) {
-  .ch07-disc .disc-stack > .soft-note:has(> .cite) > .cite:has(+ .cite) {
-    margin-bottom: 0;
-  }
+.ch07-disc .cite-run > .cite + .cite {
+  margin-left: 0;
+}
+
+.ch07-disc .cite-run > .cite:has(+ .cite) {
+  margin-right: 0.71em;
 }
