@@ -38,6 +38,24 @@
   new: "no revaluation; FV changes are not recognised."
   source: "Johnny-approved Content polish 2"
 
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "no revaluation; FV changes are not recognised."
+  new: "No revaluation; FV changes are not recognised."
+  source: "capitals lock, follow-on from polish 2"
+
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "depreciate the impaired carrying amount, less residual value, over the remaining useful life"
+  new: "Depreciate the impaired carrying amount, less residual value, over the remaining useful life"
+  source: "capitals lock, follow-on from polish 2"
+
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "treated as a revaluation decrease — against the surplus for that asset first, excess to P&L"
+  new: "Treated as a revaluation decrease — against the surplus for that asset first, excess to P&L"
+  source: "capitals lock, follow-on from polish 2"
+
 - action: removed
   file: ias-16/draft-v1-linked/visuals/ch04-models.html
   old: "Surplus-first sequencing on a revalued asset can look the same · trigger and measurement still differ."
