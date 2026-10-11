@@ -79,7 +79,7 @@ python3 tools/check-incremental.py --base main
 python3 -m unittest discover -s tools/tests -v
 ```
 
-Scope is every `*.html` file under `*/draft-v1-linked/` (chapters and visuals) and every HTML file under `homepage/`.
+Scope is every `*.html` file in the repo: chapter pages, visuals, `cf-2018/chapter-visuals/`, other packs, `homepage/`, and `_shared/`. The only exclusion is a path segment `_archive` (`cf-2018/chapter-visuals/_archive/`, `cf-2018/draft-v1-linked/_archive/`). Those trees are retired snapshots of the old Conceptual Framework overview. They are not the published notes. Counting them would treat a historical copy as a second live location, so deleting the live sentence could look like a move into the archive. A live removal is still a removal. An edit that touches only the archive is outside this guard. `_archive-index-stub.html` is not under `_archive/` and stays in scope.
 
 Items, one record each (`kind`, text, file, locator):
 
@@ -95,22 +95,22 @@ The locator is the nearest element id, else the id of the current section headin
 
 Normalisation collapses whitespace and drops `?v=` stamps, `data-phase-*` attributes, and the last-update stamp (`Last update · YYYY-MM-DD HH:MM HKT`). Other characters stay, including capitals and U+2011 versus `-`. Text inside `<!-- include:... -->` … `<!-- include:...:end -->` is ignored in the including file. The source file is the only copy, so the include is not counted twice and is not reported as a move.
 
-The diff is by kind and normalised text across all of those files:
+The diff counts each `(kind, normalised text)` at each `(file, locator)`. A copy that survives in another file does not cancel a removal.
 
 | Result | Meaning | Approval |
 | --- | --- | --- |
-| kept | Present in base and head, and at least one file is the same | none |
-| moved | Present in both, but the files do not overlap | none |
-| removed | Base only | required |
-| added | Head only | warning, or a failure with `--strict-added` |
-| changed | A removal paired with an addition of the same kind that share a locator, or whose text is at least 0.6 similar | required |
+| kept | The count at that location did not fall | none |
+| moved | The count fell at one location and rose by the same amount at another location that did not already hold the copy | none |
+| removed | The count fell at that location, and no new location took the same text | required |
+| added | The count rose at that location, and it was not the destination of a move | warning, or a failure with `--strict-added` |
+| changed | A removal paired with an addition of the same kind that share a file and locator, or whose text is at least 0.6 similar | required |
 
-A removal and an addition that pair are not also listed as removed and added.
+A removal and an addition that pair are not also listed as removed and added. Text inside an include is not a location, so deleting it from the source file is a removal even when the included copy still contains the words.
 
-Approval is `changes/<pr-number>.yml`, or `changes/<branch-name>.yml` when there is no pull-request number (`cursor/example` → `changes/cursor/example.yml`). The format, the `source` forms, and a template are in `changes/README.md`. Matching uses normalised text and the file string in the report. The check fails when:
+Approval is `changes/<pr-number>.yml`, or `changes/<branch-name>.yml` when there is no pull-request number (`cursor/example` → `changes/cursor/example.yml`). The format, the `source` forms, and a template are in `changes/README.md`. A `removed` entry matches normalised text and `file`. `locator` is optional; when it is present it must match that row. The check fails when:
 
 - a removal or a change has no matching entry, or an entry has an empty `source`
-- an entry matches nothing (stale text, stale file, or a typo)
+- an entry matches nothing (stale text, stale file, stale locator, or a typo)
 - the YAML file is missing while the diff has a removal or a change
 
-Stdout and `$GITHUB_STEP_SUMMARY` get a Markdown table: the five counts, then each moved, changed, removed, and added row with old text, new text, file, locator, and the matched source or `UNAPPROVED`. The same rows are written to `incremental-report.csv`. CI uploads that file as an artifact. A passing run with no such rows prints the counts and exits 0 without a YAML file.
+Stdout and `$GITHUB_STEP_SUMMARY` get a Markdown table: the five counts, then each moved, changed, removed, and added row with old text, new text, file, locator, `approved: <source>` or `UNAPPROVED`, and `moved_from` / `moved_to` for a move. The same rows are written to `incremental-report.csv`. CI uploads that file as an artifact. Publish checks run on every pull request, with no path filter. A passing run with no such rows prints the counts and exits 0 without a YAML file.

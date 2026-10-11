@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
 """Fail a pull request that removes or rewrites teaching text without approval.
 
-Compares the visible teaching items at the merge-base with main (base) to
-the PR head. The same item in any file counts as kept. The same item in a
-different file counts as moved, which needs no approval. Text that disappears
-is removed. Text that appears is added. A removal and an addition of the same
-kind that share a locator, or whose normalised text is at least 0.6 similar,
-are reported as one change.
+Compares visible teaching items at the merge-base with main (base) to the
+PR head. Each item is counted at its own location: kind, normalised text,
+file, and locator. A lower count at a location is a removal there, even
+when the same text still exists somewhere else. A move is only a matched
+pair: the count falls at one location and rises by the same amount at
+another location that did not already hold that copy. A removal and an
+addition of the same kind that share a location, or whose text is at least
+0.6 similar, are one change.
 
 Approval lives in changes/<pr-number>.yml on a pull request, or
-changes/<branch-name>.yml when git has no pull-request number. Matching uses
-normalised text. A removal or a change with no entry fails, an entry that
-matches nothing fails, and a missing file fails when anything was removed or
-changed. Additions without an entry are warnings unless --strict-added.
+changes/<branch-name>.yml when git has no pull-request number. A removed
+entry matches the file and the normalised text, and the locator when the
+entry has one. A removal or a change with no entry fails, an entry that
+matches nothing fails, and a missing file fails when anything was removed
+or changed. Additions without an entry are warnings unless --strict-added.
 
 Included copies (<!-- include:... -->) are not items. The source file owns
-that text, so a master copy is neither a second item nor a move.
+that text, so a master copy is neither a second location nor a move.
 """
 
 import csv
@@ -351,31 +354,6 @@ def extract_tree(files):
     return items
 
 
-def group_items(items):
-    groups = {}
-    for item in items:
-        groups.setdefault((item.kind, item.key), []).append(item)
-    return groups
-
-
-def file_label(items):
-    return ", ".join(sorted({item.file for item in items}))
-
-
-def locator_label(items):
-    labels = sorted({item.locator for item in items if item.locator})
-    return labels[0] if labels else ""
-
-
-def exact_label(items):
-    return sorted(items, key=lambda item: (item.file, item.locator, item.exact))[0].exact
-
-
-def shares_locator(left, right):
-    locs = {item.locator for item in left if item.locator}
-    return any(item.locator in locs for item in right)
-
-
 class Row:
     def __init__(self, status, kind, file, locator, old, new, old_key, new_key):
         self.status = status
@@ -388,50 +366,40 @@ class Row:
         self.new_key = new_key
         self.source = ""
         self.approved = False
+        self.moved_from = ""
+        self.moved_to = ""
+
+
+def place(file, locator):
+    if locator:
+        return file + " :: " + locator
+    return file
+
+
+def location_groups(items):
+    groups = {}
+    for item in items:
+        key = (item.kind, item.key, item.file, item.locator)
+        groups.setdefault(key, []).append(item)
+    return groups
 
 
 def diff_items(base_items, head_items):
-    base_groups = group_items(base_items)
-    head_groups = group_items(head_items)
+    """Per-location multiset. A surviving copy in another file is not a keep."""
+    base_groups = location_groups(base_items)
+    head_groups = location_groups(head_items)
     kept = 0
-    moved = []
-    removed = []
-    added = []
+    down = []
+    up = []
     for key in sorted(set(base_groups) | set(head_groups)):
-        kind, norm = key
         base = base_groups.get(key, [])
         head = head_groups.get(key, [])
-        if base and head:
-            base_files = {item.file for item in base}
-            head_files = {item.file for item in head}
-            if base_files & head_files:
-                kept += 1
-                continue
-            moved.append(Row(
-                "moved", kind,
-                file_label(base) + " → " + file_label(head),
-                locator_label(head) or locator_label(base),
-                exact_label(base), exact_label(head), norm, norm,
-            ))
-            moved[-1].base_items = base
-            moved[-1].head_items = head
-            continue
-        if base:
-            row = Row(
-                "removed", kind, file_label(base), locator_label(base),
-                exact_label(base), "", norm, "",
-            )
-            row.base_items = base
-            row.head_items = []
-            removed.append(row)
-        else:
-            row = Row(
-                "added", kind, file_label(head), locator_label(head),
-                "", exact_label(head), "", norm,
-            )
-            row.base_items = []
-            row.head_items = head
-            added.append(row)
+        kept += min(len(base), len(head))
+        if len(base) > len(head):
+            down.extend(base[:len(base) - len(head)])
+        elif len(head) > len(base):
+            up.extend(head[:len(head) - len(base)])
+    moved, removed, added = pair_moves(down, up)
     changed = pair_changes(removed, added)
     rows = moved + changed + removed + added
     counts = {
@@ -444,13 +412,52 @@ def diff_items(base_items, head_items):
     return rows, counts
 
 
+def pair_moves(down, up):
+    """Pair a decrease with an increase of the same text. A copy already in base does not increase, so it is not a move."""
+    down_by = {}
+    up_by = {}
+    for item in down:
+        down_by.setdefault((item.kind, item.key), []).append(item)
+    for item in up:
+        up_by.setdefault((item.kind, item.key), []).append(item)
+    moved = []
+    removed = []
+    added = []
+    for key in sorted(set(down_by) | set(up_by)):
+        sources = down_by.get(key, [])
+        dests = up_by.get(key, [])
+        pair_count = min(len(sources), len(dests))
+        kind, norm = key
+        for index in range(pair_count):
+            src = sources[index]
+            dst = dests[index]
+            row = Row(
+                "moved", kind, dst.file, dst.locator,
+                src.exact, dst.exact, norm, norm,
+            )
+            row.moved_from = place(src.file, src.locator)
+            row.moved_to = place(dst.file, dst.locator)
+            moved.append(row)
+        for item in sources[pair_count:]:
+            removed.append(Row(
+                "removed", kind, item.file, item.locator,
+                item.exact, "", norm, "",
+            ))
+        for item in dests[pair_count:]:
+            added.append(Row(
+                "added", kind, item.file, item.locator,
+                "", item.exact, "", norm,
+            ))
+    return moved, removed, added
+
+
 def pair_changes(removed, added):
     candidates = []
     for i, old in enumerate(removed):
         for j, new in enumerate(added):
             if old.kind != new.kind:
                 continue
-            same = shares_locator(old.base_items, new.head_items)
+            same = bool(old.locator) and old.file == new.file and old.locator == new.locator
             ratio = SequenceMatcher(None, old.old_key, new.new_key, autojunk=False).ratio()
             if same or ratio >= SIMILARITY:
                 candidates.append((ratio, 1 if same else 0, i, j))
@@ -604,6 +611,8 @@ def dump_changes(rows):
     for row in wanted:
         lines.append("- action: " + row.status)
         lines.append("  file: " + yaml_quote(row.file))
+        if row.locator:
+            lines.append("  locator: " + yaml_quote(row.locator))
         if row.status in {"removed", "changed"}:
             lines.append("  old: " + yaml_quote(row.old))
         if row.status in {"changed", "added"}:
@@ -623,10 +632,13 @@ def match_entries(rows, entries):
         new_key = normalise_key(entry.get("new", ""))
         file_name = entry.get("file", "")
         source = (entry.get("source") or "").strip()
+        wanted_locator = (entry.get("locator") or "").strip()
         for row in rows:
             if row.approved or row.status != action:
                 continue
             if row.file != file_name:
+                continue
+            if wanted_locator and row.locator != wanted_locator:
                 continue
             if action == "removed" and row.old_key == old_key:
                 _take(row, entry, source)
@@ -705,7 +717,7 @@ def source_cell(row):
     if row.status == "moved":
         return "—"
     if row.approved and row.source:
-        return row.source
+        return "approved: " + row.source
     return "UNAPPROVED"
 
 
@@ -725,8 +737,8 @@ def format_markdown(counts, rows):
         lines.append("")
         return "\n".join(lines)
     lines.extend([
-        "| status | kind | file | locator | old | new | source |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        "| status | kind | file | locator | old | new | approval | moved_from | moved_to |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ])
     order = {name: index for index, name in enumerate(DETAIL_STATUSES)}
     detail.sort(key=lambda row: (order[row.status], row.file, row.locator, row.old, row.new))
@@ -739,6 +751,8 @@ def format_markdown(counts, rows):
             escape_cell(row.old),
             escape_cell(row.new),
             escape_cell(source_cell(row)),
+            escape_cell(row.moved_from),
+            escape_cell(row.moved_to),
         ]) + " |")
     lines.append("")
     warns = [row for row in detail if row.status == "added" and not row.approved]
@@ -756,19 +770,23 @@ def write_csv(path, rows):
     detail.sort(key=lambda row: (order[row.status], row.file, row.locator, row.old, row.new))
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle)
-        writer.writerow(["status", "kind", "file", "locator", "old", "new", "source"])
+        writer.writerow([
+            "status", "kind", "file", "locator", "old", "new",
+            "approval", "moved_from", "moved_to",
+        ])
         for row in detail:
             writer.writerow([
                 row.status, row.kind, row.file, row.locator,
                 row.old, row.new, source_cell(row),
+                row.moved_from, row.moved_to,
             ])
 
 
 def in_scope(path):
-    if path.endswith(".html") and (path == "homepage" or path.startswith("homepage/")):
-        return True
-    parts = path.split("/")
-    return len(parts) >= 3 and parts[1] == "draft-v1-linked" and path.endswith(".html")
+    """Every teaching HTML file, except a retired `_archive/` snapshot."""
+    if not path.endswith(".html"):
+        return False
+    return "_archive" not in path.split("/")
 
 
 def git_bytes(*args):

@@ -19,6 +19,28 @@ def judge(base, head, approval=None, strict=False):
     return guard.evaluate(base, head, approval, strict_added=strict)
 
 
+def read_repo(path):
+    return (guard.ROOT / path).read_text(encoding="utf-8")
+
+
+def drop_once(html, sentence):
+    if sentence not in html:
+        raise AssertionError("sentence missing from fixture: " + sentence)
+    return html.replace(sentence, "", 1)
+
+
+def approval_removed(file, old, source, locator=""):
+    lines = [
+        "- action: removed",
+        "  file: " + guard.yaml_quote(file),
+    ]
+    if locator:
+        lines.append("  locator: " + guard.yaml_quote(locator))
+    lines.append("  old: " + guard.yaml_quote(old))
+    lines.append("  source: " + guard.yaml_quote(source))
+    return "\n".join(lines) + "\n"
+
+
 class IncrementalTests(unittest.TestCase):
     def test_unapproved_removal_fails(self):
         base = {"a.html": "<p>This paragraph leaves the notes.</p>"}
@@ -140,6 +162,238 @@ class IncrementalTests(unittest.TestCase):
         self.assertEqual(len(changed), 1)
         self.assertEqual(changed[0].old, "The Asset is recognised.")
         self.assertEqual(changed[0].new, "The asset is recognised.")
+
+    def _removal(self, rows, file, sentence):
+        hits = [
+            row for row in rows
+            if row.status == "removed" and row.file == file and row.old == sentence
+        ]
+        self.assertEqual(len(hits), 1, rows)
+        return hits[0]
+
+    def test_expC_crossfile_duplicate_is_a_removal(self):
+        """QC expC: deleting the ch06 fire sentence must fail even though ch07 still has it."""
+        sentence = "Company W\u2019s main operating plant is destroyed in a fire."
+        ch06 = "ias-16/draft-v1-linked/ch06.html"
+        ch07 = "ias-16/draft-v1-linked/ch07.html"
+        base = {ch06: read_repo(ch06), ch07: read_repo(ch07)}
+        head = {ch06: drop_once(base[ch06], sentence), ch07: base[ch07]}
+        self.assertIn(sentence, head[ch07])
+
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["moved"], 0)
+        self.assertEqual(counts["removed"], 1)
+        row = self._removal(rows, ch06, sentence)
+        self.assertEqual(guard.source_cell(row), "UNAPPROVED")
+        self.assertEqual(row.moved_from, "")
+        self.assertTrue(any("UNAPPROVED removed" in issue for issue in issues))
+        self.assertNotIn(ch07, row.file)
+
+        wrong = approval_removed(ch07, sentence, "QC FAIL PR r1 item 1")
+        code, rows, _counts, issues = judge(base, head, wrong)
+        self.assertNotEqual(code, 0)
+        self.assertFalse(self._removal(rows, ch06, sentence).approved)
+        self.assertTrue(any("stale" in issue for issue in issues))
+
+        ok = approval_removed(ch06, sentence, "QC FAIL PR r1 item 1")
+        code, rows, counts, issues = judge(base, head, ok)
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        row = self._removal(rows, ch06, sentence)
+        self.assertEqual(row.source, "QC FAIL PR r1 item 1")
+        self.assertEqual(guard.source_cell(row), "approved: QC FAIL PR r1 item 1")
+
+        located = approval_removed(
+            ch06, sentence, "QC FAIL PR r1 item 1", locator=row.locator
+        )
+        code, _rows, _counts, issues = judge(base, head, located)
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+
+    def test_expE_every_teaching_html_path_is_in_scope(self):
+        """QC expE: a chapter-visuals edit was invisible because the path was not scanned."""
+        listed = guard.git_text("ls-tree", "-r", "--name-only", "HEAD").splitlines()
+        html = [path for path in listed if path.endswith(".html")]
+        scoped = set(guard.list_html("HEAD"))
+        for path in html:
+            if "_archive" in path.split("/"):
+                self.assertNotIn(path, scoped)
+                self.assertFalse(guard.in_scope(path))
+            else:
+                self.assertIn(path, scoped)
+                self.assertTrue(guard.in_scope(path))
+        self.assertIn("cf-2018/chapter-visuals/ch09-status.html", scoped)
+        self.assertIn("homepage/how-these-notes-are-made.html", scoped)
+        self.assertIn("cf-2018/draft-v1-linked/_archive-index-stub.html", scoped)
+        self.assertNotIn("cf-2018/chapter-visuals/_archive/ch01-overview.html", scoped)
+        self.assertNotIn("cf-2018/draft-v1-linked/_archive/ch01-overview.html", scoped)
+        self.assertTrue(guard.in_scope("_shared/example.html"))
+        self.assertFalse(guard.in_scope("tools/README.md"))
+
+        path = "cf-2018/chapter-visuals/ch09-status.html"
+        sentence = "Concepts + objective \u2014 not a Standard"
+        base = {path: read_repo(path)}
+        head = {path: drop_once(base[path], sentence)}
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["moved"], 0)
+        row = self._removal(rows, path, sentence)
+        self.assertEqual(guard.source_cell(row), "UNAPPROVED")
+        self.assertTrue(any("missing" in issue or "UNAPPROVED" in issue for issue in issues))
+
+        code, rows, _counts, issues = judge(
+            base, head, approval_removed(path, sentence, "QC FAIL PR r1 item 2")
+        )
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        self.assertEqual(self._removal(rows, path, sentence).source, "QC FAIL PR r1 item 2")
+
+    def test_expF_hand_copy_does_not_hide_source_removal(self):
+        """QC expF: 'When the asset is available for use' still sits on the master outside the include."""
+        sentence = "When the asset is available for use"
+        ch05 = "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+        master = "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+        base = {ch05: read_repo(ch05), master: read_repo(master)}
+        head = {ch05: drop_once(base[ch05], sentence), master: base[master]}
+        self.assertGreaterEqual(head[master].count(sentence), 2)
+        self.assertIn("<!-- include:ch05-depreciation.html#ch05-dep:start -->", head[master])
+
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["moved"], 0)
+        self.assertEqual(counts["removed"], 1)
+        row = self._removal(rows, ch05, sentence)
+        self.assertEqual(row.kind, "text")
+        self.assertEqual(guard.source_cell(row), "UNAPPROVED")
+        self.assertNotEqual(row.file, master)
+        self.assertTrue(any("UNAPPROVED removed" in issue for issue in issues))
+
+        code, rows, _counts, issues = judge(
+            base, head, approval_removed(ch05, sentence, "QC FAIL PR r1 item 3")
+        )
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        self.assertEqual(
+            guard.source_cell(self._removal(rows, ch05, sentence)),
+            "approved: QC FAIL PR r1 item 3",
+        )
+
+    def test_expF2_include_body_does_not_hide_source_removal(self):
+        """QC expF2: the residual-value bullet survives only inside the master include."""
+        sentence = (
+            "If residual value rises to or above carrying amount, the depreciation "
+            "charge is zero until it falls back below carrying amount."
+        )
+        ch05 = "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+        master = "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+        base = {ch05: read_repo(ch05), master: read_repo(master)}
+        head = {ch05: drop_once(base[ch05], sentence), master: base[master]}
+        self.assertIn(sentence, head[master])
+        include_at = head[master].index("<!-- include:ch05-depreciation.html#ch05-dep:start -->")
+        include_end = head[master].index("<!-- include:ch05-depreciation.html#ch05-dep:end -->")
+        self.assertLess(include_at, head[master].index(sentence))
+        self.assertLess(head[master].index(sentence), include_end)
+
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["moved"], 0)
+        self.assertEqual(counts["removed"], 1)
+        row = self._removal(rows, ch05, sentence)
+        self.assertEqual(row.kind, "li")
+        self.assertEqual(row.locator, "section:ch05-dep")
+        self.assertEqual(guard.source_cell(row), "UNAPPROVED")
+
+        code, rows, _counts, issues = judge(
+            base,
+            head,
+            approval_removed(
+                ch05, sentence, "QC FAIL PR r1 item 4", locator="section:ch05-dep"
+            ),
+        )
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        row = self._removal(rows, ch05, sentence)
+        self.assertEqual(row.source, "QC FAIL PR r1 item 4")
+        self.assertTrue(guard.source_cell(row).startswith("approved:"))
+
+    def test_true_move_reports_from_and_to(self):
+        sentence = "Spare parts that meet the definition are PPE."
+        base = {"a.html": '<p id="from-here">' + sentence + "</p>"}
+        head = {"b.html": '<p id="to-here">' + sentence + "</p>"}
+        code, rows, counts, issues = judge(base, head)
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        self.assertEqual(counts["moved"], 1)
+        self.assertEqual(counts["removed"], 0)
+        self.assertEqual(counts["added"], 0)
+        row = rows[0]
+        self.assertEqual(row.status, "moved")
+        self.assertEqual(row.moved_from, "a.html :: from-here")
+        self.assertEqual(row.moved_to, "b.html :: to-here")
+        self.assertEqual(guard.source_cell(row), "\u2014")
+        markdown = guard.format_markdown(counts, rows)
+        self.assertIn("moved_from", markdown)
+        self.assertIn("a.html :: from-here", markdown)
+        self.assertIn("b.html :: to-here", markdown)
+
+    def test_copy_already_in_base_is_still_a_removal(self):
+        """A right-of-use line deleted from ch02 stays a removal: ch03 already had it, and the master copy is an include."""
+        sentence = (
+            "Depreciation of right-of-use assets used to construct, add to, "
+            "replace part of or service PPE may form part of cost."
+        )
+        ch02 = "ias-16/draft-v1-linked/visuals/ch02-recognition.html"
+        ch03 = "ias-16/draft-v1-linked/visuals/ch03-initial.html"
+        master = "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+
+        def tip(section):
+            return (
+                f"<!-- map-section:{section}:start -->\n"
+                f'<p class="thin-tip">{sentence}</p>\n'
+                f"<!-- map-section:{section}:end -->\n"
+            )
+
+        base = {
+            ch02: tip("ch02-recog"),
+            ch03: tip("ch03-cost"),
+            master: (
+                "<!-- include:ch03-initial.html#ch03-cost:start -->\n"
+                f'<p class="thin-tip">{sentence}</p>\n'
+                "<!-- include:ch03-initial.html#ch03-cost:end -->\n"
+            ),
+        }
+        head = {
+            ch02: "<!-- map-section:ch02-recog:start -->\n<!-- map-section:ch02-recog:end -->\n",
+            ch03: base[ch03],
+            master: base[master],
+        }
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["moved"], 0)
+        self.assertEqual(counts["removed"], 1)
+        self.assertEqual(counts["added"], 0)
+        row = self._removal(rows, ch02, sentence)
+        self.assertEqual(row.locator, "section:ch02-recog")
+        self.assertEqual(guard.source_cell(row), "UNAPPROVED")
+        self.assertTrue(any("UNAPPROVED removed" in issue for issue in issues))
+
+        code, rows, _counts, issues = judge(
+            base,
+            head,
+            approval_removed(ch02, sentence, "ruling 2.4", locator="section:ch02-recog"),
+        )
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        row = self._removal(rows, ch02, sentence)
+        self.assertEqual(row.source, "ruling 2.4")
+        self.assertEqual(guard.source_cell(row), "approved: ruling 2.4")
+
+        missed = approval_removed(ch02, sentence, "ruling 2.4", locator="section:other")
+        code, rows, _counts, issues = judge(base, head, missed)
+        self.assertNotEqual(code, 0)
+        self.assertFalse(self._removal(rows, ch02, sentence).approved)
+        self.assertTrue(any("stale" in issue for issue in issues))
 
 
 if __name__ == "__main__":

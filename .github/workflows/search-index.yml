@@ -2,15 +2,6 @@ name: Publish checks
 
 on:
   pull_request:
-    paths:
-      - "**/draft-v1-linked/**"
-      - "_shared/**"
-      - homepage/build-search-index.py
-      - homepage/**
-      - changes/**
-      - ias-16/**
-      - tools/**
-      - .github/workflows/search-index.yml
 
 permissions:
   contents: read

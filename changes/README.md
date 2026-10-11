@@ -2,7 +2,11 @@
 
 `tools/check-incremental.py` compares visible teaching text on a pull request with the merge-base of `main`. A removal or a rewrite fails unless this directory lists it. An addition is only a warning unless the run uses `--strict-added`.
 
-Whitespace, `?v=` stamps, `data-phase-*` hooks, and the last-update stamp are ignored. Text inside `<!-- include:... -->` belongs to the source file, so the included copy is not a second item and not a move. Capitals, hyphens, and U+2011 non-breaking hyphens are real changes.
+Whitespace, `?v=` stamps, `data-phase-*` hooks, and the last-update stamp are ignored. Text inside `<!-- include:... -->` belongs to the source file, so the included copy is not a second location and not a move. Capitals, hyphens, and U+2011 non-breaking hyphens are real changes.
+
+The checker reads every `*.html` file except paths under `_archive/`. Those directories are retired Conceptual Framework snapshots, not the published notes. A historical copy must not hide a deletion on the live page, and an archive-only edit is outside this guard. See `tools/README.md`.
+
+A removal is per location. The same sentence still sitting in another file does not cancel it. A move is only when the count falls in one place and rises by the same amount in another place that did not already have the copy.
 
 No file is required when the pull request does not remove or rewrite teaching text.
 
@@ -22,7 +26,8 @@ The file is a list. Matching uses normalised text (collapsed whitespace, stamps 
 | Field | When |
 | --- | --- |
 | `action` | `removed`, `changed`, or `added` |
-| `file` | Repo path from the report. For a change or an addition this is the head file. For a removal it is the base file. Several files are joined with `, `. |
+| `file` | Repo path from the report. One location, one file. For a removal this is the file that lost the text. |
+| `locator` | Optional. When present, a `removed` entry matches only that locator. Omit it to match the text in that file at any locator. |
 | `old` | Exact old text for `removed` and `changed` |
 | `new` | Exact new text for `changed` and `added` |
 | `source` | Required. Empty fails the check. |
@@ -48,7 +53,8 @@ An entry that matches nothing (wrong text, wrong file, or a change that is no lo
 
 - action: removed
   file: ias-16/draft-v1-linked/visuals/ch02-recognition.html
-  old: "Sentence that was deleted."
+  locator: "section:ch02-recog"
+  old: "Depreciation of right-of-use assets used to construct, add to, replace part of or service PPE may form part of cost."
   source: "QC FAIL PR r1 item 2"
 
 - action: added
