@@ -14,10 +14,9 @@ Four checks:
 - AXIS. The during-use life-cycle block (map-section:ch05-axis, the
   5.4 Begins/Ceases axis) must not appear twice outside a matching
   include. Whitespace between tags is ignored, so a pretty-printed
-  copy still counts. A copy inside .reval-plate or .impair-plate is
-  deferred until those plates move to chapter 4: it must still match
-  the chapter axis, and it is not itself a failure. Any other copy
-  outside a matching include fails.
+  copy still counts. A copy inside a matching include is the included
+  axis, not a second source. Any other copy outside a matching include
+  fails. There is no deferred plate.
 - STAMP. A local .css / .js / .html ?v= under ias-16/draft-v1-linked/
   must be 12 lowercase hex digits. search-index.js and last-update.js
   are owned by their own generators and are not checked here.
@@ -38,13 +37,10 @@ from map_sections import (
     strip_injected,
 )
 
-# These master plates still draw the shared Begins/Ceases axis so the
-# revaluation-date and impairment-date bands keep their scale. The plates
-# move to ch04 in a later pass. Until then a matching copy inside them is
-# listed, not failed. A drifted copy, or a copy anywhere else outside a
-# matching include, fails.
+# The Begins/Ceases axis has one source (map-section:ch05-axis). The
+# revaluation-date and impairment-date bands include that block; those
+# copies sit inside a matching include and are not counted here.
 AXIS_ID = "ch05-axis"
-DEFERRED_AXIS_PLATES = ("reval-plate", "impair-plate")
 TAG = re.compile(r"<(/?)([A-Za-z][\w:-]*)\b([^>]*)>")
 
 
@@ -240,15 +236,6 @@ def iter_axis_blocks(html):
         yield start, end, html[start:end]
 
 
-def plate_name(start, sections):
-    for section in sections:
-        if section["start"] <= start < section["end"]:
-            for name in DEFERRED_AXIS_PLATES:
-                if name in section["raw"][:160]:
-                    return name
-    return ""
-
-
 def axis_source(html_files):
     marker = f"<!-- map-section:{AXIS_ID}:start -->"
     for path in html_files:
@@ -263,10 +250,9 @@ def axis_source(html_files):
 def check_axis(html_files, regions):
     """Fail when the during-use axis is copied outside a matching include.
 
-    The chapter section is the one allowed copy. The master Depreciation
-    include holds the same block and is skipped. Copies inside the
-    Revaluation and Impairment plates are deferred: they must still match
-    the chapter axis, and any other copy is a failure.
+    The chapter section is the one allowed copy. Matching includes
+    (Depreciation, and the revaluation and impairment date bands) are
+    skipped. Any other copy fails.
     """
     errors = []
     canonical, source = axis_source(html_files)
@@ -274,18 +260,15 @@ def check_axis(html_files, regions):
         errors.append(f"AXIS: no map-section:{AXIS_ID} in the IAS 16 pack")
         return errors
     kept = []
-    deferred = []
     for path in html_files:
         text = path.read_text(encoding="utf-8")
         spans = regions.get(path, [])
         matching = [(begin, end) for begin, end, ok, _include in spans if ok]
-        sections = find_plate_sections(text)
         for start, _end, raw in iter_axis_blocks(text):
             if section_inside(start, matching):
                 continue
             key = axis_key(raw)
-            where = plate_name(start, sections)
-            place = rel(path) + (f" {where}" if where else "")
+            place = rel(path)
             if key != canonical:
                 errors.append(
                     "AXIS: "
@@ -293,18 +276,13 @@ def check_axis(html_files, regions):
                     f"{rel(source)} map-section:{AXIS_ID}"
                 )
                 continue
-            if where:
-                deferred.append(place)
-            else:
-                kept.append(place)
+            kept.append(place)
     if len(kept) != 1:
         lines = "\n".join(f"  - {place}" for place in kept) or "  - (none)"
         errors.append(
             f"AXIS: map-section:{AXIS_ID} appears {len(kept)} times "
             f"outside a matching include (expected the chapter source once)\n{lines}"
         )
-    for place in deferred:
-        print(f"deferred axis (PR 4): {place}")
     return errors
 
 
