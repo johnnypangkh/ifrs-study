@@ -1,67 +1,556 @@
-# Polish on PR 106. The rest of the map comes later.
-# Item 3 moves See also IAS 12 and IAS 16 · para 42 onto the muted foot
-# beside IAS 16 · para 41. Those strings stay, so the checker keeps them.
+# Base cc6a701f to this head. Draft: regenerate when the incremental guard merges.
+# A move is not an entry. The checker already treats a matched move as kept-aside.
 
 - action: changed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
-  old: "6.6 See also · Derecognition"
-  new: "6.6 See also Derecognition"
-  source: "Content polish item 1"
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-comp"
+  old: "6.6 Compensation for impairment"
+  new: "Compensation for impairment"
+  source: "Content item 1"
 
 - action: changed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
-  old: "4.5 See also · Revaluation"
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  old: "Revalued amount / FV"
+  new: "Revalued amount (FV)"
+  source: "Content item 2"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  old: "Recognise in other comprehensive income to the extent of any credit balance in the revaluation surplus for that asset; this reduces the revaluation surplus"
+  new: "Recognise in OCI to the extent of any credit balance in the revaluation surplus for that asset; this reduces the revaluation surplus"
+  source: "OCI/P&L/FV ruling (Johnny)"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  old: "4.5 See also Revaluation board"
   new: "4.5 See also Revaluation"
-  source: "Content polish item 1"
+  source: "Content item 2"
 
 - action: changed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
-  old: "See also · IAS 12"
-  new: "See also IAS 12"
-  source: "Content polish item 1"
-
-- action: changed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
-  old: "Cost model: depreciate the impaired carrying amount, less residual value, over the remaining useful life"
-  new: "depreciate the impaired carrying amount, less residual value, over the remaining useful life"
-  source: "Johnny-approved Content polish 2"
-
-- action: changed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
-  old: "Revaluation model: treated as a revaluation decrease — against the surplus for that asset first, excess to P&L"
-  new: "treated as a revaluation decrease — against the surplus for that asset first, excess to P&L"
-  source: "Johnny-approved Content polish 2"
-
-- action: changed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
-  old: "Cost model: no revaluation; FV changes are not recognised."
-  new: "no revaluation; FV changes are not recognised."
-  source: "Johnny-approved Content polish 2"
-
-- action: changed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
-  old: "no revaluation; FV changes are not recognised."
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  old: "No revaluation; fair value changes are not recognised."
   new: "No revaluation; FV changes are not recognised."
-  source: "capitals lock, follow-on from polish 2"
+  source: "OCI/P&L/FV ruling (Johnny)"
 
 - action: changed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
-  old: "depreciate the impaired carrying amount, less residual value, over the remaining useful life"
-  new: "Depreciate the impaired carrying amount, less residual value, over the remaining useful life"
-  source: "capitals lock, follow-on from polish 2"
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  old: "Recognise in profit or loss to the extent it reverses a revaluation decrease of the same asset previously recognised in profit or loss"
+  new: "Recognise in P&L to the extent it reverses a revaluation decrease of the same asset previously recognised in P&L"
+  source: "OCI/P&L/FV ruling (Johnny)"
 
 - action: changed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
-  old: "treated as a revaluation decrease — against the surplus for that asset first, excess to P&L"
-  new: "Treated as a revaluation decrease — against the surplus for that asset first, excess to P&L"
-  source: "capitals lock, follow-on from polish 2"
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  old: "Recognise in other comprehensive income and accumulate in equity under the heading of revaluation surplus"
+  new: "Recognise in OCI and accumulate in equity under the heading of revaluation surplus"
+  source: "OCI/P&L/FV ruling (Johnny)"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-comp"
+  old: "Compensation from third parties for items of property, plant and equipment that were impaired, lost or given up is included in profit or loss when the compensation becomes receivable."
+  new: "Compensation from third parties for items that were impaired, lost or given up is included in P&L when the compensation becomes receivable."
+  source: "Content item 1 (ch06 can include it); OCI/P&L/FV ruling"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  old: "The whole surplus may be transferred when the asset is retired or disposed of."
+  new: "The whole surplus may be transferred directly to retained earnings when the asset is retired or disposed of."
+  source: "Content item 7"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  old: "Carrying amount moved to revalued amount or fair value"
+  new: "Carrying amount and revalued amount (FV)"
+  source: "Content item 2"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-comp"
+  old: "Impairments or losses of items of property, plant and equipment, related claims for or payments of compensation from third parties, and any subsequent purchase or construction of replacement assets are separate economic events."
+  new: "Impairment, claims for or payments of compensation, and the purchase or construction of replacement items are separate economic events, accounted for separately."
+  source: "Content item 1 (ch06 can include it); OCI/P&L/FV ruling"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  old: "Revaluation"
+  new: "Revalued asset"
+  source: "Content item 2"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  old: "Impairment write-down versus ordinary revaluation decrease"
+  new: "Impairment write-down and revalued amount (FV)"
+  source: "Content item 2"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  old: "Recognise in profit or loss"
+  new: "Recognise in P&L"
+  source: "OCI/P&L/FV ruling (Johnny)"
 
 - action: removed
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Compensation from third parties for impaired, lost or given-up items → profit or loss when receivable."
+  source: "Content item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Impairment, compensation claim/payment, and replacement are separate economic events."
+  source: "Content item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-models"
+  old: "Other comprehensive income"
+  source: "OCI/P&L/FV ruling (Johnny)"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-models"
+  old: "Profit or loss"
+  source: "OCI/P&L/FV ruling (Johnny)"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Reverses prior P&L decrease"
+  source: "Content item 6"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Subsequent depreciation on impaired carrying amount − residual"
+  source: "Johnny-approved Content polish 2"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Surplus first, excess profit or loss · not the same event as reval decrease"
+  source: "Johnny-approved Content polish 2"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
   old: "Surplus-first sequencing on a revalued asset can look the same · trigger and measurement still differ."
   source: "Johnny-approved Content polish 4"
 
 - action: added
-  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-comp"
+  new: "Compensation for impairment"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ey-igaap-ch19-s62"
+  new: "EY International GAAP 2026 — Chapter 19 Property, plant and equipment · section 6.2"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p30"
+  new: "IAS 16 Property, Plant and Equipment · paragraph 30"
+  source: "Content item 5"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p39"
+  new: "IAS 16 Property, Plant and Equipment · paragraph 39"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p41"
+  new: "IAS 16 Property, Plant and Equipment · paragraph 41"
+  source: "Content item 7"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p42"
+  new: "IAS 16 Property, Plant and Equipment · paragraph 42"
+  source: "Johnny-approved Content polish 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p63"
+  new: "IAS 16 Property, Plant and Equipment · paragraph 63"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p65"
+  new: "IAS 16 Property, Plant and Equipment · paragraph 65"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p66"
+  new: "IAS 16 Property, Plant and Equipment · paragraph 66"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias36-p117"
+  new: "IAS 36 Impairment of Assets · paragraph 117"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias36-p119"
+  new: "IAS 36 Impairment of Assets · paragraph 119"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias36-p61"
+  new: "IAS 36 Impairment of Assets · paragraph 61"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias36-p63"
+  new: "IAS 36 Impairment of Assets · paragraph 63"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ey-igaap-ch19-s62"
+  new: "EY iGAAP 2026 Ch19 · section 6.2"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "EY iGAAP 2026 Ch19 · section 6.2"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "EY iGAAP 2026 Ch19 · section 6.2"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p30"
+  new: "IAS 16 · para 30"
+  source: "Content item 5"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 30"
+  source: "Content item 5"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p39"
+  new: "IAS 16 · para 39"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 39"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p41"
+  new: "IAS 16 · para 41"
+  source: "Content item 7"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 41"
+  source: "Content item 7"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 41"
+  source: "Content item 7"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 41"
+  source: "Johnny-approved Content polish 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p42"
+  new: "IAS 16 · para 42"
+  source: "Johnny-approved Content polish 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 42"
+  source: "Johnny-approved Content polish 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p63"
+  new: "IAS 16 · para 63"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 16 · para 63"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p65"
+  new: "IAS 16 · para 65"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-comp"
+  new: "IAS 16 · para 65"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias16-p66"
+  new: "IAS 16 · para 66"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-comp"
+  new: "IAS 16 · para 66"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias36-p117"
+  new: "IAS 36 · para 117"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 36 · para 117"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 36 · para 117"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias36-p119"
+  new: "IAS 36 · para 119"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 36 · para 119"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias36-p61"
+  new: "IAS 36 · para 61"
+  source: "Johnny-approved Content polish 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 36 · para 61"
+  source: "Johnny-approved Content polish 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 36 · para 61"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ias36-p63"
+  new: "IAS 36 · para 63"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 36 · para 63"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "EY iGAAP 2026 Ch19 · section 6.2 #ref-ey-igaap-ch19-s62"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "EY iGAAP 2026 Ch19 · section 6.2 #ref-ey-igaap-ch19-s62"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 30 #ref-ias16-p30"
+  source: "Content item 5"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 39 #ref-ias16-p39"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 41 #ref-ias16-p41"
+  source: "Content item 7"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 41 #ref-ias16-p41"
+  source: "Content item 7"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 41 #ref-ias16-p41"
+  source: "Johnny-approved Content polish 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 16 · para 42 #ref-ias16-p42"
+  source: "Johnny-approved Content polish 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 16 · para 63 #ref-ias16-p63"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-comp"
+  new: "IAS 16 · para 65 #ref-ias16-p65"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-comp"
+  new: "IAS 16 · para 66 #ref-ias16-p66"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 36 · para 117 #ref-ias36-p117"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 36 · para 117 #ref-ias36-p117"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "IAS 36 · para 119 #ref-ias36-p119"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 36 · para 61 #ref-ias36-p61"
+  source: "Johnny-approved Content polish 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 36 · para 61 #ref-ias36-p61"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "IAS 36 · para 63 #ref-ias36-p63"
+  source: "Content item 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "Illustration 4.5.4 #s-4-ex-rev-dep"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-comp"
+  new: "6.6 See also Derecognition"
+  source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "See also IAS 12"
+  source: "Johnny-approved Content polish 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "Depreciate the impaired carrying amount, less residual value, over the remaining useful life"
+  source: "Johnny-approved Content polish 2"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
   new: "Impairment on a revalued asset follows the same surplus-first sequence as a revaluation decrease; the trigger (IAS 36) and the target (recoverable amount, not FV) differ."
   source: "Johnny-approved Content polish 4"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "Impairment reversal: see 4.5."
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "Impairment reversal: the carrying amount cannot rise above what it would have been, net of depreciation, had no impairment loss been recognised. On a revalued asset the reversal is treated as a revaluation increase - P&L to the extent it reverses an impairment loss previously recognised in P&L, the rest to OCI. Illustration 4.5.4"
+  source: "Content item 3"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "P&L"
+  source: "OCI/P&L/FV ruling (Johnny)"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "Transfers from revaluation surplus to retained earnings are not made through P&L."
+  source: "Content item 7"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-impair"
+  new: "Treated as a revaluation decrease — against the surplus for that asset first, excess to P&L"
+  source: "Johnny-approved Content polish 2"

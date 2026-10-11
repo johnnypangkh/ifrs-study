@@ -7874,6 +7874,20 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   margin-top: 0.2em;
 }
 
+/* Chapter 6 keeps its own 6.6 heading. The include is the card body. */
+.ch06-map > .comp-nest > .impair-comp {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  gap: 0.28em;
+}
+
+.ch06-map > .comp-nest > .impair-comp > .card-k {
+  display: none;
+}
+
 .ch06-map > .soft-onward {
   display: inline-flex;
   align-self: flex-start;
@@ -8566,11 +8580,10 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe .ch04-reval > .inner-board > .see {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  width: 100%;
-  box-sizing: border-box;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  gap: 0;
 }
 
 .ppe .ch04-reval .plate-title .lane-tag {
