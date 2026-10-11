@@ -47,24 +47,24 @@
 
 - action: added
   file: "ias-16/draft-v1-linked/references.html"
-  locator: "s-ref-official"
+  locator: "ref-ifrs16-p31"
   new: "IFRS 16 Leases · paragraph 31"
   source: "IAS 16 Content #67 item 1a"
 
 - action: added
   file: "ias-16/draft-v1-linked/references.html"
-  locator: "s-ref-official"
+  locator: "ref-ifrs16-p32"
   new: "IFRS 16 Leases · paragraph 32"
   source: "IAS 16 Content #67 item 1a"
 
 - action: added
   file: "ias-16/draft-v1-linked/references.html"
-  locator: "s-ref-official"
+  locator: "ref-ifrs16-p31"
   new: "IFRS 16 · para 31"
   source: "IAS 16 Content #67 item 1a"
 
 - action: added
   file: "ias-16/draft-v1-linked/references.html"
-  locator: "s-ref-official"
+  locator: "ref-ifrs16-p32"
   new: "IFRS 16 · para 32"
   source: "IAS 16 Content #67 item 1a"
