@@ -910,7 +910,7 @@ window.HOMEPAGE_SEARCH_INDEX = [
   {
     "chapter": "Chapter 5 — Depreciation",
     "href": "../ias-16/draft-v1-linked/ch05.html#s-5-9",
-    "text": "5.9 Right-of-use depreciation tip A lessee depreciates a right-of-use asset by applying the IAS 16 depreciation requirements, subject to IFRS 16. IFRS 16 · para 31 IFRS 16 · para 32 Depreciation of a right-of-use asset begins at lease commencement. Useful life of non-removable leasehold improvements is determined under IAS 16.56–57; if the improvements are not expected to be used beyond the lease term, useful life equals the lease term (IFRS IC November 2019). Full lease accounting lives in IFRS 16 — dashed tip only. IFRS 16 IAS 16 · para 56–57 EY iGAAP 2026 Ch19 · section 5.4.4 DTT iGAAP 2022 A7 · 7.6.7 See also — IFRS 16 Leases. Recognition and measurement of right-of-use assets; depreciation applies the IAS 16 requirements, subject to IFRS 16. IFRS 16 · para 31"
+    "text": "5.9 Right-of-use depreciation tip A lessee depreciates a right-of-use asset by applying the IAS 16 depreciation requirements, subject to IFRS 16. Depreciation of a right-of-use asset begins at lease commencement. Useful life of non-removable leasehold improvements is determined under IAS 16.56–57; if the improvements are not expected to be used beyond the lease term, useful life equals the lease term (IFRS IC November 2019). Full lease accounting lives in IFRS 16 — dashed tip only. IFRS 16 · para 31 IFRS 16 · para 32 IFRS 16 IAS 16 · para 56–57 EY iGAAP 2026 Ch19 · section 5.4.4 DTT iGAAP 2022 A7 · 7.6.7 See also — IFRS 16 Leases. Recognition and measurement of right-of-use assets; depreciation applies the IAS 16 requirements, subject to IFRS 16. IFRS 16 · para 31"
   },
   {
     "chapter": "Chapter 5 — Depreciation",
