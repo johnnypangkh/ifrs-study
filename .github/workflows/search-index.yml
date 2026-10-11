@@ -6,6 +6,8 @@ on:
       - "**/draft-v1-linked/**"
       - "_shared/**"
       - homepage/build-search-index.py
+      - homepage/**
+      - changes/**
       - ias-16/**
       - tools/**
       - .github/workflows/search-index.yml
@@ -18,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Rebuild map includes, stamps, search index, and last-update
         run: bash tools/build-all.sh
       - name: Fail if generated files drifted
@@ -29,3 +33,14 @@ jobs:
           fi
       - name: Fail on duplicated plates or bad cache stamps
         run: python3 tools/check-duplicates.py
+      - name: Test incremental teaching diff
+        run: python3 -m unittest discover -s tools/tests -v
+      - name: Fail on unapproved teaching removals or changes
+        run: python3 tools/check-incremental.py
+      - name: Upload incremental teaching report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: incremental-report
+          path: incremental-report.csv
+          if-no-files-found: ignore

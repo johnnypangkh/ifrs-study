@@ -69,3 +69,48 @@ These blocks stay in the master. They are not byte-for-byte the chapter section,
 `stamp-assets.py` rewrites an existing `?v=` only when the URL resolves to a file inside `ias-16/draft-v1-linked/` whose suffix is `.css`, `.js`, or `.html`. That includes the Map iframe `src` on `index.html`. It does not add `?v=` to fragment links that never had one, and it does not rewrite `_shared/` URLs.
 
 `search-index.js` and `last-update.js` are skipped so this script does not fight `homepage/build-search-index.py` or `tools/build-last-update.py`. Those generators still run after the stamper and write their own 12-hex `?v=` values.
+
+## Incremental teaching diff
+
+`tools/check-incremental.py` compares visible teaching items on a pull request with the merge-base of `main`. CI runs it on `pull_request` after `build-all.sh`, `git diff --exit-code`, and `check-duplicates.py`. The checkout uses `fetch-depth: 0` so the base commit is in the clone. In CI the base ref is `GITHUB_BASE_REF`. Locally pass `--base`.
+
+```bash
+python3 tools/check-incremental.py --base main
+python3 -m unittest discover -s tools/tests -v
+```
+
+Scope is every `*.html` file under `*/draft-v1-linked/` (chapters and visuals) and every HTML file under `homepage/`.
+
+Items, one record each (`kind`, text, file, locator):
+
+- headings `h1`–`h6`
+- `li` bullets
+- `p` text, and the inline text of a `div` (a wrapper whose children are blocks does not repeat them). Plate, card, and tip copy is read this way, and so is the same run outside those containers, so moving a rail into a plate is not a second item
+- `.cite` chips, full label
+- See also chips, and links as the label plus the href target id
+- `aria-label` and `title` attributes
+- table cells
+
+The locator is the nearest element id, else the id of the current section heading, else a `data-section` attribute or a `map-section` comment, else the heading path.
+
+Normalisation collapses whitespace and drops `?v=` stamps, `data-phase-*` attributes, and the last-update stamp (`Last update · YYYY-MM-DD HH:MM HKT`). Other characters stay, including capitals and U+2011 versus `-`. Text inside `<!-- include:... -->` … `<!-- include:...:end -->` is ignored in the including file. The source file is the only copy, so the include is not counted twice and is not reported as a move.
+
+The diff is by kind and normalised text across all of those files:
+
+| Result | Meaning | Approval |
+| --- | --- | --- |
+| kept | Present in base and head, and at least one file is the same | none |
+| moved | Present in both, but the files do not overlap | none |
+| removed | Base only | required |
+| added | Head only | warning, or a failure with `--strict-added` |
+| changed | A removal paired with an addition of the same kind that share a locator, or whose text is at least 0.6 similar | required |
+
+A removal and an addition that pair are not also listed as removed and added.
+
+Approval is `changes/<pr-number>.yml`, or `changes/<branch-name>.yml` when there is no pull-request number (`cursor/example` → `changes/cursor/example.yml`). The format, the `source` forms, and a template are in `changes/README.md`. Matching uses normalised text and the file string in the report. The check fails when:
+
+- a removal or a change has no matching entry, or an entry has an empty `source`
+- an entry matches nothing (stale text, stale file, or a typo)
+- the YAML file is missing while the diff has a removal or a change
+
+Stdout and `$GITHUB_STEP_SUMMARY` get a Markdown table: the five counts, then each moved, changed, removed, and added row with old text, new text, file, locator, and the matched source or `UNAPPROVED`. The same rows are written to `incremental-report.csv`. CI uploads that file as an artifact. A passing run with no such rows prints the counts and exits 0 without a YAML file.
