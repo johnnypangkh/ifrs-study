@@ -1,6 +1,6 @@
 # Row 68 phase 2. Base ee89185c (origin/main).
 
-- action:- action: changed
+- action: changed
   file: "ias-2/draft-v1-linked/ch03.html"
   locator: "s-3-ex-pwc-197"
   old: "The commodity-price variability gives rise to an embedded derivative not closely related to the host; it is separated from the short-term host payable and accounted for under IFRS 9 unless the payable is designated at FVPL in its entirety."
