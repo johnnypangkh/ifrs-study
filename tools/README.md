@@ -48,6 +48,7 @@ Whitespace, `data-phase-*` attributes, and `?v=` are ignored when the include is
 | During-use axis | `visuals/ch05-depreciation.html` (`map-section:ch05-axis`) | included from Depreciation, and nested inside the Revaluation and Impairment sections |
 | Revaluation | `visuals/ch04-models.html` (`map-section:ch04-reval`) | include `ch04-models.html#ch04-reval` |
 | Impairment | `visuals/ch04-models.html` (`map-section:ch04-impair`) | include `ch04-models.html#ch04-impair` |
+| Compensation for impairment | `visuals/ch04-models.html` (`map-section:ch04-comp`, inside Impairment) | included on the chapter 6 visual (`ch04-models.html#ch04-comp`); the master copy sits inside the Impairment include |
 
 The Derecognition chapter section and the master copy matched after collapsing whitespace and ignoring `data-phase-*` and `?v=`. The only token the master added was the class `ch06-map`, which is the styling hook for that plate. It stays on the included root via `inject-class`. The wrapper carries `data-phase-start` and `data-phase-end`.
 
