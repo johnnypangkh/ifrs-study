@@ -1,5 +1,5 @@
-# Base cc6a701f to this head. Draft: regenerate when the incremental guard merges.
-# A move is not an entry. The checker already treats a matched move as kept-aside.
+# Base cc6a701f to this head, against check-incremental.py at bbaee16b.
+# Moves are not entries. The checker already records a matched move.
 
 - action: changed
   file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
@@ -79,6 +79,13 @@
   source: "Content item 1 (ch06 can include it); OCI/P&L/FV ruling"
 
 - action: changed
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "s-ref-method"
+  old: "Cite chips only. Short forms match the work-title prefix on .cite chips in abbreviations.html and ch01.html– ch07.html (before the · locator)."
+  new: "Cite chips only. Short forms match the work-title prefix on .cite chips in abbreviations.html and ch01.html– ch07.html (before the · locator). Locator rows match map chips that cite IAS 16 · para 30, 39, 41, 42, 63, 65 and 66, IAS 36 · para 61, 63, 117 and 119, and EY iGAAP 2026 Ch19 · section 6.2."
+  source: "Johnny scope addition: References rows"
+
+- action: changed
   file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
   locator: "section:ch04-impair"
   old: "Revaluation"
@@ -93,11 +100,28 @@
   source: "Content item 2"
 
 - action: changed
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "s-ref-big4"
+  old: "Work titles evidenced as cite chips ( ). Locators (FAQ / Example / section) stay on the chapter pages."
+  new: "Work titles evidenced as cite chips ( ). A locator row is listed here only when a map chip cites that locator."
+  source: "Johnny scope addition: References rows"
+
+- action: changed
   file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
   locator: "section:ch04-reval"
   old: "Recognise in profit or loss"
   new: "Recognise in P&L"
   source: "OCI/P&L/FV ruling (Johnny)"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "after"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "then"
+  source: "PR 4 brief item 1"
 
 - action: removed
   file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
@@ -110,6 +134,36 @@
   source: "Content item 1"
 
 - action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "IAS 16.39–40 #s-4-5"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "4.6 On derecognition"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Against surplus first"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Down"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Excess"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "IAS 16.39–40 Same asset only"
+  source: "PR 4 brief item 1"
+
+- action: removed
   file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
   locator: "section:ch04-models"
   old: "Other comprehensive income"
@@ -120,6 +174,11 @@
   locator: "section:ch04-models"
   old: "Profit or loss"
   source: "OCI/P&L/FV ruling (Johnny)"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Rest → surplus ↑"
+  source: "PR 4 brief item 1"
 
 - action: removed
   file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
@@ -141,11 +200,52 @@
   old: "Surplus-first sequencing on a revalued asset can look the same · trigger and measurement still differ."
   source: "Johnny-approved Content polish 4"
 
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Up"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "reval-down target"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "←"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "→"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "≠ Ordinary reval decrease"
+  source: "PR 4 brief item 1; Content item 2"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "▲ rises"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "▼ falls"
+  source: "PR 4 brief item 1"
+
 - action: added
   file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
   locator: "section:ch04-comp"
   new: "Compensation for impairment"
   source: "Content item 1"
+
+- action: added
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  new: "Revaluation increase or decrease"
+  source: "PR 4 brief item 1"
 
 - action: added
   file: "ias-16/draft-v1-linked/references.html"

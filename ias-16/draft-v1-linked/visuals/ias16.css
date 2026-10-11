@@ -8586,6 +8586,59 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   gap: 0;
 }
 
+/* Restored 4.6 rail + use note. The board is a column, so the shared
+   rail-pair margins (0.8rem / 0.7rem) would stack on the 0.45rem gap,
+   and a stretched rail would leave an empty field beside two words.
+   Size the rail to its label. Let the note fill the row. One frame. */
+.ppe .ch04-reval > .inner-board > .inner-rail {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  align-self: flex-start !important;
+  justify-content: flex-start !important;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 0 !important;
+  height: auto !important;
+  gap: 0.35rem;
+  margin: 0 !important;
+  padding: 0.35rem 0.55rem !important;
+  border-radius: var(--card-radius) !important;
+  text-align: left !important;
+  box-sizing: border-box;
+}
+.ppe .ch04-reval > .inner-board > .inner-rail > a.fb-num,
+.ppe .ch04-reval > .inner-board > .inner-rail > .rail-name {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+.ppe .ch04-reval > .inner-board > .inner-detail {
+  display: flex;
+  align-items: stretch;
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent;
+  gap: 0;
+}
+.ppe .ch04-reval > .inner-board > .inner-detail > .soft-note {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 !important;
+  border-width: 0.08em !important;
+  border-radius: var(--card-radius) !important;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  white-space: normal;
+}
+
 .ppe .ch04-reval .plate-title .lane-tag {
   display: inline-block;
   flex: 1 1 auto;
