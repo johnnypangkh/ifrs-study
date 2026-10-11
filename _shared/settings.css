@@ -154,6 +154,13 @@ body.theme-light .toggles .state-day { display: inline; }
 .tok code {
   font-size: var(--t2-fs);
   color: var(--ink);
+}
+
+.token-name {
+  white-space: nowrap;
+}
+
+.tok > .token-name {
   margin-right: auto;
 }
 

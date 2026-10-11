@@ -72,6 +72,7 @@ READ_SHEETS = ("Text", "Colour", "Box", "Spacing", "Grid", "Components", "Top ba
 EXTRA = re.compile(r"(\w+)=([\d.]+rem)/([\d.]+rem)")
 DECL = re.compile(r"(--[\w-]+)\s*:\s*([^;]+);")
 PROP = re.compile(r"(--[\w-]+)\s*:")
+TOKEN_NAME = re.compile(r"--[\w-]+")
 
 
 def n(value):
@@ -502,11 +503,23 @@ def _pair(name, root_map, mobile_map):
     return name, desktop, mobile
 
 
+def _token_text(text):
+    """Escape displayed text. A token name stays one word, hyphen included."""
+    return TOKEN_NAME.sub(
+        lambda match: f'<span class="token-name">{match.group(0)}</span>',
+        html.escape(str(text)),
+    )
+
+
+def _code_name(name):
+    return f'<span class="token-name"><code>{html.escape(name)}</code></span>'
+
+
 def _vals(name, desktop, mobile):
     return (
-        f'<div class="tok"><code>{html.escape(name)}</code>'
-        f'<span class="v v-d"><b>D</b> {html.escape(str(desktop))}</span>'
-        f'<span class="v v-m"><b>M</b> {html.escape(str(mobile))}</span></div>'
+        f'<div class="tok">{_code_name(name)}'
+        f'<span class="v v-d"><b>D</b> {_token_text(desktop)}</span>'
+        f'<span class="v v-m"><b>M</b> {_token_text(mobile)}</span></div>'
     )
 
 
@@ -609,7 +622,7 @@ def settings_rows_text(wb, day, mobile):
             f'<div class="meta"><div class="sty">{html.escape(str(style))} '
             f'<span class="grp">{html.escape(str(group))}</span></div>'
             + "".join(_vals(*item) for item in tokens)
-            + f'<div class="role">{html.escape(str(role))}</div></div>'
+            + f'<div class="role">{_token_text(role)}</div></div>'
         )
         preview = f'<p class="sample" style="{style_attr}">{SAMPLE}</p>'
         out.append(_data_row("text", left, preview))
@@ -624,10 +637,10 @@ def settings_rows_text(wb, day, mobile):
         night_text = day_value if night_value is None or str(night_value).strip() == "(same as day)" else str(night_value).strip()
         role = row.get("Role") or ""
         left = (
-            f'<div class="meta"><div class="tok"><code>{html.escape(token)}</code>'
-            f'<span class="v v-day"><b>Day</b> {html.escape(day_value)}</span>'
-            f'<span class="v v-night"><b>Night</b> {html.escape(night_text)}</span></div>'
-            f'<div class="role">{html.escape(str(role))}</div></div>'
+            f'<div class="meta"><div class="tok">{_code_name(token)}'
+            f'<span class="v v-day"><b>Day</b> {_token_text(day_value)}</span>'
+            f'<span class="v v-night"><b>Night</b> {_token_text(night_text)}</span></div>'
+            f'<div class="role">{_token_text(role)}</div></div>'
         )
         chip = ""
         if not token.endswith("-soft") and token not in INK_SKIP:
@@ -648,7 +661,7 @@ def settings_rows_text(wb, day, mobile):
             preview = f'<span class="bar" style="--p-w:var({token})"></span>'
         left = (
             f'<div class="meta">{_vals(name, desktop, mobile_value)}'
-            f'<div class="role">{html.escape(str(role))}</div></div>'
+            f'<div class="role">{_token_text(role)}</div></div>'
         )
         out.append(_data_row("spacing", left, preview))
     out.append(_section("Grid"))
@@ -663,13 +676,17 @@ def settings_rows_text(wb, day, mobile):
         role = row.get("Use / current usage") or ""
         left = (
             f'<div class="meta">{_vals(name, desktop, mobile_value)}'
-            f'<div class="role">{html.escape(str(role))}</div></div>'
+            f'<div class="role">{_token_text(role)}</div></div>'
         )
         out.append(_data_row("grid", left, _grid_preview(token)))
     ruler_left = (
         '<div class="meta"><div class="tok"><code>breakpoint ruler</code></div>'
-        '<div class="role">390 / 560 / 800 / 922 / 1280 - solid marks are '
-        '--bp-mobile and --bp-wide, hollow marks are preview widths</div></div>'
+        '<div class="role">'
+        + _token_text(
+            "390 / 560 / 800 / 922 / 1280 - solid marks are "
+            "--bp-mobile and --bp-wide, hollow marks are preview widths"
+        )
+        + "</div></div>"
     )
     out.append(_data_row("grid ruler-row", ruler_left, _ruler()))
     for title in ("Box", "Components", "TopBar"):
@@ -817,6 +834,7 @@ def command_map_lint_settings():
         styles = style_attr.findall(text)
         bad = [item for item in styles if not setter.match(item)]
         stripped = style_attr.sub("", text)
+        stripped = re.sub(r'<span class="token-name">(.*?)</span>', r"\1", stripped)
         stripped = re.sub(r'<span class="v\b[^"]*">.*?</span>', "", stripped, flags=re.S)
         # Workbook role prose is displayed data, same as the value column.
         stripped = re.sub(r'<div class="role">.*?</div>', "", stripped, flags=re.S)
