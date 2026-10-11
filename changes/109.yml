@@ -3515,3 +3515,13 @@
   locator: "Abbreviations"
   new: "functional currency units"
   source: "PR #109 QC r1 + IAS 2 Content"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch06"
+  new: "SBPs"
+  source: "PR #109 QC r1 + CF Content"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch06"
+  new: "share-based payments"
+  source: "PR #109 QC r1 + CF Content"
