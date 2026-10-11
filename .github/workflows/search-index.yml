@@ -28,6 +28,29 @@ jobs:
         run: python3 -m unittest discover -s tools/tests -v
       - name: Fail on unapproved teaching removals or changes
         run: python3 tools/check-incremental.py
+      - name: Install openpyxl
+        run: python3 -m pip install openpyxl==3.1.5
+      - name: Check tokens.css matches MASTER-STYLES.xlsx
+        run: python3 tools/xlsx_to_tokens.py --check
+      - name: Owned-token check (report only)
+        continue-on-error: true
+        run: python3 tools/xlsx_to_tokens.py --owned | tee owned-token-report.txt
+      - name: Verify main tokens against the workbook (report only)
+        continue-on-error: true
+        run: python3 tools/verify_pr1_tokens.py | tee verify-pr1-tokens.txt
+      - name: Map lint (report only)
+        continue-on-error: true
+        run: python3 tools/xlsx_to_tokens.py --map-lint | tee map-lint-report.txt
+      - name: Upload token reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr1-token-reports
+          path: |
+            owned-token-report.txt
+            verify-pr1-tokens.txt
+            map-lint-report.txt
+          if-no-files-found: ignore
       - name: Upload incremental teaching report
         if: always()
         uses: actions/upload-artifact@v4
