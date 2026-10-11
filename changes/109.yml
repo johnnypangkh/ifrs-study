@@ -2060,11 +2060,6 @@
   new: "OCI"
   source: "Johnny ruling 2026-10-11 + IAS 2 Content #68 review"
 - action: added
-  file: "ifrs-18/draft-v1-linked/abbreviations.html"
-  locator: "Abbreviations"
-  new: "OpEx"
-  source: "Johnny ruling 2026-10-11 + IFRS 18 Content #68 review"
-- action: added
   file: "ias-16/draft-v1-linked/ch04.html"
   locator: "s-4-5-impair"
   new: "P&L"
@@ -2117,7 +2112,7 @@
 - action: added
   file: "ifrs-18/draft-v1-linked/abbreviations.html"
   locator: "Abbreviations"
-  new: "Securities and Exchange Commission"
+  new: "US Securities and Exchange Commission"
   source: "Johnny ruling 2026-10-11 + IFRS 18 Content #68 review"
 - action: added
   file: "ias-16/draft-v1-linked/abbreviations.html"
@@ -2164,11 +2159,6 @@
   locator: "Abbreviations"
   new: "net book value"
   source: "Johnny ruling 2026-10-11 + IAS 16 Content #68 review"
-- action: added
-  file: "ifrs-18/draft-v1-linked/abbreviations.html"
-  locator: "Abbreviations"
-  new: "operating expense"
-  source: "Johnny ruling 2026-10-11 + IFRS 18 Content #68 review"
 - action: added
   file: "ias-2/draft-v1-linked/abbreviations.html"
   locator: "Abbreviations"
