@@ -8544,6 +8544,10 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   gap: 0.45rem;
 }
 
+.ppe .ch04-reval .impair-seq-note {
+  margin: 0;
+}
+
 .ppe .ch04-reval > .inner-board > .see {
   display: flex;
   align-items: center;
