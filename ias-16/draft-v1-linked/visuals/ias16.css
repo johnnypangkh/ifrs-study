@@ -8539,6 +8539,19 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   margin-top: 0.45rem;
 }
 
+.ppe .ch04-reval,
+.ppe .ch04-impair {
+  gap: 0.45rem;
+}
+
+.ppe .ch04-reval > .inner-board > .see {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .ppe .ch04-reval .plate-title .lane-tag {
   display: inline-block;
   flex: 1 1 auto;
@@ -8567,6 +8580,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe .ch04-reval .revaluation-pair > .lens-k {
+  margin: 0 !important;
   padding: 0.45rem !important;
   overflow-wrap: normal;
   word-break: normal;
@@ -8582,7 +8596,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   height: auto;
   flex: 0 0 auto;
   min-width: 0;
-  margin: 0;
+  margin: 0 !important;
   border-top-width: 0.08em !important;
   border-radius: var(--card-radius) !important;
   padding: 0.45rem;
