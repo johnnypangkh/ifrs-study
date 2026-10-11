@@ -410,7 +410,7 @@
       document.body.insertBefore(bar, document.body.firstChild);
     }
     build(bar, pack, id);
-    mountSwitch(bar, id);
+    if (pack.map) mountSwitch(bar, id);
     tuneScroll(bar);
     if (!markSearch(pack)) {
       requestAnimationFrame(function () { markSearch(pack); });

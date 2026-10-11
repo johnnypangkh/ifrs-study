@@ -79,7 +79,8 @@ window.CHROME_PACKS = {
     ]
   },
   site: {
-    title: "Johnny Pang IFRS Research"
+    title: "Johnny Pang IFRS Research",
+    label: "Settings"
   }
 };
 

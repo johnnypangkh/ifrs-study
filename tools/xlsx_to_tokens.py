@@ -452,19 +452,21 @@ def render_settings_gen(grid_rows):
   }
   .settings-preview .pv {
     max-inline-size: var(--preview-w-mobile);
-    outline: var(--stroke-1) dashed var(--dash);
+    outline: var(--stroke-1) solid var(--line);
     outline-offset: var(--space-1);
   }
   .settings-preview .pv:has(.ruler) {
     max-inline-size: none;
     outline-style: none;
   }
-  .settings-preview .v-m {
+  .settings-preview .v-m,
+  body.mode-d .settings-preview .v-m {
     color: var(--accent);
     border-color: var(--accent);
     background: var(--accent-soft);
   }
-  .settings-preview .v-d {
+  .settings-preview .v-d,
+  body.mode-d .settings-preview .v-d {
     color: var(--muted);
     background: var(--surface);
     border-color: var(--surface);

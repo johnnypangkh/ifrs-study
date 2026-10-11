@@ -16,8 +16,7 @@ V_QUERY = re.compile(r"\?v=[A-Za-z0-9._~%-]*")
 STAMP = re.compile(r"Last update · \d{4}-\d{2}-\d{2} \d{2}:\d{2} HKT")
 HOME = "homepage/homepage-wireframe-v0.1.html"
 LINK = (
-    '  <p><a href="../site/settings/index.html" '
-    'style="color:var(--accent);font-size:var(--t-body);font-family:var(--font-family)">Settings</a></p>\n'
+    '    <p><a href="../site/settings/index.html" style="color:var(--blue)">Settings</a></p>\n'
 )
 STAMPS_OBJ = re.compile(r"var STAMPS = \{.*?\n  \};", re.S)
 PATHS_OBJ = re.compile(r"var PACK_PATHS = \[.*?\n  \];", re.S)
