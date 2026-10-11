@@ -1,0 +1,62 @@
+- action: changed
+  file: "ias-16/draft-v1-linked/ch07.html"
+  locator: "s-7-5"
+  old: "74A(b) — 20A proceeds and cost. For items produced while bringing PPE to intended location/condition that are not an output of ordinary activities: disclose proceeds amount, cost amount, and the SOC line item(s) that include them — unless already separately presented. Measurement numbers: Illustration 3.5.1."
+  new: "74A(b) — 20A proceeds and cost. For items produced while bringing PPE to intended location/condition that are not an output of ordinary activities: disclose proceeds amount, cost amount, and the SCI line item(s) that include them — unless already separately presented. Measurement numbers: Illustration 3.5.1."
+  source: "IAS 16 Content #68 review + Johnny 2026-10-11"
+- action: changed
+  file: "ias-16/draft-v1-linked/ch07.html"
+  locator: "s-7-ex-74a"
+  old: "Also disclose which SOC line item(s) include those proceeds and cost."
+  new: "Also disclose which SCI line item(s) include those proceeds and cost."
+  source: "IAS 16 Content #68 review + Johnny 2026-10-11"
+- action: changed
+  file: "ias-16/draft-v1-linked/ch04.html"
+  locator: "s-4-5-impair"
+  old: "IAS 16 · para 39–40"
+  new: "IAS 36 · para 119"
+  source: "IAS 16 Content #70"
+- action: changed
+  file: "ias-16/draft-v1-linked/ch04.html"
+  locator: "s-4-5-impair"
+  old: "Impairment reversal vs later revaluation increase"
+  new: "Impairment reversal (revalued asset)"
+  source: "IAS 16 Content #70"
+- action: changed
+  file: "ias-16/draft-v1-linked/ch04.html"
+  locator: "s-4-5-impair"
+  old: "SOC"
+  new: "OCI"
+  source: "IAS 16 Content #68 review + Johnny 2026-10-11"
+- action: changed
+  file: "ias-16/draft-v1-linked/ch04.html"
+  locator: "s-4-5-impair"
+  old: "Impairment reversal ≠ automatic revaluation increase: A later reversal of an IAS 36 impairment follows IAS 36 (including the ceiling — cannot reverse above the carrying amount that would have been determined had no impairment been recognised; income-statement path constrained). See Illustration 4.5.4 for the depreciating-asset restriction on P&L reversal."
+  new: "Impairment reversal: The carrying amount cannot rise above what it would have been, net of depreciation, had no impairment loss been recognised. On a revalued asset the reversal is treated as a revaluation increase - P&L to the extent it reverses an impairment loss previously recognised in P&L, the rest to OCI. See Illustration 4.5.4."
+  source: "IAS 16 Content #70"
+- action: changed
+  file: "ias-16/draft-v1-linked/ch04.html"
+  locator: "s-4-5-impair"
+  old: "Revaluation increase: paras 39–40 (OCI default; P&L only to reverse prior P&L decrease/impairment, subject to Illustration 4.5.4)"
+  new: "P&L to the extent it reverses an impairment loss previously recognised in P&L"
+  source: "IAS 16 Content #70"
+- action: removed
+  file: "ias-16/draft-v1-linked/ch04.html"
+  locator: "s-4-5-impair"
+  old: "Do not equate the two —"
+  source: "IAS 16 Content #70"
+- action: removed
+  file: "ias-16/draft-v1-linked/ch04.html"
+  locator: "s-4-5-impair"
+  old: "Reversal: IAS 36 ceiling / path (see-also)"
+  source: "IAS 16 Content #70"
+- action: removed
+  file: "ias-16/draft-v1-linked/abbreviations.html"
+  locator: "Abbreviations"
+  old: "statement of comprehensive income"
+  source: "IAS 16 Content #68 review + Johnny 2026-10-11"
+- action: added
+  file: "ias-16/draft-v1-linked/ch04.html"
+  locator: "s-4-5-impair"
+  new: "IAS 36 · para 119"
+  source: "IAS 16 Content #70"
