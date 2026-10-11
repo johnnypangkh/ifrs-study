@@ -3495,3 +3495,23 @@
   locator: "s-abbr-ch05"
   new: "operating expenses"
   source: "PR #109 QC r1"
+- action: added
+  file: "ias-2/draft-v1-linked/abbreviations.html"
+  locator: "Abbreviations"
+  new: "AC"
+  source: "PR #109 QC r1 + IAS 2 Content"
+- action: added
+  file: "ias-2/draft-v1-linked/abbreviations.html"
+  locator: "Abbreviations"
+  new: "FC"
+  source: "PR #109 QC r1 + IAS 2 Content"
+- action: added
+  file: "ias-2/draft-v1-linked/abbreviations.html"
+  locator: "Abbreviations"
+  new: "foreign currency units"
+  source: "PR #109 QC r1 + IAS 2 Content"
+- action: added
+  file: "ias-2/draft-v1-linked/abbreviations.html"
+  locator: "Abbreviations"
+  new: "functional currency units"
+  source: "PR #109 QC r1 + IAS 2 Content"
