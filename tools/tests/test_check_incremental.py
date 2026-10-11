@@ -724,6 +724,37 @@ class IncrementalTests(unittest.TestCase):
         self.assertEqual(counts["added"], 0)
         self._assert_balanced(counts, issues)
 
+    def test_pr110_soc_cell_removed_and_oci_cell_added_stay_unpaired(self):
+        """Cross-file SOC removal and OCI addition are not one change.
+
+        PR 110 removed the abbreviations SOC cell and added the chapter 4
+        OCI cell. The strings are similar and the files differ, so the
+        guard keeps one removed row and one added row.
+        """
+        base = {
+            "ias-16/draft-v1-linked/abbreviations.html": "<table><tr><td>SOC</td></tr></table>",
+            "ias-16/draft-v1-linked/ch04.html": "<table><tr><td id=\"s-4-5-impair\">Kept cell</td></tr></table>",
+        }
+        head = {
+            "ias-16/draft-v1-linked/abbreviations.html": "<table><tr></tr></table>",
+            "ias-16/draft-v1-linked/ch04.html": "<table><tr><td id=\"s-4-5-impair\">Kept cell</td><td>OCI</td></tr></table>",
+        }
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertTrue(any("UNAPPROVED removed" in issue for issue in issues))
+        self.assertFalse(any(row.status == "changed" for row in rows))
+        self.assertEqual(counts["removed"], 1)
+        self.assertEqual(counts["added"], 1)
+        self.assertEqual(counts["changed"], 0)
+        self.assertEqual(counts["moved"], 0)
+        removed = [row for row in rows if row.status == "removed"]
+        added = [row for row in rows if row.status == "added"]
+        self.assertEqual(removed[0].old, "SOC")
+        self.assertEqual(removed[0].file, "ias-16/draft-v1-linked/abbreviations.html")
+        self.assertEqual(added[0].new, "OCI")
+        self.assertEqual(added[0].file, "ias-16/draft-v1-linked/ch04.html")
+        self._assert_balanced(counts, issues)
+
 
 if __name__ == "__main__":
     unittest.main()

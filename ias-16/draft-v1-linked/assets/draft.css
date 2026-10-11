@@ -265,3 +265,20 @@
 
 .vis-table tr.row-mute td { color: var(--muted); }
 
+/* Chapter 4 impairment cell only. #s-4-5-impair sits on the heading, so the
+   vis-table is the next sibling, not a descendant. The cite-run is the ch07
+   flex wrap: 0.45rem row and column gap, and the chips stay on one line
+   when they fit. */
+body[data-pack="ias16"] h4#s-4-5-impair + ul + p + .table-wrap > table.vis-table td > .cite-run {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
+  row-gap: 0.45rem;
+  column-gap: 0.45rem;
+}
+
+body[data-pack="ias16"] h4#s-4-5-impair + ul + p + .table-wrap > table.vis-table td > .cite-run > .cite {
+  margin: 0;
+}
+
