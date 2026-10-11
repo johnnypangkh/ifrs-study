@@ -8807,7 +8807,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .ch04-impair .impair-formula-contrast,
 .ppe .ch04-impair .impair-routes {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   column-gap: 0.45rem;
   row-gap: 0.45rem;
   align-items: stretch;
