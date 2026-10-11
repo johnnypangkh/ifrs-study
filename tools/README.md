@@ -112,7 +112,7 @@ The books have to balance. At each location the base count equals kept plus move
 | moved | The count fell at one location and rose by the same amount at another file that did not already hold the copy, including a new include source | none |
 | removed | The count fell at that location, nothing there renders it, and no other file took the same text | required |
 | added | The count rose at that location, and it was not the destination of a move | warning, or a failure with `--strict-added` |
-| changed | A removal paired with an addition of the same kind that share a file and locator, or whose text is at least 0.6 similar | required |
+| changed | A removal paired with an addition of the same kind in the same file that share a locator, or whose text is at least 0.6 similar. Similar text in two files is not a change | required |
 
 A removal and an addition that pair are not also listed as removed and added. Deleting text from the source file is a removal even when a stale include body still contains the words.
 

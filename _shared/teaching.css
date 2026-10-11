@@ -1118,3 +1118,27 @@ article.teaching .cost-sum-result {
   border-radius: var(--card-radius, 8px);
   line-height: 1.45;
 }
+
+/* Abbreviations. No shared abbreviations-table class exists. Every
+   pack page is body[data-page="abbreviations"] and every table is
+   table.vis-table, so this one rule sets the same column widths.
+   Chapter vis-tables are outside this page. */
+body[data-page="abbreviations"] {
+  --abbr-full: 70%;
+  --abbr-short: 30%;
+}
+
+body[data-page="abbreviations"] table.vis-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+body[data-page="abbreviations"] table.vis-table :is(th, td):first-child {
+  width: var(--abbr-full);
+}
+
+body[data-page="abbreviations"] table.vis-table :is(th, td):last-child {
+  width: var(--abbr-short);
+  overflow-wrap: normal;
+  word-break: normal;
+}

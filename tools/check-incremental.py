@@ -7,8 +7,10 @@ file, and locator. A lower count at a location is a removal there, even
 when the same text still exists somewhere else. A move is only a matched
 pair: the count falls at one location and rises by the same amount at
 another location that did not already hold that copy. A removal and an
-addition of the same kind that share a location, or whose text is at least
-0.6 similar, are one change.
+addition of the same kind are one change only when they are in the same
+file and they share a location, or their text is at least 0.6 similar.
+A cross-file match is a move only when the text is identical. Similar
+text in two files stays a removal and an addition.
 
 Approval lives in changes/<pr-number>.yml on a pull request, or
 changes/<branch-name>.yml when git has no pull-request number. A removed
@@ -808,12 +810,19 @@ def pair_moves(down, up):
 
 
 def pair_changes(removed, added):
+    """Pair a removal with an addition only inside one file.
+
+    Cross-file text is a move when it is identical (see pair_moves) and
+    stays removed plus added when it merely looks similar. PR 110 paired
+    the abbreviations SOC cell with the chapter 4 OCI cell because the
+    similarity test ignored the file.
+    """
     candidates = []
     for i, old in enumerate(removed):
         for j, new in enumerate(added):
-            if old.kind != new.kind:
+            if old.kind != new.kind or old.file != new.file:
                 continue
-            same = bool(old.locator) and old.file == new.file and old.locator == new.locator
+            same = bool(old.locator) and old.locator == new.locator
             ratio = SequenceMatcher(None, old.old_key, new.new_key, autojunk=False).ratio()
             if same or ratio >= SIMILARITY:
                 candidates.append((ratio, 1 if same else 0, i, j))
