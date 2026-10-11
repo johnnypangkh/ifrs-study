@@ -3525,3 +3525,18 @@
   locator: "s-abbr-ch06"
   new: "share-based payments"
   source: "PR #109 QC r1 + CF Content"
+- action: added
+  file: "ifrs-18/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch05"
+  new: "Chapter 5 — Operating expenses"
+  source: "PR #109 QC r1"
+- action: added
+  file: "ifrs-18/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch05"
+  new: "Full form"
+  source: "PR #109 QC r1"
+- action: added
+  file: "ifrs-18/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch05"
+  new: "Short form"
+  source: "PR #109 QC r1"
