@@ -1,0 +1,70 @@
+- action: changed
+  file: "ias-16/draft-v1-linked/ch05.html"
+  locator: "s-5-9"
+  old: "IFRS 16 right-of-use assets often borrow IAS 16 depreciation requirements. Depreciation of a right-of-use asset begins at lease commencement. Useful life of non-removable leasehold improvements is determined under IAS 16.56–57; if the improvements are not expected to be used beyond the lease term, useful life equals the lease term (IFRS IC November 2019). Full lease accounting lives in IFRS 16 — dashed tip only."
+  new: "A lessee depreciates a right-of-use asset by applying the IAS 16 depreciation requirements, subject to IFRS 16. Depreciation of a right-of-use asset begins at lease commencement. Useful life of non-removable leasehold improvements is determined under IAS 16.56–57; if the improvements are not expected to be used beyond the lease term, useful life equals the lease term (IFRS IC November 2019). Full lease accounting lives in IFRS 16 — dashed tip only."
+  source: "IAS 16 Content #67 item 1a"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/ch05.html"
+  locator: "s-5-9"
+  old: "See also — IFRS 16 Leases. Recognition and measurement of right-of-use assets; IAS 16 depreciation mechanics often applied by reference."
+  new: "See also — IFRS 16 Leases. Recognition and measurement of right-of-use assets; depreciation applies the IAS 16 requirements, subject to IFRS 16."
+  source: "IAS 16 Content #67 item 1b"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/ch05.html"
+  locator: "s-5-9"
+  old: "IFRS 16"
+  new: "IFRS 16 · para 32"
+  source: "IAS 16 Content #67 item 1a"
+
+- action: added
+  file: "ias-16/draft-v1-linked/ch05.html"
+  locator: "s-5-9"
+  new: "IFRS 16 · para 31"
+  source: "IAS 16 Content #67 item 1a"
+
+- action: added
+  file: "ias-16/draft-v1-linked/ch05.html"
+  locator: "s-5-9"
+  new: "IFRS 16 · para 31"
+  source: "IAS 16 Content #67 item 1b"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/ch01.html"
+  locator: "s-1-7"
+  old: "See also — IFRS 16. ROU recognition and measurement live in IFRS 16. IAS 16 supplies depreciation requirements that lessees often apply to ROU assets (IFRS 16 · para 31). Sale-and-leaseback gain exceptions appear at derecognition (IAS 16 · para 68) — later chapter."
+  new: "See also — IFRS 16. ROU recognition and measurement live in IFRS 16. A lessee depreciates ROU assets by applying the IAS 16 depreciation requirements, subject to IFRS 16 (IFRS 16 · para 31). Sale-and-leaseback gain exceptions appear at derecognition (IAS 16 · para 68) — later chapter."
+  source: "IAS 16 Content #67 item 1c"
+
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch01-scope.html"
+  locator: "section:ch01-scope"
+  old: "1.7 Lessee right-of-use asset — depreciation uses IAS 16"
+  new: "1.7 Lessee right-of-use asset: depreciation applies IAS 16, subject to IFRS 16"
+  source: "IAS 16 Content #67 item 2"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ifrs16-p31"
+  new: "IFRS 16 Leases · paragraph 31"
+  source: "IAS 16 Content #67 item 1a"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ifrs16-p32"
+  new: "IFRS 16 Leases · paragraph 32"
+  source: "IAS 16 Content #67 item 1a"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ifrs16-p31"
+  new: "IFRS 16 · para 31"
+  source: "IAS 16 Content #67 item 1a"
+
+- action: added
+  file: "ias-16/draft-v1-linked/references.html"
+  locator: "ref-ifrs16-p32"
+  new: "IFRS 16 · para 32"
+  source: "IAS 16 Content #67 item 1a"
