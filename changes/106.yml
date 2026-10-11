@@ -1,0 +1,49 @@
+# Polish on PR 106. The rest of the map comes later.
+# Item 3 moves See also IAS 12 and IAS 16 · para 42 onto the muted foot
+# beside IAS 16 · para 41. Those strings stay, so the checker keeps them.
+
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "6.6 See also · Derecognition"
+  new: "6.6 See also Derecognition"
+  source: "Content polish item 1"
+
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "4.5 See also · Revaluation"
+  new: "4.5 See also Revaluation"
+  source: "Content polish item 1"
+
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "See also · IAS 12"
+  new: "See also IAS 12"
+  source: "Content polish item 1"
+
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "Cost model: depreciate the impaired carrying amount, less residual value, over the remaining useful life"
+  new: "depreciate the impaired carrying amount, less residual value, over the remaining useful life"
+  source: "Johnny-approved Content polish 2"
+
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "Revaluation model: treated as a revaluation decrease — against the surplus for that asset first, excess to P&L"
+  new: "treated as a revaluation decrease — against the surplus for that asset first, excess to P&L"
+  source: "Johnny-approved Content polish 2"
+
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "Cost model: no revaluation; FV changes are not recognised."
+  new: "no revaluation; FV changes are not recognised."
+  source: "Johnny-approved Content polish 2"
+
+- action: removed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "Surplus-first sequencing on a revalued asset can look the same · trigger and measurement still differ."
+  source: "Johnny-approved Content polish 4"
+
+- action: added
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  new: "Impairment on a revalued asset follows the same surplus-first sequence as a revaluation decrease; the trigger (IAS 36) and the target (recoverable amount, not FV) differ."
+  source: "Johnny-approved Content polish 4"

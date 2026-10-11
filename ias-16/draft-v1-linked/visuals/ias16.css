@@ -8544,7 +8544,24 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   gap: 0.45rem;
 }
 
-.ppe .ch04-reval .impair-seq-note {
+.ppe .ch04-reval .impair-seq-note,
+.ppe .ch04-impair .impair-seq-note {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  white-space: normal;
+}
+
+.ppe .ch04-impair .impair-seq-note .seq-word {
+  white-space: nowrap;
+}
+
+.ppe .ch04-reval .surplus-transfer .see {
   margin: 0;
 }
 
