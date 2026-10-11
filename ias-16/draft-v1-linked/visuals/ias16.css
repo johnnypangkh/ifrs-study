@@ -8540,10 +8540,12 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe .ch04-reval .plate-title .lane-tag {
+  display: inline-block;
   flex: 1 1 auto;
   width: auto;
   max-width: 100%;
   margin-left: 0;
+  padding: 0.35rem 0.5rem;
   white-space: normal;
   overflow-wrap: normal;
   word-break: normal;
@@ -8564,6 +8566,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .ch04-reval .revaluation-pair > .lens-k {
   grid-column: 1 / -1;
   grid-row: auto;
+  padding: 0.45rem !important;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: manual;
@@ -8579,8 +8582,33 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   padding: 0.45rem;
 }
 
+.ppe .ch04-reval .rev-nest {
+  container-type: inline-size;
+  container-name: revalgrid;
+}
+
 .ppe:is(.pack, .models) .ch04-reval .rev-table {
-  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr) minmax(0, 1fr) !important;
+  display: flex !important;
+  flex-direction: column;
+  gap: 0.45rem !important;
+  grid-template-columns: none !important;
+}
+
+.ppe .ch04-reval .rev-head,
+.ppe .ch04-reval .rev-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: 0.45rem;
+  row-gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+@container revalgrid (min-width: 22rem) {
+  .ppe .ch04-reval .rev-head,
+  .ppe .ch04-reval .rev-line {
+    grid-template-columns: minmax(5.5rem, 0.7fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
 }
 
 .ppe .ch04-reval .rev-col,
@@ -8720,11 +8748,24 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   white-space: normal;
 }
 
-.ppe .ch04-reval .lc-tick-lab {
+.ppe .ch04-reval .lc-tick-lab,
+.ppe .ch04-impair .lc-tick-lab {
   white-space: normal;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: manual;
+}
+
+.ppe .ch04-reval .lc-band-k,
+.ppe .ch04-impair .lc-band-k {
+  padding: 0.35rem 0.55rem;
+}
+
+.ppe .ch04-reval .lc-band,
+.ppe .ch04-impair .lc-band {
+  block-size: auto;
+  min-block-size: 2.8em;
+  padding-block: 0.45rem;
 }
 
 .ppe .ch04-impair .impair-cards {
@@ -8824,11 +8865,10 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe .ch04-impair .impair-ca-flow {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  column-gap: 0.45rem;
-  row-gap: 0.45rem;
+  display: flex;
+  flex-direction: column;
   align-items: stretch;
+  gap: 0.45rem;
 }
 
 .ppe .ch04-impair .impair-ca-cell {
@@ -8848,6 +8888,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   color: var(--accent);
   font-weight: 700;
   line-height: 1;
+  transform: rotate(90deg);
 }
 
 .ppe .ch04-impair .impair-ca-arrow-mute {
@@ -8858,13 +8899,11 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   color: var(--accent);
 }
 
-.ppe .ch04-impair .lc-tick-lab {
-  white-space: normal;
-  overflow-wrap: normal;
-  word-break: normal;
-  hyphens: manual;
-}
-
 .ppe .ch04-impair .see {
   margin-top: 0;
+}
+
+.ppe .ch04-reval .see,
+.ppe .ch04-impair .see {
+  padding: 0.35rem 0.45rem !important;
 }
