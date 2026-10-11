@@ -77,6 +77,10 @@ window.CHROME_PACKS = {
       { href: "abbreviations.html", label: "Abbreviations" },
       { href: "references.html", label: "References" }
     ]
+  },
+  site: {
+    title: "Johnny Pang IFRS Research",
+    label: "Settings"
   }
 };
 
@@ -84,5 +88,6 @@ window.CHROME_PACK_PATHS = [
   ["/ias-16/", "ias16"],
   ["/ias-2/", "ias2"],
   ["/ifrs-18/", "ifrs18"],
-  ["/cf-2018/", "cf2018"]
+  ["/cf-2018/", "cf2018"],
+  ["/site/settings/", "site"]
 ];
