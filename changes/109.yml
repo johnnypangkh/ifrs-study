@@ -2720,30 +2720,6 @@
   old: "Fair value"
   new: "FV"
   source: "Johnny ruling + CF Content #68 review"
-- action: changed
-  file: "cf-2018/draft-v1-linked/ch06.html"
-  locator: "s-6-5"
-  old: "Fair value"
-  new: "FV"
-  source: "Johnny ruling + CF Content #68 review"
-- action: changed
-  file: "cf-2018/draft-v1-linked/ch06.html"
-  locator: "s-6-4-matrix-liab-pl"
-  old: "Fair value"
-  new: "FV"
-  source: "Johnny ruling + CF Content #68 review"
-- action: changed
-  file: "cf-2018/draft-v1-linked/ch06.html"
-  locator: "s-6-4-matrix-assets-pl"
-  old: "Fair value"
-  new: "FV"
-  source: "Johnny ruling + CF Content #68 review"
-- action: changed
-  file: "cf-2018/draft-v1-linked/ch06.html"
-  locator: "s-6-3"
-  old: "Fair value"
-  new: "FV"
-  source: "Johnny ruling + CF Content #68 review"
 - action: removed
   file: "cf-2018/chapter-visuals/ch06-measurement.html"
   old: "6.3 Fair value"
@@ -3149,11 +3125,6 @@
   source: "Johnny ruling + CF Content #68 review"
 - action: added
   file: "cf-2018/draft-v1-linked/abbreviations.html"
-  locator: "s-abbr-ch09"
-  new: "non-controlling interests"
-  source: "Johnny ruling + CF Content #68 review"
-- action: added
-  file: "cf-2018/draft-v1-linked/abbreviations.html"
   locator: "s-abbr-ch06"
   new: "other comprehensive income"
   source: "Johnny ruling + CF Content #68 review"
@@ -3260,3 +3231,267 @@
   locator: "s-4-ex-d"
   new: "Recognised in P&L"
   source: "Johnny ruling 2026-10-11 + IAS 2 Content #68 review"
+- action: changed
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch06"
+  old: "Fair value"
+  new: "fair value"
+  source: "Johnny ruling + CF Content #68 review"
+- action: changed
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  old: "Fair value"
+  new: "fair value"
+  source: "Johnny ruling + CF Content #68 review"
+- action: changed
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  old: "Fair value"
+  new: "fair value"
+  source: "Johnny ruling + CF Content #68 review"
+- action: changed
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-map"
+  old: "Fair value"
+  new: "fair value"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch02"
+  new: "fair value"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch03"
+  new: "financial statements"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch03"
+  new: "going concern"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch04"
+  new: "fair value"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch06"
+  new: "historical cost"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch06"
+  new: "present value"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch06"
+  new: "value in use"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "Securities and Exchange Commission"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "Standard for Investment Reporting"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "date of transition to IFRSs"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "earnings per share"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "faithful representation"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "financial statements"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "financial year"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "first-time adoption"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "general partner"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "generally accepted accounting principles"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "initial public offering"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "limited partnership"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "non-controlling interest"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "private equity"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "purchase price allocation"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "real estate investment trust"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "reporting entity"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "special purpose acquisition company"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch09"
+  new: "year ended"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "Securities and Exchange Commission"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "Standard for Investment Reporting"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "earnings per share"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "faithful representation"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "financial statements"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "financial year"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "first-time adoption"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "held for sale"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "human resources"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "information technology"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "initial public offering"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "inter-company"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "property, plant and equipment"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "related party"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "reporting entity"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "statement of financial position"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch10"
+  new: "year ended"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch11"
+  new: "small and medium-sized entities"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/ch06.html"
+  locator: "s-6-3"
+  new: "FV"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/ch06.html"
+  locator: "s-6-4-matrix-assets-pl"
+  new: "FV"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/ch06.html"
+  locator: "s-6-4-matrix-liab-pl"
+  new: "FV"
+  source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "cf-2018/draft-v1-linked/ch06.html"
+  locator: "s-6-5"
+  new: "FV"
+  source: "Johnny ruling + CF Content #68 review"
