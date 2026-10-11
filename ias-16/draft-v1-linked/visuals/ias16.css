@@ -8763,6 +8763,18 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   padding-block: 0.45rem;
 }
 
+.ppe .ch04-reval .lc-band-rev {
+  container-type: inline-size;
+  container-name: revband;
+}
+
+/* Both date labels stay one line. On a narrow band the 35% / 70% marks
+   leave the second label outside the border, so the marks move inward. */
+@container revband (max-width: 20rem) {
+  .ppe .ch04-reval .lc-band-rev .lc-dia:first-child { left: 8% !important; }
+  .ppe .ch04-reval .lc-band-rev .lc-dia:last-child { left: 46% !important; }
+}
+
 .ppe .ch04-impair .impair-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
