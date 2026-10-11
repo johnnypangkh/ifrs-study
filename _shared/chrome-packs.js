@@ -74,6 +74,7 @@ window.CHROME_PACKS = {
       { href: "ch11.html", label: "11 Status" }
     ],
     meta: [
+      { href: "abbreviations.html", label: "Abbreviations" },
       { href: "references.html", label: "References" }
     ]
   }
