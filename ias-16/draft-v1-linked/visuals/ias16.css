@@ -7888,6 +7888,17 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   display: none;
 }
 
+/* The include's 6.6 chip links to this same card. Chapter 6 hides it.
+   Chapter 4 and the master keep it. Flex on .ch06-map .see also drops
+   the space between the label and the bit (0px versus the 3.4px space
+   on every other see chip); restore that space on this chip only. */
+.ch06-map > .comp-nest > .impair-comp > .see > .see-label::after {
+  content: " ";
+}
+.ch06-map > .comp-nest > .impair-comp > .see {
+  display: none !important;
+}
+
 .ch06-map > .soft-onward {
   display: inline-flex;
   align-self: flex-start;
@@ -8579,17 +8590,21 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   margin: 0;
 }
 
-.ppe .ch04-reval > .inner-board > .see {
+/* The 6.1 chip sits on the On derecognition card. Same sizing as the
+   plate-foot fix: fit the text, no flex gap stretching the chip. */
+.ppe .ch04-reval .timing-peers > .freq-peer > .see {
   display: inline-block;
   width: fit-content;
   max-width: 100%;
   gap: 0;
+  margin: 0;
+  align-self: flex-start;
 }
 
-/* Restored 4.6 rail + use note. The board is a column, so the shared
-   rail-pair margins (0.8rem / 0.7rem) would stack on the 0.45rem gap,
-   and a stretched rail would leave an empty field beside two words.
-   Size the rail to its label. Let the note fill the row. One frame. */
+/* 4.6 During use rail. The board is a column, so the shared rail-pair
+   margins (0.8rem / 0.7rem) would stack on the 0.45rem gap, and a
+   stretched rail would leave an empty field beside two words.
+   Size the rail to its label. */
 .ppe .ch04-reval > .inner-board > .inner-rail {
   display: flex !important;
   flex-direction: row !important;
@@ -8612,31 +8627,6 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   flex: 0 0 auto !important;
   margin: 0 !important;
   text-align: left !important;
-}
-.ppe .ch04-reval > .inner-board > .inner-detail {
-  display: flex;
-  align-items: stretch;
-  align-self: stretch;
-  width: 100%;
-  min-width: 0;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  background: transparent;
-  gap: 0;
-}
-.ppe .ch04-reval > .inner-board > .inner-detail > .soft-note {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  margin: 0 !important;
-  border-width: 0.08em !important;
-  border-radius: var(--card-radius) !important;
-  overflow-wrap: normal;
-  word-break: normal;
-  hyphens: manual;
-  white-space: normal;
 }
 
 .ppe .ch04-reval .plate-title .lane-tag {

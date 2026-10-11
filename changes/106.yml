@@ -145,6 +145,11 @@
 
 - action: removed
   file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "As the asset is used — Amount = depreciation on the revalued carrying amount − depreciation on the original cost."
+  source: "IAS 16 Content r4 ruling (1)"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
   old: "Carrying amount"
   source: "PR 4 brief item 1"
 
