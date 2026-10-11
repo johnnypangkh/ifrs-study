@@ -92,11 +92,23 @@
     idn.appendChild(home);
     idn.appendChild(title);
 
+    if (!pack.search && !pack.map && !(pack.chapters && pack.chapters.length) && !(pack.meta && pack.meta.length)) {
+      title.href = HOME;
+      row.appendChild(idn);
+      inner.appendChild(row);
+      bar.replaceChildren(inner);
+      bar.classList.add("is-shared");
+      bar.setAttribute("data-chrome", "ready");
+      bar.setAttribute("data-chrome-pack", id);
+      mountMeta(pack, file);
+      return;
+    }
+
     var search = document.createElement("label");
     search.className = "chapter-search";
     search.innerHTML =
       '<svg class="chapter-search-glass" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5l3.5 3.5"></path></svg>' +
-      '<input class="chapter-search-input" id="chapterSearch" type="search" autocomplete="off" enterkeyhint="search" placeholder="" aria-label="' + pack.search.replace(/"/g, "") + '" />' +
+      '<input class="chapter-search-input" id="chapterSearch" type="search" autocomplete="off" enterkeyhint="search" placeholder="" aria-label="' + (pack.search || "").replace(/"/g, "") + '" />' +
       '<button class="chapter-search-clear" id="chapterSearchClear" type="button" aria-label="Clear search">✕</button>' +
       '<div class="search-popover" id="chapterSearchPopover" hidden></div>';
 

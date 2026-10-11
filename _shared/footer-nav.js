@@ -12,6 +12,7 @@
     }
     var pack = id && packs[id];
     if (!pack) return [];
+    if (id === "site") return { site: true };
     var chain = [{ href: pack.map || "index.html", label: "Map" }];
     var chapters = pack.chapters || [];
     var meta = pack.meta || [];
@@ -21,8 +22,10 @@
     return chain;
   }
 
-  var PILLS = packChain();
-  if (!PILLS || !PILLS.length) return;
+  var CHAIN = packChain();
+  var SITE = !!(CHAIN && CHAIN.site);
+  var PILLS = SITE ? [] : CHAIN;
+  if (!SITE && (!PILLS || !PILLS.length)) return;
 
   function currentFile() {
     var path = location.pathname || "";
@@ -87,10 +90,21 @@
     nav.setAttribute("data-footer-nav-ready", "true");
   }
 
+  function siteFooter(nav) {
+    if (!nav || nav.getAttribute("data-footer-nav-ready") === "true") return;
+    while (nav.firstChild) nav.removeChild(nav.firstChild);
+    nav.appendChild(link("../../homepage/homepage-wireframe-v0.1.html", "Home"));
+    nav.appendChild(link(currentFile(), "Settings"));
+    nav.setAttribute("data-footer-nav-ready", "true");
+  }
+
   function boot() {
     var navs = document.querySelectorAll("nav.footer-nav");
     if (!navs.length) return false;
-    for (var i = 0; i < navs.length; i++) mount(navs[i]);
+    for (var i = 0; i < navs.length; i++) {
+      if (SITE) siteFooter(navs[i]);
+      else mount(navs[i]);
+    }
     return true;
   }
 

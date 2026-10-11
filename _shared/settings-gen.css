@@ -1,0 +1,54 @@
+/* GENERATED - do not edit. tools/xlsx_to_tokens.py reads design/MASTER-STYLES.xlsx. */
+@media (max-width:560px) {
+  .toggles .seg button[data-set="m"] {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .toggles .seg button[data-set="d"] {
+    background: var(--surface);
+    color: var(--muted);
+  }
+  .toggles .state-d { display: none; }
+  .toggles .state-m { display: inline; }
+  .settings-preview .now {
+    inline-size: calc(var(--preview-w-mobile-n) / var(--ruler-max-n) * 100%);
+  }
+  .settings-preview .pv {
+    max-inline-size: var(--preview-w-mobile);
+    outline: var(--stroke-1) dashed var(--dash);
+    outline-offset: var(--space-1);
+  }
+  .settings-preview .pv:has(.ruler) {
+    max-inline-size: none;
+    outline-style: none;
+  }
+  .settings-preview .v-m {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .settings-preview .v-d {
+    color: var(--muted);
+    background: var(--surface);
+    border-color: var(--surface);
+  }
+  .settings-preview .set-table,
+  .settings-preview .set-table tbody,
+  .settings-preview .set-table tr,
+  .settings-preview .set-table td,
+  .settings-preview .set-table th {
+    display: block;
+    inline-size: auto;
+  }
+  .settings-preview .set-table thead { display: none; }
+  .settings-preview .set-table tr { margin-bottom: var(--space-cell); }
+  .settings-preview .row td.l {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+  .settings-preview .row td.r {
+    border-block-start: 0;
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+  }
+}

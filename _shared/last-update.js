@@ -7,24 +7,29 @@
 (function () {
   var STAMPS = {
     "cf2018": {
-      "text": "Last update · 2026-10-11 22:01 HKT",
-      "iso": "2026-10-11T22:01:00+08:00",
-      "fingerprint": "715ceee24fb05da57bc30c58d609a72dec16692d0ced5a5b50c6b45b98fab26b"
+      "text": "Last update · 2026-10-12 00:25 HKT",
+      "iso": "2026-10-12T00:25:00+08:00",
+      "fingerprint": "7e8874f63f2c5131d80f125e7338e9d8de5895d8a4b6884bd76b154b7a6024eb"
     },
     "ias16": {
-      "text": "Last update · 2026-10-11 22:01 HKT",
-      "iso": "2026-10-11T22:01:00+08:00",
-      "fingerprint": "339c95fc8da0895c96738efc7daea18293bc8bba0b748f5a6ed7144e82d9727e"
+      "text": "Last update · 2026-10-12 00:25 HKT",
+      "iso": "2026-10-12T00:25:00+08:00",
+      "fingerprint": "cf492c93f87d7745b0ef0d5132ee0fb68194fbf92e9f91defa4e837324c3b222"
     },
     "ias2": {
-      "text": "Last update · 2026-10-11 22:01 HKT",
-      "iso": "2026-10-11T22:01:00+08:00",
-      "fingerprint": "3ea82b0632e47907a269ca5c7445ce576411c05ca6d9fb364308052b3cc472ce"
+      "text": "Last update · 2026-10-12 00:25 HKT",
+      "iso": "2026-10-12T00:25:00+08:00",
+      "fingerprint": "078906c5644986b75918ccd4cdb0a8c9a58b65758197c2aadb9ee2945e79b514"
     },
     "ifrs18": {
-      "text": "Last update · 2026-10-11 22:01 HKT",
-      "iso": "2026-10-11T22:01:00+08:00",
-      "fingerprint": "2cbb2bb55e42b4dd0f3255bed0782a7cb81ce236b824f464f0f269351a6a6e18"
+      "text": "Last update · 2026-10-12 00:25 HKT",
+      "iso": "2026-10-12T00:25:00+08:00",
+      "fingerprint": "6f4b81a5d67884dd679cf14f8aa2836f1b39cf2be46db870975fa82188e91977"
+    },
+    "site": {
+      "text": "Last update · 2026-10-12 00:25 HKT",
+      "iso": "2026-10-12T00:25:00+08:00",
+      "fingerprint": "24884a288d63f20256f67c6419cba95effcfbf5db5d314f57bb72600fc6ddbd8"
     }
   };
 
@@ -32,7 +37,8 @@
     ["/cf-2018/", "cf2018"],
     ["/ias-16/", "ias16"],
     ["/ias-2/", "ias2"],
-    ["/ifrs-18/", "ifrs18"]
+    ["/ifrs-18/", "ifrs18"],
+    ["/site/settings/", "site"]
   ];
 
   function packId() {

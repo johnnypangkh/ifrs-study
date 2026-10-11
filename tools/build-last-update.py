@@ -211,8 +211,33 @@ def embed_json(value):
     return lines[0] + "\n" + body
 
 
+def site_fingerprint_paths():
+    """Inputs for the /settings stamp: the page, settings modules, tokens.css."""
+    paths = []
+    page = ROOT / "site" / "settings"
+    if page.is_dir():
+        paths.extend(iter_files(page))
+    shared = ROOT / "_shared"
+    if shared.is_dir():
+        for path in iter_files(shared):
+            name = path.name
+            if name == "tokens.css" or name.startswith("settings"):
+                paths.append(path)
+    seen = set()
+    unique = []
+    for path in paths:
+        real = path.resolve()
+        if real in seen:
+            continue
+        seen.add(real)
+        unique.append(path)
+    return unique
+
+
 def render(stamps, packs):
     paths = [[f"/{pack['directory']}/", pack["key"]] for pack in packs]
+    if "site" in stamps:
+        paths.append(["/site/settings/", "site"])
     paths.sort()
     ordered = {key: stamps[key] for key in sorted(stamps)}
     stamps_js = embed_json(ordered)
@@ -372,12 +397,34 @@ def main():
             state = "updated"
         print(f"{key} {state} {stamps[key]['text']} {fingerprints[key][:12]}")
 
+    site_fp = fingerprint(site_fingerprint_paths())
+    previous_site = stored.get("site")
+    if previous_site and previous_site["fingerprint"] == site_fp:
+        stamps["site"] = {
+            "text": previous_site["text"],
+            "iso": previous_site["iso"],
+            "fingerprint": previous_site["fingerprint"],
+        }
+        site_state = "unchanged"
+    else:
+        if moment is None:
+            moment = now_hkt()
+        stamps["site"] = {
+            "text": stamp_text(moment),
+            "iso": stamp_iso(moment),
+            "fingerprint": site_fp,
+        }
+        site_state = "updated"
+    print(f"site {site_state} {stamps['site']['text']} {site_fp[:12]}")
+
     generated = render(stamps, packs)
     parsed = load_stored(generated)
     for pack in packs:
         key = pack["key"]
         if parsed.get(key) != stamps[key]:
             raise SystemExit(f"generated last-update.js does not round-trip {key}")
+    if parsed.get("site") != stamps["site"]:
+        raise SystemExit("generated last-update.js does not round-trip site")
     if render(stamps, packs) != generated:
         raise SystemExit("last-update.js render is not stable")
 
