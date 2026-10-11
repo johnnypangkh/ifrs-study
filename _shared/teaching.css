@@ -1118,3 +1118,58 @@ article.teaching .cost-sum-result {
   border-radius: var(--card-radius, 8px);
   line-height: 1.45;
 }
+
+/* Stacked cite chips. Same flex wrap as the chapter 7 cite-run.
+   A chip-only parent (the impairment table cell, a cite paragraph)
+   uses row-gap. A mixed sentence keeps its words and adds half that
+   gap above and below each chip so a wrap still clears 0.45rem.
+   Pack stylesheets load later and set cite-row gap, so the doubled
+   class wins over those rules. */
+.teaching :is(p, li, td, th, aside, .point-chip):has(> .cite):not(:has(> :not(.cite))) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
+  row-gap: 0.45rem;
+  column-gap: 0.45rem;
+}
+
+.teaching :is(p, li, td, th, aside, .point-chip):has(> .cite):not(:has(> :not(.cite))) > .cite {
+  margin-block: 0;
+}
+
+.teaching .cite-row.cite-row,
+.teaching .worked-strip-title .cite-row.cite-row,
+.teaching .box-title .cite-row.cite-row {
+  row-gap: 0.45rem;
+  column-gap: 0.45rem;
+}
+
+.teaching :is(p, li, td, th, aside, .point-chip, .box) > .cite {
+  margin-top: 0.45rem;
+  margin-bottom: 0;
+}
+
+/* Abbreviations. No shared abbreviations-table class exists. Every
+   pack page is body[data-page="abbreviations"] and every table is
+   table.vis-table, so this one rule sets the same column widths.
+   Chapter vis-tables are outside this page. */
+body[data-page="abbreviations"] {
+  --abbr-full: 70%;
+  --abbr-short: 30%;
+}
+
+body[data-page="abbreviations"] table.vis-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+body[data-page="abbreviations"] table.vis-table :is(th, td):first-child {
+  width: var(--abbr-full);
+}
+
+body[data-page="abbreviations"] table.vis-table :is(th, td):last-child {
+  width: var(--abbr-short);
+  overflow-wrap: normal;
+  word-break: normal;
+}

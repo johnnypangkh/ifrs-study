@@ -669,5 +669,61 @@ class IncrementalTests(unittest.TestCase):
         self.assertFalse(any(issue.startswith("reconciliation error") for issue in issues))
 
 
+    def test_pr110_soc_cell_does_not_pair_with_ch04_oci(self):
+        """Changed rows pair only inside one file.
+
+        PR 110 paired the abbreviations SOC cell with the chapter 4 OCI
+        cell. Those strings are similar and live in different files, so
+        they are not one change. Identical text across files is still a move.
+        """
+        base = {
+            "ias-16/draft-v1-linked/abbreviations.html": "<table><tr><td>SOC</td></tr></table>",
+            "ias-16/draft-v1-linked/ch04.html": "<td id=\"s-4-5-impair\">P&amp;L</td>",
+            "a.html": "<p>Spare parts that meet the definition are PPE.</p>",
+        }
+        head = {
+            "ias-16/draft-v1-linked/abbreviations.html": "<table><tr><td>SCI</td></tr></table>",
+            "ias-16/draft-v1-linked/ch04.html": "<td id=\"s-4-5-impair\">OCI</td>",
+            "b.html": "<p>Spare parts that meet the definition are PPE.</p>",
+        }
+        approval = "\n".join([
+            "- action: changed",
+            "  file: ias-16/draft-v1-linked/abbreviations.html",
+            '  old: "SOC"',
+            '  new: "SCI"',
+            '  source: "same-file abbreviations cell"',
+            "- action: changed",
+            "  file: ias-16/draft-v1-linked/ch04.html",
+            '  locator: "s-4-5-impair"',
+            '  old: "P&L"',
+            '  new: "OCI"',
+            '  source: "same-file chapter cell"',
+            "",
+        ])
+        code, rows, counts, issues = judge(base, head, approval)
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        self.assertFalse(any(
+            row.status == "changed" and row.old == "SOC" and row.new == "OCI"
+            for row in rows
+        ))
+        soc = [row for row in rows if row.status == "changed" and row.old == "SOC"]
+        self.assertEqual(len(soc), 1)
+        self.assertEqual(soc[0].new, "SCI")
+        self.assertEqual(soc[0].file, "ias-16/draft-v1-linked/abbreviations.html")
+        oci = [row for row in rows if row.status == "changed" and row.new == "OCI"]
+        self.assertEqual(len(oci), 1)
+        self.assertEqual(oci[0].old, "P&L")
+        self.assertEqual(oci[0].file, "ias-16/draft-v1-linked/ch04.html")
+        moved = [row for row in rows if row.status == "moved"]
+        self.assertEqual(len(moved), 1)
+        self.assertEqual(moved[0].old, "Spare parts that meet the definition are PPE.")
+        self.assertEqual(counts["changed"], 2)
+        self.assertEqual(counts["moved"], 1)
+        self.assertEqual(counts["removed"], 0)
+        self.assertEqual(counts["added"], 0)
+        self._assert_balanced(counts, issues)
+
+
 if __name__ == "__main__":
     unittest.main()

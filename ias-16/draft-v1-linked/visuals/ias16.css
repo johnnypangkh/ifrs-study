@@ -8039,6 +8039,72 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   }
 }
 
+/* 5.3 peer lines on the master include. The pack turns on a fixed 13em
+   track at the same viewport width as the chapter, but the nested
+   factor row is only the life-rows detail, so the sentence column
+   collapses. Use the chapter's flexible mid-width tracks. The chapter
+   map keeps its own rules. Narrow stays the existing one-column stack. */
+.ppe .ch05-dep .life-rows,
+.ppe .ch05-dep .factor-rows {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* The life-rows detail is the box the nested factor row actually has.
+   13em beside that box leaves the sentence narrower than its longest
+   word. The tight track fits the longest label word; once the detail
+   is wide enough for 13em plus that word, use the shared rail width. */
+.ppe .ch05-dep .life-rows > .inner-detail {
+  container-type: inline-size;
+  container-name: ch05detail;
+}
+
+@media (min-width: 40.0625rem) {
+  .ppe.pack .ch05-dep .factor-rows[aria-label^="Factors"],
+  .ppe.pack .ch05-dep .factor-rows[aria-label^="Special"] {
+    grid-template-columns: 8.2em minmax(0, 1fr) !important;
+  }
+}
+
+@container ch05detail (min-width: 28em) {
+  .ppe.pack .ch05-dep .factor-rows[aria-label^="Factors"],
+  .ppe.pack .ch05-dep .factor-rows[aria-label^="Special"] {
+    grid-template-columns: 13em minmax(0, 1fr) !important;
+  }
+}
+
+@container ch05detail (max-width: 27.99em) {
+  .ppe.dep-map.ch05-map .ch05-dep .factor-rows[aria-label^="Factors"],
+  .ppe.dep-map.ch05-map .ch05-dep .factor-rows[aria-label^="Special"] {
+    grid-template-columns: 8.2em minmax(0, 1fr) !important;
+  }
+}
+
+.ppe .ch05-dep .factor-rows > .inner-detail,
+.ppe .ch05-dep .factor-rows > .inner-detail > .peer-line,
+.ppe .ch05-dep .life-rows > .inner-detail,
+.ppe .ch05-dep .def-or,
+.ppe .ch05-dep .def-box,
+.ppe .ch05-dep .def-box > .peer-line {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ppe .ch05-dep .factor-rows > .inner-detail > .peer-line,
+.ppe .ch05-dep .factor-rows > .inner-rail .rail-name,
+.ppe .ch05-dep .def-box > .peer-line {
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.ppe .ch05-dep .factor-rows > .inner-detail,
+.ppe .ch05-dep .life-rows > .inner-detail,
+.ppe .ch05-dep .def-box {
+  padding-inline: max(0.6em, var(--space-1, 0.25rem));
+}
+
 /* Scope, Cost, and Models — chapter-owned blocks on the chapter visual
    and on the master include. Wrap at spaces. Inset stays inside the box. */
 .ppe .ch01-scope,
@@ -8058,6 +8124,14 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   align-items: stretch;
   min-width: 0;
   width: 100%;
+  /* Unscaled chapter tokens. The pack multiplies --t-* by --type-scale. */
+  --t-chip: 0.75rem;
+  --t-meta: 0.75rem;
+  --t-body: 0.875rem;
+  --t-head: 1rem;
+  --t-plate: 1.125rem;
+  --t-op: 1rem;
+  font-size: var(--t-body);
 }
 
 .ch01-scope .carve-set {
@@ -8138,6 +8212,18 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   .ch01-scope .carve-set {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* Scope plate stays on the chapter type scale. Em fractions and the
+   0.6875rem badge sit under 12px once --type-scale is applied. */
+.ppe.scope-map .ch01-scope :is(.peer-line, .item-rows, .item-rows li, .leaf-body, .tip-body, .thin-tip, .carve-name, .tip-title),
+.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope :is(.peer-line, .item-rows, .item-rows li, .leaf-body, .tip-body, .thin-tip, .carve-name, .tip-title) {
+  font-size: var(--t-body);
+}
+
+.ppe.scope-map .ch01-scope :is(.see, .see-label, .see-bit, .see-bit a, .arm-label, a.fb-num),
+.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope :is(.see, .see-label, .see-bit, .see-bit a, .arm-label, a.fb-num) {
+  font-size: var(--t-meta);
 }
 
 .ch03-cost .waste-mute { color: var(--muted); }
@@ -8601,6 +8687,16 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   align-self: flex-start;
 }
 
+/* The shared see-bit marker sits on the bit. When 6.1 wraps, that line
+   opened with the marker. Keep the marker on the label line. */
+.ppe .ch04-reval .timing-peers > .freq-peer > .see > .see-bit::before {
+  content: none;
+}
+
+.ppe .ch04-reval .timing-peers > .freq-peer > .see > .see-label::after {
+  content: " \00b7";
+}
+
 /* 4.6 During use rail. The board is a column, so the shared rail-pair
    margins (0.8rem / 0.7rem) would stack on the 0.45rem gap, and a
    stretched rail would leave an empty field beside two words.
@@ -8627,6 +8723,12 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   flex: 0 0 auto !important;
   margin: 0 !important;
   text-align: left !important;
+}
+
+/* Narrow rail-pair rule adds 0.7rem under the sibling on top of the
+   board gap. Drop that extra margin so the foot matches the gap. */
+.ppe .ch04-reval > .inner-board > .inner-rail + * {
+  margin-bottom: 0 !important;
 }
 
 .ppe .ch04-reval .plate-title .lane-tag {
