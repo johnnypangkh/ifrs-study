@@ -8876,6 +8876,18 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   white-space: normal;
 }
 
+/* The 4.6 badge sits on the On derecognition title. The shared badge
+   margin would stack on the title gap, and at 390 the title wraps the
+   badge onto its own line. One line, one 0.35rem gap. */
+.ppe .ch04-reval .freq-peer > .peer-title:has(> a.fb-num) {
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+}
+.ppe .ch04-reval .freq-peer > .peer-title > a.fb-num {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
 .ppe .ch04-reval .lc-dia .lc-tick-lab,
 .ppe .ch04-impair .lc-dia .lc-tick-lab,
 .ppe .ch04-reval .lc-band-k,

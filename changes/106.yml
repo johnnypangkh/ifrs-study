@@ -140,11 +140,6 @@
 
 - action: removed
   file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
-  old: "4.6 On derecognition"
-  source: "PR 4 brief item 1"
-
-- action: removed
-  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
   old: "Against surplus first"
   source: "PR 4 brief item 1"
 
