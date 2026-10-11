@@ -2157,8 +2157,8 @@
 - action: added
   file: "ias-16/draft-v1-linked/abbreviations.html"
   locator: "Abbreviations"
-  new: "net book value"
-  source: "Johnny ruling 2026-10-11 + IAS 16 Content #68 review"
+  new: "net book value (same as carrying amount)"
+  source: "PR #109 QC r1"
 - action: added
   file: "ias-2/draft-v1-linked/abbreviations.html"
   locator: "Abbreviations"
@@ -2282,8 +2282,8 @@
   file: "cf-2018/draft-v1-linked/ch06.html"
   locator: "s-6-5"
   old: "Three kinds of uncertainty. Outcome uncertainty (amount or timing of flows) and existence uncertainty (whether the item exists) differ from measurement uncertainty; they may contribute to it but need not — a fair value observed in an active market carries no measurement uncertainty even if the cash it will produce is uncertain."
-  new: "Three kinds of uncertainty. Outcome uncertainty (amount or timing of flows) and existence uncertainty (whether the item exists) differ from measurement uncertainty; they may contribute to it but need not — a FV observed in an active market carries no measurement uncertainty even if the cash it will produce is uncertain."
-  source: "Johnny ruling + CF Content #68 review"
+  new: "Three kinds of uncertainty. Outcome uncertainty (amount or timing of flows) and existence uncertainty (whether the item exists) differ from measurement uncertainty; they may contribute to it but need not — an FV observed in an active market carries no measurement uncertainty even if the cash it will produce is uncertain."
+  source: "PR #109 QC r1"
 - action: changed
   file: "cf-2018/draft-v1-linked/ch06.html"
   locator: "s-6-3"
@@ -3485,3 +3485,13 @@
   locator: "s-6-5"
   new: "FV"
   source: "Johnny ruling + CF Content #68 review"
+- action: added
+  file: "ifrs-18/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch05"
+  new: "OpEx"
+  source: "PR #109 QC r1"
+- action: added
+  file: "ifrs-18/draft-v1-linked/abbreviations.html"
+  locator: "s-abbr-ch05"
+  new: "operating expenses"
+  source: "PR #109 QC r1"
