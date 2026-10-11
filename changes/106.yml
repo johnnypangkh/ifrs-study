@@ -145,6 +145,11 @@
 
 - action: removed
   file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "Carrying amount"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
   old: "Down"
   source: "PR 4 brief item 1"
 
@@ -156,6 +161,12 @@
 - action: removed
   file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
   old: "IAS 16.39–40 Same asset only"
+  source: "PR 4 brief item 1"
+
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-models"
+  old: "On derecognition"
   source: "PR 4 brief item 1"
 
 - action: removed
