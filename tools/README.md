@@ -93,19 +93,25 @@ Items, one record each (`kind`, text, file, locator):
 
 The locator is the nearest element id, else the id of the current section heading, else a `data-section` attribute or a `map-section` comment, else the heading path.
 
-Normalisation collapses whitespace and drops `?v=` stamps, `data-phase-*` attributes, and the last-update stamp (`Last update · YYYY-MM-DD HH:MM HKT`). Other characters stay, including capitals and U+2011 versus `-`. Text inside `<!-- include:... -->` … `<!-- include:...:end -->` is ignored in the including file. The source file is the only copy, so the include is not counted twice and is not reported as a move.
+Normalisation collapses whitespace and drops `?v=` stamps, `data-phase-*` attributes, and the last-update stamp (`Last update · YYYY-MM-DD HH:MM HKT`). Other characters stay, including capitals and U+2011 versus `-`. Text inside `<!-- include:... -->` … `<!-- include:...:end -->` is owned by the source file, so the pasted body is not a second copy.
 
-The diff counts each `(kind, normalised text)` at each `(file, locator)`. A copy that survives in another file does not cancel a removal.
+The diff counts each `(kind, normalised text)` at each `(file, locator)`. A copy that survives in another file does not cancel a removal. A hand copy that the head replaces with a new include is compared to the text that include renders from its source:
+
+- the same normalised text, and the source already had it: kept
+- the same text, and a different file newly owns it: moved, with `moved_from` the hand-copy place and `moved_to` `source.html#section`
+- different text: the source's own change or removal, reported once
+
+An include that was already in the base does not absorb a hand copy deleted somewhere else. Unchanged text that stays in the same file is kept when a new `map-section` wrapper is the only locator change.
 
 | Result | Meaning | Approval |
 | --- | --- | --- |
-| kept | The count at that location did not fall | none |
-| moved | The count fell at one location and rose by the same amount at another location that did not already hold the copy | none |
-| removed | The count fell at that location, and no new location took the same text | required |
+| kept | The count at that location did not fall, or an equivalent include or same-file locator wrapper still shows the text | none |
+| moved | The count fell at one location and rose by the same amount at another file that did not already hold the copy, including a new include source | none |
+| removed | The count fell at that location, nothing there renders it, and no other file took the same text | required |
 | added | The count rose at that location, and it was not the destination of a move | warning, or a failure with `--strict-added` |
 | changed | A removal paired with an addition of the same kind that share a file and locator, or whose text is at least 0.6 similar | required |
 
-A removal and an addition that pair are not also listed as removed and added. Text inside an include is not a location, so deleting it from the source file is a removal even when the included copy still contains the words.
+A removal and an addition that pair are not also listed as removed and added. Deleting text from the source file is a removal even when a stale include body still contains the words.
 
 Approval is `changes/<pr-number>.yml`, or `changes/<branch-name>.yml` when there is no pull-request number (`cursor/example` → `changes/cursor/example.yml`). The format, the `source` forms, and a template are in `changes/README.md`. A `removed` entry matches normalised text and `file`. `locator` is optional; when it is present it must match that row. The check fails when:
 

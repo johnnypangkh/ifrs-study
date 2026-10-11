@@ -6,7 +6,7 @@ Whitespace, `?v=` stamps, `data-phase-*` hooks, and the last-update stamp are ig
 
 The checker reads every `*.html` file except paths under `_archive/`. Those directories are retired Conceptual Framework snapshots, not the published notes. A historical copy must not hide a deletion on the live page, and an archive-only edit is outside this guard. See `tools/README.md`.
 
-A removal is per location. The same sentence still sitting in another file does not cancel it. A move is only when the count falls in one place and rises by the same amount in another place that did not already have the copy.
+A removal is per location. The same sentence still sitting in another file does not cancel it. A hand copy replaced by a new include of the same text is kept when the source already had it, and moved (`source.html#section`) when a different file newly owns it. It is not a removal. Different wording is the source file's own change or removal, once. A move across files is only when the count falls in one place and rises by the same amount in a file that did not already have the copy. Unchanged text that stays in the same file is kept when only its locator changes.
 
 No file is required when the pull request does not remove or rewrite teaching text.
 

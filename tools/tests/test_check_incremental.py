@@ -395,6 +395,162 @@ class IncrementalTests(unittest.TestCase):
         self.assertFalse(self._removal(rows, ch02, sentence).approved)
         self.assertTrue(any("stale" in issue for issue in issues))
 
+    def test_equivalent_include_keeps_hand_copy(self):
+        sentence = "Alpha sentence stays on the plate."
+        section = (
+            "<!-- map-section:sec:start -->\n<p>" + sentence + "</p>\n"
+            "<!-- map-section:sec:end -->\n"
+        )
+        base = {"master.html": "<p>" + sentence + "</p>\n", "source.html": section}
+        head = {
+            "master.html": (
+                "<!-- include:source.html#sec:start -->\n"
+                "<p>stale pasted body that must not count</p>\n"
+                "<!-- include:source.html#sec:end -->\n"
+            ),
+            "source.html": section,
+        }
+        code, rows, counts, issues = judge(base, head)
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        self.assertEqual(rows, [])
+        self.assertEqual(counts["removed"], 0)
+        self.assertEqual(counts["moved"], 0)
+        self.assertGreater(counts["kept"], 0)
+
+    def test_include_of_new_source_is_a_move(self):
+        sentence = "Alpha sentence moves into the source."
+        base = {
+            "master.html": '<p id="plate">' + sentence + "</p>\n",
+            "source.html": (
+                "<!-- map-section:sec:start -->\n<!-- map-section:sec:end -->\n"
+            ),
+        }
+        head = {
+            "master.html": (
+                "<!-- include:source.html#sec:start -->\n"
+                "<!-- include:source.html#sec:end -->\n"
+            ),
+            "source.html": (
+                "<!-- map-section:sec:start -->\n<p>" + sentence + "</p>\n"
+                "<!-- map-section:sec:end -->\n"
+            ),
+        }
+        code, rows, counts, issues = judge(base, head)
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        self.assertEqual(counts["moved"], 1)
+        self.assertEqual(counts["removed"], 0)
+        self.assertEqual(counts["added"], 0)
+        row = rows[0]
+        self.assertEqual(row.status, "moved")
+        self.assertEqual(row.moved_from, "master.html :: plate")
+        self.assertEqual(row.moved_to, "source.html#sec")
+
+    def test_include_of_different_text_is_not_kept(self):
+        old = "The plate previously described residual value as scrap proceeds."
+        new = "Zebra quantities are counted only on Tuesdays in the annex."
+        base = {
+            "master.html": "<p>" + old + "</p>\n",
+            "source.html": (
+                "<!-- map-section:sec:start -->\n<p>" + old + "</p>\n"
+                "<!-- map-section:sec:end -->\n"
+            ),
+        }
+        head = {
+            "master.html": (
+                "<!-- include:source.html#sec:start -->\n"
+                "<!-- include:source.html#sec:end -->\n"
+            ),
+            "source.html": (
+                "<!-- map-section:sec:start -->\n<p>" + new + "</p>\n"
+                "<!-- map-section:sec:end -->\n"
+            ),
+        }
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["moved"], 0)
+        carriers = [
+            row for row in rows
+            if row.old == old and row.status in {"removed", "changed"}
+        ]
+        self.assertEqual(len(carriers), 1)
+        self.assertEqual(carriers[0].file, "source.html")
+        self.assertNotEqual(carriers[0].status, "moved")
+        self.assertTrue(any("UNAPPROVED" in issue or "missing" in issue for issue in issues))
+        self.assertFalse(any(row.file == "master.html" and row.old == old for row in rows))
+
+    def test_old_include_does_not_hide_hand_copy_removal(self):
+        sentence = "Hand copy beside an include that already existed."
+        section = (
+            "<!-- map-section:sec:start -->\n<p>" + sentence + "</p>\n"
+            "<!-- map-section:sec:end -->\n"
+        )
+        include = (
+            "<!-- include:source.html#sec:start -->\n"
+            "<!-- include:source.html#sec:end -->\n"
+        )
+        base = {
+            "master.html": "<p>" + sentence + "</p>\n" + include,
+            "source.html": section,
+        }
+        head = {"master.html": include, "source.html": section}
+        code, rows, counts, _issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["moved"], 0)
+        self.assertEqual(counts["removed"], 1)
+        self._removal(rows, "master.html", sentence)
+
+    def test_pr105_shaped_retro_is_only_real_edits(self):
+        """61b01f69 → cc6a701f: include replacement and map-section wrappers stay quiet."""
+        base = guard.load_rev("61b01f6992f48c96b927266a4a8508337e594dcd")
+        head = guard.load_rev("cc6a701fbab57e6cc1efb1a54e47709aa566b567")
+        code, rows, counts, _issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["moved"], 0)
+        self.assertEqual(counts["changed"], 3)
+        self.assertEqual(counts["removed"], 3)
+        self.assertEqual(counts["added"], 4)
+        ch02 = "ias-16/draft-v1-linked/visuals/ch02-recognition.html"
+        ch07 = "ias-16/draft-v1-linked/visuals/ch07-disclosure.html"
+        expected = {
+            (
+                "changed", ch02,
+                "2.2 Spare parts, stand-by and servicing equipment are PPE if they meet the definition; otherwise they are inventory (IAS 2).",
+                "2.2 Spare parts, stand-by and servicing equipment are PPE if they meet the definition; otherwise they are inventory.",
+            ),
+            (
+                "changed", ch07,
+                "20A proceeds before intended use \u2014 measurement home on Initial measurement (see Initial).",
+                "Proceeds before intended use \u2014 measured on Initial measurement",
+            ),
+            (
+                "changed", ch07,
+                "Class continuum \u2014 same grain as the entity\u2019s Models classes (see Models).",
+                "Classes \u2014 same as the entity's Models classes",
+            ),
+            (
+                "removed", ch02,
+                "Depreciation of right-of-use assets used to construct, add to, replace part of or service PPE may form part of cost.",
+                "",
+            ),
+            ("removed", ch02, "See also IAS 2 \u2014 otherwise inventory", ""),
+            (
+                "removed", ch07,
+                "Split additions \u00b7 present disposals as a single line when useful for users.",
+                "",
+            ),
+            ("added", ch02, "", "See also IAS 2"),
+            ("added", ch07, "", "IAS 16 \u00b7 para 73(e)"),
+            ("added", ch07, "", "KPMG Insights 2019/20 \u00b7 3.2 \u00b7 3.2.400.20"),
+            (
+                "added", ch07, "",
+                "Show additions and acquisitions through business combinations as separate lines; show all disposals as one line.",
+            ),
+        }
+        got = {(row.status, row.file, row.old, row.new) for row in rows}
+        self.assertEqual(got, expected)
+
 
 if __name__ == "__main__":
     unittest.main()

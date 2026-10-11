@@ -17,8 +17,12 @@ entry has one. A removal or a change with no entry fails, an entry that
 matches nothing fails, and a missing file fails when anything was removed
 or changed. Additions without an entry are warnings unless --strict-added.
 
-Included copies (<!-- include:... -->) are not items. The source file owns
-that text, so a master copy is neither a second location nor a move.
+Included copies (<!-- include:... -->) are not a second owned copy. The
+source file owns that text. A hand copy that the head replaces with an
+include of the same normalised text is kept when the source already had
+it, or moved when a different file newly owns it (moved_from is the hand
+copy, moved_to is source#section). It is not a removal. Unchanged text
+that stays in the same file is kept when only its locator changes.
 """
 
 import csv
@@ -30,7 +34,7 @@ from difflib import SequenceMatcher
 from html.parser import HTMLParser
 from pathlib import Path
 
-from map_sections import DATA_PHASE, V_QUERY
+from map_sections import DATA_PHASE, V_QUERY, extract_map_section
 
 ROOT = Path(__file__).resolve().parents[1]
 HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
@@ -310,16 +314,15 @@ def walk(node, file, items):
             walk(child, file, items)
 
 
-def strip_include_bodies(html, origin):
-    """Drop included copies, including an include nested inside another.
+def include_spans(html, origin):
+    """Matched include bodies, outermost first in the returned list.
 
-    The source file is parsed on its own. Nesting is legal: the revaluation
-    plate includes the during-use axis. The outer body is skipped, so the
-    inner copy is skipped with it.
+    Nesting is legal: the revaluation plate includes the during-use axis.
+    Each tuple is (source name, section id, body start, body end, depth).
     """
     tokens = list(INCLUDE_TOKEN.finditer(html))
     if not tokens:
-        return html
+        return []
     stack = []
     spans = []
     for token in tokens:
@@ -332,19 +335,106 @@ def strip_include_bodies(html, origin):
                 f"{origin}: include end {key[0]}#{key[1]} does not match the open include"
             )
         start = stack.pop()[1]
-        spans.append((start.end(), token.start()))
+        spans.append((
+            key[0], key[1], start.end(), token.start(), len(stack),
+        ))
     if stack:
         key = stack[-1][0]
         raise SystemExit(f"{origin}: missing end marker for include:{key[0]}#{key[1]}")
+    return spans
+
+
+def strip_include_bodies(html, origin):
+    """Drop included copies, including an include nested inside another.
+
+    The source file is parsed on its own. The outer body is skipped, so the
+    inner copy is skipped with it.
+    """
+    spans = include_spans(html, origin)
+    if not spans:
+        return html
     parts = []
     cursor = 0
-    for begin, end in sorted(spans):
+    for _name, _section, begin, end, _depth in sorted(spans, key=lambda item: item[2]):
         if begin < cursor:
             continue
         parts.append(html[cursor:begin])
         cursor = end
     parts.append(html[cursor:])
     return "".join(parts)
+
+
+def resolve_include(including_file, name):
+    return (Path(including_file).parent / name).as_posix()
+
+
+def outermost_includes(files):
+    """(including file, source file, section id) for includes that are not nested."""
+    found = []
+    for path in sorted(files):
+        for name, section, _begin, _end, depth in include_spans(files[path], path):
+            if depth != 0:
+                continue
+            found.append((path, resolve_include(path, name), section))
+    return found
+
+
+def section_items(files, source, section, seen):
+    """Items the source section renders, with nested includes expanded."""
+    if (source, section) in seen:
+        return []
+    seen.add((source, section))
+    html = files.get(source, "")
+    if not html:
+        return []
+    try:
+        body = extract_map_section(html, section, source)
+    except SystemExit:
+        return []
+    items = extract_html(body, source)
+    for name, nested, _begin, _end, depth in include_spans(body, source):
+        if depth != 0:
+            continue
+        items.extend(section_items(
+            files, resolve_include(source, name), nested, seen,
+        ))
+    return items
+
+
+class Shadow:
+    def __init__(self, item, source_file, section_id):
+        self.item = item
+        self.source_file = source_file
+        self.section_id = section_id
+
+
+def new_include_views(base_files, head_files):
+    """Shadows for includes that are new in head, plus keys the base source already had.
+
+    A shadow attributes the source section's text to the including file so a
+    hand copy can match it. The owned copy stays on the source file.
+    `covered` maps an including file to (kind, key) pairs that lived in the
+    base source section, so a wording change is reported once, on the source.
+    """
+    base_set = set(outermost_includes(base_files))
+    shadows = []
+    covered = {}
+    for including, source, section in outermost_includes(head_files):
+        if (including, source, section) in base_set:
+            continue
+        for item in section_items(head_files, source, section, set()):
+            item.file = including
+            shadows.append(Shadow(item, source, section))
+        # The map-section markers often arrive in the same diff as the include.
+        # Before that, the source file itself is the section.
+        base_html = base_files.get(source, "")
+        if f"<!-- map-section:{section}:start -->" in base_html:
+            base_section = section_items(base_files, source, section, set())
+        else:
+            base_section = extract_html(base_html, source) if base_html else []
+        for item in base_section:
+            covered.setdefault(including, set()).add((item.kind, item.key))
+    return shadows, covered
 
 
 def extract_tree(files):
@@ -384,8 +474,13 @@ def location_groups(items):
     return groups
 
 
-def diff_items(base_items, head_items):
-    """Per-location multiset. A surviving copy in another file is not a keep."""
+def diff_items(base_items, head_items, shadows=None, covered=None):
+    """Per-location multiset. A surviving copy in another file is not a keep.
+
+    A new include that renders the same text absorbs the hand copy it
+    replaced. Unchanged text that only gained a map-section locator in the
+    same file stays kept. Anything left over is still a removal.
+    """
     base_groups = location_groups(base_items)
     head_groups = location_groups(head_items)
     kept = 0
@@ -399,7 +494,14 @@ def diff_items(base_items, head_items):
             down.extend(base[:len(base) - len(head)])
         elif len(head) > len(base):
             up.extend(head[:len(head) - len(base)])
+    include_kept, include_moved, down, up = absorb_new_includes(
+        down, up, shadows or [], covered or {}, base_items, head_items,
+    )
+    kept += include_kept
+    same_kept, down, up = pair_same_file(down, up)
+    kept += same_kept
     moved, removed, added = pair_moves(down, up)
+    moved = include_moved + moved
     changed = pair_changes(removed, added)
     rows = moved + changed + removed + added
     counts = {
@@ -410,6 +512,85 @@ def diff_items(base_items, head_items):
         "added": len(added),
     }
     return rows, counts
+
+
+def absorb_new_includes(down, up, shadows, covered, base_items, head_items):
+    """Match a disappeared hand copy to a new include that renders it."""
+    buckets = {}
+    for shadow in shadows:
+        item = shadow.item
+        buckets.setdefault((item.kind, item.key, item.file), []).append(shadow)
+    base_counts = {}
+    head_counts = {}
+    for item in base_items:
+        key = (item.kind, item.key, item.file)
+        base_counts[key] = base_counts.get(key, 0) + 1
+    for item in head_items:
+        key = (item.kind, item.key, item.file)
+        head_counts[key] = head_counts.get(key, 0) + 1
+    gain = {}
+    for key, count in head_counts.items():
+        extra = count - base_counts.get(key, 0)
+        if extra > 0:
+            gain[key] = extra
+    kept = 0
+    moved = []
+    rest = []
+    consumed = {}
+    for item in down:
+        bucket = buckets.get((item.kind, item.key, item.file))
+        if bucket:
+            shadow = bucket.pop()
+            source_key = (item.kind, item.key, shadow.source_file)
+            if shadow.source_file != item.file and gain.get(source_key, 0) > 0:
+                gain[source_key] -= 1
+                consumed[source_key] = consumed.get(source_key, 0) + 1
+                row = Row(
+                    "moved", item.kind, shadow.source_file,
+                    "section:" + shadow.section_id,
+                    item.exact, item.exact, item.key, item.key,
+                )
+                row.moved_from = place(item.file, item.locator)
+                row.moved_to = shadow.source_file + "#" + shadow.section_id
+                moved.append(row)
+            else:
+                kept += 1
+            continue
+        if (item.kind, item.key) in covered.get(item.file, ()):
+            # The source already owned this wording. Its own diff is the row.
+            continue
+        rest.append(item)
+    if consumed:
+        kept_up = []
+        for item in up:
+            key = (item.kind, item.key, item.file)
+            if consumed.get(key, 0) > 0:
+                consumed[key] -= 1
+                continue
+            kept_up.append(item)
+        up = kept_up
+    return kept, moved, rest, up
+
+
+def pair_same_file(down, up):
+    """Unchanged text that stays in one file is kept when only the locator changes."""
+    down_by = {}
+    up_by = {}
+    for item in down:
+        down_by.setdefault((item.kind, item.key, item.file), []).append(item)
+    for item in up:
+        up_by.setdefault((item.kind, item.key, item.file), []).append(item)
+    kept = 0
+    rest_down = []
+    rest_up = []
+    for key in sorted(set(down_by) | set(up_by)):
+        sources = down_by.get(key, [])
+        dests = up_by.get(key, [])
+        pair_count = min(len(sources), len(dests))
+        kept += pair_count
+        rest_down.extend(sources[pair_count:])
+        rest_up.extend(dests[pair_count:])
+    return kept, rest_down, rest_up
 
 
 def pair_moves(down, up):
@@ -699,7 +880,10 @@ def problems(rows, entries, approval_missing, strict_added):
 
 def evaluate(base_files, head_files, approval=None, strict_added=False):
     """approval is None when the YAML file is absent, otherwise its text."""
-    rows, counts = diff_items(extract_tree(base_files), extract_tree(head_files))
+    base_items = extract_tree(base_files)
+    head_items = extract_tree(head_files)
+    shadows, covered = new_include_views(base_files, head_files)
+    rows, counts = diff_items(base_items, head_items, shadows, covered)
     entries = None
     missing = approval is None
     if not missing:
