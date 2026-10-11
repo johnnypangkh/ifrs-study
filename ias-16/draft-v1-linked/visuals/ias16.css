@@ -8521,3 +8521,350 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ch07-disc .cite-run > .cite:has(+ .cite) {
   margin-right: 0.71em;
 }
+
+/* Revaluation and impairment sections. Chapter owns the plates; the master
+   includes them. Gaps, insets, and two-column alignment live here so the
+   pack's plate shrinks and nowrap rules do not apply. */
+.ppe:is(.pack, .models) .ch04-reval > .inner-board,
+.ppe:is(.pack, .models) .ch04-impair > .inner-board {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem !important;
+  min-width: 0;
+}
+
+.ppe.models > .ch04-reval,
+.ppe.models > .ch04-impair {
+  margin-top: 0.45rem;
+}
+
+.ppe .ch04-reval .plate-title .lane-tag {
+  flex: 1 1 auto;
+  width: auto;
+  max-width: 100%;
+  margin-left: 0;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  font-size: var(--t-meta);
+  font-weight: 400;
+}
+
+.ppe .ch04-reval .revaluation-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 0.45rem;
+  row-gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe .ch04-reval .revaluation-pair > .lens-k {
+  grid-column: 1 / -1;
+  grid-row: auto;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+.ppe .ch04-reval .revaluation-pair > .lens-cell {
+  grid-column: auto;
+  grid-row: auto;
+  min-width: 0;
+  margin: 0;
+  border-top-width: 0.08em !important;
+  border-radius: var(--card-radius) !important;
+  padding: 0.45rem;
+}
+
+.ppe:is(.pack, .models) .ch04-reval .rev-table {
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr) minmax(0, 1fr) !important;
+}
+
+.ppe .ch04-reval .rev-col,
+.ppe .ch04-reval .rev-row,
+.ppe .ch04-reval .rev-cell,
+.ppe .ch04-reval .rev-k,
+.ppe .ch04-reval .rev-sub,
+.ppe .ch04-reval .rev-foot,
+.ppe .ch04-reval .item-rows {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  white-space: normal;
+}
+
+.ppe .ch04-reval .rev-cell {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 0.45rem;
+}
+
+.ppe .ch04-reval .revaluation-lead,
+.ppe .ch04-reval .rev-cell > span,
+.ppe .ch04-reval .rev-col > span {
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.ppe .ch04-reval .revaluation-lead {
+  font-weight: 700;
+}
+
+.ppe .ch04-reval .rev-k {
+  font-size: var(--t-head);
+  font-weight: 700;
+}
+
+.ppe .ch04-reval .revaluation-reversal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.45rem;
+  border: 0.08em dashed var(--see);
+  border-radius: var(--card-radius);
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+.ppe .ch04-reval .revaluation-reversal > a {
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
+  text-decoration: underline;
+  text-decoration-color: var(--dash);
+  text-underline-offset: 0.15em;
+}
+
+.ppe .ch04-reval .cite-run {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
+  row-gap: 0.45rem;
+  column-gap: 0.45rem;
+  margin: 0;
+}
+
+.ppe .ch04-reval .cite-run > .cite {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.35rem 0.5rem;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+.ppe .ch04-reval .cite-run > .cite + .cite {
+  margin-left: 0;
+}
+
+.ppe .ch04-reval .cite-run > .cite:has(+ .cite) {
+  margin-right: 0.71em;
+}
+
+.ppe .ch04-reval .cite-run > .cite:has(+ .cite)::after {
+  content: ",";
+  position: absolute;
+  left: calc(100% + 0.2em);
+  top: 0.15em;
+  color: var(--ink);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 1;
+}
+
+.ppe .ch04-reval a.cite-official {
+  color: var(--cite-official);
+}
+
+.ppe .ch04-reval a.cite-ey {
+  color: var(--cite-ey);
+}
+
+.ppe .ch04-reval .timing-peers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 0.45rem;
+  row-gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe .ch04-reval .timing-peers > .freq-peer {
+  min-width: 0;
+  padding: 0.45rem;
+}
+
+.ppe .ch04-reval .freq-result,
+.ppe .ch04-reval .peer-title {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  white-space: normal;
+}
+
+.ppe .ch04-reval .lc-tick-lab {
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+.ppe .ch04-impair .impair-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe .ch04-impair .impair-core,
+.ppe .ch04-impair .impair-comp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 0.45rem;
+}
+
+.ppe .ch04-impair .card-k {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--t-head);
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  white-space: normal;
+}
+
+.ppe .ch04-impair .impair-formula-contrast,
+.ppe .ch04-impair .impair-routes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 0.45rem;
+  row-gap: 0.45rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.ppe .ch04-impair .impair-formula-cell,
+.ppe .ch04-impair .impair-route {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0.45rem;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  box-sizing: border-box;
+}
+
+.ppe .ch04-impair .impair-formula-contrast-cell {
+  border-style: dashed;
+  border-color: var(--see);
+  background: transparent;
+}
+
+.ppe .ch04-impair .impair-formula-tag,
+.ppe .ch04-impair .impair-ca-k {
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--t-head);
+  line-height: 1.35;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  white-space: normal;
+}
+
+.ppe .ch04-impair .impair-formula-note,
+.ppe .ch04-impair .impair-ca-sub,
+.ppe .ch04-impair .impair-route-line {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.35;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  white-space: normal;
+}
+
+.ppe .ch04-impair .impair-ca-sub {
+  color: var(--muted);
+}
+
+.ppe .ch04-impair .impair-ca-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  column-gap: 0.45rem;
+  row-gap: 0.45rem;
+  align-items: stretch;
+}
+
+.ppe .ch04-impair .impair-ca-cell {
+  container-type: normal;
+  min-width: 0;
+  border: 0.08em solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--bg);
+  padding: 0.45rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.ppe .ch04-impair .impair-ca-arrow {
+  align-self: center;
+  justify-self: center;
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ppe .ch04-impair .impair-ca-arrow-mute {
+  color: var(--muted);
+}
+
+.ppe .ch04-impair .lc-key-imp {
+  color: var(--accent);
+}
+
+.ppe .ch04-impair .lc-tick-lab {
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+.ppe .ch04-impair .see {
+  margin-top: 0;
+}

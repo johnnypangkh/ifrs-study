@@ -42,53 +42,78 @@ def pack_html_files():
     return files
 
 
+def outermost_includes(text):
+    """Includes that are not nested inside another include."""
+    includes = list(iter_includes(text))
+    outers = []
+    for include in includes:
+        inside = False
+        for other in includes:
+            if (
+                other["start_end"] < include["start_end"]
+                and include["end_start"] <= other["end_start"]
+            ):
+                inside = True
+                break
+        if not inside:
+            outers.append(include)
+    return outers
+
+
+def fill_include(text, include, path):
+    source_path = (path.parent / include["file"]).resolve()
+    try:
+        source_path.relative_to(PACK.resolve())
+    except ValueError:
+        raise SystemExit(f"{path}: include escapes the IAS 16 pack: {include['file']}")
+    if not source_path.is_file():
+        raise SystemExit(f"{path}: missing include source {include['file']}")
+    source_html = source_path.read_text(encoding="utf-8")
+    source_body = extract_map_section(
+        source_html,
+        include["id"],
+        source_path.relative_to(PACK.parent.parent),
+    )
+    interior = rendered_body(
+        source_body,
+        include["indent"],
+        include["classes"],
+        include["attrs"],
+    )
+    same = text[include["start_end"]:include["end_start"]] == interior
+    updated = text[:include["start_end"]] + interior + text[include["end_start"]:]
+    return updated, not same
+
+
 def splice(path):
     text = path.read_text(encoding="utf-8")
     if "<!-- include:" not in text:
         return False
-    pieces = []
-    cursor = 0
-    changed = False
-    for include in iter_includes(text):
-        source_path = (path.parent / include["file"]).resolve()
-        try:
-            source_path.relative_to(PACK.resolve())
-        except ValueError:
-            raise SystemExit(f"{path}: include escapes the IAS 16 pack: {include['file']}")
-        if not source_path.is_file():
-            raise SystemExit(f"{path}: missing include source {include['file']}")
-        source_html = source_path.read_text(encoding="utf-8")
-        source_body = extract_map_section(
-            source_html,
-            include["id"],
-            source_path.relative_to(PACK.parent.parent),
-        )
-        interior = rendered_body(
-            source_body,
-            include["indent"],
-            include["classes"],
-            include["attrs"],
-        )
-        pieces.append(text[cursor:include["start_end"]])
-        pieces.append(interior)
-        if text[include["start_end"]:include["end_start"]] != interior:
-            changed = True
-            print(
-                f"splice {path.relative_to(PACK.parent.parent)} "
-                f"<= {include['file']}#{include['id']}"
-            )
-        else:
-            print(
-                f"unchanged {path.relative_to(PACK.parent.parent)} "
-                f"{include['file']}#{include['id']}"
-            )
-        cursor = include["end_start"]
-    pieces.append(text[cursor:])
-    updated = "".join(pieces)
-    if updated != text:
-        path.write_text(updated, encoding="utf-8")
-        changed = True
-    return changed
+    original = text
+    # Outermost first, from the end of the file so earlier offsets stay
+    # valid. A nested include (the chapter 5 axis inside a chapter 4
+    # section) is filled when its own file is spliced; the outer copy
+    # then takes that already-filled section. Repeating until the
+    # outermost bodies match keeps a second run from rewriting.
+    for _round in range(8):
+        outers = outermost_includes(text)
+        if not outers:
+            break
+        delta = False
+        for include in reversed(outers):
+            text, changed = fill_include(text, include, path)
+            rel = path.relative_to(PACK.parent.parent)
+            if changed:
+                delta = True
+                print(f"splice {rel} <= {include['file']}#{include['id']}")
+            else:
+                print(f"unchanged {rel} {include['file']}#{include['id']}")
+        if not delta:
+            break
+    if text != original:
+        path.write_text(text, encoding="utf-8")
+        return True
+    return False
 
 
 def main():

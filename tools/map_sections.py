@@ -154,35 +154,41 @@ def include_end(html, file_name, section_id, search_from):
 
 
 def iter_includes(html):
-    """Yield include regions in document order.
+    """Yield every include region, including one nested inside another.
 
     body is the text between the start comment and the end comment,
     excluding the newline that follows the start comment when present.
+    A start whose matching end falls outside the include that contains
+    it is a broken overlap. Proper nesting (the chapter 5 axis inside
+    a revaluation or impairment section) is kept and yielded.
     """
-    cursor = 0
-    while True:
-        start = INCLUDE_START.search(html, cursor)
-        if not start:
-            return
+    regions = []
+    for start in INCLUDE_START.finditer(html):
         classes, attrs = parse_opts(start.group("opts"))
         end = include_end(html, start.group("file"), start.group("id"), start.end())
         if not end:
             raise SystemExit(
                 f"missing end marker for include:{start.group('file')}#{start.group('id')}"
             )
-        if INCLUDE_START.search(html, start.end(), end.start()):
-            raise SystemExit("include regions overlap")
-        yield {
+        regions.append({
             "file": start.group("file"),
             "id": start.group("id"),
             "classes": classes,
             "attrs": attrs,
             "indent": start.group("indent"),
+            "start_at": start.start(),
             "start_end": start.end(),
             "end_start": end.start(),
+            "end_at": end.end(),
             "body": html[start.end():end.start()],
-        }
-        cursor = end.end()
+        })
+    for region in regions:
+        for other in regions:
+            if other["start_at"] <= region["start_at"]:
+                continue
+            if other["start_at"] < region["end_at"] and other["end_at"] > region["end_at"]:
+                raise SystemExit("include regions overlap")
+    yield from regions
 
 
 def rendered_body(source_body, indent, classes, attrs):
