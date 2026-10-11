@@ -8368,3 +8368,156 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
     grid-row: auto !important;
   }
 }
+
+/* Recognition include. Pack rules are more specific than the chapter map,
+   so the master copy restates the chapter sizes on the include wrapper. */
+.ppe.pack .beat[data-phase="recog"] > .map-include .peer-line,
+.ppe.pack .beat[data-phase="recog"] > .map-include .q-note,
+.ppe.pack .beat[data-phase="recog"] > .map-include .spare-row {
+  font-size: 0.92em;
+}
+
+.ppe.pack .beat[data-phase="recog"] > .map-include .peer-line {
+  color: var(--muted);
+}
+
+.ppe.pack .beat[data-phase="recog"] > .map-include .crit-op {
+  font-size: 1.23em;
+}
+
+.ppe.pack .beat[data-phase="recog"] > .map-include .inner-rail {
+  font-size: 0.86em;
+}
+
+.ppe.recog-map .ch02-recog .spare-row > .see,
+.ppe.pack .beat[data-phase="recog"] > .map-include .spare-row > .see {
+  flex: 0 1 auto;
+  margin-top: 0;
+}
+
+.ppe.recog-map .ch02-recog a.fb-num,
+.ppe.pack .beat[data-phase="recog"] > .map-include a.fb-num,
+.ppe.disc .ch07-disc a.fb-num,
+.ppe.pack .beat[data-phase="disc"] > .map-include a.fb-num {
+  height: auto;
+  min-height: 0;
+  padding-block: 0.45rem;
+  line-height: 1;
+}
+
+.ppe.recog-map .ch02-recog .see,
+.ppe.pack .beat[data-phase="recog"] > .map-include .see,
+.ppe.disc .ch07-disc .see,
+.ppe.pack .beat[data-phase="disc"] > .map-include .see {
+  padding: 0.3rem 0.45em !important;
+}
+
+.ppe.recog-map .ch02-recog .inner-rail,
+.ppe.pack .beat[data-phase="recog"] > .map-include .inner-rail,
+.ppe.disc .ch07-disc .inner-rail,
+.ppe.pack .beat[data-phase="disc"] > .map-include .inner-rail {
+  padding: 0.3rem 0.55em !important;
+}
+
+/* Disclosure include. Nest, foot, and cite chips follow the chapter map. */
+.ch07-disc {
+  width: 100%;
+}
+
+.ch07-disc .disc-nest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+
+.ch07-disc .disc-nest > .soft-note,
+.ch07-disc .disc-stack > .soft-note {
+  margin: 0;
+}
+
+.ch07-disc .foot-extra {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.28em;
+}
+
+.ppe.disc .ch07-disc .foot-tip,
+.ppe.pack .beat[data-phase="disc"] > .map-include .foot-tip {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  border: 0.06em solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 0.35rem 0.55em;
+  color: var(--muted);
+  font-size: var(--t-meta);
+  font-weight: 400;
+}
+
+.ppe.disc .ch07-disc .soft-note > .cite,
+.ppe.pack .beat[data-phase="disc"] > .map-include .soft-note > .cite {
+  flex: 0 1 auto;
+}
+
+.ppe.disc .ch07-disc .cite,
+.ppe.pack .beat[data-phase="disc"] > .map-include .cite {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 0.3rem 0.5rem;
+  white-space: normal;
+}
+
+.ch07-disc .cite:has(+ .cite) {
+  margin-right: 0.85em;
+}
+
+.ch07-disc .cite:has(+ .cite)::after {
+  content: ",";
+  position: absolute;
+  left: calc(100% + 0.2em);
+  top: 0.15em;
+  color: var(--ink);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 1;
+}
+
+/* 7.3 split-additions tip: the sentence uses the note width; the chip run is a block under it. */
+.ch07-disc .disc-stack > .soft-note:has(> .cite-run) {
+  display: block;
+}
+
+.ch07-disc .disc-stack > .soft-note:has(> .cite-run) > span:not(.cite):not(.cite-run) {
+  display: inline;
+  flex: none;
+  min-width: 0;
+}
+
+/* The chip run is its own line under the sentence at every width.
+   Gaps are the disclosure-grid token. The comma margin keeps the
+   shared-line distance equal to the previous comma plus its space. */
+.ch07-disc .cite-run {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
+  row-gap: 0.45rem;
+  column-gap: 0.45rem;
+  margin-block-start: 0.45rem;
+}
+
+.ch07-disc .cite-run > .cite {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.ch07-disc .cite-run > .cite + .cite {
+  margin-left: 0;
+}
+
+.ch07-disc .cite-run > .cite:has(+ .cite) {
+  margin-right: 0.71em;
+}
