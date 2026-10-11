@@ -551,6 +551,123 @@ class IncrementalTests(unittest.TestCase):
         got = {(row.status, row.file, row.old, row.new) for row in rows}
         self.assertEqual(got, expected)
 
+    def _assert_balanced(self, counts, issues):
+        self.assertEqual(
+            counts["base"],
+            counts["kept"] + counts["moved"] + counts["changed"] + counts["removed"],
+            counts,
+        )
+        self.assertEqual(
+            counts["head"],
+            counts["kept"] + counts["moved"] + counts["changed"] + counts["added"],
+            counts,
+        )
+        self.assertFalse(any("reconciliation error" in issue for issue in issues), issues)
+
+    def test_edge1_control_no_include(self):
+        """Deleting a master hand line is a removal when no new include is added."""
+        master = "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+        ch03 = "ias-16/draft-v1-linked/visuals/ch03-initial.html"
+        sentence = "After recognition"
+        needle = '<p class="pack-flow-label"><span class="onward">After recognition</span></p>'
+        base = {master: read_repo(master), ch03: read_repo(ch03)}
+        self.assertIn(sentence, base[ch03])
+        head = {master: drop_once(base[master], needle), ch03: base[ch03]}
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["removed"], 1)
+        self.assertEqual(counts["moved"], 0)
+        self.assertEqual(counts["changed"], 0)
+        self.assertEqual(counts["added"], 0)
+        row = self._removal(rows, master, sentence)
+        self.assertEqual(row.kind, "text")
+        self.assertEqual(row.locator, "")
+        self.assertEqual(guard.source_cell(row), "UNAPPROVED")
+        self.assertTrue(any("UNAPPROVED removed" in issue for issue in issues))
+        self._assert_balanced(counts, issues)
+
+    def test_edge2_new_include_does_not_hide_unrelated_hand_loss(self):
+        """A new include covers only its section, not every line of the source file.
+
+        "After recognition" sits on the master and also in ch03, outside
+        map-section:ch03-cost. Adding a section the base file does not mark
+        must not treat the whole ch03 file as covering that master line.
+        """
+        master = "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+        ch03 = "ias-16/draft-v1-linked/visuals/ch03-initial.html"
+        sentence = "After recognition"
+        needle = '<p class="pack-flow-label"><span class="onward">After recognition</span></p>'
+        note = "A note that the new section renders on its own."
+        anchor = (
+            '<a class="rail-link" data-phase="models" '
+            'href="../ch04.html#s-4-0" target="_parent">Measurement after recognition</a>'
+        )
+        base = {master: read_repo(master), ch03: read_repo(ch03)}
+        self.assertIn(sentence, base[ch03])
+        self.assertNotIn("map-section:ch03-note", base[ch03])
+        self.assertEqual(base[master].count(anchor), 1)
+        ch03_head = base[ch03].replace(
+            "<!-- map-section:ch03-cost:end -->",
+            "\n".join([
+                "<!-- map-section:ch03-cost:end -->",
+                "<!-- map-section:ch03-note:start -->",
+                "<p>" + note + "</p>",
+                "<!-- map-section:ch03-note:end -->",
+            ]),
+            1,
+        )
+        include = "\n".join([
+            "<!-- include:ch03-initial.html#ch03-note:start -->",
+            "<!-- include:ch03-initial.html#ch03-note:end -->",
+            anchor,
+        ])
+        master_head = drop_once(base[master], needle).replace(anchor, include, 1)
+        head = {master: master_head, ch03: ch03_head}
+
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        row = self._removal(rows, master, sentence)
+        self.assertEqual(row.kind, "text")
+        self.assertEqual(row.locator, "")
+        self.assertEqual(guard.source_cell(row), "UNAPPROVED")
+        self.assertEqual(counts["removed"], 1)
+        self.assertTrue(any("UNAPPROVED removed" in issue and sentence in issue for issue in issues))
+        self.assertFalse(any("reconciliation error" in issue for issue in issues), issues)
+        self._assert_balanced(counts, issues)
+        self.assertTrue(any(item.status == "added" and item.new == note for item in rows))
+
+        code, rows, counts, issues = judge(
+            base, head, approval_removed(master, sentence, "QC edge2")
+        )
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        approved = self._removal(rows, master, sentence)
+        self.assertEqual(approved.source, "QC edge2")
+        self.assertEqual(guard.source_cell(approved), "approved: QC edge2")
+        self._assert_balanced(counts, issues)
+
+    def test_reconciliation_flags_a_vanished_item(self):
+        gone = guard.Item("text", "Gone", "Gone", "a.html", "")
+        errors = guard.reconciliation_errors([gone], [], guard.Books())
+        self.assertTrue(errors)
+        self.assertTrue(
+            any(error.startswith("reconciliation error") and "Gone" in error for error in errors),
+            errors,
+        )
+
+        base = {"a.html": "<p>Spare parts that meet the definition are PPE.</p>"}
+        head = {"b.html": "<p>Spare parts that meet the definition are PPE.</p>"}
+        code, _rows, counts, issues = judge(base, head)
+        self.assertEqual(code, 0)
+        self._assert_balanced(counts, issues)
+
+        base_rev = "61b01f6992f48c96b927266a4a8508337e594dcd"
+        head_rev = "cc6a701fbab57e6cc1efb1a54e47709aa566b567"
+        code, _rows, counts, issues = judge(guard.load_rev(base_rev), guard.load_rev(head_rev))
+        self.assertNotEqual(code, 0)
+        self._assert_balanced(counts, issues)
+        self.assertFalse(any(issue.startswith("reconciliation error") for issue in issues))
+
 
 if __name__ == "__main__":
     unittest.main()

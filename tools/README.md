@@ -95,13 +95,15 @@ The locator is the nearest element id, else the id of the current section headin
 
 Normalisation collapses whitespace and drops `?v=` stamps, `data-phase-*` attributes, and the last-update stamp (`Last update · YYYY-MM-DD HH:MM HKT`). Other characters stay, including capitals and U+2011 versus `-`. Text inside `<!-- include:... -->` … `<!-- include:...:end -->` is owned by the source file, so the pasted body is not a second copy.
 
-The diff counts each `(kind, normalised text)` at each `(file, locator)`. A copy that survives in another file does not cancel a removal. A hand copy that the head replaces with a new include is compared to the text that include renders from its source:
+The diff counts each `(kind, normalised text)` at each `(file, locator)`. A copy that survives in another file does not cancel a removal. A hand copy that the head replaces with a new include is compared to the multiset of items that section renders: the text between its `map-section` start and end markers, and only the hand-copy region that include replaced. A line elsewhere in the source file does not cover the including file.
 
 - the same normalised text, and the source already had it: kept
 - the same text, and a different file newly owns it: moved, with `moved_from` the hand-copy place and `moved_to` `source.html#section`
-- different text: the source's own change or removal, reported once
+- different text: the source's own change or removal, reported once. A hand copy of wording the source itself dropped is kept when it sits in that replaced region, so the source row is not repeated
 
 An include that was already in the base does not absorb a hand copy deleted somewhere else. Unchanged text that stays in the same file is kept when a new `map-section` wrapper is the only locator change.
+
+The books have to balance. At each location the base count equals kept plus moved out plus removed plus the old side of a change. Across the run, base items equal kept plus moved plus changed plus removed, and head items equal kept plus moved plus changed plus added. Head items include one counterpart for each hand copy a new include still shows. If an equation fails, the check exits non-zero and prints a `reconciliation error` naming the items. Nothing can disappear without a row.
 
 | Result | Meaning | Approval |
 | --- | --- | --- |
