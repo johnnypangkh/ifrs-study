@@ -4,17 +4,17 @@
 .cite {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-1);
   vertical-align: middle;
-  margin: 0 2px;
-  padding: 1px 8px;
-  border-radius: 6px;
-  border: 1px solid #9bb4cc;
-  font-family: "Calibri Light", Calibri, "Segoe UI", sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: .02em;
-  line-height: 1.45;
+  margin: 0 var(--stroke-2);
+  padding: var(--stroke-1) var(--space-2);
+  border-radius: var(--rail-bar-l);
+  border: var(--stroke-1) solid var(--legacy-color-6);
+  font-family: var(--cite-font);
+  font-size: var(--cite-size);
+  font-weight: var(--cite-weight);
+  letter-spacing: var(--legacy-ls-5);
+  line-height: var(--tb-body-lh);
   white-space: nowrap;
   color: var(--cite-official);
   background: var(--cite-official-soft);
@@ -28,49 +28,49 @@
   text-transform: none;
   opacity: 1;
 }
-.cite-official { color: var(--cite-official); background: var(--cite-official-soft); border-color: #9bb4cc; }
-.cite-pwc { color: var(--cite-pwc); background: var(--cite-pwc-soft); border-color: #d4a88e; }
-.cite-dtt { color: var(--cite-dtt); background: var(--cite-dtt-soft); border-color: #7eb5aa; }
-.cite-kpmg { color: var(--cite-kpmg); background: var(--cite-kpmg-soft); border-color: #9aafc4; }
-.cite-ey { color: var(--cite-ey); background: var(--cite-ey-soft); border-color: #cfc28a; }
+.cite-official { color: var(--cite-official); background: var(--cite-official-soft); border-color: var(--legacy-color-6); }
+.cite-pwc { color: var(--cite-pwc); background: var(--cite-pwc-soft); border-color: var(--legacy-color-7); }
+.cite-dtt { color: var(--cite-dtt); background: var(--cite-dtt-soft); border-color: var(--legacy-color-8); }
+.cite-kpmg { color: var(--cite-kpmg); background: var(--cite-kpmg-soft); border-color: var(--legacy-color-9); }
+.cite-ey { color: var(--cite-ey); background: var(--cite-ey-soft); border-color: var(--legacy-color-10); }
 .cite-extract {
   display: inline;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: var(--t-meta);
+  font-weight: var(--legacy-fw-2);
   font-style: italic;
   color: var(--muted);
-  margin-left: 2px;
+  margin-left: var(--stroke-2);
 }
-.cite-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0; }
+.cite-row { display: flex; flex-wrap: wrap; gap: var(--rail-bar-l); align-items: center; margin: var(--rail-bar-l) 0; }
 
 /* Separators are not typed. cite-comma marks the chip that used to follow a
    comma. cite-dot marks the chip that used to be followed by a middle dot.
    Each mark is drawn from the preceding chip, just outside its border, so a
    wrap keeps the mark on the line above. Space-separated chips stay unmarked. */
 .cite { position: relative; }
-.cite:has(+ .cite.cite-comma) { margin-right: 0.85em; }
+.cite:has(+ .cite.cite-comma) { margin-right: var(--legacy-mg-12); }
 .cite:has(+ .cite.cite-comma)::after {
   content: ",";
   position: absolute;
-  left: calc(100% + 0.2em);
-  top: 0.15em;
+  left: calc(100% + var(--legacy-w-51));
+  top: var(--legacy-w-52);
   color: var(--ink);
-  font-weight: 400;
+  font-weight: var(--t2-fw);
   font-style: normal;
   letter-spacing: normal;
-  line-height: 1;
+  line-height: var(--mchip-lh);
 }
-.cite.cite-dot { margin-right: 1.15em; }
+.cite.cite-dot { margin-right: var(--legacy-mg-13); }
 .cite.cite-dot::after {
   content: "·";
   position: absolute;
-  left: calc(100% + 0.4em);
-  top: 0.15em;
+  left: calc(100% + var(--legacy-w-53));
+  top: var(--legacy-w-52);
   color: var(--ink);
-  font-weight: 400;
+  font-weight: var(--t2-fw);
   font-style: normal;
   letter-spacing: normal;
-  line-height: 1;
+  line-height: var(--mchip-lh);
 }
 
 /* Narrow cards: a cite chip wraps inside the card and each chip takes its own line.
@@ -88,12 +88,12 @@
     white-space: normal;
     overflow-wrap: break-word;
     text-align: left;
-    margin: 4px 0 0;
+    margin: var(--space-1) 0 0;
   }
   .cite:has(+ .cite.cite-comma)::after,
   .cite.cite-dot::after { content: none; }
   .cite:has(+ .cite.cite-comma),
-  .cite.cite-dot { margin-right: 2px; }
+  .cite.cite-dot { margin-right: var(--stroke-2); }
   .box .cite:has(+ .cite.cite-comma),
   .box .cite.cite-dot { margin-right: 0; }
   .teaching .point-chip .cite {

@@ -1,0 +1,69 @@
+/* Boxes / cards */
+.box {
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: var(--space-3) var(--legacy-pad-6); /* was 10px 12px — Canon 2026.09.27-5 inner air */
+}
+.box.hub { background: var(--elem-hub-soft); border-color: var(--elem-hub); border-width: var(--stroke-2); }
+.box.band { background: var(--band); }
+/* DEPRECATED — dashed=nest anti-pattern. Prefer .contain* for 組成 / .box.see for see-also.
+   Neutralized to solid quiet so leftovers cannot teach dashed=hierarchy. Do not use on new kit. */
+.box.nest {
+  background: var(--elem-nest);
+  border-style: solid;
+  border-color: var(--line);
+}
+.box.ok { background: var(--outcome-yes-soft); border-color: var(--outcome-yes); }
+
+/* Containment kit (Examples B/C) — mirrored from draft assets/shared.css; iframe has no assets link.
+   Solid outer + solid inner cells; not dashed nest. */
+.contain {
+  border: var(--stroke-2) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: var(--space-3);
+}
+.contain-title {
+  font-size: var(--tb-box-title-fs);
+  font-weight: var(--t1-fw);
+  margin: 0 0 var(--legacy-mg-3);
+  color: var(--ink);
+}
+.contain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+.contain-cell {
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  padding: var(--space-2) var(--legacy-pad-3);
+  font-size: var(--tb-box-title-fs);
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .contain-grid { grid-template-columns: 1fr; }
+}
+.box.warn { background: var(--outcome-doubt-soft); border-color: var(--outcome-doubt); }
+.box.danger { background: var(--outcome-no-soft); border-color: var(--outcome-no); }
+.box.see { background: var(--see-also-soft); border: var(--stroke-1) dashed var(--see-also); color: var(--see-also); }
+.box-title {
+  font-size: var(--tb-box-title-fs);
+  font-weight: var(--t1-fw);
+  margin: 0 0 var(--space-1);
+}
+.box-body {
+  font-size: var(--t-meta);
+  color: var(--muted);
+  margin: 0;
+}
+.box ul {
+  margin: var(--space-1) 0 0;
+  padding-left: var(--legacy-pad-4);
+  font-size: var(--t-meta);
+  color: var(--muted);
+}
+.box li { margin: var(--stroke-2) 0; }
+

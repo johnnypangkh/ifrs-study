@@ -1,0 +1,75 @@
+/* IFRS 18 category bands + IFRS-subtotal vs MPM contrast */
+.cat-operating, .box.cat-operating, .band.cat-operating {
+  background: var(--cat-operating-soft);
+  border-color: var(--cat-operating);
+  color: var(--ink);
+}
+.cat-investing, .box.cat-investing, .band.cat-investing {
+  background: var(--cat-investing-soft);
+  border-color: var(--cat-investing);
+  color: var(--ink);
+}
+.cat-financing, .box.cat-financing, .band.cat-financing {
+  background: var(--cat-financing-soft);
+  border-color: var(--cat-financing);
+  color: var(--ink);
+}
+.cat-tax, .box.cat-tax, .band.cat-tax {
+  background: var(--cat-tax-soft);
+  border-color: var(--cat-tax);
+  color: var(--ink);
+}
+.cat-discontinued, .box.cat-discontinued, .band.cat-discontinued {
+  background: var(--cat-discontinued-soft);
+  border-color: var(--cat-discontinued);
+  color: var(--ink);
+}
+.cat-operating .box-title, .band.cat-operating .box-title { color: var(--cat-operating); }
+.cat-investing .box-title, .band.cat-investing .box-title { color: var(--cat-investing); }
+.cat-financing .box-title, .band.cat-financing .box-title { color: var(--cat-financing); }
+.cat-tax .box-title, .band.cat-tax .box-title { color: var(--cat-tax); }
+.cat-discontinued .box-title, .band.cat-discontinued .box-title { color: var(--cat-discontinued); }
+
+.ifrs-subtotal,
+.box.ifrs-subtotal,
+.stmt-block .subtotal.ifrs-subtotal {
+  background: var(--ifrs-subtotal-soft);
+  border: var(--stroke-1) solid var(--ifrs-subtotal);
+  color: var(--ifrs-subtotal);
+  font-weight: var(--t1-fw);
+}
+.mpm,
+.box.mpm,
+.stmt-block .subtotal.mpm {
+  background: var(--mpm-soft);
+  border: var(--stroke-1) solid var(--mpm);
+  color: var(--mpm);
+  font-weight: var(--t1-fw);
+}
+
+/* Design aliases — BEM band + measure contrast (same tokens) */
+.cat-band--operating { background: var(--cat-operating-soft); border-color: var(--cat-operating); }
+.cat-band--investing { background: var(--cat-investing-soft); border-color: var(--cat-investing); }
+.cat-band--financing { background: var(--cat-financing-soft); border-color: var(--cat-financing); }
+.cat-band--tax { background: var(--cat-tax-soft); border-color: var(--cat-tax); }
+.cat-band--discontinued { background: var(--cat-discontinued-soft); border-color: var(--cat-discontinued); }
+.measure-ifrs {
+  background: var(--ifrs-subtotal-soft);
+  border: var(--stroke-1) solid var(--ifrs-subtotal);
+  color: var(--ifrs-subtotal);
+  font-weight: var(--t1-fw);
+}
+.measure-mpm {
+  background: var(--mpm-soft);
+  border: var(--stroke-1) solid var(--mpm);
+  color: var(--mpm);
+  font-weight: var(--t1-fw);
+}
+
+.stmt-block .bracket {
+  font-size: var(--t3-fs);
+  color: var(--dash);
+  font-style: italic;
+  margin-top: var(--space-2);
+}
+

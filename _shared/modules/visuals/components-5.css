@@ -1,0 +1,408 @@
+/* Formula / equation board (Ch5 backbone) */
+.formula-board {
+  max-width: var(--legacy-w-17);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: var(--legacy-pad-6) var(--legacy-pad-6) var(--space-4);
+  box-shadow: 0 var(--stroke-1) 0 var(--legacy-color-5);
+}
+.formula-board .fb-title {
+  margin: 0 0 var(--legacy-mg-3);
+  font-size: var(--t-meta);
+  font-weight: var(--t1-fw);
+}
+/* Section chips — stadium pills (not circles), including a short label such as 2 or 11.
+   Reuse on Concept Map / hierarchy / matrix teaching nodes site-wide. */
+a.fb-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  min-width: var(--nx-chip-min);
+  height: var(--nx-chip-height);
+  padding: 0 var(--nx-chip-pad-x);
+  margin-right: var(--rail-bar-l);
+  border-radius: var(--legacy-radius-1);
+  white-space: nowrap;
+  border: var(--nx-chip-border) solid var(--formula);
+  background: var(--accent-soft);
+  color: var(--formula);
+  font-size: var(--nx-chip-font);
+  font-weight: var(--t1-fw);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--legacy-ls-5);
+  line-height: var(--mchip-lh);
+  text-decoration: none;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: background .14s ease, color .14s ease, border-color .14s ease, box-shadow .14s ease;
+}
+a.fb-num:hover {
+  background: var(--formula);
+  color: var(--on-accent);
+  border-color: var(--formula);
+  box-shadow: 0 0 0 var(--stroke-2) var(--accent-soft);
+}
+a.fb-num:focus-visible {
+  outline: var(--stroke-2) solid var(--formula);
+  outline-offset: var(--stroke-2);
+}
+
+/* Range cites: one section number per circle; separator sits between circles (never inside). */
+.fb-num-range {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--legacy-gap-4);
+  margin-right: var(--rail-bar-l);
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.fb-num-range a.fb-num { margin-right: 0; }
+.fb-num-sep {
+  font-size: var(--cite-size);
+  font-weight: var(--t3-arm-fw);
+  color: var(--muted);
+  line-height: var(--mchip-lh);
+  user-select: none;
+}
+
+
+.box-title,
+.contain-title,
+.fb-title,
+.section-label,
+.matrix-cell.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+.box-title a.fb-num,
+.contain-title a.fb-num,
+.section-label a.fb-num,
+.matrix-cell.head a.fb-num {
+  margin-right: var(--rail-bar-l);
+}
+.fb-title-text { display: inline; }
+
+/* N.x jump chips — formula-board keeps colour variants; base look from a.fb-num */
+.formula-board .fb-title a.fb-num,
+.formula-board a.fb-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  min-width: var(--nx-chip-min);
+  height: var(--nx-chip-height);
+  padding: 0 var(--nx-chip-pad-x);
+  border-radius: var(--legacy-radius-1);
+  white-space: nowrap;
+  border: var(--nx-chip-border) solid var(--formula);
+  background: var(--accent-soft);
+  color: var(--formula);
+  font-size: var(--nx-chip-font);
+  font-weight: var(--t1-fw);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--legacy-ls-5);
+  line-height: var(--mchip-lh);
+  text-decoration: none;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: background .14s ease, color .14s ease, border-color .14s ease, box-shadow .14s ease;
+}
+.formula-board .fb-title a.fb-num:hover,
+.formula-board a.fb-num:hover {
+  background: var(--formula);
+  color: var(--on-accent);
+  border-color: var(--formula);
+  box-shadow: 0 0 0 var(--stroke-2) var(--accent-soft);
+}
+.formula-board .fb-title a.fb-num:focus-visible,
+.formula-board a.fb-num:focus-visible {
+  outline: var(--stroke-2) solid var(--formula);
+  outline-offset: var(--stroke-2);
+}
+.formula-board .fb-eq {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; /* peer row; Equity containment may be taller */
+  justify-content: center;
+  gap: var(--space-2) var(--legacy-gap-1);
+}
+.formula-board .fb-term {
+  flex: 1 1 var(--legacy-w-13);
+  max-width: var(--legacy-w-26);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  padding: var(--legacy-pad-3) var(--space-3);
+  text-align: left;
+  background: var(--surface);
+}
+.formula-board .fb-term .fb-name {
+  margin: 0 0 var(--space-1);
+  font-size: var(--t-body);
+  font-weight: var(--t1-fw);
+}
+.formula-board .fb-term .fb-body {
+  margin: 0;
+  font-size: var(--cite-size);
+  color: var(--muted);
+  line-height: var(--legacy-lh-1);
+}
+.formula-board .fb-term.asset {
+  background: var(--elem-asset-soft);
+  border-color: var(--elem-asset);
+}
+.formula-board .fb-term.asset .fb-name { color: var(--elem-asset); }
+.formula-board .fb-term.liability {
+  background: var(--elem-liability-soft);
+  border-color: var(--elem-liability);
+}
+.formula-board .fb-term.liability .fb-name { color: var(--elem-liability); }
+.formula-board .fb-term.equity {
+  background: var(--elem-equity-soft);
+  border-color: var(--elem-equity);
+  max-width: var(--legacy-w-33);
+}
+/* Equity peer + contain kit: keep peer border token; kit supplies inner grid */
+.formula-board .fb-term.equity.contain {
+  max-width: none; /* grows to fit contain-grid; embed grid still equal 1fr width */
+  width: 100%;
+  border-width: var(--stroke-1); /* peer A/L/E — do not let kit 2px line override --elem-peer */
+  border-color: var(--elem-equity);
+  padding: var(--legacy-pad-3) var(--space-3); /* match sibling peer cards */
+}
+.formula-board .fb-term.equity .fb-name,
+.formula-board .fb-term.equity .contain-title { color: var(--elem-equity); }
+.formula-board .fb-term.equity .contain-title {
+  margin: 0 0 var(--space-1); /* peer title spacing, not kit page spacing */
+  font-size: var(--t-body);
+}
+.formula-board .fb-op {
+  align-self: flex-start;
+  font-size: var(--legacy-fs-4);
+  font-weight: var(--t1-fw);
+  color: var(--formula);
+  line-height: var(--mchip-lh);
+  padding: var(--legacy-pad-11) var(--stroke-2) 0; /* sit beside Asset/Liability/Equity peer titles */
+  flex: 0 0 auto;
+}
+
+/* Formula-board density on top of mirrored contain kit */
+.formula-board .contain-grid {
+  gap: var(--rail-bar-l);
+  margin-top: var(--space-2);
+  width: 100%;
+}
+.formula-board .contain-cell {
+  box-sizing: border-box;
+  min-width: 0;
+  font-size: var(--cite-size);
+}
+.formula-board .contain-cell .fb-name {
+  margin: 0 0 var(--space-1);
+  font-size: var(--t-meta);
+  font-weight: var(--t1-fw);
+  color: var(--elem-income);
+}
+.formula-board .contain-cell .fb-body {
+  margin: 0;
+  font-size: var(--t3-fs);
+  color: var(--muted);
+  line-height: var(--legacy-lh-1);
+}
+.formula-board .fb-tip {
+  margin-top: var(--legacy-mg-3);
+  padding: var(--space-2) var(--legacy-pad-3);
+  border: var(--border-na);
+  border-radius: var(--rail-bar-l);
+  background: var(--elem-nest);
+  font-size: var(--t-meta);
+  color: var(--ink);
+}
+
+/* Section pills inherit term colour when inside coloured terms */
+.formula-board .fb-term.asset a.fb-num {
+  border-color: var(--elem-asset);
+  background: var(--elem-asset-soft);
+  color: var(--elem-asset);
+}
+.formula-board .fb-term.asset a.fb-num:hover {
+  background: var(--elem-asset);
+  color: var(--on-accent);
+  border-color: var(--elem-asset);
+  box-shadow: 0 0 0 var(--stroke-2) var(--elem-asset-soft);
+}
+.formula-board .fb-term.liability a.fb-num {
+  border-color: var(--elem-liability);
+  background: var(--elem-liability-soft);
+  color: var(--elem-liability);
+}
+.formula-board .fb-term.liability a.fb-num:hover {
+  background: var(--elem-liability);
+  color: var(--on-accent);
+  border-color: var(--elem-liability);
+  box-shadow: 0 0 0 var(--stroke-2) var(--elem-liability-soft);
+}
+.formula-board .fb-term.equity a.fb-num {
+  border-color: var(--elem-equity);
+  background: var(--elem-equity-soft);
+  color: var(--elem-equity);
+}
+.formula-board .fb-term.equity a.fb-num:hover {
+  background: var(--elem-equity);
+  color: var(--on-accent);
+  border-color: var(--elem-equity);
+  box-shadow: 0 0 0 var(--stroke-2) var(--elem-equity-soft);
+}
+.formula-board .contain-cell a.fb-num {
+  border-color: var(--elem-income);
+  background: var(--elem-income-soft);
+  color: var(--elem-income);
+}
+.formula-board .contain-cell a.fb-num:hover {
+  background: var(--elem-income);
+  color: var(--on-accent);
+  border-color: var(--elem-income);
+  box-shadow: 0 0 0 var(--stroke-2) var(--elem-income-soft);
+}
+.formula-board .fb-tip a.fb-num {
+  border-color: var(--dash);
+  background: var(--surface);
+  color: var(--ink);
+}
+.formula-board .fb-tip a.fb-num:hover {
+  background: var(--muted);
+  color: var(--on-accent);
+  border-color: var(--muted);
+  box-shadow: 0 0 0 var(--stroke-2) var(--elem-nest);
+}
+.formula-board .fb-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.formula-board .fb-title-text {
+  font-weight: var(--t1-fw);
+  color: var(--ink);
+}
+
+.legend-swatch.asset {
+  background: var(--elem-asset-soft);
+  border-color: var(--elem-asset);
+}
+.legend-swatch.liability {
+  background: var(--elem-liability-soft);
+  border-color: var(--elem-liability);
+}
+.legend-swatch.equity {
+  background: var(--elem-equity-soft);
+  border-color: var(--elem-equity);
+}
+.legend-swatch.income {
+  background: var(--elem-income-soft);
+  border-color: var(--elem-income);
+  border-style: solid;
+}
+
+/* Start-here graphic (Ch1 Overview — study path, not map clone) */
+.start-here {
+  max-width: var(--legacy-w-4);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: var(--legacy-pad-6);
+}
+.start-here .sh-gate {
+  border: var(--stroke-1) solid var(--warn);
+  background: var(--warn-soft);
+  border-radius: var(--card-radius);
+  padding: var(--legacy-pad-3) var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.start-here .sh-gate .sh-kicker {
+  margin: 0 0 var(--space-1);
+  font-size: var(--t3-fs);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-1);
+  text-transform: uppercase;
+  color: var(--warn);
+}
+.start-here .sh-gate .sh-title {
+  margin: 0 0 var(--stroke-2);
+  font-size: var(--t-body);
+  font-weight: var(--t1-fw);
+}
+.start-here .sh-gate .sh-body {
+  margin: 0;
+  font-size: var(--t-meta);
+  color: var(--muted);
+}
+.start-here .sh-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0;
+  margin: 0 0 var(--space-3);
+}
+.start-here .sh-path > .sh-step {
+  margin: 0;
+}
+.start-here .sh-path > .rel-connect--h {
+  margin: 0 var(--legacy-mg-8);
+}
+.start-here .sh-step {
+  flex: 1 1 var(--legacy-w-34);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--rail-bar-l);
+  background: var(--band);
+  padding: var(--space-2) var(--legacy-pad-3);
+  min-width: var(--legacy-w-35);
+}
+.start-here .sh-step .n {
+  display: block;
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  color: var(--accent);
+  margin-bottom: var(--stroke-2);
+}
+.start-here .sh-step .t {
+  display: block;
+  font-size: var(--t-meta);
+  font-weight: var(--t1-fw);
+  color: var(--ink);
+}
+.start-here .sh-step .d {
+  display: block;
+  font-size: var(--cite-size);
+  color: var(--muted);
+  margin-top: var(--stroke-2);
+}
+/* DEPRECATED — prefer .rel-connect.rel-connect--h */
+.start-here .sh-arrow {
+  align-self: center;
+  color: var(--accent);
+  font-weight: var(--t1-fw);
+  font-size: var(--t-body);
+  flex: 0 0 auto;
+}
+.start-here .sh-pointer {
+  border: var(--stroke-1) solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: var(--rail-bar-l);
+  padding: var(--space-2) var(--legacy-pad-3);
+  font-size: var(--t-meta);
+  margin-bottom: var(--legacy-mg-3);
+}
+.start-here .sh-pointer strong { color: var(--accent); }
+.start-here .sh-ias8 {
+  font-size: var(--t-meta);
+  color: var(--muted);
+  border-left: var(--legacy-border-1) solid var(--see-also);
+  padding: var(--space-1) 0 var(--space-1) var(--legacy-pad-3);
+  margin: 0;
+}
+

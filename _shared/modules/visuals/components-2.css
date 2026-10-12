@@ -1,0 +1,668 @@
+/* Tables */
+table.lofi {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--tb-box-title-fs);
+  background: var(--surface);
+}
+table.lofi th, table.lofi td {
+  border: var(--stroke-1) solid var(--line);
+  padding: var(--space-2) var(--legacy-pad-3);
+  text-align: left;
+  vertical-align: top;
+}
+table.lofi th {
+  background: var(--band);
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-3);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: var(--t3-arm-fw); }
+
+/* Callouts */
+.callout {
+  border-radius: var(--card-radius);
+  padding: var(--legacy-pad-3) var(--space-3);
+  font-size: var(--tb-box-title-fs);
+  margin: var(--space-2) 0;
+}
+.callout.warn {
+  background: var(--outcome-doubt-soft);
+  border: var(--stroke-1) solid var(--outcome-doubt);
+  color: var(--ink);
+}
+.callout.danger {
+  background: var(--outcome-no-soft);
+  border: var(--stroke-1) solid var(--outcome-no);
+}
+.callout.see {
+  background: var(--see-also-soft);
+  border: var(--stroke-1) dashed var(--see-also);
+  color: var(--see-also);
+  font-size: var(--t-meta);
+}
+.callout.ok {
+  background: var(--outcome-yes-soft);
+  border: var(--stroke-1) solid var(--outcome-yes);
+}
+.callout strong { font-weight: var(--t1-fw); }
+.callout .tag-mini {
+  display: inline-block;
+  font-size: var(--t3-fs);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-4);
+  text-transform: uppercase;
+  margin-right: var(--rail-bar-l);
+  padding: var(--stroke-1) var(--rail-bar-l);
+  border-radius: var(--space-1);
+  background: var(--legacy-color-1);
+}
+
+/* Quiet demoted tip (wording / synonym note) — NOT nest hierarchy */
+.tip-quiet,
+.tip-nest {
+  margin: var(--space-2) 0 0 var(--space-3);
+  padding: var(--space-2) var(--legacy-pad-3);
+  border-left: var(--legacy-border-1) solid var(--line);
+  background: var(--band);
+  border-radius: 0 var(--rail-bar-l) var(--rail-bar-l) 0;
+  font-size: var(--t-meta);
+  color: var(--muted);
+}
+.tip-quiet .tip-label,
+.tip-nest .tip-label {
+  font-size: var(--t3-fs);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-4);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--stroke-2);
+}
+
+/* Tree / decision branches */
+.tree {
+  display: flex;
+  flex-direction: column;
+  gap: var(--legacy-gap-2); /* Canon 2026.09.27-5 — major-object rhythm (was 0) */
+  max-width: var(--legacy-w-4);
+}
+.tree-branch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--legacy-gap-1);
+  margin-top: 0; /* parent .tree/.flow-col gap owns rhythm */
+}
+.branch-no { border-color: var(--outcome-no); }
+.branch-yes { border-color: var(--outcome-yes); }
+
+.see-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--legacy-mg-3);
+}
+
+/* Stack hierarchy */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--legacy-gap-2); /* Canon 2026.09.27-5 — major-object rhythm (was 0) */
+  max-width: var(--legacy-w-5);
+}
+.stack .box { text-align: center; }
+
+/* L1 horizontal with nested L2 */
+.l1-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* equal after Boundary slim (no Consol|Unconsol L2 kids) */
+  gap: var(--legacy-gap-1);
+}
+@media (max-width: 720px) {
+  .l1-row { grid-template-columns: 1fr; }
+}
+.boundary-shell {
+  border: var(--stroke-1) solid var(--role-entity);
+  border-radius: var(--card-radius);
+  background: var(--role-entity-soft);
+  padding: var(--space-2);
+}
+.boundary-shell > .box-title { margin-bottom: var(--space-2); }
+.boundary-kids {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--rail-bar-l);
+}
+.boundary-kids .box,
+.boundary-kids .contain-cell {
+  background: var(--surface);
+  border-style: solid;
+  border-color: var(--line);
+  font-size: var(--t-meta);
+}
+/* Prefer .contain kit on Boundary — keep .boundary-shell as solid outer alias */
+.boundary-shell.contain,
+.l1-row .contain.boundary-shell {
+  border-color: var(--role-entity);
+}
+
+.footer-note {
+  margin-top: var(--legacy-mg-5);
+  padding-top: var(--space-3);
+  border-top: var(--stroke-1) solid var(--line);
+  font-size: var(--cite-size);
+  color: var(--dash);
+}
+
+.checklist-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--legacy-w-6);
+  height: var(--legacy-w-6);
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  margin-right: var(--rail-bar-l);
+  flex-shrink: 0;
+}
+
+/* Concept-map relations (semantic links, not decision spines) */
+.concept-map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--legacy-gap-2); /* Canon 2026.09.27-5 — ~12–16px between major teaching objects (was 0) */
+  max-width: var(--legacy-w-17);
+  align-items: stretch;
+}
+.concept-map > .box,
+.concept-map > .grid-2,
+.concept-map > .grid-3,
+.concept-map > .map-hub-wrap,
+.concept-map > .party-cast,
+.concept-map > .contrast-pair,
+.concept-map > .tip-quiet {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* DEPRECATED (Johnny unlock 2026-09-27) — floating glyph labels.
+   Prefer .rel-connect (stem + label). Kept so leftover markup does not explode. */
+.rel-label {
+  text-align: center;
+  font-size: var(--cite-size);
+  font-weight: var(--t3-arm-fw);
+  color: var(--muted);
+  margin: var(--space-2) 0 var(--rail-bar-l);
+  letter-spacing: var(--legacy-ls-5);
+}
+.rel-label .mark {
+  display: block;
+  color: var(--link-semantic);
+  font-size: var(--t-body);
+  font-weight: var(--t1-fw);
+  line-height: var(--legacy-lh-2);
+  margin-bottom: var(--stroke-2);
+}
+
+/* Relation connectors — stems kiss adjacent box/hub/band edges.
+   Stem = background line; arrowheads via ::before/::after border triangles.
+   --both: bidirectional · --down: feed/provide · --h: study-path (arrow right).
+   Label sits RIGHT of a centered stem track — no floating glyph-only links. */
+.rel-connect {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--stroke-2) minmax(var(--legacy-w-13), 1fr);
+  column-gap: var(--legacy-gap-2);
+  align-items: stretch;
+  /* Negative block margin cancels parent .concept-map/.stack gap so stem meets box edges;
+     connector height alone spaces the two related boxes (~12–16px air lives in shorter stem). */
+  margin: var(--legacy-mg-7) 0;
+  min-height: var(--legacy-w-18); /* was 64 — shorter stem restores object rhythm */
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.rel-connect-stem {
+  grid-column: 2;
+  grid-row: 1;
+  display: block;
+  width: var(--stroke-2);
+  align-self: stretch;
+  min-height: var(--legacy-w-18); /* was 64 */
+  background: var(--link-semantic);
+  position: relative;
+  justify-self: center;
+  flex-shrink: 0;
+}
+.rel-connect-label {
+  grid-column: 3;
+  grid-row: 1;
+  margin: 0;
+  padding: var(--space-1) var(--space-1) var(--space-1) 0; /* was 8px — keep label optically between the two boxes */
+  font-size: var(--t-meta);
+  font-weight: var(--t3-arm-fw);
+  color: var(--muted);
+  text-align: left;
+  line-height: var(--legacy-lh-1);
+  letter-spacing: var(--legacy-ls-5);
+  max-width: var(--legacy-w-19);
+  align-self: center;
+}
+.rel-connect-label strong { color: var(--ink); font-weight: var(--t1-fw); }
+
+/* Arrowheads (border triangles) — night-safe via --link-semantic */
+.rel-connect-stem::before,
+.rel-connect-stem::after {
+  content: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: var(--legacy-border-2) solid transparent;
+  border-right: var(--legacy-border-2) solid transparent;
+}
+.rel-connect--both .rel-connect-stem::before {
+  content: "";
+  top: var(--legacy-w-20);
+  border-bottom: var(--space-2) solid var(--link-semantic);
+}
+.rel-connect--both .rel-connect-stem::after,
+.rel-connect--down .rel-connect-stem::after {
+  content: "";
+  bottom: var(--legacy-w-20);
+  border-top: var(--space-2) solid var(--link-semantic);
+}
+
+/* Horizontal study-path connector — stem between flex children */
+.rel-connect--h {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  grid-template-columns: none;
+  margin: 0 var(--legacy-mg-8);
+  padding: 0;
+  min-height: 0;
+  flex: 0 0 var(--legacy-w-21);
+  width: var(--legacy-w-21);
+  max-width: var(--legacy-w-21);
+}
+.rel-connect--h .rel-connect-stem {
+  grid-column: auto;
+  width: 100%;
+  height: var(--stroke-2);
+  min-height: 0;
+  min-width: var(--legacy-w-9);
+  background: var(--link-semantic);
+  position: relative;
+}
+.rel-connect--h .rel-connect-stem::before,
+.rel-connect--h .rel-connect-stem::after {
+  border-left: none;
+  border-right: none;
+  border-top: var(--legacy-border-2) solid transparent;
+  border-bottom: var(--legacy-border-2) solid transparent;
+  left: auto;
+  transform: translateY(-50%);
+  top: 50%;
+}
+.rel-connect--h .rel-connect-stem::before { content: none; }
+.rel-connect--h .rel-connect-stem::after {
+  content: "";
+  right: 0;
+  border-left: var(--space-2) solid var(--link-semantic);
+}
+/* Horizontal bidirectional (peer row) — arrowheads both ends */
+.rel-connect--h.rel-connect--both {
+  flex: 0 1 auto;
+  width: auto;
+  max-width: var(--legacy-w-13);
+  min-width: var(--legacy-w-14);
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0 var(--legacy-mg-8);
+  align-self: center;
+}
+.rel-connect--h.rel-connect--both .rel-connect-stem {
+  width: 100%;
+  min-width: var(--legacy-w-22);
+}
+.rel-connect--h.rel-connect--both .rel-connect-stem::before {
+  content: "";
+  left: 0;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: var(--legacy-border-2) solid transparent;
+  border-bottom: var(--legacy-border-2) solid transparent;
+  border-right: var(--space-2) solid var(--link-semantic);
+  border-left: none;
+}
+.rel-connect--h.rel-connect--both .rel-connect-stem::after {
+  content: "";
+  right: 0;
+  left: auto;
+  border-left: var(--space-2) solid var(--link-semantic);
+  border-right: none;
+}
+.rel-connect--h.rel-connect--both .rel-connect-label {
+  grid-column: auto;
+  font-size: var(--t3-fs);
+  text-align: center;
+  max-width: var(--legacy-w-23);
+  line-height: var(--t3-tag-lh);
+}
+
+/* Major objects rely on .concept-map gap; zero child margins so gap is the sole spacer */
+.concept-map > .contrast-pair,
+.concept-map > .grid-2,
+.concept-map > .grid-3,
+.concept-map > .map-hub-wrap {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* Org-chart: directed stem from parent to kids */
+.org-chart > .rel-connect {
+  margin: var(--legacy-mg-7) auto; /* cancel .org-chart gap; keep stem centered */
+  max-width: var(--legacy-w-5);
+  width: 100%;
+}
+
+.peer-note {
+  text-align: center;
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-4);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--space-2);
+}
+
+/* Party / role cast (icon + label always) */
+.party-cast {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--legacy-gap-1);
+  justify-content: center;
+  margin: var(--space-2) 0 var(--space-3);
+}
+.party {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: var(--legacy-w-24);
+  padding: var(--space-2) var(--legacy-pad-3);
+  border: var(--stroke-1) solid var(--role-party);
+  border-radius: var(--card-radius);
+  background: var(--role-party-soft);
+}
+.party .glyph {
+  font-size: var(--legacy-fs-4);
+  line-height: var(--mchip-lh);
+}
+.party .role {
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  color: var(--ink);
+  text-align: center;
+}
+.party .role-sub {
+  font-size: var(--t3-fs);
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Group / org chart */
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--legacy-gap-2); /* Canon 2026.09.27-5 — parent / stem / kids rhythm */
+  max-width: var(--legacy-w-5);
+  margin: 0 auto;
+  text-align: center;
+}
+.org-parent {
+  display: block;
+  max-width: var(--legacy-w-25);
+  min-width: var(--legacy-w-12);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+.box.org-parent {
+  background: var(--org-parent-soft);
+  border-color: var(--org-parent);
+}
+/* DEPRECATED — prefer .rel-connect.rel-connect--down */
+.org-link {
+  font-size: var(--cite-size);
+  font-weight: var(--t3-arm-fw);
+  color: var(--muted);
+  margin: var(--rail-bar-l) 0 var(--space-1);
+}
+.org-link .mark {
+  display: block;
+  color: var(--accent);
+  font-size: var(--t-body);
+  font-weight: var(--t1-fw);
+  line-height: var(--legacy-lh-2);
+}
+.org-kids {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--legacy-gap-1);
+  justify-content: center;
+}
+.org-kids .box {
+  flex: 1 1 var(--legacy-w-13);
+  max-width: var(--legacy-w-26);
+  text-align: left;
+  background: var(--org-child-soft);
+  border-color: var(--org-child);
+}
+
+/* Consol / entity / FS cards — canon 2026.09.27-6 (reusable Ch4 grammar).
+   Johnny: dashed group plate = Consol FS chrome; Parent solid fill = Unconsol FS fill;
+   subs = outline. Night-only semantic aliases (no day theme invent). */
+.consol-boundary,
+.fs-consol {
+  border: var(--stroke-1) dashed var(--consol-line);
+  border-radius: var(--card-radius);
+  background: var(--consol-fill);
+  padding: var(--space-2) var(--legacy-pad-3);
+  box-sizing: border-box;
+}
+.entity-parent,
+.box.entity-parent,
+.fs-unconsol,
+.box.fs-unconsol {
+  background: var(--entity-parent-fill);
+  border: var(--stroke-1) solid var(--entity-parent-line);
+  border-radius: var(--card-radius);
+  box-sizing: border-box;
+}
+.entity-sub,
+.box.entity-sub {
+  background: var(--entity-sub-fill);
+  border: var(--stroke-1) solid var(--entity-sub-line);
+  border-radius: var(--card-radius);
+  box-sizing: border-box;
+}
+/* Prefer explicit class on kids; keep .org-kids .box as soft alias above */
+.org-kids .box.entity-sub {
+  background: var(--entity-sub-fill);
+  border-color: var(--entity-sub-line);
+}
+.box.fs-consol,
+.contain-cell.fs-consol {
+  border: var(--stroke-1) dashed var(--consol-line);
+  background: var(--consol-fill);
+}
+.box.fs-unconsol,
+.contain-cell.fs-unconsol {
+  background: var(--entity-parent-fill);
+  border: var(--stroke-1) solid var(--entity-parent-line);
+}
+
+/* Ch4 org plate + FS side-by-side (canon 2026.09.27-6).
+   Structural only — colour from .consol-boundary / .entity-* / .fs-* Build tokens. */
+.org-fs-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(var(--legacy-w-2), 0.75fr);
+  gap: var(--legacy-gap-2); /* Canon 2026.09.27-5 major-object rhythm */
+  align-items: stretch;
+}
+@media (max-width: 720px) {
+  .org-fs-row { grid-template-columns: 1fr; }
+}
+.fs-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--legacy-gap-2);
+  justify-content: center;
+  min-width: 0;
+}
+.consol-boundary .org-chart {
+  max-width: none;
+  margin: 0;
+  gap: var(--legacy-gap-2);
+}
+.consol-boundary .org-parent {
+  text-align: center; /* Johnny plate: Parent label centered over T-stem */
+}
+/* Branch = fork + kids share one width so legs meet each sub top-center */
+.org-branch {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* connector chrome kisses kid tops (same role as .rel-connect stem) */
+  width: 100%;
+  max-width: var(--legacy-w-27);
+  margin-left: auto;
+  margin-right: auto;
+}
+.org-chart > .org-branch {
+  margin-top: var(--legacy-mg-7); /* cancel .org-chart gap so stem meets Parent bottom */
+}
+.org-branch .org-kids {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--legacy-gap-1);
+  justify-content: stretch;
+}
+.org-branch .org-kids .box {
+  flex: unset;
+  max-width: none;
+  width: 100%;
+  text-align: center;
+}
+/* T-junction / branched stems — NEVER single arrow into empty gap between kids */
+.org-fork {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.org-fork-stem {
+  display: block;
+  width: var(--stroke-2);
+  height: var(--space-4);
+  background: var(--entity-parent-line);
+  flex-shrink: 0;
+}
+.org-fork-rail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: var(--legacy-w-28);
+  position: relative;
+}
+.org-fork-rail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: var(--stroke-2);
+  background: var(--entity-parent-line);
+}
+.org-fork-leg {
+  display: block;
+  width: var(--stroke-2);
+  height: 100%;
+  background: var(--entity-parent-line);
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Formula / identity cues */
+.formula-cue {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--legacy-pad-3);
+  border: var(--stroke-1) solid var(--formula);
+  border-radius: var(--rail-bar-l);
+  background: var(--elem-hub-soft);
+  font-size: var(--t-meta);
+  color: var(--ink);
+}
+.formula-cue .eq {
+  font-weight: var(--t1-fw);
+  font-family: var(--font-mono);
+  color: var(--formula);
+  display: block;
+  margin-bottom: var(--stroke-2);
+}
+.formula-cue .eq-note {
+  font-size: var(--cite-size);
+  color: var(--muted);
+}
+
+/* Statement layout schematic */
+.stmt-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-3); /* peer-column rhythm — was 10px */
+}
+@media (max-width: 720px) {
+  .stmt-layout { grid-template-columns: 1fr; }
+}
+.stmt-block {
+  border: var(--stroke-1) solid var(--stmt-block);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: var(--space-3) var(--space-3); /* was 8px 10px — chips/subtotals must not kiss edges */
+  font-size: var(--t-meta);
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* internal rhythm via child margins below */
+}
+.stmt-block .stmt-title {
+  font-size: var(--t-meta);
+  font-weight: var(--t1-fw);
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--rail-bar-l);
+  border-bottom: var(--stroke-1) solid var(--stmt-block);
+  color: var(--stmt-block);
+}
+.stmt-block ul {
+  margin: 0;
+  padding-left: var(--space-4);
+  color: var(--muted);
+}
+.stmt-block li { margin: var(--legacy-mg-9) 0; }
+.stmt-block .subtotal {
+  margin-top: var(--space-2);
+  padding: var(--legacy-pad-13) var(--space-2);
+  background: var(--band);
+  border-radius: var(--space-1);
+  font-weight: var(--t1-fw);
+  font-size: var(--cite-size);
+  color: var(--ink);
+}
+

@@ -1,0 +1,505 @@
+/* ——— Contrast / peer (mirrored from body kit; visuals iframe has no assets link) ———
+   Reuse for A-vs-B plates. Dense = .contrast-pair.dense / .contrast-dense (densifier C). */
+.contrast-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--legacy-gap-1);
+  margin: var(--space-2) 0 var(--space-3);
+  align-items: stretch;
+}
+.contrast-pair > .box {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.contrast-pair .box-title {
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-2);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 var(--rail-bar-l);
+}
+.contrast-pair .box.ok .box-title { color: var(--ok); }
+.contrast-pair .box.warn .box-title { color: var(--warn); }
+.contrast-pair .box-body {
+  font-size: var(--tb-box-title-fs);
+  color: var(--ink);
+  line-height: var(--tb-body-lh);
+  margin: 0;
+  flex: 1;
+}
+.contrast-pair .kit-label {
+  display: block;
+  font-size: var(--t3-fs);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-4);
+  text-transform: uppercase;
+  color: var(--dash);
+  margin-bottom: var(--space-2);
+}
+@media (max-width: 640px) {
+  .contrast-pair { grid-template-columns: 1fr; }
+}
+
+.peer-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--legacy-w-36), 1fr));
+  gap: var(--legacy-gap-1);
+  margin: var(--space-2) 0 var(--space-3);
+  align-items: stretch;
+}
+.peer-row > .box {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.peer-row .box-title {
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-2);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 var(--rail-bar-l);
+}
+.peer-row .box-body {
+  font-size: var(--t-meta);
+  color: var(--ink);
+  line-height: var(--tb-body-lh);
+  margin: 0;
+  flex: 1;
+}
+
+/* Matrix / card-grid (IAS 37-style) — VISUAL-TYPES lock
+   Equal cells · solid peers · dashed = N/A only · optional spectrum cue */
+.matrix {
+  --matrix-cols: 6; /* stub + N bases; override per plate */
+  display: grid;
+  grid-template-columns: minmax(var(--legacy-w-37), 0.9fr) repeat(calc(var(--matrix-cols) - 1), minmax(0, 1fr));
+  gap: var(--rail-bar-l);
+  margin: var(--space-2) 0 var(--legacy-mg-3);
+  align-items: stretch;
+}
+.matrix[data-cols="3"] { --matrix-cols: 3; }
+.matrix[data-cols="4"] { --matrix-cols: 4; }
+.matrix[data-cols="5"] { --matrix-cols: 5; }
+.matrix[data-cols="6"] { --matrix-cols: 6; }
+.matrix-spectrum {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-3);
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: var(--stroke-2) var(--space-1) var(--rail-bar-l);
+}
+.matrix-spectrum .axis {
+  flex: 1;
+  height: 0;
+  border-top: var(--stroke-1) solid var(--line);
+  margin: 0 var(--rail-bar-l);
+}
+.matrix-cell {
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: var(--space-2) var(--legacy-pad-8);
+  font-size: var(--t-meta);
+  line-height: var(--t2-lh);
+  color: var(--ink);
+  min-height: var(--legacy-w-38);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--stroke-2);
+}
+.matrix-cell.head {
+  background: var(--band);
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-6);
+  min-height: 0;
+  justify-content: center;
+}
+.matrix-cell.stub {
+  background: var(--band);
+  font-weight: var(--t1-fw);
+  font-size: var(--cite-size);
+  letter-spacing: var(--legacy-ls-3);
+  text-transform: uppercase;
+  color: var(--muted);
+  justify-content: center;
+}
+.matrix-cell.na {
+  border-style: dashed;
+  background: transparent;
+  color: var(--muted);
+  font-style: italic;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.matrix-cell .mx-kicker {
+  font-size: var(--t3-fs);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-2);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+.matrix-cell .mx-body {
+  margin: 0;
+  font-size: var(--t-meta);
+  color: var(--muted);
+}
+.matrix-note {
+  font-size: var(--t-meta);
+  color: var(--muted);
+  margin: 0 0 var(--space-2);
+}
+@media (max-width: 900px) {
+  .matrix {
+    grid-template-columns: minmax(var(--legacy-w-35), 0.85fr) repeat(calc(var(--matrix-cols) - 1), minmax(var(--legacy-w-34), 1fr));
+    overflow-x: auto;
+  }
+}
+
+/* Same-format catalog (cheat / 図鑑) — matrix variant, not free rail */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--legacy-w-2), 1fr));
+  gap: var(--space-2);
+  margin: var(--space-2) 0 var(--space-3);
+}
+.catalog-grid .box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: var(--legacy-w-39);
+}
+.catalog-grid .cat-tag {
+  font-size: var(--t3-fs);
+  font-weight: var(--legacy-fw-1);
+  letter-spacing: var(--legacy-ls-4);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.catalog-grid .cat-band {
+  font-size: var(--t3-fs);
+  font-weight: var(--t3-arm-fw);
+  letter-spacing: var(--legacy-ls-3);
+  text-transform: uppercase;
+  color: var(--dash);
+}
+.catalog-grid .box-title { margin: 0; font-size: var(--tb-box-title-fs); }
+.catalog-grid .box-body { margin: 0; flex: 1; }
+
+/* Stmt inner classification cues (containment inside schematic blocks) */
+.stmt-block .inner-cue {
+  display: inline-block;
+  margin: 0;
+  padding: var(--space-1) var(--legacy-pad-8);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--legacy-radius-1);
+  background: var(--band);
+  font-size: var(--t3-fs);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-6);
+  color: var(--ink);
+  line-height: var(--t1-lh);
+}
+.stmt-block .inner-cues {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rail-bar-l);
+  margin-top: var(--legacy-mg-3);
+}
+
+/* Hierarchy densify helpers (Ch3) — reuse .contain* */
+.stack .contain {
+  text-align: left;
+}
+.stack .contain > .box-title,
+.stack .contain > .contain-title {
+  text-align: center;
+}
+.stack .contain-grid.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 720px) {
+  .stack .contain-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Concept-map densify: tighter vertical rhythm */
+.concept-map.dense .rel-label {
+  margin: var(--space-1) 0;
+  padding: var(--stroke-2) 0;
+}
+.concept-map.dense .rel-connect {
+  min-height: var(--legacy-w-22); /* was 60 — denser stem still between the two boxes */
+  margin: var(--legacy-mg-7) 0; /* cancel .concept-map gap so stem meets edges */
+}
+.concept-map.dense .rel-connect-stem {
+  min-height: var(--legacy-w-22);
+}
+.concept-map.dense .party-cast {
+  margin-bottom: 0; /* parent gap owns rhythm */
+}
+.concept-map.dense .map-hub-wrap {
+  margin-bottom: 0;
+}
+
+/* ── Densifier trial kit (Johnny unlock 2026-09-27) ──
+   A point-chip · D legend-bar · C contrast dense · B icon-label-cell
+   Hold E IO strip. Night-only tokens; solid borders; dashed rare; no process rails. */
+
+/* A — Point chip（ポイント／注意） — 1-line tip; warn/ok only when label states meaning */
+.point-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rail-bar-l);
+  max-width: 100%;
+  margin: var(--rail-bar-l) 0;
+  padding: var(--space-1) var(--legacy-pad-3);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--legacy-radius-1);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--t-meta);
+  font-weight: var(--t3-arm-fw);
+  line-height: var(--t1-lh);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.point-chip.warn {
+  border-color: var(--warn);
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.point-chip.ok {
+  border-color: var(--ok);
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+/* D — Footer legend bar — omit when nodes are self-labelled */
+.legend-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--legacy-gap-1) var(--legacy-gap-2);
+  margin: var(--legacy-mg-3) 0 0;
+  padding: var(--rail-bar-l) var(--legacy-pad-3);
+  border-top: var(--stroke-1) solid var(--line);
+  background: var(--band);
+  border-radius: 0 0 var(--card-radius, 8px) var(--card-radius, 8px);
+  font-size: var(--cite-size);
+  color: var(--muted);
+  line-height: var(--t1-lh);
+}
+.legend-bar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rail-bar-l);
+}
+.legend-bar-swatch {
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: var(--stroke-2);
+  border: var(--stroke-1) solid var(--line);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.legend-bar-swatch.dashed {
+  border-style: dashed;
+  background: transparent;
+}
+.legend-bar-label {
+  color: var(--muted);
+}
+
+/* C — Dense contrast plate — title chip + ≤3 lines/side */
+.contrast-pair.dense,
+.contrast-dense {
+  gap: var(--rail-bar-l);
+  margin: var(--space-2) 0 var(--space-3);
+}
+.contrast-pair.dense > .box,
+.contrast-dense > .box {
+  padding: var(--space-2) var(--legacy-pad-3);
+}
+.contrast-pair.dense .box-title,
+.contrast-dense .box-title {
+  display: inline-block;
+  margin: 0 0 var(--space-1);
+  padding: var(--stroke-2) var(--space-2);
+  border-radius: var(--legacy-radius-1);
+  background: var(--band);
+  font-size: var(--t3-fs);
+  letter-spacing: var(--legacy-ls-3);
+}
+.contrast-pair.dense .box.ok .box-title,
+.contrast-dense .box.ok .box-title {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+.contrast-pair.dense .box.warn .box-title,
+.contrast-dense .box.warn .box-title {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.contrast-pair.dense .box-body,
+.contrast-dense .box-body {
+  font-size: var(--t-meta);
+  line-height: var(--legacy-lh-1);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.contrast-pair.dense .kit-label,
+.contrast-dense .kit-label {
+  margin-bottom: var(--space-1);
+}
+@media (max-width: 640px) {
+  .contrast-pair.dense,
+  .contrast-dense { grid-template-columns: 1fr; }
+}
+
+/* B — Icon-label cell（ピクト＋短標） — monochrome / single token */
+.icon-label-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--legacy-w-7), 1fr));
+  gap: var(--space-2);
+  margin: var(--space-2) 0 var(--space-3);
+}
+.icon-label-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rail-bar-l);
+  text-align: center;
+  padding: var(--legacy-pad-3) var(--space-2);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius, 8px);
+  background: var(--surface);
+  min-width: var(--legacy-w-8);
+}
+.icon-label-cell .ilc-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--legacy-w-9);
+  height: var(--legacy-w-9);
+  color: var(--ink);
+  opacity: 0.85;
+}
+.icon-label-cell .ilc-icon svg {
+  width: var(--space-5);
+  height: var(--space-5);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+.icon-label-cell .ilc-label {
+  font-size: var(--cite-size);
+  font-weight: var(--t3-arm-fw);
+  color: var(--ink);
+  line-height: var(--t3-tag-lh);
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------
+   Timeline strip (IFRS 18 Ch1 / Ch8) — promote from page-local P1/P2
+   ------------------------------------------------------------------ */
+.tl-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--legacy-gap-1);
+  max-width: var(--legacy-w-17);
+}
+.tl-step {
+  flex: 1 1 var(--legacy-w-40);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: var(--legacy-pad-3) var(--space-3);
+  position: relative;
+}
+.tl-step.tl-hub {
+  border: var(--stroke-2) solid var(--accent);
+  background: var(--accent-soft);
+  flex: 1 1 var(--legacy-w-12);
+}
+.tl-step .tl-when {
+  font-size: var(--cite-size);
+  font-weight: var(--t1-fw);
+  color: var(--accent);
+  margin: 0 0 var(--space-1);
+}
+.tl-step.tl-hub .tl-when {
+  font-size: var(--t-body);
+  letter-spacing: var(--legacy-ls-7);
+}
+.tl-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dash);
+  font-size: var(--t-body);
+  font-weight: var(--t1-fw);
+  flex: 0 0 auto;
+  padding: 0 var(--stroke-2);
+}
+@media (max-width: 640px) {
+  .tl-arrow { display: none; }
+}
+
+/* ------------------------------------------------------------------
+   Bridge row + tiny SCF stack (IFRS 18 Ch7) — promote from page-local
+   ------------------------------------------------------------------ */
+.bridge-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--legacy-gap-1);
+  max-width: var(--legacy-w-17);
+}
+@media (max-width: 720px) {
+  .bridge-row { grid-template-columns: 1fr; }
+}
+.scf-tiny {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: var(--legacy-w-27);
+}
+.scf-tiny .wf-op {
+  text-align: center;
+  font-size: var(--cite-size);
+  color: var(--muted);
+  font-weight: var(--t3-arm-fw);
+}
+
+/* Narrow maps and visuals: the numbered pill sits on its own row and the
+   title uses the full width of the box. Desktop keeps pill and title on one row.
+   The same rule is in type-scale.css for index maps, which do not load this file.
+   A run of pills (visit steps, a chip list, a range) stays on one row.
+   A citation later in the same line stays in the sentence. */
+@media (max-width: 560px) {
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) {
+    display: block;
+  }
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > :is(a.fb-num, span.fb-num, .fb-num-range) {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: var(--rail-bar-l);
+  }
+}

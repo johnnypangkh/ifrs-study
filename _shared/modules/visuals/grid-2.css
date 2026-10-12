@@ -1,0 +1,44 @@
+/* Ch5 sample: formula board + legend on the right (saves vertical space) */
+.visual-with-legend {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--legacy-gap-2);
+  max-width: 100%;
+}
+.visual-with-legend .formula-board,
+.visual-with-legend .concept-map,
+.visual-with-legend .stack,
+.visual-with-legend .flow-col,
+.visual-with-legend .l1-row,
+.visual-with-legend .org-chart,
+.visual-with-legend .grid-2,
+.visual-with-legend .grid-3,
+.visual-with-legend .stmt-layout,
+.visual-with-legend .matrix {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+}
+.visual-with-legend > .visual-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.legend.legend-side {
+  flex: 0 0 var(--legacy-w-29);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0;
+  max-width: var(--legacy-w-29);
+  white-space: normal;
+}
+.legend.legend-side .legend-item {
+  white-space: normal;
+}
+.legend.legend-side .legend-title {
+  margin-right: 0;
+  margin-bottom: var(--stroke-2);
+}
+

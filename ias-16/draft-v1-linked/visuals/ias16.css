@@ -8142,6 +8142,12 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   min-width: 0;
 }
 
+/* Pack-local. tokens-core sets --space-2 to .5rem. The gap above used
+   var(--space-2, 0.45rem), which was 7.2px before tokens-core. */
+.ch01-scope .carve-set {
+  --space-2: var(--space-cell);
+}
+
 .ppe .ch01-scope .see,
 .ppe .ch03-cost .see,
 .ppe .ch04-models .see,

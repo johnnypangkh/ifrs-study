@@ -85,7 +85,11 @@ def main():
             if LINK not in head:
                 print("homepage is missing the Settings link")
                 failed = True
+            # The Settings link is already on main. Strip it on both sides so an
+            # unchanged homepage is not reported as an edit, and a new link on
+            # an older base still compares equal.
             head_n = head_n.replace(LINK, "", 1)
+            base_n = base_n.replace(LINK, "", 1)
         if head_n != base_n:
             print(f"HTML changed outside ?v= and the homepage link: {path}")
             failed = True

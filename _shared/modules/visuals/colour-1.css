@@ -1,0 +1,94 @@
+:root {
+
+  /* Visual teaching type scale: body copy stays readable; meta remains compact chrome. */
+
+  /* Semantic colour tokens (legend meanings) — mapped onto palette above.
+     Decorative colour cut: hub/peer softs are neutral surface; peer border shared. */
+  --role-entity: var(--accent);
+  --role-entity-soft: var(--surface);
+  --role-party: var(--legacy-color-2);
+  --role-party-soft: var(--surface);
+  --elem-hub: var(--ink);              /* hub / primary — stronger border, no wash */
+  --elem-hub-soft: var(--surface);
+  --elem-nest: var(--surface);         /* quiet demotion fill only — NOT dashed=nest */
+  /* Peers share one border token — meaning gate: no rainbow / no pastel blue wash. */
+  --elem-peer: var(--accent);          /* shared peer border (A, L, E) */
+  --elem-peer-soft: var(--surface);    /* neutral fill */
+  --elem-asset: var(--elem-peer);
+  --elem-asset-soft: var(--elem-peer-soft);
+  --elem-liability: var(--elem-peer);
+  --elem-liability-soft: var(--elem-peer-soft);
+  --elem-equity: var(--elem-peer);
+  --elem-equity-soft: var(--elem-peer-soft);
+  --elem-income: var(--legacy-color-2);              /* Income/Expenses name ink inside Equity containment */
+  --elem-income-soft: var(--surface);  /* solid inner cells; no wash */
+  --outcome-yes: var(--ok);
+  --outcome-yes-soft: var(--ok-soft);
+  --outcome-no: var(--danger);
+  --outcome-no-soft: var(--danger-soft);
+  --outcome-doubt: var(--warn);
+  --outcome-doubt-soft: var(--warn-soft);
+  --link-semantic: var(--accent);      /* relation labels (⟷ etc.) */
+  --see-also: var(--see);
+  --see-also-soft: var(--see-soft);
+  --stmt-block: var(--accent);         /* statement-layout title/border cue */
+  --formula: var(--accent);            /* formula-cue emphasis */
+  /* Section chips are stadium pills, never true circles — including short labels (2, 11).
+     --nx-chip-size stays the layout column (operators / indents). Pill min-width > height. */
+  --nx-chip-size: var(--legacy-w-9);
+  --nx-chip-min: var(--legacy-w-15);
+  --nx-chip-height: var(--legacy-w-16);
+  --nx-chip-pad-x: var(--space-2);
+  --nx-chip-border: var(--stroke-1);
+  /* Ch4 consol colour/line (canon 2026.09.27-6) — night-safe aliases only;
+     do not invent a separate day theme. Dashed plate = Consol chrome. */
+  --consol-line: var(--dash);
+  --consol-fill: transparent;
+  --entity-parent-line: var(--accent);
+  --entity-parent-fill: var(--accent-soft);
+  --entity-sub-line: var(--line);
+  --entity-sub-fill: var(--surface);
+  /* Org chart remounts onto entity grammar */
+  --org-parent: var(--entity-parent-line);
+  --org-parent-soft: var(--entity-parent-fill);
+  --org-child: var(--entity-sub-line);
+  --org-child-soft: var(--entity-sub-fill);
+
+  /* IFRS 18 category + MPM — colour-with-meaning (night remaps below; no day-theme invent).
+     Teaching cue per token (one line): */
+              /* Operating — main business income/expenses */
+              /* Investing — returns from assets that generate returns largely independently */
+              /* Financing — financing liabilities / specified equity claims */
+                    /* Income taxes — tax category band */
+           /* Discontinued operations — presented apart from continuing */
+              /* IFRS subtotal — required or specified by IFRS 18 */
+                        /* MPM — management-defined performance measure; reconcile to IFRS */
+
+  /* Citation chips — source class */
+}
+
+/* Night mode — chrome/surfaces/ink only; semantic hues preserved */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --role-party: var(--legacy-color-3);
+    --role-party-soft: var(--surface);
+    --elem-income: var(--legacy-color-3);
+    --outcome-yes: var(--ok);
+    --outcome-yes-soft: var(--ok-soft);
+    --outcome-no: var(--danger);
+    --outcome-no-soft: var(--danger-soft);
+    --outcome-doubt: var(--warn);
+    --outcome-doubt-soft: var(--warn-soft);
+  }
+}
+:root[data-theme="dark"] {
+  --role-party: var(--legacy-color-3);
+  --role-party-soft: var(--surface);
+  --elem-income: var(--legacy-color-3);
+  --outcome-yes: var(--ok);
+  --outcome-yes-soft: var(--ok-soft);
+  --outcome-no: var(--danger);
+  --outcome-no-soft: var(--danger-soft);
+  --outcome-doubt: var(--warn);
+  --outcome-doubt-soft: var(--warn-soft);
+}

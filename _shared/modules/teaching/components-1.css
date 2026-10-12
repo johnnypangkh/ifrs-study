@@ -1,0 +1,52 @@
+/* Flow / spine */
+.flow-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  max-width: var(--legacy-w-1);
+}
+
+.flow-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--legacy-gap-1);
+  align-items: stretch;
+}
+
+.flow-row > .box { flex: 1 1 var(--legacy-w-2); }
+
+.arrow-down {
+  text-align: center;
+  color: var(--accent);
+  font-size: var(--t-plate);
+  font-weight: var(--t1-fw);
+  line-height: var(--t0-lh);
+  padding: var(--stroke-2) 0;
+  letter-spacing: var(--legacy-ls-2);
+}
+
+.arrow-down.muted { color: var(--dash); font-size: var(--tb-box-title-fs); font-weight: var(--t3-arm-fw); }
+
+.arrow-label {
+  display: block;
+  font-size: var(--cite-size);
+  font-weight: var(--t3-arm-fw);
+  color: var(--muted);
+  letter-spacing: 0;
+}
+
+.peer-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--legacy-gap-1);
+}
+
+@media (max-width: 640px) {
+  .peer-pair { grid-template-columns: 1fr; }
+
+}
+.peer-pair .box { text-align: center; }
+
+
+

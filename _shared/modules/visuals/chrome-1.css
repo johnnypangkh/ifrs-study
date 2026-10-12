@@ -1,0 +1,52 @@
+/* Embedded iframe visuals — no 100vh page (was forcing scroll inside short iframes) */
+body.embed {
+  min-height: 0;
+  height: auto;
+  overflow: visible; /* parent iframe auto-fits; never silently clip teaching content */
+  background: transparent;
+}
+body.embed .page {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0; /* no gutter that reads as a second plate inside parent fieldset */
+}
+
+/* Embed: parent fieldset.visual-fieldset is the ONLY full-bleed Concept Map outer box.
+   Neutralize .visual-shell if class reappears; Ch5 .formula-board outer must not read as a second plate.
+   Keep peer cards (.fb-term / .contain-cell) bordered. */
+body.embed .visual-shell {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  position: static;
+}
+body.embed .formula-board {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  max-width: none;
+  padding: var(--space-1) var(--stroke-2) var(--rail-bar-l);
+}
+body.embed .section {
+  margin: 0;
+}
+/* Restore air between stacked teaching sections inside one iframe (Ch8 Aggregation ↔ 8.5 panels) */
+body.embed .section + .section {
+  margin-top: var(--legacy-mg-6);
+}
+body.embed .visual-with-legend {
+  width: 100%;
+  align-items: flex-start;
+  gap: var(--legacy-gap-1);
+}
+body.embed .visual-with-legend .formula-board {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: none;
+  padding: var(--legacy-pad-3) var(--space-3) var(--space-3);
+}
+
