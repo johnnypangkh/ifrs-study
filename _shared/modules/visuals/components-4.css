@@ -1,0 +1,228 @@
+/* Line styles lock: solid = peer / containment cells; dashed = see-also bridges (+ matrix N/A) only.
+   NEVER dashed = nested / under / hierarchy. Composition → .contain*.
+   Ch5: A/L/E peers + Equity outer + Income/Expenses inner = solid; UoA tip = dashed see-also; ops = no box. */
+.legend.legend-side {
+  border: none;
+  background: transparent;
+  padding: var(--stroke-2) 0 var(--stroke-2) var(--space-1);
+}
+
+@media (max-width: 720px) {
+  .visual-with-legend { flex-direction: column; }
+  .legend.legend-side {
+    flex: 1 1 auto;
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* Legend helpers — colour/icon/line key beside visuals */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--legacy-gap-2);
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2) var(--legacy-pad-3);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  font-size: var(--cite-size);
+  color: var(--muted);
+  max-width: var(--legacy-w-17);
+}
+.legend-title {
+  font-size: var(--t3-fs);
+  font-weight: var(--t1-fw);
+  letter-spacing: var(--legacy-ls-1);
+  text-transform: uppercase;
+  color: var(--dash);
+  margin-right: var(--space-1);
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--legacy-gap-3);
+  white-space: nowrap;
+}
+.legend-swatch {
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: var(--legacy-radius-3);
+  border: var(--stroke-1) solid var(--line);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.legend-swatch.hub {
+  background: var(--elem-hub-soft);
+  border-color: var(--elem-hub);
+}
+.legend-swatch.peer {
+  background: var(--elem-peer-soft);
+  border-color: var(--elem-peer);
+}
+/* Containment outer (solid) — replaces old dashed=nest legend cue */
+.legend-swatch.nest,
+.legend-swatch.contain {
+  background: var(--surface);
+  border-style: solid;
+  border-color: var(--line);
+  border-width: var(--stroke-2);
+}
+.legend-swatch.yes {
+  background: var(--outcome-yes-soft);
+  border-color: var(--outcome-yes);
+}
+.legend-swatch.no {
+  background: var(--outcome-no-soft);
+  border-color: var(--outcome-no);
+}
+.legend-swatch.doubt {
+  background: var(--outcome-doubt-soft);
+  border-color: var(--outcome-doubt);
+}
+.legend-swatch.see {
+  background: var(--see-also-soft);
+  border: var(--stroke-1) dashed var(--see-also);
+}
+.legend-swatch.party {
+  background: var(--role-party-soft);
+  border: var(--stroke-1) solid var(--role-party);
+}
+.legend-swatch.parent {
+  background: var(--org-parent-soft);
+  border-color: var(--org-parent);
+}
+.legend-swatch.child {
+  background: var(--org-child-soft);
+  border-color: var(--org-child);
+}
+.legend-swatch.consol {
+  background: var(--consol-fill);
+  border: var(--stroke-1) dashed var(--consol-line);
+}
+.legend-swatch.entity-parent,
+.legend-swatch.unconsol {
+  background: var(--entity-parent-fill);
+  border-color: var(--entity-parent-line);
+}
+.legend-swatch.entity-sub {
+  background: var(--entity-sub-fill);
+  border-color: var(--entity-sub-line);
+}
+
+.legend-swatch.cat-operating {
+  background: var(--cat-operating-soft);
+  border-color: var(--cat-operating);
+}
+.legend-swatch.cat-investing {
+  background: var(--cat-investing-soft);
+  border-color: var(--cat-investing);
+}
+.legend-swatch.cat-financing {
+  background: var(--cat-financing-soft);
+  border-color: var(--cat-financing);
+}
+.legend-swatch.cat-tax {
+  background: var(--cat-tax-soft);
+  border-color: var(--cat-tax);
+}
+.legend-swatch.cat-discontinued {
+  background: var(--cat-discontinued-soft);
+  border-color: var(--cat-discontinued);
+}
+.legend-swatch.ifrs-subtotal {
+  background: var(--ifrs-subtotal-soft);
+  border-color: var(--ifrs-subtotal);
+}
+.legend-swatch.mpm {
+  background: var(--mpm-soft);
+  border-color: var(--mpm);
+}
+
+.legend-swatch.formula {
+  background: var(--elem-hub-soft);
+  border: var(--stroke-1) solid var(--formula);
+}
+.legend-swatch.stmt {
+  background: var(--surface);
+  border-color: var(--stmt-block);
+}
+.legend-swatch.dashed {
+  background: transparent;
+  border: var(--border-na);
+}
+.legend-icon {
+  font-size: var(--t-body);
+  line-height: var(--mchip-lh);
+  width: var(--legacy-w-30);
+  text-align: center;
+  flex-shrink: 0;
+}
+.legend-mark {
+  font-weight: var(--t1-fw);
+  color: var(--link-semantic);
+  font-size: var(--t-meta);
+  line-height: var(--mchip-lh);
+}
+/* Mini connector swatches for legends (match .rel-connect kinds) */
+.legend-connect {
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.legend-connect.both,
+.legend-connect.down {
+  width: var(--legacy-w-10);
+  height: var(--space-4);
+}
+.legend-connect.both {
+  background:
+    linear-gradient(var(--link-semantic), var(--link-semantic)) center / var(--stroke-2) 100% no-repeat;
+}
+.legend-connect.both::before,
+.legend-connect.both::after,
+.legend-connect.down::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: var(--space-1) solid transparent;
+  border-right: var(--space-1) solid transparent;
+}
+.legend-connect.both::before {
+  top: var(--legacy-w-20);
+  border-bottom: var(--legacy-border-2) solid var(--link-semantic);
+}
+.legend-connect.both::after,
+.legend-connect.down::after {
+  bottom: var(--legacy-w-20);
+  border-top: var(--legacy-border-2) solid var(--link-semantic);
+}
+.legend-connect.down {
+  background:
+    linear-gradient(var(--link-semantic), var(--link-semantic)) center top / var(--stroke-2) calc(100% - var(--space-1)) no-repeat;
+}
+.legend-connect.h {
+  width: var(--legacy-w-28);
+  height: var(--legacy-w-10);
+  background:
+    linear-gradient(var(--link-semantic), var(--link-semantic)) left center / calc(100% - var(--legacy-color-4)) var(--stroke-2) no-repeat;
+}
+.legend-connect.h::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: var(--space-1) solid transparent;
+  border-bottom: var(--space-1) solid transparent;
+  border-left: var(--legacy-border-2) solid var(--link-semantic);
+}
+
+

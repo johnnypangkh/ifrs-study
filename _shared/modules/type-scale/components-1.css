@@ -1,0 +1,10 @@
+
+/* Fork wrappers exist so a narrow screen can keep a side branch attached to
+   its question. On the desktop grid they generate no box, and the inner
+   question, arm, outcome, and continuation stay in DOM order. */
+.decision-fork,
+.decision-after,
+.decision-branch {
+  display: contents;
+}
+

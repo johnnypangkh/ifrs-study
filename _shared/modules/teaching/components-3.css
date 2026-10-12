@@ -1,0 +1,91 @@
+/* --- formula row. Identical in IAS 2 and IFRS 18 assets/body-sum.css.
+   CF 2018 chapter 5 repeats this block in the page head. --- */
+/* Body identity row — same grammar as the Concept Map sum.
+   Bordered terms, unboxed operators centred on the midline, result last.
+   Not a single text string and not a highlight bar. */
+
+article.teaching .cost-sum {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--legacy-gap-1) var(--space-2);
+  margin: var(--legacy-mg-3) 0 var(--space-3);
+}
+
+article.teaching .cost-sum-term {
+  flex: 1 1 var(--legacy-w-2);
+  min-width: 0;
+  margin: 0;
+  border: var(--stroke-1) solid var(--line, #3a4250);
+  border-radius: var(--card-radius, 8px);
+  background: var(--surface, #1c2128);
+  color: var(--ink, #e8eaed);
+  padding: var(--space-2) var(--legacy-pad-3);
+  font-weight: var(--t1-fw);
+  font-size: var(--t-body);
+  line-height: var(--legacy-lh-1);
+}
+
+article.teaching .cost-sum-op {
+  flex: 0 0 auto;
+  align-self: center;
+  color: var(--formula, var(--accent, #7ba3c9));
+  font-size: var(--t-head);
+  font-weight: var(--legacy-fw-1);
+  line-height: var(--mchip-lh);
+}
+
+article.teaching .cost-sum-result {
+  border-width: var(--stroke-2);
+  border-color: var(--ink, #e8eaed);
+}
+
+@media (max-width: 720px) {
+  article.teaching .cost-sum {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  article.teaching .cost-sum-op {
+    align-self: center;
+  }
+}
+
+/* A teaching pitfall is a full sentence. It wraps inside the bar at every
+   width, and the bar grows with that text. The one-line clamp on .point-chip
+   stays for concept-map chips, which are not inside .teaching. */
+.teaching .point-chip {
+  display: block;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: break-word;
+  border-radius: var(--card-radius, 8px);
+  line-height: var(--tb-body-lh);
+}
+
+/* Abbreviations. No shared abbreviations-table class exists. Every
+   pack page is body[data-page="abbreviations"] and every table is
+   table.vis-table, so this one rule sets the same column widths.
+   Chapter vis-tables are outside this page. */
+body[data-page="abbreviations"] {
+  --abbr-full: 70%;
+  --abbr-short: 30%;
+}
+
+body[data-page="abbreviations"] table.vis-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+body[data-page="abbreviations"] table.vis-table :is(th, td):first-child {
+  width: var(--abbr-full);
+}
+
+body[data-page="abbreviations"] table.vis-table :is(th, td):last-child {
+  width: var(--abbr-short);
+  overflow-wrap: normal;
+  word-break: normal;
+}

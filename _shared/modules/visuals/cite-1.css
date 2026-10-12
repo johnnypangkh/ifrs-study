@@ -1,0 +1,51 @@
+/* ——— Citation chips (Johnny lock 2026-09-27) ———
+   Rounded pills; colour = source class. Official CF/IFRS (§ · SP · BC)
+   vs Big 4 house. Chip + optional one-line extract — no long-quote UI. */
+.cite {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  vertical-align: middle;
+  margin: 0 var(--stroke-2);
+  padding: var(--stroke-1) var(--space-2);
+  border-radius: var(--rail-bar-l);
+  border: var(--stroke-1) solid var(--legacy-color-6);
+  font-family: var(--cite-font);
+  font-size: var(--cite-size);
+  font-weight: var(--cite-weight);
+  letter-spacing: var(--legacy-ls-5);
+  line-height: var(--tb-body-lh);
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--cite-official);
+  background: var(--cite-official-soft);
+}
+.cite .cite-house {
+  font-family: inherit;
+  font-size: var(--cite-size);
+  font-weight: var(--cite-weight);
+  letter-spacing: var(--legacy-ls-4);
+  text-transform: uppercase;
+  opacity: .9;
+}
+.cite-official { color: var(--cite-official); background: var(--cite-official-soft); border-color: var(--legacy-color-6); }
+.cite-pwc { color: var(--cite-pwc); background: var(--cite-pwc-soft); border-color: var(--legacy-color-7); }
+.cite-dtt { color: var(--cite-dtt); background: var(--cite-dtt-soft); border-color: var(--legacy-color-8); }
+.cite-kpmg { color: var(--cite-kpmg); background: var(--cite-kpmg-soft); border-color: var(--legacy-color-9); }
+.cite-ey { color: var(--cite-ey); background: var(--cite-ey-soft); border-color: var(--legacy-color-10); }
+.cite-extract {
+  display: inline;
+  font-size: var(--t-meta);
+  font-weight: var(--legacy-fw-2);
+  font-style: italic;
+  color: var(--muted);
+  margin-left: var(--stroke-2);
+}
+.cite-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rail-bar-l);
+  align-items: center;
+  margin: var(--rail-bar-l) 0;
+}
+

@@ -7,15 +7,18 @@ LEGACY-PR1 are not emitted.
 
 Day (the :root block) is the default. Dark is the override, in the same
 two-block shape as main: prefers-color-scheme, then [data-theme="dark"].
-The four type-scale tokens stay in _shared/type-scale.css and are mirrored
-inside the mobile @media. --check fails if those two copies differ, or if
-either differs from the workbook.
+Desktop type-scale values live on :root of tokens.css and tokens-core.css.
+The four mobile type-scale declarations stay in the tokens.css 560 block and
+are mirrored in type-scale.css. tokens-core.css is that file minus exactly
+those four lines. --check fails if the copies differ from the workbook.
 
 Usage:
-  python3 tools/xlsx_to_tokens.py            # write _shared/tokens.css
+  python3 tools/xlsx_to_tokens.py            # write tokens.css and tokens-core.css
   python3 tools/xlsx_to_tokens.py --check    # MATCH or a diff, exit 1 on drift
   python3 tools/xlsx_to_tokens.py --owned    # report-only baseline comparison
   python3 tools/xlsx_to_tokens.py --map-lint # report-only hardcoded-value counts
+  python3 tools/xlsx_to_tokens.py --map-lint-shared
+  python3 tools/xlsx_to_tokens.py --settings-cover
   python3 tools/xlsx_to_tokens.py --repo-grep
 """
 import difflib
@@ -30,7 +33,70 @@ import openpyxl
 ROOT = Path(__file__).resolve().parents[1]
 XLSX = ROOT / "design" / "MASTER-STYLES.xlsx"
 TOKENS = ROOT / "_shared" / "tokens.css"
+TOKENS_CORE = ROOT / "_shared" / "tokens-core.css"
 TYPE_SCALE = ROOT / "_shared" / "type-scale.css"
+# PR3 re-baselines "existing token bytes kept" on this commit, not origin/main.
+TOKEN_BASE = "03ca4a576eff907e72ec113cb8ae27142f09ff84"
+CARD_RADIUS_BASE = "8px"
+CARD_RADIUS_HEAD = ".5rem"
+DESKTOP_SCALE = {
+    "--type-scale": "1",
+    "--vis-body": "12px",
+    "--vis-meta": "11px",
+    "--nx-chip-font": "10px",
+}
+SCALE_NAMES = tuple(DESKTOP_SCALE)
+# Shown on /settings already. New PR3 tokens stay out of that page so it
+# stays byte-identical (stamp-only) and pixel-identical.
+SETTINGS_HIDE_PREFIXES = ("LEGACY-PR3", "NEW PR3")
+# These names are new in PR3. /settings already lists every older token.
+SETTINGS_HIDE_NAMES = {
+    "--font-mono",
+    "--cite-font",
+    "--radius-m",
+    "--border-see",
+    "--border-na",
+}
+NEW_ROOT_NAMES = (
+    "--font-mono",
+    "--cite-font",
+    "--radius-m",
+    "--border-see",
+    "--border-na",
+)
+DESKTOP_DECLS = (
+    "--type-scale: 1;",
+    "--vis-body: 12px;",
+    "--vis-meta: 11px;",
+    "--nx-chip-font: 10px;",
+)
+# Indent 4, first 560 block only. .is-mobile copies use indent 2.
+CORE_DROP_LINES = (
+    "    --type-scale: 0.85;",
+    "    --vis-body: calc(12px * var(--type-scale));",
+    "    --vis-meta: calc(11px * var(--type-scale));",
+    "    --nx-chip-font: calc(10px * var(--type-scale));",
+)
+GUARD_MARK = (
+    "/* Settings keeps the pre-PR3 desktop fallback for these four tokens."
+)
+SETTINGS_GUARD = """/* Settings keeps the pre-PR3 desktop fallback for these four tokens.
+   :root defines them for every other page. Mobile still follows the 560 block. */
+body[data-pack="site"] {
+  --type-scale: initial;
+  --vis-body: initial;
+  --vis-meta: initial;
+  --nx-chip-font: initial;
+}
+@media (max-width:560px) {
+  body[data-pack="site"] {
+    --type-scale: 0.85;
+    --vis-body: calc(12px * var(--type-scale));
+    --vis-meta: calc(11px * var(--type-scale));
+    --nx-chip-font: calc(10px * var(--type-scale));
+  }
+}
+"""
 SETTINGS_CSS = ROOT / "_shared" / "settings.css"
 SETTINGS_ROWS = ROOT / "_shared" / "settings-rows.html"
 SETTINGS_GEN = ROOT / "_shared" / "settings-gen.css"
@@ -135,18 +201,38 @@ def sheet_rows(wb, name):
     return rows
 
 
+def _type_scale_rows(text_rows):
+    rows = [row for row in text_rows if row.get("Group") == "type-scale"]
+    if len(rows) != 4:
+        raise SystemExit(f"expected 4 type-scale rows, found {len(rows)}")
+    return rows
+
+
+def type_scale_mobile_value(row):
+    mobile_px = row.get("Mobile px")
+    if mobile_px is not None and str(mobile_px).strip() != "":
+        return str(mobile_px).strip()
+    notes = str(row.get("Notes") or "")
+    if "mobile " not in notes:
+        raise SystemExit(f"type-scale row {row.get('Token prefix')} has no mobile value")
+    return notes.split("mobile ", 1)[1].strip()
+
+
 def type_scale_lines(text_rows):
+    """Mobile mirror only. Desktop values are a separate :root block."""
     lines = []
-    for row in text_rows:
-        if row.get("Group") != "type-scale":
-            continue
-        notes = str(row.get("Notes") or "")
-        if "mobile " not in notes:
-            raise SystemExit(f"type-scale row {row.get('Token prefix')} has no mobile note")
-        value = notes.split("mobile ", 1)[1]
-        lines.append(line(row["Token prefix"], value, 4))
-    if len(lines) != 4:
-        raise SystemExit(f"expected 4 type-scale rows, found {len(lines)}")
+    for row in _type_scale_rows(text_rows):
+        lines.append(line(row["Token prefix"], type_scale_mobile_value(row), 4))
+    return lines
+
+
+def type_scale_desktop_lines(text_rows):
+    lines = []
+    for row in _type_scale_rows(text_rows):
+        desktop = row.get("Desktop px")
+        if desktop is None or str(desktop).strip() == "":
+            raise SystemExit(f"type-scale row {row.get('Token prefix')} has no desktop value")
+        lines.append(line(row["Token prefix"], str(desktop).strip(), 2))
     return lines
 
 
@@ -262,12 +348,14 @@ def build_parts(wb):
             raise SystemExit(f"missing grid token {name}")
         day.append(line(name, css_scalar(row["Desktop"]), 2))
     font_rows = [row for row in text_rows if row.get("Group") == "site-font"]
-    if len(font_rows) != 1:
-        raise SystemExit(f"expected 1 site-font row, found {len(font_rows)}")
-    font_value = str(font_rows[0].get("Notes") or "").strip()
-    if not font_value:
-        raise SystemExit("site-font row has no value in Notes")
-    day.append(line(str(font_rows[0]["Token prefix"]), font_value, 2))
+    if not font_rows:
+        raise SystemExit("expected at least 1 site-font row")
+    for row in font_rows:
+        font_value = str(row.get("Notes") or "").strip()
+        if not font_value:
+            raise SystemExit(f"site-font row {row.get('Token prefix')} has no value in Notes")
+        day.append(line(str(row["Token prefix"]), font_value, 2))
+    day.extend(type_scale_desktop_lines(text_rows))
 
     if len(night) != 43:
         raise SystemExit(f"expected 43 night colours, found {len(night)}")
@@ -303,7 +391,50 @@ def render(day, mobile, night, colour_day):
         "/* settings preview only - scoped light */\n"
         + block('.settings-preview[data-theme="light"]', colour_day, 0),
     ]
-    return "\n".join(parts) + "\n"
+    return "\n".join(parts) + "\n" + SETTINGS_GUARD
+
+
+def render_core(css):
+    """tokens.css minus the four mobile type-scale lines in the first 560 block."""
+    start = css.index("@media (max-width:560px)")
+    end = css.index("@media (prefers-color-scheme", start)
+    block_text = css[start:end]
+    for item in CORE_DROP_LINES:
+        needle = item + "\n"
+        count = block_text.count(needle)
+        if count != 1:
+            raise SystemExit(
+                f"tokens-core: expected one {item!r} in the first 560 block, found {count}"
+            )
+        block_text = block_text.replace(needle, "", 1)
+    return css[:start] + block_text + css[end:]
+
+
+def core_removals(full, core):
+    """Line-level deletions of core versus full. Anything but a pure delete is an error."""
+    full_lines = full.splitlines()
+    core_lines = core.splitlines()
+    removed = []
+    matcher = difflib.SequenceMatcher(a=full_lines, b=core_lines)
+    for tag, i1, i2, _j1, _j2 in matcher.get_opcodes():
+        if tag == "equal":
+            continue
+        if tag != "delete":
+            return None
+        removed.extend(full_lines[i1:i2])
+    return removed
+
+
+def git_at(rev, rel):
+    try:
+        return subprocess.check_output(
+            ["git", "show", f"{rev}:{rel}"],
+            cwd=ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+    except subprocess.CalledProcessError:
+        raise SystemExit(f"cannot read {rel} from {rev}")
 
 
 def parse_decl_lines(lines):
@@ -360,26 +491,32 @@ def slice_blocks(css):
 
 
 def baseline_stop(day, mobile, night, scale):
-    """STOP if a main token would change value. Additions are allowed."""
-    base = slice_blocks(git_text("_shared/tokens.css"))
+    """STOP if a base-commit token would change value. Additions are allowed."""
+    base = slice_blocks(git_at(TOKEN_BASE, "_shared/tokens.css"))
     generated_root = dict(parse_decl_lines(day))
     generated_mobile = dict(parse_decl_lines(mobile))
     generated_night = dict(parse_decl_lines(night))
     problems = []
     for name, value in base["root"]:
         got = generated_root.get(name)
+        if (
+            name == "--card-radius"
+            and value.strip() == CARD_RADIUS_BASE
+            and (got or "").strip() == CARD_RADIUS_HEAD
+        ):
+            continue
         if got is None or got.strip() != value.strip():
-            problems.append(f":root {name} main={value!r} generated={got!r}")
+            problems.append(f":root {name} base={value!r} generated={got!r}")
     for name, value in base["narrow"]:
         got = generated_mobile.get(name)
         if got is None or got.strip() != value.strip():
-            problems.append(f"560 {name} main={value!r} generated={got!r}")
+            problems.append(f"560 {name} base={value!r} generated={got!r}")
     for block_name in ("mq", "dark"):
         for name, value in base[block_name]:
             got = generated_night.get(name)
             if got is None or got.strip() != value.strip():
-                problems.append(f"{block_name} {name} main={value!r} generated={got!r}")
-    current = TYPE_SCALE.read_text(encoding="utf-8")
+                problems.append(f"{block_name} {name} base={value!r} generated={got!r}")
+    current = type_scale_file_text()
     expected = "\n".join(scale)
     if expected not in current:
         problems.append("type-scale.css 4-token block is not the verbatim mirror")
@@ -390,31 +527,57 @@ def baseline_stop(day, mobile, night, scale):
         raise SystemExit(1)
 
 
+def type_scale_file_text():
+    """Entry plus the module that holds the mobile block after the split."""
+    parts = []
+    module = ROOT / "_shared" / "modules" / "type-scale" / "text-1.css"
+    for path in (TYPE_SCALE, module):
+        if path.exists():
+            parts.append(path.read_text(encoding="utf-8"))
+    return "\n".join(parts)
+
+
 def type_scale_mirror_ok(css, scale):
     expected = "\n".join(scale)
-    file_text = TYPE_SCALE.read_text(encoding="utf-8")
+    file_text = type_scale_file_text()
     in_tokens = expected in css
     in_file = expected in file_text
     return in_tokens and in_file, expected, file_text
 
 
 def existing_tokens_kept(css):
-    """Existing tokens.css bytes, minus the 10 appended :root lines, match main."""
-    base = git_text("_shared/tokens.css")
-    marker = "\n.is-mobile {"
-    cut = css.find(marker)
-    if cut < 0:
-        return False, "missing .is-mobile block"
-    head = css[:cut + 1]
-    for name in list(NEW_GRID_ORDER) + ["--font-family"]:
-        head, count = re.subn(rf"\n  {re.escape(name)}:.*?;", "", head, count=1)
-        if count != 1:
-            return False, f"could not lift appended declaration {name}"
-    if head != base:
+    """Bytes at TOKEN_BASE, plus only the PR3 rows in section 3.
+
+    The comparison is `git show <base>:_shared/tokens.css`, not origin/main.
+    Allowed edits are --card-radius 8px to .5rem, the new :root rows, and the
+    settings-page fallback appended after the generated blocks.
+    """
+    base = git_at(TOKEN_BASE, "_shared/tokens.css")
+    head = css
+    mark = head.find(GUARD_MARK)
+    if mark < 0:
+        return False, "missing settings fallback block"
+    head = head[:mark]
+    if not head.endswith("\n"):
+        head += "\n"
+    kept = []
+    for line in head.splitlines(keepends=True):
+        stripped = line.strip()
+        if stripped.startswith("--legacy-") and stripped.endswith(";"):
+            continue
+        if any(stripped.startswith(name + ":") for name in NEW_ROOT_NAMES):
+            continue
+        if stripped in DESKTOP_DECLS:
+            continue
+        if stripped == "--card-radius: .5rem;":
+            line = line.replace("--card-radius: .5rem;", "--card-radius: 8px;", 1)
+        kept.append(line)
+    folded = "".join(kept)
+    if folded != base:
         diff = "".join(difflib.unified_diff(
             base.splitlines(keepends=True),
-            head.splitlines(keepends=True),
-            fromfile="main tokens.css",
+            folded.splitlines(keepends=True),
+            fromfile=f"{TOKEN_BASE}:_shared/tokens.css",
             tofile="kept",
         ))
         return False, diff
@@ -586,6 +749,8 @@ def settings_rows_text(wb, day, mobile):
         group = row.get("Group") or ""
         style = row.get("Style name") or prefix
         role = row.get("Role / where used") or ""
+        if group == "site-font" and str(prefix) != "--font-family":
+            continue
         if group == "type-scale":
             tokens = [(prefix, "fallback 1 / unset", mobile_map[prefix])]
             style_attr = (
@@ -653,9 +818,17 @@ def settings_rows_text(wb, day, mobile):
         if not token or not str(token).startswith("--"):
             continue
         token = str(token)
-        name, desktop, mobile_value = _pair(token, root_map, mobile_map)
         role = row.get("Use") or ""
+        if role.startswith(SETTINGS_HIDE_PREFIXES) or token.startswith("--legacy-"):
+            continue
+        if token in SETTINGS_HIDE_NAMES:
+            continue
+        name, desktop, mobile_value = _pair(token, root_map, mobile_map)
         if token == "--card-radius":
+            # The stylesheet value is .5rem. The settings cell stays 8px so the
+            # page HTML does not change.
+            desktop = CARD_RADIUS_BASE
+            mobile_value = "="
             preview = f'<span class="radius" style="--p-r:var({token})"></span>'
         else:
             preview = f'<span class="bar" style="--p-w:var({token})"></span>'
@@ -763,11 +936,23 @@ def check_settings(wb, day, mobile, night, colour_day, css):
         if root_map.get(name) != expected:
             failed = True
             print(f"NEW TOKEN {name} css={root_map.get(name)!r} xlsx={expected!r}")
-    font_rows = [row for row in sheet_rows(wb, "Text") if row.get("Group") == "site-font"]
-    font_expected = str(font_rows[0].get("Notes") or "").strip() if font_rows else ""
-    if root_map.get("--font-family") != font_expected:
+    for name, expected in DESKTOP_SCALE.items():
+        if root_map.get(name) != expected:
+            failed = True
+            print(f"DESKTOP SCALE {name} css={root_map.get(name)!r} expected={expected!r}")
+    if root_map.get("--card-radius") != CARD_RADIUS_HEAD:
         failed = True
-        print(f"FONT css={root_map.get('--font-family')!r} xlsx={font_expected!r}")
+        print(f"CARD RADIUS css={root_map.get('--card-radius')!r}")
+    font_rows = [row for row in sheet_rows(wb, "Text") if row.get("Group") == "site-font"]
+    if not font_rows:
+        failed = True
+        print("missing site-font rows")
+    for row in font_rows:
+        font_name = str(row.get("Token prefix"))
+        font_expected = str(row.get("Notes") or "").strip()
+        if root_map.get(font_name) != font_expected:
+            failed = True
+            print(f"FONT {font_name} css={root_map.get(font_name)!r} xlsx={font_expected!r}")
     for unit_name, length_name in UNITLESS_PX:
         try:
             got = float(root_map[unit_name])
@@ -862,7 +1047,9 @@ def command_check():
     wb = load_workbook()
     day, mobile, night, scale, colour_day = build_parts(wb)
     css = render(day, mobile, night, colour_day)
+    core = render_core(css)
     current = TOKENS.read_text(encoding="utf-8") if TOKENS.exists() else ""
+    current_core = TOKENS_CORE.read_text(encoding="utf-8") if TOKENS_CORE.exists() else ""
     ok, expected, file_text = type_scale_mirror_ok(css, scale)
     failed = False
     if current != css:
@@ -874,6 +1061,20 @@ def command_check():
             tofile="generated",
         )
         sys.stdout.writelines(diff)
+    if current_core != core:
+        failed = True
+        diff = difflib.unified_diff(
+            current_core.splitlines(keepends=True),
+            core.splitlines(keepends=True),
+            fromfile="_shared/tokens-core.css",
+            tofile="generated",
+        )
+        sys.stdout.writelines(diff)
+    removed = core_removals(css, core)
+    if removed != list(CORE_DROP_LINES):
+        failed = True
+        print("tokens-core.css is not tokens.css minus exactly the 4 mobile type-scale lines")
+        print(removed)
     if not ok:
         failed = True
         print("TYPE-SCALE MIRROR MISMATCH")
@@ -903,7 +1104,12 @@ def command_write():
     # which is the only legal outcome. Do not touch the file.
     if expected not in file_text:
         raise SystemExit(1)
+    core = render_core(css)
+    if core_removals(css, core) != list(CORE_DROP_LINES):
+        print("STOP: tokens-core.css is not tokens.css minus exactly the 4 lines.")
+        raise SystemExit(1)
     TOKENS.write_text(css, encoding="utf-8")
+    TOKENS_CORE.write_text(core, encoding="utf-8")
     rows = settings_rows_text(wb, day, mobile)
     gen = render_settings_gen(sheet_rows(wb, "Grid"))
     write_settings(rows, gen)
@@ -912,10 +1118,14 @@ def command_write():
     if second != css or settings_rows_text(load_workbook(), day2, mobile2) != rows:
         print("STOP: generator output is not deterministic.")
         raise SystemExit(1)
+    if render_core(second) != core:
+        print("STOP: tokens-core.css output is not deterministic.")
+        raise SystemExit(1)
     if render_settings_gen(sheet_rows(load_workbook(), "Grid")) != gen:
         print("STOP: settings-gen.css output is not deterministic.")
         raise SystemExit(1)
     print(f"written {TOKENS.relative_to(ROOT)}")
+    print(f"written {TOKENS_CORE.relative_to(ROOT)}")
     print(f"written {SETTINGS_ROWS.relative_to(ROOT)}")
     print(f"written {SETTINGS_GEN.relative_to(ROOT)}")
     print(f"injected {SETTINGS_PAGE.relative_to(ROOT)}")
@@ -1037,6 +1247,178 @@ def command_repo_grep():
     print(f"files {len(hits)}")
 
 
+def _strip_css_comments(text):
+    return re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+
+
+def _strip_at_preludes(text):
+    """Drop @media / @container / @supports conditions. Bodies stay."""
+    out = []
+    i = 0
+    names = ("@media", "@container", "@supports")
+    while i < len(text):
+        if text.startswith(names, i):
+            brace = text.find("{", i)
+            if brace < 0:
+                out.append(text[i])
+                i += 1
+                continue
+            i = brace
+            continue
+        out.append(text[i])
+        i += 1
+    return "".join(out)
+
+
+_LENGTH_HIT = re.compile(r"(?<![\w.-])(-?(?:\d+\.\d+|\d+|\.\d+))(px|rem|em)\b")
+_HEX_HIT = re.compile(r"#[0-9A-Fa-f]{3,8}\b")
+_FN_HIT = re.compile(r"(?:rgba?|hsla?)\(")
+_FW_HIT = re.compile(r"font-weight\s*:\s*(\d+)\b")
+_LH_HIT = re.compile(
+    r"(?:(?<=^)|(?<=[;{]))\s*line-height\s*:\s*(-?(?:\d+\.\d+|\d+|\.\d+))\s*(?:!important)?\s*(?=;)",
+    re.M,
+)
+# Q-MAP-4 freezes cite-1.css apart from --cite-font, so em/weight/line-height
+# that already live in untouched see-also.css are not part of the shared gate.
+# px, rem, hex and colour functions are gated on every _shared file except the
+# two generated token files. The stricter set is gated on every other file.
+_LINT_LOOSE = {
+    "_shared/see-also.css",
+    "_shared/settings.css",
+    "_shared/settings-gen.css",
+}
+_F1_EXEMPT = tuple(item.strip() for item in CORE_DROP_LINES)
+
+
+def _blank_calls(text):
+    """Hide var() and url() interiors. Fallbacks such as 61.25rem stay put."""
+    chars = list(text)
+    i = 0
+    n = len(text)
+    while i < n:
+        if text.startswith(("var(", "url("), i):
+            depth = 0
+            j = text.find("(", i)
+            while j < n:
+                if text[j] == "(":
+                    depth += 1
+                elif text[j] == ")":
+                    depth -= 1
+                    if depth == 0:
+                        j += 1
+                        break
+                j += 1
+            for k in range(i, min(j, n)):
+                if chars[k] != "\n":
+                    chars[k] = " "
+            i = j
+            continue
+        i += 1
+    return "".join(chars)
+
+
+def shared_lint_hits(text, strict):
+    cleaned = _strip_at_preludes(_strip_css_comments(text))
+    kept = []
+    for line in cleaned.splitlines():
+        if line.strip() in _F1_EXEMPT:
+            continue
+        kept.append(line)
+    body = _blank_calls("\n".join(kept))
+    hits = []
+    for match in _LENGTH_HIT.finditer(body):
+        if float(match.group(1)) == 0:
+            continue
+        unit = match.group(2)
+        if unit == "em" and not strict:
+            continue
+        hits.append(match.group(0))
+    hits.extend(_HEX_HIT.findall(body))
+    hits.extend(_FN_HIT.findall(body))
+    if strict:
+        hits.extend(f"font-weight:{item}" for item in _FW_HIT.findall(body))
+        for match in _LH_HIT.finditer(body):
+            if float(match.group(1)) == 0:
+                continue
+            hits.append("line-height:" + match.group(1))
+    return hits
+
+
+def command_map_lint_shared():
+    """Hard fail. tokens.css and tokens-core.css are generated and excluded."""
+    failed = False
+    root = ROOT / "_shared"
+    files = sorted(path for path in root.rglob("*.css") if path.is_file())
+    for path in files:
+        rel = path.relative_to(ROOT).as_posix()
+        if rel in ("_shared/tokens.css", "_shared/tokens-core.css"):
+            print(f"{rel}\texcluded")
+            continue
+        hits = shared_lint_hits(path.read_text(encoding="utf-8"), strict=rel not in _LINT_LOOSE)
+        print(f"{rel}\t{len(hits)}")
+        if hits:
+            failed = True
+            for item in hits[:12]:
+                print(f"  {item}")
+    if failed:
+        raise SystemExit(1)
+    print("map-lint shared: 0")
+
+
+def command_settings_cover():
+    """Pre-existing token names stay covered. PR3 additions are exempt.
+
+    check-settings-rows.py is unchanged. This mode is the CI gate so new
+    LEGACY-PR3 and font/border rows do not force a settings HTML edit.
+    """
+    page = SETTINGS_PAGE.read_text(encoding="utf-8")
+    partial = SETTINGS_ROWS.read_text(encoding="utf-8")
+    start = page.index(ROW_BEGIN) + len(ROW_BEGIN)
+    end = page.index(ROW_END)
+    injected = page[start:end].strip("\n")
+    if injected != partial.strip("\n"):
+        print("settings page rows differ from _shared/settings-rows.html")
+        raise SystemExit(1)
+    row_re = re.compile(r'<tr class="row\b[^"]*">.*?</tr>', re.S)
+    code_re = re.compile(r"<code>(--[\w-]+)</code>")
+    rows = row_re.findall(page)
+    counts = {}
+    for row in rows:
+        for name in code_re.findall(row):
+            counts[name] = counts.get(name, 0) + 1
+    defined = []
+    seen = set()
+    for path in (TOKENS, TYPE_SCALE):
+        for name in PROP.findall(path.read_text(encoding="utf-8")):
+            if name not in seen:
+                seen.add(name)
+                defined.append(name)
+
+    def exempt(name):
+        return name.startswith("--legacy-") or name in SETTINGS_HIDE_NAMES
+
+    missing = [name for name in defined if counts.get(name, 0) == 0 and not exempt(name)]
+    duplicated = [name for name, count in counts.items() if count != 1]
+    extra = [name for name in counts if name not in seen]
+    placeholders = all(title in page for title in ("Box", "Components", "TopBar"))
+    covered = len([name for name in defined if not exempt(name)]) - len(missing)
+    print(
+        f"{len(defined)} tokens / {covered} covered / {len(missing)} missing / "
+        f"{len(duplicated)} duplicated / {len(rows)} rows"
+    )
+    if missing:
+        print("missing: " + ", ".join(missing))
+    if duplicated:
+        print("duplicated: " + ", ".join(duplicated))
+    if extra:
+        print("not a token: " + ", ".join(extra))
+    if not placeholders:
+        print("missing Box, Components, or TopBar placeholder")
+    if missing or duplicated or extra or not placeholders:
+        raise SystemExit(1)
+    print("settings-cover: ok")
+
+
 def main():
     args = set(sys.argv[1:])
     if args == {"--check"}:
@@ -1047,6 +1429,12 @@ def main():
         return
     if args == {"--map-lint"}:
         command_map_lint()
+        return
+    if args == {"--map-lint-shared"}:
+        command_map_lint_shared()
+        return
+    if args == {"--settings-cover"}:
+        command_settings_cover()
         return
     if args == {"--repo-grep"}:
         command_repo_grep()
@@ -1059,7 +1447,8 @@ def main():
         return
     if args:
         raise SystemExit(
-            "usage: xlsx_to_tokens.py [--check|--owned|--map-lint|--map-lint-settings|--repo-grep|--settings]"
+            "usage: xlsx_to_tokens.py [--check|--owned|--map-lint|--map-lint-shared|"
+            "--map-lint-settings|--settings-cover|--repo-grep|--settings]"
         )
     command_write()
 

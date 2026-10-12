@@ -1,0 +1,16 @@
+/* Hub spokes for page-tour concept maps */
+.map-hub-wrap { text-align: center; margin-bottom: 0; } /* parent .concept-map gap owns rhythm */
+.map-spokes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+@media (max-width: 720px) {
+  .map-spokes { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .map-spokes { grid-template-columns: 1fr; }
+}
+.map-spokes .box { text-align: left; font-size: var(--t-meta); }
+

@@ -1,0 +1,86 @@
+/* Boxes / cards */
+.box {
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: var(--legacy-pad-3) var(--space-3);
+}
+
+.box.hub { background: var(--surface); border-color: var(--ink); border-width: var(--stroke-2); }
+
+.box.band { background: var(--band); }
+
+
+/* DEPRECATED — dashed=nest anti-pattern. Prefer .contain* for 組成 / .box.see for see-also.
+   Neutralized to solid quiet so leftovers cannot teach dashed=hierarchy. Do not use on new kit. */
+.box.nest {
+  background: var(--nest);
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.box.ok { background: var(--ok-soft); border-color: var(--ok); }
+
+.box.warn { background: var(--warn-soft); border-color: var(--warn); }
+
+.box.danger { background: var(--danger-soft); border-color: var(--danger); }
+
+.box.see { background: var(--see-soft); border: var(--border-see); color: var(--see); }
+
+.box-title {
+  font-size: var(--tb-box-title-fs);
+  font-weight: var(--t1-fw);
+  margin: 0 0 var(--space-1);
+}
+
+.box-body {
+  font-size: var(--t-meta);
+  color: var(--muted);
+  margin: 0;
+}
+
+.box ul {
+  margin: var(--space-1) 0 0;
+  padding-left: var(--legacy-pad-4);
+  font-size: var(--t-meta);
+  color: var(--muted);
+}
+
+.box li { margin: var(--stroke-2) 0; }
+
+
+
+/* Containment kit (Examples B/C) — solid outer + solid inner cells; not dashed nest */
+.contain {
+  border: var(--stroke-2) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: var(--space-3);
+}
+
+.contain-title {
+  font-size: var(--tb-box-title-fs);
+  font-weight: var(--t1-fw);
+  margin: 0 0 var(--legacy-mg-3);
+  color: var(--ink);
+}
+
+.contain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.contain-cell {
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  padding: var(--space-2) var(--legacy-pad-3);
+  font-size: var(--tb-box-title-fs);
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .contain-grid { grid-template-columns: 1fr; }
+
+}
