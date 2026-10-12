@@ -15,6 +15,11 @@ ROOT = Path(__file__).resolve().parents[1]
 V_QUERY = re.compile(r"\?v=[A-Za-z0-9._~%-]*")
 STAMP = re.compile(r"Last update · \d{4}-\d{2}-\d{2} \d{2}:\d{2} HKT")
 HOME = "homepage/homepage-wireframe-v0.1.html"
+# site/settings/index.html and _shared/settings-rows.html are gated instead by check-settings-rows.py (284/284) and xlsx_to_tokens.py --check.
+CONTENT_ALLOW = (
+    "site/settings/index.html",
+    "_shared/settings-rows.html",
+)
 LINK = (
     '    <p><a href="../site/settings/index.html" style="color:var(--blue)">Settings</a></p>\n'
 )
@@ -90,7 +95,7 @@ def main():
             # an older base still compares equal.
             head_n = head_n.replace(LINK, "", 1)
             base_n = base_n.replace(LINK, "", 1)
-        if head_n != base_n:
+        if head_n != base_n and path not in CONTENT_ALLOW:
             print(f"HTML changed outside ?v= and the homepage link: {path}")
             failed = True
     base_js = git_text(args.base, "_shared/last-update.js")
