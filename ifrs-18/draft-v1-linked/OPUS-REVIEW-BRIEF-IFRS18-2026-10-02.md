@@ -145,7 +145,7 @@ Create/update continuously in `refs/ifrs-18/draft-v1-linked/` at every gate:
 - **INPUTS:**  
   - Official: `inputs/ifrs-18/official-hkfrs18-2026-06.pdf`  
   - KPMG: `inputs/ifrs-18/kpmg-first-impressions-ifrs18.pdf`  
-  - EY: `inputs/ifrs-18/ey-2026-04-applying-ifrs-closer-look-ifrs18.pdf`  
+  - EY: `inputs/ifrs-18/EY_Applying-IFRS_2026-04_Closer-Look-IFRS-18.pdf`  
   - DTT: `inputs/ifrs-18/dtt-2022-a4-presentation-fs-ias1.pdf` (IAS 1 bridge only)  
   - PwC: **absent** — no invent  
 - **PACK EVIDENCE:** `IFRS18-CONTENT-REWRITE-METHOD.md`, `IFRS18-CH01…CH08-CONTENT-NOTES.md`, `I18-BIG-PASS-2026-10-01.md`, `IFRS18-CHROME-PHASE12-2026-10-02.md`, `I18-DEBT-INVENTORY-2026-10-02.md`

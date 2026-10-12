@@ -101,7 +101,7 @@ Same "cited teaching cue" facts also sit in the Ch4–Ch8 Decision strips (2 per
 **Proposed handling (per chapter gate, Johnny to confirm):** keep all sourced CF/firm teaching text; demote the invented facts/numbers to section teaching (no Illus title), or replace with a real source plate where one exists (e.g. 8.4.1 ↔ PwC FAQ 1.93.1 sole-trader car C1,000/C1,200/C2,000, +10 % — real numbers, in the attached PDF).
 
 ### H2 — PwC CF-intro FAQ bodies are in the attached PDF but missing from the pack
-Attached `01-conceptual-framework-intro.pdf` contains FAQ bodies (pp 13–18). Pack NOTES / Ch2 / Ch8 bodies say "title only / body not in pack" — **stale**.
+Attached `PwC_Manual-of-Accounting_2020_ch01_Conceptual-Framework-Intro.pdf` contains FAQ bodies (pp 13–18). Pack NOTES / Ch2 / Ch8 bodies say "title only / body not in pack" — **stale**.
 
 | PwC FAQ | Topic (from PDF) | Likely home | Shape |
 |---------|------------------|-------------|-------|

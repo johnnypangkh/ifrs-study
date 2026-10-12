@@ -24,7 +24,7 @@ Teaching target: **Conceptual Framework for Financial Reporting (2018)** — sit
 - Copyright: teach/summarise only — never paste verbatim
 
 ### 1. Deloitte (DTT) — A2 Conceptual framework for financial reporting (DART Volume A)
-- File: `inputs/cf-2018/dtt-2022-conceptual-framework-moa.pdf` (9 pages)
+- File: `inputs/cf-2018/DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` (9 pages)
 - PDF stamp: **2022-06-21** — covers **2018 CF** vs 2010
 - Use: content + illustrations summary; copyrighted reference only
 

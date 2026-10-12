@@ -1,6 +1,6 @@
 # CF 2018 — EY IGAAP 2026 Ch2 inventory (pre-flight)
 
-**Source:** `inputs/ey-international-gaap-2026/International-GAAP-2026-part1.pdf` · Chapter 2 *The IASB’s conceptual framework* (book pp ~46–103)  
+**Source:** `inputs/ey-international-gaap-2026/EY_iGAAP_2026_Part1-pp1-2700.pdf` · Chapter 2 *The IASB’s conceptual framework* (book pp ~46–103)  
 **Extract:** `/workspace/cf2018-content-extract/ey-ch2-cf-raw.txt`  
 **Cite form:** `EY IGAAP 2026 · Ch2 · section N…` (no `§`)  
 **Date:** 2026-10-01 Asia/Shanghai

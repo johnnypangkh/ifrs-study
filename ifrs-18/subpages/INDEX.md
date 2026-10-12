@@ -51,7 +51,7 @@
 ## Authority
 - Primary: `inputs/ifrs-18/official-hkfrs18-2026-06.pdf` (site labels **IFRS 18**)
 - Structure/visuals flow: `refs/ifrs-18/kpmg-first-impressions-ifrs18.pdf` (also under inputs)
-- Depth/FAQ: `ey-2026-04-applying-ifrs-closer-look-ifrs18.pdf` (EY MOA 2026)
+- Depth/FAQ: `EY_Applying-IFRS_2026-04_Closer-Look-IFRS-18.pdf` (EY MOA 2026)
 - Bridge only: `dtt-2022-a4-presentation-fs-ias1.pdf` (do not structure as IAS 1)
 
 ## Linked preview

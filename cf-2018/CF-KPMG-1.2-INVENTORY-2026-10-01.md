@@ -1,6 +1,6 @@
 # CF 2018 — KPMG Insights 2019/20 · 1.2 inventory (pre-flight)
 
-**Source:** `inputs/kpmg-2019-2020/part1-non-fi.pdf` · **1.2 Conceptual Framework** (= **2018 CF**, not 2010)  
+**Source:** `inputs/kpmg-2019-2020/KPMG_Insights-into-IFRS_2019-20_Part1-Non-FI.pdf` · **1.2 Conceptual Framework** (= **2018 CF**, not 2010)  
 **Extract:** `/workspace/cf2018-content-extract/kpmg-1.2-cf-raw.txt` (PDF pp ~25–35)  
 **Cite form:** `KPMG Insights 2019/20 · 1.2.NN` / `Example N`  
 **Date:** 2026-10-01 Asia/Shanghai
@@ -33,7 +33,7 @@
 | Work | Path | Use |
 |------|------|-----|
 | Combined/Carve FS Feb 2022 | `inputs/cf-2018/kpmg-public/kpmg-combined-and-carve-out-financial-statements.pdf` | **Ch9 + Ch10** primary application of CF 3.10–3.14 |
-| Flyer Apr 2018 | `inputs/cf-2018/kpmg-public/kpmg-2018-04-conceptual-framework-print-friendly.pdf` | Background deltas (bundles of rights; practical ability; control-based derecognition) — cite sparingly |
+| Flyer Apr 2018 | `inputs/cf-2018/kpmg-public/KPMG_Conceptual-Framework-Guide_2018-04_Print-Friendly.pdf` | Background deltas (bundles of rights; practical ability; control-based derecognition) — cite sparingly |
 
 ## Notes
 

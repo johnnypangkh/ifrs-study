@@ -1,0 +1,8 @@
+# Approvals for PR 117. Incremental teaching diff has no removed or changed
+# rows (kept 25317, moved 0, changed 0, removed 0, added 0), so this file
+# has no match entries. A match entry would be stale.
+#
+# Approved by Johnny via PM 4, 2026-10-12 17:41:
+# - Row #72: 65 whole-name PDF basename replacements in 25 markdown files.
+# - VISUAL-TYPES L12: cf-2018/LOCK-STAMP.md line 12 only.
+# - Restamp: _shared/last-update.js plus last-update.js?v= on 45 pages.

@@ -10,8 +10,8 @@
 | ID | Source | Belong? |
 |----|--------|---------|
 | §1.1–1.23 / BC1 | Official IFRS Issued 2026 HTML (March 2018 CF) | Yes — primary |
-| DTT A2 §4 | `inputs/cf-2018/dtt-2022-conceptual-framework-moa.pdf` | Yes — stewardship reinstatement |
-| PwC MOA §1.18–1.28 | `inputs/pwc-2020-moa/01-conceptual-framework-intro.pdf` | Yes — objective / users / accrual / stewardship |
+| DTT A2 §4 | `inputs/cf-2018/DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` | Yes — stewardship reinstatement |
+| PwC MOA §1.18–1.28 | `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_ch01_Conceptual-Framework-Intro.pdf` | Yes — objective / users / accrual / stewardship |
 | PwC FAQ 1.21.1 | same PDF | ~~Title only~~ — **superseded 2026-10-02:** body present in the PDF (Illustrative text page 15); used as section units in 1.4 / 1.5 / 1.6 (general guidance, no case facts → not an Illustration) |
 | KPMG / EY CF | — | ~~Gap~~ — **superseded:** EY IGAAP 2026 Ch2 section 4.1.1 / 4.1.2 and KPMG Insights 1.2.20 chips exist in the pack; PDFs not attached at the Opus gates → existing chips kept, no new substance attributed |
 
