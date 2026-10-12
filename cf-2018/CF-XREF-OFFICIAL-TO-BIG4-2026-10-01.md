@@ -56,7 +56,7 @@
 
 **Harvest rule:** cell gets a firm+work+locator **only** if that BC.nn string appears in a firm commentary PDF/extract (not Official reprints in `pwc-folder-hkas-framework18.pdf`). Else **not-addressed**.
 
-**Sources scanned:** Official CF 2018 BC (410 paras); DTT `dtt-2022-conceptual-framework-moa.pdf` + A2 appendix; PwC MOA intro + Appendix 2; EY IGAAP 2026 Ch2 (part1 pp 46–103) + devel169; KPMG Insights 2019/20 · 1.2 + Combined/Carve 2022 + flyer.
+**Sources scanned:** Official CF 2018 BC (410 paras); DTT `DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` + A2 appendix; PwC MOA intro + Appendix 2; EY IGAAP 2026 Ch2 (part1 pp 46–103) + devel169; KPMG Insights 2019/20 · 1.2 + Combined/Carve 2022 + flyer.
 
 | Official BC | Official topic (short) | DTT | PwC | EY | KPMG |
 |-------------|------------------------|-----|-----|----|------|

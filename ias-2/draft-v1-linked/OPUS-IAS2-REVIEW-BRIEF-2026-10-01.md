@@ -131,10 +131,10 @@ While helping, Opus MUST maintain durable pack notes, not only edit HTML. Create
 | Layer | Work | Path |
 |-------|------|------|
 | Official | HKAS 2 / IAS 2 | `inputs/hkas/hkas-2-inventories.pdf` |
-| PwC | MOA 2020 Ch25 | `inputs/pwc-2020-moa/chapters/25-ias2-inventories.pdf` |
-| DTT | A11 2022 | `inputs/dtt-moa-2022-june21/dtt-2022-a11.pdf` |
+| PwC | MOA 2020 Ch25 | `inputs/pwc-2020-moa/chapters/PwC_Manual-of-Accounting_2020_ch25_IAS2-Inventories.pdf` |
+| DTT | A11 2022 | `inputs/dtt-moa-2022-june21/DTT_iGAAP_2022_chA11_Inventories.pdf` |
 | EY | IGAAP 2026 Ch23 | `inputs/ey-international-gaap-2026/` (part1/part2) |
-| KPMG | Insights 2019/20 · 3.8 | `inputs/kpmg-2019-2020/part1-non-fi.pdf` |
+| KPMG | Insights 2019/20 · 3.8 | `inputs/kpmg-2019-2020/KPMG_Insights-into-IFRS_2019-20_Part1-Non-FI.pdf` |
 
 **Chapters:** `ch01.html` … `ch06.html`, `index.html` (Map tab).  
 **Chapter Maps:** `visuals/ch01-scope.html` … `ch06-disclosure.html`, `visuals/map-formula-board.html`.  

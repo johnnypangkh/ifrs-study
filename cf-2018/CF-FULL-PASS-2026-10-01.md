@@ -17,8 +17,8 @@ Pack root: `/workspace/ifrs-website/refs/cf-2018/`
 | Firm / source | Path / status |
 |---------------|---------------|
 | Official | `inputs/cf-2018/official-conceptual-framework-2026.pdf` (+ archive extract) |
-| DTT A2 2022 | `inputs/cf-2018/dtt-2022-conceptual-framework-moa.pdf` |
-| PwC MOA 2020 intro | `inputs/pwc-2020-moa/01-conceptual-framework-intro.pdf` |
+| DTT A2 2022 | `inputs/cf-2018/DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` |
+| PwC MOA 2020 intro | `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_ch01_Conceptual-Framework-Intro.pdf` |
 | EY CF | **not on disk** — no invent |
 | KPMG CF | **not on disk** — no invent |
 

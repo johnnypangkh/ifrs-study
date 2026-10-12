@@ -19,7 +19,7 @@ Teaching target: **IFRS 18** (site labels IFRS only; HKFRS = same). Effective pe
 - Copyright: Foundation/HKICPA — teach/summarise; never paste verbatim
 
 ### 1. EY — **MOA 2026** / Applying IFRS: A closer look at IFRS 18 (Updated April 2026)
-- File: `inputs/ifrs-18/ey-2026-04-applying-ifrs-closer-look-ifrs18.pdf` (185 pages)
+- File: `inputs/ifrs-18/EY_Applying-IFRS_2026-04_Closer-Look-IFRS-18.pdf` (185 pages)
 - Role: **EY Manual of Accounting 2026** depth source for IFRS 18 (Johnny 2026-09-27) — FAQ/illustration indexes; check teaching against official
 
 ### 2. Deloitte (DTT) — A4 Presentation of financial statements (DART Volume A)

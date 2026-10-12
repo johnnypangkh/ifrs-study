@@ -21,13 +21,13 @@
 | Layer | Firm / source | Work | On disk? | Path |
 |-------|---------------|------|----------|------|
 | 1 | Official | CF 2018 (2026 stamp) | **Yes** | `inputs/cf-2018/official-conceptual-framework-2026.pdf` (+ HTML / HK archive) |
-| 2 | DTT | A2 2022 Conceptual Framework | **Yes** | `inputs/cf-2018/dtt-2022-conceptual-framework-moa.pdf` |
-| 2 | PwC | MOA 2020 intro · Conceptual Framework | **Yes** | `inputs/pwc-2020-moa/01-conceptual-framework-intro.pdf` |
-| 2 | PwC | MOA 2020 Appendix 2 Combined/Carve | **Yes** | `inputs/pwc-2020-moa/appendix-2-combined-carve-out.pdf` |
-| 2 | EY | IGAAP 2026 **Ch2** The IASB’s conceptual framework | **Yes** | `inputs/ey-international-gaap-2026/International-GAAP-2026-part1.pdf` (book ~pp 46–103) |
-| 2 | KPMG | Insights 2019/20 Part1 **· 1.2** Conceptual Framework (= **2018 CF**) | **Yes** | `inputs/kpmg-2019-2020/part1-non-fi.pdf` |
+| 2 | DTT | A2 2022 Conceptual Framework | **Yes** | `inputs/cf-2018/DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` |
+| 2 | PwC | MOA 2020 intro · Conceptual Framework | **Yes** | `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_ch01_Conceptual-Framework-Intro.pdf` |
+| 2 | PwC | MOA 2020 Appendix 2 Combined/Carve | **Yes** | `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_chApp2_Combined-Carve-Out.pdf` |
+| 2 | EY | IGAAP 2026 **Ch2** The IASB’s conceptual framework | **Yes** | `inputs/ey-international-gaap-2026/EY_iGAAP_2026_Part1-pp1-2700.pdf` (book ~pp 46–103) |
+| 2 | KPMG | Insights 2019/20 Part1 **· 1.2** Conceptual Framework (= **2018 CF**) | **Yes** | `inputs/kpmg-2019-2020/KPMG_Insights-into-IFRS_2019-20_Part1-Non-FI.pdf` |
 | 3 | KPMG | Combined and/or carve-out FS (Feb 2022) — CF Ch3 app | **Yes** | `inputs/cf-2018/kpmg-public/kpmg-combined-and-carve-out-financial-statements.pdf` |
-| 3 | KPMG | Flyer Apr 2018 (background) | **Yes** | `inputs/cf-2018/kpmg-public/kpmg-2018-04-conceptual-framework-print-friendly.pdf` |
+| 3 | KPMG | Flyer Apr 2018 (background) | **Yes** | `inputs/cf-2018/kpmg-public/KPMG_Conceptual-Framework-Guide_2018-04_Print-Friendly.pdf` |
 | 3 | EY | IFRS Developments 169 (IFRS 3 ↔ CF) | **Yes** | `inputs/cf-2018/ey-public/ey-devel169-ifrs-3-conceptual-frwk-may-2020.pdf` |
 | — | ACCA | SBR CF storyline | **Yes** | `inputs/cf-2018/acca/ACCA-SBR-CF-storyline-NOTE.md` — **visit path only; no cite authority** |
 

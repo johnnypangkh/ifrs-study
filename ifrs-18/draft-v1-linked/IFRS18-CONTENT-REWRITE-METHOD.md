@@ -100,7 +100,7 @@
 |------|------|----------------|
 | Official | HKFRS 18 (= IFRS 18 on site) | `inputs/ifrs-18/official-hkfrs18-2026-06.pdf` |
 | KPMG | First Impressions IFRS 18 (2024) | `inputs/ifrs-18/kpmg-first-impressions-ifrs18.pdf` |
-| EY | Applying IFRS: A closer look at IFRS 18 (Updated April 2026) | `inputs/ifrs-18/ey-2026-04-applying-ifrs-closer-look-ifrs18.pdf` |
+| EY | Applying IFRS: A closer look at IFRS 18 (Updated April 2026) | `inputs/ifrs-18/EY_Applying-IFRS_2026-04_Closer-Look-IFRS-18.pdf` |
 | DTT | A4 Presentation of FS (IAS 1 bridge only) | `inputs/ifrs-18/dtt-2022-a4-presentation-fs-ias1.pdf` |
 | PwC | — | **not on disk** for IFRS 18 (no invent) |
 

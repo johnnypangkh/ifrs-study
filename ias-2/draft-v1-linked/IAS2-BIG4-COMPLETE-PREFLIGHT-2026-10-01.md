@@ -14,15 +14,15 @@
 |------|---------------|---------|---------|--------------|
 | **Official** | HKAS 2 Inventories (= IAS 2 on site) | **YES** | `inputs/hkas/hkas-2-inventories.pdf` | 404 344 B |
 | Official alias | same | **YES** | `inputs/ias-2/official-hkas-2-inventories.pdf` → hkas | symlink |
-| **PwC** | MOA 2020 **Ch25** IAS 2 Inventories | **YES** | `inputs/pwc-2020-moa/chapters/25-ias2-inventories.pdf` | 278 826 B |
+| **PwC** | MOA 2020 **Ch25** IAS 2 Inventories | **YES** | `inputs/pwc-2020-moa/chapters/PwC_Manual-of-Accounting_2020_ch25_IAS2-Inventories.pdf` | 278 826 B |
 | PwC alias | same | **YES** | `inputs/ias-2/pwc-2020-moa-25-ias2-inventories.pdf` → chapters/25 | symlink |
-| **DTT** | **A11** 2022 Inventories | **YES** | `inputs/dtt-moa-2022-june21/dtt-2022-a11.pdf` | 917 776 B |
+| **DTT** | **A11** 2022 Inventories | **YES** | `inputs/dtt-moa-2022-june21/DTT_iGAAP_2022_chA11_Inventories.pdf` | 917 776 B |
 | DTT alias | same | **YES** | `inputs/ias-2/dtt-2022-a11-inventories.pdf` → a11 | symlink |
-| **EY** | International GAAP® 2026 **Ch23** Inventories | **YES** | `inputs/ey-international-gaap-2026/International-GAAP-2026-part1.pdf` (Ch23 ~book pp 1692–1723) | 86 654 918 B |
-| EY part2 | remainder of book | **YES** | `…/International-GAAP-2026-part2.pdf` | 97 193 113 B |
+| **EY** | International GAAP® 2026 **Ch23** Inventories | **YES** | `inputs/ey-international-gaap-2026/EY_iGAAP_2026_Part1-pp1-2700.pdf` (Ch23 ~book pp 1692–1723) | 86 654 918 B |
+| EY part2 | remainder of book | **YES** | `…/EY_iGAAP_2026_Part2-pp2701-4962.pdf` | 97 193 113 B |
 | EY alias under `inputs/ias-2/` | — | **no symlink** | — | optional gap only |
-| **KPMG** | Insights into IFRS **2019/20** Part 1 · **3.8** Inventories | **YES** | `inputs/kpmg-2019-2020/part1-non-fi.pdf` | 39 287 423 B |
-| KPMG other parts | 2–4 (not IAS 2 3.8) | YES (N/A for IAS 2 body) | `part2-ifrs9.pdf` … `part4-insurance.pdf` | on disk |
+| **KPMG** | Insights into IFRS **2019/20** Part 1 · **3.8** Inventories | **YES** | `inputs/kpmg-2019-2020/KPMG_Insights-into-IFRS_2019-20_Part1-Non-FI.pdf` | 39 287 423 B |
+| KPMG other parts | 2–4 (not IAS 2 3.8) | YES (N/A for IAS 2 body) | `KPMG_Insights-into-IFRS_2019-20_Part2-IFRS-9.pdf` … `KPMG_Insights-into-IFRS_2019-20_Part4-Insurance.pdf` | on disk |
 | KPMG alias under `inputs/ias-2/` | — | **no symlink** | — | optional gap only |
 
 **None of the four firms is `not on disk` for IAS 2.** Official + all Big4 manuals are available under box `inputs/`.
@@ -69,7 +69,7 @@ Could **not** re-verify Documents copies while offline; no evidence the four fir
 
 ## 5. Remaining gaps (non-blocking hygiene)
 
-1. **Persist** `/tmp/kpmg-3.8-body.txt` (or re-extract from `part1-non-fi.pdf`) → `ias2-content-extract/kpmg-3.8-extract.txt` so future agents do not depend on `/tmp`.
+1. **Persist** `/tmp/kpmg-3.8-body.txt` (or re-extract from `KPMG_Insights-into-IFRS_2019-20_Part1-Non-FI.pdf`) → `ias2-content-extract/kpmg-3.8-extract.txt` so future agents do not depend on `/tmp`.
 2. Optional **symlinks** under `inputs/ias-2/` for EY Ch23 pointer + KPMG part1 (parity with Official/PwC/DTT aliases).
 3. **Stale text to clean when touched:** `inputs/DISTRIBUTION.md` still says “EY GAAP 2026: not on box” (false as of 2026-10-01); `IAS2-CONTENT-AUDIT-2026-10-01.md` still has “No KPMG/EY” honest-gap line (superseded by EY unlock + KPMG enrich).
 4. Content-level leftovers already tracked elsewhere (EY FS Practical skip; KPMG Ex 7A/7C table images; learning-curve defer) — **not** pre-flight firm-missing issues.

@@ -244,10 +244,10 @@ These examples were filled from the current box inventory on 2026-10-02 (HKT). R
 - **PACK MAP:** `index.html` (Map; current concept map/story board). Also inspect `visuals/` and any chapter-linked visual pages actually used by the pack.
 - **INPUTS:**
   - Official CF 2018: `inputs/cf-2018/official-conceptual-framework-2026.pdf` (plus the pack's documented HTML/HK archive where cited).
-  - DTT: `inputs/cf-2018/dtt-2022-conceptual-framework-moa.pdf` (A2).
-  - PwC: `inputs/pwc-2020-moa/01-conceptual-framework-intro.pdf`; `inputs/pwc-2020-moa/appendix-2-combined-carve-out.pdf`.
-  - EY: `inputs/ey-international-gaap-2026/International-GAAP-2026-part1.pdf` (pack notes identify the relevant book pages/chapter; do not invent a locator).
-  - KPMG: `inputs/kpmg-2019-2020/part1-non-fi.pdf` (1.2); supporting public material only where listed in METHOD, including `inputs/cf-2018/kpmg-public/`.
+  - DTT: `inputs/cf-2018/DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` (A2).
+  - PwC: `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_ch01_Conceptual-Framework-Intro.pdf`; `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_chApp2_Combined-Carve-Out.pdf`.
+  - EY: `inputs/ey-international-gaap-2026/EY_iGAAP_2026_Part1-pp1-2700.pdf` (pack notes identify the relevant book pages/chapter; do not invent a locator).
+  - KPMG: `inputs/kpmg-2019-2020/KPMG_Insights-into-IFRS_2019-20_Part1-Non-FI.pdf` (1.2); supporting public material only where listed in METHOD, including `inputs/cf-2018/kpmg-public/`.
   - Visit-path-only note: `inputs/cf-2018/acca/ACCA-SBR-CF-storyline-NOTE.md` — not cite authority.
 - **PACK EVIDENCE:** `CF-CONTENT-REWRITE-METHOD.md`, `CF-XREF-OFFICIAL-TO-BIG4-2026-10-01.md`, `CF-XREF-BIG4-TO-OFFICIAL-2026-10-01.md`, chapter `CF-CHxx-CONTENT-NOTES.md` and any applicable local skill/amend notes.
 
@@ -262,7 +262,7 @@ These examples were filled from the current box inventory on 2026-10-02 (HKT). R
 - **INPUTS:**
   - Official HKFRS 18 (= IFRS 18 on site): `inputs/ifrs-18/official-hkfrs18-2026-06.pdf`.
   - KPMG: `inputs/ifrs-18/kpmg-first-impressions-ifrs18.pdf`.
-  - EY: `inputs/ifrs-18/ey-2026-04-applying-ifrs-closer-look-ifrs18.pdf`.
+  - EY: `inputs/ifrs-18/EY_Applying-IFRS_2026-04_Closer-Look-IFRS-18.pdf`.
   - DTT: `inputs/ifrs-18/dtt-2022-a4-presentation-fs-ias1.pdf` — IAS 1 bridge only.
   - PwC: not on disk for IFRS 18; **do not invent PwC content or cites**.
 - **PACK EVIDENCE:** `IFRS18-CONTENT-REWRITE-METHOD.md`, `IFRS18-CH01-CONTENT-NOTES.md` through `IFRS18-CH08-CONTENT-NOTES.md`, `I18-BIG-PASS-2026-10-01.md` and any applicable local notes.

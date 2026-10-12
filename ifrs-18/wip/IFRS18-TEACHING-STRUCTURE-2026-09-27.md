@@ -226,4 +226,4 @@ Honest readiness: do not mark IFRS 18 READY before an openable Map exists.
 - Build: pack shell from CF template; homepage NEXT UP → READY when Map openable.
 - QC: VISUAL-TYPES + PRODUCT-SPEC FAIL gates (chrome, chips, spacing, colour-meaning, dashed rare).
 
-**Sources used (paraphrase only):** `inputs/ifrs-18/official-hkfrs18-2026-06.pdf` · `kpmg-first-impressions-ifrs18.pdf` · `ey-2026-04-applying-ifrs-closer-look-ifrs18.pdf` · IAS 1 bridge `dtt-2022-a4-presentation-fs-ias1.pdf` (not structural).
+**Sources used (paraphrase only):** `inputs/ifrs-18/official-hkfrs18-2026-06.pdf` · `kpmg-first-impressions-ifrs18.pdf` · `EY_Applying-IFRS_2026-04_Closer-Look-IFRS-18.pdf` · IAS 1 bridge `dtt-2022-a4-presentation-fs-ias1.pdf` (not structural).

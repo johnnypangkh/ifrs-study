@@ -45,8 +45,8 @@ Note: BC1.41 and BC3.21 appear for two firms each → 1+7+3 = 11 cell instances 
 
 Scanned:
 - Official: `inputs/cf-2018/official-conceptual-framework-2026.pdf` → 410 contiguous BC.nn
-- DTT: `dtt-2022-conceptual-framework-moa.pdf` + A2 appendix extract
-- PwC: `01-conceptual-framework-intro.pdf` + Appendix 2 Combined/Carve extract
+- DTT: `DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` + A2 appendix extract
+- PwC: `PwC_Manual-of-Accounting_2020_ch01_Conceptual-Framework-Intro.pdf` + Appendix 2 Combined/Carve extract
 - EY: IGAAP 2026 part1 Ch2 pp 46–103 + devel169
 - KPMG: Insights part1 · 1.2; Combined/Carve 2022; flyer Apr 2018
 
