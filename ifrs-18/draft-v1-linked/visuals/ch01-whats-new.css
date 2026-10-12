@@ -11,8 +11,8 @@
 html { background: var(--bg); }
 
 .wn-board {
-  --wn-gap: calc(20 * var(--stroke-1));
-  --wn-inner: calc(8 * var(--stroke-1));
+  --wn-gap: var(--space-4);
+  --wn-inner: var(--space-cell);
   --wn-gutter: var(--space-3);
   display: flex;
   flex-direction: column;
@@ -292,7 +292,7 @@ html { background: var(--bg); }
 
 /* ---- Narrow: contrast + sets stack; timeline turns vertical on the same axis ---- */
 @media (max-width: 800px) {
-  .wn-board { --wn-gap: calc(18 * var(--stroke-1)); }
+  .wn-board { --wn-gap: var(--space-4); }
   .wn-contrast { grid-template-columns: 1fr; }
   .wn-sets {
     grid-template-columns: 1fr;
