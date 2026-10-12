@@ -54,6 +54,12 @@ NEW_ROOT_NAMES = (
     "--border-see",
     "--border-na",
 )
+# PR4 adds these spacing rows. existing_tokens_kept treats them as additions.
+PR4_ROOT_NAMES = (
+    "--space-hairline",
+    "--radius-s",
+    "--radius-pill",
+)
 DESKTOP_DECLS = (
     "--type-scale: 1;",
     "--vis-body: 12px;",
@@ -600,6 +606,8 @@ def existing_tokens_kept(css):
             continue
         if any(stripped.startswith(name + ":") for name in NEW_ROOT_NAMES):
             continue
+        if any(stripped.startswith(name + ":") for name in PR4_ROOT_NAMES):
+            continue
         if stripped in DESKTOP_DECLS:
             continue
         if stripped == "--card-radius: .5rem;":
@@ -757,7 +765,7 @@ LEGACY_ROLES = (
 )
 LEGACY_NAME = re.compile(r"^--legacy-([a-z]+)-(\d+)$")
 FULL_BORDER = {"--border-see", "--border-na"}
-RADIUS_BOX = {"--card-radius", "--radius-m"}
+RADIUS_BOX = {"--card-radius", "--radius-m", "--radius-s", "--radius-pill"}
 
 
 def _bar_preview(token, clamp):
