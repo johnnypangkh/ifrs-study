@@ -32,8 +32,8 @@ jobs:
         run: python3 -m pip install openpyxl==3.1.5
       - name: Check tokens.css matches MASTER-STYLES.xlsx
         run: python3 tools/xlsx_to_tokens.py --check
-      - name: Check settings rows cover every pre-existing token
-        run: python3 tools/xlsx_to_tokens.py --settings-cover
+      - name: Check settings rows cover every token
+        run: python3 tools/check-settings-rows.py
       - name: Check existing pages change only the stamp
         run: python3 tools/check-stamp-only.py
       - name: Map lint on the settings page
