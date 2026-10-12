@@ -16,9 +16,9 @@
 
 .cat-discontinued { background: var(--cat-discontinued-soft); border-color: var(--cat-discontinued); }
 
-.ifrs-subtotal { background: var(--ifrs-subtotal-soft); border: 1px solid var(--ifrs-subtotal); color: var(--ifrs-subtotal); font-weight: 700; }
+.ifrs-subtotal { background: var(--ifrs-subtotal-soft); border: var(--stroke-1) solid var(--ifrs-subtotal); color: var(--ifrs-subtotal); font-weight: var(--t1-fw); }
 
-.mpm { background: var(--mpm-soft); border: 1px solid var(--mpm); color: var(--mpm); font-weight: 700; }
+.mpm { background: var(--mpm-soft); border: var(--stroke-1) solid var(--mpm); color: var(--mpm); font-weight: var(--t1-fw); }
 
 
 /* ── Body presentation kit (Johnny lock 2026-09-27) ──
@@ -27,25 +27,25 @@
 
 
 .worked-strip {
-  margin: 14px 0 18px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  margin: calc(14 * var(--stroke-1)) 0 calc(18 * var(--stroke-1));
+  padding: var(--space-3);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--radius-m);
   background: var(--band);
 }
 
 .worked-strip-title {
-  margin: 0 0 10px;
-  font-size: 13px;
-  font-weight: 700;
+  margin: 0 0 calc(10 * var(--stroke-1));
+  font-size: var(--tb-box-title-fs);
+  font-weight: var(--tb-box-title-fw);
   color: var(--ink);
 }
 
 
 .worked-strip .box-body {
-  font-size: 13px;
+  font-size: var(--tb-box-body-fs);
   color: var(--ink);
-  line-height: 1.45;
+  line-height: var(--tb-box-body-lh);
   margin: 0;
   flex: 1;
 }

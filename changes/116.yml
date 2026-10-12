@@ -1,0 +1,36 @@
+# QC r1. Johnny via PM 4, 2026-10-12 18:14, except item 6.
+# 1. Rebase onto main 1ec52d81. last-update.js and ?v= conflicts resolved by tools/build-all.sh (stamp-only).
+# 2. KEEP the off-list check-stamp-only.py fold (3 W4 utility styles, 6 IFRS 18 pages) and PR4_ROOT_NAMES in xlsx_to_tokens.py.
+# 3. SNAP gaps: 8px to --space-cell (including --wn-inner and --pa-inner; not --space-2, not calc); 14/18/20/22px to --space-4; 10px to --space-3 (including --map-inner and --tr-inner).
+# 4. --space-hairline role text: en dash replaced with a plain hyphen. Teaching entries below.
+# 6. LOCK-STAMP L12 option A: visual_types path is cf-2018/VISUAL-TYPES.md. Johnny via PM 4, 2026-10-12 18:15.
+# 7. Mobile --map-inner -> --space-cell inside the existing @media (max-width: 560px). Desktop stays --space-3. Johnny via PM 4, 2026-10-12 18:49.
+# Items 1, 2, 3, 6, and 7 do not change teaching text. Item 4 is the added hairline role below.
+
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--space-hairline D 2px M = NEW PR4: stacked-label hairline (1-2px nest/label gaps; Johnny approved 2026-10-12)"
+  source: "Item 4. Johnny via PM 4, 2026-10-12 18:14. Hairline role uses a plain hyphen."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--space-hairline D 2px M = NEW PR4: stacked-label hairline (1-2px nest/label gaps; Johnny approved 2026-10-12)"
+  source: "Item 4. Johnny via PM 4, 2026-10-12 18:14. Hairline role uses a plain hyphen."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--space-hairline D 2px M ="
+  source: "Item 4. Johnny via PM 4, 2026-10-12 18:14. Hairline role uses a plain hyphen."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--space-hairline D 2px M ="
+  source: "Item 4. Johnny via PM 4, 2026-10-12 18:14. Hairline role uses a plain hyphen."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "NEW PR4: stacked-label hairline (1-2px nest/label gaps; Johnny approved 2026-10-12)"
+  source: "Item 4. Johnny via PM 4, 2026-10-12 18:14. Hairline role uses a plain hyphen."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "NEW PR4: stacked-label hairline (1-2px nest/label gaps; Johnny approved 2026-10-12)"
+  source: "Item 4. Johnny via PM 4, 2026-10-12 18:14. Hairline role uses a plain hyphen."

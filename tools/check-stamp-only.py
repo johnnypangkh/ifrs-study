@@ -20,6 +20,22 @@ CONTENT_ALLOW = (
     "site/settings/index.html",
     "_shared/settings-rows.html",
 )
+# W4 replaces these three style attributes with classes. The stamp gate
+# treats that swap as non-content on the six IFRS 18 pages. Any other
+# HTML change on those pages still fails.
+UTILITY_PAGES = (
+    "ifrs-18/draft-v1-linked/ch03.html",
+    "ifrs-18/draft-v1-linked/ch04.html",
+    "ifrs-18/draft-v1-linked/ch05.html",
+    "ifrs-18/draft-v1-linked/ch06.html",
+    "ifrs-18/draft-v1-linked/ch07.html",
+    "ifrs-18/draft-v1-linked/references.html",
+)
+UTILITY_CLASS = {
+    "text-align:right": "num",
+    "flex:11auto": "grow",
+    "color:var(--muted)": "muted",
+}
 LINK = (
     '    <p><a href="../site/settings/index.html" style="color:var(--blue)">Settings</a></p>\n'
 )
@@ -51,6 +67,38 @@ def git_paths(rev):
 
 def norm(text):
     return V_QUERY.sub("?v=", text)
+
+
+def fold_utility_styles(html):
+    """Swap the three approved utility styles into classes. Idempotent."""
+
+    def repl_tag(match):
+        tag = match.group(0)
+        style = re.search(r'\sstyle="([^"]*)"', tag)
+        if not style:
+            return tag
+        compact = re.sub(r"\s+", "", style.group(1))
+        class_name = UTILITY_CLASS.get(compact)
+        if class_name is None:
+            return tag
+        tag = tag[:style.start()] + tag[style.end():]
+        class_attr = re.search(r'\sclass="([^"]*)"', tag)
+        if class_attr:
+            classes = class_attr.group(1).split()
+            if class_name not in classes:
+                classes.append(class_name)
+            replacement = ' class="' + " ".join(classes) + '"'
+            tag = tag[:class_attr.start()] + replacement + tag[class_attr.end():]
+        else:
+            tag = re.sub(
+                r"^<[A-Za-z0-9]+",
+                lambda item: item.group(0) + f' class="{class_name}"',
+                tag,
+                count=1,
+            )
+        return tag
+
+    return re.sub(r"<[^>]+>", repl_tag, html)
 
 
 def load_stamps(text):
@@ -86,6 +134,9 @@ def main():
         head = file.read_text(encoding="utf-8")
         base_n = norm(base)
         head_n = norm(head)
+        if path in UTILITY_PAGES:
+            base_n = fold_utility_styles(base_n)
+            head_n = fold_utility_styles(head_n)
         if path == HOME:
             if LINK not in head:
                 print("homepage is missing the Settings link")

@@ -9,7 +9,7 @@
 
 | Canon | Path | Version |
 |-------|------|---------|
-| visual_types | `VISUAL-TYPES.md` (site root, canonical) | **2026.09.27-8** |
+| visual_types | `cf-2018/VISUAL-TYPES.md` | **2026.09.27-8** |
 | product_spec | `PRODUCT-SPEC.md` | **2026.09.28-1** |
 | qc_checklist | `QC-CHECKLIST.md` | **2026.09.28-1** |
 | skill | `ifrs-visual-grammar` | **2026.09.27-8** |

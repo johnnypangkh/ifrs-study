@@ -250,6 +250,30 @@ body.mode-m .v-m,
   line-height: var(--t1-lh);
   color: var(--ink);
   cursor: pointer;
+  list-style: none;
+}
+
+.legacy-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.legacy-group > summary::marker {
+  content: none;
+}
+
+.legacy-group > summary::before {
+  content: "";
+  flex: none;
+  align-self: center;
+  inline-size: 0;
+  block-size: 0;
+  border-block-start: var(--rail-bar-m) solid transparent;
+  border-block-end: var(--rail-bar-m) solid transparent;
+  border-inline-start: var(--rail-bar-l) solid var(--accent);
+}
+
+.legacy-group[open] > summary::before {
+  transform: rotate(90deg);
 }
 
 .sw {

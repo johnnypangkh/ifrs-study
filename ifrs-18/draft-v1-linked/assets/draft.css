@@ -4,15 +4,15 @@
 
 
 .teaching h3 {
-  margin: 18px 0 8px;
-  font-size: .98rem;
+  margin: calc(18 * var(--stroke-1)) 0 var(--space-2);
+  font-size: var(--t1-fs);
   color: var(--accent);
 }
 
 .teaching h4 {
-  margin: 16px 0 8px;
-  font-size: .92rem;
-  font-weight: 700;
+  margin: var(--space-4) 0 var(--space-2);
+  font-size: var(--t1-fs);
+  font-weight: var(--t1-fw);
   color: var(--ink);
 }
 
@@ -33,8 +33,8 @@
   overflow: visible;
   text-overflow: clip;
   overflow-wrap: break-word;
-  border-radius: var(--card-radius, 8px);
-  line-height: 1.45;
+  border-radius: var(--card-radius);
+  line-height: var(--tb-body-lh);
 }
 
 

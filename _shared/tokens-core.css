@@ -211,6 +211,9 @@
   --legacy-mg-15: 0.2em;
   --legacy-w-59: 0.75em;
   --legacy-w-60: 0.5em;
+  --space-hairline: 2px;
+  --radius-s: .375rem;
+  --radius-pill: 999px;
   --bp-mobile: 560px;
   --bp-wide: 800px;
   --rail-bar-s: 2px;
