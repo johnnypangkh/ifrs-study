@@ -21,7 +21,7 @@
 .i18map {
   --map-gap: var(--space-4);
   --map-gutter: var(--space-3);
-  --map-inner: var(--space-3);
+  --map-inner: calc(10 * var(--stroke-1));
 }
 .i18map a:focus-visible {
   outline: var(--stroke-2) solid var(--accent);
@@ -337,7 +337,7 @@
 
 /* ---- Narrow ---- */
 @media (max-width: 800px) {
-  .i18map { --map-gap: var(--space-4); }
+  .i18map { --map-gap: calc(14 * var(--stroke-1)); }
   .i18map .pillar-row { grid-template-columns: 1fr; }
   .i18map .close-row { grid-template-columns: 1fr; }
 }

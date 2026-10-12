@@ -12,8 +12,8 @@
 html { background: var(--bg); }
 
 .tr-board {
-  --tr-gap: var(--space-4);
-  --tr-inner: var(--space-3);
+  --tr-gap: calc(22 * var(--stroke-1));
+  --tr-inner: calc(10 * var(--stroke-1));
   --tr-gutter: var(--space-3);
   display: flex;
   flex-direction: column;
@@ -271,7 +271,7 @@ html { background: var(--bg); }
 
 /* ---- Narrow: the axis turns vertical; matrix restacks as two cards ---- */
 @media (max-width: 800px) {
-  .tr-board { --tr-gap: var(--space-4); }
+  .tr-board { --tr-gap: calc(20 * var(--stroke-1)); }
   .tr-tl {
     grid-template-columns: 1fr;
     row-gap: var(--tr-gutter);
@@ -332,7 +332,7 @@ html { background: var(--bg); }
 }
 
 @media (max-width: 560px) {
-  .tr-board { --tr-gap: var(--space-4); }
+  .tr-board { --tr-gap: calc(18 * var(--stroke-1)); }
   .tr-card,
   .tr-mx-cell { padding: calc(10 * var(--stroke-1)); }
 }
