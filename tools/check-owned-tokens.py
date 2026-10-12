@@ -20,26 +20,17 @@ F1 = {
     "--nx-chip-font: calc(10px * var(--type-scale));",
 }
 SKIP = {"_shared/tokens.css", "_shared/tokens-core.css"}
-# Visual pages did not load tokens.css. ias16.css uses
-# var(--space-2, 0.45rem) on .ch01-scope .carve-set, so the used gap was
-# 7.2px. tokens-core defines --space-2 as .5rem. This one declaration
-# keeps that used value. Any other foreign definition still fails.
-RESTORE = {
-    "_shared/modules/visuals/colour-1.css": {"--space-2: var(--space-cell);"},
-}
 
 
 def strip_comments(text):
     return re.sub(r"/\*.*?\*/", "", text, flags=re.S)
 
 
-def defined_in(text, allow_f1, rel):
+def defined_in(text, allow_f1):
     names = []
     for line in strip_comments(text).splitlines():
         stripped = line.strip()
         if allow_f1 and stripped in F1:
-            continue
-        if stripped in RESTORE.get(rel, ()):
             continue
         names.extend(PROP.findall(line))
     return names
@@ -59,7 +50,7 @@ def main():
         if rel in SKIP:
             continue
         allow_f1 = "type-scale" in rel
-        found = sorted({name for name in defined_in(path.read_text(encoding="utf-8"), allow_f1, rel) if name in owned_set})
+        found = sorted({name for name in defined_in(path.read_text(encoding="utf-8"), allow_f1) if name in owned_set})
         if not found:
             continue
         hits.append(rel)

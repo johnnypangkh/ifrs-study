@@ -10,7 +10,9 @@ two-block shape as main: prefers-color-scheme, then [data-theme="dark"].
 Desktop type-scale values live on :root of tokens.css and tokens-core.css.
 The four mobile type-scale declarations stay in the tokens.css 560 block and
 are mirrored in type-scale.css. tokens-core.css is that file minus exactly
-those four lines. --check fails if the copies differ from the workbook.
+those four lines. The Text sheet's last row (Group directive) emits the
+/settings guard into both files. --check fails if the copies differ from
+the workbook.
 
 Usage:
   python3 tools/xlsx_to_tokens.py            # write tokens.css and tokens-core.css
@@ -80,22 +82,8 @@ CORE_DROP_LINES = (
 GUARD_MARK = (
     "/* Settings keeps the pre-PR3 desktop fallback for these four tokens."
 )
-SETTINGS_GUARD = """/* Settings keeps the pre-PR3 desktop fallback for these four tokens.
+GUARD_HEADER = """/* Settings keeps the pre-PR3 desktop fallback for these four tokens.
    :root defines them for every other page. Mobile still follows the 560 block. */
-body[data-pack="site"] {
-  --type-scale: initial;
-  --vis-body: initial;
-  --vis-meta: initial;
-  --nx-chip-font: initial;
-}
-@media (max-width:560px) {
-  body[data-pack="site"] {
-    --type-scale: 0.85;
-    --vis-body: calc(12px * var(--type-scale));
-    --vis-meta: calc(11px * var(--type-scale));
-    --nx-chip-font: calc(10px * var(--type-scale));
-  }
-}
 """
 SETTINGS_CSS = ROOT / "_shared" / "settings.css"
 SETTINGS_ROWS = ROOT / "_shared" / "settings-rows.html"
@@ -236,6 +224,61 @@ def type_scale_desktop_lines(text_rows):
     return lines
 
 
+def directive_row(text_rows):
+    """The Text sheet's last row. It is a generator instruction, not a token."""
+    if not text_rows or text_rows[-1].get("Group") != "directive":
+        raise SystemExit("Text sheet last row must be Group directive")
+    rows = [row for row in text_rows if row.get("Group") == "directive"]
+    if len(rows) != 1:
+        raise SystemExit(f"expected 1 directive row, found {len(rows)}")
+    row = rows[0]
+    prefix = str(row.get("Token prefix") or "").strip()
+    if prefix != "(directive)":
+        raise SystemExit(f"directive Token prefix must be (directive), found {prefix!r}")
+    desktop = str(row.get("Desktop px") or "").strip()
+    if desktop != "initial":
+        raise SystemExit(f"directive Desktop px must be initial, found {desktop!r}")
+    role = str(row.get("Role / where used") or "")
+    if 'body[data-pack="site"]' not in role:
+        raise SystemExit('directive role is missing body[data-pack="site"]')
+    if "max-width:560px" not in role:
+        raise SystemExit("directive role is missing the 560 block")
+    notes = str(row.get("Notes") or "")
+    if "DIRECTIVE" not in notes:
+        raise SystemExit("directive Notes must say DIRECTIVE, not a token")
+    names = TOKEN_NAME.findall(role)
+    scale_names = [item["Token prefix"] for item in _type_scale_rows(text_rows)]
+    if names != scale_names:
+        raise SystemExit(f"directive tokens {names} != type-scale rows {scale_names}")
+    return row, names, desktop
+
+
+def site_guard(text_rows):
+    """/settings fallback, emitted into tokens.css and tokens-core.css.
+
+    Desktop sets the four type-scale tokens to the directive Desktop px.
+    The 560 block repeats the type-scale mobile rows. Drift fails --check.
+    """
+    _row, names, desktop = directive_row(text_rows)
+    mobile_of = {
+        item["Token prefix"]: type_scale_mobile_value(item)
+        for item in _type_scale_rows(text_rows)
+    }
+    desktop_lines = "\n".join(line(name, desktop, 2) for name in names)
+    mobile_lines = "\n".join(line(name, mobile_of[name], 4) for name in names)
+    return (
+        GUARD_HEADER
+        + 'body[data-pack="site"] {\n'
+        + desktop_lines
+        + "\n}\n"
+        + "@media (max-width:560px) {\n"
+        + '  body[data-pack="site"] {\n'
+        + mobile_lines
+        + "\n  }\n"
+        + "}\n"
+    )
+
+
 def emit_map_row(row, bucket, indent, mobile):
     prefix = row["Token prefix"]
     if mobile:
@@ -370,7 +413,7 @@ def block(selector, decls, indent):
     return f"{pad}{selector} {{\n{body}\n{pad}}}"
 
 
-def render(day, mobile, night, colour_day):
+def render(day, mobile, night, colour_day, guard):
     # Night declarations sit at indent 4 inside the media :root and at indent 2
     # in the data-theme block. build_parts stored them at indent 4; restamp
     # the data-theme copy at indent 2 so both blocks carry the same values.
@@ -391,7 +434,9 @@ def render(day, mobile, night, colour_day):
         "/* settings preview only - scoped light */\n"
         + block('.settings-preview[data-theme="light"]', colour_day, 0),
     ]
-    return "\n".join(parts) + "\n" + SETTINGS_GUARD
+    if GUARD_MARK not in guard:
+        raise SystemExit("settings guard is missing its header")
+    return "\n".join(parts) + "\n" + guard
 
 
 def render_core(css):
@@ -747,6 +792,8 @@ def settings_rows_text(wb, day, mobile):
         if not prefix:
             continue
         group = row.get("Group") or ""
+        if group == "directive":
+            continue
         style = row.get("Style name") or prefix
         role = row.get("Role / where used") or ""
         if group == "site-font" and str(prefix) != "--font-family":
@@ -1045,8 +1092,10 @@ def command_map_lint_settings():
 
 def command_check():
     wb = load_workbook()
+    text_rows = sheet_rows(wb, "Text")
     day, mobile, night, scale, colour_day = build_parts(wb)
-    css = render(day, mobile, night, colour_day)
+    guard = site_guard(text_rows)
+    css = render(day, mobile, night, colour_day, guard)
     core = render_core(css)
     current = TOKENS.read_text(encoding="utf-8") if TOKENS.exists() else ""
     current_core = TOKENS_CORE.read_text(encoding="utf-8") if TOKENS_CORE.exists() else ""
@@ -1075,6 +1124,9 @@ def command_check():
         failed = True
         print("tokens-core.css is not tokens.css minus exactly the 4 mobile type-scale lines")
         print(removed)
+    if guard not in css or guard not in core:
+        failed = True
+        print("settings guard missing from tokens.css or tokens-core.css")
     if not ok:
         failed = True
         print("TYPE-SCALE MIRROR MISMATCH")
@@ -1092,9 +1144,11 @@ def command_check():
 
 def command_write():
     wb = load_workbook()
+    text_rows = sheet_rows(wb, "Text")
     day, mobile, night, scale, colour_day = build_parts(wb)
     baseline_stop(day, mobile, night, scale)
-    css = render(day, mobile, night, colour_day)
+    guard = site_guard(text_rows)
+    css = render(day, mobile, night, colour_day, guard)
     ok, expected, file_text = type_scale_mirror_ok(css, scale)
     if not ok:
         print("STOP: refusing to change type-scale.css.")
@@ -1113,8 +1167,9 @@ def command_write():
     rows = settings_rows_text(wb, day, mobile)
     gen = render_settings_gen(sheet_rows(wb, "Grid"))
     write_settings(rows, gen)
-    day2, mobile2, night2, _scale2, colour2 = build_parts(load_workbook())
-    second = render(day2, mobile2, night2, colour2)
+    wb2 = load_workbook()
+    day2, mobile2, night2, _scale2, colour2 = build_parts(wb2)
+    second = render(day2, mobile2, night2, colour2, site_guard(sheet_rows(wb2, "Text")))
     if second != css or settings_rows_text(load_workbook(), day2, mobile2) != rows:
         print("STOP: generator output is not deterministic.")
         raise SystemExit(1)
@@ -1135,7 +1190,7 @@ def command_owned():
     """Report-only. Does not gate."""
     wb = load_workbook()
     day, mobile, night, scale, colour_day = build_parts(wb)
-    css = render(day, mobile, night, colour_day)
+    css = render(day, mobile, night, colour_day, site_guard(sheet_rows(wb, "Text")))
     base = slice_blocks(git_text("_shared/tokens.css"))
     base_ts = DECL.findall(git_text("_shared/type-scale.css"))
     generated_root = dict(parse_decl_lines(day))

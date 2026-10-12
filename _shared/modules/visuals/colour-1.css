@@ -92,12 +92,3 @@
   --outcome-doubt: var(--warn);
   --outcome-doubt-soft: var(--warn-soft);
 }
-
-/* Visual pages did not load tokens.css before PR3.
-   ias16.css sets .ch01-scope .carve-set { gap: var(--space-2, 0.45rem) }.
-   That fallback was the used value (7.2px). tokens-core defines --space-2
-   as .5rem, which would snap the gap to 8px. This declaration keeps the
-   previous used value and does not change tokens-core.css. */
-.ch01-scope .carve-set {
-  --space-2: var(--space-cell);
-}
