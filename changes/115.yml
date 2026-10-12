@@ -1,0 +1,20 @@
+- action: changed
+  file: "site/settings/index.html"
+  old: "--card-radius D 8px M = existing (Box)"
+  new: "--card-radius D .5rem M = existing (Box)"
+  source: "PR3b W8 / Q3: --card-radius settings cell shows .5rem"
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--card-radius D 8px M = existing (Box)"
+  new: "--card-radius D .5rem M = existing (Box)"
+  source: "PR3b W8 / Q3: --card-radius settings cell shows .5rem"
+- action: changed
+  file: "site/settings/index.html"
+  old: "--card-radius D 8px M ="
+  new: "--card-radius D .5rem M ="
+  source: "PR3b W8 / Q3: --card-radius settings cell shows .5rem"
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--card-radius D 8px M ="
+  new: "--card-radius D .5rem M ="
+  source: "PR3b W8 / Q3: --card-radius settings cell shows .5rem"
