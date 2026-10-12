@@ -1,0 +1,4 @@
+/* IFRS 18 only. Other packs keep their own .num / .grow / .muted. */
+body[data-pack="ifrs18"] .num { text-align: right; }
+body[data-pack="ifrs18"] .grow { flex: 1 1 auto; }
+body[data-pack="ifrs18"] .muted { color: var(--muted); }

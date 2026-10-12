@@ -3,36 +3,36 @@
    Loaded only by index.html, after shared.css + draft.css. Night tokens from those files.
    Solid = frames / peers; dashed = see-also tip only. No floating ↓ / process spine. */
 
-.page.map-page { max-width: 1120px; }
+.page.map-page { max-width: calc(1120 * var(--stroke-1)); }
 
 .map-page header.page-header {
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--stroke-1) solid var(--line);
 }
 .map-page header.page-header h1 {
   margin: 0;
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: var(--tb-h1-fs);
+  font-weight: var(--tb-h1-fw);
 }
 
 /* ==== board:start — keep byte-identical in assets/map.css and visuals/map-jumpboard.css ==== */
 
 .i18map {
-  --map-gap: 16px;
-  --map-gutter: 12px;
-  --map-inner: 10px;
+  --map-gap: var(--space-4);
+  --map-gutter: var(--space-3);
+  --map-inner: var(--space-3);
 }
 .i18map a:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: var(--stroke-2) solid var(--accent);
+  outline-offset: var(--stroke-2);
 }
 
 /* ---- Standard: sole outer authority frame ---- */
 .i18map .std-frame {
-  border: 2px solid var(--ink);
-  border-radius: 12px;
-  padding: 14px 16px 18px;
+  border: var(--stroke-2) solid var(--ink);
+  border-radius: var(--radius-m);
+  padding: calc(14 * var(--stroke-1)) var(--space-4) calc(18 * var(--stroke-1));
   background: transparent;
 }
 .i18map .std-head {
@@ -40,23 +40,23 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px 16px;
-  padding-bottom: 12px;
+  gap: var(--space-3) var(--space-4);
+  padding-bottom: var(--space-3);
   margin-bottom: var(--map-gap);
-  border-bottom: 1px solid var(--line);
+  border-bottom: var(--stroke-1) solid var(--line);
 }
 .i18map .std-rules {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-cell);
 }
 .i18map a.std-rule {
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--vis-body);
   color: var(--muted);
   text-decoration: none;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 5px 12px;
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: calc(5 * var(--stroke-1)) var(--space-3);
   background: var(--surface);
 }
 .i18map a.std-rule strong { color: var(--ink); }
@@ -71,10 +71,10 @@
 
 /* ---- Frames (containment) + cells ---- */
 .i18map .contain {
-  border: 2px solid var(--line);
+  border: var(--stroke-2) solid var(--line);
   border-radius: var(--card-radius);
   background: var(--surface);
-  padding: 12px 14px 14px;
+  padding: var(--space-3) calc(14 * var(--stroke-1)) calc(14 * var(--stroke-1));
   min-width: 0;
 }
 
@@ -82,16 +82,16 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-cell);
   margin: 0;
-  font-size: calc(13px * var(--type-scale, 1));
-  font-weight: 700;
-  line-height: 1.3;
+  font-size: calc(var(--tb-box-body-fs) * var(--type-scale, 1));
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
   color: var(--ink);
   text-decoration: none;
 }
 .i18map a.frame-title:hover { color: var(--accent); text-decoration: none; }
-.i18map .std-head a.frame-title { font-size: calc(14px * var(--type-scale, 1)); }
+.i18map .std-head a.frame-title { font-size: calc(var(--tb-body-fs) * var(--type-scale, 1)); }
 
 .i18map .fb-num {
   display: inline-flex;
@@ -100,18 +100,18 @@
   box-sizing: border-box;
   flex-shrink: 0;
   width: auto;
-  min-width: 46px;
-  height: 22px;
-  padding: 0 8px;
-  border-radius: 999px;
-  border: 1px solid var(--accent);
+  min-width: calc(46 * var(--stroke-1));
+  height: calc(22 * var(--stroke-1));
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  border: var(--stroke-1) solid var(--accent);
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: calc(11px * var(--type-scale, 1));
-  font-weight: 700;
+  font-size: var(--vis-meta);
+  font-weight: var(--t1-fw);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
-  line-height: 1;
+  line-height: var(--mchip-lh);
   white-space: nowrap;
 }
 
@@ -122,12 +122,12 @@
 .i18map .cell {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: var(--space-1);
   min-width: 0;
-  border: 1px solid var(--line);
+  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   background: var(--band);
-  padding: 10px 12px;
+  padding: calc(10 * var(--stroke-1)) var(--space-3);
   color: inherit;
   text-decoration: none;
 }
@@ -135,14 +135,14 @@
 .i18map .cell-title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: calc(13px * var(--type-scale, 1));
-  font-weight: 700;
+  gap: var(--space-cell);
+  font-size: calc(var(--tb-box-body-fs) * var(--type-scale, 1));
+  font-weight: var(--t1-fw);
   color: var(--ink);
 }
 .i18map .cell-body {
-  font-size: calc(12px * var(--type-scale, 1));
-  line-height: 1.4;
+  font-size: var(--vis-body);
+  line-height: var(--t2-lh);
   color: var(--muted);
 }
 
@@ -150,7 +150,7 @@
 .i18map .pillar-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-cell);
 }
 .i18map .pillar-row {
   display: grid;
@@ -168,12 +168,12 @@
 /* Shared rule across all three pillars — attached under the row, not a step */
 .i18map .span-bar {
   margin: 0;
-  padding: 8px 14px;
-  border: 1px solid var(--line);
+  padding: var(--space-2) calc(14 * var(--stroke-1));
+  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   background: var(--band);
-  font-size: calc(12px * var(--type-scale, 1));
-  line-height: 1.4;
+  font-size: var(--vis-body);
+  line-height: var(--t2-lh);
   color: var(--muted);
   text-align: center;
 }
@@ -183,22 +183,22 @@
 .i18map .mini-pnl {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--space-1);
   min-width: 0;
 }
 .i18map .mini-pnl-band {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: var(--space-cell);
   min-width: 0;
-  padding: 5px 8px;
-  border: 1px solid var(--line);
-  border-left-width: 3px;
-  border-radius: 4px;
-  font-size: calc(12px * var(--type-scale, 1));
-  font-weight: 700;
-  line-height: 1.25;
+  padding: calc(5 * var(--stroke-1)) var(--space-2);
+  border: var(--stroke-1) solid var(--line);
+  border-left-width: var(--rail-bar-m);
+  border-radius: var(--radius-s);
+  font-size: var(--vis-body);
+  font-weight: var(--t1-fw);
+  line-height: var(--t3-tag-lh);
   color: var(--ink);
   text-decoration: none;
 }
@@ -225,14 +225,14 @@
 }
 .i18map .mini-pnl-name { min-width: 0; }
 .i18map .mini-pnl-tag {
-  font-size: calc(10px * var(--type-scale, 1));
-  font-weight: 600;
-  letter-spacing: .02em;
+  font-size: var(--nx-chip-font);
+  font-weight: var(--t3-arm-fw);
+  letter-spacing: var(--legacy-ls-5);
   text-transform: uppercase;
   color: var(--muted);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 1px 6px;
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: var(--stroke-1) calc(6 * var(--stroke-1));
   background: var(--surface);
 }
 
@@ -240,14 +240,14 @@
 .i18map .mini-pnl-band--contain {
   flex-direction: column;
   align-items: stretch;
-  gap: 6px;
-  padding: 5px 6px 6px 8px;
+  gap: var(--space-cell);
+  padding: calc(5 * var(--stroke-1)) calc(6 * var(--stroke-1)) calc(6 * var(--stroke-1)) var(--space-2);
 }
 .i18map a.mini-pnl-head {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: var(--space-cell);
   color: inherit;
   text-decoration: none;
 }
@@ -255,11 +255,11 @@
 .i18map a.mini-pnl-nest {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-cell);
   min-width: 0;
-  padding: 6px 8px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
+  padding: calc(6 * var(--stroke-1)) var(--space-2);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--radius-s);
   background: var(--surface);
   color: inherit;
   text-decoration: none;
@@ -268,17 +268,17 @@
 .i18map .mini-pnl-nest-text {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: var(--space-hairline);
   min-width: 0;
 }
 .i18map .mini-pnl-nest-title {
-  font-size: calc(12px * var(--type-scale, 1));
-  font-weight: 700;
+  font-size: var(--vis-body);
+  font-weight: var(--t1-fw);
   color: var(--ink);
 }
 .i18map .mini-pnl-nest-body {
-  font-size: calc(11px * var(--type-scale, 1));
-  font-weight: 400;
+  font-size: var(--vis-meta);
+  font-weight: var(--tb-body-fw);
   color: var(--muted);
 }
 
@@ -286,20 +286,20 @@
 .i18map a.mini-pnl-tick {
   display: block;
   margin: 0;
-  padding: 2px 4px 1px 6px;
-  font-size: calc(10px * var(--type-scale, 1));
-  font-weight: 600;
-  line-height: 1.25;
+  padding: var(--space-hairline) var(--space-1) var(--stroke-1) calc(6 * var(--stroke-1));
+  font-size: var(--nx-chip-font);
+  font-weight: var(--t3-arm-fw);
+  line-height: var(--t3-tag-lh);
   color: var(--muted);
   text-decoration: none;
   border: 0;
-  border-top: 1.5px solid var(--ifrs-subtotal);
+  border-top: calc(1.5 * var(--stroke-1)) solid var(--ifrs-subtotal);
 }
 .i18map a.mini-pnl-tick:hover { color: var(--accent); text-decoration: none; }
 .i18map a.mini-pnl-tick--total {
-  padding-bottom: 3px;
-  border-bottom: 3px double var(--ifrs-subtotal);
-  font-weight: 700;
+  padding-bottom: calc(3 * var(--stroke-1));
+  border-bottom: calc(3 * var(--stroke-1)) double var(--ifrs-subtotal);
+  font-weight: var(--t1-fw);
   color: var(--ink);
 }
 
@@ -307,12 +307,12 @@
 .i18map .tip-note {
   display: block;
   margin-top: auto;
-  padding: 7px 10px;
-  border: 1px dashed var(--dash);
-  border-radius: 6px;
+  padding: calc(7 * var(--stroke-1)) calc(10 * var(--stroke-1));
+  border: var(--stroke-1) dashed var(--dash);
+  border-radius: var(--radius-s);
   color: var(--muted);
-  font-size: calc(11px * var(--type-scale, 1));
-  line-height: 1.4;
+  font-size: var(--vis-meta);
+  line-height: var(--t2-lh);
   text-decoration: none;
   background: transparent;
 }
@@ -330,22 +330,22 @@
   display: flex;
   flex-direction: column;
   gap: var(--map-inner);
-  border-width: 1px;
+  border-width: var(--stroke-1);
   background: transparent;
 }
 .i18map .close .cell-grid { flex: 1 1 auto; }
 
 /* ---- Narrow ---- */
-@media (max-width: 900px) {
-  .i18map { --map-gap: 14px; }
+@media (max-width: 800px) {
+  .i18map { --map-gap: var(--space-4); }
   .i18map .pillar-row { grid-template-columns: 1fr; }
   .i18map .close-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .i18map .g-2,
   .i18map .g-3 { grid-template-columns: 1fr; }
-  .i18map .std-frame { padding: 12px 10px 14px; }
-  .i18map .contain { padding: 10px 12px 12px; }
+  .i18map .std-frame { padding: var(--space-3) calc(10 * var(--stroke-1)) calc(14 * var(--stroke-1)); }
+  .i18map .contain { padding: calc(10 * var(--stroke-1)) var(--space-3) var(--space-3); }
 }
 
 /* ==== board:end ==== */
@@ -355,23 +355,23 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px 4px;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
+  gap: var(--space-cell) var(--space-1);
+  padding: calc(10 * var(--stroke-1)) var(--space-3);
+  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   background: transparent;
 }
 .i18map a.map-visit-step {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: calc(12px * var(--type-scale, 1));
-  font-weight: 600;
+  gap: var(--space-cell);
+  font-size: var(--vis-body);
+  font-weight: var(--t3-arm-fw);
   color: var(--ink);
   text-decoration: none;
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1px solid transparent;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-s);
+  border: var(--stroke-1) solid transparent;
 }
 .i18map a.map-visit-step:hover {
   border-color: var(--accent);
@@ -379,8 +379,8 @@
 }
 .i18map .map-visit-arrow {
   display: inline-block;
-  width: 18px;
-  height: 2px;
+  width: calc(18 * var(--stroke-1));
+  height: var(--stroke-2);
   background: var(--accent);
   position: relative;
   flex-shrink: 0;
@@ -388,13 +388,13 @@
 .i18map .map-visit-arrow::after {
   content: "";
   position: absolute;
-  right: -1px;
+  right: calc(-1 * var(--stroke-1));
   top: 50%;
   transform: translateY(-50%);
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  border-left: 6px solid var(--accent);
+  border-top: var(--rail-bar-m) solid transparent;
+  border-bottom: var(--rail-bar-m) solid transparent;
+  border-left: var(--rail-bar-l) solid var(--accent);
 }
-@media (max-width: 720px) {
-  .i18map .map-visit-arrow { width: 12px; }
+@media (max-width: 800px) {
+  .i18map .map-visit-arrow { width: var(--space-3); }
 }
