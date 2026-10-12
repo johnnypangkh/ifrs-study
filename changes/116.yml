@@ -4,7 +4,8 @@
 # 3. SNAP gaps: 8px to --space-cell (including --wn-inner and --pa-inner; not --space-2, not calc); 14/18/20/22px to --space-4; 10px to --space-3 (including --map-inner and --tr-inner).
 # 4. --space-hairline role text: en dash replaced with a plain hyphen. Teaching entries below.
 # 6. LOCK-STAMP L12 option A: visual_types path is cf-2018/VISUAL-TYPES.md. Johnny via PM 4, 2026-10-12 18:15.
-# Items 1, 2, 3, and 6 do not change teaching text. Item 4 is the added hairline role below.
+# 7. Mobile --map-inner -> --space-cell inside the existing @media (max-width: 560px). Desktop stays --space-3. Johnny via PM 4, 2026-10-12 18:49.
+# Items 1, 2, 3, 6, and 7 do not change teaching text. Item 4 is the added hairline role below.
 
 - action: added
   file: "_shared/settings-rows.html"

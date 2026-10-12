@@ -22,9 +22,9 @@
       "fingerprint": "1b8541a9e1db1f81e7c2ea597e959f9fe6e6ea36c2ef6f96161d8ed76348f90c"
     },
     "ifrs18": {
-      "text": "Last update · 2026-10-12 18:20 HKT",
-      "iso": "2026-10-12T18:20:00+08:00",
-      "fingerprint": "b781f22c022b31bbfea779f625e0df56515e93f4138fb17b5c94a684d4d0246d"
+      "text": "Last update · 2026-10-12 18:51 HKT",
+      "iso": "2026-10-12T18:51:00+08:00",
+      "fingerprint": "4f389daa25e73c905b48fda5bf5410e43b26270933597e65e2ba388109459210"
     },
     "site": {
       "text": "Last update · 2026-10-12 18:20 HKT",
