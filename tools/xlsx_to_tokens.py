@@ -20,7 +20,6 @@ Usage:
   python3 tools/xlsx_to_tokens.py --owned    # report-only baseline comparison
   python3 tools/xlsx_to_tokens.py --map-lint # report-only hardcoded-value counts
   python3 tools/xlsx_to_tokens.py --map-lint-shared
-  python3 tools/xlsx_to_tokens.py --settings-cover
   python3 tools/xlsx_to_tokens.py --repo-grep
 """
 import difflib
@@ -48,17 +47,6 @@ DESKTOP_SCALE = {
     "--nx-chip-font": "10px",
 }
 SCALE_NAMES = tuple(DESKTOP_SCALE)
-# Shown on /settings already. New PR3 tokens stay out of that page so it
-# stays byte-identical (stamp-only) and pixel-identical.
-SETTINGS_HIDE_PREFIXES = ("LEGACY-PR3", "NEW PR3")
-# These names are new in PR3. /settings already lists every older token.
-SETTINGS_HIDE_NAMES = {
-    "--font-mono",
-    "--cite-font",
-    "--radius-m",
-    "--border-see",
-    "--border-na",
-}
 NEW_ROOT_NAMES = (
     "--font-mono",
     "--cite-font",
@@ -753,6 +741,113 @@ def _ruler():
     return f'<div class="ruler">{"".join(marks)}<span class="now"></span></div>'
 
 
+LEGACY_ROLES = (
+    "w",
+    "pad",
+    "mg",
+    "color",
+    "ls",
+    "fs",
+    "gap",
+    "border",
+    "fw",
+    "lh",
+    "radius",
+    "shadow",
+)
+LEGACY_NAME = re.compile(r"^--legacy-([a-z]+)-(\d+)$")
+FULL_BORDER = {"--border-see", "--border-na"}
+RADIUS_BOX = {"--card-radius", "--radius-m"}
+
+
+def _bar_preview(token, clamp):
+    """Width rows clamp. Length-only border and shadow stay a plain bar."""
+    kind = "bar pw" if clamp else "bar"
+    return f'<span class="{kind}" style="--p-w:var({token})"></span>'
+
+
+def _spacing_preview(token):
+    if token in RADIUS_BOX:
+        return f'<span class="radius" style="--p-r:var({token})"></span>'
+    if token in FULL_BORDER:
+        return f'<span class="box-border" style="--p-b:var({token})"></span>'
+    return f'<span class="bar" style="--p-w:var({token})"></span>'
+
+
+def _legacy_preview(token, role):
+    if role == "fs":
+        return f'<p class="sample" style="--p-fs:var({token})">{SAMPLE}</p>'
+    if role == "fw":
+        return f'<p class="sample" style="--p-fw:var({token})">{SAMPLE}</p>'
+    if role == "lh":
+        return f'<p class="sample" style="--p-lh:var({token})">{SAMPLE}</p>'
+    if role == "ls":
+        return f'<p class="sample" style="--p-ls:var({token})">{SAMPLE}</p>'
+    if role == "color":
+        return f'<span class="sw" style="--p-c:var({token})"></span>'
+    if role == "radius":
+        return f'<span class="radius" style="--p-r:var({token})"></span>'
+    if role == "w":
+        return _bar_preview(token, clamp=True)
+    return _bar_preview(token, clamp=False)
+
+
+def _legacy_role_text(row):
+    use = str(row.get("Use") or "").strip()
+    notes = row.get("Notes")
+    notes_text = "" if notes is None else str(notes).strip()
+    if use and notes_text:
+        text = use + " " + notes_text
+    else:
+        text = use or notes_text
+    return _token_text(text)
+
+
+def _legacy_group(rows, root_map, mobile_map):
+    """One closed details group after Grid. Rows are grouped by role."""
+    by_role = {role: [] for role in LEGACY_ROLES}
+    for row in rows:
+        token = str(row.get("Token") or "")
+        match = LEGACY_NAME.match(token)
+        if not match:
+            raise SystemExit(f"legacy row is not --legacy-<role>-<n>: {token}")
+        role = match.group(1)
+        if role not in by_role:
+            raise SystemExit(f"unknown legacy role {role} on {token}")
+        by_role[role].append((int(match.group(2)), row))
+    inner = []
+    total = 0
+    for role in LEGACY_ROLES:
+        items = sorted(by_role[role], key=lambda item: item[0])
+        if not items:
+            raise SystemExit(f"missing legacy role {role}")
+        total += len(items)
+        inner.append(_section(f"{role} - {len(items)}"))
+        for _number, row in items:
+            token = str(row["Token"])
+            name, desktop, mobile_value = _pair(token, root_map, mobile_map)
+            left = (
+                f'<div class="meta">{_vals(name, desktop, mobile_value)}'
+                f'<div class="role">{_legacy_role_text(row)}</div></div>'
+            )
+            inner.append(_data_row("legacy", left, _legacy_preview(token, role)))
+    if total != 152:
+        raise SystemExit(f"expected 152 legacy rows, found {total}")
+    summary = "Legacy (PR3, to retire in PR4-7) - 152"
+    body = "\n".join(inner)
+    html_row = (
+        '<tr class="legacy-wrap"><td colspan="2">'
+        '<details class="legacy-group">'
+        f"<summary>{html.escape(summary)}</summary>"
+        '<table class="set-table"><tbody>\n'
+        + body
+        + "\n</tbody></table></details></td></tr>"
+    )
+    if re.search(r"<details\b[^>]*>\s*<tr\b", html_row):
+        raise SystemExit("refusing to emit tr as a direct child of details")
+    return html_row
+
+
 def _grid_preview(token):
     if token.endswith("-n") or token in ("--bp-mobile", "--bp-wide"):
         unit = {"--bp-mobile": "--bp-mobile-n", "--bp-wide": "--bp-wide-n"}.get(token, token)
@@ -796,8 +891,6 @@ def settings_rows_text(wb, day, mobile):
             continue
         style = row.get("Style name") or prefix
         role = row.get("Role / where used") or ""
-        if group == "site-font" and str(prefix) != "--font-family":
-            continue
         if group == "type-scale":
             tokens = [(prefix, "fallback 1 / unset", mobile_map[prefix])]
             style_attr = (
@@ -807,7 +900,7 @@ def settings_rows_text(wb, day, mobile):
             )
         elif group == "site-font":
             tokens = [_pair(prefix, root_map, mobile_map)]
-            style_attr = "--p-family:var(--font-family)"
+            style_attr = f"--p-family:var({prefix})"
         elif group == "site":
             tokens = [_pair(prefix, root_map, mobile_map)]
             style_attr = f"--p-fs:var({prefix})"
@@ -860,25 +953,18 @@ def settings_rows_text(wb, day, mobile):
         preview = f'<span class="sw" style="--p-c:var({token})"></span>{chip}'
         out.append(_data_row("colour", left, preview))
     out.append(_section("Spacing"))
+    legacy_rows = []
     for row in spacing_rows:
         token = row.get("Token")
         if not token or not str(token).startswith("--"):
             continue
         token = str(token)
         role = row.get("Use") or ""
-        if role.startswith(SETTINGS_HIDE_PREFIXES) or token.startswith("--legacy-"):
-            continue
-        if token in SETTINGS_HIDE_NAMES:
+        if token.startswith("--legacy-") or str(role).startswith("LEGACY-PR3"):
+            legacy_rows.append(row)
             continue
         name, desktop, mobile_value = _pair(token, root_map, mobile_map)
-        if token == "--card-radius":
-            # The stylesheet value is .5rem. The settings cell stays 8px so the
-            # page HTML does not change.
-            desktop = CARD_RADIUS_BASE
-            mobile_value = "="
-            preview = f'<span class="radius" style="--p-r:var({token})"></span>'
-        else:
-            preview = f'<span class="bar" style="--p-w:var({token})"></span>'
+        preview = _spacing_preview(token)
         left = (
             f'<div class="meta">{_vals(name, desktop, mobile_value)}'
             f'<div class="role">{_token_text(role)}</div></div>'
@@ -909,6 +995,7 @@ def settings_rows_text(wb, day, mobile):
         + "</div></div>"
     )
     out.append(_data_row("grid ruler-row", ruler_left, _ruler()))
+    out.append(_legacy_group(legacy_rows, root_map, mobile_map))
     for title in ("Box", "Components", "TopBar"):
         out.append(_section(title, "next"))
         out.append(
@@ -1420,60 +1507,6 @@ def command_map_lint_shared():
     print("map-lint shared: 0")
 
 
-def command_settings_cover():
-    """Pre-existing token names stay covered. PR3 additions are exempt.
-
-    check-settings-rows.py is unchanged. This mode is the CI gate so new
-    LEGACY-PR3 and font/border rows do not force a settings HTML edit.
-    """
-    page = SETTINGS_PAGE.read_text(encoding="utf-8")
-    partial = SETTINGS_ROWS.read_text(encoding="utf-8")
-    start = page.index(ROW_BEGIN) + len(ROW_BEGIN)
-    end = page.index(ROW_END)
-    injected = page[start:end].strip("\n")
-    if injected != partial.strip("\n"):
-        print("settings page rows differ from _shared/settings-rows.html")
-        raise SystemExit(1)
-    row_re = re.compile(r'<tr class="row\b[^"]*">.*?</tr>', re.S)
-    code_re = re.compile(r"<code>(--[\w-]+)</code>")
-    rows = row_re.findall(page)
-    counts = {}
-    for row in rows:
-        for name in code_re.findall(row):
-            counts[name] = counts.get(name, 0) + 1
-    defined = []
-    seen = set()
-    for path in (TOKENS, TYPE_SCALE):
-        for name in PROP.findall(path.read_text(encoding="utf-8")):
-            if name not in seen:
-                seen.add(name)
-                defined.append(name)
-
-    def exempt(name):
-        return name.startswith("--legacy-") or name in SETTINGS_HIDE_NAMES
-
-    missing = [name for name in defined if counts.get(name, 0) == 0 and not exempt(name)]
-    duplicated = [name for name, count in counts.items() if count != 1]
-    extra = [name for name in counts if name not in seen]
-    placeholders = all(title in page for title in ("Box", "Components", "TopBar"))
-    covered = len([name for name in defined if not exempt(name)]) - len(missing)
-    print(
-        f"{len(defined)} tokens / {covered} covered / {len(missing)} missing / "
-        f"{len(duplicated)} duplicated / {len(rows)} rows"
-    )
-    if missing:
-        print("missing: " + ", ".join(missing))
-    if duplicated:
-        print("duplicated: " + ", ".join(duplicated))
-    if extra:
-        print("not a token: " + ", ".join(extra))
-    if not placeholders:
-        print("missing Box, Components, or TopBar placeholder")
-    if missing or duplicated or extra or not placeholders:
-        raise SystemExit(1)
-    print("settings-cover: ok")
-
-
 def main():
     args = set(sys.argv[1:])
     if args == {"--check"}:
@@ -1488,9 +1521,6 @@ def main():
     if args == {"--map-lint-shared"}:
         command_map_lint_shared()
         return
-    if args == {"--settings-cover"}:
-        command_settings_cover()
-        return
     if args == {"--repo-grep"}:
         command_repo_grep()
         return
@@ -1503,7 +1533,7 @@ def main():
     if args:
         raise SystemExit(
             "usage: xlsx_to_tokens.py [--check|--owned|--map-lint|--map-lint-shared|"
-            "--map-lint-settings|--settings-cover|--repo-grep|--settings]"
+            "--map-lint-settings|--repo-grep|--settings]"
         )
     command_write()
 
