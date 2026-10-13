@@ -29,10 +29,7 @@
 # - G6: archived ias16-cx-narrow.js trailing blank line restored.
 # tools/check-stamp-only.py fold (master-concept-map branches and
 # style-indent blanks): Johnny via PM 4, approved 2026-10-13 17:36.
-# G2r-A2: after the ch03-cost overflow-wrap lock, .ppe .ch03-cost .after-col
-# and .ppe .ch03-cost .after-col * get overflow-wrap:break-word !important
-# and min-width:0. grid-column stays pinned.
-# Approval: Master Design §14 r3 A2 + PM 4 gate, 2026-10-13.
+# option C + 1280-only acceptance: Johnny via PM 4, 2026-10-13 19:45
 #
 # Teaching rows below are the settings table only. Chapter prose is unchanged.
 #
