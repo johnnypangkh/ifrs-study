@@ -1,5 +1,21 @@
 # PR4c rev 2b approvals for pull request 118.
 # Branch cursor/pr4c-nomobile-3d89.
+#
+# QC r1 fix approvals (F1-F6). Master Design NOMOBILE-SPEC section 14,
+# Johnny via PM 4, 2026-10-13:
+# - F1: width @media evaluated at 1280. Matching min-width rules unwrapped
+#   (wrapper dropped, rules kept). max-width blocks stay removed. Range
+#   blocks keep the 1280 branch. Originals stay archived verbatim.
+# - F2: master-concept-map.html five matchMedia max-width 800px branches
+#   hard-wired to the not-narrow path. Original lines archived.
+# - F3: 922 deltas mapped in the PR body.
+# - F4: RESTORE step 2 is git checkout cfc59d2b -- the written file list.
+# - F5: expected 1280 set drops _archive-index-stub.
+# - F6: duplicate changes/cursor/pr4c-nomobile-3d89.yml removed. Whitespace
+#   nits cleared (homepage L364, how-these-notes L116, EOF blank lines).
+# F8: cf-2018/draft-v1-linked/_archive/visuals/ch09-status.css:293 is left
+# as it is. It is an archive file that is never served.
+#
 # Teaching rows below are the settings table only. Chapter prose is unchanged.
 #
 # base vs new (Johnny via PM 4, 2026-10-13 14:04; NOMOBILE-SPEC section 13, Master Design 14:05):

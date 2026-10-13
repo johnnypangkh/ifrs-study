@@ -34,4 +34,3 @@
         v(x, y1, y2, false);
         if (narrow) placeLabel(lab, x - em(0.55), (y1 + y2) / 2, "left");
         else placeLabel(lab, x + em(0.55), (y1 + y2) / 2, "right");
-

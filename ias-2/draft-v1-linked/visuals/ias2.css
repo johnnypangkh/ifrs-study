@@ -951,4 +951,3 @@ a.m-cell:hover { border-color: var(--accent); }
 .st-cost .st-down-x { min-height: 44px; }
 .st-cost a.cell:hover { border-color: var(--formula); }
 .st-cost a.cell:hover span.fb-num { background: var(--formula); color: var(--on-accent); }
-

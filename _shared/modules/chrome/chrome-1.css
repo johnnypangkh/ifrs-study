@@ -683,7 +683,11 @@ header.chrome-bar.is-shared {
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
   font-weight: var(--t3-arm-fw);
 }
-
+/* Johnny 2026-10-10: one row at every width; overflow scrolls with < > chevrons. */
+.chrome-bar.is-shared .tag {
+  font-size: var(--t-meta);
+  padding-inline: var(--space-2);
+}
 .chrome-bar.is-shared .pill-chevron {
   position: absolute;
   inset-block: 0;

@@ -196,6 +196,3 @@ a.fb-num.fb-num--long { letter-spacing: 0; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
-
-
-

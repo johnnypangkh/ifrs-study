@@ -123,14 +123,143 @@ def strip_width_media(text):
     return "".join(out)
 
 
+def _drop_style_indent_blanks(style):
+    """A removed width query leaves its indent as a whitespace-only line."""
+    lines = style.split("\n")
+    kept = []
+    for line in lines:
+        if line != "" and line.strip() == "":
+            continue
+        kept.append(line)
+    return "\n".join(kept)
+
+
 def fold_style_media(html):
     """Inline style width queries are the W6 removal, not teaching text."""
     return re.sub(
         r"<style\b[^>]*>.*?</style>",
-        lambda match: strip_width_media(match.group(0)),
+        lambda match: _drop_style_indent_blanks(strip_width_media(match.group(0))),
         html,
         flags=re.S | re.I,
     )
+
+
+# F2 hard-wires master-concept-map.html to the not-narrow branch. The
+# comparison treats base and head as that same branch. Each pair is applied
+# once and is a no-op once the branch is already gone.
+MAP_NARROW = "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+MAP_NARROW_FOLDS = (
+    (
+        '    if (window.matchMedia("(max-width: 800px)").matches) {\n'
+        '      flow.style.removeProperty("--shaft-x");\n'
+        "      return;\n"
+        "    }\n",
+        "",
+    ),
+    (
+        '    if (window.matchMedia("(max-width: 800px)").matches) {\n'
+        '      if (name.style.minHeight) name.style.minHeight = "";\n'
+        '      if (rule && rule.style.marginTop) rule.style.marginTop = "";\n'
+        "      return;\n"
+        "    }\n",
+        "",
+    ),
+    (
+        '    var narrow = window.matchMedia("(max-width: 800px)").matches;\n'
+        "    for (var g = 0; g < terms.length; g++) {\n",
+        "    for (var g = 0; g < terms.length; g++) {\n",
+    ),
+    (
+        "    if (narrow || terms.length < 2) return;\n",
+        "    if (terms.length < 2) return;\n",
+    ),
+    (
+        '    var narrow = window.matchMedia("(max-width: 800px)").matches;\n'
+        "    var specs = [];\n",
+        "    var specs = [];\n",
+    ),
+    (
+        '      if (narrow) placeLabel(lab, x - em(0.55), (y1 + y2) / 2, "left");\n'
+        '      else placeLabel(lab, x + em(0.55), (y1 + y2) / 2, "right");\n',
+        '      placeLabel(lab, x + em(0.55), (y1 + y2) / 2, "right");\n',
+    ),
+    (
+        '      if (narrow) hFlow(leaf1.cy, q1.cx, leaf1.l, noLab, "mute");\n'
+        '      else hFlow(q1.cy, q1.r, leaf1.l, noLab, "mute");\n',
+        '      hFlow(q1.cy, q1.r, leaf1.l, noLab, "mute");\n',
+    ),
+    (
+        '      if (narrow) hFlow(leaf3.cy, q3.cx, leaf3.l, yesLab, "stop");\n'
+        '      else hFlow(q3.cy, q3.r, leaf3.l, yesLab, "stop");\n',
+        '      hFlow(q3.cy, q3.r, leaf3.l, yesLab, "stop");\n',
+    ),
+    (
+        "    var recogRail = root.querySelector('.rail-link[data-phase=\"recog\"]');\n"
+        '    var scopeNext = root.querySelector(".scope-tip");\n',
+        '    var scopeNext = root.querySelector(".scope-tip");\n',
+    ),
+    (
+        "    if (narrow && shown(recogRail) && shown(capQ)) {\n"
+        "      var railB = boxOf(recogRail);\n"
+        "      var q2 = boxOf(capQ);\n"
+        "      vFlow(railB.cx, railB.b, q2.t, null);\n"
+        "    }\n",
+        "",
+    ),
+    (
+        '      if (narrow) hFlow(leafY.cy, qY.cx, leafY.l, capNo, "mute");\n'
+        '      else hFlow(qY.cy, qY.r, leafY.l, capNo, "mute");\n',
+        '      hFlow(qY.cy, qY.r, leafY.l, capNo, "mute");\n',
+    ),
+    (
+        "      if (narrow || Math.abs(qYes.cx - plate.cx) <= 3) {\n",
+        "      if (Math.abs(qYes.cx - plate.cx) <= 3) {\n",
+    ),
+    (
+        "    if (!narrow) {\n"
+        '      linkStem(root.querySelector(".cost-result"), root.querySelector(".nature-nest > .port-tab"));\n'
+        '      linkStem(root.querySelector(".da-col"), root.querySelector(".ready-axis > .axis-port"));\n'
+        "    }\n",
+        '    linkStem(root.querySelector(".cost-result"), root.querySelector(".nature-nest > .port-tab"));\n'
+        '    linkStem(root.querySelector(".da-col"), root.querySelector(".ready-axis > .axis-port"));\n',
+    ),
+    (
+        '      if (narrow && shown(rail) && rail.classList.contains("rail-link")) {\n'
+        "        var R = boxOf(rail);\n"
+        "        vFlow(S.cx, S.b, R.t, flowLab);\n"
+        "        vFlow(R.cx, R.b, T.t, null);\n"
+        "      } else {\n"
+        "        vFlow(S.cx, S.b, T.t, flowLab);\n"
+        "      }\n",
+        "      vFlow(S.cx, S.b, T.t, flowLab);\n",
+    ),
+    (
+        "    if (!narrow && shown(parent) && heads.length >= 2 && shown(heads[0]) && shown(heads[1])) {\n",
+        "    if (shown(parent) && heads.length >= 2 && shown(heads[0]) && shown(heads[1])) {\n",
+    ),
+    (
+        '    var narrow = window.matchMedia("(max-width: 800px)").matches;\n'
+        '    var rails = root.querySelectorAll(".rail-link[data-phase]");\n'
+        "    for (var i = 0; i < rails.length; i++) {\n"
+        "      var rail = rails[i];\n"
+        "      if (narrow) {\n"
+        "        if (rail.style.marginTop || rail.style.height) {\n"
+        '          rail.style.marginTop = "";\n'
+        '          rail.style.height = "";\n'
+        "        }\n"
+        "        continue;\n"
+        "      }\n",
+        '    var rails = root.querySelectorAll(".rail-link[data-phase]");\n'
+        "    for (var i = 0; i < rails.length; i++) {\n"
+        "      var rail = rails[i];\n",
+    ),
+)
+
+
+def fold_map_narrow(html):
+    for old, new in MAP_NARROW_FOLDS:
+        html = html.replace(old, new, 1)
+    return html
 
 
 def fold_utility_styles(html):
@@ -198,6 +327,9 @@ def main():
         head = file.read_text(encoding="utf-8")
         base_n = fold_style_media(fold_viewport(norm(base)))
         head_n = fold_style_media(fold_viewport(norm(head)))
+        if path == MAP_NARROW:
+            base_n = fold_map_narrow(base_n)
+            head_n = fold_map_narrow(head_n)
         if path in UTILITY_PAGES:
             base_n = fold_utility_styles(base_n)
             head_n = fold_utility_styles(head_n)

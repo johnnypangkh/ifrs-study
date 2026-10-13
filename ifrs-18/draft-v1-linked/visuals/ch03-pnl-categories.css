@@ -199,5 +199,3 @@ html { background: var(--bg); }
 .pc-fwd strong { font-weight: var(--t1-fw); color: var(--ink); }
 
 /* ---- Narrow: one column; the note drops in DOM order under Financing, indented ---- */
-
-
