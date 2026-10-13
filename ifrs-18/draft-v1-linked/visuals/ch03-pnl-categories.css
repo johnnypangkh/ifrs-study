@@ -199,24 +199,3 @@ html { background: var(--bg); }
 .pc-fwd strong { font-weight: var(--t1-fw); color: var(--ink); }
 
 /* ---- Narrow: one column; the note drops in DOM order under Financing, indented ---- */
-@media (max-width: 800px) {
-  .pc-schematic {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
-  }
-  .pc-schematic > * {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  .pc-bracket { display: none; }
-  .pc-mba { margin-left: var(--space-4); }
-}
-@media (max-width: 560px) {
-  .pc-band {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-cell);
-    padding: calc(10 * var(--stroke-1));
-  }
-  .pc-mba,
-  .pc-fwd { padding: var(--space-2) calc(10 * var(--stroke-1)); }
-}

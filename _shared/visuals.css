@@ -10,20 +10,20 @@
    (.consol-boundary / .fs-consol) — not see-also, not nest hierarchy.
    Composition (組成) → .contain / .contain-grid / .contain-cell — never dashed hang.
    Matches CF map family. file:// offline OK via relative link. */
-@import url("tokens-core.css?v=157591e3037e");
+@import url("tokens-core.css?v=6fd4d3713e70");
 @import url("see-also.css?v=see-join-20261005");
 @import url("modules/visuals/colour-1.css?v=f1809b248dce");
 @import url("modules/visuals/teaching-layout-1.css?v=500fdee144ef");
-@import url("modules/visuals/box-1.css?v=337c91a980c5");
-@import url("modules/visuals/components-1.css?v=9f3e7e4dde87");
-@import url("modules/visuals/grid-1.css?v=79e8b9aaa85a");
-@import url("modules/visuals/components-2.css?v=65629ef82cee");
+@import url("modules/visuals/box-1.css?v=3a5ee9c19f38");
+@import url("modules/visuals/components-1.css?v=bb893a675809");
+@import url("modules/visuals/grid-1.css?v=3eae2f6127ef");
+@import url("modules/visuals/components-2.css?v=63e62dc677fa");
 @import url("modules/visuals/colour-2.css?v=9551afbddd15");
-@import url("modules/visuals/components-3.css?v=a9cc44edb512");
+@import url("modules/visuals/components-3.css?v=e3cffbc04622");
 @import url("modules/visuals/grid-2.css?v=3630cd9b8953");
-@import url("modules/visuals/components-4.css?v=b1dad0b1e9ec");
+@import url("modules/visuals/components-4.css?v=d1bf3c1fee98");
 @import url("modules/visuals/chrome-1.css?v=9807a1768d9c");
-@import url("modules/visuals/grid-3.css?v=01f3b23ade55");
+@import url("modules/visuals/grid-3.css?v=4ec5c1ad7dcd");
 @import url("modules/visuals/components-5.css?v=634afd689584");
 @import url("modules/visuals/cite-1.css?v=c009cf70abf2");
-@import url("modules/visuals/components-6.css?v=8700ddf0bdf2");
+@import url("modules/visuals/components-6.css?v=81481c241ab1");

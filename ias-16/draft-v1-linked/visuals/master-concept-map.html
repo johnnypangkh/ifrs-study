@@ -3,11 +3,11 @@
 <head>
 <meta name="robots" content="noindex">
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=1280" />
 <title>IAS 16 — Map</title>
-<link rel="stylesheet" href="../../../_shared/visuals.css?v=see-join-20261005" />
-<link rel="stylesheet" href="../../../_shared/type-scale.css?v=ias16-pack-inner-20261008" />
-<link rel="stylesheet" href="ias16.css?v=cb87e46ba264" />
+<link rel="stylesheet" href="../../../_shared/visuals.css?v=49cc6a8eed7b" />
+<link rel="stylesheet" href="../../../_shared/type-scale.css?v=ab905971edac" />
+<link rel="stylesheet" href="ias16.css?v=9e763cf712ec" />
 <script src="../../../_shared/theme.js?v=ias2-fit-20261001"></script>
 </head>
 <body class="embed">
@@ -1350,10 +1350,6 @@
       strip.style.maxWidth = "";
     }
     if (!shaft) return;
-    if (window.matchMedia("(max-width: 800px)").matches) {
-      flow.style.removeProperty("--shaft-x");
-      return;
-    }
     var flowBox = flow.getBoundingClientRect();
     var shaftBox = shaft.getBoundingClientRect();
     var x = (shaftBox.left + shaftBox.width / 2) - flowBox.left;
@@ -1367,11 +1363,6 @@
     var rule = root.querySelector(".axis-rule");
     var diamond = root.querySelector(".axis-diamond");
     if (!name || !text) return;
-    if (window.matchMedia("(max-width: 800px)").matches) {
-      if (name.style.minHeight) name.style.minHeight = "";
-      if (rule && rule.style.marginTop) rule.style.marginTop = "";
-      return;
-    }
     var h = text.getBoundingClientRect().height;
     if (h > 0) {
       var prev = parseFloat(name.style.minHeight);
@@ -1413,11 +1404,10 @@
     var leds = root.querySelectorAll(".carry-row .vledger");
     var terms = [];
     for (var i = 0; i < leds.length; i++) terms.push(leds[i].querySelectorAll(".vterm, .vresult"));
-    var narrow = window.matchMedia("(max-width: 800px)").matches;
     for (var g = 0; g < terms.length; g++) {
       for (var j = 0; j < terms[g].length; j++) terms[g][j].style.minHeight = "0px";
     }
-    if (narrow || terms.length < 2) return;
+    if (terms.length < 2) return;
     void root.offsetHeight;
     var n = Math.min(terms[0].length, terms[1].length);
     for (var k = 0; k < n; k++) {
@@ -1443,7 +1433,6 @@
   function drawConnectors() {
     var layer = root.querySelector(".cx-layer");
     if (!layer) return;
-    var narrow = window.matchMedia("(max-width: 800px)").matches;
     var specs = [];
     function v(x, y1, y2, link) {
       if (!(y2 > y1 + 0.5)) return;
@@ -1457,8 +1446,7 @@
     function vFlow(x, y1, y2, lab) {
       if (y2 - y1 < 8) return;
       v(x, y1, y2, false);
-      if (narrow) placeLabel(lab, x - em(0.55), (y1 + y2) / 2, "left");
-      else placeLabel(lab, x + em(0.55), (y1 + y2) / 2, "right");
+      placeLabel(lab, x + em(0.55), (y1 + y2) / 2, "right");
     }
     function hFlow(y, x1, x2, lab, tone) {
       if (x2 - x1 < 8) return;
@@ -1476,8 +1464,7 @@
       var q1 = boxOf(ppeQ);
       var leaf1 = boxOf(ppeLeaf);
       var noLab = root.querySelector(".fork-ppe .harm .arm-label");
-      if (narrow) hFlow(leaf1.cy, q1.cx, leaf1.l, noLab, "mute");
-      else hFlow(q1.cy, q1.r, leaf1.l, noLab, "mute");
+      hFlow(q1.cy, q1.r, leaf1.l, noLab, "mute");
     }
     if (shown(ppeQ) && shown(exclQ)) {
       var from = boxOf(ppeQ);
@@ -1488,34 +1475,26 @@
       var q3 = boxOf(exclQ);
       var leaf3 = boxOf(exclLeaf);
       var yesLab = root.querySelector(".fork-excl .harm .arm-label");
-      if (narrow) hFlow(leaf3.cy, q3.cx, leaf3.l, yesLab, "stop");
-      else hFlow(q3.cy, q3.r, leaf3.l, yesLab, "stop");
+      hFlow(q3.cy, q3.r, leaf3.l, yesLab, "stop");
     }
-    var recogRail = root.querySelector('.rail-link[data-phase="recog"]');
     var scopeNext = root.querySelector(".scope-tip");
     if (shown(exclQ) && shown(scopeNext)) {
       var src = boxOf(exclQ);
       var dest = boxOf(scopeNext);
       vFlow(src.cx, src.b, dest.t, root.querySelector(".fork-excl .varm .arm-label"));
     }
-    if (narrow && shown(recogRail) && shown(capQ)) {
-      var railB = boxOf(recogRail);
-      var q2 = boxOf(capQ);
-      vFlow(railB.cx, railB.b, q2.t, null);
-    }
     var recogPlate = root.querySelector('.beat[data-phase="recog"] > .plate, .beat[data-phase="recog"] > .map-include > .plate');
     if (shown(capQ) && shown(capLeaf)) {
       var qY = boxOf(capQ);
       var leafY = boxOf(capLeaf);
       var capNo = root.querySelector(".fork-cap .harm .arm-label");
-      if (narrow) hFlow(leafY.cy, qY.cx, leafY.l, capNo, "mute");
-      else hFlow(qY.cy, qY.r, leafY.l, capNo, "mute");
+      hFlow(qY.cy, qY.r, leafY.l, capNo, "mute");
     }
     if (shown(capQ) && shown(recogPlate)) {
       var qYes = boxOf(capQ);
       var plate = boxOf(recogPlate);
       var yesLab = root.querySelector(".fork-cap .varm .arm-label");
-      if (narrow || Math.abs(qYes.cx - plate.cx) <= 3) {
+      if (Math.abs(qYes.cx - plate.cx) <= 3) {
         vFlow(qYes.cx, qYes.b, plate.t, yesLab);
       } else {
         var mid = (qYes.b + plate.t) / 2;
@@ -1526,10 +1505,8 @@
       }
     }
 
-    if (!narrow) {
-      linkStem(root.querySelector(".cost-result"), root.querySelector(".nature-nest > .port-tab"));
-      linkStem(root.querySelector(".da-col"), root.querySelector(".ready-axis > .axis-port"));
-    }
+    linkStem(root.querySelector(".cost-result"), root.querySelector(".nature-nest > .port-tab"));
+    linkStem(root.querySelector(".da-col"), root.querySelector(".ready-axis > .axis-port"));
     function linkStem(src, tab) {
       if (!shown(src) || !shown(tab)) return;
       var A = boxOf(src);
@@ -1570,18 +1547,12 @@
       if (!shown(source) || !shown(target)) continue;
       var S = boxOf(source);
       var T = boxOf(target);
-      if (narrow && shown(rail) && rail.classList.contains("rail-link")) {
-        var R = boxOf(rail);
-        vFlow(S.cx, S.b, R.t, flowLab);
-        vFlow(R.cx, R.b, T.t, null);
-      } else {
-        vFlow(S.cx, S.b, T.t, flowLab);
-      }
+      vFlow(S.cx, S.b, T.t, flowLab);
     }
 
     var parent = root.querySelector(".policy-parent");
     var heads = root.querySelectorAll(".lens-head");
-    if (!narrow && shown(parent) && heads.length >= 2 && shown(heads[0]) && shown(heads[1])) {
+    if (shown(parent) && heads.length >= 2 && shown(heads[0]) && shown(heads[1])) {
       var P = boxOf(parent);
       var L = boxOf(heads[0]);
       var Rgt = boxOf(heads[1]);
@@ -1622,17 +1593,9 @@
   function fit() {
     equalise();
     alignLedgers();
-    var narrow = window.matchMedia("(max-width: 800px)").matches;
     var rails = root.querySelectorAll(".rail-link[data-phase]");
     for (var i = 0; i < rails.length; i++) {
       var rail = rails[i];
-      if (narrow) {
-        if (rail.style.marginTop || rail.style.height) {
-          rail.style.marginTop = "";
-          rail.style.height = "";
-        }
-        continue;
-      }
       var phase = rail.getAttribute("data-phase");
       var beat = root.querySelector('.beat[data-phase="' + phase + '"]');
       if (!beat) continue;

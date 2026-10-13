@@ -55,7 +55,4 @@ body.embed .legend.legend-side {
   flex: 0 0 var(--legacy-w-32);
   max-width: var(--legacy-w-32);
 }
-@media (max-width: 720px) {
-  body.embed .formula-board .fb-eq { grid-template-columns: 1fr; }
-}
 

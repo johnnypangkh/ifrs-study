@@ -1,0 +1,10 @@
+/* SOURCE _shared/modules/teaching/chrome-1.css:30 @ cfc59d2b */
+@media (max-width: 40rem) {
+  .visual-fieldset { padding-inline: var(--space-2); }
+}
+
+/* SOURCE _shared/modules/teaching/chrome-1.css:170 @ cfc59d2b */
+@media (max-width: 640px) {
+  .key-terms ul { columns: 1; }
+
+}

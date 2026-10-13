@@ -1,0 +1,82 @@
+/* SOURCE _shared/modules/chrome/chrome-1.css:372 @ cfc59d2b */
+@media (max-width: 480px) {
+  .chrome-bar-title { align-items: flex-start; }
+  .chrome-bar-title .chrome-bar-actions { margin-left: 0; }
+  .footer-nav { gap: var(--space-2); }
+}
+
+/* SOURCE _shared/modules/chrome/chrome-1.css:687 @ cfc59d2b */
+@media (min-width: 40.0625rem) {
+  /* Johnny 2026-10-10: one row at every width; overflow scrolls with < > chevrons. */
+  .chrome-bar.is-shared .tag {
+    font-size: var(--t-meta);
+    padding-inline: var(--space-2);
+  }
+}
+
+/* SOURCE _shared/modules/chrome/chrome-1.css:793 @ cfc59d2b */
+@media (max-width: 40rem) {
+  .chrome-bar.is-shared .chrome-inner { padding-block: var(--space-2); gap: var(--rail-bar-l); }
+  .chrome-bar.is-shared .chrome-row1 { gap: var(--space-2); }
+  .chrome-bar.is-shared .chrome-home-txt,
+  .chrome-bar.is-shared .chrome-home-sep { display: none; }
+  .chrome-bar.is-shared .chrome-home {
+    flex: none;
+    inline-size: var(--space-6);
+    min-inline-size: var(--space-6);
+    justify-content: center;
+    font-size: var(--t-head);
+  }
+  .chrome-bar.is-shared .view-switch { min-block-size: var(--legacy-w-22); }
+  .chrome-bar.is-shared .view-switch-btn {
+    min-inline-size: var(--legacy-w-22);
+    min-block-size: var(--legacy-w-22);
+    block-size: var(--legacy-w-22);
+    padding-inline: var(--space-2);
+  }
+  .chrome-bar.is-shared .view-switch-btn .txt {
+    position: absolute;
+    inline-size: var(--stroke-1);
+    block-size: var(--stroke-1);
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .chrome-bar.is-shared .chapter-search {
+    display: none;
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    max-inline-size: none;
+  }
+  .chrome-bar.is-shared .chapter-search-open {
+    all: unset;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    flex: none;
+    margin-inline-start: auto;
+    inline-size: var(--legacy-w-22);
+    block-size: var(--legacy-w-22);
+    border: var(--stroke-1) solid var(--line);
+    border-radius: var(--card-radius);
+    background: var(--surface);
+    color: var(--ink);
+  }
+  .chrome-bar.is-shared .chapter-search-open svg {
+    inline-size: var(--legacy-w-28);
+    block-size: var(--legacy-w-28);
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+  }
+  .chrome-bar.is-shared.is-searching .chrome-idn,
+  .chrome-bar.is-shared.is-searching .view-switch,
+  .chrome-bar.is-shared.is-searching .chapter-search-open { display: none; }
+  .chrome-bar.is-shared.is-searching .chapter-search { display: block; }
+  .chrome-bar.is-shared.is-searching .chapter-search-input {
+    block-size: var(--legacy-w-22);
+    min-height: var(--legacy-w-22);
+    height: var(--legacy-w-22);
+  }
+  .chrome-bar.is-shared .tag { block-size: var(--legacy-w-22); min-height: var(--legacy-w-22); padding-inline: var(--space-3); }
+}

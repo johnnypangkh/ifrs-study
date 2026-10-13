@@ -27,9 +27,7 @@
   background: transparent;
   overflow: visible;
 }
-@media (max-width: 40rem) {
-  .visual-fieldset { padding-inline: var(--space-2); }
-}
+
 
 .visual-legend {
   padding: 0 var(--space-2);
@@ -167,10 +165,7 @@ th { background: var(--accent-soft); font-weight: var(--t1-fw); }
 
 .key-terms ul { margin: 0; padding-left: var(--legacy-pad-10); columns: 2; gap: var(--space-5); }
 
-@media (max-width: 640px) {
-  .key-terms ul { columns: 1; }
 
-}
 
 
 

@@ -275,17 +275,3 @@ html { background: var(--bg); }
 }
 
 /* ---- Narrow ---- */
-@media (max-width: 560px) {
-  .rc-bridge { grid-template-columns: minmax(0, 1fr); gap: var(--space-cell); }
-  .rc-op { justify-self: start; padding-left: var(--space-3); }
-}
-@media (max-width: 560px) {
-  .gt { grid-template-columns: minmax(0, 1fr) minmax(calc(88 * var(--stroke-1)), .34fr); }
-  .gt-gate {
-    grid-template-columns: minmax(0, 1fr);
-    padding: var(--space-2) calc(10 * var(--stroke-1));
-  }
-  .gt-cites { justify-content: flex-start; }
-  .gt-leaf { padding: var(--space-2) calc(10 * var(--stroke-1)); }
-  .gt-leaf--out { margin-left: calc(6 * var(--stroke-1)); }
-}

@@ -1,0 +1,29 @@
+/* SOURCE ifrs-18/draft-v1-linked/visuals/ch03-mba-nest.css:192 @ cfc59d2b */
+@media (max-width: 800px) {
+  .pc-mba-layout {
+    grid-template-columns: 1fr;
+  }
+  .pc-mba-rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .pc-mba-out,
+  .pc-mba-why {
+    flex: 1 1 calc(160 * var(--stroke-1));
+  }
+}
+
+/* SOURCE ifrs-18/draft-v1-linked/visuals/ch03-mba-nest.css:206 @ cfc59d2b */
+@media (max-width: 560px) {
+  .pc-mba-peers {
+    grid-template-columns: 1fr;
+  }
+  .pc-mba-ops,
+  .pc-mba-main,
+  .pc-mba-spec {
+    padding: calc(10 * var(--stroke-1));
+  }
+  .pc-mba-rail {
+    flex-direction: column;
+  }
+}

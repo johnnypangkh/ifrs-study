@@ -304,60 +304,12 @@
 }
 
 /* Mid widths: the Lens column gives way first so both peer cells keep room. */
-@media (max-width: 900px) {
-  .cap-m-head,
-  .cap-m-row {
-    grid-template-columns: 11rem minmax(0, 1fr) minmax(0, 1fr);
-  }
-}
 
-@media (max-width: 840px) {
-  .cap-links {
-    grid-template-columns: 1fr;
-  }
-}
+
+
 
 /* Keep both peers on screen. A side-by-side scroll would hide Physical. */
-@media (max-width: 680px) {
-  .cap-board {
-    gap: 12px;
-  }
 
-  .cap-plate {
-    padding: 10px 10px 12px;
-  }
-
-  .cap-matrix {
-    min-width: 0;
-  }
-
-  .cap-m-head,
-  .cap-m-row {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .cap-m-corner {
-    display: none;
-  }
-
-  .cap-m-key {
-    grid-column: 1 / -1;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-    align-items: flex-start;
-    padding: 6px 10px;
-  }
-
-  .cap-m-colhead,
-  .cap-m-cell {
-    padding: 8px 10px;
-  }
-
-  .cap-m-colhead {
-    font-size: calc(12px * var(--type-scale, 1));
-    align-items: flex-start;
-  }
-}
 
 /* Standalone + iframe: paint night so transparent plates don't sit on white chrome. */
 html {

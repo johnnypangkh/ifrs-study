@@ -38,9 +38,7 @@
   color: var(--dash);
   margin-bottom: var(--space-2);
 }
-@media (max-width: 640px) {
-  .contrast-pair { grid-template-columns: 1fr; }
-}
+
 
 .peer-row {
   display: grid;
@@ -161,12 +159,7 @@
   color: var(--muted);
   margin: 0 0 var(--space-2);
 }
-@media (max-width: 900px) {
-  .matrix {
-    grid-template-columns: minmax(var(--legacy-w-35), 0.85fr) repeat(calc(var(--matrix-cols) - 1), minmax(var(--legacy-w-34), 1fr));
-    overflow-x: auto;
-  }
-}
+
 
 /* Same-format catalog (cheat / 図鑑) — matrix variant, not free rail */
 .catalog-grid {
@@ -230,9 +223,7 @@
 .stack .contain-grid.cols-4 {
   grid-template-columns: repeat(4, 1fr);
 }
-@media (max-width: 720px) {
-  .stack .contain-grid.cols-4 { grid-template-columns: 1fr 1fr; }
-}
+
 
 /* Concept-map densify: tighter vertical rhythm */
 .concept-map.dense .rel-label {
@@ -366,10 +357,7 @@
 .contrast-dense .kit-label {
   margin-bottom: var(--space-1);
 }
-@media (max-width: 640px) {
-  .contrast-pair.dense,
-  .contrast-dense { grid-template-columns: 1fr; }
-}
+
 
 /* B — Icon-label cell（ピクト＋短標） — monochrome / single token */
 .icon-label-grid {
@@ -458,9 +446,7 @@
   flex: 0 0 auto;
   padding: 0 var(--stroke-2);
 }
-@media (max-width: 640px) {
-  .tl-arrow { display: none; }
-}
+
 
 /* ------------------------------------------------------------------
    Bridge row + tiny SCF stack (IFRS 18 Ch7) — promote from page-local
@@ -471,9 +457,7 @@
   gap: var(--legacy-gap-1);
   max-width: var(--legacy-w-17);
 }
-@media (max-width: 720px) {
-  .bridge-row { grid-template-columns: 1fr; }
-}
+
 .scf-tiny {
   display: flex;
   flex-direction: column;
@@ -492,14 +476,3 @@
    The same rule is in type-scale.css for index maps, which do not load this file.
    A run of pills (visit steps, a chip list, a range) stays on one row.
    A citation later in the same line stays in the sentence. */
-@media (max-width: 560px) {
-  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) {
-    display: block;
-  }
-  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > :is(a.fb-num, span.fb-num, .fb-num-range) {
-    display: flex;
-    width: fit-content;
-    max-width: 100%;
-    margin-bottom: var(--rail-bar-l);
-  }
-}

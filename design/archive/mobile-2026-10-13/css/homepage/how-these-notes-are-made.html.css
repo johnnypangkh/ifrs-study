@@ -1,0 +1,14 @@
+/* SOURCE homepage/how-these-notes-are-made.html:116 @ cfc59d2b */
+@media (max-width: 900px) {
+      .flow {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .flow > li { min-height: 0; }
+
+      .flow > li + li::before {
+        left: 18px;
+        top: -14px;
+      }
+    }

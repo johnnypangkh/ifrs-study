@@ -1,0 +1,5 @@
+/* SOURCE _shared/modules/teaching/components-1.css:45 @ cfc59d2b */
+@media (max-width: 640px) {
+  .peer-pair { grid-template-columns: 1fr; }
+
+}

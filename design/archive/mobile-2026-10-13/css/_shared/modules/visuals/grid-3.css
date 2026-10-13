@@ -1,0 +1,4 @@
+/* SOURCE _shared/modules/visuals/grid-3.css:58 @ cfc59d2b */
+@media (max-width: 720px) {
+  body.embed .formula-board .fb-eq { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,23 @@
+Status,Token,Desktop,Mobile,Use / current usage
+TARGET,--bp-mobile,560px,,max-width 560px (VG L187); build-time literal
+TARGET,--bp-wide,800px,,≤800px timeline (VG L281); build-time literal
+LEGACY-PR1,bp legacy values,"420,480,520,560,561,620,640,680,720,760,800,801,840,860,900",,Current @media values reproduced as-is in PR1; snapped in PR4-7
+TARGET,--rail-bar-s,2px,,rail/accent bar thin
+TARGET,--rail-bar-m,4px,,
+TARGET,--rail-bar-l,6px,,
+TARGET,--stroke-1,1px,,drawing stroke
+TARGET,--stroke-2,2px,,
+LEGACY-PR1,rail/col widths,"IFRS18 200/190/88/64px,7.5rem; IAS2 180/150px,2.5rem; IAS16 11/7.2/4.75/9.4/13/8.2em; CF 190/150/96/72px,1.5rem",,current; tokenised per board in PR4-7
+TARGET,--page-max,61.25rem,,teaching .page max-width (=980px)
+TARGET,--cols-2,"repeat(2, minmax(0, 1fr))",1fr,
+TARGET,--cols-3,"repeat(3, minmax(0, 1fr))",1fr,
+TARGET,--preview-w-mobile,24.375rem,,"settings preview width, mobile (=390px); also ruler mark"
+TARGET,--preview-w-tablet,57.625rem,,"settings preview width, tablet (=922px); also ruler mark"
+TARGET,--preview-w-desktop,80rem,,"settings preview width, desktop (=1280px); also ruler mark"
+TARGET,--bp-mobile-n,560,,unitless number for settings ruler/calc
+TARGET,--bp-wide-n,800,,unitless number for settings ruler/calc
+TARGET,--preview-w-mobile-n,390,,unitless number for settings ruler/calc
+TARGET,--preview-w-tablet-n,922,,unitless number for settings ruler/calc
+TARGET,--preview-w-desktop-n,1280,,unitless number for settings ruler/calc
+TARGET,--ruler-max-n,1280,,unitless number for settings ruler/calc
+GENERATED-MQ,settings-gen.css,@media (max-width:560px),,generator writes these blocks into _shared/settings-gen.css for settings auto-Mobile; settings.css has no media query

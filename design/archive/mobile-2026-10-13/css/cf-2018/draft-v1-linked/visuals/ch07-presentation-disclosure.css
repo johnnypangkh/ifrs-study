@@ -1,0 +1,7 @@
+/* SOURCE cf-2018/draft-v1-linked/visuals/ch07-presentation-disclosure.css:342 @ cfc59d2b */
+@media (max-width: 760px) {
+  .pd-board { grid-template-columns: minmax(0, 1fr); }
+  .pd-trade .pd-card,
+  .pd-out,
+  .pd-out-stack { flex: none; }
+}

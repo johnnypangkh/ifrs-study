@@ -4,11 +4,11 @@
    References, with a divider between groups. Desktop|Mobile beside the
    title, search with the clear control inside. Only Last update sits
    under the H1.
-   The switch slot is always the same size. Without a map iframe it
-   does not change layout and does not scroll a map.
+   The switch stays visible and the same size. It is an inert placeholder:
+   no class toggle, no storage, no layout change. The switching script
+   is in design/archive/mobile-2026-10-13/.
    Pill chevrons scroll the row to the end so the last pill clears the fade. */
 (function () {
-  var HINT = "Mobile preview";
   var HOME = "../../homepage/homepage-wireframe-v0.1.html";
   var GLASS = '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5l3.5 3.5"></path></svg>';
   var ICON = {
@@ -34,22 +34,6 @@
     file = file.split("?")[0].split("#")[0];
     if (!file || file.indexOf(".") === -1) return "index.html";
     return file;
-  }
-
-  function storageKey(id) {
-    return "chrome-map-view:" + id;
-  }
-
-  function readView(id) {
-    try {
-      var stored = localStorage.getItem(storageKey(id));
-      if (stored === "mobile" || stored === "desktop") return stored;
-    } catch (err) {}
-    return "desktop";
-  }
-
-  function writeView(id, mode) {
-    try { localStorage.setItem(storageKey(id), mode); } catch (err) {}
   }
 
   function chevron(dir) {
@@ -287,22 +271,42 @@
     if (scroller.scrollLeft > max) scroller.scrollLeft = max;
   }
 
-  function refit() {
-    var api = window.cfIframeFit;
-    if (!api || typeof api.fitAll !== "function") return;
-    api.fitAll();
-    requestAnimationFrame(function () {
-      api.fitAll();
-      setTimeout(api.fitAll, 50);
-      setTimeout(api.fitAll, 250);
-      setTimeout(api.fitAll, 600);
-    });
-  }
-
   function tuneScroll(bar) {
     var height = Math.ceil(bar.getBoundingClientRect().height);
     if (height < 1) return;
     document.documentElement.style.setProperty("--chrome-sticky-offset", (height + 16) + "px");
+  }
+
+  /* Same markup and slot as the old switch. Desktop stays selected.
+     Mobile is muted and disabled. Clicks do not change the page. */
+  function mountSwitch(bar) {
+    var row = bar.querySelector(".chrome-row1");
+    var idn = bar.querySelector(".chrome-idn");
+    if (!row || !idn || row.querySelector(".view-switch")) return;
+    var group = document.createElement("div");
+    group.className = "view-switch";
+    group.setAttribute("role", "group");
+    group.setAttribute("aria-label", "Concept Map view width");
+    ["desktop", "mobile"].forEach(function (mode) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "view-switch-btn";
+      btn.setAttribute("data-view", mode);
+      btn.innerHTML = ICON[mode] + '<span class="txt">' + (mode === "desktop" ? "Desktop" : "Mobile") + "</span>";
+      if (mode === "desktop") {
+        btn.setAttribute("aria-pressed", "true");
+      } else {
+        btn.setAttribute("aria-pressed", "false");
+        btn.setAttribute("aria-disabled", "true");
+        btn.setAttribute("tabindex", "-1");
+        btn.title = "Mobile layout archived - see design/archive/mobile-2026-10-13";
+      }
+      btn.addEventListener("click", function (event) {
+        event.preventDefault();
+      });
+      group.appendChild(btn);
+    });
+    idn.insertAdjacentElement("afterend", group);
   }
 
   function markSearch(pack) {
@@ -311,90 +315,6 @@
     input.setAttribute("placeholder", pack.search);
     input.setAttribute("aria-label", pack.search);
     return true;
-  }
-
-  function mountSwitch(bar, id) {
-    var row = bar.querySelector(".chrome-row1");
-    var idn = bar.querySelector(".chrome-idn");
-    if (!row || !idn || row.querySelector(".view-switch")) return;
-    var iframe = document.querySelector(".visual-section iframe");
-    var hasMap = !!iframe;
-    var viewport = null;
-    var hint = null;
-    if (hasMap) {
-      var fieldset = iframe.closest(".visual-fieldset") || iframe.parentNode;
-      viewport = iframe.closest(".map-viewport");
-      if (!viewport) {
-        viewport = document.createElement("div");
-        viewport.className = "map-viewport";
-        iframe.parentNode.insertBefore(viewport, iframe);
-        viewport.appendChild(iframe);
-      }
-      hint = fieldset.querySelector(".view-switch-hint");
-      if (!hint) {
-        hint = document.createElement("p");
-        hint.className = "view-switch-hint";
-        hint.textContent = HINT;
-        fieldset.insertBefore(hint, viewport);
-      }
-    }
-
-    var group = document.createElement("div");
-    group.className = "view-switch";
-    group.setAttribute("role", "group");
-    group.setAttribute("aria-label", "Concept Map view width");
-    if (!hasMap) group.setAttribute("data-map", "off");
-    ["desktop", "mobile"].forEach(function (mode) {
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "view-switch-btn";
-      btn.setAttribute("data-view", mode);
-      btn.innerHTML = ICON[mode] + '<span class="txt">' + (mode === "desktop" ? "Desktop" : "Mobile") + "</span>";
-      if (!hasMap) btn.setAttribute("aria-disabled", "true");
-      group.appendChild(btn);
-    });
-    idn.insertAdjacentElement("afterend", group);
-
-    function idle() {
-      var narrow = false;
-      try { narrow = window.matchMedia("(max-width: 40rem)").matches; } catch (err) {}
-      return !hasMap || narrow;
-    }
-
-    function apply(mode, persist) {
-      var off = idle();
-      var name = mode === "mobile" ? "mobile" : "desktop";
-      if (off) group.setAttribute("data-map", "off");
-      else group.removeAttribute("data-map");
-      group.title = off ? "Map only" : "";
-      if (!off && viewport) viewport.setAttribute("data-view", name);
-      if (hint) hint.classList.toggle("is-on", !off && name === "mobile");
-      var buttons = group.querySelectorAll(".view-switch-btn");
-      for (var i = 0; i < buttons.length; i++) {
-        var btn = buttons[i];
-        if (off) {
-          btn.setAttribute("aria-disabled", "true");
-          btn.setAttribute("aria-pressed", "false");
-          btn.title = "Map only";
-        } else {
-          btn.removeAttribute("aria-disabled");
-          btn.removeAttribute("title");
-          btn.setAttribute("aria-pressed", btn.getAttribute("data-view") === name ? "true" : "false");
-        }
-      }
-      if (persist && !off) writeView(id, name);
-      if (!off) refit();
-      tuneScroll(bar);
-    }
-
-    group.addEventListener("click", function (event) {
-      if (idle()) return;
-      var btn = event.target.closest(".view-switch-btn");
-      if (!btn || !group.contains(btn)) return;
-      apply(btn.getAttribute("data-view"), true);
-    });
-    apply(readView(id), false);
-    window.addEventListener("resize", function () { apply(readView(id), false); });
   }
 
   function boot() {
@@ -410,7 +330,7 @@
       document.body.insertBefore(bar, document.body.firstChild);
     }
     build(bar, pack, id);
-    if (pack.map) mountSwitch(bar, id);
+    if (pack.map) mountSwitch(bar);
     tuneScroll(bar);
     if (!markSearch(pack)) {
       requestAnimationFrame(function () { markSearch(pack); });

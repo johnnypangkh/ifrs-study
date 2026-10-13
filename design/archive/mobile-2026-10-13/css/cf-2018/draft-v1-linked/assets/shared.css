@@ -1,0 +1,5 @@
+/* SOURCE cf-2018/draft-v1-linked/assets/shared.css:188 @ cfc59d2b */
+@media (max-width: 640px) {
+  .mf-row { grid-template-columns: 1fr; row-gap: 10px; }
+  .mf-branch { display: none; }
+}

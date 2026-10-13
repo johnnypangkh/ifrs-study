@@ -1,0 +1,25 @@
+/* SOURCE _shared/tokens-core.css:291 @ cfc59d2b */
+@media (max-width:560px) {
+  :root {
+    --t0-fs: 1.5rem;
+    --t1-fs: .8125rem;
+    --t2-fs: .6875rem;
+    --t2-band-fs: .6875rem;
+    --mchip-fs: .625rem;
+    --mchip-h: 1.25rem;
+    --mchip-minw: 2.5rem;
+    --mt-op-fs: .875rem;
+    --cols-2: 1fr;
+    --cols-3: 1fr;
+  }
+}
+
+/* SOURCE _shared/tokens-core.css:513 @ cfc59d2b */
+@media (max-width:560px) {
+  body[data-pack="site"] {
+    --type-scale: 0.85;
+    --vis-body: calc(12px * var(--type-scale));
+    --vis-meta: calc(11px * var(--type-scale));
+    --nx-chip-font: calc(10px * var(--type-scale));
+  }
+}

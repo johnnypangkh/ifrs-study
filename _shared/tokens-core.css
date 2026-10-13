@@ -214,14 +214,12 @@
   --space-hairline: 2px;
   --radius-s: .375rem;
   --radius-pill: 999px;
-  --bp-mobile: 560px;
-  --bp-wide: 800px;
   --rail-bar-s: 2px;
   --rail-bar-m: 4px;
   --rail-bar-l: 6px;
   --stroke-1: 1px;
   --stroke-2: 2px;
-  --page-max: 61.25rem;
+  --page-max: 70rem;
   --cols-2: repeat(2, minmax(0, 1fr));
   --cols-3: repeat(3, minmax(0, 1fr));
   --t0-fs: 1.875rem;
@@ -271,15 +269,6 @@
   --tb-box-body-fs: .8125rem;
   --tb-box-body-fw: 400;
   --tb-box-body-lh: 1.45;
-  --preview-w-mobile: 24.375rem;
-  --preview-w-tablet: 57.625rem;
-  --preview-w-desktop: 80rem;
-  --bp-mobile-n: 560;
-  --bp-wide-n: 800;
-  --preview-w-mobile-n: 390;
-  --preview-w-tablet-n: 922;
-  --preview-w-desktop-n: 1280;
-  --ruler-max-n: 1280;
   --font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-mono: "Segoe UI", system-ui, monospace;
   --cite-font: "Calibri Light", Calibri, "Segoe UI", sans-serif;
@@ -287,20 +276,6 @@
   --vis-body: 12px;
   --vis-meta: 11px;
   --nx-chip-font: 10px;
-}
-@media (max-width:560px) {
-  :root {
-    --t0-fs: 1.5rem;
-    --t1-fs: .8125rem;
-    --t2-fs: .6875rem;
-    --t2-band-fs: .6875rem;
-    --mchip-fs: .625rem;
-    --mchip-h: 1.25rem;
-    --mchip-minw: 2.5rem;
-    --mt-op-fs: .875rem;
-    --cols-2: 1fr;
-    --cols-3: 1fr;
-  }
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -393,22 +368,6 @@
   --ifrs-subtotal-soft: #222830;
   --mpm: #d4895e;
   --mpm-soft: #2e2018;
-}
-.is-mobile {
-  --t0-fs: 1.5rem;
-  --t1-fs: .8125rem;
-  --t2-fs: .6875rem;
-  --t2-band-fs: .6875rem;
-  --mchip-fs: .625rem;
-  --mchip-h: 1.25rem;
-  --mchip-minw: 2.5rem;
-  --mt-op-fs: .875rem;
-  --type-scale: 0.85;
-  --vis-body: calc(12px * var(--type-scale));
-  --vis-meta: calc(11px * var(--type-scale));
-  --nx-chip-font: calc(10px * var(--type-scale));
-  --cols-2: 1fr;
-  --cols-3: 1fr;
 }
 /* settings preview only - scoped dark */
 .settings-preview[data-theme="dark"] {
@@ -503,18 +462,10 @@
   --mpm-soft: #f8ebe4;
 }
 /* Settings keeps the pre-PR3 desktop fallback for these four tokens.
-   :root defines them for every other page. Mobile still follows the 560 block. */
+   :root defines them for every other page. */
 body[data-pack="site"] {
   --type-scale: initial;
   --vis-body: initial;
   --vis-meta: initial;
   --nx-chip-font: initial;
-}
-@media (max-width:560px) {
-  body[data-pack="site"] {
-    --type-scale: 0.85;
-    --vis-body: calc(12px * var(--type-scale));
-    --vis-meta: calc(11px * var(--type-scale));
-    --nx-chip-font: calc(10px * var(--type-scale));
-  }
 }

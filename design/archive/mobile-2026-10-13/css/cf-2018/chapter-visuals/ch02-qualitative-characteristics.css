@@ -1,0 +1,22 @@
+/* SOURCE cf-2018/chapter-visuals/ch02-qualitative-characteristics.css:221 @ cfc59d2b */
+@media (max-width: 860px) {
+  .qc-enh { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* SOURCE cf-2018/chapter-visuals/ch02-qualitative-characteristics.css:224 @ cfc59d2b */
+@media (max-width: 720px) {
+  .qc-layout { display: flex; flex-direction: column; }
+  .qc-rail { margin-top: 12px; }
+  .qc-fund { display: flex; flex-direction: column; gap: 10px; }
+  .qc-peer { display: flex; flex-direction: column; gap: 8px; }
+  .qc-op { align-self: center; }
+  .qc-relevance { order: 1; }
+  .qc-op { order: 2; }
+  .qc-faithful { order: 3; }
+  .qc-shared { order: 4; }
+}
+
+/* SOURCE cf-2018/chapter-visuals/ch02-qualitative-characteristics.css:235 @ cfc59d2b */
+@media (max-width: 420px) {
+  .qc-enh { grid-template-columns: minmax(0, 1fr); }
+}

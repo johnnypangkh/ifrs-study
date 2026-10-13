@@ -257,29 +257,3 @@ html { background: var(--bg); }
 .ts-gp-trap strong { font-weight: var(--t1-fw); color: var(--warn); }
 
 /* ---- Narrow ---- */
-@media (max-width: 800px) {
-  .ts-schematic { grid-template-columns: minmax(0, 1fr); }
-  .ts-schematic > * {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  .ts-attach { display: none; }
-  .ts-trap { margin-left: var(--space-4); }
-}
-@media (max-width: 560px) {
-  .ts-regimes {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-  .ts-regime {
-    display: flex;
-    flex-direction: column;
-  }
-  .ts-gp-trap { margin: calc(-1 * var(--space-1)) 0 0 var(--space-4); }
-}
-@media (max-width: 560px) {
-  .ts-sub { padding-left: var(--space-3); }
-  .ts-trap,
-  .ts-regime { padding: var(--space-2) calc(10 * var(--stroke-1)); }
-}

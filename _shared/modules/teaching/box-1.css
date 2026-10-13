@@ -79,8 +79,3 @@
   font-size: var(--tb-box-title-fs);
   color: var(--ink);
 }
-
-@media (max-width: 640px) {
-  .contain-grid { grid-template-columns: 1fr; }
-
-}

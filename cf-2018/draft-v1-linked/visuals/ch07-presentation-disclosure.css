@@ -339,12 +339,7 @@
 }
 .pd-see .see-bit > span { font-weight: 400; color: var(--dash); }
 
-@media (max-width: 760px) {
-  .pd-board { grid-template-columns: minmax(0, 1fr); }
-  .pd-trade .pd-card,
-  .pd-out,
-  .pd-out-stack { flex: none; }
-}
+
 
 html { background: var(--bg); }
 body.embed { background: var(--bg); }

@@ -54,7 +54,11 @@ for r in wb["Text"].iter_rows(min_row=2, values_only=True):
     if r[-1] == "site":
         gen["root"][r[1]] = n(r[3]) + "rem"
     if r[-1] == "type-scale":
-        gen["ts"][r[1]] = r[10].split("mobile ")[1]
+        notes = "" if r[10] is None else str(r[10])
+        if "mobile " in notes:
+            gen["ts"][r[1]] = notes.split("mobile ", 1)[1].strip()
+        elif len(r) > 6 and r[6] is not None and str(r[6]).strip():
+            gen["ts"][r[1]] = str(r[6]).strip()
 for r in wb["Spacing"].iter_rows(min_row=2, values_only=True):
     gen["root"][r[0]] = r[1]
 for r in wb["Grid"].iter_rows(min_row=2, values_only=True):

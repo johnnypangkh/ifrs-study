@@ -1,0 +1,46 @@
+/* SOURCE _shared/modules/visuals/components-6.css:41 @ cfc59d2b */
+@media (max-width: 640px) {
+  .contrast-pair { grid-template-columns: 1fr; }
+}
+
+/* SOURCE _shared/modules/visuals/components-6.css:164 @ cfc59d2b */
+@media (max-width: 900px) {
+  .matrix {
+    grid-template-columns: minmax(var(--legacy-w-35), 0.85fr) repeat(calc(var(--matrix-cols) - 1), minmax(var(--legacy-w-34), 1fr));
+    overflow-x: auto;
+  }
+}
+
+/* SOURCE _shared/modules/visuals/components-6.css:233 @ cfc59d2b */
+@media (max-width: 720px) {
+  .stack .contain-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+}
+
+/* SOURCE _shared/modules/visuals/components-6.css:369 @ cfc59d2b */
+@media (max-width: 640px) {
+  .contrast-pair.dense,
+  .contrast-dense { grid-template-columns: 1fr; }
+}
+
+/* SOURCE _shared/modules/visuals/components-6.css:461 @ cfc59d2b */
+@media (max-width: 640px) {
+  .tl-arrow { display: none; }
+}
+
+/* SOURCE _shared/modules/visuals/components-6.css:474 @ cfc59d2b */
+@media (max-width: 720px) {
+  .bridge-row { grid-template-columns: 1fr; }
+}
+
+/* SOURCE _shared/modules/visuals/components-6.css:495 @ cfc59d2b */
+@media (max-width: 560px) {
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) {
+    display: block;
+  }
+  :is(body.embed, .cfmap, .i18map) :is(p, span, a, div, h2, h3, h4, header, strong):not(.map-visit-step, .wn-set-ptr, .fb-num-range, .mini-pnl-nest, .cell-body, .leaf-note, .m-row-body, .zone-foot, .wn-tl-body, .src-line):not(.tr-mx-cell:not(.tr-mx-head)):not(p:not([class])):not(.see-also-strip):not(.see-bit):has(> :is(a.fb-num, span.fb-num, .fb-num-range)):not(:has(> :is(a.fb-num, span.fb-num) ~ :is(a.fb-num, span.fb-num))) > :is(a.fb-num, span.fb-num, .fb-num-range) {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: var(--rail-bar-l);
+  }
+}

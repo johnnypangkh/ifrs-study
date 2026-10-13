@@ -152,12 +152,6 @@
   background: var(--surface); font-size: calc(12px * var(--type-scale, 1)); color: var(--ink); justify-content: center; text-align: center;
 }
 
-@media (max-width: 900px) {
-  .mx-flow-split, .mx-fam-pair, .mx-factors, .mx-select-foot { grid-template-columns: minmax(0, 1fr); }
-  .mx-siblings { grid-template-columns: minmax(0, 1fr); }
-  .mx-grid { grid-template-columns: minmax(0, 1fr); }
-  .mx-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
-  .mx-row--head { display: none; }
-}
+
 html { background: var(--bg); }
 body.embed { background: var(--bg); }

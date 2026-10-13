@@ -201,50 +201,8 @@ html { background: var(--bg); }
 .pc-mba-cue strong { font-weight: var(--t1-fw); color: var(--ink); }
 
 /* ---- Narrow ---- */
-@media (max-width: 800px) {
-  .pc-schematic-wrap {
-    flex-direction: column;
-  }
-  .pc-legend {
-    align-self: stretch;
-  }
-  .pc-band {
-    grid-template-columns: 1fr;
-    gap: var(--space-cell);
-  }
-  .pc-row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-cell);
-  }
-  .pc-yes {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 0 0 calc(14 * var(--stroke-1));
-    gap: var(--space-cell);
-    min-height: 0;
-  }
-  .pc-yes-line {
-    width: var(--space-5);
-    flex-shrink: 0;
-  }
-  .pc-yes-label {
-    text-align: left;
-  }
-  .pc-leaf {
-    margin-left: calc(14 * var(--stroke-1));
-  }
-  .pc-bridge {
-    padding-left: calc(18 * var(--stroke-1));
-  }
-}
-@media (max-width: 560px) {
-  .pc-zone { padding: calc(10 * var(--stroke-1)) var(--space-3); gap: var(--space-3); }
-  .pc-band,
-  .pc-leaf--final { padding: calc(10 * var(--stroke-1)); }
-  .pc-fwd,
-  .pc-mba-cue { padding: var(--space-2) calc(10 * var(--stroke-1)); }
-}
+
+
 
 /* ---- MBA nest plate (owns §3.5)
    Grammar: solid containment (ops ⊃ main BA ⊃ specified MBA peers).

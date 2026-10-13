@@ -7,15 +7,7 @@
   padding: var(--stroke-2) 0 var(--stroke-2) var(--space-1);
 }
 
-@media (max-width: 720px) {
-  .visual-with-legend { flex-direction: column; }
-  .legend.legend-side {
-    flex: 1 1 auto;
-    max-width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-}
+
 
 /* Legend helpers — colour/icon/line key beside visuals */
 .legend {

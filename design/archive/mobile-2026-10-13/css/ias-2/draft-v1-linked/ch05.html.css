@@ -1,0 +1,19 @@
+/* SOURCE ias-2/draft-v1-linked/ch05.html:44 @ cfc59d2b */
+@media (max-width: 720px) {
+  article.teaching .mini-arrow {
+    flex: 0 0 22px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  article.teaching .mini-arrow::before {
+    width: 1px;
+    height: auto;
+    flex: 1 1 auto;
+  }
+  article.teaching .mini-arrow::after {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid var(--muted);
+    border-bottom: 0;
+  }
+}

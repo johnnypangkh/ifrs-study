@@ -1,0 +1,56 @@
+/* SOURCE cf-2018/draft-v1-linked/visuals/ch08-capital.css:307 @ cfc59d2b */
+@media (max-width: 900px) {
+  .cap-m-head,
+  .cap-m-row {
+    grid-template-columns: 11rem minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+/* SOURCE cf-2018/draft-v1-linked/visuals/ch08-capital.css:314 @ cfc59d2b */
+@media (max-width: 840px) {
+  .cap-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* SOURCE cf-2018/draft-v1-linked/visuals/ch08-capital.css:321 @ cfc59d2b */
+@media (max-width: 680px) {
+  .cap-board {
+    gap: 12px;
+  }
+
+  .cap-plate {
+    padding: 10px 10px 12px;
+  }
+
+  .cap-matrix {
+    min-width: 0;
+  }
+
+  .cap-m-head,
+  .cap-m-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .cap-m-corner {
+    display: none;
+  }
+
+  .cap-m-key {
+    grid-column: 1 / -1;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+    padding: 6px 10px;
+  }
+
+  .cap-m-colhead,
+  .cap-m-cell {
+    padding: 8px 10px;
+  }
+
+  .cap-m-colhead {
+    font-size: calc(12px * var(--type-scale, 1));
+    align-items: flex-start;
+  }
+}

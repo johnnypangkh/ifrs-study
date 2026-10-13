@@ -1,0 +1,6 @@
+/* SOURCE ias-2/draft-v1-linked/ch02.html:32 @ cfc59d2b */
+@media (max-width: 720px) {
+  article.teaching .mini-flow-steps { flex-direction: column; }
+  article.teaching .mini-arrow { text-align: center; }
+  article.teaching .mini-arrow::before { content: "↓"; }
+}

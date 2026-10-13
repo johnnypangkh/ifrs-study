@@ -119,9 +119,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
   grid-template-columns: 1fr 1fr 1fr; /* equal after Boundary slim (no Consol|Unconsol L2 kids) */
   gap: var(--legacy-gap-1);
 }
-@media (max-width: 720px) {
-  .l1-row { grid-template-columns: 1fr; }
-}
+
 .boundary-shell {
   border: var(--stroke-1) solid var(--role-entity);
   border-radius: var(--card-radius);
@@ -518,9 +516,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
   gap: var(--legacy-gap-2); /* Canon 2026.09.27-5 major-object rhythm */
   align-items: stretch;
 }
-@media (max-width: 720px) {
-  .org-fs-row { grid-template-columns: 1fr; }
-}
+
 .fs-stack {
   display: flex;
   flex-direction: column;
@@ -629,9 +625,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
   grid-template-columns: 1fr 1fr 1fr;
   gap: var(--space-3); /* peer-column rhythm — was 10px */
 }
-@media (max-width: 720px) {
-  .stmt-layout { grid-template-columns: 1fr; }
-}
+
 .stmt-block {
   border: var(--stroke-1) solid var(--stmt-block);
   border-radius: var(--card-radius);

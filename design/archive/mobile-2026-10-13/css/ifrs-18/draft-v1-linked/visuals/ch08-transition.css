@@ -1,0 +1,69 @@
+/* SOURCE ifrs-18/draft-v1-linked/visuals/ch08-transition.css:273 @ cfc59d2b */
+@media (max-width: 800px) {
+  .tr-board { --tr-gap: var(--space-4); }
+  .tr-tl {
+    grid-template-columns: 1fr;
+    row-gap: var(--tr-gutter);
+    padding-left: calc(26 * var(--stroke-1));
+  }
+  .tr-tl::before {
+    left: calc(7 * var(--stroke-1));
+    right: auto;
+    top: var(--space-1);
+    bottom: calc(10 * var(--stroke-1));
+    border-top: 0;
+    border-left: var(--stroke-2) solid var(--tl-line);
+  }
+  .tr-tl::after {
+    left: var(--space-hairline);
+    right: auto;
+    top: auto;
+    bottom: 0;
+    border-left: var(--rail-bar-l) solid transparent;
+    border-right: var(--rail-bar-l) solid transparent;
+    border-top: var(--rail-bar-l) solid var(--tl-line);
+    border-bottom: 0;
+  }
+  .tr-node::before { left: calc(-1 * var(--space-5)); top: calc(3 * var(--stroke-1)); }
+  .tr-node--eff::before { left: calc(-26 * var(--stroke-1)); top: var(--stroke-1); }
+  .tr-when { margin-bottom: calc(6 * var(--stroke-1)); }
+  .tr-card::before { display: none; }
+}
+
+/* SOURCE ifrs-18/draft-v1-linked/visuals/ch08-transition.css:304 @ cfc59d2b */
+@media (max-width: 560px) {
+  .tr-mx {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tr-gutter);
+    border: 0;
+  }
+  .tr-mx-col {
+    display: block;
+    border: var(--stroke-1) solid var(--line);
+    border-radius: var(--card-radius);
+  }
+  .tr-mx-col.tr-mx-stubs { display: none; }
+  .tr-mx-col + .tr-mx-col { border-left: var(--stroke-1) solid var(--line); }
+  .tr-mx-tag {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    display: block;
+    margin-bottom: var(--space-hairline);
+    font-size: var(--vis-meta);
+    font-weight: var(--t1-fw);
+    letter-spacing: var(--legacy-ls-3);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+}
+
+/* SOURCE ifrs-18/draft-v1-linked/visuals/ch08-transition.css:334 @ cfc59d2b */
+@media (max-width: 560px) {
+  .tr-board { --tr-gap: var(--space-4); }
+  .tr-card,
+  .tr-mx-cell { padding: calc(10 * var(--stroke-1)); }
+}

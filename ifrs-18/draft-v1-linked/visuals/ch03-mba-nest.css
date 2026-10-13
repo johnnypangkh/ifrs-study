@@ -188,31 +188,3 @@ html { background: var(--bg); }
   line-height: var(--t2-lh);
   color: var(--muted);
 }
-
-@media (max-width: 800px) {
-  .pc-mba-layout {
-    grid-template-columns: 1fr;
-  }
-  .pc-mba-rail {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .pc-mba-out,
-  .pc-mba-why {
-    flex: 1 1 calc(160 * var(--stroke-1));
-  }
-}
-
-@media (max-width: 560px) {
-  .pc-mba-peers {
-    grid-template-columns: 1fr;
-  }
-  .pc-mba-ops,
-  .pc-mba-main,
-  .pc-mba-spec {
-    padding: calc(10 * var(--stroke-1));
-  }
-  .pc-mba-rail {
-    flex-direction: column;
-  }
-}

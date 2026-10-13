@@ -3,7 +3,6 @@
    Loaded only by index.html, after shared.css + draft.css. Night tokens from those files.
    Solid = frames / peers; dashed = see-also tip only. No floating ↓ / process spine. */
 
-.page.map-page { max-width: calc(1120 * var(--stroke-1)); }
 
 .map-page header.page-header {
   margin-bottom: var(--space-4);
@@ -336,18 +335,8 @@
 .i18map .close .cell-grid { flex: 1 1 auto; }
 
 /* ---- Narrow ---- */
-@media (max-width: 800px) {
-  .i18map { --map-gap: var(--space-4); }
-  .i18map .pillar-row { grid-template-columns: 1fr; }
-  .i18map .close-row { grid-template-columns: 1fr; }
-}
-@media (max-width: 560px) {
-  .i18map { --map-inner: var(--space-cell); }
-  .i18map .g-2,
-  .i18map .g-3 { grid-template-columns: 1fr; }
-  .i18map .std-frame { padding: var(--space-3) calc(10 * var(--stroke-1)) calc(14 * var(--stroke-1)); }
-  .i18map .contain { padding: calc(10 * var(--stroke-1)) var(--space-3) var(--space-3); }
-}
+
+
 
 /* ==== board:end ==== */
 
@@ -395,7 +384,4 @@
   border-top: var(--rail-bar-m) solid transparent;
   border-bottom: var(--rail-bar-m) solid transparent;
   border-left: var(--rail-bar-l) solid var(--accent);
-}
-@media (max-width: 800px) {
-  .i18map .map-visit-arrow { width: var(--space-3); }
 }

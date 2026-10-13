@@ -276,155 +276,111 @@ body.embed {
   overflow-wrap: break-word;
 }
 
-@media (min-width: 561px) {
-  .ppe .harm,
-  .ppe .varm,
-  .ppe .recover {
-    position: relative;
-    min-width: 0;
-    min-height: 3.1em;
-  }
-
-  .ppe .harm {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .ppe .harm::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0.5em;
-    top: 50%;
-    height: 0.1em;
-    background: var(--arm, var(--accent));
-  }
-
-  .ppe .harm::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    border-top: 0.34em solid transparent;
-    border-bottom: 0.34em solid transparent;
-    border-left: 0.46em solid var(--arm, var(--accent));
-  }
-
-  .ppe .varm {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-  }
-
-  .ppe .varm::before {
-    content: "";
-    width: 0.1em;
-    background: var(--stem, var(--accent));
-  }
-
-  .ppe .varm::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    border-left: 0.34em solid transparent;
-    border-right: 0.34em solid transparent;
-    border-top: 0.46em solid var(--stem, var(--accent));
-  }
-
-  .ppe .varm .arm-label {
-    position: absolute;
-    left: calc(50% + 0.45em);
-    top: 50%;
-    transform: translateY(-60%);
-    white-space: nowrap;
-  }
-
-  .ppe .recover {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    align-self: center;
-    min-height: 4.6em;
-    padding: 0.2em 0.25em 0.85em 0.7em;
-  }
-
-  .ppe .recover-label {
-    position: relative;
-    margin: 0 0 0.45em;
-    background: transparent;
-  }
-
-  .ppe .recover::before {
-    content: "";
-    position: absolute;
-    left: 0.55em;
-    right: -0.08em;
-    bottom: 0.4em;
-    height: 0.1em;
-    background: var(--accent);
-  }
-
-  .ppe .recover::after {
-    content: "";
-    position: absolute;
-    left: -0.06em;
-    bottom: calc(0.4em - 0.28em);
-    border-top: 0.32em solid transparent;
-    border-bottom: 0.32em solid transparent;
-    border-right: 0.46em solid var(--accent);
-  }
+.ppe .harm,
+.ppe .varm,
+.ppe .recover {
+  position: relative;
+  min-width: 0;
+  min-height: 3.1em;
 }
 
-@media (max-width: 800px) {
-  .ppe .peers { grid-template-columns: minmax(0, 1fr); }
+.ppe .harm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (max-width: 560px) {
-  .ppe .decision-flow.decision-flow { gap: 0; }
-
-  .ppe .peers { grid-template-columns: minmax(0, 1fr); }
-
-  .ppe .leaf.stop,
-  .ppe .carve-stack,
-  .ppe .recover {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-
-  .ppe .carve-stack { margin-top: -0.35em; }
-
-  .ppe .recover {
-    position: relative;
-    margin: 0.45em 0 0;
-    padding: 0.35em 0.15em 0.15em 0.2em;
-  }
-
-  .ppe .recover::before {
-    content: "";
-    position: absolute;
-    left: -2em;
-    top: 0.85em;
-    width: 2em;
-    height: 0.1em;
-    background: var(--accent);
-  }
-
-  .ppe .recover::after {
-    content: "";
-    position: absolute;
-    left: -2em;
-    top: 0.85em;
-    transform: translateY(-50%);
-    border-top: 0.28em solid transparent;
-    border-bottom: 0.28em solid transparent;
-    border-right: 0.38em solid var(--accent);
-  }
+.ppe .harm::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.5em;
+  top: 50%;
+  height: 0.1em;
+  background: var(--arm, var(--accent));
 }
+
+.ppe .harm::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 0.34em solid transparent;
+  border-bottom: 0.34em solid transparent;
+  border-left: 0.46em solid var(--arm, var(--accent));
+}
+
+.ppe .varm {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.ppe .varm::before {
+  content: "";
+  width: 0.1em;
+  background: var(--stem, var(--accent));
+}
+
+.ppe .varm::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  border-left: 0.34em solid transparent;
+  border-right: 0.34em solid transparent;
+  border-top: 0.46em solid var(--stem, var(--accent));
+}
+
+.ppe .varm .arm-label {
+  position: absolute;
+  left: calc(50% + 0.45em);
+  top: 50%;
+  transform: translateY(-60%);
+  white-space: nowrap;
+}
+
+.ppe .recover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: center;
+  min-height: 4.6em;
+  padding: 0.2em 0.25em 0.85em 0.7em;
+}
+
+.ppe .recover-label {
+  position: relative;
+  margin: 0 0 0.45em;
+  background: transparent;
+}
+
+.ppe .recover::before {
+  content: "";
+  position: absolute;
+  left: 0.55em;
+  right: -0.08em;
+  bottom: 0.4em;
+  height: 0.1em;
+  background: var(--accent);
+}
+
+.ppe .recover::after {
+  content: "";
+  position: absolute;
+  left: -0.06em;
+  bottom: calc(0.4em - 0.28em);
+  border-top: 0.32em solid transparent;
+  border-bottom: 0.32em solid transparent;
+  border-right: 0.46em solid var(--accent);
+}
+
+
+
+
 
 /* Ch02 recognition. Outer fork stays the ch01 three-track grid.
    Continuing exit sits in column 1 under the plate. */
@@ -660,24 +616,9 @@ body.embed {
   font-weight: 650;
 }
 
-@media (max-width: 800px) {
-  .ppe .peers.peers-2,
-  .ppe .facets,
-  .ppe .annos { grid-template-columns: minmax(0, 1fr); }
-}
 
-@media (max-width: 560px) {
-  /* Room for the elbow arrow, which is drawn just outside the stem. */
-  .ppe .recog { padding-inline-start: 0.6em; }
 
-  html .ppe .decision-flow.decision-flow > .exit-shaft {
-    align-self: flex-start;
-    width: 1.2em;
-    margin-inline-start: 0.85em;
-  }
 
-  .ppe .anno-split { grid-template-columns: minmax(0, 1fr); }
-}
 
 /* Ch03 initial measurement. Result-first cost sum.
    Operators stay unboxed. Continuing exit is column 1.
@@ -833,36 +774,9 @@ body.embed {
 
 .ppe .cost-exit .exit-name { width: 100%; }
 
-@media (max-width: 800px) {
-  .ppe .cost-map > .cost-lower .annos { grid-template-columns: minmax(0, 1fr); }
-}
 
-@media (max-width: 560px) {
-  .ppe .cost-map {
-    display: flex;
-    flex-direction: column;
-    padding-inline-start: 0.15em;
-  }
 
-  .ppe .cost-eq {
-    flex-direction: column;
-    align-items: stretch;
-  }
 
-  .ppe .cost-op { align-self: center; }
-
-  .ppe .cost-exit {
-    align-self: stretch;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  html .ppe .cost-map .exit-shaft {
-    align-self: flex-start;
-    width: 1.2em;
-    margin-inline-start: 0.85em;
-  }
-}
 
 /* Ch04 subsequent measurement — models.
    Two equal model cards, then the class-policy bar, then the class nest.
@@ -1021,9 +935,7 @@ body.embed {
   text-underline-offset: 0.15em;
 }
 
-@media (max-width: 560px) {
-  .ppe .models-exit { grid-template-columns: minmax(0, 1fr); }
-}
+
 
 /* Ch05 depreciation. Result-first depreciable-amount row.
    Method cards sit under the consumption bar. The revenue-based
@@ -1143,43 +1055,9 @@ body.embed {
 
 .ppe .dep-exit .exit-name { width: 100%; }
 
-@media (max-width: 800px) {
-  .ppe .method-zone,
-  .ppe .dep-pair { grid-template-columns: minmax(0, 1fr); }
 
-  .ppe .method-main,
-  .ppe .rev-ban {
-    grid-column: 1;
-    grid-row: auto;
-  }
-}
 
-@media (max-width: 560px) {
-  .ppe.dep-map {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    padding-inline-start: 0.15em;
-  }
 
-  .ppe.dep-map > .cost-eq,
-  .ppe.dep-map > .method-zone,
-  .ppe.dep-map > .model-entry {
-    width: 100%;
-  }
-
-  .ppe .dep-exit {
-    align-self: stretch;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  html .ppe.dep-map .exit-shaft,
-  html .ppe.dep-map .exit-shaft::before,
-  html .ppe.dep-map .exit-shaft::after { content: none; display: none; }
-
-  .ppe.dep-map .span-bar > .fb-num { margin-inline: auto; }
-}
 
 /* Ch06 derecognition. Yes enters the remove-carrying-amount plate.
    Trigger cards share an either-of-these bar. Gain or loss is a
@@ -1241,32 +1119,9 @@ body.embed {
 
 .ppe .derecog .dep-sees { margin-top: 0; }
 
-@media (max-width: 800px) {
-  .ppe .gl-band {
-    grid-template-columns: minmax(0, 1fr);
-    align-items: stretch;
-  }
-  .ppe .gl-band > .cost-eq,
-  .ppe .comp-side {
-    grid-column: 1;
-    grid-row: auto;
-    width: 100%;
-  }
-}
 
-@media (max-width: 560px) {
-  .ppe .derecog { padding-inline-start: 0.6em; }
 
-  html .ppe .derecog > .exit-shaft {
-    align-self: flex-start;
-    width: 1.2em;
-    margin-inline-start: 0.85em;
-  }
 
-  .ppe .derecog > .exit-name { width: 100%; }
-
-  .ppe .derecog .span-bar > .fb-num { margin-inline: auto; }
-}
 
 /* Ch07 disclosure. Spine is the master disc-band. Encouraged stays muted.
    No red on this board. */
@@ -1339,22 +1194,9 @@ body.embed {
 .ppe.disc .dep-sees,
 .ppe.disc > .tip-line { margin-top: 0; }
 
-@media (max-width: 800px) {
-  .ppe .peers.peers-4,
-  .ppe .side-facets { grid-template-columns: minmax(0, 1fr); }
-}
 
-@media (max-width: 560px) {
-  .ppe.disc > .model-entry,
-  .ppe.disc > .peers,
-  .ppe.disc > .side-facets,
-  .ppe.disc > .span-bar,
-  .ppe.disc > .tip-line {
-    width: 100%;
-  }
 
-  .ppe.disc .span-bar > .fb-num { margin-inline: auto; }
-}
+
 
 /* Pack map. Left labels name the life of an item of PPE.
    The right column is the decision route: yes continues down, no exits right.
@@ -1699,9 +1541,7 @@ body.embed {
 /* No shared-border rails at any width. Inner boards already use
    gap: 0.45rem (~7.19px). Wide master phase rows use that same gap
    instead of a 1px overlap. Corners stay fully rounded. */
-@media (min-width: 801px) {
-  .ppe.pack .pack-lr { row-gap: 0.45rem; }
-}
+.ppe.pack .pack-lr { row-gap: 0.45rem; }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-detail {
   display: flex;
@@ -2675,13 +2515,11 @@ body.embed {
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name-text,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name-text > span { display: block; }
 
-@media (min-width: 801px) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name-text {
-    position: static;
-    width: auto;
-    max-width: none;
-    transform: none;
-  }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name-text {
+  position: static;
+  width: auto;
+  max-width: none;
+  transform: none;
 }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-rule {
@@ -2865,9 +2703,7 @@ body.embed {
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .before-nest .pl-tip .item-rows,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .before-nest .pl-tip .item-rows li { color: var(--muted); }
 
-@media (min-width: 801px) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .before-nest > .pl-tip { flex: 1 1 auto; }
-}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .before-nest > .pl-tip { flex: 1 1 auto; }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .constraint-tip {
   border-width: 0.08em;
@@ -2939,16 +2775,7 @@ body.embed {
 
 .ppe:is(.cost-map) .facet-dense .span-rule { margin-top: 0.15rem; }
 
-@media (max-width: 800px) {
-  .ppe:is(.cost-map) .facet-dense .src-differ {
-    grid-template-columns: minmax(0, 1fr);
-  }
 
-  .ppe:is(.cost-map) .facet-dense .differ-op {
-    justify-self: center;
-    transform: rotate(90deg);
-  }
-}
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .facet-label {
   margin: 0;
@@ -3388,375 +3215,104 @@ body.embed {
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cmp { margin-top: 0.45rem; }
 
-@media (min-width: 801px) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair { position: relative; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair { position: relative; }
 
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair .pack-flow-shaft::before,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair .pack-flow-shaft::after { content: none; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair .pack-flow-shaft::before,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair .pack-flow-shaft::after { content: none; }
 
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair::before {
-    content: "";
-    position: absolute;
-    left: var(--shaft-x, 26%);
-    top: 0;
-    bottom: 0.4em;
-    width: 0.1em;
-    transform: translateX(-50%);
-    background: var(--accent);
-    z-index: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair::after {
-    content: "";
-    position: absolute;
-    left: var(--shaft-x, 26%);
-    bottom: 0;
-    z-index: 1;
-    transform: translateX(-50%);
-    border-left: 0.34em solid transparent;
-    border-right: 0.34em solid transparent;
-    border-top: 0.46em solid var(--accent);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-peers {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    padding-left: calc(var(--shaft-x, 26%) + 0.65em);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .scope-stack {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
-    column-gap: 0;
-    row-gap: 0;
-    align-items: stretch;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .scope-stack > .decision-flow { display: contents; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-ppe .side-note {
-    grid-column: 3;
-    grid-row: 1;
-    align-self: start;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl > .decision-fork > .q { grid-row: 3; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl > .decision-fork > .decision-after > .decision-branch > .harm { grid-row: 3; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl > .decision-fork > .decision-after > .decision-branch > .leaf { grid-row: 3; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .side-note { display: contents; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .leaf.pack-stop {
-    grid-column: 3;
-    grid-row: 3;
-    align-self: start;
-    min-width: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .see-box {
-    grid-column: 3;
-    grid-row: 4;
-    align-self: start;
-    min-width: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .pack-no-line {
-    grid-column: 1 / -1;
-    grid-row: 4;
-    align-self: center;
-    margin: 0 0.4em 0 32%;
-    z-index: 1;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl > .decision-fork > .decision-after > .varm { grid-row: 4; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see-cluster {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .varm::before {
-    position: absolute;
-    top: 0;
-    bottom: 0.42em;
-    left: 50%;
-    width: 0.1em;
-    height: auto;
-    transform: translateX(-50%);
-  }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair::before {
+  content: "";
+  position: absolute;
+  left: var(--shaft-x, 26%);
+  top: 0;
+  bottom: 0.4em;
+  width: 0.1em;
+  transform: translateX(-50%);
+  background: var(--accent);
+  z-index: 0;
 }
 
-@media (max-width: 800px) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-lr {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rail-link {
-    align-items: center;
-    margin: 0.7rem 0 0.4rem;
-    padding: 0.4em 0.55em;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .beat { padding-inline-start: 0; }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-fork > .q {
-    flex-basis: 100%;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-ppe .side-note,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .side-note {
-    flex: 1 1 0;
-    min-width: min-content;
-    max-width: 100%;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-no-line {
-    margin: 0.2em 0 0.15em 0.35em;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .side-note .pack-see-not { flex: 0 0 auto; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-see-stop { flex: 1 1 100%; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-join {
-    align-self: flex-start;
-    align-items: center;
-    width: 0.1em;
-    margin-inline-start: 0;
-    min-height: 1.45em;
-    overflow: visible;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .span-bar { align-self: stretch; width: 100%; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .span-bar > .fb-num { margin-inline: auto; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .criteria,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .criteria-2 { grid-template-columns: minmax(0, 1fr); }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow { display: block; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-shaft {
-    align-items: center;
-    justify-content: flex-start;
-    width: auto;
-    min-height: 3.8em;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-shaft::before {
-    left: 0;
-    width: 0.12em;
-    transform: none;
-    /* Cross the phase rail (0.7rem + 0.4rem margins, 0.4em + 0.4em
-       padding, 1.25 line, 0.08em borders) so the tip meets the next box. */
-    bottom: calc(0.4em - 1.1rem - 2.21em);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-shaft::after {
-    left: 0;
-    bottom: calc(-1.1rem - 2.21em);
-    transform: none;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-label {
-    margin-left: 0.55em;
-    text-align: start;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .disc-board {
-    grid-template-columns: minmax(6.2em, 7.4em) minmax(0, 1fr);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board-2 {
-    grid-template-columns: minmax(6.4em, 8em) minmax(0, 1fr);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .method-set,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .case-set,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .facet-row,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-kids,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .term-split,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .factor-set,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .recon-cols { grid-template-columns: minmax(0, 1fr); }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 0.55rem;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track::before {
-    left: 0.15em;
-    right: auto;
-    top: calc(0.65 * var(--t-head));
-    bottom: 0.5em;
-    width: 0.1em;
-    height: auto;
-    transform: none;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track::after {
-    left: 0.2em;
-    right: auto;
-    top: auto;
-    bottom: 0;
-    transform: translateX(-50%);
-    border-left: 0.28em solid transparent;
-    border-right: 0.28em solid transparent;
-    border-top: 0.42em solid var(--accent);
-    border-bottom: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-heads { display: none; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-cell-head { display: flex; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: none;
-  }
-
-  /* Same selectors as the named areas above (0,3,1). A `> *` reset is only
-     0,2,1 and loses, which stacks every Cost child in one cell. */
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .cost-result,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .op-eq,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .limb-buy,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .op-p1,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .da-col,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .op-p2,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .limb-dis,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .nature-nest,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .ready-axis,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .facet-foot {
-    grid-area: auto;
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest > .nest-k,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest > .item-rows,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest > .link-stem {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest {
-    display: flex;
-    flex-direction: column;
-    grid-template-columns: none;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis > * {
-    grid-column: auto;
-    grid-row: auto;
-    width: auto;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-diamond {
-    transform: none;
-    align-self: center;
-    width: auto;
-    max-width: 100%;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name { align-items: stretch; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name-text { max-width: 100%; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-rule,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-diamond { display: none; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .point-mark {
-    display: inline;
-    color: var(--accent);
-    line-height: 1;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .before-nest,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .point-at,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .after-col { margin-top: 0.45rem; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .da-stem,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest > .link-stem,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .after-col > .link-stem,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .point-at > .link-stem { display: none; }
-
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-arms { display: block; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-elbow { display: none; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-parent { width: 100%; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-kids { margin-top: 0.55rem; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-row { grid-template-columns: minmax(0, 1fr); }
-
-  /* Desktop flex-basis 0 shares a row. In a column it collapses any limb
-     whose overflow is hidden, so the split term paints over the next row. */
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-eq > .cost-result,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-eq > .limb,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-eq > .cost-op {
-    flex: 0 0 auto;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    position: relative;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: calc(0.4em - 1.1rem - 2.21em);
-    width: 0.12em;
-    background: var(--accent);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: calc(-1.1rem - 2.21em);
-    transform: none;
-    border-left: 0.34em solid transparent;
-    border-right: 0.34em solid transparent;
-    border-top: 0.46em solid var(--accent);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair .pack-flow-shaft {
-    grid-row: 1;
-    min-height: 3.2em;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair .pack-flow-shaft::before,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair .pack-flow-shaft::after { content: none; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair .impair-peers {
-    grid-column: 1;
-    grid-row: 2;
-    grid-template-columns: minmax(0, 1fr);
-    margin: 0 0 0.7em 0.55em;
-    max-width: calc(100% - 0.55em);
-    padding-left: 0;
-    position: relative;
-    z-index: 1;
-  }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair::after {
+  content: "";
+  position: absolute;
+  left: var(--shaft-x, 26%);
+  bottom: 0;
+  z-index: 1;
+  transform: translateX(-50%);
+  border-left: 0.34em solid transparent;
+  border-right: 0.34em solid transparent;
+  border-top: 0.46em solid var(--accent);
 }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-peers {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  padding-left: calc(var(--shaft-x, 26%) + 0.65em);
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .scope-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
+  column-gap: 0;
+  row-gap: 0;
+  align-items: stretch;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .scope-stack > .decision-flow { display: contents; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-ppe .side-note {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: start;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl > .decision-fork > .q { grid-row: 3; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl > .decision-fork > .decision-after > .decision-branch > .harm { grid-row: 3; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl > .decision-fork > .decision-after > .decision-branch > .leaf { grid-row: 3; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .side-note { display: contents; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .leaf.pack-stop {
+  grid-column: 3;
+  grid-row: 3;
+  align-self: start;
+  min-width: 0;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .see-box {
+  grid-column: 3;
+  grid-row: 4;
+  align-self: start;
+  min-width: 0;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .pack-no-line {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  align-self: center;
+  margin: 0 0.4em 0 32%;
+  z-index: 1;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl > .decision-fork > .decision-after > .varm { grid-row: 4; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see-cluster {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(4.75em, 0.28fr) minmax(0, 0.85fr);
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .varm::before {
+  position: absolute;
+  top: 0;
+  bottom: 0.42em;
+  left: 50%;
+  width: 0.1em;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+
 
 /* Six-step pack type scale. Shared chapter rules stay on their own sizes. */
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .q-title,
@@ -4124,96 +3680,7 @@ body.embed {
    leaf. Extend every fork arm on the pack and the recognition map to the
    leaf edge, centre it on that side, and keep the label on the midpoint.
    Desktop rules stay outside this query. */
-@media (max-width: 560px) {
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch,
-  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    column-gap: 2em;
-    row-gap: 0.35em;
-    align-items: center;
-  }
 
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch::before,
-  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch::before {
-    content: none;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-after:has(> .varm)::after {
-    inset-inline-start: 0;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch > .side-note {
-    display: contents;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch > .harm,
-  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch > .harm {
-    position: relative;
-    grid-column: 1;
-    grid-row: 1;
-    align-self: center;
-    justify-self: start;
-    z-index: 1;
-    width: max-content;
-    min-width: max-content;
-    min-height: 1.2em;
-    margin: 0;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch > .harm .arm-label,
-  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch > .harm .arm-label {
-    position: static;
-    inset: auto;
-    transform: none;
-    display: inline-block;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch > .leaf,
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch > .side-note > .leaf,
-  html .ppe.recog-map .fork-cap.decision-flow.decision-flow .decision-branch > .leaf {
-    grid-column: 2;
-    grid-row: 1;
-    align-self: center;
-    min-width: 0;
-    max-width: 100%;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-branch > .side-note > .see,
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-branch > .side-note > .see-box {
-    grid-column: 2;
-    grid-row: 2;
-    align-self: start;
-    min-width: 0;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-branch > .harm::before,
-  html .ppe.recog-map .decision-flow.decision-flow .decision-branch > .harm::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 50%;
-    left: calc(-0.45em - 0.85em - 0.7em);
-    right: calc(-2em + 0.38em);
-    height: 0.12em;
-    transform: translateY(-50%);
-    background: var(--arm, var(--stem, var(--dash)));
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-branch > .harm::after,
-  html .ppe.recog-map .decision-flow.decision-flow .decision-branch > .harm::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -2em;
-    width: 0;
-    height: 0;
-    transform: translateY(-50%);
-    border-top: 0.28em solid transparent;
-    border-bottom: 0.28em solid transparent;
-    border-left: 0.38em solid var(--arm, var(--stem, var(--dash)));
-  }
-}
 
 /* Ch03 Initial measurement. Same Cost plate as the pack Cost beat
    (identity, nature nest, ready-axis, facet foot, continuing shaft),
@@ -4639,344 +4106,144 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .land-tip { padding: 0.55em 0.7em; }
 
-@media (min-width: 801px) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-parent { grid-column: 2; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-parent { grid-column: 2; }
 
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-bridge { height: 1.6rem; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-bridge { height: 1.6rem; }
 
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-kids { margin-top: 0; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-kids { margin-top: 0; }
 
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork > .decision-fork > .q,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork > .decision-fork > .decision-after > .decision-branch > .harm {
-    align-self: stretch;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-ppe .side-note {
-    align-self: stretch;
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
-    gap: 0.35rem 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-ppe .side-note > .leaf { grid-row: 2; align-self: center; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-ppe .side-note > .see { grid-row: 3; align-self: start; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .leaf.pack-stop,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-cap.def-fork > .decision-fork > .decision-after > .decision-branch > .leaf {
-    align-self: center;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .beat[data-phase="recog"] > .plate { margin-top: 2.4rem; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity {
-    --op-col: 1.65rem;
-    grid-template-columns:
-      minmax(8rem, 1.15fr)
-      var(--op-col)
-      minmax(0, 1fr)
-      var(--op-col)
-      minmax(0, 1fr)
-      var(--op-col)
-      minmax(0, 1fr);
-    grid-template-areas: none;
-    grid-template-rows: auto 0.8rem auto auto;
-    column-gap: 0;
-    row-gap: 0;
-    align-items: stretch;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .cost-result { grid-column: 1; grid-row: 1; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .op-eq { grid-column: 2; grid-row: 1; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .limb-buy { grid-column: 3; grid-row: 1; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .op-p1 { grid-column: 4; grid-row: 1; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .da-col { grid-column: 5; grid-row: 1; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .op-p2 { grid-column: 6; grid-row: 1; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .limb-dis { grid-column: 7; grid-row: 1; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .stem-cost { grid-column: 1; grid-row: 2; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .stem-da { grid-column: 5; grid-row: 2; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .nature-nest { grid-column: 1 / 4; grid-row: 3; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .ready-axis { grid-column: 5 / 8; grid-row: 3; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .facet-foot { grid-column: 1 / -1; grid-row: 4; margin-top: 0.75rem; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .cost-op {
-    align-self: center;
-    justify-self: center;
-    width: 100%;
-    text-align: center;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest {
-    display: grid;
-    grid-template-columns: subgrid;
-    grid-template-rows: auto auto;
-    column-gap: 0;
-    row-gap: 0.4rem;
-    border: 0;
-    padding: 0;
-    background: none;
-    box-shadow: none;
-    align-self: start;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest > .port-tab { grid-column: 1; grid-row: 1; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest > .nature-body { grid-column: 1 / -1; grid-row: 2; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis {
-    display: grid;
-    grid-template-columns: subgrid;
-    grid-template-rows: auto auto;
-    column-gap: 0;
-    row-gap: 0.4rem;
-    padding: 0;
-    border: 0;
-    background: none;
-    box-shadow: none;
-    align-self: start;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis > .axis-port { grid-column: 1; grid-row: 1; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis > .axis-body { grid-column: 1 / -1; grid-row: 2; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: 0.4rem 0.45rem;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body > .axis-name,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body > .axis-mark,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body > .axis-rule { grid-column: 1 / -1; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-peers {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: 1.6rem;
-    padding-left: 0;
-    margin-top: 4.6rem;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track {
-    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    column-gap: 0.75rem;
-    row-gap: 0.35rem;
-    align-items: center;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-start { grid-column: 1; grid-row: 1; align-self: center; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-rule {
-    grid-column: 2 / 5;
-    grid-row: 1;
-    align-self: center;
-    height: 0.1em;
-    width: auto;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track > .life-beat:nth-child(3) { grid-column: 2; grid-row: 2; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track > .life-beat:nth-child(4) { grid-column: 3; grid-row: 2; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track > .life-beat:nth-child(5) { grid-column: 4; grid-row: 2; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork > .decision-fork > .q,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork > .decision-fork > .decision-after > .decision-branch > .harm {
+  align-self: stretch;
 }
 
-@media (max-width: 800px) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .dgrid.decision-flow {
-    display: flex;
-    flex-direction: column;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-fork {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-fork > .q {
-    flex: 0 0 auto;
-    flex-basis: auto;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-after {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: 2.4rem;
-    row-gap: 0.35rem;
-    align-items: start;
-    width: 100%;
-    max-width: 100%;
-    position: static;
-    padding: 0.45rem 0 0;
-    border: 0;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-branch {
-    display: contents;
-    margin: 0;
-    padding: 0;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-branch > .harm {
-    grid-column: 1;
-    grid-row: 1;
-    position: static;
-    width: auto;
-    min-height: 0;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-branch > .leaf,
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-branch > .side-note {
-    grid-column: 2;
-    grid-row: 1;
-    width: auto;
-    max-width: 100%;
-    min-width: 0;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .decision-flow.decision-flow .decision-after > .varm {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    position: static;
-    min-height: 0.4rem;
-    margin: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .scope-stack {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity {
-    grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-areas: none !important;
-    grid-template-rows: none;
-    row-gap: 0.45rem;
-    column-gap: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > * {
-    grid-area: auto !important;
-    grid-column: 1 / -1 !important;
-    grid-row: auto !important;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .cost-op {
-    justify-self: center;
-    width: auto;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .formula-stem { display: none !important; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    border: 0.06em solid var(--line);
-    padding: 0.45em 0.5em;
-    box-shadow: none;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .port-tab {
-    border: 0;
-    padding: 0;
-    background: none;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-body,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body {
-    border: 0;
-    padding: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .policy-bridge { display: none; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow { min-height: 2.2rem; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-impair .impair-peers {
-    margin-left: calc(50% + 0.7rem);
-    width: auto;
-    max-width: calc(50% - 0.7rem);
-    padding-left: 0;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    padding-left: 0.85rem;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-start { margin-left: -0.85rem; align-self: flex-start; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-rule {
-    position: absolute;
-    left: 0.2rem;
-    top: 1.7rem;
-    bottom: 0.15rem;
-    width: 0.1em;
-    height: auto;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .freq-peers { grid-template-columns: minmax(0, 1fr); }
-
-  /* Beat the 560px elbow: leaves stay in the right half, labels stay beside the spine. */
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch {
-    display: contents;
-    margin: 0;
-    padding: 0;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch > .side-note {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.35em;
-    grid-column: 2;
-    grid-row: 1;
-    width: auto;
-    max-width: 100%;
-    min-width: 0;
-  }
-
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-branch > .harm .arm-label,
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-after > .varm .arm-label,
-  html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-fork.decision-flow.decision-flow .decision-after > .varm > .arm-label {
-    position: absolute;
-    display: block;
-    inset: auto;
-    width: max-content;
-    max-width: calc(50% - 1.4rem);
-    margin: 0;
-    text-align: start;
-    white-space: normal;
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .arm-label,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-label { max-width: calc(50% - 1.4rem); }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rail-link { margin-bottom: 1.2rem; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .disc-board {
-    grid-template-columns: minmax(8.6em, 10.2em) minmax(0, 1fr);
-  }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis { padding: 0.6em 0.75em; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell { padding: 0.55em 0.7em; }
-
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow.pack-flow-impair .impair-peers {
-    margin: 0 0 0.7em calc(50% + 0.85rem);
-    width: auto;
-    max-width: calc(50% - 0.85rem);
-    padding-left: 0;
-  }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-ppe .side-note {
+  align-self: stretch;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.35rem 0;
 }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-ppe .side-note > .leaf { grid-row: 2; align-self: center; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-ppe .side-note > .see { grid-row: 3; align-self: start; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-excl .leaf.pack-stop,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .fork-cap.def-fork > .decision-fork > .decision-after > .decision-branch > .leaf {
+  align-self: center;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .beat[data-phase="recog"] > .plate { margin-top: 2.4rem; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity {
+  --op-col: 1.65rem;
+  grid-template-columns:
+    minmax(8rem, 1.15fr)
+    var(--op-col)
+    minmax(0, 1fr)
+    var(--op-col)
+    minmax(0, 1fr)
+    var(--op-col)
+    minmax(0, 1fr);
+  grid-template-areas: none;
+  grid-template-rows: auto 0.8rem auto auto;
+  column-gap: 0;
+  row-gap: 0;
+  align-items: stretch;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .cost-result { grid-column: 1; grid-row: 1; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .op-eq { grid-column: 2; grid-row: 1; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .limb-buy { grid-column: 3; grid-row: 1; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .op-p1 { grid-column: 4; grid-row: 1; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .da-col { grid-column: 5; grid-row: 1; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .op-p2 { grid-column: 6; grid-row: 1; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .limb-dis { grid-column: 7; grid-row: 1; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .stem-cost { grid-column: 1; grid-row: 2; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .stem-da { grid-column: 5; grid-row: 2; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .nature-nest { grid-column: 1 / 4; grid-row: 3; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .ready-axis { grid-column: 5 / 8; grid-row: 3; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .facet-foot { grid-column: 1 / -1; grid-row: 4; margin-top: 0.75rem; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity > .cost-op {
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  text-align: center;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: auto auto;
+  column-gap: 0;
+  row-gap: 0.4rem;
+  border: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  align-self: start;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest > .port-tab { grid-column: 1; grid-row: 1; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest > .nature-body { grid-column: 1 / -1; grid-row: 2; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: auto auto;
+  column-gap: 0;
+  row-gap: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  align-self: start;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis > .axis-port { grid-column: 1; grid-row: 1; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .ready-axis > .axis-body { grid-column: 1 / -1; grid-row: 2; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 0.4rem 0.45rem;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body > .axis-name,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body > .axis-mark,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-body > .axis-rule { grid-column: 1 / -1; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .impair-peers {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 1.6rem;
+  padding-left: 0;
+  margin-top: 4.6rem;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track {
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 0.75rem;
+  row-gap: 0.35rem;
+  align-items: center;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-start { grid-column: 1; grid-row: 1; align-self: center; }
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-rule {
+  grid-column: 2 / 5;
+  grid-row: 1;
+  align-self: center;
+  height: 0.1em;
+  width: auto;
+}
+
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track > .life-beat:nth-child(3) { grid-column: 2; grid-row: 2; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track > .life-beat:nth-child(4) { grid-column: 3; grid-row: 2; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .life-track > .life-beat:nth-child(5) { grid-column: 4; grid-row: 2; }
+
+
 
 /* M-R3-1. The row under the Cost formula is its own 40/60 split.
    Each title tab is the full width of the box under it. Stems are drawn
@@ -4999,125 +4266,96 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ppe.recog-map .parts-bridge { margin-top: 0.35rem; }
 
-@media (min-width: 801px) {
-  .ppe:is(.pack,.cost-map) .cost-identity {
-    grid-template-rows: auto auto auto;
-  }
-
-  .ppe:is(.pack,.cost-map) .cost-identity > .formula-stem {
-    display: none !important;
-  }
-
-  .ppe:is(.pack,.cost-map) .cost-identity > .cost-split {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    grid-template-rows: auto auto;
-    column-gap: 0.9rem;
-    row-gap: 0.4rem;
-    align-items: stretch;
-    margin-top: 2.4rem;
-    min-width: 0;
-  }
-
-  .ppe:is(.pack,.cost-map) .cost-identity > .facet-foot {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    margin-top: 0.75rem;
-  }
-
-  .ppe:is(.pack,.cost-map) .cost-split > .nature-nest,
-  .ppe:is(.pack,.cost-map) .cost-split > .ready-axis {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: subgrid;
-    grid-row: 1 / span 2;
-    column-gap: 0;
-    row-gap: 0.45rem;
-    align-self: stretch;
-    width: auto;
-    min-width: 0;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    background: none;
-    box-shadow: none;
-  }
-
-  .ppe:is(.pack,.cost-map) .cost-split > .nature-nest { grid-column: 1; }
-
-  .ppe:is(.pack,.cost-map) .cost-split > .ready-axis { grid-column: 2; }
-
-  .ppe:is(.pack,.cost-map) .cost-split .port-tab {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: stretch;
-    align-self: stretch;
-    width: 100%;
-    max-width: none;
-  }
-
-  .ppe:is(.pack,.cost-map) .cost-split .nature-body,
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body {
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: stretch;
-    align-self: stretch;
-    width: 100%;
-    max-width: none;
-  }
-
-  .ppe.scope-map .scope-stack > .scope-tip {
-    grid-column: 1;
-    grid-row: 5;
-    align-self: start;
-    margin-top: 0.4rem;
-  }
-
-  .ppe.scope-map .scope-stack > .scope-bearer {
-    grid-column: 1;
-    grid-row: 6;
-    align-self: start;
-    margin-top: 0.4rem;
-  }
-
-  .ppe.scope-map .fork-excl .carve-set {
-    grid-column: 3;
-    grid-row: 4;
-    align-self: start;
-    min-width: 0;
-  }
+.ppe:is(.pack,.cost-map) .cost-identity {
+  grid-template-rows: auto auto auto;
 }
 
-@media (max-width: 800px) {
-  .ppe:is(.pack,.cost-map) .cost-split {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    margin-top: 0;
-    min-width: 0;
-  }
-
-  .ppe:is(.pack,.cost-map) .cost-split > .nature-nest,
-  .ppe:is(.pack,.cost-map) .cost-split > .ready-axis,
-  .ppe:is(.pack,.cost-map) .cost-split .port-tab,
-  .ppe:is(.pack,.cost-map) .cost-split .nature-body,
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body {
-    align-self: stretch;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-  }
-
-  .ppe.scope-map .scope-stack > .scope-tip { margin-top: 1.6rem; }
-  .ppe.scope-map .scope-bearer { margin-top: 0.45rem; }
-
-  .ppe.scope-map .carve-set { grid-template-columns: minmax(0, 1fr); }
-
-  .ppe.recog-map > .handoff,
-  .ppe.cost-map > .handoff { margin-top: 2.4rem; }
+.ppe:is(.pack,.cost-map) .cost-identity > .formula-stem {
+  display: none !important;
 }
+
+.ppe:is(.pack,.cost-map) .cost-identity > .cost-split {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.9rem;
+  row-gap: 0.4rem;
+  align-items: stretch;
+  margin-top: 2.4rem;
+  min-width: 0;
+}
+
+.ppe:is(.pack,.cost-map) .cost-identity > .facet-foot {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  margin-top: 0.75rem;
+}
+
+.ppe:is(.pack,.cost-map) .cost-split > .nature-nest,
+.ppe:is(.pack,.cost-map) .cost-split > .ready-axis {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: subgrid;
+  grid-row: 1 / span 2;
+  column-gap: 0;
+  row-gap: 0.45rem;
+  align-self: stretch;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.ppe:is(.pack,.cost-map) .cost-split > .nature-nest { grid-column: 1; }
+
+.ppe:is(.pack,.cost-map) .cost-split > .ready-axis { grid-column: 2; }
+
+.ppe:is(.pack,.cost-map) .cost-split .port-tab {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: stretch;
+  align-self: stretch;
+  width: 100%;
+  max-width: none;
+}
+
+.ppe:is(.pack,.cost-map) .cost-split .nature-body,
+.ppe:is(.pack,.cost-map) .cost-split .axis-body {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: stretch;
+  align-self: stretch;
+  width: 100%;
+  max-width: none;
+}
+
+.ppe.scope-map .scope-stack > .scope-tip {
+  grid-column: 1;
+  grid-row: 5;
+  align-self: start;
+  margin-top: 0.4rem;
+}
+
+.ppe.scope-map .scope-stack > .scope-bearer {
+  grid-column: 1;
+  grid-row: 6;
+  align-self: start;
+  margin-top: 0.4rem;
+}
+
+.ppe.scope-map .fork-excl .carve-set {
+  grid-column: 3;
+  grid-row: 4;
+  align-self: start;
+  min-width: 0;
+}
+
+
 
 /* Ch04 Models densify. Sits inside the pack Models beat. */
 .ppe.models > .cx-layer { position: absolute; }
@@ -5225,10 +4463,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   min-width: 0;
 }
 
-@media (max-width: 800px) {
-  .ppe.models .both-zone { grid-template-columns: minmax(0, 1fr); }
-  .ppe.models > .handoff { margin-top: 2.4rem; }
-}
+
 
 /* Chapter maps fill the concept-map frame. Master keeps the narrow policy card. */
 .ppe:is(.scope-map,.recog-map,.cost-map,.models,.dep-map) {
@@ -5238,15 +4473,13 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 /* Ch04 4.1 spans the two model-head columns, not the lens rail.
    The existing arm formula then puts the card centre on the 4.2/4.3 midpoint. */
-@media (min-width: 801px) {
-  .ppe.models .policy-stage {
-    --parent-w: calc(100cqw - var(--lens-rail) - var(--lens-gap));
-  }
+.ppe.models .policy-stage {
+  --parent-w: calc(100cqw - var(--lens-rail) - var(--lens-gap));
+}
 
-  .ppe.models .lens-heads,
-  .ppe.models .lens-row {
-    grid-template-columns: var(--lens-rail) minmax(0, 1fr) minmax(0, 1fr);
-  }
+.ppe.models .lens-heads,
+.ppe.models .lens-row {
+  grid-template-columns: var(--lens-rail) minmax(0, 1fr) minmax(0, 1fr);
 }
 
 /* Ch05 Depreciation chapter map. Plate grammar comes from the pack selectors.
@@ -5836,49 +5069,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   background: var(--ink);
 }
 
-@media (min-width: 561px) {
-  .ppe.dep-map .method-set { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
+.ppe.dep-map .method-set { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-@media (max-width: 800px) {
-  .ppe.dep-map .land-set { grid-template-columns: minmax(0, 1fr); }
 
-  .ppe.dep-map .def-or { grid-template-columns: minmax(0, 1fr); }
-
-  .ppe.dep-map .def-op { min-height: 1.9rem; }
-
-  .ppe.dep-map .life-rows .factor-set { grid-template-columns: minmax(0, 1fr); }
-
-  .ppe.dep-map .inner-board > .inner-rail.band-rail {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.4em;
-    margin-top: 0;
-    border-radius: var(--card-radius);
-  }
-
-  .ppe.dep-map .inner-board > .band-rail > a.fb-num { margin-inline: 0; }
-
-  .ppe.dep-map .inner-board > .inner-rail:has(~ .band-rail) {
-    border-bottom-left-radius: var(--card-radius);
-    border-bottom-right-radius: var(--card-radius);
-  }
-
-  .ppe.dep-map .method-band,
-  .ppe.dep-map .period-band { grid-column: 1 / -1; }
-
-  .ppe.dep-map .period-tl { display: none; }
-
-  .ppe.dep-map .period-v { display: block; }
-
-  .ppe.dep-map > .plate > .junction > .see {
-    margin: 0;
-  }
-
-  .ppe.dep-map > .handoff { margin-top: 2.5rem; }
-}
 
 /* Ch06 Derecognition chapter map. Plate grammar comes from the pack
    selectors. Densify stays inside the four rails, the foot, and one nest. */
@@ -5951,9 +5144,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.derecog-map .inner-detail > .soft-note,
 .ppe.derecog-map > .plate > .soft-note { margin: 0; }
 
-@media (max-width: 800px) {
-  .ppe.derecog-map .when-pair { grid-template-columns: minmax(0, 1fr); }
-}
+
 
 /* Ch07 Disclosure chapter map. Disc-band grammar comes from the pack
    selectors. Densify stays inside the nests, the condition stacks, and the foot. */
@@ -6067,70 +5258,40 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.dep-map > .handoff { margin-top: 5rem; }
 .ppe.dep-map > .exit-label { max-width: 16rem; }
 
-@media (min-width: 50.0625rem) {
-  .ppe:is(.pack,.cost-map) .cost-identity > .nature-nest {
-    grid-column: 1 / 4;
-    grid-row: 3;
-    margin-top: 1.15rem;
-  }
-  .ppe:is(.pack,.cost-map) .cost-identity > .cost-split {
-    grid-column: 5 / -1;
-    grid-row: 3;
-    display: block;
-    margin-top: 1.15rem;
-  }
-  .ppe:is(.pack,.cost-map) .nature-nest > .port-tab { grid-column: 1 / -1; }
-  .ppe:is(.pack,.cost-map) .cost-identity > .facet-foot {
-    grid-column: 1 / -1;
-    grid-row: 4;
-    margin-top: 0.75rem;
-  }
-  .ppe:is(.pack,.cost-map) .axis-body {
-    grid-template-columns: minmax(14ch, 1fr);
-  }
-  .ppe:is(.pack,.cost-map) .axis-body > .before-nest,
-  .ppe:is(.pack,.cost-map) .axis-body > .point-at,
-  .ppe:is(.pack,.cost-map) .axis-body > .after-col {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  .ppe:is(.pack,.models) .lens-row:has(.rev-table) {
-    grid-template-columns: minmax(7.2em, 9.4em) minmax(14ch, 1fr);
-  }
-  .ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell {
-    grid-column: 2;
-  }
+.ppe:is(.pack,.cost-map) .cost-identity > .nature-nest {
+  grid-column: 1 / 4;
+  grid-row: 3;
+  margin-top: 1.15rem;
+}
+.ppe:is(.pack,.cost-map) .cost-identity > .cost-split {
+  grid-column: 5 / -1;
+  grid-row: 3;
+  display: block;
+  margin-top: 1.15rem;
+}
+.ppe:is(.pack,.cost-map) .nature-nest > .port-tab { grid-column: 1 / -1; }
+.ppe:is(.pack,.cost-map) .cost-identity > .facet-foot {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  margin-top: 0.75rem;
+}
+.ppe:is(.pack,.cost-map) .axis-body {
+  grid-template-columns: minmax(14ch, 1fr);
+}
+.ppe:is(.pack,.cost-map) .axis-body > .before-nest,
+.ppe:is(.pack,.cost-map) .axis-body > .point-at,
+.ppe:is(.pack,.cost-map) .axis-body > .after-col {
+  grid-column: 1;
+  grid-row: auto;
+}
+.ppe:is(.pack,.models) .lens-row:has(.rev-table) {
+  grid-template-columns: minmax(7.2em, 9.4em) minmax(14ch, 1fr);
+}
+.ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell {
+  grid-column: 2;
 }
 
-@media (max-width: 40rem) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-board-2,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .factor-set,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .land-set,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .method-set,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .def-or,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .model-split,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .facet-row,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .criteria,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peers,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-lr,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity {
-    grid-template-columns: minmax(14ch, 1fr);
-  }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-detail,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .limb,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) article {
-    min-inline-size: 14ch;
-  }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail {
-    margin-bottom: 0.25rem;
-  }
-  .ppe:is(.pack,.dep-map) .cap-row > .cost-eq {
-    grid-template-columns: minmax(14ch, 1fr);
-  }
-}
+
 
 .ppe.dep-map .v-lane .period-lane-k,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nest-k {
@@ -6143,33 +5304,10 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   padding-inline: 0.55rem;
 }
 
-@media (max-width: 50rem) {
-  .ppe.dep-map > .handoff { margin-top: 5rem; }
-}
 
 
-@media (max-width: 40rem) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-table {
-    grid-template-columns: minmax(14ch, 1fr);
-  }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-corner,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-col,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-row,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell {
-    grid-column: 1;
-    overflow-wrap: normal;
-    word-break: normal;
-    text-align: start;
-    align-items: flex-start;
-  }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-k,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-sub,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-col > span,
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-cell > span {
-    overflow-wrap: normal;
-    word-break: normal;
-  }
-}
+
+
 
 /* Master Derecognition only. Tall rails stretch; the chip stays on the title row. */
 .ppe.pack .pack-exit .inner-board {
@@ -6241,16 +5379,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   opacity: 0.7;
 }
 
-@media (max-width: 800px) {
-  .ppe.pack .partial-nest .src-differ {
-    grid-template-columns: minmax(0, 1fr);
-  }
 
-  .ppe.pack .partial-nest .differ-op {
-    justify-self: center;
-    transform: rotate(90deg);
-  }
-}
 
 /* Ch06 Derecognition zoom. Same stretch and title-row as the master nest. */
 .ppe.derecog-map .pack-exit .inner-board {
@@ -6322,16 +5451,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   opacity: 0.7;
 }
 
-@media (max-width: 800px) {
-  .ppe.derecog-map .partial-nest .src-differ {
-    grid-template-columns: minmax(0, 1fr);
-  }
 
-  .ppe.derecog-map .partial-nest .differ-op {
-    justify-self: center;
-    transform: rotate(90deg);
-  }
-}
 
 /* LOCK #59 (Johnny 2026-10-10, "use grid to wrap a concept or object"):
    no borderless notes or See-also. Pre-#85 tokens only. */
@@ -6353,7 +5473,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 /* 5.3 Factors / Land and buildings as rail|detail rows (Johnny 2026-10-10). */
 .ppe:is(.pack,.dep-map) .factor-rows { grid-template-columns: 12em minmax(0, 1fr) !important; margin-bottom: 0.45rem; }
 .ppe:is(.pack,.dep-map) .factor-rows > .inner-detail > .peer-line { margin: 0; }
-@media (max-width: 40rem) { .ppe:is(.pack,.dep-map) .factor-rows { grid-template-columns: minmax(0, 1fr) !important; } }
+
 
 /* LOCK (mock-topbar-grid v3): no mid-word breaks in revaluation table; Scope 1.1 criteria wide enough for prose. */
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-table {
@@ -6364,39 +5484,31 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .rev-sub {
   overflow-wrap: normal !important; word-break: normal !important; hyphens: manual !important;
 }
-@media (min-width: 40.0625rem) {
-  .ppe .def-fork { grid-template-columns: minmax(0, 2fr) minmax(4.75em, 0.28fr) minmax(12em, 0.75fr); }
-}
+.ppe .def-fork { grid-template-columns: minmax(0, 2fr) minmax(4.75em, 0.28fr) minmax(12em, 0.75fr); }
 
 /* LOCK (mock-topbar-grid v3): rail labels top-aligned, cells stretch to row height, rails span their row. */
-@media (min-width: 40.0625rem) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .scope-stack {
-    grid-template-columns: minmax(0, 2fr) minmax(4.75em, 0.28fr) minmax(12em, 0.75fr) !important;
-  }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row { align-items: stretch !important; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row > .lens-cell { align-self: stretch !important; height: auto !important; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.lens-k,.inner-rail,.cap-model,.band-rail) {
-    align-self: stretch !important; display: flex !important; flex-direction: column !important;
-    justify-content: flex-start !important; text-align: left;
-  }
-  .ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-k { grid-column: 1; grid-row: 1 / span 2; }
-  .ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell:nth-of-type(1) { grid-row: 1; }
-  .ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) { grid-row: 2; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .scope-stack {
+  grid-template-columns: minmax(0, 2fr) minmax(4.75em, 0.28fr) minmax(12em, 0.75fr) !important;
 }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row { align-items: stretch !important; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .lens-row > .lens-cell { align-self: stretch !important; height: auto !important; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.lens-k,.inner-rail,.cap-model,.band-rail) {
+  align-self: stretch !important; display: flex !important; flex-direction: column !important;
+  justify-content: flex-start !important; text-align: left;
+}
+.ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-k { grid-column: 1; grid-row: 1 / span 2; }
+.ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell:nth-of-type(1) { grid-row: 1; }
+.ppe:is(.pack,.models) .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) { grid-row: 2; }
 /* consistent vertical gap between outer rows (Johnny 14:17) */
 .ppe.pack .pack-lr { row-gap: 1.5rem !important; }
 .ppe.pack .pack-lr > .beat { padding-block-start: 0 !important; }
-@media (min-width: 40.0625rem) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.lens-k,.inner-rail,.cap-model,.band-rail) { text-align: left !important; align-items: flex-start !important; }
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.lens-k,.inner-rail,.cap-model,.band-rail) > * { text-align: left !important; justify-content: flex-start !important; }
-}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.lens-k,.inner-rail,.cap-model,.band-rail) { text-align: left !important; align-items: flex-start !important; }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.lens-k,.inner-rail,.cap-model,.band-rail) > * { text-align: left !important; justify-content: flex-start !important; }
 /* LOCK (v4): rail columns wide enough that no label goes one word per line at >=922 */
-@media (min-width: 40.0625rem) {
-  .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.inner-board,.cap,.disc-board) { grid-template-columns: 13em minmax(0, 1fr) !important; }
-  .ppe:is(.pack,.dep-map) .factor-rows { grid-template-columns: 13em minmax(0, 1fr) !important; }
-  .ppe:is(.pack,.models) .lens-row { grid-template-columns: 11em minmax(0,1fr) minmax(0,1fr) !important; }
-  .ppe:is(.pack,.models) .lens-row:has(.rev-table) { grid-template-columns: 11em minmax(14ch, 1fr) !important; }
-}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) :is(.inner-board,.cap,.disc-board) { grid-template-columns: 13em minmax(0, 1fr) !important; }
+.ppe:is(.pack,.dep-map) .factor-rows { grid-template-columns: 13em minmax(0, 1fr) !important; }
+.ppe:is(.pack,.models) .lens-row { grid-template-columns: 11em minmax(0,1fr) minmax(0,1fr) !important; }
+.ppe:is(.pack,.models) .lens-row:has(.rev-table) { grid-template-columns: 11em minmax(14ch, 1fr) !important; }
 /* v4: 6.2 / 4.2-4.3 notes sit under the gain-or-loss formula, same width, framed */
 .ppe .gl-note { display:flex; gap:.4em; align-items:flex-start; margin-top:.35rem; box-sizing:border-box; inline-size:100%; }
 .ppe .inner-detail:has(> .gl-note) > .cost-eq { inline-size: 100%; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr); display: grid; }
@@ -6404,51 +5516,39 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 /* LOCK (v5, Johnny 14:27 + R45→R23 B): the cost-split band is NOT linked to the formula boxes,
    so it sits on its own full-width grid and does not inherit formula column edges.
    Cut-off box: Before (~258px) | ◆ At this point | After — the box starts at ◆. */
-@media (min-width: 50.0625rem) {
-  .ppe:is(.pack,.cost-map) .cost-identity > .cost-split {
-    grid-column: 1 / -1 !important; grid-row: 3;
-    display: grid !important;
-    grid-template-columns: minmax(16em, 0.8fr) minmax(0, 2.2fr) !important;
-    gap: 0.45rem 1rem; align-items: start !important; width: 100%;
-  }
-  .ppe:is(.pack,.cost-map) .cost-split > .nature-nest { grid-column: 1 !important; grid-row: 1 !important; align-self: start !important; }
-  .ppe:is(.pack,.cost-map) .cost-split > .ready-axis  { grid-column: 2 !important; grid-row: 1 !important; align-self: start !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body {
-    display: grid !important;
-    grid-template-columns: 16em minmax(0, 1fr) minmax(0, 1fr) !important;
-    align-items: start !important; height: auto !important;
-  }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > :is(.axis-name,.axis-rule) { grid-column: 1 / -1 !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-mark { grid-column: 2 !important; justify-self: start !important; margin-inline-start: -0.45em !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .before-nest { grid-column: 1 !important; grid-row: auto; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .point-at   { grid-column: 2 !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .after-col  { grid-column: 3 !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > :is(.before-nest,.point-at,.after-col) { grid-row: 4 !important; align-self: start !important; height: auto !important; }
-  .ppe:is(.pack,.cost-map) .formula-stem { display: none; }
+.ppe:is(.pack,.cost-map) .cost-identity > .cost-split {
+  grid-column: 1 / -1 !important; grid-row: 3;
+  display: grid !important;
+  grid-template-columns: minmax(16em, 0.8fr) minmax(0, 2.2fr) !important;
+  gap: 0.45rem 1rem; align-items: start !important; width: 100%;
 }
-@media (min-width: 50.0625rem) {
-  .ppe:is(.pack,.cost-map) .cost-split > :is(.nature-nest,.ready-axis) { display: flex !important; flex-direction: column !important; gap: 0.45rem !important; }
-  .ppe:is(.pack,.cost-map) .cost-split > :is(.nature-nest,.ready-axis) > * { grid-area: auto !important; width: 100% !important; box-sizing: border-box; }
-  .ppe:is(.pack,.cost-map) .cost-split > :is(.nature-nest,.ready-axis) > .link-stem { display: none !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body { grid-template-columns: minmax(258px, 1.35fr) minmax(0, 1fr) minmax(0, 1fr) !important; }
+.ppe:is(.pack,.cost-map) .cost-split > .nature-nest { grid-column: 1 !important; grid-row: 1 !important; align-self: start !important; }
+.ppe:is(.pack,.cost-map) .cost-split > .ready-axis  { grid-column: 2 !important; grid-row: 1 !important; align-self: start !important; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body {
+  display: grid !important;
+  grid-template-columns: 16em minmax(0, 1fr) minmax(0, 1fr) !important;
+  align-items: start !important; height: auto !important;
 }
-@media (min-width: 50.0625rem) {
-  .ppe:is(.pack,.cost-map) .cost-identity > .cost-split { grid-template-columns: minmax(14em, 0.72fr) minmax(0, 2.28fr) !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-mark { text-align: left !important; width: auto !important; order: 0; grid-row: 3 !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-rule { grid-row: 3 !important; align-self: center; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-name { grid-row: 1 !important; }
-}
-@media (min-width: 50.0625rem) and (max-width: 75rem) {
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body { grid-template-columns: minmax(16em, 1.15fr) minmax(0, 1fr) !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .before-nest { grid-row: 4 / span 2 !important; }
-  .ppe:is(.pack,.cost-map) .cost-split .axis-body > .after-col { grid-column: 2 !important; grid-row: 5 !important; }
-}
+.ppe:is(.pack,.cost-map) .cost-split .axis-body > :is(.axis-name,.axis-rule) { grid-column: 1 / -1 !important; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-mark { grid-column: 2 !important; justify-self: start !important; margin-inline-start: -0.45em !important; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body > .before-nest { grid-column: 1 !important; grid-row: auto; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body > .point-at   { grid-column: 2 !important; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body > .after-col  { grid-column: 3 !important; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body > :is(.before-nest,.point-at,.after-col) { grid-row: 4 !important; align-self: start !important; height: auto !important; }
+.ppe:is(.pack,.cost-map) .formula-stem { display: none; }
+.ppe:is(.pack,.cost-map) .cost-split > :is(.nature-nest,.ready-axis) { display: flex !important; flex-direction: column !important; gap: 0.45rem !important; }
+.ppe:is(.pack,.cost-map) .cost-split > :is(.nature-nest,.ready-axis) > * { grid-area: auto !important; width: 100% !important; box-sizing: border-box; }
+.ppe:is(.pack,.cost-map) .cost-split > :is(.nature-nest,.ready-axis) > .link-stem { display: none !important; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body { grid-template-columns: minmax(258px, 1.35fr) minmax(0, 1fr) minmax(0, 1fr) !important; }
+.ppe:is(.pack,.cost-map) .cost-identity > .cost-split { grid-template-columns: minmax(14em, 0.72fr) minmax(0, 2.28fr) !important; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-mark { text-align: left !important; width: auto !important; order: 0; grid-row: 3 !important; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-rule { grid-row: 3 !important; align-self: center; }
+.ppe:is(.pack,.cost-map) .cost-split .axis-body > .axis-name { grid-row: 1 !important; }
+
 /* v5: 4.2/4.3 header shares the lens-row column grid (one-to-one link) */
-@media (min-width: 40.0625rem) {
-  .ppe:is(.pack,.models) .lens-heads { display: grid !important; grid-template-columns: 11em minmax(0,1fr) minmax(0,1fr) !important; column-gap: var(--lens-gap, 0.45rem) !important; }
-  .ppe:is(.pack,.models) .lens-row { column-gap: var(--lens-gap, 0.45rem) !important; }
-  .ppe:is(.pack,.models) .lens-heads > *, .ppe:is(.pack,.models) .lens-row > * { margin-inline: 0 !important; box-sizing: border-box; }
-}
+.ppe:is(.pack,.models) .lens-heads { display: grid !important; grid-template-columns: 11em minmax(0,1fr) minmax(0,1fr) !important; column-gap: var(--lens-gap, 0.45rem) !important; }
+.ppe:is(.pack,.models) .lens-row { column-gap: var(--lens-gap, 0.45rem) !important; }
+.ppe:is(.pack,.models) .lens-heads > *, .ppe:is(.pack,.models) .lens-row > * { margin-inline: 0 !important; box-sizing: border-box; }
 /* v5: revaluation = event on the depreciation timeline (revaluation model only) */
 .ppe .reval-event { margin-top: 0.7rem; border: 0.06em dashed var(--accent); border-radius: var(--card-radius); padding: 0.5em 0.55em; }
 .ppe .reval-k { display: flex; flex-wrap: wrap; gap: 0.4em; align-items: baseline; margin-bottom: 0.45rem; }
@@ -6474,52 +5574,20 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .rm-cell { border: 0.06em solid var(--line); border-radius: var(--card-radius); padding: 0.45em 0.55em; display: flex; gap: 0.45em; align-items: flex-start; }
 .ppe .rm-ord { flex: 0 0 auto; inline-size: 1.35em; block-size: 1.35em; border-radius: 50%; border: 0.06em solid var(--accent); color: var(--accent); font-size: 0.75em; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
 .ppe .rm-foot { grid-column: 1 / -1; text-align: center; font-size: 0.85em; color: var(--muted); border: 0.06em solid var(--line); border-radius: var(--card-radius); padding: 0.25em; }
-@media (max-width: 40rem) {
-  .ppe .reval-rows > .reval-matrix { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
-  .ppe .rm-corner { display: none; }
-  .ppe .rm-row { grid-column: 1 / -1; flex-direction: row; align-items: center; }
-}
-@media (max-width: 40rem) {
-  .ppe .reval-matrix > .rm-corner { display: none !important; }
-  .ppe .reval-matrix > .rm-row { grid-column: 1 / -1 !important; }
-}
+
+
 .ppe .rm-sub { font-size: 0.82em; color: var(--muted); }
 .ppe .rm-down { color: var(--muted) !important; }
-@media (max-width: 40rem) { .ppe .reval-matrix > .rm-row { flex-wrap: wrap; column-gap: 0.45em; } }
+
 /* v6d: narrow widths — each rail|detail pair reads as ONE unit (compact heading strip attached to its content) */
-@media (max-width: 40rem) {
-  .ppe :is(.inner-board,.factor-rows,.disc-board,.cap,.lens-row) { row-gap: 0 !important; }
-  .ppe :is(.inner-rail,.lens-k,.cap-model,.band-rail) {
-    display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important;
-    gap: 0.45em; text-align: left !important; min-height: 0 !important; height: auto !important;
-    padding: 0.3em 0.55em !important; margin: 0 !important;
-    border-bottom-left-radius: 0 !important; border-bottom-right-radius: 0 !important;
-  }
-  .ppe :is(.inner-rail,.lens-k,.cap-model,.band-rail) > * { text-align: left !important; margin: 0 !important; }
-  .ppe :is(.inner-rail,.lens-k,.cap-model,.band-rail) + * {
-    margin-top: 0 !important; border-top-width: 0 !important;
-    border-top-left-radius: 0 !important; border-top-right-radius: 0 !important;
-    margin-bottom: 0.7rem !important;
-  }
-  .ppe :is(.inner-rail,.lens-k,.cap-model,.band-rail) + *:last-child { margin-bottom: 0 !important; }
-}
+
 /* v6e: 3-column matrix, neutral */
 .ppe .reval-rows > .reval-matrix { grid-template-columns: 10.5em minmax(0,1fr) minmax(0,1fr) !important; }
 .ppe .reval-matrix .rm-ind { color: var(--muted) !important; border-color: var(--line) !important; }
 .ppe .reval-matrix .rm-col { display:flex; align-items:center; justify-content:center; gap:.35em; }
-@media (max-width: 40rem) {
-  .ppe .reval-rows > .reval-matrix { grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important; }
-  .ppe .reval-matrix > .rm-col:first-child { display: none !important; }
-  .ppe .reval-matrix > .rm-row { grid-column: 1 / -1 !important; border-radius: var(--card-radius) !important; border-width: 0.06em !important; margin-bottom: 0 !important; }
-  .ppe .reval-matrix > .rm-row + * { border-top-width: 0.06em !important; border-radius: var(--card-radius) !important; margin-bottom: 0 !important; }
-}
-@media (max-width: 40rem) {
-  .ppe * + :is(.inner-rail,.lens-k,.cap-model,.band-rail):not(:first-child) { margin-top: 0.8rem !important; }
-}
-@media (max-width: 40rem) {
-  .ppe:is(.pack,.disc) .disc-board { grid-template-columns: minmax(0,1fr) !important; }
-  .ppe:is(.pack,.disc) .disc-board > * { grid-column: 1 !important; grid-row: auto !important; }
-}
+
+
+
 /* v7: life cycle = one axis + two PEER event lanes (Depreciation | Revaluation), same frame/heading/width */
 .ppe .period-flows .period-lane-1 > :not(.period-yearends), .ppe .period-flows .period-lane-2 { visibility: hidden; }
 .ppe .period-flows .period-lane-2 { display: none; }
@@ -6577,26 +5645,11 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .rmx-flow { grid-column: 2 / 4; display: grid; grid-template-columns: minmax(0,1fr) 0 minmax(0,1fr); column-gap: 0.4rem; position: relative; }
 .ppe .rmx-cell { margin: 0; border: 0.06em solid var(--line); border-radius: var(--card-radius); padding: 0.5em 0.6em; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 600; }
 .ppe .rmx-arrow { position: relative; align-self: center; justify-self: center; z-index: 2; background: var(--bg); border: 0.06em solid var(--accent); color: var(--accent); border-radius: 50%; inline-size: 1.6em; block-size: 1.6em; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
-@media (max-width: 40rem) {
-  .ppe .lc-track { grid-template-columns: minmax(0,1fr); }
-  .ppe .lc-track > * { grid-column: 1 !important; grid-row: auto !important; }
-  .ppe .lc-end { max-inline-size: none; }
-  .ppe .lc-band { margin-inline: 0; }
-  .ppe .lc-lab { margin-top: 0.3rem; }
-  .ppe .rmx { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
-  .ppe .rmx-col:first-of-type { display: none; }
-  .ppe .rmx-row { grid-column: 1 / -1; }
-  .ppe .rmx-flow { grid-column: 1 / -1; }
-}
+
 .ppe .lc > * { align-self: stretch !important; inline-size: 100% !important; box-sizing: border-box; }
 .ppe .lc-band, .ppe .lc-axis { inline-size: auto !important; justify-self: stretch; }
 .ppe .lc-dia .lc-tick-lab { left: 1.5em !important; transform: translateY(-55%); }
-@media (max-width: 40rem) {
-  .ppe .lc-track { display: flex !important; flex-direction: column; align-items: stretch; }
-  .ppe .lc-begin { order: 1; } .ppe .lc-lab-axis { order: 2; } .ppe .lc-axis { order: 3; } .ppe .lc-cease { order: 4; align-self: flex-end; }
-  .ppe .lc-lab-dep { order: 5; } .ppe .lc-band-dep { order: 6; } .ppe .lc-lab-rev { order: 7; } .ppe .lc-band-rev { order: 8; }
-  .ppe .lc-axis { block-size: 1.2em; }
-}
+
 .ppe .lc-end { align-self: start; }
 /* v9: 4-column matrix + mark polish */
 .ppe .rmx { grid-template-columns: 6.5em 7.5em minmax(0,1fr) minmax(0,1fr) !important; }
@@ -6604,16 +5657,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .rmx-row { justify-content: center !important; }
 .ppe .rmx-ca { margin: 0; border: 0.06em solid var(--line); border-radius: var(--card-radius); display: flex; align-items: center; justify-content: center; font-weight: 600; padding: 0.4em; white-space: nowrap; }
 .ppe .lc-dia .lc-tick-lab { left: 2.1em !important; }
-@media (max-width: 40rem) {
-  .ppe .rmx { grid-template-columns: 4.5em 5.5em minmax(0,1fr) minmax(0,1fr) !important; font-size: 0.9em; }
-  .ppe .rmx-col:first-of-type { display: flex !important; align-items:center; justify-content:center; }
-  .ppe .rmx-row { grid-column: auto !important; }
-  .ppe .rmx-flow { grid-column: 3 / 5 !important; grid-template-columns: minmax(0,1fr) 0 minmax(0,1fr); }
-  .ppe .rmx-col { font-size: 0.72em; padding: 0.3em 0.2em; }
-  .ppe .lc-band-dep { block-size: 3.4em; }
-  .ppe .lc-band-dep .lc-tick-lab { top: auto; bottom: -0.1em; transform: none; left: 0.25em; font-size: 0.68em; }
-  .ppe .lc-band-dep .lc-tick { top: 0.35em; bottom: 1.3em; }
-}
+
 .ppe .rmx-col { display:flex; align-items:center; justify-content:center; }
 /* v10: axis = shared header band; Depreciation / Revaluation = peer rail rows; bands align to axis */
 .ppe .lc-head { grid-column: 1 / -1; display: grid; grid-template-columns: 13em minmax(0,1fr); column-gap: inherit; gap: 0 var(--lc-gap, 0.45rem); border: 0.06em solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: 0.5em 0; }
@@ -6627,13 +5671,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .lc-rail { flex-direction: column; align-items: flex-start; gap: 0.3em; }
 .ppe .lc-rail .lane-tag { font-weight: 400; }
 .ppe .lc-rail .lc-key { margin-bottom: 0.1em; }
-@media (min-width: 40.0625rem) { .ppe .lc-rail { flex-direction: column !important; } }
-@media (max-width: 40rem) {
-  .ppe .lc-head { grid-template-columns: minmax(0,1fr); padding: 0.45em 0.5em; }
-  .ppe .lc-head-axis { padding-inline: 0; grid-template-columns: minmax(0,1fr); }
-  .ppe .lc-head-axis > .lc-begin { grid-row: 1; } .ppe .lc-head-axis > .lc-axis { grid-row: 2; } .ppe .lc-head-axis > .lc-cease { grid-column: 1; grid-row: 3; }
-  .ppe .lc-rail { flex-direction: row !important; align-items: center !important; }
-}
+.ppe .lc-rail { flex-direction: column !important; }
+
 .ppe .lc-detail > .lc-band { align-self: stretch !important; inline-size: auto !important; display: block; }
 .ppe .inner-rail.lc-rail { display: block !important; }
 .ppe .inner-rail.lc-rail > * { display: inline-block !important; vertical-align: middle; flex: none !important; inline-size: auto !important; block-size: auto !important; min-block-size: 0 !important; }
@@ -6647,14 +5686,12 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .lc-top > .lc-band { grid-column: 2; margin-inline: 0.6em !important; }
 .ppe .reval-plate .plate-title { display: flex; align-items: center; gap: 0.5em; flex-wrap: wrap; }
 .ppe .reval-plate .plate-title .lane-tag { font-size: 0.72em; font-weight: 400; }
-@media (min-width: 40.0625rem) { .ppe .reval-plate > .inner-board { grid-template-columns: 13em minmax(0,1fr); } }
-@media (max-width: 40rem) {
-  .ppe .lc-top > .lc-band-k, .ppe .lc-top > .lc-band { grid-column: 1; margin-inline: 0 !important; }
-}
-@media (max-width: 40rem) { .ppe .reval-plate > .inner-board { grid-template-columns: minmax(0,1fr) !important; } .ppe .reval-plate > .inner-board > * { grid-column: 1 !important; } }
+.ppe .reval-plate > .inner-board { grid-template-columns: 13em minmax(0,1fr); }
+
+
 .ppe .lc-top > .lc-head-k:not(.lc-band-k) { grid-row: 1; } .ppe .lc-top > .lc-head-axis { grid-row: 1; }
 .ppe .lc-top > .lc-band-k { grid-row: 2; } .ppe .lc-top > .lc-band { grid-row: 2; }
-@media (max-width: 40rem) { .ppe .lc-top > * { grid-row: auto !important; } }
+
 /* flow v3: single Models→Dep shaft. Dep port is full width (XOR gutter removed). */
 .ppe.pack { position: relative; }
 .ppe.pack .beat[data-phase="dep"] > .dep-port {
@@ -6664,23 +5701,23 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   align-self: stretch;
   box-sizing: border-box;
 }
-@media (min-width: 40.0625rem) { .ppe .reval-plate .plate-title { display: flex !important; flex-wrap: nowrap !important; } .ppe .reval-plate .plate-title .lane-tag { white-space: nowrap; flex: none; } }
-@media (max-width: 40rem) { .ppe.dep-map .exit-label { max-width: calc(50vw - 1.6rem) !important; white-space: normal !important; text-align: right; } }
+.ppe .reval-plate .plate-title { display: flex !important; flex-wrap: nowrap !important; } .ppe .reval-plate .plate-title .lane-tag { white-space: nowrap; flex: none; }
+
 .ppe .reval-plate .plate-title { justify-content: flex-start !important; }
 .ppe .reval-plate .plate-title > span:not(.lane-tag) { flex: none !important; }
 .ppe .reval-plate .plate-title .lane-tag { margin-left: 0.4em !important; }
-@media (max-width: 40rem) { .ppe .reval-plate .plate-title .lane-tag { flex-basis: 100%; margin-left: 0 !important; width: max-content; max-width: 100%; } }
+
 .ppe .reval-plate .plate-title .lane-tag { flex: 0 0 auto !important; white-space: nowrap !important; width: auto !important; }
-@media (max-width: 40rem) { .ppe .reval-plate .plate-title { display: flex !important; flex-wrap: wrap !important; row-gap: 0.3em; } .ppe .reval-plate .plate-title .lane-tag { flex-basis: auto !important; } }
+
 /* final QC: model labels never wrap one word per line */
 .ppe .cap-model > :not(.fb-num) { white-space: nowrap !important; }
-@media (min-width: 40.0625rem) { .ppe .cap-row { grid-template-columns: max-content minmax(0,1fr) !important; } .ppe .cap .cap-model { min-inline-size: 9.5em; } }
-@media (min-width: 40.0625rem) { .ppe .cap-row { grid-template-columns: 12em minmax(0,1fr) !important; } .ppe .cap .cap-model { min-inline-size: 0; } }
+.ppe .cap-row { grid-template-columns: max-content minmax(0,1fr) !important; } .ppe .cap .cap-model { min-inline-size: 9.5em; }
+.ppe .cap-row { grid-template-columns: 12em minmax(0,1fr) !important; } .ppe .cap .cap-model { min-inline-size: 0; }
 .ppe .cap-row * { overflow-wrap: normal !important; word-break: normal !important; }
 /* Begins/Ceases drop lines to the axis rings */
 .ppe .lc-head-axis { position: relative; }
 .ppe .lc-head-axis > .lc-drop { position: absolute; width: 2px; transform: translateX(-50%); background: var(--accent); pointer-events: none; z-index: 0; }
-@media (max-width: 40rem) { .ppe .lc-head-axis > .lc-axis { margin-block: 0.9rem !important; } }
+
 
 /* Master flow v3: Dep→Reval spacer, Impairment formula contrast, Derecog two paths, four-side frames. */
 .ppe.pack .rail-stack-gap { min-height: 1.2em; }
@@ -6904,17 +5941,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   line-height: 1.35;
 }
 
-@media (max-width: 50rem) {
-  .ppe.pack .impair-formula-contrast,
-  .ppe.pack .derecog-two-paths,
-  .ppe.pack .impair-cards,
-  .ppe.pack .impair-routes,
-  .ppe.pack .impair-ca-flow {
-    grid-template-columns: minmax(0, 1fr);
-  }
 
-  .ppe.pack .impair-ca-arrow { transform: rotate(90deg); }
-}
 
 /* Visible four-side plate frames, including the nested Depreciation plate.
    Chapter-map rule paints .dep-map > .plate with --bg, which hides the stroke. */
@@ -7167,65 +6194,40 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 /* Mid widths keep two columns. The 20.5em rail only fits once the
    nested life-rows detail is wide enough (≥922). */
-@media (min-width: 40.0625rem) and (max-width: 57.5625rem) {
-  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"] {
-    grid-template-columns: minmax(0, 1fr) minmax(7.5rem, 1.35fr) !important;
-  }
 
-  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"] {
-    grid-template-columns: minmax(0, 0.42fr) minmax(7.5rem, 1.35fr) !important;
-  }
+
+.ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"] {
+  grid-template-columns: 20.5em minmax(0, 1fr) !important;
 }
 
-@media (min-width: 57.625rem) {
-  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"] {
-    grid-template-columns: 20.5em minmax(0, 1fr) !important;
-  }
-
-  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"] {
-    grid-template-columns: 6.75em minmax(0, 1fr) !important;
-  }
+.ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"] {
+  grid-template-columns: 6.75em minmax(0, 1fr) !important;
 }
 
-@media (min-width: 40.0625rem) {
-  .ppe.dep-map.ch05-map .cap-row {
-    grid-template-columns: 15em minmax(0, 1fr) !important;
-  }
-
-  .ppe.dep-map.ch05-map .cap-model {
-    padding: 0.45em 0.7em;
-    box-sizing: border-box;
-  }
-
-  .ppe.dep-map.ch05-map .cap-row > .cost-eq {
-    grid-template-columns: minmax(7.2em, 1.2fr) auto minmax(0, 1fr) auto minmax(0, 1fr) !important;
-  }
-
-  .ppe.dep-map.ch05-map .lc-head-axis {
-    align-items: stretch;
-  }
-
-  .ppe.dep-map.ch05-map .lc-head-axis > .lc-begin,
-  .ppe.dep-map.ch05-map .lc-head-axis > .lc-cease {
-    align-self: stretch !important;
-    min-block-size: 100%;
-  }
+.ppe.dep-map.ch05-map .cap-row {
+  grid-template-columns: 15em minmax(0, 1fr) !important;
 }
 
-@media (max-width: 40rem) {
-  .ppe.dep-map.ch05-map .echo-steps {
-    width: 100%;
-  }
-
-  .ppe.dep-map.ch05-map .echo-step {
-    flex: 1 1 auto;
-  }
-
-  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"],
-  .ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"] {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
+.ppe.dep-map.ch05-map .cap-model {
+  padding: 0.45em 0.7em;
+  box-sizing: border-box;
 }
+
+.ppe.dep-map.ch05-map .cap-row > .cost-eq {
+  grid-template-columns: minmax(7.2em, 1.2fr) auto minmax(0, 1fr) auto minmax(0, 1fr) !important;
+}
+
+.ppe.dep-map.ch05-map .lc-head-axis {
+  align-items: stretch;
+}
+
+.ppe.dep-map.ch05-map .lc-head-axis > .lc-begin,
+.ppe.dep-map.ch05-map .lc-head-axis > .lc-cease {
+  align-self: stretch !important;
+  min-block-size: 100%;
+}
+
+
 
 /* #62 Ch04 Models follow-master. Chapter map only (.ch04-map).
    Cost left | Revaluation right stay equal. Do not restyle Master. */
@@ -7387,91 +6389,81 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   align-self: stretch;
 }
 
-@media (min-width: 40.0625rem) {
-  .ppe.models.ch04-map .lens-row,
-  .ppe.models.ch04-map .lens-heads {
-    grid-template-columns: 11em minmax(0, 1fr) minmax(0, 1fr) !important;
-  }
-
-  .ppe.models.ch04-map .lens-row:has(.rev-table) {
-    grid-template-columns: 11em minmax(0, 1fr) minmax(0, 1fr) !important;
-  }
-
-  .ppe.models.ch04-map .lens-row:has(.rev-table) > .lens-k {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-  }
-
-  .ppe.models.ch04-map .lens-row:has(.rev-table) > .lens-cell:nth-of-type(1) {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-  }
-
-  .ppe.models.ch04-map .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) {
-    grid-column: 3 !important;
-    grid-row: 1 !important;
-    overflow: visible !important;
-    padding-left: 0.35em !important;
-    padding-right: 0.35em !important;
-  }
-
-  .ppe.models.ch04-map .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) .rev-nest {
-    overflow: visible !important;
-  }
-
-  .ppe.models.ch04-map .rev-table {
-    grid-template-columns: minmax(7.75em, 8.5em) minmax(0, 1fr) minmax(0, 1fr) !important;
-    gap: 0.22rem !important;
-    align-items: stretch !important;
-    overflow: visible !important;
-  }
-
-  .ppe.models.ch04-map .rev-row {
-    padding: 0.55em 0.5em !important;
-    min-width: 0;
-    min-height: 4.25em;
-    overflow: visible !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 0.2em !important;
-  }
-
-  .ppe.models.ch04-map .rev-row .rev-k,
-  .ppe.models.ch04-map .rev-row .rev-sub {
-    white-space: normal !important;
-    overflow: visible !important;
-    max-width: 100%;
-  }
-
-  .ppe.models.ch04-map .rev-row .rev-sub {
-    font-size: 0.88em;
-    line-height: 1.3;
-  }
-
-  .ppe.models.ch04-map .rev-col,
-  .ppe.models.ch04-map .rev-cell {
-    padding: 0.4em 0.4em !important;
-    min-width: 0;
-    overflow: visible !important;
-  }
-
-  .ppe.models.ch04-map .rev-cell > span,
-  .ppe.models.ch04-map .rev-col > span {
-    overflow-wrap: break-word;
-    word-break: normal;
-    hyphens: none;
-  }
+.ppe.models.ch04-map .lens-row,
+.ppe.models.ch04-map .lens-heads {
+  grid-template-columns: 11em minmax(0, 1fr) minmax(0, 1fr) !important;
 }
 
-@media (max-width: 40rem) {
-  .ppe.models.ch04-map .echo-steps {
-    width: 100%;
-  }
-
-  .ppe.models.ch04-map .echo-step {
-    flex: 1 1 auto;
-  }
+.ppe.models.ch04-map .lens-row:has(.rev-table) {
+  grid-template-columns: 11em minmax(0, 1fr) minmax(0, 1fr) !important;
 }
+
+.ppe.models.ch04-map .lens-row:has(.rev-table) > .lens-k {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+}
+
+.ppe.models.ch04-map .lens-row:has(.rev-table) > .lens-cell:nth-of-type(1) {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+}
+
+.ppe.models.ch04-map .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) {
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  overflow: visible !important;
+  padding-left: 0.35em !important;
+  padding-right: 0.35em !important;
+}
+
+.ppe.models.ch04-map .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) .rev-nest {
+  overflow: visible !important;
+}
+
+.ppe.models.ch04-map .rev-table {
+  grid-template-columns: minmax(7.75em, 8.5em) minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 0.22rem !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+
+.ppe.models.ch04-map .rev-row {
+  padding: 0.55em 0.5em !important;
+  min-width: 0;
+  min-height: 4.25em;
+  overflow: visible !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.2em !important;
+}
+
+.ppe.models.ch04-map .rev-row .rev-k,
+.ppe.models.ch04-map .rev-row .rev-sub {
+  white-space: normal !important;
+  overflow: visible !important;
+  max-width: 100%;
+}
+
+.ppe.models.ch04-map .rev-row .rev-sub {
+  font-size: 0.88em;
+  line-height: 1.3;
+}
+
+.ppe.models.ch04-map .rev-col,
+.ppe.models.ch04-map .rev-cell {
+  padding: 0.4em 0.4em !important;
+  min-width: 0;
+  overflow: visible !important;
+}
+
+.ppe.models.ch04-map .rev-cell > span,
+.ppe.models.ch04-map .rev-col > span {
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+}
+
+
 
 /* #63 Ch06 follow-master v11. Scoped to .ch06-map: the chapter map root
    and the master Derecognition plate. Other master plates are outside it. */
@@ -7913,54 +6905,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   box-sizing: border-box;
 }
 
-@media (max-width: 40rem) {
-  .ch06-map .inner-board {
-    row-gap: var(--map-gap) !important;
-    column-gap: var(--map-gap) !important;
-  }
 
-  .ch06-map .inner-board > .inner-rail,
-  .ch06-map .inner-board > .inner-detail {
-    margin: 0 !important;
-    border-width: 0.08em !important;
-    border-style: solid !important;
-    border-color: var(--line) !important;
-    border-radius: var(--card-radius) !important;
-  }
-
-  .ch06-map .echo-steps { width: 100%; }
-  .ch06-map .echo-step { flex: 1 1 auto; }
-
-  .ch06-map .when-pair {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
-    grid-template-areas: "t1" "b1" "or" "t2" "b2";
-  }
-
-  .ch06-map .cost-eq.fx-grid {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "a" "o1" "b" "cb" "o2" "c" "cc";
-  }
-
-  .ch06-map .fx-o1,
-  .ch06-map .fx-o2 { justify-self: center; }
-
-  .ch06-map .goes-pair {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  /* Shared narrow rule stacks a single chip above its text. See also stays one row. */
-  .ch06-map .see {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: flex-start !important;
-  }
-
-  .ch06-map .see > .fb-num {
-    margin-bottom: 0 !important;
-  }
-}
 
 /* Depreciation formula at narrow widths. Scoped to the chapter plate
    (.ch05-dep), which the master include copies. 922 and above stay
@@ -7968,76 +6913,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
    Formula text wraps inside the box. The 5.1 rail keeps a token gap.
    The visual iframe does not load tokens.css, so each var() has the
    token's own value as a fallback. */
-@media (max-width: 42.5rem) {
-  .ch05-dep .cap-rows .cap-row.cap-row {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
 
-  .ch05-dep .cap-rows .cap-row > .cost-eq.cost-eq {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1.15fr) auto minmax(0, 1.05fr) !important;
-    align-items: stretch;
-    justify-items: stretch;
-    gap: 0.35rem;
-    min-width: 0;
-    padding: max(var(--space-1, 0.25rem), 0.4em);
-  }
 
-  .ch05-dep .cap-rows .cap-row > .cost-eq > .cost-op {
-    justify-self: center;
-    align-self: center;
-  }
 
-  .ch05-dep .cap-rows .cap-row > .cost-eq > .cost-result,
-  .ch05-dep .cap-rows .cap-row > .cost-eq > .limb {
-    min-width: 0;
-    min-inline-size: 0 !important;
-    max-inline-size: 100%;
-    padding: max(var(--space-1, 0.25rem), 0.45em);
-    box-sizing: border-box;
-  }
-
-  .ch05-dep .cap-rows .cap-row > .cost-eq .limb-title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    white-space: normal !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-    hyphens: none !important;
-    text-align: center;
-  }
-
-  .ch05-dep .cap-rows .cap-row > .cost-eq .limb-title > span {
-    flex: 1 1 auto;
-    flex-basis: min(8em, 100%);
-    min-width: 0;
-    max-width: 100%;
-    white-space: normal !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-    hyphens: none !important;
-    text-align: center;
-  }
-}
-
-@media (max-width: 40rem) {
-  .ch05-dep .cap > .inner-rail:has(+ .cap-rows) {
-    border-bottom-left-radius: var(--card-radius) !important;
-    border-bottom-right-radius: var(--card-radius) !important;
-  }
-
-  .ch05-dep .cap > .inner-rail + .cap-rows {
-    margin-top: var(--space-2, 0.5rem) !important;
-    border-top-width: 0.08em !important;
-    border-top-left-radius: var(--card-radius) !important;
-    border-top-right-radius: var(--card-radius) !important;
-  }
-}
 
 /* 5.3 peer lines on the master include. The pack turns on a fixed 13em
    track at the same viewport width as the chapter, but the nested
@@ -8059,11 +6937,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   container-name: ch05detail;
 }
 
-@media (min-width: 40.0625rem) {
-  .ppe.pack .ch05-dep .factor-rows[aria-label^="Factors"],
-  .ppe.pack .ch05-dep .factor-rows[aria-label^="Special"] {
-    grid-template-columns: 8.2em minmax(0, 1fr) !important;
-  }
+.ppe.pack .ch05-dep .factor-rows[aria-label^="Factors"],
+.ppe.pack .ch05-dep .factor-rows[aria-label^="Special"] {
+  grid-template-columns: 8.2em minmax(0, 1fr) !important;
 }
 
 @container ch05detail (min-width: 28em) {
@@ -8193,32 +7069,26 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   margin-top: 2.2rem;
 }
 
-@media (min-width: 50.0625rem) {
-  .ch01-scope .scope-stack > .scope-tip {
-    grid-column: 1;
-    grid-row: 5;
-    align-self: start;
-  }
-
-  .ch01-scope .scope-stack > .scope-bearer {
-    grid-column: 1;
-    grid-row: 6;
-    align-self: start;
-    margin-top: 0.4rem;
-  }
-
-  .ch01-scope .fork-excl .carve-set {
-    grid-column: 3;
-    grid-row: 4;
-    align-self: start;
-  }
+.ch01-scope .scope-stack > .scope-tip {
+  grid-column: 1;
+  grid-row: 5;
+  align-self: start;
 }
 
-@media (max-width: 50rem) {
-  .ch01-scope .carve-set {
-    grid-template-columns: minmax(0, 1fr);
-  }
+.ch01-scope .scope-stack > .scope-bearer {
+  grid-column: 1;
+  grid-row: 6;
+  align-self: start;
+  margin-top: 0.4rem;
 }
+
+.ch01-scope .fork-excl .carve-set {
+  grid-column: 3;
+  grid-row: 4;
+  align-self: start;
+}
+
+
 
 /* Scope plate stays on the chapter type scale. Em fractions and the
    0.6875rem badge sit under 12px once --type-scale is applied. */
@@ -8272,16 +7142,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ch03-cost .facet-dense .span-rule { margin-top: 0.15rem; }
 
-@media (max-width: 50rem) {
-  .ch03-cost .facet-dense .src-differ {
-    grid-template-columns: minmax(0, 1fr);
-  }
 
-  .ch03-cost .facet-dense .differ-op {
-    justify-self: center;
-    transform: rotate(90deg);
-  }
-}
 
 .ch04-models .mini-k { margin: 0.6rem 0 0; }
 
@@ -8356,38 +7217,14 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border-radius: var(--card-radius);
 }
 
-@media (max-width: 50rem) {
-  .ch04-models .both-zone { grid-template-columns: minmax(0, 1fr); }
 
-  .ch04-models .lens-row:has(.rev-table) {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
 
-  .ch04-models .rev-table {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
 
-  .ch04-models .rev-corner,
-  .ch04-models .rev-col,
-  .ch04-models .rev-row,
-  .ch04-models .rev-cell {
-    grid-column: 1 !important;
-    grid-row: auto !important;
-  }
-}
-
-@media (max-width: 40rem) {
-  .ch04-models .class-tokens { grid-template-columns: minmax(0, 1fr); }
-}
 
 /* Master-owned include wrappers. These match the pack beat around a
    spliced chapter section. Chapter visuals are .ppe.scope-map and
    .ppe.models, so they do not match. */
-@media (max-width: 50rem) {
-  .ppe.pack .beat[data-phase="scope"] > .map-include .scope-bearer {
-    margin-top: 0.45rem;
-  }
-}
+
 
 /* Chapter .ppe.scope-map sizes. The pack type scale does not match them. */
 .ppe.pack .beat[data-phase="scope"] > .map-include .peer-line,
@@ -8399,25 +7236,23 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   font-size: 1.23em;
 }
 
-@media (min-width: 40.0625rem) {
-  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) {
-    grid-template-columns: 11em minmax(0, 1fr) minmax(0, 1fr) !important;
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) {
+  grid-template-columns: 11em minmax(0, 1fr) minmax(0, 1fr) !important;
+}
 
-  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-k {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-k {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+}
 
-  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(1) {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(1) {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+}
 
-  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) {
-    grid-column: 3 !important;
-    grid-row: 1 !important;
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) {
+  grid-column: 3 !important;
+  grid-row: 1 !important;
 }
 
 /* Chapter type sizes for Models text whose .ppe.models rules do not
@@ -8428,46 +7263,42 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   font-size: var(--t-body);
 }
 
-@media (min-width: 40.0625rem) {
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-sub {
-    font-size: 0.88em;
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-sub {
+  font-size: 0.88em;
 }
 
-@media (min-width: 50.0625rem) {
-  .ppe.pack .beat[data-phase="models"] > .map-include .policy-stage {
-    --parent-w: calc(100cqw - var(--lens-rail) - var(--lens-gap));
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .policy-stage {
+  --parent-w: calc(100cqw - var(--lens-rail) - var(--lens-gap));
+}
 
-  .ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) {
-    container-type: inline-size;
-    container-name: rev-fit;
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .lens-row:has(.rev-table) > .lens-cell:nth-of-type(2) {
+  container-type: inline-size;
+  container-name: rev-fit;
+}
 
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-table {
-    grid-template-columns: minmax(7.75em, 8.5em) minmax(0, 1fr) minmax(0, 1fr) !important;
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-table {
+  grid-template-columns: minmax(7.75em, 8.5em) minmax(0, 1fr) minmax(0, 1fr) !important;
+}
 
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-corner,
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-col,
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row,
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-cell {
-    min-width: 0;
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-corner,
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-col,
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-row,
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-cell {
+  min-width: 0;
+}
 
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-k,
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-col > span,
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-cell > span,
-  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-sub {
-    white-space: normal !important;
-    max-width: 100%;
-  }
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-k,
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-col > span,
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-cell > span,
+.ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-sub {
+  white-space: normal !important;
+  max-width: 100%;
+}
 
-  /* A Reval cell narrower than two 7.75rem peers wraps each freq-peer
-     onto its own track so the longest word stays inside the box. */
-  .ppe.pack .beat[data-phase="models"] > .map-include .lens-cell .freq-peers {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.75rem), 1fr));
-  }
+/* A Reval cell narrower than two 7.75rem peers wraps each freq-peer
+   onto its own track so the longest word stays inside the box. */
+.ppe.pack .beat[data-phase="models"] > .map-include .lens-cell .freq-peers {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.75rem), 1fr));
 }
 
 /* A Reval cell narrower than the chapter 2×2 at the type scale stacks
