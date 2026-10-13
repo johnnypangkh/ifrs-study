@@ -1,0 +1,301 @@
+/* Ch9 Status Concept Map — loaded only by visuals/ch09-status.html, after shared.css.
+   Grammar: hierarchy stack (Standards above; CF below, labelled stem “CF 唔會 override”);
+   purpose triad = same-format peers; IAS 8 = decision tree then ordered hierarchy on the NO
+   branch (stems attached to edges; colour only on the YES leaf; IAS 8.12 = lighter secondary).
+   No outer plate (parent fieldset is the frame). */
+
+.st-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.st-board-title,
+.st-head,
+.st-step-name,
+.st-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.st-board-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.st-board-title a.fb-num { margin-right: 0; flex-shrink: 0; }
+
+.st-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.st-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---- Hierarchy stack ---- */
+.st-hier {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.st-tier {
+  border-radius: var(--card-radius);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.st-tier--std {
+  border: 2px solid var(--elem-hub);
+  background: var(--elem-hub-soft);
+}
+.st-tier--std .st-name { color: var(--elem-hub); }
+.st-tier--cf {
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.st-tier--cf .st-name { font-size: 14px; color: var(--muted); }
+
+.st-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr);
+  column-gap: 10px;
+  min-height: 48px;
+}
+.st-link-stem {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  width: 2px;
+  min-height: 48px;
+  background: var(--accent);
+}
+.st-link-stem::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -1px;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid var(--accent);
+}
+.st-link-label {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: center;
+  margin: 0;
+  padding: 4px 0;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.st-link-label strong { color: var(--ink); }
+
+/* ---- Purpose triad ---- */
+.st-peers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.st-peer {
+  min-width: 0;
+  border: 1px solid var(--elem-peer);
+  border-radius: var(--card-radius);
+  background: var(--elem-peer-soft);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.st-peer .st-name { font-size: 14px; color: var(--elem-peer); }
+
+/* ---- IAS 8 tree ---- */
+.st-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.st-gate {
+  border: 2px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.st-q {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.st-sub {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.st-fork,
+.st-outcomes {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  column-gap: 12px;
+}
+.st-stem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr);
+  column-gap: 10px;
+  min-height: 44px;
+}
+.st-stem-line {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  width: 2px;
+  min-height: 44px;
+  background: var(--accent);
+}
+.st-stem-line::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid var(--accent);
+}
+.st-stem-label {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: center;
+  margin: 0;
+  padding: 4px 0;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.st-stem-label strong { color: var(--ink); }
+
+.st-leaf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  padding: 10px 12px;
+  align-self: start;
+}
+.st-leaf--yes { border-color: var(--outcome-yes); }
+.st-leaf-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.st-leaf--yes .st-leaf-name { color: var(--outcome-yes); }
+.st-leaf-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.st-no {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 10px 12px 12px;
+  background: var(--surface);
+}
+.st-no-lead {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.st-step {
+  border: 1px solid var(--elem-peer);
+  border-radius: var(--card-radius);
+  background: var(--elem-peer-soft);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.st-step-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.st-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--band);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.st-step-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr);
+  column-gap: 10px;
+  min-height: 36px;
+}
+.st-step-link .st-stem-line { min-height: 36px; }
+.st-step--may {
+  margin-top: 8px;
+  border-color: var(--line);
+  background: var(--surface);
+}
+.st-step--may .st-step-name { color: var(--muted); font-size: 12px; }
+
+.st-bar {
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--band);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .st-peers { grid-template-columns: minmax(0, 1fr); }
+  .st-fork,
+  .st-outcomes { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Standalone + iframe: paint night so transparent plates don't sit on white chrome. */
+html { background: var(--bg); }
+body.embed { background: var(--bg); }
