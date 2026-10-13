@@ -1,0 +1,163 @@
+# PR5 approvals for pull request 119.
+# Branch row71-pr5-ias2-tokens. Base e21ff95b.
+#
+# P0 Archive design/archive/ias2-pr5-2026-10-13/ before removal. Commit 65c3c9f.
+# P1 Fonts, weights, line-heights to tokens.
+# P2 --ias2-type calcs removed. Grep hits only under design/archive/.
+# P3 Spacing snap per the PR4 rule.
+# P4 Radius to --card-radius / --radius-m / --radius-pill.
+# P5 Borders, rails, arrowheads. Arrowheads use --arrowhead.
+# P6 Columns: --rail-w, --flow-gut, --col-min, --cell-min.
+# P7 Eighteen var() hex fallbacks stripped.
+# P8 Remaining geometry is an exact token sum, 0 px.
+# P9 ch01-ch05 inline style blocks removed. Non-duplicate rules live in draft.css.
+# P10 Seven note boxes use class note-box. Rule in util-1.css, pack-scoped.
+# P11 .num extended to body[data-pack=ias2].
+# P12 Five Master Design rows consumed. Workbook sha256 b0998c520c5a1485030968578b839c8fb39241db8bf393d13cdcd3ab6e71bb57.
+# P13 map-lint v2. IAS 2 gate 0. em allowed on min-width, min-height, height.
+# P14 Restamp via build-last-update.py. Stamp-only outside the pack.
+# P15 This file.
+# P16 1280 night and day within +/-3 px of the section 5 deltas. 922 is information only.
+#
+# Q1 (5 new tokens, spec section 4): Q1 APPROVED, Johnny via PM 4, 2026-10-13 22:12
+# Q2 (page-delta set, spec section 5): Q2 APPROVED as section 5, Johnny via PM 4, 2026-10-13 22:12
+# Q3 (3 em minima, spec section 7): Q3 APPROVED (em allowed on min-width/min-height/height), Johnny via PM 4, 2026-10-13 22:12
+#
+# Acceptance is 1280 only, both themes. 922 is recorded in the PR body and is not a gate.
+# Teaching rows below are the five new settings tokens only. Chapter prose is unchanged.
+
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--arrowhead D .3125rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--arrowhead D .3125rem NEW PR5: CSS-triangle arrowhead half-width (=5px; IAS 2 4/5/6px snap here; Johnny approved 2026-10-13)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--cell-min D 4rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--cell-min D 4rem NEW PR5: min width of op / count cells (=64px)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--col-min D 9.375rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--col-min D 9.375rem NEW PR5: fixed minmax floor for label column / mini-step basis (=150px; no auto-fit)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--flow-gut D 4.5rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--flow-gut D 4.5rem NEW PR5: st-flow fork centre gutter (=72px; was IAS 2 local --st-gut)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--rail-w D 11.25rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--rail-w D 11.25rem NEW PR5: left label rail width (=180px; IAS 2 .rail grid; VG L225)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "NEW PR5: CSS-triangle arrowhead half-width (=5px; IAS 2 4/5/6px snap here; Johnny approved 2026-10-13)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "NEW PR5: fixed minmax floor for label column / mini-step basis (=150px; no auto-fit)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "NEW PR5: left label rail width (=180px; IAS 2 .rail grid; VG L225)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "NEW PR5: min width of op / count cells (=64px)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "NEW PR5: st-flow fork centre gutter (=72px; was IAS 2 local --st-gut)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--arrowhead D .3125rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--arrowhead D .3125rem NEW PR5: CSS-triangle arrowhead half-width (=5px; IAS 2 4/5/6px snap here; Johnny approved 2026-10-13)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--cell-min D 4rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--cell-min D 4rem NEW PR5: min width of op / count cells (=64px)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--col-min D 9.375rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--col-min D 9.375rem NEW PR5: fixed minmax floor for label column / mini-step basis (=150px; no auto-fit)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--flow-gut D 4.5rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--flow-gut D 4.5rem NEW PR5: st-flow fork centre gutter (=72px; was IAS 2 local --st-gut)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--rail-w D 11.25rem"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--rail-w D 11.25rem NEW PR5: left label rail width (=180px; IAS 2 .rail grid; VG L225)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "NEW PR5: CSS-triangle arrowhead half-width (=5px; IAS 2 4/5/6px snap here; Johnny approved 2026-10-13)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "NEW PR5: fixed minmax floor for label column / mini-step basis (=150px; no auto-fit)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "NEW PR5: left label rail width (=180px; IAS 2 .rail grid; VG L225)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "NEW PR5: min width of op / count cells (=64px)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "NEW PR5: st-flow fork centre gutter (=72px; was IAS 2 local --st-gut)"
+  source: "Q1 Johnny via PM 4, 2026-10-13 22:12. Master Design rows in design/MASTER-STYLES.xlsx, committed verbatim."

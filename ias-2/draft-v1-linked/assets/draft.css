@@ -252,7 +252,16 @@
 .vis-table tr.row-mute td { color: var(--muted); }
 
 
-/* Chapter inline rules whose computed style is not the pack duplicate. */
+/* Chapter inline rules whose computed style is not the pack duplicate.
+   .vis-title margin is not a duplicate: .teaching p (legacy-mg-3) beats .vis-title. */
+body:has(#s-1-0) article.teaching .vis-title,
+body:has(#s-2-0) article.teaching .vis-title,
+body:has(#s-3-0) article.teaching .vis-title,
+body:has(#s-4-0) article.teaching .vis-title {
+  font-weight: 700;
+  margin: 0 0 var(--space-cell);
+}
+
 body:has(#s-1-0) article.teaching .mini-flow,
 body:has(#s-2-0) article.teaching .mini-flow,
 body:has(#s-3-0) article.teaching .mini-flow,
