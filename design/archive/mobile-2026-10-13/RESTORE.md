@@ -25,6 +25,9 @@ git checkout cfc59d2b -- \
   _shared/modules/visuals/grid-1.css \
   _shared/modules/visuals/grid-3.css \
   _shared/settings-gen.css \
+  _shared/settings-rows.html \
+  _shared/settings.css \
+  site/settings/index.html \
   _shared/tokens-core.css \
   _shared/tokens.css \
   cf-2018/chapter-visuals/ch02-qualitative-characteristics.css \

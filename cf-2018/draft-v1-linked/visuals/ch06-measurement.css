@@ -121,7 +121,7 @@
 }
 .mx-row { display: contents; }
 .mx-cell {
-  min-width: 0; border: 1px solid var(--line); border-radius: var(--card-radius);
+  min-width: 0; overflow-wrap: break-word; border: 1px solid var(--line); border-radius: var(--card-radius);
   background: var(--surface); padding: 7px 8px; font-size: calc(11px * var(--type-scale, 1)); line-height: 1.35; color: var(--ink);
 }
 .mx-stub {
