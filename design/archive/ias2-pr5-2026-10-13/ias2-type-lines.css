@@ -1,0 +1,95 @@
+/* Live tree has no --ias2-type definition. These are the 31 calc() uses.
+   The 0.85 definition stays in design/archive/mobile-2026-10-13/css/ias-2/draft-v1-linked/visuals/ias2.css and is not copied or removed. */
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:92 @ e21ff95b */
+  font-size: calc(10px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:102 @ e21ff95b */
+  font-size: calc(13px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:128 @ e21ff95b */
+  font-size: calc(13px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:137 @ e21ff95b */
+  font-size: calc(13px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:161 @ e21ff95b */
+.cell-title { display: flex; align-items: center; flex-wrap: wrap; gap: 0; font-weight: 700; font-size: calc(12px * var(--ias2-type, 1)); margin-bottom: 2px; }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:234 @ e21ff95b */
+  font-size: calc(13px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:253 @ e21ff95b */
+.leaf .cell-title { font-size: calc(12px * var(--ias2-type, 1)); }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:328 @ e21ff95b */
+  font-size: calc(12px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:358 @ e21ff95b */
+  font-size: calc(12px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:364 @ e21ff95b */
+  font-size: calc(16px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:374 @ e21ff95b */
+  font-size: calc(12px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:523 @ e21ff95b */
+.m-head { font-size: calc(13px * var(--ias2-type, 1)); }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:524 @ e21ff95b */
+.m-name { font-size: calc(13px * var(--ias2-type, 1)); font-weight: 700; color: var(--ink); }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:569 @ e21ff95b */
+.m-board-title { font-size: calc(15px * var(--ias2-type, 1)); color: var(--ink); }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:588 @ e21ff95b */
+.m-arm-head { font-size: calc(14px * var(--ias2-type, 1)); color: var(--ink); }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:589 @ e21ff95b */
+.m-arm-def { font-size: calc(12px * var(--ias2-type, 1)); min-height: 2.8em; }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:598 @ e21ff95b */
+  font-size: calc(15px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:614 @ e21ff95b */
+  font-size: calc(10px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:629 @ e21ff95b */
+.m-row-title { font-size: calc(12px * var(--ias2-type, 1)); color: var(--ink); }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:651 @ e21ff95b */
+  font-size: calc(15px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:662 @ e21ff95b */
+.m-ask { display: flex; align-items: flex-start; font-size: calc(12px * var(--ias2-type, 1)); font-weight: 700; color: var(--ink); line-height: 1.3; }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:710 @ e21ff95b */
+  font-size: calc(11px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:715 @ e21ff95b */
+.m-minus { align-self: center; color: var(--formula); font-weight: 800; font-size: calc(14px * var(--ias2-type, 1)); }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:735 @ e21ff95b */
+.m-eq-op { align-self: center; color: var(--formula); font-size: calc(15px * var(--ias2-type, 1)); font-weight: 800; line-height: 1; }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:773 @ e21ff95b */
+.m-disc .m-head { font-size: calc(12px * var(--ias2-type, 1)); color: var(--muted); }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:796 @ e21ff95b */
+  font-size: calc(10px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:808 @ e21ff95b */
+.m-disc-list a strong { display: flex; align-items: flex-start; color: var(--ink); font-size: calc(11px * var(--ias2-type, 1)); line-height: 1.3; margin-bottom: 2px; }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:850 @ e21ff95b */
+.ias2 .fb-num-sep { font-size: calc(11px * var(--ias2-type, 1)); }
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:876 @ e21ff95b */
+  font-size: calc(16px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:903 @ e21ff95b */
+  font-size: calc(16px * var(--ias2-type, 1));
+
+/* SOURCE ias-2/draft-v1-linked/visuals/ias2.css:942 @ e21ff95b */
+  font-size: calc(16px * var(--ias2-type, 1));
