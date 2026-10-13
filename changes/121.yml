@@ -1,0 +1,63 @@
+# PR7 approvals for pull request 121.
+# Branch cursor/row71-pr7-cf2018-tokens-ce9a. Base d7bb073fd9ac08c5a351a546faa7ff02d3ebfaac.
+#
+# P0 Archive design/archive/cf2018-pr7-2026-10-14/ then delete the 20 paths.
+#    Approved removals (Johnny #71 / spec 1.2). check-incremental classifies
+#    them as moves into the archive (454 moved, 0 removed). No removal rows.
+#    (1) cf-2018/chapter-visuals/INDEX.md
+#    (2) cf-2018/chapter-visuals/_archive/ch01-overview.html
+#    (3) cf-2018/chapter-visuals/ch01-objective-users.html
+#    (4) cf-2018/chapter-visuals/ch02-qualitative-characteristics.css
+#    (5) cf-2018/chapter-visuals/ch02-qualitative-characteristics.html
+#    (6) cf-2018/chapter-visuals/ch03-reporting-entity.html
+#    (7) cf-2018/chapter-visuals/ch04-elements.css
+#    (8) cf-2018/chapter-visuals/ch04-elements.html
+#    (9) cf-2018/chapter-visuals/ch05-recognition-derecognition.html
+#    (10) cf-2018/chapter-visuals/ch06-measurement.html
+#    (11) cf-2018/chapter-visuals/ch07-presentation-disclosure.html
+#    (12) cf-2018/chapter-visuals/ch08-capital.html
+#    (13) cf-2018/chapter-visuals/ch09-status.html
+#    (14) cf-2018/draft-v1-linked/_archive-index-stub.html
+#    (15) cf-2018/draft-v1-linked/_archive/ch01-overview-redirect.html
+#    (16) cf-2018/draft-v1-linked/_archive/ch01-overview.html
+#    (17) cf-2018/draft-v1-linked/_archive/visuals-ch01-overview.html
+#    (18) cf-2018/draft-v1-linked/_archive/visuals/ch09-status.css
+#        (leftover @media (max-width: 720px) stays in the archive only)
+#    (19) cf-2018/draft-v1-linked/_archive/visuals/ch09-status.html
+#    (20) cf-2018/subpages/_archive/01-overview.md
+#    tools/README.md pointer updated to "deleted PR7".
+# P1 Fonts per spec 3.1 and 3.3. calc(Npx * var(--type-scale)) to Npx, then the scale.
+#    15.68px (.98rem) follows section 3.3 to --mt-op-fs, not the conflicting --t1-fs prose.
+# P2 Spacing bins on px. Else exact token sums.
+# P3 Borders. Sub-2px stays --stroke-1 (1px rendered). Transparent arrow widths use --arrowhead (x21).
+# P4 Radius to --radius-s / --card-radius / --radius-m / --radius-pill.
+# P5 Geometry is an exact token sum on the half-pixel grid (119). --flow-gut x2, --col-min x1.
+#    No exact --rail-w (180) or --cell-min (64) hit.
+# P6 Colour. 91 defined var(--x, #hex) fallbacks stripped. Bare #9bb4cc to --legacy-color-6 (x6).
+# P7 ch05 .cost-sum style archived then moved into assets/draft.css.
+#    ch03 / ch09 / ch10 iframe floors are exact token sums in place.
+#    util-1.css left byte-identical (no cf2018 .num / .muted need).
+# P8 Kept: @media (hover: hover) in visuals/ch08-capital.css.
+#    references.html has no style="color:var(--muted)" on this base.
+#    Homepage drafts, cf-2018/wip/, live subpages/*.md, other-pack CSS untouched.
+# P9 Restamp via build-last-update.py.
+#    Stamp-only outside CF: 31 HTML files, one last-update.js?v= each
+#    (ias-16 10, ias-2 9, ifrs-18 11, site/settings/index.html 1).
+#    CF stamp-only ?v=: index, ch01, ch02, ch04, ch06, ch07, ch08, ch11,
+#    abbreviations, references (10) and visuals/*.html (11).
+#    ch03, ch05, ch09, ch10 also carry ?v= plus the P7 edits.
+# P10 This file.
+# P11 Evidence is in the PR body. 1280 night and day. 922 is information only.
+#
+# Q1 (night fills, spec section 7): Q1 APPROVED, Johnny via PM 4, 2026-10-14 01:59
+#    Bare #10161c to --surface (x6). Bare #141b22 to --band (x3). No Colour rows.
+# Q2 (page-delta set, spec section 5): Q2 APPROVED as section 5, Johnny via PM 4, 2026-10-14 01:59
+# Spec source: PR7-SPEC.md FINAL, IFRS Master Design, rulings 2026-10-14 01:59
+# Model: grok-4.7 xhigh, Johnny via PM 4, 2026-10-14 02:03
+#
+# No MASTER-STYLES rows. Settings stay 281/281. tokens.css and tokens-core.css unchanged.
+# TOKEN_BASE not re-baselined.
+# Acceptance is 1280 only, both themes. 922 is recorded in the PR body and is not a gate.
+# Chapter document heights in this font environment miss the absolute section 5 targets.
+# Iframe heights, index, references, and abbreviations match. Values were not tuned.
+# Teaching text is unchanged. No rows below.
