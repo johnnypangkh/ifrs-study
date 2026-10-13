@@ -42,10 +42,7 @@
   gap: var(--legacy-gap-1);
 }
 
-@media (max-width: 640px) {
-  .peer-pair { grid-template-columns: 1fr; }
 
-}
 .peer-pair .box { text-align: center; }
 
 

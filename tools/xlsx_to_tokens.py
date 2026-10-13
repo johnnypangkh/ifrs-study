@@ -8,11 +8,13 @@ LEGACY-PR1 are not emitted.
 Day (the :root block) is the default. Dark is the override, in the same
 two-block shape as main: prefers-color-scheme, then [data-theme="dark"].
 Desktop type-scale values live on :root of tokens.css and tokens-core.css.
-The four mobile type-scale declarations stay in the tokens.css 560 block and
-are mirrored in type-scale.css. tokens-core.css is that file minus exactly
-those four lines. The Text sheet's last row (Group directive) emits the
-/settings guard into both files. --check fails if the copies differ from
-the workbook.
+Mobile emission is off unless --mobile is passed (restore). With the flag,
+the four mobile type-scale declarations stay in the tokens.css 560 block
+and tokens-core.css is that file minus exactly those four lines. Without
+the flag, tokens.css is the desktop :root plus theme blocks only, and
+tokens-core.css is the same file. The Text sheet's last row (Group
+directive) emits the /settings guard into both files. --check fails if
+the copies differ from the workbook.
 
 Usage:
   python3 tools/xlsx_to_tokens.py            # write tokens.css and tokens-core.css
@@ -36,8 +38,27 @@ XLSX = ROOT / "design" / "MASTER-STYLES.xlsx"
 TOKENS = ROOT / "_shared" / "tokens.css"
 TOKENS_CORE = ROOT / "_shared" / "tokens-core.css"
 TYPE_SCALE = ROOT / "_shared" / "type-scale.css"
-# PR3 re-baselines "existing token bytes kept" on this commit, not origin/main.
-TOKEN_BASE = "03ca4a576eff907e72ec113cb8ae27142f09ff84"
+# PR4c re-baselines "existing token bytes kept" on this commit, not origin/main.
+# Same rule as the PR2 re-baseline: the guard allows the logged --page-max
+# change and the mobile-block removals, and stops on any other value change.
+TOKEN_BASE = "cfc59d2bd9393f07bb6dba938f7d9db27fec2ba1"
+# Default off. --mobile turns the archived 560 blocks back on (RESTORE step 1).
+MOBILE = False
+PAGE_MAX_BASE = "61.25rem"
+PAGE_MAX_HEAD = "70rem"
+ARCHIVED_EMITTED = (
+    "--bp-mobile",
+    "--bp-wide",
+    "--bp-mobile-n",
+    "--bp-wide-n",
+    "--preview-w-mobile",
+    "--preview-w-tablet",
+    "--preview-w-desktop",
+    "--preview-w-mobile-n",
+    "--preview-w-tablet-n",
+    "--preview-w-desktop-n",
+    "--ruler-max-n",
+)
 CARD_RADIUS_BASE = "8px"
 CARD_RADIUS_HEAD = ".5rem"
 DESKTOP_SCALE = {
@@ -78,6 +99,9 @@ GUARD_MARK = (
 )
 GUARD_HEADER = """/* Settings keeps the pre-PR3 desktop fallback for these four tokens.
    :root defines them for every other page. Mobile still follows the 560 block. */
+"""
+GUARD_HEADER_OFF = """/* Settings keeps the pre-PR3 desktop fallback for these four tokens.
+   :root defines them for every other page. */
 """
 SETTINGS_CSS = ROOT / "_shared" / "settings.css"
 SETTINGS_ROWS = ROOT / "_shared" / "settings-rows.html"
@@ -121,6 +145,27 @@ EXTRA = re.compile(r"(\w+)=([\d.]+rem)/([\d.]+rem)")
 DECL = re.compile(r"(--[\w-]+)\s*:\s*([^;]+);")
 PROP = re.compile(r"(--[\w-]+)\s*:")
 TOKEN_NAME = re.compile(r"--[\w-]+")
+
+
+def cell(row, name):
+    """Read a column, including the archived header name."""
+    if name in row:
+        return row.get(name)
+    archived = name + " (ARCHIVED 2026-10-13)"
+    if archived in row:
+        return row.get(archived)
+    return None
+
+
+def changelog_has_page_max():
+    wb = openpyxl.load_workbook(XLSX, data_only=True)
+    if "ChangeLog" not in wb.sheetnames:
+        return False
+    for row in wb["ChangeLog"].iter_rows(min_row=2, values_only=True):
+        text = " ".join("" if value is None else str(value) for value in row)
+        if "--page-max" in text and PAGE_MAX_HEAD in text:
+            return True
+    return False
 
 
 def n(value):
@@ -191,7 +236,7 @@ def _type_scale_rows(text_rows):
 
 
 def type_scale_mobile_value(row):
-    mobile_px = row.get("Mobile px")
+    mobile_px = cell(row, "Mobile px")
     if mobile_px is not None and str(mobile_px).strip() != "":
         return str(mobile_px).strip()
     notes = str(row.get("Notes") or "")
@@ -251,20 +296,26 @@ def site_guard(text_rows):
     """/settings fallback, emitted into tokens.css and tokens-core.css.
 
     Desktop sets the four type-scale tokens to the directive Desktop px.
-    The 560 block repeats the type-scale mobile rows. Drift fails --check.
+    With --mobile, the 560 block repeats the type-scale mobile rows.
+    Drift fails --check.
     """
     _row, names, desktop = directive_row(text_rows)
+    desktop_lines = "\n".join(line(name, desktop, 2) for name in names)
+    body = (
+        (GUARD_HEADER if MOBILE else GUARD_HEADER_OFF)
+        + 'body[data-pack="site"] {\n'
+        + desktop_lines
+        + "\n}\n"
+    )
+    if not MOBILE:
+        return body
     mobile_of = {
         item["Token prefix"]: type_scale_mobile_value(item)
         for item in _type_scale_rows(text_rows)
     }
-    desktop_lines = "\n".join(line(name, desktop, 2) for name in names)
     mobile_lines = "\n".join(line(name, mobile_of[name], 4) for name in names)
     return (
-        GUARD_HEADER
-        + 'body[data-pack="site"] {\n'
-        + desktop_lines
-        + "\n}\n"
+        body
         + "@media (max-width:560px) {\n"
         + '  body[data-pack="site"] {\n'
         + mobile_lines
@@ -276,8 +327,9 @@ def site_guard(text_rows):
 def emit_map_row(row, bucket, indent, mobile):
     prefix = row["Token prefix"]
     if mobile:
-        if float(row["Mobile rem"]) != float(row["Desktop rem"]):
-            bucket.append(line(f"{prefix}-fs", rem(row["Mobile rem"]), indent))
+        mobile_rem = cell(row, "Mobile rem")
+        if mobile_rem is not None and float(mobile_rem) != float(row["Desktop rem"]):
+            bucket.append(line(f"{prefix}-fs", rem(mobile_rem), indent))
         for key, desktop, mobile_value in extras(row.get("Notes")):
             if desktop != mobile_value:
                 bucket.append(line(f"{prefix}-{key}", mobile_value, indent))
@@ -338,19 +390,28 @@ def build_parts(wb):
         day.append(line(str(token), str(row["Desktop"]).strip(), 2))
 
     for row in grid_rows:
-        if row.get("Status") == "LEGACY-PR1":
+        status = row.get("Status")
+        if status == "LEGACY-PR1":
             continue
-        if row.get("Status") == "GENERATED-MQ":
+        if status == "GENERATED-MQ":
+            continue
+        if status == "DOC":
+            continue
+        if status == "ARCHIVED" and not MOBILE:
             continue
         token = row.get("Token")
         if not token or not str(token).startswith("--"):
             continue
         if str(token) in NEW_GRID:
             continue
+        if str(token) in ARCHIVED_EMITTED and not MOBILE:
+            continue
         if row.get("Desktop") is None:
             continue
         day.append(line(str(token), css_scalar(row["Desktop"]), 2))
-        mobile_value = row.get("Mobile")
+        if not MOBILE:
+            continue
+        mobile_value = cell(row, "Mobile")
         if mobile_value is None:
             continue
         mobile_text = str(mobile_value).strip()
@@ -363,7 +424,8 @@ def build_parts(wb):
         if row.get("Group") != "map":
             continue
         emit_map_row(row, day, 2, mobile=False)
-        emit_map_row(row, map_mobile, 4, mobile=True)
+        if MOBILE:
+            emit_map_row(row, map_mobile, 4, mobile=True)
 
     for row in text_rows:
         if row.get("Group") != "teaching":
@@ -372,18 +434,19 @@ def build_parts(wb):
 
     scale = type_scale_lines(text_rows)
     # Text sheet (map overrides, then the type-scale mirror), then Grid.
-    mobile = map_mobile + scale + grid_mobile
+    mobile = map_mobile + scale + grid_mobile if MOBILE else []
 
     by_token = {}
     for row in grid_rows:
         token = row.get("Token")
         if token:
             by_token[str(token)] = row
-    for name in NEW_GRID_ORDER:
-        row = by_token.get(name)
-        if row is None or row.get("Desktop") is None:
-            raise SystemExit(f"missing grid token {name}")
-        day.append(line(name, css_scalar(row["Desktop"]), 2))
+    if MOBILE:
+        for name in NEW_GRID_ORDER:
+            row = by_token.get(name)
+            if row is None or row.get("Desktop") is None:
+                raise SystemExit(f"missing grid token {name}")
+            day.append(line(name, css_scalar(row["Desktop"]), 2))
     font_rows = [row for row in text_rows if row.get("Group") == "site-font"]
     if not font_rows:
         raise SystemExit("expected at least 1 site-font row")
@@ -413,28 +476,39 @@ def render(day, mobile, night, colour_day, guard):
     # the data-theme copy at indent 2 so both blocks carry the same values.
     night_inner = night
     night_root = [line(name, value, 2) for name, value in parse_decl_lines(night)]
-    mobile_root = [line(name, value, 2) for name, value in parse_decl_lines(mobile)]
     parts = [
         "/* GENERATED — do not edit. tools/xlsx_to_tokens.py reads design/MASTER-STYLES.xlsx. */",
         block(":root", day, 0),
-        "@media (max-width:560px) {\n" + block(":root", mobile, 2) + "\n}",
+    ]
+    if MOBILE:
+        parts.append("@media (max-width:560px) {\n" + block(":root", mobile, 2) + "\n}")
+    parts.extend([
         "@media (prefers-color-scheme: dark) {\n"
         + block(':root:not([data-theme="light"])', night_inner, 2)
         + "\n}",
         block(':root[data-theme="dark"]', night_root, 0),
-        block(".is-mobile", mobile_root, 0),
+    ])
+    if MOBILE:
+        mobile_root = [line(name, value, 2) for name, value in parse_decl_lines(mobile)]
+        parts.append(block(".is-mobile", mobile_root, 0))
+    parts.extend([
         "/* settings preview only - scoped dark */\n"
         + block('.settings-preview[data-theme="dark"]', night_root, 0),
         "/* settings preview only - scoped light */\n"
         + block('.settings-preview[data-theme="light"]', colour_day, 0),
-    ]
+    ])
     if GUARD_MARK not in guard:
         raise SystemExit("settings guard is missing its header")
     return "\n".join(parts) + "\n" + guard
 
 
 def render_core(css):
-    """tokens.css minus the four mobile type-scale lines in the first 560 block."""
+    """tokens.css minus the four mobile type-scale lines in the first 560 block.
+
+    With mobile emission off there is no 560 block, so the two files match.
+    """
+    if not MOBILE:
+        return css
     start = css.index("@media (max-width:560px)")
     end = css.index("@media (prefers-color-scheme", start)
     block_text = css[start:end]
@@ -510,11 +584,18 @@ def slice_blocks(css):
 
     The old slice ran from `:root {` to the prefers-color-scheme block, so
     the 560 declarations were counted as day values and baseline_stop
-    refused a correct file. Day ends at the first @media.
+    refused a correct file. Day ends at the first @media. With mobile
+    emission off there is no 560 block, and narrow is empty.
     """
     root_at = css.index(":root {")
-    narrow_at = css.index("@media (max-width:560px)")
     media_at = css.index("@media (prefers-color-scheme")
+    narrow_at = css.find("@media (max-width:560px)")
+    if narrow_at == -1 or narrow_at > media_at:
+        root_end = media_at
+        narrow = []
+    else:
+        root_end = narrow_at
+        narrow = DECL.findall(css[narrow_at:media_at])
     dark_at = css.index(':root[data-theme="dark"]')
     dark_end = len(css)
     for marker in ("\n.is-mobile {", "\n/* settings preview"):
@@ -522,22 +603,40 @@ def slice_blocks(css):
         if at != -1:
             dark_end = min(dark_end, at)
     return {
-        "root": DECL.findall(css[root_at:narrow_at]),
-        "narrow": DECL.findall(css[narrow_at:media_at]),
+        "root": DECL.findall(css[root_at:root_end]),
+        "narrow": narrow,
         "mq": DECL.findall(css[media_at:dark_at]),
         "dark": DECL.findall(css[dark_at:dark_end]),
     }
 
 
 def baseline_stop(day, mobile, night, scale):
-    """STOP if a base-commit token would change value. Additions are allowed."""
+    """STOP if a base-commit token would change value. Additions are allowed.
+
+    PR4c allows --page-max when the workbook ChangeLog records it, and the
+    removal of the 560 block, the .is-mobile mirror, and the 11 archived
+    breakpoint tokens. Any other value change stops the write.
+    """
     base = slice_blocks(git_at(TOKEN_BASE, "_shared/tokens.css"))
     generated_root = dict(parse_decl_lines(day))
-    generated_mobile = dict(parse_decl_lines(mobile))
+    generated_mobile = dict(parse_decl_lines(mobile)) if mobile else {}
     generated_night = dict(parse_decl_lines(night))
     problems = []
     for name, value in base["root"]:
         got = generated_root.get(name)
+        if name in ARCHIVED_EMITTED and not MOBILE:
+            if got is not None:
+                problems.append(f"archived token emitted: {name}")
+            continue
+        if name == "--page-max" and (got or "").strip() != value.strip():
+            if (
+                value.strip() == PAGE_MAX_BASE
+                and (got or "").strip() == PAGE_MAX_HEAD
+                and changelog_has_page_max()
+            ):
+                continue
+            problems.append(f":root {name} base={value!r} generated={got!r}")
+            continue
         if (
             name == "--card-radius"
             and value.strip() == CARD_RADIUS_BASE
@@ -546,19 +645,29 @@ def baseline_stop(day, mobile, night, scale):
             continue
         if got is None or got.strip() != value.strip():
             problems.append(f":root {name} base={value!r} generated={got!r}")
-    for name, value in base["narrow"]:
-        got = generated_mobile.get(name)
-        if got is None or got.strip() != value.strip():
-            problems.append(f"560 {name} base={value!r} generated={got!r}")
+    if MOBILE:
+        for name, value in base["narrow"]:
+            got = generated_mobile.get(name)
+            if got is None or got.strip() != value.strip():
+                problems.append(f"560 {name} base={value!r} generated={got!r}")
+    elif generated_mobile:
+        problems.append("mobile declarations emitted while --mobile is off")
     for block_name in ("mq", "dark"):
         for name, value in base[block_name]:
             got = generated_night.get(name)
             if got is None or got.strip() != value.strip():
                 problems.append(f"{block_name} {name} base={value!r} generated={got!r}")
-    current = type_scale_file_text()
-    expected = "\n".join(scale)
-    if expected not in current:
-        problems.append("type-scale.css 4-token block is not the verbatim mirror")
+    if MOBILE:
+        current = type_scale_file_text()
+        expected = "\n".join(scale)
+        if expected not in current:
+            problems.append("type-scale.css 4-token block is not the verbatim mirror")
+    else:
+        for name, value in DESKTOP_SCALE.items():
+            if generated_root.get(name) != value:
+                problems.append(
+                    f"desktop scale {name} generated={generated_root.get(name)!r} expected={value!r}"
+                )
     if problems:
         print("STOP: token value would change, or the type-scale mirror does not match.")
         for item in problems:
@@ -577,19 +686,106 @@ def type_scale_file_text():
 
 
 def type_scale_mirror_ok(css, scale):
-    expected = "\n".join(scale)
     file_text = type_scale_file_text()
+    if not MOBILE:
+        present = all(
+            f"{name}: {value};" in css for name, value in DESKTOP_SCALE.items()
+        )
+        return present, "", file_text
+    expected = "\n".join(scale)
     in_tokens = expected in css
     in_file = expected in file_text
     return in_tokens and in_file, expected, file_text
 
 
+def _brace_end(text, brace):
+    depth = 0
+    k = brace
+    n = len(text)
+    quote = None
+    while k < n:
+        char = text[k]
+        if quote:
+            if char == "\\":
+                k += 2
+                continue
+            if char == quote:
+                quote = None
+            k += 1
+            continue
+        if char in ("'", '"'):
+            quote = char
+            k += 1
+            continue
+        if char == "/" and k + 1 < n and text[k + 1] == "*":
+            end = text.find("*/", k + 2)
+            k = n if end < 0 else end + 2
+            continue
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return k + 1
+        k += 1
+    raise SystemExit("unbalanced block while comparing token bytes")
+
+
+def _cut_block(text, start, end):
+    """Drop a block and the single newline that joined it to the previous part."""
+    if start > 0 and text[start - 1] == "\n":
+        start -= 1
+    return text[:start] + text[end:]
+
+
+def fold_mobile_bytes(css):
+    """Base tokens.css with the PR4c mobile removals and the logged page-max."""
+    spans = []
+    i = 0
+    while True:
+        at = css.find("@media", i)
+        if at < 0:
+            break
+        brace = css.find("{", at)
+        if brace < 0:
+            break
+        end = _brace_end(css, brace)
+        cond = css[at:brace]
+        if re.search(r"width", cond, re.I):
+            spans.append((at, end))
+        i = end
+    mobile_at = css.find(".is-mobile {")
+    if mobile_at != -1:
+        brace = css.find("{", mobile_at)
+        spans.append((mobile_at, _brace_end(css, brace)))
+    for start, end in sorted(spans, reverse=True):
+        css = _cut_block(css, start, end)
+    kept = []
+    for item in css.splitlines(keepends=True):
+        stripped = item.strip()
+        if any(stripped.startswith(name + ":") for name in ARCHIVED_EMITTED):
+            continue
+        kept.append(item)
+    folded = "".join(kept)
+    count = folded.count("--page-max: " + PAGE_MAX_BASE + ";")
+    if count != 1:
+        raise SystemExit(f"expected one --page-max {PAGE_MAX_BASE} in the base file, found {count}")
+    if not changelog_has_page_max():
+        raise SystemExit("STOP: --page-max change has no ChangeLog row")
+    return folded.replace(
+        "--page-max: " + PAGE_MAX_BASE + ";",
+        "--page-max: " + PAGE_MAX_HEAD + ";",
+        1,
+    )
+
+
 def existing_tokens_kept(css):
-    """Bytes at TOKEN_BASE, plus only the PR3 rows in section 3.
+    """Bytes at TOKEN_BASE, plus only the PR4c allowances.
 
     The comparison is `git show <base>:_shared/tokens.css`, not origin/main.
-    Allowed edits are --card-radius 8px to .5rem, the new :root rows, and the
-    settings-page fallback appended after the generated blocks.
+    Allowed edits are the logged --page-max value and the mobile-block
+    removals (560 blocks, .is-mobile, and the 11 archived breakpoint tokens).
+    The settings-page fallback after GUARD_MARK is outside this compare.
     """
     base = git_at(TOKEN_BASE, "_shared/tokens.css")
     head = css
@@ -599,25 +795,18 @@ def existing_tokens_kept(css):
     head = head[:mark]
     if not head.endswith("\n"):
         head += "\n"
-    kept = []
-    for line in head.splitlines(keepends=True):
-        stripped = line.strip()
-        if stripped.startswith("--legacy-") and stripped.endswith(";"):
-            continue
-        if any(stripped.startswith(name + ":") for name in NEW_ROOT_NAMES):
-            continue
-        if any(stripped.startswith(name + ":") for name in PR4_ROOT_NAMES):
-            continue
-        if stripped in DESKTOP_DECLS:
-            continue
-        if stripped == "--card-radius: .5rem;":
-            line = line.replace("--card-radius: .5rem;", "--card-radius: 8px;", 1)
-        kept.append(line)
-    folded = "".join(kept)
-    if folded != base:
+    base_mark = base.find(GUARD_MARK)
+    if base_mark < 0:
+        return False, "base tokens.css is missing the settings fallback"
+    base = base[:base_mark]
+    if not MOBILE:
+        base = fold_mobile_bytes(base)
+    if not base.endswith("\n"):
+        base += "\n"
+    if head != base:
         diff = "".join(difflib.unified_diff(
             base.splitlines(keepends=True),
-            folded.splitlines(keepends=True),
+            head.splitlines(keepends=True),
             fromfile=f"{TOKEN_BASE}:_shared/tokens.css",
             tofile="kept",
         ))
@@ -626,12 +815,20 @@ def existing_tokens_kept(css):
 
 
 def render_settings_gen(grid_rows):
-    """One 560 block. C3: no 800 block, even if a workbook row still lists one."""
-    rows = [row for row in grid_rows if row.get("Status") == "GENERATED-MQ"]
+    """One 560 block. C3: no 800 block, even if a workbook row still lists one.
+
+    Default emission is off. --mobile writes the block again.
+    """
+    if not MOBILE:
+        return ""
+    rows = [
+        row for row in grid_rows
+        if row.get("Status") == "GENERATED-MQ" or row.get("Token") == "settings-gen.css"
+    ]
     if len(rows) != 1:
         raise SystemExit(f"expected 1 GENERATED-MQ row, found {len(rows)}")
     desktop = "" if rows[0].get("Desktop") is None else css_scalar(rows[0]["Desktop"])
-    mobile = rows[0].get("Mobile")
+    mobile = cell(rows[0], "Mobile")
     mobile_text = "" if mobile is None else css_scalar(mobile)
     if "800" in desktop or "800" in mobile_text:
         print(
@@ -720,10 +917,13 @@ def _code_name(name):
 
 
 def _vals(name, desktop, mobile):
+    mobile_html = ""
+    if MOBILE:
+        mobile_html = f'<span class="v v-m"><b>M</b> {_token_text(mobile)}</span>'
     return (
         f'<div class="tok">{_code_name(name)}'
         f'<span class="v v-d"><b>D</b> {_token_text(desktop)}</span>'
-        f'<span class="v v-m"><b>M</b> {_token_text(mobile)}</span></div>'
+        f'{mobile_html}</div>'
     )
 
 
@@ -877,7 +1077,10 @@ def _grid_preview(token):
     if token.startswith("--preview-w"):
         return f'<span class="bar pw" style="--p-w:var({token})"></span>'
     if token == "--page-max":
-        return _ruler() + '<span class="page-max-bar"></span>'
+        bar = '<span class="page-max-bar"></span>'
+        if not MOBILE:
+            return bar
+        return _ruler() + bar
     return f'<span class="bar" style="--p-w:var({token})"></span>'
 
 
@@ -900,7 +1103,8 @@ def settings_rows_text(wb, day, mobile):
         style = row.get("Style name") or prefix
         role = row.get("Role / where used") or ""
         if group == "type-scale":
-            tokens = [(prefix, "fallback 1 / unset", mobile_map[prefix])]
+            mobile_value = mobile_map[prefix] if MOBILE else "="
+            tokens = [(prefix, "fallback 1 / unset", mobile_value)]
             style_attr = (
                 "--p-fs:calc(var(--t-body) * var(--type-scale))"
                 if prefix == "--type-scale"
@@ -980,7 +1184,10 @@ def settings_rows_text(wb, day, mobile):
         out.append(_data_row("spacing", left, preview))
     out.append(_section("Grid"))
     for row in grid_rows:
-        if row.get("Status") in ("LEGACY-PR1", "GENERATED-MQ"):
+        status = row.get("Status")
+        if status in ("LEGACY-PR1", "GENERATED-MQ", "DOC"):
+            continue
+        if status == "ARCHIVED" and not MOBILE:
             continue
         token = row.get("Token")
         if not token or not str(token).startswith("--"):
@@ -992,17 +1199,20 @@ def settings_rows_text(wb, day, mobile):
             f'<div class="meta">{_vals(name, desktop, mobile_value)}'
             f'<div class="role">{_token_text(role)}</div></div>'
         )
+        if str(token) in ARCHIVED_EMITTED and not MOBILE:
+            continue
         out.append(_data_row("grid", left, _grid_preview(token)))
-    ruler_left = (
-        '<div class="meta"><div class="tok"><code>breakpoint ruler</code></div>'
-        '<div class="role">'
-        + _token_text(
-            "390 / 560 / 800 / 922 / 1280 - solid marks are "
-            "--bp-mobile and --bp-wide, hollow marks are preview widths"
+    if MOBILE:
+        ruler_left = (
+            '<div class="meta"><div class="tok"><code>breakpoint ruler</code></div>'
+            '<div class="role">'
+            + _token_text(
+                "390 / 560 / 800 / 922 / 1280 - solid marks are "
+                "--bp-mobile and --bp-wide, hollow marks are preview widths"
+            )
+            + "</div></div>"
         )
-        + "</div></div>"
-    )
-    out.append(_data_row("grid ruler-row", ruler_left, _ruler()))
+        out.append(_data_row("grid ruler-row", ruler_left, _ruler()))
     out.append(_legacy_group(legacy_rows, root_map, mobile_map))
     for title in ("Box", "Components", "TopBar"):
         out.append(_section(title, "next"))
@@ -1029,7 +1239,10 @@ def inject_rows(page, rows):
 def write_settings(rows, gen):
     SETTINGS_ROWS.parent.mkdir(parents=True, exist_ok=True)
     SETTINGS_ROWS.write_text(rows, encoding="utf-8")
-    SETTINGS_GEN.write_text(gen, encoding="utf-8")
+    if gen:
+        SETTINGS_GEN.write_text(gen, encoding="utf-8")
+    elif SETTINGS_GEN.exists():
+        SETTINGS_GEN.unlink()
     if not SETTINGS_PAGE.is_file():
         raise SystemExit(f"missing {SETTINGS_PAGE.relative_to(ROOT)}")
     page = SETTINGS_PAGE.read_text(encoding="utf-8")
@@ -1052,14 +1265,27 @@ def check_settings(wb, day, mobile, night, colour_day, css):
         print("EXISTING TOKEN BYTES CHANGED")
         print(detail)
     blocks = slice_blocks(css)
-    mobile_decls = parse_decl_lines(mobile)
-    if blocks["narrow"] != mobile_decls:
-        failed = True
-        print("560 BLOCK DOES NOT MATCH GENERATED MOBILE")
-    is_mobile = _selector_decls(css, ".is-mobile")
-    if is_mobile != mobile_decls:
-        failed = True
-        print(".is-mobile DOES NOT MATCH THE 560 BLOCK")
+    mobile_decls = parse_decl_lines(mobile) if mobile else []
+    root_map = dict(blocks["root"])
+    if MOBILE:
+        if blocks["narrow"] != mobile_decls:
+            failed = True
+            print("560 BLOCK DOES NOT MATCH GENERATED MOBILE")
+        is_mobile = _selector_decls(css, ".is-mobile")
+        if is_mobile != mobile_decls:
+            failed = True
+            print(".is-mobile DOES NOT MATCH THE 560 BLOCK")
+    else:
+        if blocks["narrow"] or ".is-mobile" in css or "@media (max-width:560px)" in css:
+            failed = True
+            print("mobile block emitted while --mobile is off")
+        emitted = [name for name in ARCHIVED_EMITTED if name in root_map]
+        if emitted:
+            failed = True
+            print("archived tokens emitted: " + ", ".join(emitted))
+        if SETTINGS_GEN.exists():
+            failed = True
+            print("settings-gen.css still exists")
     dark = _selector_decls(css, ':root[data-theme="dark"]')
     scoped_dark = _selector_decls(css, '.settings-preview[data-theme="dark"]')
     if scoped_dark != dark:
@@ -1070,11 +1296,15 @@ def check_settings(wb, day, mobile, night, colour_day, css):
     if scoped_light != colour_decls:
         failed = True
         print("SCOPED LIGHT DOES NOT MATCH THE 43 DAY COLOURS")
-    root_map = dict(blocks["root"])
     xlsx_grid = {str(row.get("Token")): row for row in sheet_rows(wb, "Grid")}
     for name in NEW_GRID_ORDER:
         row = xlsx_grid.get(name)
         expected = None if row is None else css_scalar(row.get("Desktop"))
+        if not MOBILE:
+            if name in root_map:
+                failed = True
+                print(f"ARCHIVED TOKEN EMITTED {name}")
+            continue
         if root_map.get(name) != expected:
             failed = True
             print(f"NEW TOKEN {name} css={root_map.get(name)!r} xlsx={expected!r}")
@@ -1095,17 +1325,18 @@ def check_settings(wb, day, mobile, night, colour_day, css):
         if root_map.get(font_name) != font_expected:
             failed = True
             print(f"FONT {font_name} css={root_map.get(font_name)!r} xlsx={font_expected!r}")
-    for unit_name, length_name in UNITLESS_PX:
-        try:
-            got = float(root_map[unit_name])
-            want = length_px(root_map[length_name])
-        except (KeyError, ValueError) as exc:
-            failed = True
-            print(f"UNITLESS {unit_name} {exc}")
-            continue
-        if got != want:
-            failed = True
-            print(f"UNITLESS {unit_name}={got} length {length_name}={want}px")
+    if MOBILE:
+        for unit_name, length_name in UNITLESS_PX:
+            try:
+                got = float(root_map[unit_name])
+                want = length_px(root_map[length_name])
+            except (KeyError, ValueError) as exc:
+                failed = True
+                print(f"UNITLESS {unit_name} {exc}")
+                continue
+            if got != want:
+                failed = True
+                print(f"UNITLESS {unit_name}={got} length {length_name}={want}px")
     rows = settings_rows_text(wb, day, mobile)
     gen = render_settings_gen(sheet_rows(wb, "Grid"))
     current_rows = SETTINGS_ROWS.read_text(encoding="utf-8") if SETTINGS_ROWS.exists() else ""
@@ -1215,9 +1446,13 @@ def command_check():
         )
         sys.stdout.writelines(diff)
     removed = core_removals(css, core)
-    if removed != list(CORE_DROP_LINES):
+    expected_removed = list(CORE_DROP_LINES) if MOBILE else []
+    if removed != expected_removed:
         failed = True
-        print("tokens-core.css is not tokens.css minus exactly the 4 mobile type-scale lines")
+        if MOBILE:
+            print("tokens-core.css is not tokens.css minus exactly the 4 mobile type-scale lines")
+        else:
+            print("tokens-core.css is not identical to tokens.css")
         print(removed)
     if guard not in css or guard not in core:
         failed = True
@@ -1225,10 +1460,10 @@ def command_check():
     if not ok:
         failed = True
         print("TYPE-SCALE MIRROR MISMATCH")
-        if expected not in file_text:
+        if expected and expected not in file_text:
             print("--- type-scale.css is missing the verbatim block:")
             print(expected)
-        if expected not in css:
+        if expected and expected not in css:
             print("--- tokens.css mirror is missing the verbatim block:")
             print(expected)
     failed = check_settings(wb, day, mobile, night, colour_day, css) or failed
@@ -1247,15 +1482,19 @@ def command_write():
     ok, expected, file_text = type_scale_mirror_ok(css, scale)
     if not ok:
         print("STOP: refusing to change type-scale.css.")
-        print("The 4-token block must stay byte-identical to main.")
+        print("The desktop type-scale values must stay on :root.")
         raise SystemExit(1)
-    # The generator owns the block. Writing is a no-op when the bytes match,
-    # which is the only legal outcome. Do not touch the file.
-    if expected not in file_text:
+    # The generator owns the mobile block only when --mobile is on.
+    # Writing type-scale.css is a no-op. Do not touch the file.
+    if expected and expected not in file_text:
         raise SystemExit(1)
     core = render_core(css)
-    if core_removals(css, core) != list(CORE_DROP_LINES):
-        print("STOP: tokens-core.css is not tokens.css minus exactly the 4 lines.")
+    expected_removed = list(CORE_DROP_LINES) if MOBILE else []
+    if core_removals(css, core) != expected_removed:
+        if MOBILE:
+            print("STOP: tokens-core.css is not tokens.css minus exactly the 4 lines.")
+        else:
+            print("STOP: tokens-core.css is not identical to tokens.css.")
         raise SystemExit(1)
     TOKENS.write_text(css, encoding="utf-8")
     TOKENS_CORE.write_text(core, encoding="utf-8")
@@ -1277,7 +1516,10 @@ def command_write():
     print(f"written {TOKENS.relative_to(ROOT)}")
     print(f"written {TOKENS_CORE.relative_to(ROOT)}")
     print(f"written {SETTINGS_ROWS.relative_to(ROOT)}")
-    print(f"written {SETTINGS_GEN.relative_to(ROOT)}")
+    if gen:
+        print(f"written {SETTINGS_GEN.relative_to(ROOT)}")
+    else:
+        print(f"removed {SETTINGS_GEN.relative_to(ROOT)}")
     print(f"injected {SETTINGS_PAGE.relative_to(ROOT)}")
 
 
@@ -1292,6 +1534,8 @@ def command_owned():
     generated_mobile = dict(parse_decl_lines(mobile))
     generated_night = dict(parse_decl_lines(night))
     print("owned-token check (report-only)")
+    if not MOBILE:
+        print("560 block is not emitted (archived; pass --mobile to restore)")
     print("baseline counts: "
           f":root {len(base['root'])}, "
           f"prefers-color-scheme {len(base['mq'])}, "
@@ -1299,18 +1543,26 @@ def command_owned():
           f"type-scale {len(base_ts)}")
     rows = []
     for name, value in base["root"]:
+        if name in ARCHIVED_EMITTED and not MOBILE:
+            continue
         rows.append((":root", name, value.strip(), generated_root.get(name)))
-    for name, value in base["narrow"]:
-        rows.append(("max-width-560", name, value.strip(), generated_mobile.get(name)))
+    if MOBILE:
+        for name, value in base["narrow"]:
+            rows.append(("max-width-560", name, value.strip(), generated_mobile.get(name)))
     for name, value in base["mq"]:
         rows.append(("prefers-color-scheme", name, value.strip(), generated_night.get(name)))
     for name, value in base["dark"]:
         rows.append(("data-theme=dark", name, value.strip(), generated_night.get(name)))
-    scale_values = dict(parse_decl_lines(scale))
+    scale_values = dict(parse_decl_lines(scale)) if scale else {}
     for name, value in base_ts:
-        got = scale_values.get(name)
-        if got is None:
-            got = generated_mobile.get(name)
+        if not MOBILE:
+            got = generated_root.get(name)
+            if name in DESKTOP_SCALE:
+                value = DESKTOP_SCALE[name]
+        else:
+            got = scale_values.get(name)
+            if got is None:
+                got = generated_mobile.get(name)
         rows.append(("type-scale", name, value.strip(), got))
     same = 0
     for block, name, main_value, generated in rows:
@@ -1516,7 +1768,10 @@ def command_map_lint_shared():
 
 
 def main():
-    args = set(sys.argv[1:])
+    global MOBILE
+    argv = [item for item in sys.argv[1:] if item != "--mobile"]
+    MOBILE = "--mobile" in sys.argv[1:]
+    args = set(argv)
     if args == {"--check"}:
         command_check()
         return
@@ -1540,8 +1795,8 @@ def main():
         return
     if args:
         raise SystemExit(
-            "usage: xlsx_to_tokens.py [--check|--owned|--map-lint|--map-lint-shared|"
-            "--map-lint-settings|--repo-grep|--settings]"
+            "usage: xlsx_to_tokens.py [--mobile] [--check|--owned|--map-lint|"
+            "--map-lint-shared|--map-lint-settings|--repo-grep|--settings]"
         )
     command_write()
 

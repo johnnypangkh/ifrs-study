@@ -5,7 +5,6 @@
    Present sits to its right, Capital hangs below Measure.
    Loaded only by index.html, after shared.css + draft.css. Tokens only; solid = flow, dashed = see-also. */
 
-.page.map-page { max-width: 1120px; }
 
 .map-page header.page-header {
   margin-bottom: 16px;
@@ -481,71 +480,6 @@
 .cfmap .phase-grid { padding: 0 var(--frame-inset); }
 
 /* ---- Narrow screens: one column; arms turn vertical ---- */
-@media (max-width: 860px) {
-  .cfmap .purpose-row,
-  .cfmap .dgrid,
-  .cfmap .phase-grid,
-  .cfmap .drop-purpose,
-  .cfmap .drop,
-  .cfmap .varm,
-  .cfmap .vstem { grid-template-columns: minmax(0, 1fr); }
-  .cfmap .status-frame > .dgrid,
-  .cfmap .phase-grid,
-  .cfmap .drop-flow { padding: 0; }
-  .cfmap .dgrid > *,
-  .cfmap .phase-grid > * { grid-column: 1; }
-  .cfmap .dgrid .varm,
-  .cfmap .phase-grid > .vstem { grid-column: 1; }
-  .cfmap .harm,
-  .cfmap .hstem { min-height: 44px; }
-  .cfmap .harm::before,
-  .cfmap .hstem-line {
-    top: 0;
-    bottom: 6px;
-    left: 50%;
-    right: auto;
-    width: 2px;
-    height: auto;
-    margin: 0 0 0 -1px;
-  }
-  .cfmap .harm::after,
-  .cfmap .hstem::after {
-    top: auto;
-    bottom: -1px;
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 8px solid var(--stem);
-    border-bottom: none;
-  }
-  .cfmap .harm .arm-label,
-  .cfmap .hstem .stem-label {
-    top: 50%;
-    bottom: auto;
-    left: calc(50% + 12px);
-    right: auto;
-    transform: translateY(-50%);
-    text-align: left;
-  }
-  .cfmap .qc-body,
-  .cfmap .g-3 { grid-template-columns: minmax(0, 1fr); }
-  .cfmap .fb-eq {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
-    row-gap: 10px;
-  }
-  .cfmap .fb-eq > *,
-  .cfmap .fb-eq > .cell.equity,
-  .cfmap .fb-eq > .eq-bar { grid-row: auto; grid-column: 1; }
-  .cfmap .varm .arm-label,
-  .cfmap .vstem .stem-label { white-space: normal; }
-}
-@media (max-width: 520px) {
-  .cfmap .g-2 { grid-template-columns: minmax(0, 1fr); }
-  .cfmap .status-frame { padding: 12px 10px 14px; }
-}
-@media (max-width: 560px) {
-  .cfmap .sec-lead .sep { margin-inline: 0.35em; }
-}
+
+
+

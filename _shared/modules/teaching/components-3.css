@@ -40,15 +40,7 @@ article.teaching .cost-sum-result {
   border-color: var(--ink, #e8eaed);
 }
 
-@media (max-width: 720px) {
-  article.teaching .cost-sum {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  article.teaching .cost-sum-op {
-    align-self: center;
-  }
-}
+
 
 /* A teaching pitfall is a full sentence. It wraps inside the bar at every
    width, and the bar grows with that text. The one-line clamp on .point-chip

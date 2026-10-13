@@ -197,18 +197,5 @@ a.fb-num.fb-num--long { letter-spacing: 0; }
   gap: 10px;
 }
 
-@media (max-width: 720px) {
-  .el-eq { display: flex; flex-direction: column; gap: 10px; }
-  .el-peer { display: flex; flex-direction: column; gap: 8px; }
-  .el-op { align-self: center; }
-  .el-asset { order: 1; }
-  .el-op--minus { order: 2; }
-  .el-liability { order: 3; }
-  .el-shared { order: 4; }
-  .el-op--equals { order: 5; }
-  .el-equity { order: 6; }
-  .el-apply-grid { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 480px) {
-  .el-perf-grid { grid-template-columns: minmax(0, 1fr); }
-}
+
+

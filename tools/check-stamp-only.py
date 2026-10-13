@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 V_QUERY = re.compile(r"\?v=[A-Za-z0-9._~%-]*")
 STAMP = re.compile(r"Last update · \d{4}-\d{2}-\d{2} \d{2}:\d{2} HKT")
 HOME = "homepage/homepage-wireframe-v0.1.html"
-# site/settings/index.html and _shared/settings-rows.html are gated instead by check-settings-rows.py (284/284) and xlsx_to_tokens.py --check.
+# site/settings/index.html and _shared/settings-rows.html are gated instead by check-settings-rows.py (276/276) and xlsx_to_tokens.py --check.
 CONTENT_ALLOW = (
     "site/settings/index.html",
     "_shared/settings-rows.html",
@@ -67,6 +67,70 @@ def git_paths(rev):
 
 def norm(text):
     return V_QUERY.sub("?v=", text)
+
+
+def fold_viewport(html):
+    """width=device-width, initial-scale=1 and width=1280 are the same page."""
+    return html.replace(
+        'content="width=device-width, initial-scale=1"',
+        'content="width=1280"',
+    )
+
+
+def _brace_end(text, brace):
+    depth = 0
+    k = brace
+    n = len(text)
+    while k < n:
+        if text.startswith("/*", k):
+            end = text.find("*/", k + 2)
+            k = n if end < 0 else end + 2
+            continue
+        char = text[k]
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return k + 1
+        k += 1
+    return n
+
+
+def strip_width_media(text):
+    """Drop @media rules whose condition contains width. Other at-rules stay."""
+    out = []
+    i = 0
+    n = len(text)
+    while i < n:
+        if text.startswith("/*", i):
+            end = text.find("*/", i + 2)
+            end = n if end < 0 else end + 2
+            out.append(text[i:end])
+            i = end
+            continue
+        if text.startswith("@media", i):
+            brace = text.find("{", i)
+            if brace < 0:
+                out.append(text[i])
+                i += 1
+                continue
+            if re.search(r"width", text[i:brace], re.I):
+                i = _brace_end(text, brace)
+                continue
+        out.append(text[i])
+        i += 1
+    return "".join(out)
+
+
+def fold_style_media(html):
+    """Inline style width queries are the W6 removal, not teaching text."""
+    return re.sub(
+        r"<style\b[^>]*>.*?</style>",
+        lambda match: strip_width_media(match.group(0)),
+        html,
+        flags=re.S | re.I,
+    )
 
 
 def fold_utility_styles(html):
@@ -132,8 +196,8 @@ def main():
             failed = True
             continue
         head = file.read_text(encoding="utf-8")
-        base_n = norm(base)
-        head_n = norm(head)
+        base_n = fold_style_media(fold_viewport(norm(base)))
+        head_n = fold_style_media(fold_viewport(norm(head)))
         if path in UTILITY_PAGES:
             base_n = fold_utility_styles(base_n)
             head_n = fold_utility_styles(head_n)

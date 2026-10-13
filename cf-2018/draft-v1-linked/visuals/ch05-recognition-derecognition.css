@@ -268,19 +268,4 @@
 .rc-cell-name { margin: 0; font-size: calc(13px * var(--type-scale, 1)); font-weight: 700; color: var(--ink); line-height: 1.3; }
 .rc-cell-body { margin: 0; font-size: calc(12px * var(--type-scale, 1)); line-height: 1.4; color: var(--muted); }
 
-@media (max-width: 720px) {
-  .rc-tree { grid-template-columns: minmax(0, 1fr) 0.15fr minmax(0, .72fr); }
-  .rc-link--trunk,
-  .rc-link--yes,
-  .rc-link--later { grid-column: 1; }
-  .rc-fund { display: flex; flex-direction: column; gap: 10px; }
-  .rc-fund .rc-peer { display: flex; flex-direction: column; gap: 8px; }
-  .rc-fund .rc-op,
-  .rc-aims .rc-op { align-self: center; }
-  .rc-relevance { order: 1; }
-  .rc-fund .rc-op { order: 2; }
-  .rc-faithful { order: 3; }
-  .rc-shared { order: 4; }
-  .rc-aims { display: flex; flex-direction: column; gap: 8px; }
-  .rc-cases { display: flex; flex-direction: column; gap: 10px; }
-}
+

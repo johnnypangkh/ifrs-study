@@ -43,9 +43,7 @@
   font-size: var(--tb-box-title-fs);
   color: var(--ink);
 }
-@media (max-width: 640px) {
-  .contain-grid { grid-template-columns: 1fr; }
-}
+
 .box.warn { background: var(--outcome-doubt-soft); border-color: var(--outcome-doubt); }
 .box.danger { background: var(--outcome-no-soft); border-color: var(--outcome-no); }
 .box.see { background: var(--see-also-soft); border: var(--stroke-1) dashed var(--see-also); color: var(--see-also); }

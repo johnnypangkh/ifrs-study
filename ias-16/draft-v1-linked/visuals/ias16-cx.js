@@ -62,11 +62,10 @@
     var leds = root.querySelectorAll(".carry-row .vledger");
     var terms = [];
     for (var i = 0; i < leds.length; i++) terms.push(leds[i].querySelectorAll(".vterm, .vresult"));
-    var narrow = window.matchMedia("(max-width: 800px)").matches;
     for (var g = 0; g < terms.length; g++) {
       for (var j = 0; j < terms[g].length; j++) terms[g][j].style.minHeight = "0px";
     }
-    if (narrow || terms.length < 2) return;
+    if (terms.length < 2) return;
     void root.offsetHeight;
     var n = Math.min(terms[0].length, terms[1].length);
     for (var k = 0; k < n; k++) {
@@ -116,7 +115,6 @@
 
     function draw() {
       if (!layer) return;
-      var narrow = window.matchMedia("(max-width: 800px)").matches;
       var specs = [];
       function v(x, y1, y2, link) {
         if (!(y2 > y1 + 0.5)) return;
@@ -130,8 +128,7 @@
       function vFlow(x, y1, y2, lab) {
         if (y2 - y1 < 8) return;
         v(x, y1, y2, false);
-        if (narrow) placeLabel(lab, x - em(0.55), (y1 + y2) / 2, "left");
-        else placeLabel(lab, x + em(0.55), (y1 + y2) / 2, "right");
+        placeLabel(lab, x + em(0.55), (y1 + y2) / 2, "right");
       }
       function hFlow(y, x1, x2, lab, tone) {
         if (x2 - x1 < 8) return;
@@ -155,7 +152,7 @@
       }
       spec({
         root: root,
-        narrow: narrow,
+        narrow: false,
         em: em,
         boxOf: boxOf,
         shown: shown,

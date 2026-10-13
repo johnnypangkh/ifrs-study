@@ -185,8 +185,5 @@
   line-height: 1.2;
 }
 
-@media (max-width: 640px) {
-  .mf-row { grid-template-columns: 1fr; row-gap: 10px; }
-  .mf-branch { display: none; }
-}
+
 

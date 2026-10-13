@@ -180,66 +180,7 @@ html { background: var(--bg); }
 .pa-tip strong { color: var(--ink); font-weight: var(--t1-fw); }
 
 /* ---- Narrow ---- */
-@media (max-width: 800px) {
-  .pa-matrix {
-    grid-template-columns:
-      minmax(calc(128 * var(--stroke-1)), .85fr) minmax(0, 1.6fr) minmax(0, 1.15fr);
-    overflow-x: visible;
-  }
-}
-@media (max-width: 800px) {
-  .pa-board { --pa-gap: var(--space-4); }
-  .pa-peers {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    gap: var(--pa-gutter);
-  }
-  .pa-peer {
-    grid-row: auto;
-    grid-template-rows: none;
-  }
-}
+
+
 /* Phone: each §41 test becomes one card (test + cites, then Ask / Outcome) — no side-scroll */
-@media (max-width: 560px) {
-  .pa-board { --pa-gap: var(--space-4); }
-  .pa-peer { padding: calc(10 * var(--stroke-1)); }
-  .pa-matrix {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-cell);
-  }
-  .pa-mx-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--space-cell) var(--space-cell);
-    padding: calc(9 * var(--stroke-1)) calc(10 * var(--stroke-1));
-    border: var(--stroke-1) solid var(--line);
-    border-radius: var(--card-radius);
-    background: var(--surface);
-  }
-  .pa-mx-row .matrix-cell {
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-  }
-  .pa-mx-row.pa-mx-row--head { display: none; }
-  .pa-mx-row .matrix-cell.stub { justify-content: flex-start; }
-  .pa-mx-row .pa-mx-cite {
-    grid-column: 2;
-    grid-row: 1;
-    justify-content: flex-end;
-  }
-  .pa-mx-row .matrix-cell[data-label] { grid-column: 1 / -1; }
-  .pa-mx-row .matrix-cell[data-label]::before {
-    content: attr(data-label);
-    font-size: var(--t3-fs);
-    font-weight: var(--t3-strong-fw);
-    letter-spacing: var(--legacy-ls-2);
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .pa-rule,
-  .pa-trap,
-  .pa-tip { padding: calc(7 * var(--stroke-1)) calc(10 * var(--stroke-1)); }
-}
+

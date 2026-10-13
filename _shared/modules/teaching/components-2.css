@@ -135,10 +135,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
   gap: var(--legacy-gap-1);
 }
 
-@media (max-width: 720px) {
-  .l1-row { grid-template-columns: 1fr; }
 
-}
 .boundary-shell {
   border: var(--stroke-1) solid var(--accent);
   border-radius: var(--card-radius);
@@ -230,10 +227,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
   margin-bottom: var(--space-2);
 }
 
-@media (max-width: 640px) {
-  .contrast-pair { grid-template-columns: 1fr; }
 
-}
 .worked-strip-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -257,10 +251,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
   margin: 0 0 var(--rail-bar-l);
 }
 
-@media (max-width: 720px) {
-  .worked-strip-grid { grid-template-columns: 1fr; }
 
-}
 
 
 /* Peer card row — equal-rank concepts (no ok/warn rainbow) */
@@ -317,10 +308,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
   border-style: solid; /* lock: containment kids are solid peers, not dashed hang */
 }
 
-@media (max-width: 720px) {
-  .containment-inner { grid-template-columns: 1fr; }
 
-}
 
 
 /* ── Densifier trial kit (Johnny unlock 2026-09-27) ──
@@ -454,11 +442,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
   margin-bottom: var(--space-1);
 }
 
-@media (max-width: 640px) {
-  .contrast-pair.dense,
-    .contrast-dense { grid-template-columns: 1fr; }
 
-}
 
 
 /* B — Icon-label cell（ピクト＋短標） — monochrome / single token */

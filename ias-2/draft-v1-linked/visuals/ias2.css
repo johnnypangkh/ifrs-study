@@ -296,11 +296,7 @@ body.embed .page {
   margin: 0;
 }
 
-@media (max-width: 800px) {
-  .eq, .branch, .exits, .hub-row, .cells.g2, .cells.g3 { grid-template-columns: 1fr; }
-  .cells.g4 { grid-template-columns: 1fr 1fr; }
-  .op { padding: 4px 0; }
-}
+
 
 .diag { display: flex; flex-direction: column; gap: 12px; }
 .diag .stem {
@@ -494,26 +490,8 @@ body.embed .page {
 .st > .bar { margin-top: 10px; }
 .st-beside { align-self: center; }
 
-@media (max-width: 800px) {
-  .classes { grid-template-columns: minmax(0, 1fr); }
-  .classes .or { justify-self: center; }
-}
-@media (max-width: 560px) {
-  /* One scale for every IAS 2 map and chapter visual: 0.85 of desktop type.
-     px sizes in this file multiply by --ias2-type. Body, meta, and chip
-     text follow the same ratio through the shared tokens. */
-  .ias2 {
-    --ias2-type: 0.85;
-    --vis-body: calc(12px * var(--ias2-type));
-    --vis-meta: calc(11px * var(--ias2-type));
-    --nx-chip-font: calc(10px * var(--ias2-type));
-  }
-  .st { --st-gut: 40px; }
-  .st-h-label { padding: 0 3px; }
-  .st-node { grid-column: 1 / -1; }
-  .st-node + .st-beside { grid-column: 1 / -1; margin-top: 8px; }
-  .st-fork .st-arm { min-height: 64px; }
-}
+
+
 
 /* ── Concept Map (map-formula-board.html) — namespaced .m-* ──
    Scope and recognition decisions down the left column, exits to the right;
@@ -831,25 +809,8 @@ a.m-cell:hover { border-color: var(--accent); }
 .m-disc-list a strong .fb-num { margin-top: -1px; }
 .m-disc-list a:hover strong { text-decoration: underline; }
 
-@media (max-width: 800px) {
-  .m-arms { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
-  .m-foot { margin-top: 0; }
-  .m-op { flex-direction: row; justify-content: center; gap: 5px; padding: 8px 0; }
-  .m-eqn { grid-template-columns: minmax(0, 1fr); }
-  .m-eq-op { justify-self: center; }
-  .m-disc-list { grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
-  .m-disc-group { padding: 10px 0 0 2px; border-left: 0; border-top: 1px solid var(--line); }
-  .m-disc-group:first-child { padding-top: 0; border-top: 0; }
-  .m-disc-lead { padding-top: 0; }
-}
-@media (max-width: 520px) {
-  .m-row { grid-template-columns: minmax(0, 1fr); }
-  .m-row .m-row-body { padding-top: 2px; }
-  .m-peers, .m-thin-route { grid-template-columns: 1fr; }
-  .m-formula { grid-template-columns: minmax(0, 1fr); }
-  .m-minus { justify-self: center; }
-  .m-disc-group { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
-}
+
+
 
 /* Ch3 map: lead bar above the cost plate; muted dead-end nested in a peer cell */
 .st > .bar.st-top { margin: 0 0 10px; }
@@ -923,16 +884,9 @@ a.m-cell:hover { border-color: var(--accent); }
 .st-nrv a.leaf:hover { border-color: var(--formula); }
 .st-nrv a.cell:hover span.fb-num,
 .st-nrv a.bar:hover span.fb-num { background: var(--formula); color: var(--on-accent); }
-@media (max-width: 800px) {
-  .st-nrv .eq { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 720px) {
-  .st-nrv .cells.g3 { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 520px) {
-  .st-nrv .nrv-f { grid-template-columns: minmax(0, 1fr); }
-  .st-nrv .nrv-minus { justify-self: center; }
-}
+
+
+
 .st .q-title { flex-wrap: nowrap; }
 
 /* Ch5 map: control decision, then the expense board (sold + write-downs and
@@ -958,10 +912,7 @@ a.m-cell:hover { border-color: var(--accent); }
 .st-exp a.leaf:hover { border-color: var(--formula); }
 .st-exp a.cell:hover span.fb-num,
 .st-exp a.bar:hover span.fb-num { background: var(--formula); color: var(--on-accent); }
-@media (max-width: 720px) {
-  .st-exp .exp-f { grid-template-columns: minmax(0, 1fr); }
-  .st-exp .exp-op { justify-self: center; }
-}
+
 
 /* Ch6 map: para 36(a) policies across the top; carrying amounts beside the
    amounts recognised in profit or loss; the expense then follows the
@@ -1000,8 +951,4 @@ a.m-cell:hover { border-color: var(--accent); }
 .st-cost .st-down-x { min-height: 44px; }
 .st-cost a.cell:hover { border-color: var(--formula); }
 .st-cost a.cell:hover span.fb-num { background: var(--formula); color: var(--on-accent); }
-@media (max-width: 720px) {
-  .st-cost .cost-f { grid-template-columns: minmax(0, 1fr); }
-  .st-cost .cost-op { justify-self: center; }
-  .st-cost .cost-alt { grid-template-columns: minmax(0, 1fr); }
-}
+
