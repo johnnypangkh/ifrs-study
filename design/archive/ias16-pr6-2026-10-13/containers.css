@@ -1,0 +1,59 @@
+/* Row #71 PR6 archive. Verbatim @container text from ias-16/draft-v1-linked/visuals/ias16.css at cc597fa7.
+   Removed blocks are the four queries that are false at 1280. Unwrapped blocks are the two queries that are true at 1280; only the wrapper was retired, and the rules stayed in the live file. */
+
+/* SOURCE ias-16/draft-v1-linked/visuals/ias16.css:5858 @ cc597fa7 */
+/* removed (false at 1280) */
+@container (max-width: 9em) {
+  .ppe.pack .impair-ca-k { font-size: 0.84em; }
+}
+
+/* SOURCE ias-16/draft-v1-linked/visuals/ias16.css:6945 @ cc597fa7 */
+/* unwrapped (true at 1280); wrapper only */
+@container ch05detail (min-width: 28em) {
+  .ppe.pack .ch05-dep .factor-rows[aria-label^="Factors"],
+  .ppe.pack .ch05-dep .factor-rows[aria-label^="Special"] {
+    grid-template-columns: 13em minmax(0, 1fr) !important;
+  }
+}
+
+/* SOURCE ias-16/draft-v1-linked/visuals/ias16.css:6952 @ cc597fa7 */
+/* removed (false at 1280) */
+@container ch05detail (max-width: 27.99em) {
+  .ppe.dep-map.ch05-map .ch05-dep .factor-rows[aria-label^="Factors"],
+  .ppe.dep-map.ch05-map .ch05-dep .factor-rows[aria-label^="Special"] {
+    grid-template-columns: 8.2em minmax(0, 1fr) !important;
+  }
+}
+
+/* SOURCE ias-16/draft-v1-linked/visuals/ias16.css:7306 @ cc597fa7 */
+/* removed (false at 1280) */
+@container rev-fit (max-width: 24rem) {
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-table {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-corner,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-col,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-row,
+  .ppe.pack .beat[data-phase="models"] > .map-include .rev-cell {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+}
+
+/* SOURCE ias-16/draft-v1-linked/visuals/ias16.css:7643 @ cc597fa7 */
+/* unwrapped (true at 1280); wrapper only */
+@container revalgrid (min-width: 22rem) {
+  .ppe .ch04-reval .rev-head,
+  .ppe .ch04-reval .rev-line {
+    grid-template-columns: minmax(5.5rem, 0.7fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+/* SOURCE ias-16/draft-v1-linked/visuals/ias16.css:7846 @ cc597fa7 */
+/* removed (false at 1280) */
+@container revband (max-width: 20rem) {
+  .ppe .ch04-reval .lc-band-rev .lc-dia:first-child { left: 8% !important; }
+  .ppe .ch04-reval .lc-band-rev .lc-dia:last-child { left: 46% !important; }
+}
+
