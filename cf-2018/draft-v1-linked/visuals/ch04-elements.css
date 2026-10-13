@@ -5,7 +5,7 @@
 .el-stack {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .el-board-title,
@@ -13,10 +13,10 @@
 .el-perf-title {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-cell);
   margin: 0;
 }
-.el-board-title { margin-bottom: 12px; font-size: calc(13px * var(--type-scale, 1)); font-weight: 700; color: var(--ink); }
+.el-board-title { margin-bottom: var(--space-3); font-size: var(--tb-box-body-fs); font-weight: 700; color: var(--ink); }
 .el-board-title a.fb-num,
 .el-head a.fb-num,
 .el-perf-title a.fb-num,
@@ -30,24 +30,24 @@ a.fb-num.fb-num--long { letter-spacing: 0; }
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1.45fr);
   grid-template-rows: auto auto auto auto auto minmax(0, 1fr) auto;
-  column-gap: 10px;
-  row-gap: 8px;
+  column-gap: var(--space-3);
+  row-gap: var(--space-cell);
   align-items: stretch;
 }
 
 .el-peer,
 .el-equity {
-  border: 1px solid var(--elem-peer);
+  border: var(--stroke-1) solid var(--elem-peer);
   border-radius: var(--card-radius);
   background: var(--elem-peer-soft);
-  padding: 12px 14px;
+  padding: var(--space-3) var(--space-4);
   min-width: 0;
 }
 .el-peer {
   grid-row: 1 / 7;
   display: grid;
   grid-template-rows: subgrid;
-  row-gap: 8px;
+  row-gap: var(--space-cell);
   align-content: start;
 }
 .el-asset { grid-column: 1; }
@@ -57,13 +57,13 @@ a.fb-num.fb-num--long { letter-spacing: 0; }
   grid-row: 1 / 8;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-cell);
 }
 
 .el-op {
   grid-row: 1 / 7;
   align-self: center;
-  font-size: calc(22px * var(--type-scale, 1));
+  font-size: var(--mt-op-fs);
   font-weight: 700;
   line-height: 1;
   color: var(--formula);
@@ -72,30 +72,30 @@ a.fb-num.fb-num--long { letter-spacing: 0; }
 .el-op--equals { grid-column: 4; }
 
 .el-name {
-  font-size: calc(15px * var(--type-scale, 1));
+  font-size: var(--mt-op-fs);
   font-weight: 700;
   color: var(--elem-peer);
 }
 .el-def {
   margin: 0;
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   line-height: 1.4;
   color: var(--ink);
 }
 
 .el-lens {
   display: grid;
-  grid-template-columns: minmax(96px, 38%) minmax(0, 1fr);
-  column-gap: 8px;
+  grid-template-columns: minmax(calc(3 * var(--space-6)), 38%) minmax(0, 1fr);
+  column-gap: var(--space-cell);
   align-items: baseline;
   margin: 0;
-  padding-top: 6px;
-  border-top: 1px solid var(--line);
-  font-size: calc(12px * var(--type-scale, 1));
+  padding-top: var(--space-cell);
+  border-top: var(--stroke-1) solid var(--line);
+  font-size: var(--t2-fs);
   line-height: 1.35;
 }
 .el-peer .el-key {
-  font-size: calc(11px * var(--type-scale, 1));
+  font-size: var(--vis-meta);
   font-weight: 700;
   letter-spacing: 0;
   text-transform: none;
@@ -103,9 +103,9 @@ a.fb-num.fb-num--long { letter-spacing: 0; }
   color: var(--muted);
 }
 .el-key {
-  font-size: calc(10px * var(--type-scale, 1));
+  font-size: var(--t3-fs);
   font-weight: 700;
-  letter-spacing: .05em;
+  letter-spacing: var(--legacy-ls-2);
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -116,40 +116,40 @@ a.fb-num.fb-num--long { letter-spacing: 0; }
 .el-perf {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 4px;
-  padding: 10px 12px 12px;
-  border: 1px solid var(--line);
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+  padding: var(--space-3) var(--space-3) var(--space-3);
+  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   background: var(--band);
 }
-.el-perf-title { font-size: calc(12px * var(--type-scale, 1)); font-weight: 700; color: var(--ink); line-height: 1.3; }
+.el-perf-title { font-size: var(--t2-fs); font-weight: 700; color: var(--ink); line-height: 1.3; }
 .el-perf-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: var(--space-3);
 }
 
 .el-cell {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-cell);
   min-width: 0;
-  border: 1px solid var(--line);
+  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   background: var(--surface);
-  padding: 10px 12px;
+  padding: var(--space-3) var(--space-3);
 }
 .el-cell-name {
   margin: 0;
-  font-size: calc(13px * var(--type-scale, 1));
+  font-size: var(--tb-box-body-fs);
   font-weight: 700;
   color: var(--elem-income);
 }
-.el-cell .el-lens { grid-template-columns: minmax(0, 1fr); row-gap: 2px; font-size: calc(12px * var(--type-scale, 1)); }
+.el-cell .el-lens { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-hairline); font-size: var(--t2-fs); }
 .el-cell-body {
   margin: 0;
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   line-height: 1.4;
   color: var(--muted);
 }
@@ -158,35 +158,35 @@ a.fb-num.fb-num--long { letter-spacing: 0; }
 .el-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-cell);
   margin: 0;
-  padding: 8px 12px;
-  border: 1px solid var(--line);
+  padding: var(--space-cell) var(--space-3);
+  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   background: var(--band);
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   line-height: 1.4;
   color: var(--ink);
 }
-.el-perf .el-bar { background: var(--surface); font-size: calc(11px * var(--type-scale, 1)); }
+.el-perf .el-bar { background: var(--surface); font-size: var(--vis-meta); }
 
 .el-shared {
   grid-column: 1 / 4;
   grid-row: 7;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-cell);
 }
 
 /* Applying the definitions — three equal peers inside one containment */
 .el-apply {
-  border: 2px solid var(--line);
+  border: var(--stroke-2) solid var(--line);
   border-radius: var(--card-radius);
-  padding: 12px 14px 14px;
+  padding: var(--space-3) var(--space-4) var(--space-4);
 }
 .el-apply-title {
-  margin: 0 0 10px;
-  font-size: calc(13px * var(--type-scale, 1));
+  margin: 0 0 var(--space-3);
+  font-size: var(--tb-box-body-fs);
   font-weight: 700;
   color: var(--ink);
 }
@@ -194,5 +194,5 @@ a.fb-num.fb-num--long { letter-spacing: 0; }
 .el-apply-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: var(--space-3);
 }

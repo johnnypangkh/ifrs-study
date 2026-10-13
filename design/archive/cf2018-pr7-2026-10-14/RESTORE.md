@@ -4,6 +4,8 @@ These 20 files were copied verbatim from `d7bb073fd9ac08c5a351a546faa7ff02d3ebfa
 
 `cf-2018/draft-v1-linked/_archive/visuals/ch09-status.css` still contains its leftover `@media (max-width: 720px)`. That query stays in this archive only. Do not restore it into the live pack.
 
+`ch05-cost-sum-style.html` is the original `ch05.html` inline `<style>` block, copied before that block moved into `cf-2018/draft-v1-linked/assets/draft.css`. To put the block back, insert it after the title in `ch05.html` and remove the `.cost-sum` rules from `draft.css`.
+
 To restore the pack copies:
 
 ```

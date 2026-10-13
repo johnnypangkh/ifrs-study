@@ -6,14 +6,14 @@
 .teaching h3 {
   display: flex;
   align-items: baseline;
-  gap: .7em;
-  margin: 18px 0 8px;
-  font-size: .98rem;
+  gap: var(--space-3);
+  margin: var(--space-4) 0 var(--space-cell);
+  font-size: var(--mt-op-fs);
   color: var(--accent);
 }
 
 .teaching h3 .sec-no {
-  flex: 0 0 3.6em;
+  flex: 0 0 calc(var(--space-6) + var(--space-4) + var(--space-hairline) + var(--stroke-1) / 2);
   font-variant-numeric: tabular-nums;
   font-weight: 700;
 }
@@ -23,6 +23,41 @@
 /* Same rule as _shared/teaching.css .teaching p. It is repeated here so it
    stays after .mf-step p. Both selectors have the same specificity, and the
    later one is the margin the chapter pages already use. */
-.teaching p { margin: 0 0 10px; }
+.teaching p { margin: 0 0 var(--space-3); }
 
+
+
+/* ch05 .cost-sum moved from the ch05.html inline style. */
+article.teaching .cost-sum {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--space-3) var(--space-cell);
+  margin: var(--space-3) 0 var(--space-3);
+}
+article.teaching .cost-sum-term {
+  flex: 1 1 calc(5 * var(--space-6));
+  min-width: 0;
+  margin: 0;
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  color: var(--ink);
+  padding: var(--space-cell) var(--space-3);
+  font-weight: 700;
+  font-size: var(--t1-fs);
+  line-height: 1.35;
+}
+article.teaching .cost-sum-op {
+  flex: 0 0 auto;
+  align-self: center;
+  color: var(--formula, var(--accent));
+  font-size: var(--mt-op-fs);
+  font-weight: 800;
+  line-height: 1;
+}
+article.teaching .cost-sum-result {
+  border-width: var(--stroke-2);
+  border-color: var(--ink);
+}
 
