@@ -219,6 +219,11 @@
   --rail-bar-l: 6px;
   --stroke-1: 1px;
   --stroke-2: 2px;
+  --arrowhead: .3125rem;
+  --rail-w: 11.25rem;
+  --flow-gut: 4.5rem;
+  --col-min: 9.375rem;
+  --cell-min: 4rem;
   --page-max: 70rem;
   --cols-2: repeat(2, minmax(0, 1fr));
   --cols-3: repeat(3, minmax(0, 1fr));

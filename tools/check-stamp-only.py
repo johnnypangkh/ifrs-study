@@ -262,6 +262,35 @@ def fold_map_narrow(html):
     return html
 
 
+# PR5 removes the five IAS 2 inline style blocks and turns the seven
+# note-box style attributes into class="note-box". The stamp gate treats
+# that swap as non-content. Any other HTML change on these pages still fails.
+IAS2_NOTE_PAGES = (
+    "ias-2/draft-v1-linked/index.html",
+    "ias-2/draft-v1-linked/ch01.html",
+    "ias-2/draft-v1-linked/ch02.html",
+    "ias-2/draft-v1-linked/ch03.html",
+    "ias-2/draft-v1-linked/ch04.html",
+    "ias-2/draft-v1-linked/ch05.html",
+    "ias-2/draft-v1-linked/ch06.html",
+)
+IAS2_NOTE_ATTR = (
+    ' style="margin:0.75rem 0;padding:0.85rem 1rem;border:1px solid var(--line);'
+    'border-radius:8px;background:var(--band);font-size:12.5px;line-height:1.55;'
+    'color:var(--muted)"'
+)
+
+
+def fold_ias2_pr5(html):
+    """Drop the archived inline style block and the note-box style attribute."""
+    html = re.sub(r"\n<style>.*?</style>", "", html, count=1, flags=re.S)
+    return html.replace(
+        'class="callout pack-disclaimer" id="pack-disclaimer"' + IAS2_NOTE_ATTR,
+        'class="callout pack-disclaimer note-box" id="pack-disclaimer"',
+        1,
+    )
+
+
 def fold_utility_styles(html):
     """Swap the three approved utility styles into classes. Idempotent."""
 
@@ -333,6 +362,9 @@ def main():
         if path in UTILITY_PAGES:
             base_n = fold_utility_styles(base_n)
             head_n = fold_utility_styles(head_n)
+        if path in IAS2_NOTE_PAGES:
+            base_n = fold_ias2_pr5(base_n)
+            head_n = fold_ias2_pr5(head_n)
         if path == HOME:
             if LINK not in head:
                 print("homepage is missing the Settings link")

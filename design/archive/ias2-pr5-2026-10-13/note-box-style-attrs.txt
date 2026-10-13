@@ -1,0 +1,20 @@
+/* SOURCE ias-2/draft-v1-linked/ch01.html:743 @ e21ff95b */
+style="margin:0.75rem 0;padding:0.85rem 1rem;border:1px solid var(--line);border-radius:8px;background:var(--band);font-size:12.5px;line-height:1.55;color:var(--muted)"
+
+/* SOURCE ias-2/draft-v1-linked/ch02.html:324 @ e21ff95b */
+style="margin:0.75rem 0;padding:0.85rem 1rem;border:1px solid var(--line);border-radius:8px;background:var(--band);font-size:12.5px;line-height:1.55;color:var(--muted)"
+
+/* SOURCE ias-2/draft-v1-linked/ch03.html:1938 @ e21ff95b */
+style="margin:0.75rem 0;padding:0.85rem 1rem;border:1px solid var(--line);border-radius:8px;background:var(--band);font-size:12.5px;line-height:1.55;color:var(--muted)"
+
+/* SOURCE ias-2/draft-v1-linked/ch04.html:1130 @ e21ff95b */
+style="margin:0.75rem 0;padding:0.85rem 1rem;border:1px solid var(--line);border-radius:8px;background:var(--band);font-size:12.5px;line-height:1.55;color:var(--muted)"
+
+/* SOURCE ias-2/draft-v1-linked/ch05.html:309 @ e21ff95b */
+style="margin:0.75rem 0;padding:0.85rem 1rem;border:1px solid var(--line);border-radius:8px;background:var(--band);font-size:12.5px;line-height:1.55;color:var(--muted)"
+
+/* SOURCE ias-2/draft-v1-linked/ch06.html:422 @ e21ff95b */
+style="margin:0.75rem 0;padding:0.85rem 1rem;border:1px solid var(--line);border-radius:8px;background:var(--band);font-size:12.5px;line-height:1.55;color:var(--muted)"
+
+/* SOURCE ias-2/draft-v1-linked/index.html:38 @ e21ff95b */
+style="margin:0.75rem 0;padding:0.85rem 1rem;border:1px solid var(--line);border-radius:8px;background:var(--band);font-size:12.5px;line-height:1.55;color:var(--muted)"

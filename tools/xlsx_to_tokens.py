@@ -38,10 +38,17 @@ XLSX = ROOT / "design" / "MASTER-STYLES.xlsx"
 TOKENS = ROOT / "_shared" / "tokens.css"
 TOKENS_CORE = ROOT / "_shared" / "tokens-core.css"
 TYPE_SCALE = ROOT / "_shared" / "type-scale.css"
-# PR4c re-baselines "existing token bytes kept" on this commit, not origin/main.
-# Same rule as the PR2 re-baseline: the guard allows the logged --page-max
-# change and the mobile-block removals, and stops on any other value change.
-TOKEN_BASE = "cfc59d2bd9393f07bb6dba938f7d9db27fec2ba1"
+# PR5 re-baselines "existing token bytes kept" on the PR4c head, not origin/main.
+# That head already has the logged --page-max value and the mobile-block
+# removals. The only allowed diff is the five PR5 additions.
+TOKEN_BASE = "e21ff95b9043089d9db7d388d4ab84a5301e54c4"
+PR5_ADDED = (
+    "--arrowhead",
+    "--rail-w",
+    "--flow-gut",
+    "--col-min",
+    "--cell-min",
+)
 # Default off. --mobile turns the archived 560 blocks back on (RESTORE step 1).
 MOBILE = False
 PAGE_MAX_BASE = "61.25rem"
@@ -780,12 +787,13 @@ def fold_mobile_bytes(css):
 
 
 def existing_tokens_kept(css):
-    """Bytes at TOKEN_BASE, plus only the PR4c allowances.
+    """Bytes at TOKEN_BASE, plus only the five PR5 additions.
 
     The comparison is `git show <base>:_shared/tokens.css`, not origin/main.
-    Allowed edits are the logged --page-max value and the mobile-block
-    removals (560 blocks, .is-mobile, and the 11 archived breakpoint tokens).
-    The settings-page fallback after GUARD_MARK is outside this compare.
+    TOKEN_BASE is the PR4c head, so the page-max value and the mobile-block
+    removals are already in the base file. The only allowed diff is the five
+    new declarations, in PR5 order. The settings-page fallback after
+    GUARD_MARK is outside this compare.
     """
     base = git_at(TOKEN_BASE, "_shared/tokens.css")
     head = css
@@ -799,10 +807,23 @@ def existing_tokens_kept(css):
     if base_mark < 0:
         return False, "base tokens.css is missing the settings fallback"
     base = base[:base_mark]
-    if not MOBILE:
-        base = fold_mobile_bytes(base)
     if not base.endswith("\n"):
         base += "\n"
+    kept = []
+    removed = []
+    for item in head.splitlines(keepends=True):
+        stripped = item.strip()
+        name = stripped.split(":", 1)[0]
+        if name in PR5_ADDED:
+            removed.append(name)
+            continue
+        kept.append(item)
+    if removed != list(PR5_ADDED):
+        return False, (
+            "PR5 additions were " + ", ".join(removed)
+            + "; expected " + ", ".join(PR5_ADDED)
+        )
+    head = "".join(kept)
     if head != base:
         diff = "".join(difflib.unified_diff(
             base.splitlines(keepends=True),
@@ -1590,7 +1611,7 @@ def command_owned():
 
 
 def command_map_lint():
-    """Report-only counts. Not a failure in PR1."""
+    """v1 pack counts stay report-only. v2 gates the PR's own pack."""
     px = re.compile(r"(?<![\w-])\d+(?:\.\d+)?px\b")
     hex_colour = re.compile(r"#[0-9A-Fa-f]{3,8}\b")
     print("map-lint (report-only, not gating in PR1)")
@@ -1613,6 +1634,127 @@ def command_map_lint():
         print(f"{pack}\tfiles {files}\tpx {px_count}\thex {hex_count}")
     print(f"total\tfiles {totals['files']}\tpx {totals['px']}\thex {totals['hex']}")
     print("PR1 does not fail on these counts. Hard fail is PR8.")
+    command_map_lint_v2()
+
+
+# v2 adds these properties to the declaration scan and flags calc(Npx * var(.
+# em is allowed only on min-width, min-height, and height (Q3).
+_V2_EXTRA = (
+    "width",
+    "min-width",
+    "max-width",
+    "height",
+    "min-height",
+    "max-height",
+    "top",
+    "right",
+    "bottom",
+    "left",
+    "flex",
+    "flex-basis",
+    "letter-spacing",
+    "text-underline-offset",
+    "grid-template-columns",
+)
+_V2_EM_OK = {"min-width", "min-height", "height"}
+_V2_CALC = re.compile(r"calc\(\s*\d+(?:\.\d+)?px\s*\*\s*var\(")
+_V2_DECL = re.compile(r"(?<![\w-])((?:--)?[A-Za-z-]+)\s*:([^;{}]*)")
+_V2_LIT = re.compile(
+    r"(?<![\w.#-])(-?(?:\d+\.\d+|\d+|\.\d+))(px|rem|em)\b|#[0-9A-Fa-f]{3,8}\b|rgba?\("
+)
+_IAS2_GATE = (
+    "ias-2/draft-v1-linked/visuals/ias2.css",
+    "ias-2/draft-v1-linked/assets/draft.css",
+    "ias-2/draft-v1-linked/assets/shared.css",
+    "ias-2/draft-v1-linked/index.html",
+    "ias-2/draft-v1-linked/ch01.html",
+    "ias-2/draft-v1-linked/ch02.html",
+    "ias-2/draft-v1-linked/ch03.html",
+    "ias-2/draft-v1-linked/ch04.html",
+    "ias-2/draft-v1-linked/ch05.html",
+    "ias-2/draft-v1-linked/ch06.html",
+    "ias-2/draft-v1-linked/references.html",
+    "ias-2/draft-v1-linked/abbreviations.html",
+    "_shared/modules/teaching/util-1.css",
+)
+
+
+def _css_fragments(text, suffix):
+    if suffix == ".css":
+        return [text]
+    parts = re.findall(r"<style\b[^>]*>(.*?)</style>", text, flags=re.S | re.I)
+    parts.extend(re.findall(r'style="([^"]*)"', text))
+    return parts
+
+
+def map_lint_v2_hits(text, suffix):
+    """Disallowed literals. 0 and allow-listed em minima are not hits."""
+    hits = []
+    for fragment in _css_fragments(text, suffix):
+        cleaned = _strip_css_comments(fragment)
+        for match in _V2_CALC.finditer(cleaned):
+            hits.append(match.group(0))
+        for decl in _V2_DECL.finditer(cleaned):
+            prop, raw = decl.group(1), decl.group(2)
+            blanked = _blank_calls(raw)
+            for lit in _V2_LIT.finditer(blanked):
+                if lit.group(2):
+                    if float(lit.group(1)) == 0:
+                        continue
+                    if lit.group(2) == "em" and prop in _V2_EM_OK:
+                        continue
+                hits.append(prop + ":" + lit.group(0))
+    return hits
+
+
+def command_map_lint_v2():
+    """Gate IAS 2 at 0. Other packs are printed per file and do not fail."""
+    print("map-lint v2 (IAS 2 gate; other packs reported)")
+    print(
+        "v2 properties include "
+        + " ".join(_V2_EXTRA)
+        + "; em allowed on min-width min-height height; flags calc(Npx * var("
+    )
+    gate_failed = False
+    gate_total = 0
+    print("IAS 2 gate")
+    for rel in _IAS2_GATE:
+        path = ROOT / rel
+        text = path.read_text(encoding="utf-8", errors="replace")
+        hits = map_lint_v2_hits(text, path.suffix.lower())
+        gate_total += len(hits)
+        print(f"{rel}\t{len(hits)}")
+        if hits:
+            gate_failed = True
+            for item in hits[:12]:
+                print(f"  {item}")
+    print(f"IAS 2 gate total\t{gate_total}")
+    print("other packs (reported only)")
+    for draft in sorted(ROOT.glob("*/draft-v1-linked")):
+        pack = draft.parent.name
+        if pack == "ias-2":
+            continue
+        pack_total = 0
+        files = 0
+        for path in sorted(draft.rglob("*")):
+            if not path.is_file() or "_archive" in path.parts:
+                continue
+            if path.suffix.lower() not in {".css", ".html"}:
+                continue
+            hits = map_lint_v2_hits(
+                path.read_text(encoding="utf-8", errors="replace"),
+                path.suffix.lower(),
+            )
+            files += 1
+            if not hits:
+                continue
+            pack_total += len(hits)
+            rel = path.relative_to(ROOT).as_posix()
+            print(f"{rel}\t{len(hits)}")
+        print(f"{pack}\tfiles {files}\thits {pack_total}")
+    if gate_failed:
+        raise SystemExit(1)
+    print("map-lint v2 IAS 2: 0")
 
 
 def owned_names(wb):
