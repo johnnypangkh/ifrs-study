@@ -23,13 +23,13 @@
 #   ch08-capital.css:307).
 # - G2: not landed. repeat(auto-fit, minmax(var(--col-min), 1fr)) on
 #   .cost-split .axis-body moves pixels at 1280. STOP, no other approach.
-# - G3: .mx-cell keeps min-width:0 and gains overflow-wrap:break-word.
 # - G4: RESTORE step 2 checkout list adds the three /settings files.
 # - G5: 1062 chapter iframe row is in the PR expected set at 1280.
 # - G6: archived ias16-cx-narrow.js trailing blank line restored.
 # tools/check-stamp-only.py fold (master-concept-map branches and
 # style-indent blanks): Johnny via PM 4, approved 2026-10-13 17:36.
 # option C + 1280-only acceptance: Johnny via PM 4, 2026-10-13 19:45
+# G3 reverted: Johnny 1280-only ruling via PM 4 / MD §14 r4, 2026-10-13
 #
 # Teaching rows below are the settings table only. Chapter prose is unchanged.
 #
