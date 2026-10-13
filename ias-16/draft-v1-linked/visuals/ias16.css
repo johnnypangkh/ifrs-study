@@ -6993,6 +6993,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   word-break: normal !important;
   hyphens: none !important;
 }
+/* NOMOBILE §14 r3 A2: narrow-window wrap */
+.ppe .ch03-cost .after-col, .ppe .ch03-cost .after-col * { overflow-wrap: break-word !important; min-width: 0; }
 
 .ch01-scope {
   display: flex;
