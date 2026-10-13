@@ -12,9 +12,9 @@
 
 .cat-discontinued { background: var(--cat-discontinued-soft); border-color: var(--cat-discontinued); }
 
-.ifrs-subtotal { background: var(--ifrs-subtotal-soft); border: 1px solid var(--ifrs-subtotal); color: var(--ifrs-subtotal); font-weight: 700; }
+.ifrs-subtotal { background: var(--ifrs-subtotal-soft); border: var(--stroke-1) solid var(--ifrs-subtotal); color: var(--ifrs-subtotal); font-weight: 700; }
 
-.mpm { background: var(--mpm-soft); border: 1px solid var(--mpm); color: var(--mpm); font-weight: 700; }
+.mpm { background: var(--mpm-soft); border: var(--stroke-1) solid var(--mpm); color: var(--mpm); font-weight: 700; }
 
 
 /* ── Body presentation kit (Johnny lock 2026-09-27) ──
@@ -23,10 +23,10 @@
 
 
 .worked-strip {
-  margin: 14px 0 18px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  margin: var(--space-4) 0 var(--space-4);
+  padding: var(--space-3);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--radius-m);
   background: var(--surface); /* quieter: was --band (Johnny LOCK 2026-10-01) */
 }
 
@@ -48,24 +48,24 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
-  margin: 0 0 10px;
-  font-size: 13px;
+  gap: var(--space-cell);
+  margin: 0 0 var(--space-3);
+  font-size: var(--tb-box-body-fs);
   font-weight: 700;
   color: var(--ink);
 }
 
 .worked-strip-title > strong {
   display: block;
-  font-size: 13px;
-  line-height: 1.35;
+  font-size: var(--tb-box-body-fs);
+  line-height: var(--legacy-lh-1);
 }
 
 .worked-strip-title .cite-row,
 .worked-strip-cites {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: var(--space-cell);
   align-items: center;
   margin: 0;
 }
@@ -75,7 +75,7 @@
 .worked-strip .box-body ul,
 .worked-strip .box ul,
 .worked-strip .box li {
-  font-size: 13px;
+  font-size: var(--tb-box-body-fs);
   color: var(--ink);
   line-height: 1.45;
 }
@@ -87,7 +87,7 @@
 
 .worked-strip .box ul {
   margin: 0;
-  padding-left: 18px;
+  padding-left: var(--space-4);
 }
 
 
