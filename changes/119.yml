@@ -23,6 +23,12 @@
 # Q2 (page-delta set, spec section 5): Q2 APPROVED as section 5, Johnny via PM 4, 2026-10-13 22:12
 # Q3 (3 em minima, spec section 7): Q3 APPROVED (em allowed on min-width/min-height/height), Johnny via PM 4, 2026-10-13 22:12
 #
+# QC r1 paperwork (render unchanged). Recorded 2026-10-13.
+# K1. grok-4.7 xhigh: Johnny via PM 4, 2026-10-13 22:13
+# K2. 5 Grid rows + ChangeLog!17 supplied by IFRS Master Design 2026-10-13 22:13 (sha b0998c52…71bb57); Q1 Johnny 22:12
+# K3. Johnny via PM 4, 2026-10-13 23:22 approved as stamp-only the tools/check-stamp-only.py fold and the 3 restamps (references.html ?v=, teaching.css and visuals.css imports).
+# Brief rule 11a. Stamp-only exceptions approved by Johnny via PM 4 2026-10-13 23:22: the tools/check-stamp-only.py fold and 3 restamps (references.html ?v=, teaching.css/visuals.css imports).
+#
 # Acceptance is 1280 only, both themes. 922 is recorded in the PR body and is not a gate.
 # Teaching rows below are the five new settings tokens only. Chapter prose is unchanged.
 
