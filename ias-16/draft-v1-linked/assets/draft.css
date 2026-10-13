@@ -2,29 +2,29 @@
 
 
 .teaching h3 {
-  margin: 18px 0 8px;
-  font-size: .98rem;
+  margin: var(--space-4) 0 var(--space-cell);
+  font-size: var(--t1-fs);
   color: var(--accent);
 }
 
 
-.teaching h3:not(:first-child) { margin-top: 26px; }
+.teaching h3:not(:first-child) { margin-top: var(--space-5); }
 
 
 /* Body line boxes: stacked .box peers need air (gap 0 = FAIL); title is a
    text line with inline cite chips, not the visuals' flex title row. */
-.teaching > .box { margin: 14px 0 18px; padding: 12px; }
+.teaching > .box { margin: var(--space-4) 0 var(--space-4); padding: var(--space-3); }
 
 .teaching > .box > .box-title {
   display: block;
-  margin: 0 0 8px;
-  font-size: 13px;
+  margin: 0 0 var(--space-cell);
+  font-size: var(--tb-box-body-fs);
   line-height: 1.6;
   color: var(--ink);
 }
 
 .teaching > .box > .box-body {
-  font-size: 13px;
+  font-size: var(--tb-box-body-fs);
   line-height: 1.45;
   color: var(--ink);
 }
@@ -37,7 +37,7 @@
 .teaching .worked-strip-title > strong,
 .teaching > .box > .box-title > strong {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: var(--space-1);
 }
 
 
@@ -46,13 +46,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
+  gap: var(--space-cell);
 }
 
 .teaching > .box > .box-title .cite-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: var(--space-cell);
   align-items: center;
   margin: 0;
 }
@@ -63,9 +63,9 @@
 .teaching > .box > .box-title .cite-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: var(--space-cell);
   align-items: center;
-  margin: 4px 0 0;
+  margin: var(--space-1) 0 0;
 }
 
 
@@ -73,12 +73,12 @@
 .teaching .worked-strip .box-body > ul,
 .teaching > .box > .box-body > ul {
   margin: 0;
-  padding-left: 1.15em;
+  padding-left: var(--space-4);
 }
 
 .teaching .worked-strip .box-body > ul > li,
 .teaching > .box > .box-body > ul > li {
-  margin-bottom: 4px;
+  margin-bottom: var(--space-1);
 }
 
 .teaching .worked-strip + .worked-strip,
@@ -90,13 +90,13 @@
 .teaching .point-chip {
   display: block;
   max-width: none;
-  margin: 10px 0 14px;
-  padding: 8px 12px;
+  margin: var(--space-3) 0 var(--space-4);
+  padding: var(--space-cell) var(--space-3);
   border-radius: var(--card-radius);
   white-space: normal;
   overflow: visible;
   text-overflow: clip;
-  font-size: 13px;
+  font-size: var(--tb-box-body-fs);
   font-weight: 500;
   line-height: 1.45;
   color: var(--ink);
@@ -108,22 +108,22 @@
 
 .teaching .callout { line-height: 1.5; }
 
-.teaching td ul { margin: 0; padding-left: 1.1em; }
+.teaching td ul { margin: 0; padding-left: var(--space-4); }
 
 .teaching td li:last-child { margin-bottom: 0; }
 
 
 /* Sources differ: neutral tokens only — neither treatment is marked as wrong. */
 .callout.differ {
-  margin: 12px 0 0;
+  margin: var(--space-3) 0 0;
   background: var(--surface);
   border-color: var(--accent);
-  border-left-width: 3px;
+  border-left-width: var(--rail-bar-m);
 }
 
-.callout.differ .callout-title { margin: 0 0 8px; }
+.callout.differ .callout-title { margin: 0 0 var(--space-cell); }
 
-.callout.differ .table-wrap { margin: 0 0 8px; }
+.callout.differ .table-wrap { margin: 0 0 var(--space-cell); }
 
 .callout.differ > p:last-child { margin: 0; }
 
@@ -137,63 +137,63 @@
 
 /* Body visuals — mini-flows and computation tables (neutral tokens; no ok/warn/danger colour) */
 .vis-title {
-  font-size: 11px;
+  font-size: var(--tb-micro-fs);
   font-weight: 700;
-  letter-spacing: .05em;
+  letter-spacing: var(--legacy-ls-2);
   text-transform: uppercase;
   color: var(--muted);
-  margin: 0 0 6px;
+  margin: 0 0 var(--space-cell);
 }
 
-.mini-flow { margin: 12px 0 14px; }
+.mini-flow { margin: var(--space-3) 0 var(--space-4); }
 
 .worked-strip > .mini-flow,
-.worked-strip > .table-wrap { margin: 10px 0 0; }
+.worked-strip > .table-wrap { margin: var(--space-3) 0 0; }
 
 .mini-flow-steps { display: flex; align-items: stretch; }
 
 .mini-step {
   flex: 1 1 0;
   min-width: 0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
   background: var(--surface);
-  padding: 8px 10px;
-  font-size: 13px;
+  padding: var(--space-cell) var(--space-3);
+  font-size: var(--tb-box-body-fs);
   line-height: 1.45;
   color: var(--ink);
 }
 
-.mini-step-head { display: block; font-weight: 700; margin: 0 0 4px; }
+.mini-step-head { display: block; font-weight: 700; margin: 0 0 var(--space-1); }
 
 .mini-out {
   display: block;
-  margin-top: 4px;
-  padding-top: 4px;
-  border-top: 1px solid var(--line);
-  font-size: 12.5px;
+  margin-top: var(--space-1);
+  padding-top: var(--space-1);
+  border-top: var(--stroke-1) solid var(--line);
+  font-size: var(--tb-box-body-fs);
 }
 
 .mini-out b { color: var(--muted); }
 
-.mini-arrow { flex: 0 0 26px; display: flex; align-items: center; justify-content: center; }
+.mini-arrow { flex: 0 0 calc(var(--space-5) + var(--space-hairline)); display: flex; align-items: center; justify-content: center; }
 
-.mini-arrow::before { content: ""; width: 12px; height: 1px; background: var(--muted); }
+.mini-arrow::before { content: ""; width: var(--space-3); height: var(--stroke-1); background: var(--muted); }
 
 .mini-arrow::after {
   content: "";
-  border-left: 6px solid var(--muted);
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
+  border-left: var(--rail-bar-l) solid var(--muted);
+  border-top: var(--arrowhead) solid transparent;
+  border-bottom: var(--arrowhead) solid transparent;
 }
 
 .mini-op {
-  flex: 0 0 26px;
+  flex: 0 0 calc(var(--space-5) + var(--space-hairline));
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--muted);
-  font-size: 16px;
+  font-size: var(--mt-op-fs);
   font-weight: 800;
   line-height: 1;
 }
@@ -201,46 +201,46 @@
 
 /* Decision at the end of a mini-flow: the question step joins a bar, and one
    labelled arm per outcome leads into its own step. */
-.mini-join { flex: 0 0 14px; display: flex; align-items: center; }
+.mini-join { flex: 0 0 calc(var(--space-3) + var(--space-hairline)); display: flex; align-items: center; }
 
-.mini-join::before { content: ""; width: 100%; height: 1px; background: var(--muted); }
+.mini-join::before { content: ""; width: 100%; height: var(--stroke-1); background: var(--muted); }
 
 .mini-branch {
   flex: 1.3 1 0;
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(2.5rem, 0.1fr) minmax(0, 1fr);
-  row-gap: 8px;
+  grid-template-columns: minmax(calc(var(--space-6) + var(--space-2)), 0.1fr) minmax(0, 1fr);
+  row-gap: var(--space-cell);
 }
 
-.mini-arm { position: relative; display: flex; align-items: center; justify-content: center; min-height: 24px; }
+.mini-arm { position: relative; display: flex; align-items: center; justify-content: center; min-height: var(--space-5); }
 
-.mini-arm::before { content: ""; position: absolute; left: 0; right: 6px; top: 50%; height: 1px; background: var(--muted); }
+.mini-arm::before { content: ""; position: absolute; left: 0; right: calc(var(--space-1) + var(--space-hairline)); top: 50%; height: var(--stroke-1); background: var(--muted); }
 
 .mini-arm::after {
   content: "";
   position: absolute;
   right: 0;
-  top: calc(50% - 4px);
-  border-left: 6px solid var(--muted);
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
+  top: calc(50% - var(--space-1));
+  border-left: var(--rail-bar-l) solid var(--muted);
+  border-top: var(--arrowhead) solid transparent;
+  border-bottom: var(--arrowhead) solid transparent;
 }
 
-.mini-bar { position: absolute; left: 0; width: 1px; background: var(--muted); }
+.mini-bar { position: absolute; left: 0; width: var(--stroke-1); background: var(--muted); }
 
-.mini-branch > .mini-arm:first-child .mini-bar { top: 50%; bottom: -4px; }
+.mini-branch > .mini-arm:first-child .mini-bar { top: 50%; bottom: calc(-1 * var(--space-1)); }
 
-.mini-branch > .mini-arm:not(:first-child) .mini-bar { top: -4px; bottom: 50%; }
+.mini-branch > .mini-arm:not(:first-child) .mini-bar { top: calc(-1 * var(--space-1)); bottom: 50%; }
 
 .mini-arm-label {
   position: relative;
   z-index: 1;
-  margin-right: 6px;
-  padding: 0 3px;
+  margin-right: var(--space-cell);
+  padding: 0 var(--space-1);
   background: var(--bg);
   color: var(--muted);
-  font-size: 11px;
+  font-size: var(--tb-micro-fs);
   font-weight: 700;
   line-height: 1.2;
 }
@@ -253,15 +253,15 @@
 
 /* Chapter 4 impairment cell only. #s-4-5-impair sits on the heading, so the
    vis-table is the next sibling, not a descendant. The cite-run is the ch07
-   flex wrap: 0.45rem row and column gap, and the chips stay on one line
+   flex wrap: calc(var(--space-1) + var(--space-hairline) + var(--stroke-1)) row and column gap, and the chips stay on one line
    when they fit. */
 body[data-pack="ias16"] h4#s-4-5-impair + ul + p + .table-wrap > table.vis-table td > .cite-run {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   max-width: 100%;
-  row-gap: 0.45rem;
-  column-gap: 0.45rem;
+  row-gap: calc(var(--space-1) + var(--space-hairline) + var(--stroke-1));
+  column-gap: calc(var(--space-1) + var(--space-hairline) + var(--stroke-1));
 }
 
 body[data-pack="ias16"] h4#s-4-5-impair + ul + p + .table-wrap > table.vis-table td > .cite-run > .cite {
