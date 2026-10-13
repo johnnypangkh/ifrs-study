@@ -1,0 +1,28 @@
+# PR6 approvals for pull request 120.
+# Branch cursor/row71-pr6-ias16-tokens-ed78. Base cc597fa7.
+#
+# P0 Archive design/archive/ias16-pr6-2026-10-13/ before removal.
+#    Four removed @container blocks (ias16.css L5858, L6952, L7306, L7846)
+#    and two unwrapped wrappers (L6945, L7643), verbatim from cc597fa7.
+# P1 Fonts in visuals/ias16.css to the section 3.1 scale, rendered context.
+# P2 Local --t-* sets kept. --t-head and --t-plate to --t1-fs. --t-op to --mt-op-fs.
+# P3 Spacing bins, including literal var() fallbacks.
+# P4 Borders. Sub-2px stays --stroke-1. Arrowheads use --arrowhead.
+# P5 Radius to --radius-s / --card-radius / --radius-m / --radius-pill.
+# P6 Geometry is an exact token sum, half-pixel rounding, absolute delta at most 0.25.
+# P7 Colour. Five var(--fg, #e6e6e6) to var(--ink). .rm-up to --ok. .rm-down to --danger.
+# P8 @container resolved at 1280. Unwrap L6945 and L7643. Remove the four false queries. container-type and container-name stay.
+# P9 assets/draft.css and assets/shared.css by the PR5 teaching rules.
+# P10 Kept: 31 em on min-width/min-height/height, the !important wrap block, after-col grid-column 3 pins, ch01-scope --space-2, ias16-cx.js, references.html inline style, visuals left percentages, dead-at-1280 rules converted and not removed.
+# P11 Restamp via build-last-update.py. Stamp-only outside the pack: 35 HTML files, one last-update.js?v= each (cf-2018 14, ias-2 9, ifrs-18 11, site/settings/index.html 1).
+# P12 This file.
+# P13 1280 night and day. 922 is information only.
+#
+# Q1 (heading/plate snap, spec section 7): Q1 APPROVED, Johnny via PM 4, 2026-10-14 00:26
+# Q2 (colour fixes, spec section 7): Q2 APPROVED, Johnny via PM 4, 2026-10-14 00:26
+# Spec source: PR6-SPEC.md FINAL, IFRS Master Design, 2026-10-14 00:27
+# Model: grok-4.7 xhigh, Johnny via PM 4, 2026-10-14 01:14
+#
+# No MASTER-STYLES rows. Settings stay 281/281. tokens.css and tokens-core.css unchanged.
+# Acceptance is 1280 only, both themes. 922 is recorded in the PR body and is not a gate.
+# Teaching text is unchanged. No rows below.
