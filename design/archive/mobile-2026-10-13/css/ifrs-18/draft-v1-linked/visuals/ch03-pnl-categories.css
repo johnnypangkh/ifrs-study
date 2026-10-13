@@ -1,0 +1,24 @@
+/* SOURCE ifrs-18/draft-v1-linked/visuals/ch03-pnl-categories.css:202 @ cfc59d2b */
+@media (max-width: 800px) {
+  .pc-schematic {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+  .pc-schematic > * {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .pc-bracket { display: none; }
+  .pc-mba { margin-left: var(--space-4); }
+}
+
+/* SOURCE ifrs-18/draft-v1-linked/visuals/ch03-pnl-categories.css:214 @ cfc59d2b */
+@media (max-width: 560px) {
+  .pc-band {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-cell);
+    padding: calc(10 * var(--stroke-1));
+  }
+  .pc-mba,
+  .pc-fwd { padding: var(--space-2) calc(10 * var(--stroke-1)); }
+}

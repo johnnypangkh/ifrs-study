@@ -1,0 +1,10 @@
+/* SOURCE _shared/modules/teaching/components-3.css:43 @ cfc59d2b */
+@media (max-width: 720px) {
+  article.teaching .cost-sum {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  article.teaching .cost-sum-op {
+    align-self: center;
+  }
+}

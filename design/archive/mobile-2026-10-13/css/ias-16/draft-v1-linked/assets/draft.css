@@ -1,0 +1,16 @@
+/* SOURCE ias-16/draft-v1-linked/assets/draft.css:248 @ cfc59d2b */
+@media (max-width: 720px) {
+  .mini-join { flex: 0 0 12px; align-items: stretch; }
+  .mini-join::before { width: 1px; height: auto; }
+  .mini-branch > .mini-arm:first-child .mini-bar { top: 0; }
+  .mini-flow-steps { flex-direction: column; }
+  .mini-op { flex: 0 0 24px; }
+  .mini-arrow { flex: 0 0 22px; flex-direction: column; }
+  .mini-arrow::before { width: 1px; height: 10px; }
+  .mini-arrow::after {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid var(--muted);
+    border-bottom: 0;
+  }
+}

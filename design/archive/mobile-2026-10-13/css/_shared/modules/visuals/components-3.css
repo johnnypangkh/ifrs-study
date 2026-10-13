@@ -1,0 +1,9 @@
+/* SOURCE _shared/modules/visuals/components-3.css:9 @ cfc59d2b */
+@media (max-width: 720px) {
+  .map-spokes { grid-template-columns: 1fr 1fr; }
+}
+
+/* SOURCE _shared/modules/visuals/components-3.css:12 @ cfc59d2b */
+@media (max-width: 480px) {
+  .map-spokes { grid-template-columns: 1fr; }
+}

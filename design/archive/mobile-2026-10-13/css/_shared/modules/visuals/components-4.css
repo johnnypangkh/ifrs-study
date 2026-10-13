@@ -1,0 +1,10 @@
+/* SOURCE _shared/modules/visuals/components-4.css:10 @ cfc59d2b */
+@media (max-width: 720px) {
+  .visual-with-legend { flex-direction: column; }
+  .legend.legend-side {
+    flex: 1 1 auto;
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,30 @@
+/* SOURCE _shared/modules/teaching/components-2.css:138 @ cfc59d2b */
+@media (max-width: 720px) {
+  .l1-row { grid-template-columns: 1fr; }
+
+}
+
+/* SOURCE _shared/modules/teaching/components-2.css:233 @ cfc59d2b */
+@media (max-width: 640px) {
+  .contrast-pair { grid-template-columns: 1fr; }
+
+}
+
+/* SOURCE _shared/modules/teaching/components-2.css:260 @ cfc59d2b */
+@media (max-width: 720px) {
+  .worked-strip-grid { grid-template-columns: 1fr; }
+
+}
+
+/* SOURCE _shared/modules/teaching/components-2.css:320 @ cfc59d2b */
+@media (max-width: 720px) {
+  .containment-inner { grid-template-columns: 1fr; }
+
+}
+
+/* SOURCE _shared/modules/teaching/components-2.css:457 @ cfc59d2b */
+@media (max-width: 640px) {
+  .contrast-pair.dense,
+    .contrast-dense { grid-template-columns: 1fr; }
+
+}

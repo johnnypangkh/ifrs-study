@@ -1,0 +1,13 @@
+Status,Token,Desktop,Mobile,Use / current usage
+TARGET,--bp-mobile,560px,,max-width 560px (VG L187); build-time literal
+TARGET,--bp-wide,800px,,≤800px timeline (VG L281); build-time literal
+TARGET,--preview-w-mobile,24.375rem,,"settings preview width, mobile (=390px); also ruler mark"
+TARGET,--preview-w-tablet,57.625rem,,"settings preview width, tablet (=922px); also ruler mark"
+TARGET,--preview-w-desktop,80rem,,"settings preview width, desktop (=1280px); also ruler mark"
+TARGET,--bp-mobile-n,560,,unitless number for settings ruler/calc
+TARGET,--bp-wide-n,800,,unitless number for settings ruler/calc
+TARGET,--preview-w-mobile-n,390,,unitless number for settings ruler/calc
+TARGET,--preview-w-tablet-n,922,,unitless number for settings ruler/calc
+TARGET,--preview-w-desktop-n,1280,,unitless number for settings ruler/calc
+TARGET,--ruler-max-n,1280,,unitless number for settings ruler/calc
+GENERATED-MQ,settings-gen.css,@media (max-width:560px),,generator writes these blocks into _shared/settings-gen.css for settings auto-Mobile; settings.css has no media query

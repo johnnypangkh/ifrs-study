@@ -1,0 +1,29 @@
+Style name,Token prefix,Mobile rem,Mobile px,Group
+T0 Page H1,--t0,1.5,24,map
+T1 Title,--t1,0.8125,13,map
+T2 Body,--t2,0.6875,11,map
+T2 Band label,--t2-band,0.6875,11,map
+T3 Note,--t3,0.625,10,map
+T3 Strong,--t3-strong,0.625,10,map
+T3 Arm label,--t3-arm,0.625,10,map
+T3 Tag / tick,--t3-tag,0.625,10,map
+Chip,--mchip,0.625,10,map
+Op,--mt-op,0.875,14,map
+Tb-body,--tb-body,0.875,14,teaching
+Tb-box-title,--tb-box-title,0.8125,13,teaching
+Tb-micro,--tb-micro,0.6875,11,teaching
+Tb-h1,--tb-h1,1.35,21.6,teaching
+Cite,--cite,0.6875,11,teaching
+Tb-box-body,--tb-box-body,0.8125,13,teaching
+t-meta,--t-meta,0.75,12,site
+t-body,--t-body,0.875,14,site
+t-head,--t-head,1,16,site
+t-plate,--t-plate,1.125,18,site
+type-scale,--type-scale,,0.85,type-scale
+vis-body,--vis-body,,calc(12px * var(--type-scale)),type-scale
+vis-meta,--vis-meta,,calc(11px * var(--type-scale)),type-scale
+nx-chip-font,--nx-chip-font,,calc(10px * var(--type-scale)),type-scale
+font-family,--font-family,,,site-font
+font-mono,--font-mono,,,site-font
+cite-font,--cite-font,,,site-font
+site-scope type-scale reset,(directive),,= type-scale mobile rows,directive

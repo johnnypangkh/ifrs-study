@@ -1,0 +1,31 @@
+/* SOURCE _shared/cite.css:79 @ cfc59d2b */
+@media (max-width: 560px) {
+  .box {
+    min-width: 0;
+  }
+  .box .cite {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: left;
+    margin: var(--space-1) 0 0;
+  }
+  .cite:has(+ .cite.cite-comma)::after,
+  .cite.cite-dot::after { content: none; }
+  .cite:has(+ .cite.cite-comma),
+  .cite.cite-dot { margin-right: var(--stroke-2); }
+  .box .cite:has(+ .cite.cite-comma),
+  .box .cite.cite-dot { margin-right: 0; }
+  .teaching .point-chip .cite {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+  }
+}

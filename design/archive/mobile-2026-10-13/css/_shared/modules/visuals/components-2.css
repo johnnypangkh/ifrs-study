@@ -1,0 +1,14 @@
+/* SOURCE _shared/modules/visuals/components-2.css:122 @ cfc59d2b */
+@media (max-width: 720px) {
+  .l1-row { grid-template-columns: 1fr; }
+}
+
+/* SOURCE _shared/modules/visuals/components-2.css:521 @ cfc59d2b */
+@media (max-width: 720px) {
+  .org-fs-row { grid-template-columns: 1fr; }
+}
+
+/* SOURCE _shared/modules/visuals/components-2.css:632 @ cfc59d2b */
+@media (max-width: 720px) {
+  .stmt-layout { grid-template-columns: 1fr; }
+}

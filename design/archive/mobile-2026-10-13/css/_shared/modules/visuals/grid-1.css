@@ -1,0 +1,9 @@
+/* SOURCE _shared/modules/visuals/grid-1.css:5 @ cfc59d2b */
+@media (max-width: 720px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+
+/* SOURCE _shared/modules/visuals/grid-1.css:8 @ cfc59d2b */
+@media (max-width: 480px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}

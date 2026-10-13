@@ -1,0 +1,8 @@
+/* SOURCE cf-2018/draft-v1-linked/visuals/ch06-measurement.css:155 @ cfc59d2b */
+@media (max-width: 900px) {
+  .mx-flow-split, .mx-fam-pair, .mx-factors, .mx-select-foot { grid-template-columns: minmax(0, 1fr); }
+  .mx-siblings { grid-template-columns: minmax(0, 1fr); }
+  .mx-grid { grid-template-columns: minmax(0, 1fr); }
+  .mx-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .mx-row--head { display: none; }
+}

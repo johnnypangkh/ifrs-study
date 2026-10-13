@@ -1,0 +1,23 @@
+/* SOURCE ifrs-18/draft-v1-linked/assets/map.css:339 @ cfc59d2b */
+@media (max-width: 800px) {
+  .i18map { --map-gap: var(--space-4); }
+  .i18map .pillar-row { grid-template-columns: 1fr; }
+  .i18map .close-row { grid-template-columns: 1fr; }
+}
+
+/* SOURCE ifrs-18/draft-v1-linked/assets/map.css:344 @ cfc59d2b */
+@media (max-width: 560px) {
+  .i18map { --map-inner: var(--space-cell); }
+  .i18map .g-2,
+  .i18map .g-3 { grid-template-columns: 1fr; }
+  .i18map .std-frame { padding: var(--space-3) calc(10 * var(--stroke-1)) calc(14 * var(--stroke-1)); }
+  .i18map .contain { padding: calc(10 * var(--stroke-1)) var(--space-3) var(--space-3); }
+}
+
+/* SOURCE ifrs-18/draft-v1-linked/assets/map.css:399 @ cfc59d2b */
+@media (max-width: 800px) {
+  .i18map .map-visit-arrow { width: var(--space-3); }
+}
+
+/* SOURCE ifrs-18/draft-v1-linked/assets/map.css:6 @ cfc59d2b */
+.page.map-page { max-width: calc(1120 * var(--stroke-1)); }

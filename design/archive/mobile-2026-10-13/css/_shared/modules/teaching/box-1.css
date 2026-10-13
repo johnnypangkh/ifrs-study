@@ -1,0 +1,5 @@
+/* SOURCE _shared/modules/teaching/box-1.css:83 @ cfc59d2b */
+@media (max-width: 640px) {
+  .contain-grid { grid-template-columns: 1fr; }
+
+}

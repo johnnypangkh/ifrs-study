@@ -1,0 +1,12 @@
+Status,Level,Box,Padding mobile
+DRAFT,B0,Standard frame (one per map),.75 .625 .875
+DRAFT,B1,Primary container / plate,.625 .75 .75
+DRAFT,B1s,"Secondary container (close-out, exit, disclosure)",same as B1
+DRAFT,B2,Cell / card / rail label / formula term,.5 .625
+DRAFT,B2d,"Rail detail, bullets cell, visit bar",.5 .625
+DRAFT,B3,Nested cell inside band/cell,.375 .5
+DRAFT,Strip,Category band,same
+DRAFT,Rule,Subtotal tick / total,–
+DRAFT,See,See-also tip / chip,same
+DRAFT,Pill,"Chip, tag, rule pill",–
+DRAFT,Result,Formula result cell (PROPOSED),B2
