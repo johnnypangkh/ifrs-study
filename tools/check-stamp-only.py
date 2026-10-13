@@ -291,6 +291,53 @@ def fold_ias2_pr5(html):
     )
 
 
+# PR7 archives then deletes these HTML pages. They are not published notes.
+# The stamp gate treats the absence as the approved deletion, not a missing page.
+PR7_DELETED_HTML = (
+    "cf-2018/chapter-visuals/_archive/ch01-overview.html",
+    "cf-2018/chapter-visuals/ch01-objective-users.html",
+    "cf-2018/chapter-visuals/ch02-qualitative-characteristics.html",
+    "cf-2018/chapter-visuals/ch03-reporting-entity.html",
+    "cf-2018/chapter-visuals/ch04-elements.html",
+    "cf-2018/chapter-visuals/ch05-recognition-derecognition.html",
+    "cf-2018/chapter-visuals/ch06-measurement.html",
+    "cf-2018/chapter-visuals/ch07-presentation-disclosure.html",
+    "cf-2018/chapter-visuals/ch08-capital.html",
+    "cf-2018/chapter-visuals/ch09-status.html",
+    "cf-2018/draft-v1-linked/_archive-index-stub.html",
+    "cf-2018/draft-v1-linked/_archive/ch01-overview-redirect.html",
+    "cf-2018/draft-v1-linked/_archive/ch01-overview.html",
+    "cf-2018/draft-v1-linked/_archive/visuals-ch01-overview.html",
+    "cf-2018/draft-v1-linked/_archive/visuals/ch09-status.html",
+)
+CF_FLOOR_PAGES = (
+    "cf-2018/draft-v1-linked/ch03.html",
+    "cf-2018/draft-v1-linked/ch09.html",
+    "cf-2018/draft-v1-linked/ch10.html",
+)
+
+
+def fold_cf2018_pr7(html, path):
+    """P7: cost-sum style moved to draft.css; iframe floors became token sums."""
+    if path == "cf-2018/draft-v1-linked/ch05.html":
+        html = re.sub(
+            r"\n<style>\s*article\.teaching \.cost-sum \{.*?</style>",
+            "",
+            html,
+            count=1,
+            flags=re.S,
+        )
+    if path in CF_FLOOR_PAGES:
+        html = re.sub(
+            r'(<style id="ch\d+-iframe-floor">\s*'
+            r'\.visual-section iframe\[src\*="[^"]+"\]\{min-height:)[^;]+;',
+            r"\1TOKEN;",
+            html,
+            count=1,
+        )
+    return html
+
+
 def fold_utility_styles(html):
     """Swap the three approved utility styles into classes. Idempotent."""
 
@@ -350,12 +397,14 @@ def main():
         base = git_text(args.base, path)
         file = ROOT / path
         if base is None or not file.is_file():
+            if path in PR7_DELETED_HTML:
+                continue
             print(f"missing existing page {path}")
             failed = True
             continue
         head = file.read_text(encoding="utf-8")
-        base_n = fold_style_media(fold_viewport(norm(base)))
-        head_n = fold_style_media(fold_viewport(norm(head)))
+        base_n = fold_cf2018_pr7(fold_style_media(fold_viewport(norm(base))), path)
+        head_n = fold_cf2018_pr7(fold_style_media(fold_viewport(norm(head))), path)
         if path == MAP_NARROW:
             base_n = fold_map_narrow(base_n)
             head_n = fold_map_narrow(head_n)

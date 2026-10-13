@@ -80,7 +80,7 @@ python3 tools/check-incremental.py --base main
 python3 -m unittest discover -s tools/tests -v
 ```
 
-Scope is every `*.html` file in the repo: chapter pages, visuals, `cf-2018/chapter-visuals/`, other packs, `homepage/`, and `_shared/`. The only exclusion is a path segment `_archive` (`cf-2018/chapter-visuals/_archive/`, `cf-2018/draft-v1-linked/_archive/`). Those trees are retired snapshots of the old Conceptual Framework overview. They are not the published notes. Counting them would treat a historical copy as a second live location, so deleting the live sentence could look like a move into the archive. A live removal is still a removal. An edit that touches only the archive is outside this guard. `_archive-index-stub.html` is not under `_archive/` and stays in scope.
+Scope is every `*.html` file in the repo: chapter pages, visuals, other packs, `homepage/`, and `_shared/`. `cf-2018/chapter-visuals/` was an offline twin of `draft-v1-linked/visuals/` and was deleted in PR7, together with the listed `_archive` duplicates (restore from `design/archive/cf2018-pr7-2026-10-14/`). The only exclusion is a path segment `_archive` (`cf-2018/draft-v1-linked/_archive/`). Those trees are retired snapshots of the old Conceptual Framework overview. They are not the published notes. Counting them would treat a historical copy as a second live location, so deleting the live sentence could look like a move into the archive. A live removal is still a removal. An edit that touches only the archive is outside this guard. `_archive-index-stub.html` was not under `_archive/`; it was deleted in PR7 with the other archive duplicates.
 
 Items, one record each (`kind`, text, file, locator):
 
