@@ -9,23 +9,23 @@
 
 
 .worked-strip {
-  margin: 14px 0 18px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  margin: var(--space-4) 0 var(--space-4);
+  padding: var(--space-3);
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--radius-m);
   background: var(--band);
 }
 
 .worked-strip-title {
-  margin: 0 0 10px;
-  font-size: 13px;
+  margin: 0 0 var(--space-3);
+  font-size: var(--tb-box-body-fs);
   font-weight: 700;
   color: var(--ink);
 }
 
 
 .worked-strip .box-body {
-  font-size: 13px;
+  font-size: var(--tb-box-body-fs);
   color: var(--ink);
   line-height: 1.45;
   margin: 0;
@@ -37,14 +37,14 @@
 .illus-path {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12px;
+  font-size: var(--t2-fs);
   margin: 0;
 }
 
 .illus-path th,
 .illus-path td {
-  border: 1px solid var(--line, #3a4550);
-  padding: 5px 7px;
+  border: var(--stroke-1) solid var(--line);
+  padding: var(--space-1) var(--space-cell);
   text-align: left;
   vertical-align: top;
 }
@@ -55,12 +55,12 @@
   color: var(--ink, inherit);
 }
 
-.illus-path .muted { color: var(--muted, #9aa3ad); font-weight: 500; }
+.illus-path .muted { color: var(--muted); font-weight: 500; }
 
 .illus-steps {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: var(--space-cell);
   align-items: stretch;
   margin: 0;
   padding: 0;
@@ -68,30 +68,30 @@
 }
 
 .illus-steps > li {
-  flex: 1 1 110px;
-  border: 1px solid var(--line, #3a4550);
-  border-radius: 6px;
-  padding: 6px 8px;
-  font-size: 12px;
+  flex: 1 1 calc(3 * var(--space-6) + var(--space-3) + var(--space-hairline));
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--radius-s);
+  padding: var(--space-cell) var(--space-cell);
+  font-size: var(--t2-fs);
 }
 
-.illus-steps > li strong { display: block; margin-bottom: 2px; }
+.illus-steps > li strong { display: block; margin-bottom: var(--space-hairline); }
 
 
 /* Body mini-flow — neutral decision branch kit.
    Reading order: question step → join → bar → one labelled arm per outcome → outcome step.
    A question never shares a box with its outcomes; DOM order = reading order. */
 .mini-flow {
-  margin: 14px 0 18px;
-  padding: 12px 14px 14px;
-  border: 1px solid var(--line);
+  margin: var(--space-4) 0 var(--space-4);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   background: var(--band);
 }
 
 .mini-flow-title {
-  margin: 0 0 10px;
-  font-size: 13px;
+  margin: 0 0 var(--space-3);
+  font-size: var(--tb-box-body-fs);
   font-weight: 700;
   color: var(--ink);
 }
@@ -103,34 +103,34 @@
 }
 
 .mf-step {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 8px 10px;
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--card-radius);
+  padding: var(--space-cell) var(--space-3);
   background: var(--surface);
-  font-size: 13px;
+  font-size: var(--tb-box-body-fs);
   line-height: 1.45;
   color: var(--ink);
 }
 
 .mf-step p { margin: 0; }
 
-.mf-step p + p { margin-top: 4px; }
+.mf-step p + p { margin-top: var(--space-1); }
 
 .mf-step .mf-head {
-  margin: 0 0 4px;
-  font-size: 11px;
+  margin: 0 0 var(--space-1);
+  font-size: var(--vis-meta);
   font-weight: 700;
-  letter-spacing: .05em;
+  letter-spacing: var(--legacy-ls-2);
   text-transform: uppercase;
   color: var(--muted);
 }
 
-.mf-branch { height: 2px; background: var(--line); }
+.mf-branch { height: var(--space-hairline); background: var(--line); }
 
 .mf-arms {
   display: grid;
-  grid-template-columns: minmax(4.75rem, max-content) minmax(0, 1fr);
-  row-gap: 0.75rem;
+  grid-template-columns: minmax(calc(2 * var(--space-6) + var(--space-3)), max-content) minmax(0, 1fr);
+  row-gap: var(--space-3);
 }
 
 .mf-arm {
@@ -146,8 +146,8 @@
   position: absolute;
   left: 0;
   top: 0;
-  bottom: -0.75rem;
-  width: 2px;
+  bottom: calc(-1 * var(--space-3));
+  width: var(--space-hairline);
   background: var(--line);
 }
 
@@ -157,8 +157,8 @@
 
 .mf-arm-line {
   position: relative;
-  height: 2px;
-  margin-right: 8px;
+  height: var(--space-hairline);
+  margin-right: var(--space-cell);
   background: var(--line);
   display: flex;
   justify-content: center;
@@ -168,18 +168,18 @@
 .mf-arm-line::after {
   content: "";
   position: absolute;
-  right: -1px;
-  top: -4px;
-  border-left: 7px solid var(--line);
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
+  right: calc(-1 * var(--stroke-1));
+  top: calc(-1 * var(--space-1));
+  border-left: var(--rail-bar-l) solid var(--line);
+  border-top: var(--arrowhead) solid transparent;
+  border-bottom: var(--arrowhead) solid transparent;
 }
 
 .mf-arm-label {
-  margin-inline: 0.65rem;
-  padding: 0 5px;
+  margin-inline: var(--space-3);
+  padding: 0 var(--space-1);
   background: var(--band);
-  font-size: 11px;
+  font-size: var(--vis-meta);
   font-weight: 700;
   color: var(--muted);
   line-height: 1.2;

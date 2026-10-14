@@ -212,7 +212,7 @@ class IncrementalTests(unittest.TestCase):
         self.assertEqual(code, 0)
 
     def test_expE_every_teaching_html_path_is_in_scope(self):
-        """QC expE: a chapter-visuals edit was invisible because the path was not scanned."""
+        """QC expE: every live HTML path is scanned. chapter-visuals was deleted in PR7."""
         listed = guard.git_text("ls-tree", "-r", "--name-only", "HEAD").splitlines()
         html = [path for path in listed if path.endswith(".html")]
         scoped = set(guard.list_html("HEAD"))
@@ -223,17 +223,18 @@ class IncrementalTests(unittest.TestCase):
             else:
                 self.assertIn(path, scoped)
                 self.assertTrue(guard.in_scope(path))
-        self.assertIn("cf-2018/chapter-visuals/ch09-status.html", scoped)
+        self.assertNotIn("cf-2018/chapter-visuals/ch09-status.html", scoped)
         self.assertIn("homepage/how-these-notes-are-made.html", scoped)
-        self.assertIn("cf-2018/draft-v1-linked/_archive-index-stub.html", scoped)
-        self.assertNotIn("cf-2018/chapter-visuals/_archive/ch01-overview.html", scoped)
-        self.assertNotIn("cf-2018/draft-v1-linked/_archive/ch01-overview.html", scoped)
+        self.assertIn("cf-2018/draft-v1-linked/ch01.html", scoped)
+        self.assertNotIn("cf-2018/draft-v1-linked/_archive-index-stub.html", scoped)
+        self.assertFalse(guard.in_scope("cf-2018/chapter-visuals/_archive/ch01-overview.html"))
+        self.assertFalse(guard.in_scope("cf-2018/draft-v1-linked/_archive/ch01-overview.html"))
         self.assertTrue(guard.in_scope("_shared/example.html"))
         self.assertFalse(guard.in_scope("tools/README.md"))
 
-        path = "cf-2018/chapter-visuals/ch09-status.html"
+        path = "cf-2018/draft-v1-linked/ch01.html"
         sentence = "Concepts + objective \u2014 not a Standard"
-        base = {path: read_repo(path)}
+        base = {path: "<p>" + sentence + "</p>"}
         head = {path: drop_once(base[path], sentence)}
         code, rows, counts, issues = judge(base, head)
         self.assertNotEqual(code, 0)

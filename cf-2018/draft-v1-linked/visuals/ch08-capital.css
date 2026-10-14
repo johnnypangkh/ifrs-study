@@ -9,7 +9,7 @@
 .cap-board {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .cap-board-title,
@@ -17,12 +17,12 @@
 .cap-see {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-cell);
   margin: 0;
 }
 
 .cap-board-title {
-  font-size: calc(13px * var(--type-scale, 1));
+  font-size: var(--tb-box-body-fs);
   font-weight: 700;
   color: var(--ink);
   line-height: 1.35;
@@ -40,19 +40,19 @@
 .cap-plate {
   min-inline-size: 0;
   margin: 0;
-  padding: 16px;
-  border: 1px solid var(--line);
+  padding: var(--space-4);
+  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   background: var(--band);
 }
 
 .cap-plate-legend {
-  max-width: calc(100% - 1.5rem);
-  padding: 0 8px;
-  margin-inline-start: 6px;
+  max-width: calc(100% - var(--space-5));
+  padding: 0 var(--space-cell);
+  margin-inline-start: var(--space-cell);
   background: var(--bg);
   color: var(--ink);
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   font-weight: 600;
   line-height: 1.4;
   white-space: normal;
@@ -71,8 +71,8 @@
 .cap-matrix {
   display: flex;
   flex-direction: column;
-  min-width: 36rem;
-  border: 1px solid var(--elem-peer);
+  min-width: calc(18 * var(--space-6));
+  border: var(--stroke-1) solid var(--elem-peer);
   border-radius: var(--card-radius);
   background: var(--elem-peer-soft);
   overflow: hidden;
@@ -81,31 +81,31 @@
 .cap-m-head,
 .cap-m-row {
   display: grid;
-  grid-template-columns: 12.25rem minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: calc(6 * var(--space-6) + var(--space-1)) minmax(0, 1fr) minmax(0, 1fr);
   align-items: stretch;
 }
 
 .cap-m-head {
   background: color-mix(in srgb, var(--elem-peer-soft) 62%, var(--band));
-  border-bottom: 1px solid var(--line);
+  border-bottom: var(--stroke-1) solid var(--line);
 }
 
 .cap-m-row + .cap-m-row {
-  border-top: 1px solid var(--line);
+  border-top: var(--stroke-1) solid var(--line);
 }
 
 .cap-m-corner,
 .cap-m-colhead,
 .cap-m-key,
 .cap-m-cell {
-  padding: 11px 14px;
+  padding: var(--space-3) var(--space-4);
   min-width: 0;
 }
 
 .cap-m-corner,
 .cap-m-key {
   background: color-mix(in srgb, var(--band) 78%, var(--elem-peer-soft));
-  border-right: 1px solid var(--line);
+  border-right: var(--stroke-1) solid var(--line);
 }
 
 .cap-m-corner {
@@ -114,9 +114,9 @@
 }
 
 .cap-m-corner-label {
-  font-size: calc(10px * var(--type-scale, 1));
+  font-size: var(--t3-fs);
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: var(--legacy-ls-4);
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -124,15 +124,15 @@
 .cap-m-colhead {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: calc(13px * var(--type-scale, 1));
+  gap: var(--space-cell);
+  font-size: var(--tb-box-body-fs);
   font-weight: 700;
   color: var(--ink);
   line-height: 1.3;
 }
 
 .cap-m-colhead + .cap-m-colhead {
-  border-left: 1px solid var(--line);
+  border-left: var(--stroke-1) solid var(--line);
 }
 
 .cap-peer-name {
@@ -145,20 +145,20 @@
 .cap-m-key {
   display: flex;
   align-items: flex-start;
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   font-weight: 700;
   color: var(--muted);
   line-height: 1.45;
 }
 
 .cap-m-cell {
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   line-height: 1.45;
   color: var(--ink);
 }
 
 .cap-m-cell + .cap-m-cell {
-  border-left: 1px solid var(--line);
+  border-left: var(--stroke-1) solid var(--line);
 }
 
 .cap-m-cell strong {
@@ -175,7 +175,7 @@
 }
 
 .cap-line + .cap-line {
-  margin-top: 2px;
+  margin-top: var(--space-hairline);
 }
 
 /* Qualifier under a rule line (parenthetical) — reads after the rule. */
@@ -184,17 +184,17 @@
 }
 
 .cap-beat + .cap-beat {
-  margin-top: 8px;
+  margin-top: var(--space-cell);
 }
 
 /* Sub-lens key inside a cell: same key grammar as the Lens column
    (muted, bold) so key vs value stays consistent across the matrix. */
 .cap-k {
   display: block;
-  margin-bottom: 2px;
-  font-size: calc(11px * var(--type-scale, 1));
+  margin-bottom: var(--space-hairline);
+  font-size: var(--vis-meta);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--legacy-ls-5);
   line-height: 1.3;
   color: var(--muted);
 }
@@ -210,22 +210,22 @@
 .cap-links {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .cap-link {
   min-width: 0;
-  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  border: var(--arrowhead) solid color-mix(in srgb, var(--line) 80%, transparent);
   border-radius: var(--card-radius);
   background: transparent;
-  padding: 12px 14px;
+  padding: var(--space-3) var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-cell);
 }
 
 .cap-link-head {
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   font-weight: 700;
   color: var(--ink);
   line-height: 1.3;
@@ -238,7 +238,7 @@
 
 .cap-link-body {
   margin: 0;
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   line-height: 1.45;
   color: var(--muted);
 }
@@ -258,7 +258,7 @@
   align-self: flex-start;
   color: var(--accent);
   text-decoration: none;
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   font-weight: 600;
   line-height: 1.35;
   white-space: nowrap;
@@ -269,19 +269,19 @@
 }
 
 .cap-thin:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 2px;
+  outline: var(--stroke-2) solid var(--accent);
+  outline-offset: var(--space-hairline);
+  border-radius: var(--radius-s);
 }
 
 /* One dashed strip: framework limit + practice + see-also. */
 .cap-see {
   margin: 0;
-  padding: 10px 14px;
-  border: 1px dashed var(--dash);
+  padding: var(--space-3) var(--space-4);
+  border: var(--stroke-1) dashed var(--dash);
   border-radius: var(--card-radius);
   background: transparent;
-  font-size: calc(12px * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   line-height: 1.45;
   color: var(--muted);
   align-items: flex-start;
@@ -293,7 +293,7 @@
   align-items: baseline;
   flex: 1;
   min-width: 0;
-  row-gap: 2px;
+  row-gap: var(--space-hairline);
 }
 
 /* Leading · comes from visuals.css (.cap-see-bits > span::before). */
