@@ -122,4 +122,10 @@ Approval is `changes/<pr-number>.yml`, or `changes/<branch-name>.yml` when there
 - an entry matches nothing (stale text, stale file, stale locator, or a typo)
 - the YAML file is missing while the diff has a removal or a change
 
+## Type literals
+
+`tools/check-type-literals.py` fails when a served stylesheet or HTML `<style>` / `style=""` uses a `font-weight` or `line-height` value that is not `var(...)`, a `calc()` of variables only, or `inherit` / `normal` / `initial` / `unset`. Comments are ignored. The scan covers `_shared` (except `tokens.css` and `tokens-core.css`), each pack's `draft-v1-linked` tree, `homepage/*.html`, and `site`. `design/archive/` is skipped.
+
+Hits are keyed by path, normalised selector, property, value, and occurrence, not by line number. `tools/type-literals-baseline.tsv` lists the current hits with class `DRIFT`, `GAP`, or `EXCEPTION`. A hit missing from that file fails. A `DRIFT` or `GAP` row that no longer matches also fails, so a fixed literal has to be deleted from the baseline and the allowlist only shrinks. `EXCEPTION` rows may stay. `--report` prints counts per pack. `--write-baseline` rewrites the file from the tree and keeps the class of every key that is still present; a new key is `DRIFT`.
+
 Stdout and `$GITHUB_STEP_SUMMARY` get a Markdown table: the five counts, then each moved, changed, removed, and added row with old text, new text, file, locator, `approved: <source>` or `UNAPPROVED`, and `moved_from` / `moved_to` for a move. The same rows are written to `incremental-report.csv`. CI uploads that file as an artifact. Publish checks run on every pull request, with no path filter. A passing run with no such rows prints the counts and exits 0 without a YAML file.

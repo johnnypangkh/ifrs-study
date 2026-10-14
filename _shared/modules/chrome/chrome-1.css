@@ -248,12 +248,6 @@ h4[id] {
   letter-spacing: 0;
   font-weight: var(--t2-fw);
 }
-@container chrome (width < 48rem) {
-  .chrome-bar-title .chapter-search {
-    flex: 1 0 100%;
-    min-width: 0;
-  }
-}
 .chapter-search-label {
   display: block;
   margin: 0;

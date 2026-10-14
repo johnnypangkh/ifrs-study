@@ -42,6 +42,8 @@ jobs:
         run: python3 tools/xlsx_to_tokens.py --map-lint-shared
       - name: Owned-token grep
         run: python3 tools/check-owned-tokens.py
+      - name: Fail on new type literals
+        run: python3 tools/check-type-literals.py
       - name: Owned-token check (report only)
         continue-on-error: true
         run: python3 tools/xlsx_to_tokens.py --owned | tee owned-token-report.txt
