@@ -5,7 +5,7 @@ body.embed{margin:0;padding: var(--space-4) var(--space-4);background: var(--bg)
 .map{display:flex;flex-direction:column;gap: var(--space-4);}
 /* Section chips are stadium pills (same as the other maps), including short labels. Width grows for 10.4.5. */
 a.fb-num{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:auto;min-width: calc(var(--space-6) + var(--space-3) + var(--space-hairline));height: calc(var(--space-4) + var(--space-1) + var(--space-hairline));
-  padding: 0 var(--space-cell);border-radius: var(--radius-pill);border: var(--stroke-1) solid var(--legacy-color-6);color: var(--legacy-color-6);text-decoration:none;
+  padding: 0 var(--space-cell);border-radius: var(--radius-pill);border: var(--stroke-1) solid var(--formula);color: var(--formula);text-decoration:none;
   font-size: var(--t3-fs);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:0;line-height:1;
   margin-right: var(--space-cell);vertical-align:middle;flex-shrink:0;white-space:nowrap;}
 .hub{border: var(--stroke-1) solid var(--accent);border-radius: var(--radius-m);padding: var(--space-3) var(--space-4);background: var(--surface);}

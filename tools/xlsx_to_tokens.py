@@ -38,17 +38,19 @@ XLSX = ROOT / "design" / "MASTER-STYLES.xlsx"
 TOKENS = ROOT / "_shared" / "tokens.css"
 TOKENS_CORE = ROOT / "_shared" / "tokens-core.css"
 TYPE_SCALE = ROOT / "_shared" / "type-scale.css"
-# PR5 re-baselines "existing token bytes kept" on the PR4c head, not origin/main.
-# That head already has the logged --page-max value and the mobile-block
-# removals. The only allowed diff is the five PR5 additions.
-TOKEN_BASE = "e21ff95b9043089d9db7d388d4ab84a5301e54c4"
-PR5_ADDED = (
-    "--arrowhead",
-    "--rail-w",
-    "--flow-gut",
-    "--col-min",
-    "--cell-min",
+# Theme PR #123 re-baselines "existing token bytes kept" on 991c601, the
+# head before the cite day values and --control-border. That commit already
+# has the PR5 additions, the logged --page-max value, and the mobile-block
+# removals. The only allowed diff is the two Colour day values and the new
+# --control-border declarations.
+TOKEN_BASE = "991c601af410956bbcc07c9daffaff6d7138be30"
+CITE_DAY_REBASE = (
+    ("--cite-pwc", "#a65b35", "#9f5732"),
+    ("--cite-ey", "#8a7320", "#7e691d"),
 )
+CONTROL_BORDER = "--control-border"
+# :root, prefers-color-scheme, [data-theme=dark], scoped dark, scoped light.
+CONTROL_BORDER_COUNT = 5
 # Default off. --mobile turns the archived 560 blocks back on (RESTORE step 1).
 MOBILE = False
 PAGE_MAX_BASE = "61.25rem"
@@ -464,10 +466,10 @@ def build_parts(wb):
         day.append(line(str(row["Token prefix"]), font_value, 2))
     day.extend(type_scale_desktop_lines(text_rows))
 
-    if len(night) != 43:
-        raise SystemExit(f"expected 43 night colours, found {len(night)}")
-    if len(colour_day) != 43:
-        raise SystemExit(f"expected 43 day colours, found {len(colour_day)}")
+    if len(night) != 44:
+        raise SystemExit(f"expected 44 night colours, found {len(night)}")
+    if len(colour_day) != 44:
+        raise SystemExit(f"expected 44 day colours, found {len(colour_day)}")
     return day, mobile, night, scale, colour_day
 
 
@@ -628,6 +630,7 @@ def baseline_stop(day, mobile, night, scale):
     generated_root = dict(parse_decl_lines(day))
     generated_mobile = dict(parse_decl_lines(mobile)) if mobile else {}
     generated_night = dict(parse_decl_lines(night))
+    cite_rebase = {name: (old, new) for name, old, new in CITE_DAY_REBASE}
     problems = []
     for name, value in base["root"]:
         got = generated_root.get(name)
@@ -649,6 +652,12 @@ def baseline_stop(day, mobile, night, scale):
             and value.strip() == CARD_RADIUS_BASE
             and (got or "").strip() == CARD_RADIUS_HEAD
         ):
+            continue
+        if name in cite_rebase:
+            old, new = cite_rebase[name]
+            if value.strip() == old and (got or "").strip() == new:
+                continue
+            problems.append(f":root {name} base={value!r} generated={got!r}")
             continue
         if got is None or got.strip() != value.strip():
             problems.append(f":root {name} base={value!r} generated={got!r}")
@@ -786,14 +795,30 @@ def fold_mobile_bytes(css):
     )
 
 
+def fold_cite_day(css):
+    """TOKEN_BASE still has the pre-approval day hex. Freeze the new values.
+
+    Each name occurs twice: :root and the scoped light block.
+    """
+    for name, old, new in CITE_DAY_REBASE:
+        src = f"{name}: {old};"
+        dst = f"{name}: {new};"
+        count = css.count(src)
+        if count != 2:
+            return None
+        css = css.replace(src, dst)
+    return css
+
+
 def existing_tokens_kept(css):
-    """Bytes at TOKEN_BASE, plus only the five PR5 additions.
+    """Bytes at TOKEN_BASE, plus the two cite day values and --control-border.
 
     The comparison is `git show <base>:_shared/tokens.css`, not origin/main.
-    TOKEN_BASE is the PR4c head, so the page-max value and the mobile-block
-    removals are already in the base file. The only allowed diff is the five
-    new declarations, in PR5 order. The settings-page fallback after
-    GUARD_MARK is outside this compare.
+    TOKEN_BASE is 991c601, so the PR5 additions are already in the base file.
+    The cite day hexes are folded onto that file. --control-border is stripped
+    from the generated file; it is the one new declaration, repeated in the
+    five colour blocks. The settings-page fallback after GUARD_MARK is
+    outside this compare.
     """
     base = git_at(TOKEN_BASE, "_shared/tokens.css")
     head = css
@@ -809,19 +834,22 @@ def existing_tokens_kept(css):
     base = base[:base_mark]
     if not base.endswith("\n"):
         base += "\n"
+    base = fold_cite_day(base)
+    if base is None:
+        return False, "cite day rebase did not find each base hex twice"
     kept = []
     removed = []
     for item in head.splitlines(keepends=True):
         stripped = item.strip()
         name = stripped.split(":", 1)[0]
-        if name in PR5_ADDED:
+        if name == CONTROL_BORDER:
             removed.append(name)
             continue
         kept.append(item)
-    if removed != list(PR5_ADDED):
+    if removed != [CONTROL_BORDER] * CONTROL_BORDER_COUNT:
         return False, (
-            "PR5 additions were " + ", ".join(removed)
-            + "; expected " + ", ".join(PR5_ADDED)
+            "control-border declarations were " + str(len(removed))
+            + "; expected " + str(CONTROL_BORDER_COUNT)
         )
     head = "".join(kept)
     if head != base:
@@ -1316,7 +1344,7 @@ def check_settings(wb, day, mobile, night, colour_day, css):
     scoped_light = _selector_decls(css, '.settings-preview[data-theme="light"]')
     if scoped_light != colour_decls:
         failed = True
-        print("SCOPED LIGHT DOES NOT MATCH THE 43 DAY COLOURS")
+        print("SCOPED LIGHT DOES NOT MATCH THE 44 DAY COLOURS")
     xlsx_grid = {str(row.get("Token")): row for row in sheet_rows(wb, "Grid")}
     for name in NEW_GRID_ORDER:
         row = xlsx_grid.get(name)

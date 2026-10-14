@@ -9,7 +9,7 @@
   margin: 0 var(--stroke-2);
   padding: var(--stroke-1) var(--space-2);
   border-radius: var(--rail-bar-l);
-  border: var(--stroke-1) solid var(--legacy-color-6);
+  border: var(--stroke-1) solid var(--cite-official);
   font-family: var(--cite-font);
   font-size: var(--cite-size);
   font-weight: var(--cite-weight);
@@ -28,11 +28,11 @@
   text-transform: none;
   opacity: 1;
 }
-.cite-official { color: var(--cite-official); background: var(--cite-official-soft); border-color: var(--legacy-color-6); }
-.cite-pwc { color: var(--cite-pwc); background: var(--cite-pwc-soft); border-color: var(--legacy-color-7); }
-.cite-dtt { color: var(--cite-dtt); background: var(--cite-dtt-soft); border-color: var(--legacy-color-8); }
-.cite-kpmg { color: var(--cite-kpmg); background: var(--cite-kpmg-soft); border-color: var(--legacy-color-9); }
-.cite-ey { color: var(--cite-ey); background: var(--cite-ey-soft); border-color: var(--legacy-color-10); }
+.cite-official { color: var(--cite-official); background: var(--cite-official-soft); border-color: var(--cite-official); }
+.cite-pwc { color: var(--cite-pwc); background: var(--cite-pwc-soft); border-color: var(--cite-pwc); }
+.cite-dtt { color: var(--cite-dtt); background: var(--cite-dtt-soft); border-color: var(--cite-dtt); }
+.cite-kpmg { color: var(--cite-kpmg); background: var(--cite-kpmg-soft); border-color: var(--cite-kpmg); }
+.cite-ey { color: var(--cite-ey); background: var(--cite-ey-soft); border-color: var(--cite-ey); }
 .cite-extract {
   display: inline;
   font-size: var(--t-meta);

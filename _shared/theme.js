@@ -1,38 +1,4 @@
-/* CF draft theme — night-only. Always force data-theme=dark.
-   Storage: force localStorage cf-draft-theme="dark" (migrates/clears any light|system|other). */
-(function () {
-  var KEY = "cf-draft-theme";
-  var root = document.documentElement;
-
-  function forceDark() {
-    root.setAttribute("data-theme", "dark");
-    try {
-      localStorage.setItem(KEY, "dark");
-    } catch (e) {}
-  }
-
-  forceDark();
-
-  /* Idempotent: no .theme-toggle wiring (button removed from chrome). */
-  window.cfDraftTheme = {
-    apply: function () {
-      forceDark();
-    },
-    toggle: function () {
-      forceDark();
-    },
-    stored: function () {
-      return "dark";
-    },
-    resolved: function () {
-      return "dark";
-    }
-  };
-
-  window.addEventListener("storage", function (e) {
-    if (e.key === KEY) forceDark();
-  });
-})();
+/* Theme: follows prefers-color-scheme via tokens.css; nothing forced here (THEME row #74). */
 
 /* Embed: tell parent chapter the content height so iframe can auto-fit.
    Script is in <head>, so body may be null at parse time — defer embed check

@@ -315,6 +315,27 @@ CF_FLOOR_PAGES = (
     "cf-2018/draft-v1-linked/ch09.html",
     "cf-2018/draft-v1-linked/ch10.html",
 )
+# Row #74 THEME removes data-theme="dark" from the eleven CF 2018 visual
+# roots (T2). The stamp gate treats that attribute as non-content. Any
+# other HTML change on those pages still fails.
+CF_THEME_VISUALS = (
+    "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html",
+    "cf-2018/draft-v1-linked/visuals/ch02-qualitative-characteristics.html",
+    "cf-2018/draft-v1-linked/visuals/ch03-reporting-entity.html",
+    "cf-2018/draft-v1-linked/visuals/ch04-elements.html",
+    "cf-2018/draft-v1-linked/visuals/ch05-recognition-derecognition.html",
+    "cf-2018/draft-v1-linked/visuals/ch06-measurement.html",
+    "cf-2018/draft-v1-linked/visuals/ch07-presentation-disclosure.html",
+    "cf-2018/draft-v1-linked/visuals/ch08-capital.html",
+    "cf-2018/draft-v1-linked/visuals/ch09-combined.html",
+    "cf-2018/draft-v1-linked/visuals/ch10-carve.html",
+    "cf-2018/draft-v1-linked/visuals/ch11-status.html",
+)
+
+
+def fold_cf_theme(html):
+    """Drop the forced night attribute on a CF visual root. Idempotent."""
+    return html.replace('<html lang="en" data-theme="dark">', '<html lang="en">', 1)
 
 
 def fold_cf2018_pr7(html, path):
@@ -414,6 +435,9 @@ def main():
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)
+        if path in CF_THEME_VISUALS:
+            base_n = fold_cf_theme(base_n)
+            head_n = fold_cf_theme(head_n)
         if path == HOME:
             if LINK not in head:
                 print("homepage is missing the Settings link")

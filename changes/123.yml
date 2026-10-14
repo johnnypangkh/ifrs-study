@@ -1,0 +1,127 @@
+# PR #123 THEME changes record. Row #74. Branch cursor/theme-follow-os-4ddd.
+# Base 89d40eb6efc3.
+#
+# No teaching-text rows. tools/check-incremental.py rejects a top-level
+# mapping, so this record is comments. The checker sees no removed,
+# changed, or added teaching entries. removed is empty.
+#
+# row: 74
+# base: 89d40eb6efc3
+# approvals:
+#   - theme job, option B (OS preference, no toggle), Johnny via PM 4, 2026-10-14 16:14
+#   - design ruling B, Master Design 2026-10-14 13:28, Johnny confirm 2026-10-14 16:14
+#   - stamp-only restamp approval (T4), Johnny via PM 4, 2026-10-14 16:14
+#   - stamp-gate fold in tools/check-stamp-only.py, recorded like PR5 rule 11a, Johnny via PM 4 T4 2026-10-14 16:14
+#   - model grok-4.7 high, Johnny via PM 4, 2026-10-14 16:14
+#   - PM 4 gate PASS 2026-10-14 16:14
+# changed:
+#   - _shared/theme.js L1-35 replaced by one comment line (T1). Embed notifier L37-end byte-identical.
+#   - cf-2018/draft-v1-linked/visuals/ch01-objective-users.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch02-qualitative-characteristics.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch03-reporting-entity.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch04-elements.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch05-recognition-derecognition.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch06-measurement.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch07-presentation-disclosure.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch08-capital.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch09-combined.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch10-carve.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch11-status.html L2 (T2)
+#   - cf-2018/VISUAL-TYPES.md lock lines: old L132-136, old L162, and the night-only mentions at old L4, L175, L265 (T5)
+#   - T3 token swaps (existing day/night tokens only):
+#       - _shared/modules/chrome/chrome-1.css .chrome-home-sep: color var(--line) -> var(--muted). The slash is text. Day --line on --bg is 1.45:1. Day --muted on --bg is 5.00:1.
+#       - cf-2018/draft-v1-linked/visuals/ch03-reporting-entity.css .re-see-note: color var(--dash) -> var(--muted). Day --dash on the card fill is 2.19 to 2.56:1.
+#       - cf-2018/draft-v1-linked/visuals/ch07-presentation-disclosure.css .pd-kicker-soft, .pd-soft, .pd-cue, .pd-levels-tag, .pd-see .see-bit > span: color var(--dash) -> var(--muted). Same reason.
+#       - cf-2018/draft-v1-linked/visuals/ch09-combined.css, ch10-carve.css, ch11-status.css a.fb-num: border and color var(--legacy-color-6) -> var(--formula). --formula is var(--accent), the shared chip token in components-5.css. Day legacy blue on --accent-soft is 1.84:1. Day --accent on --accent-soft is 5.89:1.
+#       - _shared/cite.css and _shared/modules/visuals/cite-1.css cite chip border: var(--legacy-color-6) through var(--legacy-color-10) -> the matching var(--cite-official), var(--cite-pwc), var(--cite-dtt), var(--cite-kpmg), var(--cite-ey). Day pale borders on the soft fills are 1.57 to 2.03:1. The firm token on its own soft fill is above 3:1 (lowest day pair is cite-ey at 4.04:1). Text colours of the chips are unchanged.
+# added:
+#   - path: design/archive/theme-2026-10-14/theme.js
+#     bytes: 2391
+#     sha256: b9b13473972c4bd08a2e5ccdae3f0c24131c0347ca2bd4188c99cccafc8cb291
+#   - path: design/archive/theme-2026-10-14/VISUAL-TYPES.md
+#     bytes: 41515
+#     sha256: 7fd616380be9cfd3a0791bbf46435176c88b44e15e299cdbf8ac5e4b6ddc6c81
+# stamp_only:
+#   - _shared/chrome-include.js V: b1d952d43597 -> a1d54e6efe0c (sha256 of the new theme.js), then a1d54e6efe0c -> d68b2deac47c (sha256 of chrome.css after the chrome-1.css import restamp, so the shared bundle cache key moves with the T3 chrome colour). L18 include unchanged.
+#   - _shared/last-update.js: cf2018, ias16, ias2, ifrs18 re-dated Last update · 2026-10-14 16:39 HKT. site stamp unchanged (2026-10-13 22:34 HKT).
+#   - chrome-include.js?v=c6d6a94536e3 -> c06dd748f8a1 -> 0409bc62338c on the 44 pack pages that already carried that query.
+#   - last-update.js?v=9d28eb85e750 -> 273a04578bd7 -> ebb285b4e60f on the 45 pages that load it, including site/settings/index.html.
+#   - theme.js?v=ias2-fit-20261001 -> a1d54e6efe0c on the 8 IAS 16 visuals and the 7 IAS 2 visuals. The shared bundle then loads theme.js?v=d68b2deac47c through V. The fifteen visual src queries stay a1d54e6efe0c.
+#   - cite.css?v=1f565a258e8d -> 12adbc6851fa on every page that already carried that query.
+#   - chrome.css import chrome-1.css?v=ab11fdd62c25 -> 174ad22037a4.
+#   - visuals.css import cite-1.css?v=c009cf70abf2 -> 3066edb355ff.
+#   - ch03-reporting-entity.css?v=43c885ac7332 -> 4bcee8aed580; iframe ?v=a7f1fa20b547 -> 14f349d2e739.
+#   - ch07-presentation-disclosure.css?v=f212505fbc6e -> c443070b7c3c; iframe ?v=4332810128bc -> 94c675224ea9.
+#   - ch09-combined.css?v=062f3bbc9b20 -> aab7c07e87f7; iframe ?v=5430ae966f67 -> 7a2e04f65199.
+#   - ch10-carve.css?v=88e486053d55 -> c65f1e07052a; iframe ?v=ba62126ada92 -> 6f4a326df0eb.
+#   - ch11-status.css?v=4cf0d8abb6c6 -> 9023f124724b; iframe ?v=8bd60b9b9fb1 -> 6e39c6d23849.
+#   - CF chapter iframe ?v= restamped to the new visual file hash (ch01-ch11).
+#   - IAS 16 chapter and index iframe ?v= restamped by tools/stamp-assets.py.
+#   - IAS 2 chapter and index iframe ?v= restamped to the new visual file hash.
+#   - CF and IFRS 18 visual theme.js src strings have no ?v= and were not given one.
+#   - T3 stop, no token fitted, not swapped: cite-ey text 4.04:1 and cite-pwc text 4.32:1 on their soft fills (need 4.5; no darker firm token). --line borders 1.35 to 1.58:1 and --dash borders 2.19 to 2.56:1 in day (need 3:1). --line and --dash are the line tokens; --muted is secondary text and was not used as a stand-in border.
+# removed:
+#
+# Combined fix round. Master Design MASTER-STYLES.xlsx sha256 66fcec0e1f17a94419fbc1025a3457a4b5aefe258e6a443757755ec019a9d019 (24,012 bytes).
+# Colour day only, Johnny via PM 4, 2026-10-14 17:00:
+#   --cite-pwc day #a65b35 → #9f5732. Night #d4895e and --cite-pwc-soft untouched.
+#   --cite-ey day #8a7320 → #7e691d. Night #c4ad5a and --cite-ey-soft untouched.
+# New Colour token, Johnny via PM 4, 2026-10-14 17:06:
+#   --control-border day #7a828c / night #6b7580.
+#   Mapped only onto the sole edge of input#chapterSearch (.chapter-search-input and .chrome-bar.is-shared .chapter-search-input), .view-switch and .chrome-bar.is-shared .view-switch, and .seg.
+#   Decorative --line / --dash dividers stay, including .seg button + button. Homepage search, select, and clear stay on their own palette.
+# Settings 281→282, Johnny via PM 4, 2026-10-14 17:07: one new LIVE Colour row for --control-border. check-settings-rows is 282 tokens.
+# TOKEN_BASE re-baselined from e21ff95b9043089d9db7d388d4ab84a5301e54c4 to 991c601af410956bbcc07c9daffaff6d7138be30.
+#   The frozen-bytes guard folds the two cite day values and strips the five --control-border declarations. xlsx_to_tokens.py --check MATCHES.
+#   The generator's colour count moves 43→44 with that new row.
+# Stamp-only restamps (T4 already approved), because tokens.css, settings.css, and chrome-1.css changed:
+#   _shared/chrome.css import chrome-1.css?v=174ad22037a4 → 0ceb7a47201f.
+#   _shared/chrome-include.js V: d68b2deac47c → 0afc94f00086 (sha256 of chrome.css after that import).
+#   chrome-include.js?v=0409bc62338c → fdafce901701.
+#   tokens.css?v=6fd4d3713e70 → a04ec47e17ee. IAS 2 pages were on 847cbb0253a9 and now use a04ec47e17ee.
+#   settings.css?v=67b7c9b9b29b → 56b1854795df on site/settings/index.html.
+#   last-update.js: cf2018, ias16, ias2, ifrs18, and site re-dated Last update · 2026-10-14 17:15 HKT.
+#   last-update.js?v=ebb285b4e60f → 7ba8195dd9b9.
+# No teaching-text edits. theme.js, data-theme, and option B are unchanged. The settings Day/Dark .seg stays the preview selector.
+# Zero removals. The eight changed entries below are the generated Day value cells for the two cite colours (each row is both a cell and its text). Additions are the new --control-border settings row.
+
+- action: changed
+  file: "site/settings/index.html"
+  old: "--cite-pwc Day #a65b35 Night #d4895e"
+  new: "--cite-pwc Day #9f5732 Night #d4895e"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-pwc #9f5732."
+- action: changed
+  file: "site/settings/index.html"
+  old: "--cite-pwc Day #a65b35 Night #d4895e"
+  new: "--cite-pwc Day #9f5732 Night #d4895e"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-pwc #9f5732."
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--cite-pwc Day #a65b35 Night #d4895e"
+  new: "--cite-pwc Day #9f5732 Night #d4895e"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-pwc #9f5732."
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--cite-pwc Day #a65b35 Night #d4895e"
+  new: "--cite-pwc Day #9f5732 Night #d4895e"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-pwc #9f5732."
+- action: changed
+  file: "site/settings/index.html"
+  old: "--cite-ey Day #8a7320 Night #c4ad5a"
+  new: "--cite-ey Day #7e691d Night #c4ad5a"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-ey #7e691d."
+- action: changed
+  file: "site/settings/index.html"
+  old: "--cite-ey Day #8a7320 Night #c4ad5a"
+  new: "--cite-ey Day #7e691d Night #c4ad5a"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-ey #7e691d."
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--cite-ey Day #8a7320 Night #c4ad5a"
+  new: "--cite-ey Day #7e691d Night #c4ad5a"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-ey #7e691d."
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--cite-ey Day #8a7320 Night #c4ad5a"
+  new: "--cite-ey Day #7e691d Night #c4ad5a"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-ey #7e691d."
