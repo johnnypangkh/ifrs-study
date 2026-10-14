@@ -1,0 +1,22 @@
+# PR #122 HK2 changes record. Row #73. Branch hk2-docs-archive.
+# Base 602f00162431e37703fa698c5fdb9671f9a14b20.
+#
+# No teaching-text rows. tools/check-incremental.py rejects a top-level
+# mapping, so this record is comments. The checker sees no removed,
+# changed, or added teaching entries. removed is empty.
+#
+# row: 73
+# base: 602f00162431
+# approvals:
+#   - housekeeping step 2, Johnny via PM 4, 2026-10-14 09:46 (branches kept, no prune)
+#   - rulings (a)(b)(c), Johnny via PM 4, 2026-10-14 10:31
+#   - model grok-4.7 high, Johnny via PM 4, 2026-10-14 10:31
+#   - PM 4 gate PASS (PM 4 relay 2026-10-14 10:31)
+# notes: P1 done outside the PR (box + OneDrive refs); repo cf-2018/VISUAL-TYPES.md intentionally left differing at L125/L204. P3 not moved. build-last-update.py fingerprints every file under each pack draft-v1-linked tree and all of _shared. Moving any of the 27 Tier 1 notes changes that fingerprint and the script rewrites Last update stamps (cf2018, and for the six _shared notes every pack). Brief rule 2: no restamp; STOP and report. Notes returned to their original paths. Rule 5 grep, also not edited: _shared/README.md links CHROME-MODULE-DESIGN-2026-10-02.md, OPUS-KEY-REITERATIONS-CF-IFRS18-2026-10-02.md, OPUS-REVIEW-BRIEF-CF-IFRS18-2026-10-02.md; cf-2018/draft-v1-linked/references.html names CF-XREF-BIG4-TO-OFFICIAL-2026-10-01.md and CF-XREF-OFFICIAL-TO-BIG4-2026-10-01.md.
+# moved:
+#   - {from: design/archive/mobile-2026-10-13/skill-wording.md, to: design/archive/mobile-2026-10-13/skill-wording.abridged-rebuild.md, item: P2}
+# added:
+#   - path: design/archive/mobile-2026-10-13/skill-wording.md
+#     bytes: 7225
+#     sha256: 4f9f845086671af2b3f6aeeaae815f7affb4537c633ea17c599fc1781fa0f9fe
+# removed:
