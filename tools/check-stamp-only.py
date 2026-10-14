@@ -461,6 +461,39 @@ def fold_cite_order(html):
     return "".join(parts)
 
 
+# Row #42 A1–A6, Johnny 2026-10-14 21:39
+# Exact approved <li> lines, cite chips included. Not a general addition rule.
+ROW42_A1_A6_LINES = {
+    'ias-16/draft-v1-linked/ch03.html': (
+        '  <li><strong>Start-up of a new network (PwC).</strong> When an operator builds a new mobile network in a new territory, costs of setting up the new business as a whole are not part of the cost of the network assets, even if they are incurred while the network is being built. Only costs of constructing the physical assets, such as transmitter towers, are capitalised. <span class="cite cite-official">IAS 16 · para 20</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 Ch22 · FAQ 22.22.5</span></li>',
+        '  <li><strong>Share-based payment (KPMG).</strong> The cost of employee benefits incurred for employees working directly on constructing or acquiring the asset includes share-based payment transactions, so that cost is directly attributable to the asset. <span class="cite cite-official">IAS 16 · para 17(a)</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.2 · 3.2.30.40</span></li>',
+        '  <li><strong>Foreign currency decommissioning liability (KPMG).</strong> IFRS is not clear on foreign exchange gains and losses from retranslating a decommissioning provision. In KPMG\'s view the liability is monetary to the extent it will be settled in a fixed or determinable number of currency units, and only that part is retranslated. An entity chooses a policy, applied consistently, to recognise those gains and losses either in P&amp;L or as an adjustment to the cost of the related asset. <span class="cite cite-official">IAS 21 · para 23</span> <span class="cite cite-official">IFRIC 1 · para 5–6</span> <span class="cite cite-kpmg"><span class="cite-house">KPMG</span> Insights 2019/20 · 3.2 · 3.2.80.25–40</span></li>',
+    ),
+    'ias-16/draft-v1-linked/ch02.html': (
+        '  <li><strong>Surface mine stripping (IFRIC 20 see-also).</strong> Production stripping costs that improve access to a specific part of an ore body are added as a component of an existing asset; other routine stripping costs are inventory production costs. Detail is outside this pack. <span class="cite cite-official">IFRIC 20 · para 10</span> <span class="cite cite-official">IAS 16 · para 43</span> <span class="cite cite-ey"><span class="cite-house">EY</span> iGAAP 2026 Ch19 · section 3.1.6</span></li>',
+    ),
+    'ias-16/draft-v1-linked/ch04.html': (
+        '  <li><strong>Business combination (PwC).</strong> Measuring an acquired subsidiary\'s PPE at FV in a business combination is not a revaluation, because that FV is the cost to the group. The group\'s existing assets in the same class therefore do not need to be revalued. <span class="cite cite-official">IAS 16 · para 38</span> <span class="cite cite-pwc"><span class="cite-house">PwC</span> MOA 2020 Ch22 · FAQ 22.71.2</span></li>',
+        '  <li><strong>Right-of-use assets (IFRS 16 see-also).</strong> A lessee that applies the revaluation model to a class of PPE may choose to apply it to all ROU assets that relate to that class. Lessee measurement is in IFRS 16. <span class="cite cite-official">IFRS 16 · para 35</span> <span class="cite cite-ey"><span class="cite-house">EY</span> iGAAP 2026 Ch19 · section 6.5</span></li>',
+    ),
+}
+
+
+def fold_row42_a1_a6(base_html, head_html, path):
+    """Ignore only the six approved Row #42 additions on their three pages.
+
+    Row #42 A1–A6, Johnny 2026-10-14 21:39
+    Drop an exact <li> from head only when base does not already contain
+    that same line. Any other byte, a second copy, or removal of the line
+    still differs.
+    """
+    for item in ROW42_A1_A6_LINES.get(path, ()):
+        needle = "\n" + item
+        if needle in head_html and needle not in base_html:
+            head_html = head_html.replace(needle, "", 1)
+    return base_html, head_html
+
+
 def fold_cf2018_pr7(html, path):
     """P7: cost-sum style moved to draft.css; iframe floors became token sums."""
     if path == "cf-2018/draft-v1-linked/ch05.html":
@@ -573,6 +606,9 @@ def main():
         # Johnny 2026-10-14 Option S / PR #124 — stamp gate ignores cite DOM order; check-incremental owns teaching.
         base_n = fold_cite_order(base_n)
         head_n = fold_cite_order(head_n)
+        # Row #42 A1–A6, Johnny 2026-10-14 21:39
+        if path in ROW42_A1_A6_LINES:
+            base_n, head_n = fold_row42_a1_a6(base_n, head_n, path)
         if head_n != base_n and path not in CONTENT_ALLOW:
             print(f"HTML changed outside ?v= and the homepage link: {path}")
             failed = True
