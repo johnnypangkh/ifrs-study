@@ -1,7 +1,7 @@
 # Visual Types for IFRS Learning Pages
 
 **Audience:** Design + Content bots  
-**Status:** Product lock · visuals = storytelling · dashed rare · containment over SmartArt hang · night-only · Concept Map fieldset chrome · no Overview chapter · strip redundant student chrome · § chips mandatory (Ch4 Elements exemplar, was Ch5) · object spacing FAIL gate · consol boundary colour+line grammar (Ch3 exemplar, was Ch4) · contiguous Ch 1…N + Home chrome · CF 2018 = template pack · Content picks TYPE / Design draws · 2026-09-27  
+**Status:** Product lock · visuals = storytelling · dashed rare · containment over SmartArt hang · theme follows OS · Concept Map fieldset chrome · no Overview chapter · strip redundant student chrome · § chips mandatory (Ch4 Elements exemplar, was Ch5) · object spacing FAIL gate · consol boundary colour+line grammar (Ch3 exemplar, was Ch4) · contiguous Ch 1…N + Home chrome · CF 2018 = template pack · Content picks TYPE / Design draws · 2026-09-27  
 **Version:** 2026.09.27-8
 **Rule owner:** Johnny Pang · 2026-09-27 (updated: chrome single-source / review Home depth · 2026.09.27-8; contiguous Ch 1…N · CF Map+1–9 · Home chrome · Overview-topic-retired · superseded 2–10 lock)
 
@@ -129,11 +129,7 @@ Johnny: blue / grey fills on concept maps that do not teach a category are **use
 - Nested / demoted → **containment** (outer + inner). Dashed border is **not** the nest signal (see Line styles / containment lock). Do not paint demotion with decorative grey/blue unless legend-able.
 - Citation chips and contrast What-it-is / trap tokens keep semantic colour (source class / teaching move) — those are not decorative map washes.
 
-### Night mode (Johnny 2026-09-27) → **Night only** (Johnny 2026-09-27 later)
-- **Night only** — drop Day/Night toggle; dark is the sole theme (easier review + product). `assets/theme.js` forces `data-theme="dark"`; ignore/clear light `cf-draft-theme`.
-- Dark theme must preserve **semantic** tokens (ok/warn/cite classes, solid vs dashed). Do not invent new teaching colours for night — only invert chrome/surfaces/ink.
-- Staging stays review-clean (no draft banners).
-- Iframes / chapter visuals inherit the same night-only rule.
+Theme: the site follows the reader's OS colour-scheme preference (prefers-color-scheme). Day is the token default; night is the remap in tokens.css. No theme toggle and no forced data-theme on any page or visual. Every colour comes from tokens with both day and night values (MASTER-STYLES day/night columns), and QC checks both.
 
 ### Legends (Johnny 2026-09-27; placement tightened 2026.09.27-4)
 - **If you need a legend, use it. If you don’t, don’t.** Prefer **no legend** when the graphic is clear (existing Map grammar lock).
@@ -159,7 +155,7 @@ Applies to **every chapter page** (not the site Map jump board).
 - Top-bar tag **Map** = site jump board only — different word space from chapter **Concept Map**.
 - Do **not** put a second “Concept map — …” section-label inside the iframe that restates the outer title. Strip such duplicates. Plate-naming labels that name a real teaching plate (QC hierarchy, Recognition filters, …) may remain; **Start-here** as student chrome is **forbidden** (see Strip redundant student chrome).
 - No uppercase banner band above the box (retired `.visual-label` banner look).
-- No Day theme; night-only; legend grout uses page `--bg` so it breaks the top stroke.
+- Theme: the site follows the reader's OS colour-scheme preference (prefers-color-scheme). Day is the token default; night is the remap in tokens.css. No theme toggle and no forced data-theme on any page or visual. Every colour comes from tokens with both day and night values (MASTER-STYLES day/night columns), and QC checks both. legend grout uses page `--bg` so it breaks the top stroke.
 
 ### If the visual is clear, don’t re-explain — locked 2026-09-27
 - Student-facing chrome must not decode what the graphic already shows (applies to Map grammar legends **and** chapter dual titles).
@@ -172,7 +168,7 @@ Across **Map + all chapter Concept Maps + bodies**, student-facing chrome must t
 - Start-here section labels as student chrome; Tag→chapter catalog grids that duplicate sticky tags; duplicate study-path that only clones Map navigation.
 - Meaningless outer wraps / callouts that only say “use tags below”.
 **Every box/line must teach.** Prefer no legend when the graphic is clear; if a legend is needed, **right-rail** only (not top full-width decode strip) — see Legends.
-**Keep:** fieldset Concept Map sole outer frame; night-only; attach connectors (`.rel-connect`); containment rules.
+**Keep:** fieldset Concept Map sole outer frame; theme follows OS; attach connectors (`.rel-connect`); containment rules.
 
 ### § number chips — Ch4 Elements exemplar (was Ch5) → mandatory (locked 2026.09.27-4)
 - Kit: circular `.fb-num` (or shared `.nx-chip`) on Concept Map nodes, linking to parent chapter `#s-x-y` anchors (`target="_parent"`).
@@ -262,7 +258,7 @@ Colour only with this teaching decode — not decorative rainbow. Peers that are
 - FAIL: dashed SmartArt hang = nest/under; single stem to the gap between kids; Consol/Unconsol hanging under the sub row; “Reporting entity” cast as peer beside Parent/Subsidiary; rainbow / decorative fills that ignore the decode table.
 - PASS (allowed dashed): see-also strips/chips; matrix N/A; **dashed reporting-entity group plate + matching Consol FS card border** when teaching consolidated vs parent-alone (with readable legend or labels).
 
-**Keep from prior locks:** object-spacing (-5); chrome / chips / Overview-topic-retired (-4); single-frame fieldset; night-only; attach connectors (`.rel-connect`); contiguous Ch 1…N + Home (-7).
+**Keep from prior locks:** object-spacing (-5); chrome / chips / Overview-topic-retired (-4); single-frame fieldset; theme follows OS; attach connectors (`.rel-connect`); contiguous Ch 1…N + Home (-7).
 
 ### Matrix / comparison table presentation (Johnny exemplar 2026-09-27)
 When the concept is a **spectrum or multi-criteria compare** (e.g. IAS 37 liability spectrum: Nothing → Contingent liability → Provision → Accrual → Trade payable), prefer this card-grid table — not a plain HTML `<table>` dump and not a flowchart.
