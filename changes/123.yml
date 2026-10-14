@@ -61,3 +61,67 @@
 #   - CF and IFRS 18 visual theme.js src strings have no ?v= and were not given one.
 #   - T3 stop, no token fitted, not swapped: cite-ey text 4.04:1 and cite-pwc text 4.32:1 on their soft fills (need 4.5; no darker firm token). --line borders 1.35 to 1.58:1 and --dash borders 2.19 to 2.56:1 in day (need 3:1). --line and --dash are the line tokens; --muted is secondary text and was not used as a stand-in border.
 # removed:
+#
+# Combined fix round. Master Design MASTER-STYLES.xlsx sha256 66fcec0e1f17a94419fbc1025a3457a4b5aefe258e6a443757755ec019a9d019 (24,012 bytes).
+# Colour day only, Johnny via PM 4, 2026-10-14 17:00:
+#   --cite-pwc day #a65b35 → #9f5732. Night #d4895e and --cite-pwc-soft untouched.
+#   --cite-ey day #8a7320 → #7e691d. Night #c4ad5a and --cite-ey-soft untouched.
+# New Colour token, Johnny via PM 4, 2026-10-14 17:06:
+#   --control-border day #7a828c / night #6b7580.
+#   Mapped only onto the sole edge of input#chapterSearch (.chapter-search-input and .chrome-bar.is-shared .chapter-search-input), .view-switch and .chrome-bar.is-shared .view-switch, and .seg.
+#   Decorative --line / --dash dividers stay, including .seg button + button. Homepage search, select, and clear stay on their own palette.
+# Settings 281→282, Johnny via PM 4, 2026-10-14 17:07: one new LIVE Colour row for --control-border. check-settings-rows is 282 tokens.
+# TOKEN_BASE re-baselined from e21ff95b9043089d9db7d388d4ab84a5301e54c4 to 991c601af410956bbcc07c9daffaff6d7138be30.
+#   The frozen-bytes guard folds the two cite day values and strips the five --control-border declarations. xlsx_to_tokens.py --check MATCHES.
+#   The generator's colour count moves 43→44 with that new row.
+# Stamp-only restamps (T4 already approved), because tokens.css, settings.css, and chrome-1.css changed:
+#   _shared/chrome.css import chrome-1.css?v=174ad22037a4 → 0ceb7a47201f.
+#   _shared/chrome-include.js V: d68b2deac47c → 0afc94f00086 (sha256 of chrome.css after that import).
+#   chrome-include.js?v=0409bc62338c → fdafce901701.
+#   tokens.css?v=6fd4d3713e70 → a04ec47e17ee. IAS 2 pages were on 847cbb0253a9 and now use a04ec47e17ee.
+#   settings.css?v=67b7c9b9b29b → 56b1854795df on site/settings/index.html.
+#   last-update.js: cf2018, ias16, ias2, ifrs18, and site re-dated Last update · 2026-10-14 17:15 HKT.
+#   last-update.js?v=ebb285b4e60f → 7ba8195dd9b9.
+# No teaching-text edits. theme.js, data-theme, and option B are unchanged. The settings Day/Dark .seg stays the preview selector.
+# Zero removals. The eight changed entries below are the generated Day value cells for the two cite colours (each row is both a cell and its text). Additions are the new --control-border settings row.
+
+- action: changed
+  file: "site/settings/index.html"
+  old: "--cite-pwc Day #a65b35 Night #d4895e"
+  new: "--cite-pwc Day #9f5732 Night #d4895e"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-pwc #9f5732."
+- action: changed
+  file: "site/settings/index.html"
+  old: "--cite-pwc Day #a65b35 Night #d4895e"
+  new: "--cite-pwc Day #9f5732 Night #d4895e"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-pwc #9f5732."
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--cite-pwc Day #a65b35 Night #d4895e"
+  new: "--cite-pwc Day #9f5732 Night #d4895e"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-pwc #9f5732."
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--cite-pwc Day #a65b35 Night #d4895e"
+  new: "--cite-pwc Day #9f5732 Night #d4895e"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-pwc #9f5732."
+- action: changed
+  file: "site/settings/index.html"
+  old: "--cite-ey Day #8a7320 Night #c4ad5a"
+  new: "--cite-ey Day #7e691d Night #c4ad5a"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-ey #7e691d."
+- action: changed
+  file: "site/settings/index.html"
+  old: "--cite-ey Day #8a7320 Night #c4ad5a"
+  new: "--cite-ey Day #7e691d Night #c4ad5a"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-ey #7e691d."
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--cite-ey Day #8a7320 Night #c4ad5a"
+  new: "--cite-ey Day #7e691d Night #c4ad5a"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-ey #7e691d."
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--cite-ey Day #8a7320 Night #c4ad5a"
+  new: "--cite-ey Day #7e691d Night #c4ad5a"
+  source: "Johnny via PM 4, 2026-10-14 17:00. Colour day --cite-ey #7e691d."

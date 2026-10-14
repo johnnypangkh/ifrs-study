@@ -271,7 +271,7 @@ h4[id] {
   min-height: var(--legacy-w-45);
   text-transform: none;
   letter-spacing: 0;
-  border: var(--stroke-1) solid var(--line, #3a4553);
+  border: var(--stroke-1) solid var(--control-border, #3a4553);
   border-radius: var(--space-1);
   padding: var(--space-2) var(--legacy-pad-3);
   background: var(--bg, #12151a);
@@ -376,7 +376,7 @@ h4[id] {
   align-items: stretch;
   flex: 0 0 auto;
   padding: var(--stroke-2);
-  border: var(--stroke-1) solid var(--line);
+  border: var(--stroke-1) solid var(--control-border);
   border-radius: var(--card-radius);
   background: var(--band);
   gap: 0;
@@ -502,7 +502,7 @@ header.chrome-bar.is-shared {
   margin: 0;
   padding: var(--stroke-2);
   gap: var(--stroke-2);
-  border: var(--stroke-1) solid var(--line);
+  border: var(--stroke-1) solid var(--control-border);
   border-radius: var(--card-radius);
   background: var(--band);
 }
@@ -586,7 +586,7 @@ header.chrome-bar.is-shared {
   height: var(--legacy-w-21);
   margin: 0;
   padding: 0 var(--legacy-pad-16) 0 var(--legacy-pad-15);
-  border: var(--stroke-1) solid var(--line);
+  border: var(--stroke-1) solid var(--control-border);
   border-radius: var(--card-radius);
   background: var(--surface);
   color: var(--ink);

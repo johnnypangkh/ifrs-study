@@ -31,7 +31,7 @@
 
 .seg {
   display: inline-flex;
-  border: var(--stroke-1) solid var(--line);
+  border: var(--stroke-1) solid var(--control-border);
   border-radius: var(--card-radius);
   overflow: hidden;
 }
