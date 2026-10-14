@@ -1,0 +1,49 @@
+# PR #123 THEME changes record. Row #74. Branch cursor/theme-follow-os-4ddd.
+# Base 89d40eb6efc3.
+#
+# No teaching-text rows. tools/check-incremental.py rejects a top-level
+# mapping, so this record is comments. The checker sees no removed,
+# changed, or added teaching entries. removed is empty.
+#
+# row: 74
+# base: 89d40eb6efc3
+# approvals:
+#   - theme job, option B (OS preference, no toggle), Johnny via PM 4, 2026-10-14 16:14
+#   - design ruling B, Master Design 2026-10-14 13:28, Johnny confirm 2026-10-14 16:14
+#   - stamp-only restamp approval (T4), Johnny via PM 4, 2026-10-14 16:14
+#   - stamp-gate fold in tools/check-stamp-only.py, recorded like PR5 rule 11a, Johnny via PM 4 T4 2026-10-14 16:14
+#   - model grok-4.7 high, Johnny via PM 4, 2026-10-14 16:14
+#   - PM 4 gate PASS 2026-10-14 16:14
+# changed:
+#   - _shared/theme.js L1-35 replaced by one comment line (T1). Embed notifier L37-end byte-identical.
+#   - cf-2018/draft-v1-linked/visuals/ch01-objective-users.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch02-qualitative-characteristics.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch03-reporting-entity.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch04-elements.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch05-recognition-derecognition.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch06-measurement.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch07-presentation-disclosure.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch08-capital.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch09-combined.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch10-carve.html L2 (T2)
+#   - cf-2018/draft-v1-linked/visuals/ch11-status.html L2 (T2)
+#   - cf-2018/VISUAL-TYPES.md lock lines: old L132-136, old L162, and the night-only mentions at old L4, L175, L265 (T5)
+#   - T3 token swaps: none
+# added:
+#   - path: design/archive/theme-2026-10-14/theme.js
+#     bytes: 2391
+#     sha256: b9b13473972c4bd08a2e5ccdae3f0c24131c0347ca2bd4188c99cccafc8cb291
+#   - path: design/archive/theme-2026-10-14/VISUAL-TYPES.md
+#     bytes: 41515
+#     sha256: 7fd616380be9cfd3a0791bbf46435176c88b44e15e299cdbf8ac5e4b6ddc6c81
+# stamp_only:
+#   - _shared/chrome-include.js V: b1d952d43597 -> a1d54e6efe0c (sha256 of the new theme.js). L18 include unchanged.
+#   - _shared/last-update.js: cf2018, ias16, ias2, ifrs18 re-dated Last update · 2026-10-14 16:22 HKT. site stamp unchanged (2026-10-13 22:34 HKT).
+#   - chrome-include.js?v=c6d6a94536e3 -> c06dd748f8a1 on the 44 pack pages that already carried that query.
+#   - last-update.js?v=9d28eb85e750 -> 273a04578bd7 on the 45 pages that load it, including site/settings/index.html.
+#   - theme.js?v=ias2-fit-20261001 -> a1d54e6efe0c on the 8 IAS 16 visuals and the 7 IAS 2 visuals.
+#   - CF chapter iframe ?v= restamped to the new visual file hash (ch01-ch11).
+#   - IAS 16 chapter and index iframe ?v= restamped by tools/stamp-assets.py.
+#   - IAS 2 chapter and index iframe ?v= restamped to the new visual file hash.
+#   - CF and IFRS 18 visual theme.js src strings have no ?v= and were not given one.
+# removed:
