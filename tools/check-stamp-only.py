@@ -338,6 +338,129 @@ def fold_cf_theme(html):
     return html.replace('<html lang="en" data-theme="dark">', '<html lang="en">', 1)
 
 
+# Johnny 2026-10-14 Option S / PR #124 — stamp gate ignores cite DOM order; check-incremental owns teaching.
+CITE_HOUSE_RANK = (
+    ("cite-official", 0),
+    ("cite-pwc", 1),
+    ("cite-dtt", 2),
+    ("cite-ey", 3),
+    ("cite-kpmg", 4),
+)
+
+
+def _is_span_open(html, index):
+    if not html.startswith("<span", index):
+        return False
+    if index + 5 >= len(html):
+        return True
+    return html[index + 5] in " \t\r\n>/"
+
+
+def _tag_end(html, index):
+    """Index just after the '>' of the tag that starts at index."""
+    quote = None
+    cursor = index
+    length = len(html)
+    while cursor < length:
+        char = html[cursor]
+        if quote:
+            if char == quote:
+                quote = None
+            cursor += 1
+            continue
+        if char in "\"'":
+            quote = char
+            cursor += 1
+            continue
+        if char == ">":
+            return cursor + 1
+        cursor += 1
+    return length
+
+
+def _span_close(html, open_end):
+    """Exclusive end of the span whose opening tag ended at open_end."""
+    depth = 1
+    cursor = open_end
+    length = len(html)
+    while cursor < length and depth:
+        if _is_span_open(html, cursor):
+            cursor = _tag_end(html, cursor)
+            depth += 1
+            continue
+        if html.startswith("</span>", cursor):
+            depth -= 1
+            cursor += len("</span>")
+            continue
+        cursor += 1
+    return cursor
+
+
+def _class_tokens(open_tag):
+    match = re.search(r"""\bclass\s*=\s*(?:"([^"]*)"|'([^']*)')""", open_tag)
+    if not match:
+        return []
+    return (match.group(1) if match.group(1) is not None else match.group(2)).split()
+
+
+def _cite_house_rank(classes):
+    """Rank of a .cite chip. None when the span is not a chip."""
+    if "cite" not in classes:
+        return None
+    for name, rank in CITE_HOUSE_RANK:
+        if name in classes:
+            return rank
+    return 5
+
+
+def fold_cite_order(html):
+    """Sort each run of adjacent .cite spans by house. Idempotent.
+
+    Johnny 2026-10-14 Option S / PR #124 — stamp gate ignores cite DOM order; check-incremental owns teaching.
+    Official, then PwC, DTT, EY, KPMG, then any other cite-* class.
+    Chips of the same house keep their relative order. Whitespace between
+    chips in a run becomes one space. A chip's own text and classes stay.
+    """
+    parts = []
+    index = 0
+    length = len(html)
+    while index < length:
+        if not _is_span_open(html, index):
+            parts.append(html[index])
+            index += 1
+            continue
+        open_end = _tag_end(html, index)
+        rank = _cite_house_rank(_class_tokens(html[index:open_end]))
+        if rank is None:
+            parts.append(html[index])
+            index += 1
+            continue
+        chips = []
+        cursor = index
+        run_end = index
+        while cursor < length and _is_span_open(html, cursor):
+            chip_open_end = _tag_end(html, cursor)
+            chip_rank = _cite_house_rank(_class_tokens(html[cursor:chip_open_end]))
+            if chip_rank is None:
+                break
+            chip_end = _span_close(html, chip_open_end)
+            chips.append((chip_rank, html[cursor:chip_end]))
+            run_end = chip_end
+            gap = chip_end
+            while gap < length and html[gap] in " \t\r\n":
+                gap += 1
+            if gap >= length or not _is_span_open(html, gap):
+                break
+            next_open_end = _tag_end(html, gap)
+            if _cite_house_rank(_class_tokens(html[gap:next_open_end])) is None:
+                break
+            cursor = gap
+        ordered = [raw for _, raw in sorted(chips, key=lambda item: item[0])]
+        parts.append(" ".join(ordered))
+        index = run_end
+    return "".join(parts)
+
+
 def fold_cf2018_pr7(html, path):
     """P7: cost-sum style moved to draft.css; iframe floors became token sums."""
     if path == "cf-2018/draft-v1-linked/ch05.html":
@@ -447,6 +570,9 @@ def main():
             # an older base still compares equal.
             head_n = head_n.replace(LINK, "", 1)
             base_n = base_n.replace(LINK, "", 1)
+        # Johnny 2026-10-14 Option S / PR #124 — stamp gate ignores cite DOM order; check-incremental owns teaching.
+        base_n = fold_cite_order(base_n)
+        head_n = fold_cite_order(head_n)
         if head_n != base_n and path not in CONTENT_ALLOW:
             print(f"HTML changed outside ?v= and the homepage link: {path}")
             failed = True
