@@ -7,24 +7,24 @@
 (function () {
   var STAMPS = {
     "cf2018": {
-      "text": "Last update · 2026-10-14 16:22 HKT",
-      "iso": "2026-10-14T16:22:00+08:00",
-      "fingerprint": "baab9edbb9eaef0ac8594455ca3bcba8e8ffd0c0fd1366751581318228a5dc96"
+      "text": "Last update · 2026-10-14 16:39 HKT",
+      "iso": "2026-10-14T16:39:00+08:00",
+      "fingerprint": "05b150509dce7bc46e0f65a70fe613ce71463847079060546ca50966c60ff6d0"
     },
     "ias16": {
-      "text": "Last update · 2026-10-14 16:22 HKT",
-      "iso": "2026-10-14T16:22:00+08:00",
-      "fingerprint": "6a2209f2cf2a791b6c72d68190bf34447de0e2d2ba8db7c043e8932d5783639e"
+      "text": "Last update · 2026-10-14 16:39 HKT",
+      "iso": "2026-10-14T16:39:00+08:00",
+      "fingerprint": "048b95c3a1ab945045e7b92cca4fc81d41ce2937593b3d2c559a8faa9378f986"
     },
     "ias2": {
-      "text": "Last update · 2026-10-14 16:22 HKT",
-      "iso": "2026-10-14T16:22:00+08:00",
-      "fingerprint": "fa0bcdc8ecc018f33c6ddf1771a4eea1f4debe7afb7fbe74ef69f1943e8111bf"
+      "text": "Last update · 2026-10-14 16:39 HKT",
+      "iso": "2026-10-14T16:39:00+08:00",
+      "fingerprint": "0ae367c3343ecd397fd8e210ebb280c8cb56424a04554e1c2a936217a9bea7d8"
     },
     "ifrs18": {
-      "text": "Last update · 2026-10-14 16:22 HKT",
-      "iso": "2026-10-14T16:22:00+08:00",
-      "fingerprint": "3053a5d773d487a2c51a2cdcc543dc58266035ef43f51e3ab9381890c9c3894b"
+      "text": "Last update · 2026-10-14 16:39 HKT",
+      "iso": "2026-10-14T16:39:00+08:00",
+      "fingerprint": "15994ad05bde290f9ffb39437c2e67e8853e923025540256c8a12b5e26a20a4d"
     },
     "site": {
       "text": "Last update · 2026-10-13 22:34 HKT",

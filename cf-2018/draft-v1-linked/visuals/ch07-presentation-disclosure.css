@@ -43,7 +43,7 @@
   font-weight: 600;
   letter-spacing: var(--legacy-ls-5);
   text-transform: none;
-  color: var(--dash);
+  color: var(--muted);
 }
 
 /* Shared card grammar: head (chips + title) · body · foot */
@@ -72,8 +72,8 @@
 
 .pd-body { margin: 0; font-size: var(--t2-fs); line-height: 1.45; color: var(--muted); }
 .pd-body strong { color: var(--ink); }
-.pd-soft { color: var(--dash); }
-.pd-cue { margin: 0; font-size: var(--vis-meta); line-height: 1.35; color: var(--dash); }
+.pd-soft { color: var(--muted); }
+.pd-cue { margin: 0; font-size: var(--vis-meta); line-height: 1.35; color: var(--muted); }
 
 /* Goal · trade-off: useful above cost, joined by a two-way balance stem */
 .pd-trade {
@@ -297,7 +297,7 @@
   font-weight: 700;
   letter-spacing: var(--legacy-ls-4);
   text-transform: uppercase;
-  color: var(--dash);
+  color: var(--muted);
 }
 .pd-level {
   padding: var(--space-hairline) var(--space-cell);
@@ -337,7 +337,7 @@
   line-height: 1.35;
   color: var(--muted);
 }
-.pd-see .see-bit > span { font-weight: 400; color: var(--dash); }
+.pd-see .see-bit > span { font-weight: 400; color: var(--muted); }
 
 
 

@@ -472,7 +472,7 @@ header.chrome-bar.is-shared {
   white-space: nowrap;
 }
 .chrome-bar.is-shared .chrome-home::before { content: none; }
-.chrome-bar.is-shared .chrome-home-sep { color: var(--line); margin-inline-start: var(--rail-bar-l); }
+.chrome-bar.is-shared .chrome-home-sep { color: var(--muted); margin-inline-start: var(--rail-bar-l); }
 .chrome-bar.is-shared .chrome-home:hover { color: var(--ink); text-decoration: none; }
 .chrome-bar.is-shared .chrome-brand-label {
   flex: 1 1 auto;

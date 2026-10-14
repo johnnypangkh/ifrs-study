@@ -434,7 +434,7 @@ body.embed {
   line-height: 1.35;
   color: var(--muted);
 }
-.re-see-note { font-weight: 400; color: var(--dash); }
+.re-see-note { font-weight: 400; color: var(--muted); }
 .re-rule {
   padding-top: var(--space-hairline);
 }
