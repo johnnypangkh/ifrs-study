@@ -55,9 +55,11 @@
 # Spec source: PR7-SPEC.md FINAL, IFRS Master Design, rulings 2026-10-14 01:59
 # Model: grok-4.7 xhigh, Johnny via PM 4, 2026-10-14 02:03
 #
+# QC r1 paperwork (render unchanged). Recorded 2026-10-14.
+# Johnny via PM 4, 2026-10-14 08:09 approved the tools/check-stamp-only.py PR7 fold and the tools/tests/test_check_incremental.py update.
+# Brief rule 16. Tool exceptions approved by Johnny via PM 4 2026-10-14 08:09: the tools/check-stamp-only.py PR7 fold and the tools/tests/test_check_incremental.py update.
+#
 # No MASTER-STYLES rows. Settings stay 281/281. tokens.css and tokens-core.css unchanged.
 # TOKEN_BASE not re-baselined.
 # Acceptance is 1280 only, both themes. 922 is recorded in the PR body and is not a gate.
-# Chapter document heights in this font environment miss the absolute section 5 targets.
-# Iframe heights, index, references, and abbreviations match. Values were not tuned.
 # Teaching text is unchanged. No rows below.
