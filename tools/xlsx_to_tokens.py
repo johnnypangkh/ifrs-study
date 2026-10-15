@@ -51,6 +51,10 @@ CITE_DAY_REBASE = (
 CONTROL_BORDER = "--control-border"
 # :root, prefers-color-scheme, [data-theme=dark], scoped dark, scoped light.
 CONTROL_BORDER_COUNT = 5
+# DRIFT PR-1a adds --glyph-lh and --t3-em-fw (Spacing, :root only, once
+# each). They are the allowed :root additions on top of TOKEN_BASE besides
+# --control-border.
+PR1A_ADDED = ("--glyph-lh", "--t3-em-fw")
 # Default off. --mobile turns the archived 560 blocks back on (RESTORE step 1).
 MOBILE = False
 PAGE_MAX_BASE = "61.25rem"
@@ -839,17 +843,26 @@ def existing_tokens_kept(css):
         return False, "cite day rebase did not find each base hex twice"
     kept = []
     removed = []
+    glyph = []
     for item in head.splitlines(keepends=True):
         stripped = item.strip()
         name = stripped.split(":", 1)[0]
         if name == CONTROL_BORDER:
             removed.append(name)
             continue
+        if name in PR1A_ADDED:
+            glyph.append(name)
+            continue
         kept.append(item)
     if removed != [CONTROL_BORDER] * CONTROL_BORDER_COUNT:
         return False, (
             "control-border declarations were " + str(len(removed))
             + "; expected " + str(CONTROL_BORDER_COUNT)
+        )
+    if glyph != list(PR1A_ADDED):
+        return False, (
+            "PR-1a additions were " + str(glyph)
+            + "; expected " + str(list(PR1A_ADDED))
         )
     head = "".join(kept)
     if head != base:

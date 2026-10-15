@@ -1,0 +1,107 @@
+- action: changed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Tb-micro teaching --tb-micro-fs D .6875rem --tb-micro-fw D 600 Inner strip .box-title uppercase tracked"
+  new: "Tb-micro teaching --tb-micro-fs D .6875rem --tb-micro-fw D 600 small meta, legend, kicker in teaching body and visuals"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "Tb-micro teaching --tb-micro-fs D .6875rem --tb-micro-fw D 600 Inner strip .box-title uppercase tracked"
+  new: "Tb-micro teaching --tb-micro-fs D .6875rem --tb-micro-fw D 600 small meta, legend, kicker in teaching body and visuals"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: changed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "--legacy-fw-1 D 800 LEGACY-PR3 teaching.css:1087, visuals.css:2220"
+  new: "--legacy-fw-1 D 800 LEGACY-PR3 teaching.css:1087, visuals.css:2220; PENDING RETIREMENT (Johnny 2026-10-14 23:15: 800 retired, uses → 700; retire after last pack DRIFT PR with grep proof)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: changed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "LEGACY-PR3 teaching.css:1087, visuals.css:2220"
+  new: "LEGACY-PR3 teaching.css:1087, visuals.css:2220; PENDING RETIREMENT (Johnny 2026-10-14 23:15: 800 retired, uses → 700; retire after last pack DRIFT PR with grep proof)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: changed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Inner strip .box-title uppercase tracked"
+  new: "NEW DRIFT PR-1a: inline emphasis/bold runs inside visuals (weight lock 400/600/700)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "--legacy-fw-1 D 800 LEGACY-PR3 teaching.css:1087, visuals.css:2220"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "Inner strip .box-title uppercase tracked"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "LEGACY-PR3 teaching.css:1087, visuals.css:2220"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--glyph-lh D 1 NEW DRIFT PR-1: single-glyph solid leading (operators, arrows, fb-num)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--glyph-lh D 1 NEW DRIFT PR-1: single-glyph solid leading (operators, arrows, fb-num)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--legacy-fw-1 D 800 LEGACY-PR3 teaching.css:1087, visuals.css:2220; PENDING RETIREMENT (Johnny 2026-10-14 23:15: 800 retired, uses → 700; retire after last pack DRIFT PR with grep proof)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--t3-em-fw D 600 NEW DRIFT PR-1a: inline emphasis/bold runs inside visuals (weight lock 400/600/700)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--t3-em-fw D 600 NEW DRIFT PR-1a: inline emphasis/bold runs inside visuals (weight lock 400/600/700)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--glyph-lh D 1"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--glyph-lh D 1"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "--t3-em-fw D 600"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "--t3-em-fw D 600"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "LEGACY-PR3 teaching.css:1087, visuals.css:2220; PENDING RETIREMENT (Johnny 2026-10-14 23:15: 800 retired, uses → 700; retire after last pack DRIFT PR with grep proof)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "NEW DRIFT PR-1: single-glyph solid leading (operators, arrows, fb-num)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "NEW DRIFT PR-1: single-glyph solid leading (operators, arrows, fb-num)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "NEW DRIFT PR-1a: inline emphasis/bold runs inside visuals (weight lock 400/600/700)"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "_shared/settings-rows.html"
+  new: "small meta, legend, kicker in teaching body and visuals"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
+- action: added
+  file: "site/settings/index.html"
+  locator: "Settings"
+  new: "small meta, legend, kicker in teaching body and visuals"
+  source: "ruling Johnny 00:22 via IFRS Website PM 4 gate PASS, Master Design hand-off"
