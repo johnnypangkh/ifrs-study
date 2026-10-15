@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Ch8 Transition — IAS 16</title>
+<link rel="stylesheet" href="../../_shared/tokens.css?v=000000000000">
+<script src="../../_shared/chrome-include.js?v=000000000000"></script>
+<script src="../../_shared/last-update.js?v=000000000000"></script>
+<link rel="stylesheet" href="../../_shared/cite.css?v=000000000000">
+<link rel="stylesheet" href="../../_shared/teaching.css?v=000000000000">
+<link rel="stylesheet" href="assets/shared.css?v=000000000000">
+<link rel="stylesheet" href="assets/draft.css?v=000000000000">
+</head>
+<body data-pack="ias16" data-page="chapter" data-chapter="ch08">
+<!-- chrome:start -->
+<header class="chrome-bar"></header>
+<!-- chrome:end -->
+<main class="page">
+<div class="page-header">
+  <h1 id="chapter-title">Chapter 8 — Transition</h1>
+  <p class="purpose">How IAS 16 amendments apply on first use: what restates and what does not.</p>
+</div>
+
+<section class="visual-section">
+  <fieldset class="visual-fieldset" id="page-map">
+    <legend class="visual-legend">Concept Map</legend>
+    <iframe src="visuals/ch08-transition.html?v=77a0cbd42723" title="IAS 16 transition — prospective vs retrospective" scrolling="no"></iframe>
+  </fieldset>
+</section>
+
+<article class="teaching">
+
+<h3 id="s-8-0">8.0 Overview<a class="sec-top" href="#page-map">top</a></h3>
+<p>Most amendments apply prospectively … <span class="cite cite-official">IAS 16 · para 80A</span></p>
+<aside class="callout see-also"><span class="see-also-strip"><span class="see-label">See also</span> <span class="see-bit"><a href="ch04.html#s-4-1">revaluation model</a></span><span class="see-bit"><a href="ch05.html#s-5-2">ch05.html#s-5-2</a></span></span></aside>
+
+<h3 id="s-8-1">8.1 Proceeds before intended use<a class="sec-top" href="#page-map">top</a></h3>
+<ul>
+  <li>Recognised in profit or loss. <a href="#s-8-0">8.0</a></li>
+</ul>
+<aside class="callout see-also"><span class="see-also-strip"><span class="see-label">See also</span> <span class="see-bit"><a href="#s-8-0">overview</a></span><span class="see-strip-note">not a separate Standard</span></span></aside>
+
+</article>
+
+<!-- disclaimer:start --><aside class="callout pack-disclaimer" id="pack-disclaimer"></aside><!-- disclaimer:end -->
+
+<!-- footer-nav:start -->
+<nav class="footer-nav"></nav>
+<script src="../../_shared/footer-nav.js?v=footer-nav-20261010"></script>
+<!-- footer-nav:end -->
+</main>
+
+</body>
+</html>

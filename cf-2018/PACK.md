@@ -50,15 +50,7 @@ Teaching chapters **Ch1–Ch9** (Objective … Status); Overview **retired**. Al
 
 ## Sticky chrome (single-source)
 
-Config: [`chrome.json`](chrome.json) (pack title, Home, chapter tags).
-
-After chapter add/renumber, edit `chrome.json` then regenerate:
-
-```bash
-node tools/generate-chrome.mjs cf-2018
-```
-
-See [`tools/README.md`](../../tools/README.md). Targets: `draft-v1-linked/` Map + chapters only (not `visuals/`, `_archive*`).
+The top bar is runtime data in `_shared/chrome-packs.js`. `tools/generate-chrome.mjs` wrote the old static bar, including an inline `font-weight:500`, and was archived to `design/archive/generate-chrome-2026-10-15/`. Do not run it. This pack has no `source/` folder yet, so its chapter rows stay as they are in `chrome-packs.js`.
 
 ## Site chrome (2026.09.28-1)
 
