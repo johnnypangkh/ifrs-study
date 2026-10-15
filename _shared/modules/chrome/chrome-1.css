@@ -323,7 +323,7 @@ h4[id] {
 .chapter-search .search-hit:focus { background: var(--bg, #12151a); outline: none; }
 .chapter-search .search-hit-chapter {
   font-size: var(--t-body);
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
   margin-bottom: var(--space-1);
 }
 .chapter-search .search-hit-sentence {
@@ -336,7 +336,7 @@ h4[id] {
 .chapter-search mark.result-mark {
   color: var(--legacy-color-12);
   background: transparent;
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
 }
 .chapter-search .search-pager {
   display: flex;
@@ -413,7 +413,7 @@ h4[id] {
 .formula-line {
   white-space: nowrap;
   overflow-x: auto;
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
   margin: var(--space-2) 0 var(--space-3);
   line-height: var(--t2-lh);
 }
@@ -474,7 +474,7 @@ header.chrome-bar.is-shared {
   margin: 0;
   color: var(--ink);
   font-size: var(--t-head);
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-9);
   line-height: var(--t0-lh);
   text-decoration: none;
@@ -759,7 +759,7 @@ header.page-header > h1 {
 .chapter-search mark.result-mark {
   color: var(--danger);
   background: transparent;
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
 }
 
 

@@ -174,13 +174,6 @@
   gap: var(--space-1);
   min-height: var(--legacy-w-39);
 }
-.catalog-grid .cat-tag {
-  font-size: var(--t3-fs);
-  font-weight: var(--legacy-fw-1);
-  letter-spacing: var(--legacy-ls-4);
-  text-transform: uppercase;
-  color: var(--accent);
-}
 .catalog-grid .cat-band {
   font-size: var(--t3-fs);
   font-weight: var(--t3-arm-fw);
