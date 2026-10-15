@@ -23,9 +23,9 @@
 
 .cap-board-title {
   font-size: var(--tb-box-body-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   color: var(--ink);
-  line-height: 1.35;
+  line-height: var(--legacy-lh-1);
 }
 
 .cap-board-title a.fb-num,
@@ -53,13 +53,13 @@
   background: var(--bg);
   color: var(--ink);
   font-size: var(--t2-fs);
-  font-weight: 600;
-  line-height: 1.4;
+  font-weight: var(--tb-micro-fw);
+  line-height: var(--t2-lh);
   white-space: normal;
 }
 
 .cap-plate-legend strong {
-  font-weight: 700;
+  font-weight: var(--t1-fw);
 }
 
 /* Shared-lens matrix. One object: hairline rules, no cell gap. */
@@ -115,7 +115,7 @@
 
 .cap-m-corner-label {
   font-size: var(--t3-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-4);
   text-transform: uppercase;
   color: var(--muted);
@@ -126,9 +126,9 @@
   align-items: center;
   gap: var(--space-cell);
   font-size: var(--tb-box-body-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   color: var(--ink);
-  line-height: 1.3;
+  line-height: var(--t1-lh);
 }
 
 .cap-m-colhead + .cap-m-colhead {
@@ -146,14 +146,14 @@
   display: flex;
   align-items: flex-start;
   font-size: var(--t2-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   color: var(--muted);
-  line-height: 1.45;
+  line-height: var(--tb-body-lh);
 }
 
 .cap-m-cell {
   font-size: var(--t2-fs);
-  line-height: 1.45;
+  line-height: var(--tb-body-lh);
   color: var(--ink);
 }
 
@@ -162,7 +162,7 @@
 }
 
 .cap-m-cell strong {
-  font-weight: 700;
+  font-weight: var(--t1-fw);
 }
 
 .cap-m-cell em {
@@ -193,9 +193,9 @@
   display: block;
   margin-bottom: var(--space-hairline);
   font-size: var(--vis-meta);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-5);
-  line-height: 1.3;
+  line-height: var(--t1-lh);
   color: var(--muted);
 }
 
@@ -226,9 +226,9 @@
 
 .cap-link-head {
   font-size: var(--t2-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   color: var(--ink);
-  line-height: 1.3;
+  line-height: var(--t1-lh);
 }
 
 .cap-link-name {
@@ -239,18 +239,18 @@
 .cap-link-body {
   margin: 0;
   font-size: var(--t2-fs);
-  line-height: 1.45;
+  line-height: var(--tb-body-lh);
   color: var(--muted);
 }
 
 .cap-link-body em {
   font-style: italic;
-  font-weight: 600;
+  font-weight: var(--t3-em-fw);
   color: var(--ink);
 }
 
 .cap-link-body strong {
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   color: var(--ink);
 }
 
@@ -259,8 +259,8 @@
   color: var(--accent);
   text-decoration: none;
   font-size: var(--t2-fs);
-  font-weight: 600;
-  line-height: 1.35;
+  font-weight: var(--tb-micro-fw);
+  line-height: var(--legacy-lh-1);
   white-space: nowrap;
 }
 
@@ -282,7 +282,7 @@
   border-radius: var(--card-radius);
   background: transparent;
   font-size: var(--t2-fs);
-  line-height: 1.45;
+  line-height: var(--tb-body-lh);
   color: var(--muted);
   align-items: flex-start;
 }
@@ -300,7 +300,7 @@
 
 .cap-see strong {
   color: var(--ink);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
 }
 
 /* Mid widths: the Lens column gives way first so both peer cells keep room. */

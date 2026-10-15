@@ -11,7 +11,7 @@
   gap: var(--space-cell);
   margin: 0;
 }
-.rc-board-title { margin-bottom: var(--space-3); font-size: var(--tb-box-body-fs); font-weight: 700; color: var(--ink); line-height: 1.35; }
+.rc-board-title { margin-bottom: var(--space-3); font-size: var(--tb-box-body-fs); font-weight: var(--t1-fw); color: var(--ink); line-height: var(--legacy-lh-1); }
 .rc-board-title a.fb-num,
 .rc-head a.fb-num,
 .rc-peer-head a.fb-num,
@@ -46,11 +46,11 @@
   padding: var(--space-3) var(--space-4) var(--space-4);
 }
 .rc-test--definition { display: flex; flex-direction: column; justify-content: center; gap: var(--space-cell); }
-.rc-q { font-size: var(--t1-fs); font-weight: 700; color: var(--ink); line-height: 1.3; }
+.rc-q { font-size: var(--t1-fs); font-weight: var(--t1-fw); color: var(--ink); line-height: var(--t1-lh); }
 .rc-sub {
   margin: 0;
   font-size: var(--t2-fs);
-  line-height: 1.4;
+  line-height: var(--t2-lh);
   color: var(--muted);
 }
 .rc-test--useful > .rc-head { margin-bottom: var(--space-3); }
@@ -84,8 +84,8 @@
   text-align: center;
   align-self: center;
   font-size: var(--mt-op-fs);
-  font-weight: 700;
-  line-height: 1;
+  font-weight: var(--t1-fw);
+  line-height: var(--glyph-lh);
   color: var(--formula);
 }
 .rc-fund .rc-op { grid-column: 2; grid-row: 1 / 5; }
@@ -101,13 +101,13 @@
 .rc-name {
   margin: 0;
   font-size: var(--mt-op-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   color: var(--elem-peer);
 }
 .rc-def {
   margin: 0;
   font-size: var(--t2-fs);
-  line-height: 1.4;
+  line-height: var(--t2-lh);
   color: var(--ink);
 }
 .rc-group {
@@ -120,7 +120,7 @@
 .rc-key {
   margin: 0;
   font-size: var(--t3-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-2);
   text-transform: uppercase;
   color: var(--muted);
@@ -128,10 +128,10 @@
 .rc-item {
   margin: 0;
   font-size: var(--t2-fs);
-  line-height: 1.4;
+  line-height: var(--t2-lh);
   color: var(--muted);
 }
-.rc-item strong { color: var(--ink); font-weight: 700; }
+.rc-item strong { color: var(--ink); font-weight: var(--t1-fw); }
 
 .rc-bar {
   display: flex;
@@ -143,7 +143,7 @@
   border-radius: var(--card-radius);
   background: var(--band);
   font-size: var(--t2-fs);
-  line-height: 1.4;
+  line-height: var(--t2-lh);
   color: var(--ink);
 }
 .rc-bar--plain::before {
@@ -174,14 +174,14 @@
 .rc-leaf-name {
   margin: 0;
   font-size: var(--t1-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
 }
 .rc-leaf--yes .rc-leaf-name { color: var(--ink); }
 .rc-leaf--no .rc-leaf-name { color: var(--muted); }
 .rc-leaf-body {
   margin: 0;
   font-size: var(--t2-fs);
-  line-height: 1.4;
+  line-height: var(--t2-lh);
   color: var(--muted);
 }
 
@@ -191,8 +191,8 @@
 .rc-link-label {
   margin: 0;
   font-size: var(--vis-meta);
-  font-weight: 600;
-  line-height: 1.35;
+  font-weight: var(--t3-tag-fw);
+  line-height: var(--legacy-lh-1);
   color: var(--muted);
 }
 .rc-link-label strong { color: var(--ink); }
@@ -265,5 +265,5 @@
   background: var(--surface);
   padding: var(--space-3) var(--space-3);
 }
-.rc-cell-name { margin: 0; font-size: var(--tb-box-body-fs); font-weight: 700; color: var(--ink); line-height: 1.3; }
-.rc-cell-body { margin: 0; font-size: var(--t2-fs); line-height: 1.4; color: var(--muted); }
+.rc-cell-name { margin: 0; font-size: var(--tb-box-body-fs); font-weight: var(--t1-fw); color: var(--ink); line-height: var(--t1-lh); }
+.rc-cell-body { margin: 0; font-size: var(--t2-fs); line-height: var(--t2-lh); color: var(--muted); }

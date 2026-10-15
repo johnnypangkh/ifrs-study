@@ -108,5 +108,31 @@ class TypeLiteralTests(unittest.TestCase):
             self.assertEqual(rel, before[0]["path"])
 
 
+class HomepageExcludeTests(unittest.TestCase):
+    def test_excluded_wireframe_is_ignored_and_live_homepage_is_scanned(self):
+        style = "<style>\nbody { line-height: 1.4; }\n</style>\n"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            homepage = root / "homepage"
+            homepage.mkdir()
+            for name in (
+                "_shot-search-demo.html",
+                "homepage-wireframe-v0.html",
+                "homepage-wireframe-v0.1.before-7c.html",
+            ):
+                (homepage / name).write_text(style, encoding="utf-8")
+            (homepage / "homepage-wireframe-v0.1.html").write_text(style, encoding="utf-8")
+            (homepage / "how-these-notes-are-made.html").write_text(style, encoding="utf-8")
+            hits = guard.scan_tree(root)
+            paths = {hit["path"] for hit in hits}
+            self.assertEqual(
+                paths,
+                {
+                    "homepage/homepage-wireframe-v0.1.html",
+                    "homepage/how-these-notes-are-made.html",
+                },
+            )
+
+
 if __name__ == "__main__":
     unittest.main()

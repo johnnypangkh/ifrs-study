@@ -494,6 +494,39 @@ def fold_row42_a1_a6(base_html, head_html, path):
     return base_html, head_html
 
 
+# Johnny 00:22 via PM 4 (Q-e). One-time deletion of the three CF iframe-floor
+# <style> blocks. The id and the rule text both have to match. Any other
+# edit on those pages, and any other <style> removal, still fails.
+CF_IFRAME_FLOOR_BLOCKS = {
+    "cf-2018/draft-v1-linked/ch03.html": (
+        '<style id="ch03-iframe-floor">\n'
+        '.visual-section iframe[src*="ch03-reporting-entity"]'
+        "{min-height: calc(15 * var(--space-6));}\n"
+        "</style>\n"
+    ),
+    "cf-2018/draft-v1-linked/ch09.html": (
+        '<style id="ch09-iframe-floor">\n'
+        '.visual-section iframe[src*="ch09-combined"]'
+        "{min-height: calc(17 * var(--space-6) + var(--space-4));}\n"
+        "</style>\n"
+    ),
+    "cf-2018/draft-v1-linked/ch10.html": (
+        '<style id="ch10-iframe-floor">\n'
+        '.visual-section iframe[src*="ch10-carve"]'
+        "{min-height: calc(17 * var(--space-6) + var(--space-4));}\n"
+        "</style>\n"
+    ),
+}
+
+
+def fold_cf_iframe_floors(html, path):
+    """Drop one approved floor block. Idempotent, and only on an exact match."""
+    block = CF_IFRAME_FLOOR_BLOCKS.get(path)
+    if block and block in html:
+        return html.replace(block, "", 1)
+    return html
+
+
 def fold_cf2018_pr7(html, path):
     """P7: cost-sum style moved to draft.css; iframe floors became token sums."""
     if path == "cf-2018/draft-v1-linked/ch05.html":
@@ -563,11 +596,11 @@ def logic_same(base, head):
     return mask(base) == mask(head)
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--base", default="origin/main")
     parser.add_argument("--csv")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     failed = False
     rows = []
     for path in git_paths(args.base):
@@ -580,8 +613,10 @@ def main():
             failed = True
             continue
         head = file.read_text(encoding="utf-8")
-        base_n = fold_cf2018_pr7(fold_style_media(fold_viewport(norm(base))), path)
-        head_n = fold_cf2018_pr7(fold_style_media(fold_viewport(norm(head))), path)
+        base_n = fold_cf_iframe_floors(norm(base), path)
+        head_n = fold_cf_iframe_floors(norm(head), path)
+        base_n = fold_cf2018_pr7(fold_style_media(fold_viewport(base_n)), path)
+        head_n = fold_cf2018_pr7(fold_style_media(fold_viewport(head_n)), path)
         if path == MAP_NARROW:
             base_n = fold_map_narrow(base_n)
             head_n = fold_map_narrow(head_n)

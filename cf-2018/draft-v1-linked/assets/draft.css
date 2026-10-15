@@ -15,7 +15,7 @@
 .teaching h3 .sec-no {
   flex: 0 0 calc(var(--space-6) + var(--space-4) + var(--space-hairline) + var(--stroke-1) / 2);
   font-variant-numeric: tabular-nums;
-  font-weight: 700;
+  font-weight: var(--t1-fw);
 }
 
 .teaching h3 .sec-title { flex: 1 1 auto; min-width: 0; }
@@ -44,20 +44,25 @@ article.teaching .cost-sum-term {
   background: var(--surface);
   color: var(--ink);
   padding: var(--space-cell) var(--space-3);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   font-size: var(--t1-fs);
-  line-height: 1.35;
+  line-height: var(--legacy-lh-1);
 }
 article.teaching .cost-sum-op {
   flex: 0 0 auto;
   align-self: center;
   color: var(--formula, var(--accent));
   font-size: var(--mt-op-fs);
-  font-weight: 800;
-  line-height: 1;
+  font-weight: var(--t1-fw);
+  line-height: var(--glyph-lh);
 }
 article.teaching .cost-sum-result {
   border-width: var(--stroke-2);
   border-color: var(--ink);
 }
 
+
+/* CF iframe floors (moved from page <style>, DRIFT PR-1) */
+.visual-section iframe[src*="ch03-reporting-entity"]{min-height: calc(15 * var(--space-6));}
+.visual-section iframe[src*="ch09-combined"]{min-height: calc(17 * var(--space-6) + var(--space-4));}
+.visual-section iframe[src*="ch10-carve"]{min-height: calc(17 * var(--space-6) + var(--space-4));}

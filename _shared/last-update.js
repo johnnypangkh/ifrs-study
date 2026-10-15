@@ -7,9 +7,9 @@
 (function () {
   var STAMPS = {
     "cf2018": {
-      "text": "Last update · 2026-10-15 00:25 HKT",
-      "iso": "2026-10-15T00:25:00+08:00",
-      "fingerprint": "68158f727d534900e8d0c9a69b775af3daed64e52d44d6f0dc6f76833c1bf8fa"
+      "text": "Last update · 2026-10-15 09:34 HKT",
+      "iso": "2026-10-15T09:34:00+08:00",
+      "fingerprint": "45f3237e5bb97fb5e90bde9b7fde28d9fe3b4610cdda1165c9e3f782b6444ecf"
     },
     "ias16": {
       "text": "Last update · 2026-10-15 00:25 HKT",
