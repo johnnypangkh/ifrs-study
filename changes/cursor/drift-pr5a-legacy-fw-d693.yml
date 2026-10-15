@@ -1,4 +1,0 @@
-# DRIFT PR-5a. check-incremental reports no teaching-text removal or change
-# (settings specimen rows are not teaching items; CSS and token edits are
-# not HTML teaching text). No action rows: a row that matches nothing fails
-# the checker.

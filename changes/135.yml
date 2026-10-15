@@ -1,0 +1,177 @@
+- action: changed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Cite teaching --cite-size D .6875rem --cite-weight D 300 Cite chip .cite/.cite-house"
+  new: "Cite teaching --cite-size D .6875rem --cite-weight D 400 Cite chip .cite/.cite-house"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "Cite teaching --cite-size D .6875rem --cite-weight D 300 Cite chip .cite/.cite-house"
+  new: "Cite teaching --cite-size D .6875rem --cite-weight D 400 Cite chip .cite/.cite-house"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: changed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "--cite-weight D 300"
+  new: "--cite-weight D 400"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: changed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Legacy (PR3, to retire in PR4-7) - 152"
+  new: "Legacy (PR3, to retire in PR4-7) - 149"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "--cite-weight D 300"
+  new: "--cite-weight D 400"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: changed
+  file: "_shared/settings-rows.html"
+  old: "Legacy (PR3, to retire in PR4-7) - 152"
+  new: "Legacy (PR3, to retire in PR4-7) - 149"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "--legacy-fw-1 D 800 LEGACY-PR3 teaching.css:1087, visuals.css:2220; PENDING RETIREMENT (Johnny 2026-10-14 23:15: 800 retired, uses → 700; retire after last pack DRIFT PR with grep proof)"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "--legacy-fw-1 D 800 LEGACY-PR3 teaching.css:1087, visuals.css:2220; PENDING RETIREMENT (Johnny 2026-10-14 23:15: 800 retired, uses → 700; retire after last pack DRIFT PR with grep proof)"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "--legacy-fw-2 D 500 LEGACY-PR3 visuals.css:2022, cite.css:39"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "--legacy-fw-2 D 500 LEGACY-PR3 visuals.css:2022, cite.css:39"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "--legacy-fw-3 D 650 LEGACY-PR3 chrome.css:334, chrome.css:347, chrome.css:424, chrome.css:485, chrome.css:792"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "--legacy-fw-3 D 650 LEGACY-PR3 chrome.css:334, chrome.css:347, chrome.css:424, chrome.css:485, chrome.css:792"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "fw - 3"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "fw - 3"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "--legacy-fw-1 D 800"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "--legacy-fw-1 D 800"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "--legacy-fw-2 D 500"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "--legacy-fw-2 D 500"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "--legacy-fw-3 D 650"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "--legacy-fw-3 D 650"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "Inventories are measured at the lower of cost and NRV"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "LEGACY-PR3 chrome.css:334, chrome.css:347, chrome.css:424, chrome.css:485, chrome.css:792"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "LEGACY-PR3 chrome.css:334, chrome.css:347, chrome.css:424, chrome.css:485, chrome.css:792"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "LEGACY-PR3 teaching.css:1087, visuals.css:2220; PENDING RETIREMENT (Johnny 2026-10-14 23:15: 800 retired, uses → 700; retire after last pack DRIFT PR with grep proof)"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "LEGACY-PR3 teaching.css:1087, visuals.css:2220; PENDING RETIREMENT (Johnny 2026-10-14 23:15: 800 retired, uses → 700; retire after last pack DRIFT PR with grep proof)"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "_shared/settings-rows.html"
+  old: "LEGACY-PR3 visuals.css:2022, cite.css:39"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
+- action: removed
+  file: "site/settings/index.html"
+  locator: "Settings"
+  old: "LEGACY-PR3 visuals.css:2022, cite.css:39"
+  source: "ruling Johnny 2026-10-15 20:46 via IFRS Website PM 4, Master Design hand-off PR-5a"
