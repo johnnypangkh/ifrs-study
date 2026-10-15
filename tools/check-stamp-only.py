@@ -548,6 +548,29 @@ def fold_cf2018_pr7(html, path):
     return html
 
 
+IAS16_REFERENCES = "ias-16/draft-v1-linked/references.html"
+IAS16_MUTED_SPAN = (
+    '<span style="color:var(--muted)">'
+    "(studied via HKAS 16 on box inputs; site label IAS 16 only)</span>"
+)
+IAS16_MUTED_CLASS = (
+    '<span class="muted">'
+    "(studied via HKAS 16 on box inputs; site label IAS 16 only)</span>"
+)
+
+
+def fold_ias16_references_muted(html, path):
+    """Treat the one approved references span as class=muted.
+
+    Only that exact span is folded. Any other edit on the page still fails.
+    """
+    if path != IAS16_REFERENCES:
+        return html
+    if IAS16_MUTED_SPAN not in html:
+        return html
+    return html.replace(IAS16_MUTED_SPAN, IAS16_MUTED_CLASS, 1)
+
+
 def fold_utility_styles(html):
     """Swap the three approved utility styles into classes. Idempotent."""
 
@@ -623,6 +646,8 @@ def main(argv=None):
         if path in UTILITY_PAGES:
             base_n = fold_utility_styles(base_n)
             head_n = fold_utility_styles(head_n)
+        base_n = fold_ias16_references_muted(base_n, path)
+        head_n = fold_ias16_references_muted(head_n, path)
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)

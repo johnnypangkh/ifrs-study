@@ -137,5 +137,69 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertIn("ch01.html", output)
 
 
+class Ias16ReferencesMutedFoldTests(unittest.TestCase):
+    SPAN = stamp.IAS16_MUTED_SPAN
+    CLASS = stamp.IAS16_MUTED_CLASS
+    PAGE = stamp.IAS16_REFERENCES
+
+    def run_gate(self, root, base_files):
+        def git_text(rev, path):
+            if path == "_shared/last-update.js":
+                return LAST_UPDATE
+            return base_files[path]
+
+        def git_paths(rev):
+            return list(base_files)
+
+        original_root = stamp.ROOT
+        original_text = stamp.git_text
+        original_paths = stamp.git_paths
+        stamp.ROOT = root
+        stamp.git_text = git_text
+        stamp.git_paths = git_paths
+        buffer = io.StringIO()
+        try:
+            with redirect_stdout(buffer):
+                code = stamp.main(["--base", "fixture"])
+        finally:
+            stamp.ROOT = original_root
+            stamp.git_text = original_text
+            stamp.git_paths = original_paths
+        return code, buffer.getvalue()
+
+    def write_tree(self, root, files):
+        for rel, text in files.items():
+            path = root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        last = root / "_shared" / "last-update.js"
+        last.parent.mkdir(parents=True, exist_ok=True)
+        last.write_text(LAST_UPDATE, encoding="utf-8")
+
+    def test_the_one_span_swap_passes(self):
+        import tempfile
+
+        base = {self.PAGE: page(f"Teaching. {self.SPAN}")}
+        head = {self.PAGE: page(f"Teaching. {self.CLASS}")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_any_other_teaching_edit_fails(self):
+        import tempfile
+
+        base = {self.PAGE: page(f"Teaching. {self.SPAN}")}
+        head = {self.PAGE: page(f"Teachinx. {self.CLASS}")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn("references.html", output)
+
+
 if __name__ == "__main__":
     unittest.main()
