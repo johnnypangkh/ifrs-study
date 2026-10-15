@@ -10,6 +10,8 @@
 
 .teaching h3:not(:first-child) { margin-top: var(--space-5); }
 
+.teaching .muted { color: var(--muted); }
+
 
 /* Body line boxes: stacked .box peers need air (gap 0 = FAIL); title is a
    text line with inline cite chips, not the visuals' flex title row. */
@@ -19,17 +21,17 @@
   display: block;
   margin: 0 0 var(--space-cell);
   font-size: var(--tb-box-body-fs);
-  line-height: 1.6;
+  line-height: var(--tb-box-title-lh);
   color: var(--ink);
 }
 
 .teaching > .box > .box-body {
   font-size: var(--tb-box-body-fs);
-  line-height: 1.45;
+  line-height: var(--tb-body-lh);
   color: var(--ink);
 }
 
-.teaching .worked-strip-title { line-height: 1.6; }
+.teaching .worked-strip-title { line-height: var(--tb-box-title-lh); }
 
 
 /* Illustration titles: FULL chips stay; strong title on its own line so chips
@@ -97,8 +99,8 @@
   overflow: visible;
   text-overflow: clip;
   font-size: var(--tb-box-body-fs);
-  font-weight: 500;
-  line-height: 1.45;
+  font-weight: var(--t2-fw);
+  line-height: var(--tb-body-lh);
   color: var(--ink);
 }
 
@@ -106,7 +108,7 @@
 
 .teaching .point-chip.warn > strong:first-child { color: var(--warn); }
 
-.teaching .callout { line-height: 1.5; }
+.teaching .callout { line-height: var(--tb-body-lh); }
 
 .teaching td ul { margin: 0; padding-left: var(--space-4); }
 
@@ -138,7 +140,7 @@
 /* Body visuals — mini-flows and computation tables (neutral tokens; no ok/warn/danger colour) */
 .vis-title {
   font-size: var(--tb-micro-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-2);
   text-transform: uppercase;
   color: var(--muted);
@@ -160,11 +162,11 @@
   background: var(--surface);
   padding: var(--space-cell) var(--space-3);
   font-size: var(--tb-box-body-fs);
-  line-height: 1.45;
+  line-height: var(--tb-body-lh);
   color: var(--ink);
 }
 
-.mini-step-head { display: block; font-weight: 700; margin: 0 0 var(--space-1); }
+.mini-step-head { display: block; font-weight: var(--t1-fw); margin: 0 0 var(--space-1); }
 
 .mini-out {
   display: block;
@@ -194,8 +196,8 @@
   justify-content: center;
   color: var(--muted);
   font-size: var(--mt-op-fs);
-  font-weight: var(--legacy-fw-1);
-  line-height: 1;
+  font-weight: var(--t1-fw);
+  line-height: var(--glyph-lh);
 }
 
 
@@ -241,8 +243,8 @@
   background: var(--bg);
   color: var(--muted);
   font-size: var(--tb-micro-fs);
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: var(--t1-fw);
+  line-height: var(--t0-lh);
 }
 
 
@@ -258,7 +260,7 @@ body:has(#s-1-0) article.teaching .vis-title,
 body:has(#s-2-0) article.teaching .vis-title,
 body:has(#s-3-0) article.teaching .vis-title,
 body:has(#s-4-0) article.teaching .vis-title {
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   margin: 0 0 var(--space-cell);
 }
 
@@ -282,7 +284,7 @@ body:has(#s-2-0) article.teaching .mini-step-head,
 body:has(#s-3-0) article.teaching .mini-step-head,
 body:has(#s-4-0) article.teaching .mini-step-head {
   display: block;
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   margin-bottom: var(--space-1);
 }
 
@@ -291,7 +293,7 @@ body:has(#s-2-0) article.teaching .mini-arrow,
 body:has(#s-3-0) article.teaching .mini-arrow {
   align-self: center;
   color: var(--accent);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
 }
 
 body:has(#s-1-0) article.teaching .mini-arrow::before,
@@ -328,7 +330,7 @@ body:has(#s-4-0) article.teaching .mini-step {
 body:has(#s-4-0) article.teaching .mini-arrow, body:has(#s-4-0) article.teaching .mini-op {
   align-self: center;
   color: var(--accent);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   flex: 0 0 auto;
 }
 
@@ -353,7 +355,7 @@ body:has(#s-4-0) article.teaching .mini-arm {
   align-items: center;
   gap: var(--space-1);
   color: var(--accent);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
 }
 
 body:has(#s-4-0) article.teaching .mini-bar {

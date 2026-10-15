@@ -51,7 +51,7 @@ body.embed .page {
   min-height: calc(var(--space-6) + var(--space-1));
   color: var(--muted);
   font-size: var(--vis-meta);
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
   width: 100%;
 }
 .stem-shaft {
@@ -60,7 +60,7 @@ body.embed .page {
   min-height: calc(var(--space-2) + var(--space-hairline));
   background: var(--accent);
 }
-.stem-label { text-align: center; line-height: 1.2; }
+.stem-label { text-align: center; line-height: var(--t0-lh); }
 .stem-head {
   width: 0;
   height: 0;
@@ -90,7 +90,7 @@ body.embed .page {
   border: var(--stroke-1) solid var(--dash);
   border-radius: var(--radius-pill);
   font-size: var(--t3-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-5);
   color: var(--muted);
   background: transparent;
@@ -100,7 +100,7 @@ body.embed .page {
 .board-title {
   margin: 0;
   font-size: var(--t1-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -124,7 +124,7 @@ body.embed .page {
 }
 .arm-title {
   margin: 0;
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   font-size: var(--t1-fs);
   display: flex;
   align-items: center;
@@ -133,11 +133,11 @@ body.embed .page {
 .op {
   align-self: center;
   text-align: center;
-  font-weight: var(--legacy-fw-1);
+  font-weight: var(--t1-fw);
   font-size: var(--mt-op-fs);
   letter-spacing: var(--legacy-ls-7);
   color: var(--formula);
-  line-height: 1.15;
+  line-height: var(--t0-lh);
   padding: 0 var(--space-hairline);
   min-width: var(--cell-min);
 }
@@ -158,7 +158,7 @@ body.embed .page {
   background: var(--surface);
   min-width: 0;
 }
-.cell-title { display: flex; align-items: center; flex-wrap: wrap; gap: 0; font-weight: 700; font-size: var(--t2-fs); margin-bottom: var(--space-hairline); }
+.cell-title { display: flex; align-items: center; flex-wrap: wrap; gap: 0; font-weight: var(--t1-fw); font-size: var(--t2-fs); margin-bottom: var(--space-hairline); }
 .cell-body { display: block; color: var(--muted); font-size: var(--vis-meta); }
 
 .missing {
@@ -171,7 +171,7 @@ body.embed .page {
 }
 .missing .cell-title {
   color: var(--muted);
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -196,7 +196,7 @@ body.embed .page {
   font-size: var(--vis-meta);
   background: transparent;
 }
-.see strong { color: var(--see); font-weight: 700; }
+.see strong { color: var(--see); font-weight: var(--t1-fw); }
 
 .disc {
   border-radius: var(--card-radius);
@@ -230,7 +230,7 @@ body.embed .page {
 }
 .q-title {
   margin: 0 0 var(--space-cell);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   font-size: var(--t1-fs);
   display: flex;
   align-items: center;
@@ -288,7 +288,7 @@ body.embed .page {
 .flow-label {
   font-size: var(--vis-meta);
   color: var(--muted);
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -324,7 +324,7 @@ body.embed .page {
 .classes .or {
   align-self: center;
   color: var(--formula);
-  font-weight: var(--legacy-fw-1);
+  font-weight: var(--t1-fw);
   font-size: var(--t2-fs);
   letter-spacing: var(--legacy-ls-5);
 }
@@ -356,21 +356,21 @@ body.embed .page {
   border-radius: var(--card-radius);
   text-align: center;
   font-size: var(--t2-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
 }
 .st-plus {
   text-align: center;
   color: var(--formula);
   font-size: var(--mt-op-fs);
-  font-weight: var(--legacy-fw-1);
-  line-height: 1;
+  font-weight: var(--t1-fw);
+  line-height: var(--glyph-lh);
 }
 .st-list { display: grid; gap: var(--space-1); }
-.st-ask { margin: 0 0 var(--space-cell); color: var(--ink); font-size: var(--vis-meta); font-weight: var(--legacy-fw-3); }
+.st-ask { margin: 0 0 var(--space-cell); color: var(--ink); font-size: var(--vis-meta); font-weight: var(--t1-fw); }
 .st-list .or {
   justify-self: center;
   color: var(--formula);
-  font-weight: var(--legacy-fw-1);
+  font-weight: var(--t1-fw);
   font-size: var(--t2-fs);
   letter-spacing: var(--legacy-ls-5);
 }
@@ -390,7 +390,7 @@ body.embed .page {
   min-height: calc(var(--space-6) + var(--space-4) + var(--space-1));
   color: var(--muted);
   font-size: var(--vis-meta);
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
 }
 /* label sits on the middle of the shaft; the 3px offset keeps it centred
    on the line rather than on line + arrowhead */
@@ -406,7 +406,7 @@ body.embed .page {
   padding: var(--space-hairline) var(--space-1);
   transform: translateY(-50%);
   background: var(--bg);
-  line-height: 1.2;
+  line-height: var(--t0-lh);
   text-align: center;
 }
 .st-fork .st-arm { min-height: calc(2 * var(--space-6) + var(--space-3)); }
@@ -421,7 +421,7 @@ body.embed .page {
   min-width: 0;
   color: var(--muted);
   font-size: var(--vis-meta);
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
 }
 .st-h-label {
   position: absolute;
@@ -434,7 +434,7 @@ body.embed .page {
   transform: translateY(-50%);
   background: var(--bg);
   text-align: center;
-  line-height: 1.2;
+  line-height: var(--t0-lh);
 }
 .st-h-line { display: flex; align-items: center; }
 .st-h-shaft { flex: 1; height: var(--stroke-1); background: var(--dash); }
@@ -518,10 +518,10 @@ body.embed .page {
   align-items: center;
   flex-wrap: wrap;
   gap: 0;
-  font-weight: 700;
+  font-weight: var(--t1-fw);
 }
 .m-head { font-size: var(--t1-fs); }
-.m-name { font-size: var(--t1-fs); font-weight: 700; color: var(--ink); }
+.m-name { font-size: var(--t1-fs); font-weight: var(--t1-fw); color: var(--ink); }
 .m-body,
 .m-row-body,
 .m-arm-def { display: block; color: var(--muted); font-size: var(--vis-meta); line-height: var(--t2-lh); }
@@ -545,10 +545,10 @@ body.embed .page {
   min-height: calc(var(--space-6) + var(--space-3) + var(--space-hairline));
   color: var(--muted);
   font-size: var(--vis-meta);
-  font-weight: var(--legacy-fw-3);
+  font-weight: var(--t1-fw);
 }
 .m-shaft { width: var(--stroke-2); flex: 1; min-height: var(--space-2); background: var(--accent); }
-.m-stem-label { padding: var(--space-hairline) 0; line-height: 1.2; text-align: center; }
+.m-stem-label { padding: var(--space-hairline) 0; line-height: var(--t0-lh); text-align: center; }
 .m-arrow {
   width: 0; height: 0;
   border-left: var(--arrowhead) solid transparent;
@@ -567,7 +567,7 @@ body.embed .page {
   background: var(--surface);
 }
 .m-board-title { font-size: var(--t1-fs); color: var(--ink); }
-.m-eq { color: var(--formula); font-weight: var(--legacy-fw-1); padding: 0 var(--space-1); }
+.m-eq { color: var(--formula); font-weight: var(--t1-fw); padding: 0 var(--space-1); }
 
 .m-arms {
   display: grid;
@@ -596,8 +596,8 @@ body.embed .page {
   min-width: var(--cell-min);
   color: var(--formula);
   font-size: var(--mt-op-fs);
-  font-weight: var(--legacy-fw-1);
-  line-height: 1.1;
+  font-weight: var(--t1-fw);
+  line-height: var(--legacy-lh-2);
 }
 
 .m-plate {
@@ -612,7 +612,7 @@ body.embed .page {
 .m-foot { margin-top: auto; }
 .m-plate-title {
   font-size: var(--t3-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-4);
   text-transform: uppercase;
   color: var(--muted);
@@ -649,8 +649,8 @@ body.embed .page {
   text-align: center;
   color: var(--formula);
   font-size: var(--mt-op-fs);
-  font-weight: var(--legacy-fw-1);
-  line-height: 1;
+  font-weight: var(--t1-fw);
+  line-height: var(--glyph-lh);
 }
 .m-plus + .m-row { border-top: 0; padding-top: 0; }
 .m-sum .m-row { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-hairline); }
@@ -659,7 +659,7 @@ body.embed .page {
 .m-plate .m-out > .fb-num, .m-plate .m-out > .fb-num-range { margin-top: var(--space-hairline); }
 
 /* Decision inside a plate: question, then a centred fork onto two outcomes */
-.m-ask { display: flex; align-items: flex-start; font-size: var(--t2-fs); font-weight: 700; color: var(--ink); line-height: var(--t1-lh); }
+.m-ask { display: flex; align-items: flex-start; font-size: var(--t2-fs); font-weight: var(--t1-fw); color: var(--ink); line-height: var(--t1-lh); }
 .m-ask .fb-num { margin-top: calc(-1 * var(--stroke-1)); }
 .m-dec .st { --st-gut: var(--space-3); }
 .m-dec .st-fork { padding-top: var(--space-3); }
@@ -689,7 +689,7 @@ a.m-cell:hover { border-color: var(--accent); }
   border-radius: var(--card-radius);
   opacity: .78;
 }
-.m-missing .m-row-title { color: var(--muted); font-weight: var(--legacy-fw-3); }
+.m-missing .m-row-title { color: var(--muted); font-weight: var(--t1-fw); }
 .m-strike { text-decoration: line-through; text-decoration-color: var(--dash); }
 .m-missing:hover { opacity: 1; }
 
@@ -708,11 +708,11 @@ a.m-cell:hover { border-color: var(--accent); }
   border-radius: var(--card-radius);
   text-align: center;
   font-size: var(--vis-meta);
-  font-weight: 700;
-  line-height: 1.25;
+  font-weight: var(--t1-fw);
+  line-height: var(--t3-tag-lh);
 }
 .m-term:hover { border-color: var(--accent); }
-.m-minus { align-self: center; color: var(--formula); font-weight: var(--legacy-fw-1); font-size: var(--mt-op-fs); }
+.m-minus { align-self: center; color: var(--formula); font-weight: var(--t1-fw); font-size: var(--mt-op-fs); }
 .m-note { font-style: italic; }
 
 /* Secondaries: lighter frames, no accent */
@@ -732,13 +732,13 @@ a.m-cell:hover { border-color: var(--accent); }
   gap: var(--space-cell);
   align-items: stretch;
 }
-.m-eq-op { align-self: center; color: var(--formula); font-size: var(--mt-op-fs); font-weight: var(--legacy-fw-1); line-height: 1; }
+.m-eq-op { align-self: center; color: var(--formula); font-size: var(--mt-op-fs); font-weight: var(--t1-fw); line-height: var(--glyph-lh); }
 .m-eq-res { border-color: var(--accent); }
 .m-eqn .m-row-title,
 .m-sub .m-row-title { flex-wrap: nowrap; align-items: flex-start; line-height: var(--t1-lh); }
 .m-eqn .m-row-title .fb-num,
 .m-sub .m-row-title .fb-num { margin-top: calc(-1 * var(--stroke-1)); }
-.m-ask-lite { font-weight: var(--legacy-fw-3); color: var(--muted); }
+.m-ask-lite { font-weight: var(--t1-fw); color: var(--muted); }
 /* Part nested after its parent outcome (4.7 under the write-down) */
 .m-sub {
   display: flex;
@@ -794,7 +794,7 @@ a.m-cell:hover { border-color: var(--accent); }
   grid-column: 1 / -1;
   margin: 0 0 var(--space-1);
   font-size: var(--t3-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-4);
   text-transform: uppercase;
   color: var(--muted);
@@ -839,10 +839,10 @@ a.m-cell:hover { border-color: var(--accent); }
   background: var(--accent-soft);
   color: var(--formula);
   font-size: var(--nx-chip-font);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   font-variant-numeric: tabular-nums;
   letter-spacing: var(--legacy-ls-5);
-  line-height: 1;
+  line-height: var(--glyph-lh);
   vertical-align: middle;
   flex-shrink: 0;
 }
@@ -867,15 +867,15 @@ a.m-cell:hover { border-color: var(--accent); }
   border: var(--stroke-1) solid var(--accent);
   border-radius: var(--card-radius);
   font-size: var(--vis-meta);
-  font-weight: var(--legacy-fw-3);
-  line-height: 1.25;
+  font-weight: var(--t1-fw);
+  line-height: var(--t3-tag-lh);
 }
 .st-nrv .nrv-minus {
   align-self: center;
   color: var(--formula);
   font-size: var(--mt-op-fs);
-  font-weight: var(--legacy-fw-1);
-  line-height: 1;
+  font-weight: var(--t1-fw);
+  line-height: var(--glyph-lh);
 }
 .st-nrv .nrv-ask { margin: 0 0 calc(-1 * var(--space-cell)); }
 .st-nrv .cells.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -901,8 +901,8 @@ a.m-cell:hover { border-color: var(--accent); }
   align-self: center;
   color: var(--formula);
   font-size: var(--mt-op-fs);
-  font-weight: var(--legacy-fw-1);
-  line-height: 1;
+  font-weight: var(--t1-fw);
+  line-height: var(--glyph-lh);
 }
 .st-exp .exp-res { border-color: var(--accent); }
 .st-exp .board-title { flex-wrap: nowrap; align-items: flex-start; }
@@ -940,8 +940,8 @@ a.m-cell:hover { border-color: var(--accent); }
   align-self: center;
   color: var(--formula);
   font-size: var(--mt-op-fs);
-  font-weight: var(--legacy-fw-1);
-  line-height: 1;
+  font-weight: var(--t1-fw);
+  line-height: var(--glyph-lh);
 }
 .st-cost .cost-f .see { margin-top: var(--space-cell); }
 .st-cost .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: var(--t1-lh); }
