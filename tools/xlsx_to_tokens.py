@@ -55,6 +55,18 @@ CONTROL_BORDER_COUNT = 5
 # each). They are the allowed :root additions on top of TOKEN_BASE besides
 # --control-border.
 PR1A_ADDED = ("--glyph-lh", "--t3-em-fw")
+# DRIFT PR-5a (Johnny 2026-10-15 20:46 J1/J5) retires the three legacy
+# weights and moves the cite chip weight 300 -> 400. Each base declaration
+# must occur exactly once in TOKEN_BASE :root; nothing else may change.
+PR5A_REMOVED = (
+    "  --legacy-fw-1: 800;\n",
+    "  --legacy-fw-2: 500;\n",
+    "  --legacy-fw-3: 650;\n",
+)
+PR5A_REMOVED_NAMES = {"--legacy-fw-1": "800", "--legacy-fw-2": "500", "--legacy-fw-3": "650"}
+# PR-5a empties the legacy fw group; only that role may be absent.
+PR5A_RETIRED_ROLES = ("fw",)
+PR5A_VALUE = ("  --cite-weight: 300;\n", "  --cite-weight: 400;\n")
 # Default off. --mobile turns the archived 560 blocks back on (RESTORE step 1).
 MOBILE = False
 PAGE_MAX_BASE = "61.25rem"
@@ -657,6 +669,16 @@ def baseline_stop(day, mobile, night, scale):
             and (got or "").strip() == CARD_RADIUS_HEAD
         ):
             continue
+        if name in PR5A_REMOVED_NAMES:
+            if got is None and value.strip() == PR5A_REMOVED_NAMES[name]:
+                continue
+            problems.append(f":root {name} base={value!r} generated={got!r}")
+            continue
+        if name == "--cite-weight" and (got or "").strip() != value.strip():
+            if value.strip() == "300" and (got or "").strip() == "400":
+                continue
+            problems.append(f":root {name} base={value!r} generated={got!r}")
+            continue
         if name in cite_rebase:
             old, new = cite_rebase[name]
             if value.strip() == old and (got or "").strip() == new:
@@ -814,6 +836,16 @@ def fold_cite_day(css):
     return css
 
 
+def fold_pr5a(css):
+    """Drop the 3 retired legacy weights and apply --cite-weight 300 -> 400."""
+    for line in PR5A_REMOVED + (PR5A_VALUE[0],):
+        if css.count(line) != 1:
+            return None
+    for line in PR5A_REMOVED:
+        css = css.replace(line, "")
+    return css.replace(PR5A_VALUE[0], PR5A_VALUE[1])
+
+
 def existing_tokens_kept(css):
     """Bytes at TOKEN_BASE, plus the two cite day values and --control-border.
 
@@ -841,6 +873,9 @@ def existing_tokens_kept(css):
     base = fold_cite_day(base)
     if base is None:
         return False, "cite day rebase did not find each base hex twice"
+    base = fold_pr5a(base)
+    if base is None:
+        return False, "PR-5a fold did not find each legacy-fw / cite-weight line once"
     kept = []
     removed = []
     glyph = []
@@ -1089,6 +1124,8 @@ def _legacy_group(rows, root_map, mobile_map):
     total = 0
     for role in LEGACY_ROLES:
         items = sorted(by_role[role], key=lambda item: item[0])
+        if not items and role in PR5A_RETIRED_ROLES:
+            continue
         if not items:
             raise SystemExit(f"missing legacy role {role}")
         total += len(items)
@@ -1101,9 +1138,10 @@ def _legacy_group(rows, root_map, mobile_map):
                 f'<div class="role">{_legacy_role_text(row)}</div></div>'
             )
             inner.append(_data_row("legacy", left, _legacy_preview(token, role)))
-    if total != 152:
-        raise SystemExit(f"expected 152 legacy rows, found {total}")
-    summary = "Legacy (PR3, to retire in PR4-7) - 152"
+    expected = 152 - len(PR5A_REMOVED_NAMES)  # PR-5a: 152 - 3 retired fw
+    if total != expected:
+        raise SystemExit(f"expected {expected} legacy rows, found {total}")
+    summary = f"Legacy (PR3, to retire in PR4-7) - {expected}"
     body = "\n".join(inner)
     html_row = (
         '<tr class="legacy-wrap"><td colspan="2">'

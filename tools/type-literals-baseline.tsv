@@ -1,7 +1,4 @@
 path	selector	property	value	occurrence	class	line
-_shared/see-also.css	.see-label	font-weight	700	1	DRIFT	11
-_shared/see-also.css	.see-bit	font-weight	600	1	DRIFT	22
-_shared/see-also.css	.see-strip-note	font-weight	400	1	DRIFT	39
 homepage/homepage-wireframe-v0.1.html	body	line-height	1.4	1	DRIFT	32
 homepage/homepage-wireframe-v0.1.html	.page-title	font-weight	650	1	DRIFT	46
 homepage/homepage-wireframe-v0.1.html	.page-title	line-height	1.2	1	DRIFT	48

@@ -31,7 +31,7 @@ article.teaching .cost-sum-op {
   align-self: center;
   color: var(--formula, var(--accent, #7ba3c9));
   font-size: var(--t-head);
-  font-weight: var(--legacy-fw-1);
+  font-weight: var(--t1-fw);
   line-height: var(--mchip-lh);
 }
 

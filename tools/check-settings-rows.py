@@ -15,7 +15,8 @@ CODE = re.compile(r"<code>(--[\w-]+)</code>")
 BEGIN = "<!-- BEGIN SETTINGS ROWS -->"
 END = "<!-- END SETTINGS ROWS -->"
 LEGACY_OPEN = '<details class="legacy-group">'
-LEGACY_SUMMARY = "Legacy (PR3, to retire in PR4-7) - 152"
+# PR-5a retired --legacy-fw-1/2/3: 152 -> 149.
+LEGACY_SUMMARY = "Legacy (PR3, to retire in PR4-7) - 149"
 
 
 def defined_names():

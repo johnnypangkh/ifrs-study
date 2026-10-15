@@ -104,7 +104,6 @@
   --legacy-w-12: 180px;
   --legacy-w-13: 140px;
   --legacy-w-14: 56px;
-  --legacy-fw-1: 800;
   --legacy-color-2: #5a6f7e;
   --legacy-w-15: 46px;
   --legacy-w-16: 22px;
@@ -148,7 +147,6 @@
   --legacy-color-8: #7eb5aa;
   --legacy-color-9: #9aafc4;
   --legacy-color-10: #cfc28a;
-  --legacy-fw-2: 500;
   --legacy-w-36: 150px;
   --legacy-w-37: 110px;
   --legacy-w-38: 52px;
@@ -170,7 +168,6 @@
   --legacy-color-11: rgba(0, 0, 0, 0.45);
   --legacy-shadow-1: 28px;
   --legacy-shadow-2: 10px;
-  --legacy-fw-3: 650;
   --legacy-color-12: #ff5a5a;
   --legacy-ls-9: 0.005em;
   --legacy-w-46: 12rem;
@@ -273,7 +270,7 @@
   --tb-h1-fs: 1.35rem;
   --tb-h1-fw: 700;
   --cite-size: .6875rem;
-  --cite-weight: 300;
+  --cite-weight: 400;
   --tb-box-body-fs: .8125rem;
   --tb-box-body-fw: 400;
   --tb-box-body-lh: 1.45;

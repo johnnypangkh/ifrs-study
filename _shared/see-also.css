@@ -8,7 +8,7 @@
 }
 
 .see-label {
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   color: var(--see);
   white-space: nowrap;
 }
@@ -19,7 +19,7 @@
   vertical-align: baseline;
   overflow-wrap: break-word;
   color: var(--see);
-  font-weight: 600;
+  font-weight: var(--t3-arm-fw);
 }
 
 .see-bit::before {
@@ -36,6 +36,6 @@
 }
 
 .see-strip-note {
-  font-weight: 400;
+  font-weight: var(--t2-fw);
   opacity: .85;
 }
