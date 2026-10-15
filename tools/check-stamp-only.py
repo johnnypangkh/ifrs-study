@@ -590,6 +590,47 @@ IAS2_MUTED_SPAN = '<span style="color:var(--muted)">(HKAS 2 on box inputs)</span
 IAS2_MUTED_CLASS = '<span class="muted">(HKAS 2 on box inputs)</span>'
 
 
+# Johnny 2026-10-15 23:59 — PR-6 clean-up. Only the noindex line on nine
+# IFRS 18 pages, and the MD-1 body attributes on the fourteen IAS 16 / IAS 2 pages.
+PR6_NOINDEX = '<meta name="robots" content="noindex">'
+PR6_NOINDEX_PAGES = tuple(
+    f"ifrs-18/draft-v1-linked/ch0{n}.html" for n in range(1, 9)
+) + ("ifrs-18/draft-v1-linked/abbreviations.html",)
+PR6_IAS16_CHAPTERS = tuple(
+    f"ias-16/draft-v1-linked/ch0{n}.html" for n in range(1, 8)
+)
+PR6_IAS2_CHAPTERS = tuple(
+    f"ias-2/draft-v1-linked/ch0{n}.html" for n in range(1, 7)
+)
+PR6_IAS2_INDEX = "ias-2/draft-v1-linked/index.html"
+
+
+def fold_pr6_cleanup(html, path):
+    """Fold the approved noindex insert and MD-1 body attributes. Nothing else."""
+    if path in PR6_NOINDEX_PAGES:
+        html = html.replace("<head>\n" + PR6_NOINDEX + "\n", "<head>\n", 1)
+    if path in PR6_IAS16_CHAPTERS:
+        chapter = Path(path).stem
+        html = html.replace(
+            f'data-pack="ias16" data-page="{chapter}"',
+            f'data-pack="ias16" data-page="chapter" data-chapter="{chapter}"',
+            1,
+        )
+    if path in PR6_IAS2_CHAPTERS:
+        chapter = Path(path).stem
+        old = 'data-pack="ias2"'
+        new = f'data-pack="ias2" data-page="chapter" data-chapter="{chapter}"'
+        # Already MD-1, or the pre-MD-1 tag. A third shape is left for the diff.
+        if new not in html:
+            html = html.replace(old, new, 1)
+    if path == PR6_IAS2_INDEX:
+        old = 'data-pack="ias2"'
+        new = 'data-pack="ias2" data-page="map"'
+        if new not in html:
+            html = html.replace(old, new, 1)
+    return html
+
+
 def fold_ias2_inline_styles(html, path):
     """Fold the eight approved IAS 2 inline colour styles. Nothing else.
 
@@ -845,6 +886,9 @@ def main(argv=None):
         head_n = fold_ias16_references_muted(head_n, path)
         base_n = fold_ias2_inline_styles(base_n, path)
         head_n = fold_ias2_inline_styles(head_n, path)
+        # Johnny 2026-10-15 23:59 — noindex on 9 IFRS 18 pages; MD-1 body on 14 pages.
+        base_n = fold_pr6_cleanup(base_n, path)
+        head_n = fold_pr6_cleanup(head_n, path)
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)
