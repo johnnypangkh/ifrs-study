@@ -565,5 +565,123 @@ class DisclaimerInjectorFoldTests(unittest.TestCase):
         self.assertNotIn("stamp-only: PASS", output)
 
 
+class Pr6CleanupFoldTests(unittest.TestCase):
+    """PR-6: noindex on 9 IFRS 18 pages and MD-1 body tags on 14 pages."""
+
+    def run_gate(self, root, base_files):
+        def git_text(rev, path):
+            if path == "_shared/last-update.js":
+                return LAST_UPDATE
+            return base_files[path]
+
+        def git_paths(rev):
+            return list(base_files)
+
+        original_root = stamp.ROOT
+        original_text = stamp.git_text
+        original_paths = stamp.git_paths
+        stamp.ROOT = root
+        stamp.git_text = git_text
+        stamp.git_paths = git_paths
+        buffer = io.StringIO()
+        try:
+            with redirect_stdout(buffer):
+                code = stamp.main(["--base", "fixture"])
+        finally:
+            stamp.ROOT = original_root
+            stamp.git_text = original_text
+            stamp.git_paths = original_paths
+        return code, buffer.getvalue()
+
+    def write_tree(self, root, files):
+        for rel, text in files.items():
+            path = root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        last = root / "_shared" / "last-update.js"
+        last.parent.mkdir(parents=True, exist_ok=True)
+        last.write_text(LAST_UPDATE, encoding="utf-8")
+
+    def base_files(self):
+        files = {}
+        for rel in stamp.PR6_NOINDEX_PAGES:
+            files[rel] = page("Teaching.")
+        for rel in stamp.PR6_IAS16_CHAPTERS:
+            chapter = Path(rel).stem
+            files[rel] = page("Teaching.").replace(
+                "<body>",
+                f'<body data-pack="ias16" data-page="{chapter}">',
+                1,
+            )
+        for rel in stamp.PR6_IAS2_CHAPTERS:
+            files[rel] = page("Teaching.").replace(
+                "<body>",
+                '<body data-pack="ias2">',
+                1,
+            )
+        files[stamp.PR6_IAS2_INDEX] = page("Teaching.").replace(
+            "<body>",
+            '<body data-pack="ias2">',
+            1,
+        )
+        return files
+
+    def approved_head(self, base):
+        head = dict(base)
+        for rel in stamp.PR6_NOINDEX_PAGES:
+            head[rel] = head[rel].replace(
+                "<head>\n",
+                '<head>\n<meta name="robots" content="noindex">\n',
+                1,
+            )
+        for rel in stamp.PR6_IAS16_CHAPTERS:
+            chapter = Path(rel).stem
+            head[rel] = head[rel].replace(
+                f'data-pack="ias16" data-page="{chapter}"',
+                f'data-pack="ias16" data-page="chapter" data-chapter="{chapter}"',
+                1,
+            )
+        for rel in stamp.PR6_IAS2_CHAPTERS:
+            chapter = Path(rel).stem
+            head[rel] = head[rel].replace(
+                'data-pack="ias2"',
+                f'data-pack="ias2" data-page="chapter" data-chapter="{chapter}"',
+                1,
+            )
+        head[stamp.PR6_IAS2_INDEX] = head[stamp.PR6_IAS2_INDEX].replace(
+            'data-pack="ias2"',
+            'data-pack="ias2" data-page="map"',
+            1,
+        )
+        return head
+
+    def test_the_approved_edits_pass(self):
+        import tempfile
+
+        base = self.base_files()
+        head = self.approved_head(base)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_any_other_teaching_edit_fails(self):
+        import tempfile
+
+        base = self.base_files()
+        head = self.approved_head(base)
+        rel = "ifrs-18/draft-v1-linked/ch03.html"
+        head[rel] = head[rel].replace("Teaching.", "Teachinx.", 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch03.html", output)
+        self.assertNotIn("stamp-only: PASS", output)
+
+
 if __name__ == "__main__":
     unittest.main()

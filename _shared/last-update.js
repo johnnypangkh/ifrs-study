@@ -12,19 +12,19 @@
       "fingerprint": "f55e1714290e32dedee51c57a177bd583b7fab98cf02609bd86051a291e109ed"
     },
     "ias16": {
-      "text": "Last update · 2026-10-15 21:25 HKT",
-      "iso": "2026-10-15T21:25:00+08:00",
-      "fingerprint": "ea8af4da271ec60a5641dd64b3491ca59073d95981d767b9a9417178a4e63feb"
+      "text": "Last update · 2026-10-16 00:05 HKT",
+      "iso": "2026-10-16T00:05:00+08:00",
+      "fingerprint": "da72c4dd6388725d207a5ac486ebd86227d9a7161c3958cfeafe306dadb5761a"
     },
     "ias2": {
-      "text": "Last update · 2026-10-15 21:25 HKT",
-      "iso": "2026-10-15T21:25:00+08:00",
-      "fingerprint": "5664209101c1a279cf05c9a54f1b21184a1a3190e87fd250fbc800a4d3e79cd2"
+      "text": "Last update · 2026-10-16 00:05 HKT",
+      "iso": "2026-10-16T00:05:00+08:00",
+      "fingerprint": "32977a46a189b2dc40acead5575c7f13ea6694c4b8ff924a976c3070a908b149"
     },
     "ifrs18": {
-      "text": "Last update · 2026-10-15 21:25 HKT",
-      "iso": "2026-10-15T21:25:00+08:00",
-      "fingerprint": "fb6d472c1992a61825ffd3eecc240878e216f24ce32e12d3da9ea40f5a7eb784"
+      "text": "Last update · 2026-10-16 00:05 HKT",
+      "iso": "2026-10-16T00:05:00+08:00",
+      "fingerprint": "6524f6b4d643ffcca0c8729811014504826679968bce1400db976961292a295c"
     },
     "site": {
       "text": "Last update · 2026-10-15 20:53 HKT",
