@@ -15,6 +15,23 @@ The script runs, in order:
 
 A second run rewrites nothing. CI runs this script and then `git diff --exit-code`.
 
+## Chapter template
+
+`tools/build-chapter.py` builds a chapter page from `<pack>/source/chNN.md` and `<pack>/source/pack.yml`. The source file is YAML front matter plus an HTML teaching body. A line `## N.M Title` becomes `<h3 id="s-N-M">` with a `top` pill. A line `see: href — label; href — label :: note` becomes the shared see-also strip (`see-also-strip`, `see-label`, `see-bit`, and `see-strip-note` when a note is present). Those classes are the ones in `_shared/see-also.css`; the tool adds no `style=` and no new token. A target with no label uses the href as the link text.
+
+The page shell is generated: head, `body data-pack` + `data-page="chapter"` + `data-chapter`, the title block, the Concept Map frame when the visual file exists, the empty disclaimer markers, and the footer-nav shell. The chapter's `{ href, label }` row is inserted into `_shared/chrome-packs.js` in chapter order. When the chapter has no visual, or the named file is not on disk, the map frame is omitted and the build prints a warning. It does not fail, and it does not leave an empty frame.
+
+`pack.yml` names the pack id, the short standard name used in `<title>`, the noindex flag, and the pack stylesheets linked after the shared teaching stack. `assets/map.css` belongs in that list only when the chapter page should load it.
+
+```bash
+python3 tools/build-chapter.py --all
+python3 tools/build-chapter.py --check
+```
+
+`--check` regenerates every chapter that has a `source/` file and fails on any diff. `ias-16`, `ias-2`, `ifrs-18`, and `cf-2018` are the packs it looks at. A pack with no `source/pack.yml` is skipped, so the check is green before any live pack is wired. `build-all.sh` does not call this tool yet. Wiring a pack is a later change. A second `--all` rewrites nothing.
+
+`tools/generate-chrome.mjs` wrote the old static top bar, including an inline `font-weight:500`, and read a `refs/<pack>/chrome.json` that is not in the tree. Nothing in a live page loads it. It now lives in `design/archive/generate-chrome-2026-10-15/`.
+
 `tools/check-duplicates.py` fails when a normalised `plate` or `disc-band` section appears twice outside a matching include, when an include body has drifted from its chapter `map-section`, when the during-use axis (`map-section:ch05-axis`) appears twice outside a matching include, or when a local IAS 16 `?v=` is not 12 hex. Whitespace between tags is ignored for the axis, so a pretty-printed copy still counts. A copy inside a matching include is the included axis, not a second source. There is no deferred plate.
 
 ## Map includes
