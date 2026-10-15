@@ -635,6 +635,169 @@ def fold_utility_styles(html):
     return re.sub(r"<[^>]+>", repl_tag, html)
 
 
+# Johnny 2026-10-15 20:46 J4, narrowed after QC r1 and QC r2 E10.
+# On head, only the empty shell directly before <!-- footer-nav:start -->.
+# A pasted aside folds only when it is the exact aside that page had at
+# base, in that page's base slot: directly before the footer-nav comment,
+# or, on the seven IAS 2 note pages, immediately before </footer>.
+# Another wording from the same pack, a shell anywhere else, or a wording
+# pasted mid-page is left untouched and the stamp gate fails.
+DISCLAIMER_SHELL = (
+    "<!-- disclaimer:start -->"
+    '<aside class="callout pack-disclaimer" id="pack-disclaimer"></aside>'
+    "<!-- disclaimer:end -->"
+)
+DISCLAIMER_NAV = "<!-- footer-nav:start -->"
+DISCLAIMER_PAGES = (
+    'cf-2018/draft-v1-linked/abbreviations.html',
+    'cf-2018/draft-v1-linked/ch01.html',
+    'cf-2018/draft-v1-linked/ch02.html',
+    'cf-2018/draft-v1-linked/ch03.html',
+    'cf-2018/draft-v1-linked/ch04.html',
+    'cf-2018/draft-v1-linked/ch05.html',
+    'cf-2018/draft-v1-linked/ch06.html',
+    'cf-2018/draft-v1-linked/ch07.html',
+    'cf-2018/draft-v1-linked/ch08.html',
+    'cf-2018/draft-v1-linked/ch09.html',
+    'cf-2018/draft-v1-linked/ch10.html',
+    'cf-2018/draft-v1-linked/ch11.html',
+    'cf-2018/draft-v1-linked/index.html',
+    'cf-2018/draft-v1-linked/references.html',
+    'ias-16/draft-v1-linked/abbreviations.html',
+    'ias-16/draft-v1-linked/ch01.html',
+    'ias-16/draft-v1-linked/ch02.html',
+    'ias-16/draft-v1-linked/ch03.html',
+    'ias-16/draft-v1-linked/ch04.html',
+    'ias-16/draft-v1-linked/ch05.html',
+    'ias-16/draft-v1-linked/ch06.html',
+    'ias-16/draft-v1-linked/ch07.html',
+    'ias-16/draft-v1-linked/index.html',
+    'ias-16/draft-v1-linked/references.html',
+    'ias-2/draft-v1-linked/abbreviations.html',
+    'ias-2/draft-v1-linked/ch01.html',
+    'ias-2/draft-v1-linked/ch02.html',
+    'ias-2/draft-v1-linked/ch03.html',
+    'ias-2/draft-v1-linked/ch04.html',
+    'ias-2/draft-v1-linked/ch05.html',
+    'ias-2/draft-v1-linked/ch06.html',
+    'ias-2/draft-v1-linked/index.html',
+    'ias-2/draft-v1-linked/references.html',
+    'ifrs-18/draft-v1-linked/abbreviations.html',
+    'ifrs-18/draft-v1-linked/ch01.html',
+    'ifrs-18/draft-v1-linked/ch02.html',
+    'ifrs-18/draft-v1-linked/ch03.html',
+    'ifrs-18/draft-v1-linked/ch04.html',
+    'ifrs-18/draft-v1-linked/ch05.html',
+    'ifrs-18/draft-v1-linked/ch06.html',
+    'ifrs-18/draft-v1-linked/ch07.html',
+    'ifrs-18/draft-v1-linked/ch08.html',
+    'ifrs-18/draft-v1-linked/index.html',
+    'ifrs-18/draft-v1-linked/references.html',
+)
+DISCLAIMER_KNOWN_ASIDES = (
+    '<aside class="callout pack-disclaimer" id="pack-disclaimer">\n  <strong>Disclaimer — personal study pack.</strong>\n  These Conceptual Framework 2018 pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution.\n  The Conceptual Framework does not override an applicable IFRS Standard. Official Standards remain authoritative. Big4 / firm-manual extracts and third-party financial-statement examples appear only as short teaching paraphrase or cited figures for private study; the pack owner has legal counsel.\n  Do not treat this site as a substitute for the Official text, firm manuals, or issuer financial statements.\n</aside>',
+    '<aside class="callout pack-disclaimer" id="pack-disclaimer">\n  <strong>Disclaimer — personal study pack.</strong>\n  These Conceptual Framework 2018 pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution.\n  The Conceptual Framework does not override an applicable IFRS Standard. Official Standards remain authoritative. Big4 / firm-manual material appears only as short teaching paraphrase or cited extracts for private study.\n  Do not treat this site as a substitute for the Official text, firm manuals, or professional advice.\n</aside>',
+    '<aside class="callout pack-disclaimer" id="pack-disclaimer">\n  <strong>Disclaimer — personal study pack.</strong>\n  These IAS 16 pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution.\n  Official Standards remain authoritative. Big4 / firm-manual extracts and third-party financial-statement examples appear only as short teaching paraphrase or cited figures for private study; the pack owner has legal counsel.\n  Do not treat this site as a substitute for the Official text, firm manuals, or issuer financial statements.\n</aside>',
+    '<aside class="callout pack-disclaimer" id="pack-disclaimer">\n  <strong>Disclaimer — personal study pack.</strong>\n  These IAS 2 pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution.\n  Official Standards remain authoritative. Big4 / firm-manual extracts and third-party financial-statement examples appear only as short teaching paraphrase or cited figures for private study; the pack owner has legal counsel.\n  Do not treat this site as a substitute for the Official text, firm manuals, or issuer financial statements.\n</aside>',
+    '<aside class="callout pack-disclaimer note-box" id="pack-disclaimer">\n    <strong>Disclaimer — personal study pack.</strong>\n    These IAS 2 pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution.\n    Official Standards remain authoritative. Big4 / firm-manual extracts and third-party financial-statement examples appear only as short teaching paraphrase or cited figures for private study; the pack owner has legal counsel.\n    Do not treat this site as a substitute for the Official text, firm manuals, or issuer financial statements.\n  </aside>',
+    '<aside class="callout pack-disclaimer" id="pack-disclaimer">\n  <strong>Disclaimer — personal study pack.</strong>\n  These IFRS 18 Presentation and Disclosure pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution.\n  Official Standards remain authoritative. Big4 / firm-manual material appears only as short teaching paraphrase or cited extracts for private study.\n  Do not treat this site as a substitute for the Official text, firm manuals, or professional advice.\n</aside>',
+    '<aside class="callout pack-disclaimer" id="pack-disclaimer">\n  <strong>Disclaimer — personal study pack.</strong>\n  These IFRS 18 pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution.\n  Official Standards remain authoritative. Big4 / firm-manual extracts and third-party financial-statement examples appear only as short teaching paraphrase or cited figures for private study; the pack owner has legal counsel.\n  Do not treat this site as a substitute for the Official text, firm manuals, or issuer financial statements.\n</aside>',
+)
+
+
+def _exact_base_aside(html):
+    """The one known Disclaimer aside this base page contains, or None."""
+    found = [block for block in DISCLAIMER_KNOWN_ASIDES if block in html]
+    if len(found) == 1:
+        return found[0]
+    return None
+
+
+def _find_all(html, block):
+    spans = []
+    start = 0
+    while True:
+        at = html.find(block, start)
+        if at < 0:
+            return spans
+        spans.append((at, at + len(block), block))
+        start = at + len(block)
+
+
+def _only_whitespace_before_nav(html, end):
+    """True when end is followed only by whitespace and the footer-nav comment."""
+    nav = html.find(DISCLAIMER_NAV, end)
+    if nav < 0:
+        return False
+    return html[end:nav].strip() == ""
+
+
+def _approved_disclaimer(html, path, base_aside):
+    """The one shell or this page's own base aside, or None.
+
+    The shell counts only directly before <!-- footer-nav:start -->.
+    A pasted aside counts only when it is the exact aside this page had
+    at base, in that page's base slot. Another wording from the same pack
+    does not count.
+    """
+    shells = _find_all(html, DISCLAIMER_SHELL)
+    asides = _find_all(html, base_aside) if base_aside else []
+    if len(shells) + len(asides) != 1:
+        return None
+    if shells:
+        start, end, _block = shells[0]
+        if _only_whitespace_before_nav(html, end):
+            return start, end
+        return None
+    start, end, block = asides[0]
+    if _only_whitespace_before_nav(html, end):
+        return start, end
+    if (
+        path in IAS2_NOTE_PAGES
+        and "note-box" in block
+        and html.startswith("\n</footer>", end)
+    ):
+        return start, end
+    return None
+
+
+def _remove_disclaimer_block(html, start, end):
+    """Drop the aside's lines, keeping the linebreak of the following line."""
+    line = html.rfind("\n", 0, start) + 1
+    if html[line:start].strip() == "":
+        start = line
+        if start > 0 and html[start - 1] == "\n":
+            start -= 1
+    return html[:start] + html[end:]
+
+
+def _ensure_disclaimer_shell(html):
+    idx = html.find(DISCLAIMER_NAV)
+    if idx < 0:
+        return html
+    prefix = html[:idx]
+    if prefix.rstrip("\n").endswith(DISCLAIMER_SHELL):
+        prefix = prefix[:prefix.rfind(DISCLAIMER_SHELL)]
+    return prefix.rstrip("\n") + "\n\n" + DISCLAIMER_SHELL + "\n\n" + html[idx:]
+
+
+def fold_disclaimer_injector(html, path, base_aside=None):
+    """Normalise one in-slot Disclaimer to the empty shell before footer-nav.
+
+    The empty shell is accepted only directly before <!-- footer-nav:start -->.
+    The old wording is accepted only when it is the exact aside this page
+    had at base, in that page's base slot. Anything else, including another
+    wording from the same pack, stays.
+    """
+    if path not in DISCLAIMER_PAGES:
+        return html
+    found = _approved_disclaimer(html, path, base_aside)
+    if not found:
+        return html
+    start, end = found
+    return _ensure_disclaimer_shell(_remove_disclaimer_block(html, start, end))
+
+
 def load_stamps(text):
     match = re.search(r"var STAMPS = (\{.*?\n  \});", text, re.S)
     if not match:
@@ -685,6 +848,11 @@ def main(argv=None):
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)
+        # Johnny 2026-10-15 20:46 J4 — Disclaimer shell only, on the 44 pack pages.
+        # QC r2 E10: the allowed aside is the one this page had at base.
+        base_aside = _exact_base_aside(base_n) if path in DISCLAIMER_PAGES else None
+        base_n = fold_disclaimer_injector(base_n, path, base_aside)
+        head_n = fold_disclaimer_injector(head_n, path, base_aside)
         if path in CF_THEME_VISUALS:
             base_n = fold_cf_theme(base_n)
             head_n = fold_cf_theme(head_n)

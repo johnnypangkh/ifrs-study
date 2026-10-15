@@ -280,5 +280,290 @@ class Ias2InlineStyleFoldTests(unittest.TestCase):
         self.assertIn("ch03.html", output)
 
 
+class DisclaimerInjectorFoldTests(unittest.TestCase):
+    """J4: only the empty Disclaimer shell on the 44 pack pages folds."""
+
+    PAGE = "ias-16/draft-v1-linked/ch01.html"
+    MOVED = "ias-2/draft-v1-linked/ch01.html"
+
+    def run_gate(self, root, base_files):
+        def git_text(rev, path):
+            if path == "_shared/last-update.js":
+                return LAST_UPDATE
+            return base_files[path]
+
+        def git_paths(rev):
+            return list(base_files)
+
+        original_root = stamp.ROOT
+        original_text = stamp.git_text
+        original_paths = stamp.git_paths
+        stamp.ROOT = root
+        stamp.git_text = git_text
+        stamp.git_paths = git_paths
+        buffer = io.StringIO()
+        try:
+            with redirect_stdout(buffer):
+                code = stamp.main(["--base", "fixture"])
+        finally:
+            stamp.ROOT = original_root
+            stamp.git_text = original_text
+            stamp.git_paths = original_paths
+        return code, buffer.getvalue()
+
+    def write_tree(self, root, files):
+        for rel, text in files.items():
+            path = root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        last = root / "_shared" / "last-update.js"
+        last.parent.mkdir(parents=True, exist_ok=True)
+        last.write_text(LAST_UPDATE, encoding="utf-8")
+
+    def aside(self, note_box=False):
+        for block in stamp.DISCLAIMER_KNOWN_ASIDES:
+            has_note = "note-box" in block
+            if has_note != note_box:
+                continue
+            # PAGE is an IAS 16 chapter. A CF or IFRS 18 wording is a
+            # cross-pack swap and must not fold there.
+            if not note_box and "IAS 16 pages" not in block:
+                continue
+            return block
+        raise AssertionError("missing known aside")
+
+    def shell_page(self, body):
+        return page(
+            body
+            + "\n\n"
+            + stamp.DISCLAIMER_SHELL
+            + "\n\n"
+            + "<!-- footer-nav:start -->\n"
+        )
+
+    def test_shell_replacing_the_pasted_aside_passes(self):
+        import tempfile
+
+        base = {self.PAGE: page("Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n")}
+        head = {self.PAGE: self.shell_page("Teaching.")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_ias2_aside_move_before_footer_nav_passes(self):
+        import tempfile
+
+        pasted = (
+            "Teaching.\n\n<!-- footer-nav:start -->\n"
+            "<footer>\n  <p>References stay.</p>\n  "
+            + self.aside(note_box=True)
+            + "\n</footer>\n"
+        )
+        base = {self.MOVED: page(pasted)}
+        head = {
+            self.MOVED: page(
+                "Teaching.\n\n"
+                + stamp.DISCLAIMER_SHELL
+                + "\n\n<!-- footer-nav:start -->\n"
+                "<footer>\n  <p>References stay.</p>\n</footer>\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_other_edit_inside_the_aside_fails(self):
+        import tempfile
+
+        pasted = self.aside().replace("personal study notes", "personal study noteX", 1)
+        base = {self.PAGE: page("Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n")}
+        head = {self.PAGE: page("Teaching.\n\n" + pasted + "\n\n<!-- footer-nav:start -->\n")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch01.html", output)
+
+    def test_other_edit_on_the_page_fails(self):
+        import tempfile
+
+        base = {self.PAGE: page("Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n")}
+        head = {self.PAGE: self.shell_page("Teachinx.")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch01.html", output)
+
+    def test_same_swap_on_an_unlisted_page_fails(self):
+        import tempfile
+
+        other = "notes/extra.html"
+        base = {other: page("Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n")}
+        head = {other: self.shell_page("Teaching.")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn("extra.html", output)
+
+    def test_n6_shell_moved_after_footer_nav(self):
+        """N6 shell moved after footer-nav"""
+        import tempfile
+
+        base = {
+            self.PAGE: page(
+                "Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        head = {
+            self.PAGE: page(
+                "Teaching.\n\n<!-- footer-nav:start -->\n"
+                + stamp.DISCLAIMER_SHELL
+                + "\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + self.PAGE,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n6b_shell_moved_to_top_of_main(self):
+        """N6b shell moved to top of <main> (mid-page, before teaching)"""
+        import tempfile
+
+        base = {self.PAGE: self.shell_page("<main>\n<p>Teaching.</p>\n</main>")}
+        head = {
+            self.PAGE: page(
+                "<main>\n"
+                + stamp.DISCLAIMER_SHELL
+                + "\n<p>Teaching.</p>\n</main>\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + self.PAGE,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n6c_known_aside_pasted_mid_page(self):
+        """N6c known base aside text pasted mid-page on head (in place of shell)"""
+        import tempfile
+
+        aside = self.aside()
+        base = {
+            self.PAGE: page(
+                "Before.\n\nAfter.\n\n" + aside + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        head = {
+            self.PAGE: page(
+                "Before.\n\n" + aside + "\n\nAfter.\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + self.PAGE,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n6d_cf_page_carrying_ias2_aside(self):
+        """N6d CF page carrying IAS 2 base aside text (cross-pack swap)"""
+        import tempfile
+
+        cf_page = "cf-2018/draft-v1-linked/ch01.html"
+        cf_aside = next(
+            block
+            for block in stamp.DISCLAIMER_KNOWN_ASIDES
+            if "Conceptual Framework 2018" in block and "firm-manual material" in block
+        )
+        ias2_aside = next(
+            block
+            for block in stamp.DISCLAIMER_KNOWN_ASIDES
+            if "IAS 2 pages" in block and "note-box" not in block
+        )
+        base = {
+            cf_page: page(
+                "Teaching.\n\n" + cf_aside + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        head = {
+            cf_page: page(
+                "Teaching.\n\n" + ias2_aside + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + cf_page,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_e10_cf_minority_wording_on_ch05(self):
+        """E10 CF minority wording in the shell slot on CF ch05 must FAIL"""
+        import tempfile
+
+        cf_page = "cf-2018/draft-v1-linked/ch05.html"
+        majority = next(
+            block
+            for block in stamp.DISCLAIMER_KNOWN_ASIDES
+            if "Conceptual Framework 2018" in block and "firm-manual material" in block
+        )
+        minority = next(
+            block
+            for block in stamp.DISCLAIMER_KNOWN_ASIDES
+            if "Conceptual Framework 2018" in block and "issuer financial statements" in block
+        )
+        base = {
+            cf_page: page(
+                "Teaching.\n\n" + majority + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        head = {
+            cf_page: page(
+                "Teaching.\n\n" + minority + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + cf_page,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
+
+
 if __name__ == "__main__":
     unittest.main()

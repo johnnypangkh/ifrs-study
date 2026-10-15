@@ -18,7 +18,8 @@ window.CHROME_PACKS = {
     meta: [
       { href: "abbreviations.html", label: "Abbreviations" },
       { href: "references.html", label: "References" }
-    ]
+    ],
+    disclaimer: "<strong>Disclaimer — personal study pack.</strong> These IAS 16 pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution. Official Standards remain authoritative. Big4 / firm-manual extracts and third-party financial-statement examples appear only as short teaching paraphrase or cited figures for private study; the pack owner has legal counsel. Do not treat this site as a substitute for the Official text, firm manuals, or issuer financial statements."
   },
   ias2: {
     title: "IAS 2 Inventories",
@@ -35,7 +36,8 @@ window.CHROME_PACKS = {
     meta: [
       { href: "abbreviations.html", label: "Abbreviations" },
       { href: "references.html", label: "References" }
-    ]
+    ],
+    disclaimer: "<strong>Disclaimer — personal study pack.</strong> These IAS 2 pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution. Official Standards remain authoritative. Big4 / firm-manual extracts and third-party financial-statement examples appear only as short teaching paraphrase or cited figures for private study; the pack owner has legal counsel. Do not treat this site as a substitute for the Official text, firm manuals, or issuer financial statements."
   },
   ifrs18: {
     title: "IFRS 18 Presentation and Disclosure",
@@ -54,7 +56,8 @@ window.CHROME_PACKS = {
     meta: [
       { href: "abbreviations.html", label: "Abbreviations" },
       { href: "references.html", label: "References" }
-    ]
+    ],
+    disclaimer: "<strong>Disclaimer — personal study pack.</strong> These IFRS 18 Presentation and Disclosure pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution. Official Standards remain authoritative. Big4 / firm-manual material appears only as short teaching paraphrase or cited extracts for private study. Do not treat this site as a substitute for the Official text, firm manuals, or professional advice."
   },
   cf2018: {
     title: "Conceptual Framework 2018",
@@ -76,7 +79,8 @@ window.CHROME_PACKS = {
     meta: [
       { href: "abbreviations.html", label: "Abbreviations" },
       { href: "references.html", label: "References" }
-    ]
+    ],
+    disclaimer: "<strong>Disclaimer — personal study pack.</strong> These Conceptual Framework 2018 pages are <strong>personal study notes</strong> for private learning. They are <strong>not</strong> accounting, legal, or professional advice, and are <strong>not</strong> for commercial or mass redistribution. The Conceptual Framework does not override an applicable IFRS Standard. Official Standards remain authoritative. Big4 / firm-manual material appears only as short teaching paraphrase or cited extracts for private study. Do not treat this site as a substitute for the Official text, firm manuals, or professional advice."
   },
   site: {
     title: "Johnny Pang IFRS Research",

@@ -42,6 +42,38 @@ def approval_removed(file, old, source, locator=""):
 
 
 class IncrementalTests(unittest.TestCase):
+    def test_pack_disclaimer_is_not_teaching(self):
+        base = {
+            "a.html": (
+                "<p>Keep this sentence in the chapter.</p>"
+                '<aside id="pack-disclaimer"><p>Disclaimer — personal study pack.</p></aside>'
+            )
+        }
+        head = {
+            "a.html": (
+                "<p>Keep this sentence in the chapter.</p>"
+                '<aside id="pack-disclaimer"></aside>'
+            )
+        }
+        code, rows, counts, issues = judge(base, head)
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        self.assertEqual(counts["removed"], 0)
+        self.assertFalse(any(row.status == "removed" for row in rows))
+
+    def test_pack_disclaimer_exclusion_does_not_hide_teaching(self):
+        base = {
+            "a.html": (
+                "<p>Keep this sentence in the chapter.</p>"
+                '<aside id="pack-disclaimer"><p>Disclaimer — personal study pack.</p></aside>'
+            )
+        }
+        head = {"a.html": '<aside id="pack-disclaimer"></aside>'}
+        code, rows, counts, issues = judge(base, head)
+        self.assertNotEqual(code, 0)
+        self.assertTrue(any(row.status == "removed" for row in rows))
+        self.assertTrue(issues)
+
     def test_unapproved_removal_fails(self):
         base = {"a.html": "<p>This paragraph leaves the notes.</p>"}
         head = {"a.html": "<p>Unrelated replacement copy.</p>"}
