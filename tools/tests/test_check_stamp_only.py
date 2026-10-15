@@ -280,5 +280,137 @@ class Ias2InlineStyleFoldTests(unittest.TestCase):
         self.assertIn("ch03.html", output)
 
 
+class DisclaimerInjectorFoldTests(unittest.TestCase):
+    """J4: only the empty Disclaimer shell on the 44 pack pages folds."""
+
+    PAGE = "ias-16/draft-v1-linked/ch01.html"
+    MOVED = "ias-2/draft-v1-linked/ch01.html"
+
+    def run_gate(self, root, base_files):
+        def git_text(rev, path):
+            if path == "_shared/last-update.js":
+                return LAST_UPDATE
+            return base_files[path]
+
+        def git_paths(rev):
+            return list(base_files)
+
+        original_root = stamp.ROOT
+        original_text = stamp.git_text
+        original_paths = stamp.git_paths
+        stamp.ROOT = root
+        stamp.git_text = git_text
+        stamp.git_paths = git_paths
+        buffer = io.StringIO()
+        try:
+            with redirect_stdout(buffer):
+                code = stamp.main(["--base", "fixture"])
+        finally:
+            stamp.ROOT = original_root
+            stamp.git_text = original_text
+            stamp.git_paths = original_paths
+        return code, buffer.getvalue()
+
+    def write_tree(self, root, files):
+        for rel, text in files.items():
+            path = root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        last = root / "_shared" / "last-update.js"
+        last.parent.mkdir(parents=True, exist_ok=True)
+        last.write_text(LAST_UPDATE, encoding="utf-8")
+
+    def aside(self, note_box=False):
+        for block in stamp.DISCLAIMER_KNOWN_ASIDES:
+            has_note = "note-box" in block
+            if has_note == note_box:
+                return block
+        raise AssertionError("missing known aside")
+
+    def shell_page(self, body):
+        return page(
+            body
+            + "\n\n"
+            + stamp.DISCLAIMER_SHELL
+            + "\n\n"
+            + "<!-- footer-nav:start -->\n"
+        )
+
+    def test_shell_replacing_the_pasted_aside_passes(self):
+        import tempfile
+
+        base = {self.PAGE: page("Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n")}
+        head = {self.PAGE: self.shell_page("Teaching.")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_ias2_aside_move_before_footer_nav_passes(self):
+        import tempfile
+
+        pasted = (
+            "Teaching.\n\n<!-- footer-nav:start -->\n"
+            "<footer>\n  <p>References stay.</p>\n  "
+            + self.aside(note_box=True)
+            + "\n</footer>\n"
+        )
+        base = {self.MOVED: page(pasted)}
+        head = {
+            self.MOVED: page(
+                "Teaching.\n\n"
+                + stamp.DISCLAIMER_SHELL
+                + "\n\n<!-- footer-nav:start -->\n"
+                "<footer>\n  <p>References stay.</p>\n</footer>\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_other_edit_inside_the_aside_fails(self):
+        import tempfile
+
+        pasted = self.aside().replace("personal study notes", "personal study noteX", 1)
+        base = {self.PAGE: page("Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n")}
+        head = {self.PAGE: page("Teaching.\n\n" + pasted + "\n\n<!-- footer-nav:start -->\n")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch01.html", output)
+
+    def test_other_edit_on_the_page_fails(self):
+        import tempfile
+
+        base = {self.PAGE: page("Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n")}
+        head = {self.PAGE: self.shell_page("Teachinx.")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch01.html", output)
+
+    def test_same_swap_on_an_unlisted_page_fails(self):
+        import tempfile
+
+        other = "notes/extra.html"
+        base = {other: page("Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n")}
+        head = {other: self.shell_page("Teaching.")}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn("extra.html", output)
+
+
 if __name__ == "__main__":
     unittest.main()

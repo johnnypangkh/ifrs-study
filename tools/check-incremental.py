@@ -293,6 +293,10 @@ def extract_html(html, file):
 def walk(node, file, items):
     if node.tag in SKIP_TAGS:
         return
+    # Johnny 2026-10-15 20:46 J4. The pack disclaimer is chrome (SR §6.2),
+    # not teaching. Its wording lives in chrome-packs.js.
+    if node.tag == "aside" and node.attrs.get("id") == "pack-disclaimer":
+        return
     if node.attrs.get("aria-hidden") == "true":
         return
     classes = class_set(node)
