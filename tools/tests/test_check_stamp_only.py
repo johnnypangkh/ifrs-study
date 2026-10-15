@@ -201,5 +201,84 @@ class Ias16ReferencesMutedFoldTests(unittest.TestCase):
         self.assertIn("references.html", output)
 
 
+class Ias2InlineStyleFoldTests(unittest.TestCase):
+    """J1 (a): only the eight approved IAS 2 inline-style edits fold."""
+
+    def run_gate(self, root, base_files):
+        def git_text(rev, path):
+            if path == "_shared/last-update.js":
+                return LAST_UPDATE
+            return base_files[path]
+
+        def git_paths(rev):
+            return list(base_files)
+
+        original_root = stamp.ROOT
+        original_text = stamp.git_text
+        original_paths = stamp.git_paths
+        stamp.ROOT = root
+        stamp.git_text = git_text
+        stamp.git_paths = git_paths
+        buffer = io.StringIO()
+        try:
+            with redirect_stdout(buffer):
+                code = stamp.main(["--base", "fixture"])
+        finally:
+            stamp.ROOT = original_root
+            stamp.git_text = original_text
+            stamp.git_paths = original_paths
+        return code, buffer.getvalue()
+
+    def write_tree(self, root, files):
+        for rel, text in files.items():
+            path = root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        last = root / "_shared" / "last-update.js"
+        last.parent.mkdir(parents=True, exist_ok=True)
+        last.write_text(LAST_UPDATE, encoding="utf-8")
+
+    def approved_base(self):
+        files = {}
+        for rel in stamp.IAS2_DISCLAIMER_PAGES:
+            files[rel] = page(f"Teaching. {stamp.IAS2_DISCLAIMER_STRONG}")
+        files[stamp.IAS2_REFERENCES] = page(f"Teaching. {stamp.IAS2_MUTED_SPAN}")
+        return files
+
+    def approved_head(self, base):
+        head = {}
+        for rel in stamp.IAS2_DISCLAIMER_PAGES:
+            head[rel] = page(f"Teaching. {stamp.IAS2_DISCLAIMER_PLAIN}")
+        head[stamp.IAS2_REFERENCES] = page(f"Teaching. {stamp.IAS2_MUTED_CLASS}")
+        return head
+
+    def test_the_eight_edits_pass(self):
+        import tempfile
+
+        base = self.approved_base()
+        head = self.approved_head(base)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_any_other_teaching_edit_fails(self):
+        import tempfile
+
+        base = self.approved_base()
+        head = self.approved_head(base)
+        head["ias-2/draft-v1-linked/ch03.html"] = page(
+            f"Teachinx. {stamp.IAS2_DISCLAIMER_PLAIN}"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch03.html", output)
+
+
 if __name__ == "__main__":
     unittest.main()

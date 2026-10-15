@@ -571,6 +571,38 @@ def fold_ias16_references_muted(html, path):
     return html.replace(IAS16_MUTED_SPAN, IAS16_MUTED_CLASS, 1)
 
 
+# Johnny 18:36 J1 (a): exactly these eight IAS 2 inline-style edits.
+IAS2_DISCLAIMER_STRONG = (
+    '<strong style="color:var(--ink)">Disclaimer — personal study pack.</strong>'
+)
+IAS2_DISCLAIMER_PLAIN = "<strong>Disclaimer — personal study pack.</strong>"
+IAS2_DISCLAIMER_PAGES = (
+    "ias-2/draft-v1-linked/index.html",
+    "ias-2/draft-v1-linked/ch01.html",
+    "ias-2/draft-v1-linked/ch02.html",
+    "ias-2/draft-v1-linked/ch03.html",
+    "ias-2/draft-v1-linked/ch04.html",
+    "ias-2/draft-v1-linked/ch05.html",
+    "ias-2/draft-v1-linked/ch06.html",
+)
+IAS2_REFERENCES = "ias-2/draft-v1-linked/references.html"
+IAS2_MUTED_SPAN = '<span style="color:var(--muted)">(HKAS 2 on box inputs)</span>'
+IAS2_MUTED_CLASS = '<span class="muted">(HKAS 2 on box inputs)</span>'
+
+
+def fold_ias2_inline_styles(html, path):
+    """Fold the eight approved IAS 2 inline colour styles. Nothing else.
+
+    Disclaimer <strong style="color:var(--ink)"> on seven pages, and the one
+    references muted span. Any other teaching edit still fails.
+    """
+    if path in IAS2_DISCLAIMER_PAGES and IAS2_DISCLAIMER_STRONG in html:
+        html = html.replace(IAS2_DISCLAIMER_STRONG, IAS2_DISCLAIMER_PLAIN, 1)
+    if path == IAS2_REFERENCES and IAS2_MUTED_SPAN in html:
+        html = html.replace(IAS2_MUTED_SPAN, IAS2_MUTED_CLASS, 1)
+    return html
+
+
 def fold_utility_styles(html):
     """Swap the three approved utility styles into classes. Idempotent."""
 
@@ -648,6 +680,8 @@ def main(argv=None):
             head_n = fold_utility_styles(head_n)
         base_n = fold_ias16_references_muted(base_n, path)
         head_n = fold_ias16_references_muted(head_n, path)
+        base_n = fold_ias2_inline_styles(base_n, path)
+        head_n = fold_ias2_inline_styles(head_n, path)
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)
