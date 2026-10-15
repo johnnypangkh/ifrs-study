@@ -635,9 +635,13 @@ def fold_utility_styles(html):
     return re.sub(r"<[^>]+>", repl_tag, html)
 
 
-# Johnny 2026-10-15 20:46 J4. One empty Disclaimer shell on the 44 pack pages.
-# The fold accepts only the seven exact pasted asides, or the canonical shell,
-# and only on those paths. Any other edit to the page or the aside still fails.
+# Johnny 2026-10-15 20:46 J4, narrowed after QC r1.
+# On head, only the empty shell directly before <!-- footer-nav:start -->.
+# Each pasted wording folds only on its own pack's pages, and only in the
+# slot that page used: directly before the footer-nav comment, or, on the
+# seven IAS 2 note pages, the note-box aside immediately before </footer>.
+# A shell anywhere else, a wording on the wrong pack, or a wording pasted
+# mid-page is left untouched and the stamp gate fails.
 DISCLAIMER_SHELL = (
     "<!-- disclaimer:start -->"
     '<aside class="callout pack-disclaimer" id="pack-disclaimer"></aside>'
@@ -701,18 +705,81 @@ DISCLAIMER_KNOWN_ASIDES = (
 )
 
 
-def _disclaimer_spans(html):
+def _disclaimer_pack(block):
+    if "Conceptual Framework 2018" in block:
+        return "cf2018"
+    if "IAS 16 pages" in block:
+        return "ias16"
+    if "IAS 2 pages" in block:
+        return "ias2"
+    if "IFRS 18" in block:
+        return "ifrs18"
+    return ""
+
+
+DISCLAIMER_ASIDES_BY_PACK = {}
+for _block in DISCLAIMER_KNOWN_ASIDES:
+    DISCLAIMER_ASIDES_BY_PACK.setdefault(_disclaimer_pack(_block), []).append(_block)
+
+
+def _page_pack(path):
+    if path.startswith("cf-2018/"):
+        return "cf2018"
+    if path.startswith("ias-16/"):
+        return "ias16"
+    if path.startswith("ias-2/"):
+        return "ias2"
+    if path.startswith("ifrs-18/"):
+        return "ifrs18"
+    return ""
+
+
+def _find_all(html, block):
     spans = []
-    for block in DISCLAIMER_KNOWN_ASIDES + (DISCLAIMER_SHELL,):
-        start = 0
-        while True:
-            at = html.find(block, start)
-            if at < 0:
-                break
-            spans.append((at, at + len(block)))
-            start = at + len(block)
-    spans.sort()
-    return spans
+    start = 0
+    while True:
+        at = html.find(block, start)
+        if at < 0:
+            return spans
+        spans.append((at, at + len(block), block))
+        start = at + len(block)
+
+
+def _only_whitespace_before_nav(html, end):
+    """True when end is followed only by whitespace and the footer-nav comment."""
+    nav = html.find(DISCLAIMER_NAV, end)
+    if nav < 0:
+        return False
+    return html[end:nav].strip() == ""
+
+
+def _approved_disclaimer(html, path):
+    """The one shell or pack aside this page may fold, or None.
+
+    The shell counts only directly before <!-- footer-nav:start -->.
+    A pasted aside counts only for its own pack, in that pack's base slot.
+    """
+    shells = _find_all(html, DISCLAIMER_SHELL)
+    asides = []
+    for block in DISCLAIMER_ASIDES_BY_PACK.get(_page_pack(path), ()):
+        asides.extend(_find_all(html, block))
+    if len(shells) + len(asides) != 1:
+        return None
+    if shells:
+        start, end, _block = shells[0]
+        if _only_whitespace_before_nav(html, end):
+            return start, end
+        return None
+    start, end, block = asides[0]
+    if _only_whitespace_before_nav(html, end):
+        return start, end
+    if (
+        path in IAS2_NOTE_PAGES
+        and "note-box" in block
+        and html.startswith("\n</footer>", end)
+    ):
+        return start, end
+    return None
 
 
 def _remove_disclaimer_block(html, start, end):
@@ -736,18 +803,18 @@ def _ensure_disclaimer_shell(html):
 
 
 def fold_disclaimer_injector(html, path):
-    """Normalise one approved Disclaimer to the empty shell before footer-nav.
+    """Normalise one in-slot Disclaimer to the empty shell before footer-nav.
 
-    Johnny 2026-10-15 20:46 J4. The seven exact base asides and the canonical
-    shell are the only matches, and only on the 44 pack pages. A changed
-    word, an extra aside, or any other page edit is left untouched.
+    The empty shell is accepted only directly before <!-- footer-nav:start -->.
+    Each old wording is accepted only on its own pack, in that pack's base
+    slot. Anything else, including a moved shell or a cross-pack aside, stays.
     """
     if path not in DISCLAIMER_PAGES:
         return html
-    spans = _disclaimer_spans(html)
-    if len(spans) != 1:
+    found = _approved_disclaimer(html, path)
+    if not found:
         return html
-    start, end = spans[0]
+    start, end = found
     return _ensure_disclaimer_shell(_remove_disclaimer_block(html, start, end))
 
 

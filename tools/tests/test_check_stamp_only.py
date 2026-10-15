@@ -323,8 +323,13 @@ class DisclaimerInjectorFoldTests(unittest.TestCase):
     def aside(self, note_box=False):
         for block in stamp.DISCLAIMER_KNOWN_ASIDES:
             has_note = "note-box" in block
-            if has_note == note_box:
-                return block
+            if has_note != note_box:
+                continue
+            # PAGE is an IAS 16 chapter. A CF or IFRS 18 wording is a
+            # cross-pack swap and must not fold there.
+            if not note_box and "IAS 16 pages" not in block:
+                continue
+            return block
         raise AssertionError("missing known aside")
 
     def shell_page(self, body):
@@ -410,6 +415,118 @@ class DisclaimerInjectorFoldTests(unittest.TestCase):
             code, output = self.run_gate(root, base)
         self.assertEqual(code, 1, output)
         self.assertIn("extra.html", output)
+
+    def test_n6_shell_moved_after_footer_nav(self):
+        """N6 shell moved after footer-nav"""
+        import tempfile
+
+        base = {
+            self.PAGE: page(
+                "Teaching.\n\n" + self.aside() + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        head = {
+            self.PAGE: page(
+                "Teaching.\n\n<!-- footer-nav:start -->\n"
+                + stamp.DISCLAIMER_SHELL
+                + "\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + self.PAGE,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n6b_shell_moved_to_top_of_main(self):
+        """N6b shell moved to top of <main> (mid-page, before teaching)"""
+        import tempfile
+
+        base = {self.PAGE: self.shell_page("<main>\n<p>Teaching.</p>\n</main>")}
+        head = {
+            self.PAGE: page(
+                "<main>\n"
+                + stamp.DISCLAIMER_SHELL
+                + "\n<p>Teaching.</p>\n</main>\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + self.PAGE,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n6c_known_aside_pasted_mid_page(self):
+        """N6c known base aside text pasted mid-page on head (in place of shell)"""
+        import tempfile
+
+        aside = self.aside()
+        base = {
+            self.PAGE: page(
+                "Before.\n\nAfter.\n\n" + aside + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        head = {
+            self.PAGE: page(
+                "Before.\n\n" + aside + "\n\nAfter.\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + self.PAGE,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n6d_cf_page_carrying_ias2_aside(self):
+        """N6d CF page carrying IAS 2 base aside text (cross-pack swap)"""
+        import tempfile
+
+        cf_page = "cf-2018/draft-v1-linked/ch01.html"
+        cf_aside = next(
+            block
+            for block in stamp.DISCLAIMER_KNOWN_ASIDES
+            if "Conceptual Framework 2018" in block and "firm-manual material" in block
+        )
+        ias2_aside = next(
+            block
+            for block in stamp.DISCLAIMER_KNOWN_ASIDES
+            if "IAS 2 pages" in block and "note-box" not in block
+        )
+        base = {
+            cf_page: page(
+                "Teaching.\n\n" + cf_aside + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        head = {
+            cf_page: page(
+                "Teaching.\n\n" + ias2_aside + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + cf_page,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
 
 
 if __name__ == "__main__":
