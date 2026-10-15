@@ -42,11 +42,11 @@ body.embed { background: var(--bg); }
   gap: var(--space-cell);
   margin: 0;
   font-size: var(--t2-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-3);
   text-transform: uppercase;
   color: var(--muted);
-  line-height: 1.3;
+  line-height: var(--t1-lh);
 }
 .ou-label a.fb-num {
   margin-right: 0;
@@ -61,24 +61,24 @@ body.embed { background: var(--bg); }
   gap: var(--space-1) var(--space-cell);
   margin: 0;
   font-size: var(--t1-fs);
-  font-weight: 700;
-  line-height: 1.3;
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
   color: var(--ink);
 }
 .ou-head a.fb-num { margin-right: 0; }
 .ou-sub {
   font-size: var(--vis-meta);
-  font-weight: 600;
+  font-weight: var(--tb-micro-fw);
   color: var(--muted);
 }
 .ou-body {
   margin: 0;
   font-size: var(--t2-fs);
-  line-height: 1.45;
+  line-height: var(--tb-body-lh);
   color: var(--muted);
 }
 .ou-body strong,
-.ou-emph { color: var(--ink); font-weight: 600; }
+.ou-emph { color: var(--ink); font-weight: var(--t3-em-fw); }
 
 /* ---- 1. Scene: users — GPFS — entity, joined by labelled stems ---- */
 .ou-scene {
@@ -135,7 +135,7 @@ body.embed { background: var(--bg); }
 .ou-tag {
   margin: 0;
   font-size: var(--vis-meta);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-3);
   text-transform: uppercase;
   color: var(--accent);
@@ -150,8 +150,8 @@ body.embed { background: var(--bg); }
   padding: 0;
   background: var(--accent);
   font-size: var(--vis-meta);
-  font-weight: 600;
-  line-height: 1.2;
+  font-weight: var(--t3-tag-fw);
+  line-height: var(--t0-lh);
   color: var(--accent);
   text-align: center;
 }
@@ -170,7 +170,7 @@ body.embed { background: var(--bg); }
   grid-template-columns: subgrid;
   margin: 0 0 var(--space-3);
   font-size: var(--t2-fs);
-  line-height: 1.4;
+  line-height: var(--t2-lh);
   color: var(--muted);
 }
 .ou-direct-end {
@@ -208,7 +208,7 @@ body.embed { background: var(--bg); }
   text-align: center;
   transform: translateY(calc(50% - var(--stroke-1)));
 }
-.ou-direct strong { color: var(--ink); font-weight: 600; }
+.ou-direct strong { color: var(--ink); font-weight: var(--t3-em-fw); }
 
 /* ---- 2. Decisions: three columns; both assessments span all of them ---- */
 .ou-grid {
@@ -226,11 +226,11 @@ body.embed { background: var(--bg); }
   margin: 0;
   padding: var(--space-3) var(--space-4);
   font-size: var(--t2-fs);
-  line-height: 1.45;
+  line-height: var(--tb-body-lh);
   color: var(--muted);
 }
 .ou-decisions li + li { border-left: var(--stroke-1) solid var(--line); }
-.ou-decisions strong { color: var(--ink); font-weight: 600; }
+.ou-decisions strong { color: var(--ink); font-weight: var(--t3-em-fw); }
 
 .ou-assess {
   display: flex;
@@ -242,12 +242,12 @@ body.embed { background: var(--bg); }
   border-top: var(--stroke-1) solid var(--line);
   background: var(--band);
   font-size: var(--t2-fs);
-  line-height: 1.45;
+  line-height: var(--tb-body-lh);
   color: var(--muted);
 }
 .ou-assess a.fb-num { margin-right: 0; }
 .ou-assess > span:not(.ou-note) { flex: 1 1 calc(10 * var(--space-6)); min-width: 0; }
-.ou-assess strong { color: var(--ink); font-weight: 700; }
+.ou-assess strong { color: var(--ink); font-weight: var(--t1-fw); }
 .ou-assess:last-child { border-radius: 0 0 var(--card-radius) var(--card-radius); }
 .ou-note {
   padding: var(--space-hairline) var(--space-cell);
@@ -277,8 +277,8 @@ body.embed { background: var(--bg); }
 .ou-lens-name {
   margin: 0;
   font-size: var(--tb-box-body-fs);
-  font-weight: 700;
-  line-height: 1.3;
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
   color: var(--ink);
 }
 .ou-lens-foot {
@@ -287,7 +287,7 @@ body.embed { background: var(--bg); }
   padding: var(--space-cell) var(--space-4);
   border-top: var(--stroke-1) solid var(--line);
   font-size: var(--t2-fs);
-  line-height: 1.4;
+  line-height: var(--t2-lh);
   color: var(--muted);
   text-align: center;
 }

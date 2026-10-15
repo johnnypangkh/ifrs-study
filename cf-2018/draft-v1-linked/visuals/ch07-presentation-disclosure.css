@@ -33,14 +33,14 @@
   flex-wrap: wrap;
   gap: var(--space-cell);
   font-size: var(--t3-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-8);
-  line-height: 1.2;
+  line-height: var(--t0-lh);
   text-transform: uppercase;
   color: var(--muted);
 }
 .pd-kicker-soft {
-  font-weight: 600;
+  font-weight: var(--tb-micro-fw);
   letter-spacing: var(--legacy-ls-5);
   text-transform: none;
   color: var(--muted);
@@ -63,17 +63,17 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-cell);
-  line-height: 1.25;
+  line-height: var(--t3-tag-lh);
 }
 .pd-head .fb-num-range,
 .pd-head a.fb-num { flex-shrink: 0; margin: 0; }
-.pd-title { font-size: var(--tb-box-body-fs); font-weight: 700; color: var(--ink); }
+.pd-title { font-size: var(--tb-box-body-fs); font-weight: var(--t1-fw); color: var(--ink); }
 .pd-head--sm .pd-title { font-size: var(--t2-fs); }
 
-.pd-body { margin: 0; font-size: var(--t2-fs); line-height: 1.45; color: var(--muted); }
+.pd-body { margin: 0; font-size: var(--t2-fs); line-height: var(--tb-body-lh); color: var(--muted); }
 .pd-body strong { color: var(--ink); }
 .pd-soft { color: var(--muted); }
-.pd-cue { margin: 0; font-size: var(--vis-meta); line-height: 1.35; color: var(--muted); }
+.pd-cue { margin: 0; font-size: var(--vis-meta); line-height: var(--legacy-lh-1); color: var(--muted); }
 
 /* Goal · trade-off: useful above cost, joined by a two-way balance stem */
 .pd-trade {
@@ -113,7 +113,7 @@
   border-radius: var(--radius-pill);
   background: var(--surface);
   font-size: var(--t3-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-4);
   text-transform: uppercase;
   color: var(--elem-peer);
@@ -147,9 +147,9 @@
   white-space: normal;
   text-overflow: clip;
   font-size: var(--t3-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-4);
-  line-height: 1.4;
+  line-height: var(--t2-lh);
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -174,12 +174,12 @@
   padding: var(--space-cell) var(--space-3);
   border-radius: var(--card-radius);
   font-size: var(--vis-meta);
-  line-height: 1.3;
+  line-height: var(--t1-lh);
 }
 .pd-rank {
   align-items: center;
   text-align: center;
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   overflow: visible;
   overflow-wrap: normal;
   word-break: normal;
@@ -280,7 +280,7 @@
   border-radius: var(--card-radius);
   background: var(--band);
 }
-.pd-reclass > span { font-size: var(--vis-meta); line-height: 1.35; color: var(--muted); }
+.pd-reclass > span { font-size: var(--vis-meta); line-height: var(--legacy-lh-1); color: var(--muted); }
 
 /* Aggregation levels (inside the tool, not a peer) */
 .pd-levels {
@@ -290,11 +290,11 @@
   align-items: center;
   gap: var(--space-cell);
   font-size: var(--vis-meta);
-  line-height: 1.3;
+  line-height: var(--t1-lh);
 }
 .pd-levels-tag {
   font-size: var(--t3-fs);
-  font-weight: 700;
+  font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-4);
   text-transform: uppercase;
   color: var(--muted);
@@ -304,9 +304,9 @@
   border: var(--stroke-1) solid var(--line);
   border-radius: var(--radius-pill);
   color: var(--ink);
-  font-weight: 600;
+  font-weight: var(--t3-tag-fw);
 }
-.pd-level em { font-style: normal; font-weight: 400; color: var(--muted); }
+.pd-level em { font-style: normal; font-weight: var(--t2-fw); color: var(--muted); }
 
 /* What this shapes: lighter secondary cards */
 .pd-outs {
@@ -333,11 +333,11 @@
   border: var(--stroke-1) dashed var(--dash);
   border-radius: var(--card-radius);
   font-size: var(--vis-meta);
-  font-weight: 700;
-  line-height: 1.35;
+  font-weight: var(--t1-fw);
+  line-height: var(--legacy-lh-1);
   color: var(--muted);
 }
-.pd-see .see-bit > span { font-weight: 400; color: var(--muted); }
+.pd-see .see-bit > span { font-weight: var(--t2-fw); color: var(--muted); }
 
 
 

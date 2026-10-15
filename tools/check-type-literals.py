@@ -20,6 +20,13 @@ BASELINE = Path(__file__).resolve().parent / "type-literals-baseline.tsv"
 KEYWORDS = {"inherit", "normal", "initial", "unset"}
 SKIP_REL = {"_shared/tokens.css", "_shared/tokens-core.css"}
 PACKS = ("ifrs-18", "ias-2", "ias-16", "cf-2018")
+# Non-live homepage wireframes and the search-demo snapshot. Master Design Q-b.
+# The live homepage and how-these-notes-are-made.html stay in the scan.
+HOMEPAGE_EXCLUDE = {
+    "homepage/_shot-search-demo.html",
+    "homepage/homepage-wireframe-v0.html",
+    "homepage/homepage-wireframe-v0.1.before-7c.html",
+}
 KEY_FIELDS = ("path", "selector", "property", "value", "occurrence")
 
 PROP_RE = re.compile(
@@ -247,7 +254,10 @@ def iter_sources(root):
     homepage = root / "homepage"
     if homepage.is_dir():
         for path in sorted(homepage.glob("*.html")):
-            yield path.relative_to(root).as_posix(), path
+            rel = path.relative_to(root).as_posix()
+            if rel in HOMEPAGE_EXCLUDE:
+                continue
+            yield rel, path
     site = root / "site"
     if site.is_dir():
         for path in sorted(site.rglob("*")):
