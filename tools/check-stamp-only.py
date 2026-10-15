@@ -635,13 +635,13 @@ def fold_utility_styles(html):
     return re.sub(r"<[^>]+>", repl_tag, html)
 
 
-# Johnny 2026-10-15 20:46 J4, narrowed after QC r1.
+# Johnny 2026-10-15 20:46 J4, narrowed after QC r1 and QC r2 E10.
 # On head, only the empty shell directly before <!-- footer-nav:start -->.
-# Each pasted wording folds only on its own pack's pages, and only in the
-# slot that page used: directly before the footer-nav comment, or, on the
-# seven IAS 2 note pages, the note-box aside immediately before </footer>.
-# A shell anywhere else, a wording on the wrong pack, or a wording pasted
-# mid-page is left untouched and the stamp gate fails.
+# A pasted aside folds only when it is the exact aside that page had at
+# base, in that page's base slot: directly before the footer-nav comment,
+# or, on the seven IAS 2 note pages, immediately before </footer>.
+# Another wording from the same pack, a shell anywhere else, or a wording
+# pasted mid-page is left untouched and the stamp gate fails.
 DISCLAIMER_SHELL = (
     "<!-- disclaimer:start -->"
     '<aside class="callout pack-disclaimer" id="pack-disclaimer"></aside>'
@@ -705,33 +705,12 @@ DISCLAIMER_KNOWN_ASIDES = (
 )
 
 
-def _disclaimer_pack(block):
-    if "Conceptual Framework 2018" in block:
-        return "cf2018"
-    if "IAS 16 pages" in block:
-        return "ias16"
-    if "IAS 2 pages" in block:
-        return "ias2"
-    if "IFRS 18" in block:
-        return "ifrs18"
-    return ""
-
-
-DISCLAIMER_ASIDES_BY_PACK = {}
-for _block in DISCLAIMER_KNOWN_ASIDES:
-    DISCLAIMER_ASIDES_BY_PACK.setdefault(_disclaimer_pack(_block), []).append(_block)
-
-
-def _page_pack(path):
-    if path.startswith("cf-2018/"):
-        return "cf2018"
-    if path.startswith("ias-16/"):
-        return "ias16"
-    if path.startswith("ias-2/"):
-        return "ias2"
-    if path.startswith("ifrs-18/"):
-        return "ifrs18"
-    return ""
+def _exact_base_aside(html):
+    """The one known Disclaimer aside this base page contains, or None."""
+    found = [block for block in DISCLAIMER_KNOWN_ASIDES if block in html]
+    if len(found) == 1:
+        return found[0]
+    return None
 
 
 def _find_all(html, block):
@@ -753,16 +732,16 @@ def _only_whitespace_before_nav(html, end):
     return html[end:nav].strip() == ""
 
 
-def _approved_disclaimer(html, path):
-    """The one shell or pack aside this page may fold, or None.
+def _approved_disclaimer(html, path, base_aside):
+    """The one shell or this page's own base aside, or None.
 
     The shell counts only directly before <!-- footer-nav:start -->.
-    A pasted aside counts only for its own pack, in that pack's base slot.
+    A pasted aside counts only when it is the exact aside this page had
+    at base, in that page's base slot. Another wording from the same pack
+    does not count.
     """
     shells = _find_all(html, DISCLAIMER_SHELL)
-    asides = []
-    for block in DISCLAIMER_ASIDES_BY_PACK.get(_page_pack(path), ()):
-        asides.extend(_find_all(html, block))
+    asides = _find_all(html, base_aside) if base_aside else []
     if len(shells) + len(asides) != 1:
         return None
     if shells:
@@ -802,16 +781,17 @@ def _ensure_disclaimer_shell(html):
     return prefix.rstrip("\n") + "\n\n" + DISCLAIMER_SHELL + "\n\n" + html[idx:]
 
 
-def fold_disclaimer_injector(html, path):
+def fold_disclaimer_injector(html, path, base_aside=None):
     """Normalise one in-slot Disclaimer to the empty shell before footer-nav.
 
     The empty shell is accepted only directly before <!-- footer-nav:start -->.
-    Each old wording is accepted only on its own pack, in that pack's base
-    slot. Anything else, including a moved shell or a cross-pack aside, stays.
+    The old wording is accepted only when it is the exact aside this page
+    had at base, in that page's base slot. Anything else, including another
+    wording from the same pack, stays.
     """
     if path not in DISCLAIMER_PAGES:
         return html
-    found = _approved_disclaimer(html, path)
+    found = _approved_disclaimer(html, path, base_aside)
     if not found:
         return html
     start, end = found
@@ -869,8 +849,10 @@ def main(argv=None):
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)
         # Johnny 2026-10-15 20:46 J4 — Disclaimer shell only, on the 44 pack pages.
-        base_n = fold_disclaimer_injector(base_n, path)
-        head_n = fold_disclaimer_injector(head_n, path)
+        # QC r2 E10: the allowed aside is the one this page had at base.
+        base_aside = _exact_base_aside(base_n) if path in DISCLAIMER_PAGES else None
+        base_n = fold_disclaimer_injector(base_n, path, base_aside)
+        head_n = fold_disclaimer_injector(head_n, path, base_aside)
         if path in CF_THEME_VISUALS:
             base_n = fold_cf_theme(base_n)
             head_n = fold_cf_theme(head_n)

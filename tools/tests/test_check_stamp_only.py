@@ -528,6 +528,42 @@ class DisclaimerInjectorFoldTests(unittest.TestCase):
         )
         self.assertNotIn("stamp-only: PASS", output)
 
+    def test_e10_cf_minority_wording_on_ch05(self):
+        """E10 CF minority wording in the shell slot on CF ch05 must FAIL"""
+        import tempfile
+
+        cf_page = "cf-2018/draft-v1-linked/ch05.html"
+        majority = next(
+            block
+            for block in stamp.DISCLAIMER_KNOWN_ASIDES
+            if "Conceptual Framework 2018" in block and "firm-manual material" in block
+        )
+        minority = next(
+            block
+            for block in stamp.DISCLAIMER_KNOWN_ASIDES
+            if "Conceptual Framework 2018" in block and "issuer financial statements" in block
+        )
+        base = {
+            cf_page: page(
+                "Teaching.\n\n" + majority + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        head = {
+            cf_page: page(
+                "Teaching.\n\n" + minority + "\n\n<!-- footer-nav:start -->\n"
+            )
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 1, output)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + cf_page,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
+
 
 if __name__ == "__main__":
     unittest.main()
