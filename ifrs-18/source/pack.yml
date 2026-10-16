@@ -1,0 +1,6 @@
+id: ifrs18
+standard: IFRS 18
+noindex: true
+css:
+  - assets/shared.css
+  - assets/draft.css

@@ -356,6 +356,74 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertEqual(code, 1, output)
         self.assertNotIn("stamp-only: PASS", output)
 
+    def test_ifrs18_title_and_blank_allowlist_is_folded(self):
+        import tempfile
+
+        rel = "ifrs-18/draft-v1-linked/ch06.html"
+        old = "<title>Ch6 MPMs — IFRS 18</title>\n"
+        new = (
+            "<title>Ch6 Management-defined performance measures (MPMs) — "
+            "IFRS 18</title>\n"
+        )
+        base = self._cf_shell(title_after_css=False).replace(
+            "<title>Ch1 Objective</title>\n", old, 1
+        )
+        head = base.replace(old, new, 1).replace(
+            '<section class="visual-section">',
+            '\n<section class="visual-section">',
+            1,
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_ifrs18_unlisted_blank_and_other_title_fail(self):
+        """An unlisted IFRS 18 gap, a ch01 title rewrite, and a stale ch06 title fail."""
+        import tempfile
+
+        rel = "ifrs-18/draft-v1-linked/ch01.html"
+        base = self._cf_shell(title_after_css=False)
+        head = base.replace('<h3 id="s-1-1">', '\n<h3 id="s-1-1">', 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch01.html", output)
+
+        head = base.replace(
+            "<title>Ch1 Objective</title>",
+            "<title>Ch1 Something else — IFRS 18</title>",
+            1,
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertNotIn("stamp-only: PASS", output)
+
+        rel = "ifrs-18/draft-v1-linked/ch06.html"
+        old = "<title>Ch6 MPMs — IFRS 18</title>"
+        new = (
+            "<title>Ch6 Management-defined performance measures (MPMs) — "
+            "IFRS 18</title>"
+        )
+        base = self._cf_shell(title_after_css=False).replace(
+            "<title>Ch1 Objective</title>", old, 1
+        )
+        head = base.replace(old, new, 1)
+        stale = head.replace(new, old, 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: stale})
+            code, output = self.run_gate(root, {rel: base.replace(old, new, 1)})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch06.html", output)
+
     def test_ias16_section_word_change_still_fails(self):
         import tempfile
 

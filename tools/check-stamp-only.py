@@ -799,6 +799,110 @@ def fold_ias2_shell(base_html, head_html, path):
     return base_html, head_html
 
 
+# Johnny 2026-10-16 19:02 option (b) — IFRS 18 chapters use the shared shell.
+# Title text changes only on ch06 and ch08, and only on the base page.
+# Shell indent (h1 and the map frame) is rewritten on the base page only.
+# Blank deltas are exactly +1 or -1 at the listed markers.
+IFRS18_CHAPTERS = tuple(
+    f"ifrs-18/draft-v1-linked/ch{n:02d}.html" for n in range(1, 9)
+)
+IFRS18_TITLES = {
+    "ifrs-18/draft-v1-linked/ch06.html": (
+        "<title>Ch6 MPMs — IFRS 18</title>",
+        "<title>Ch6 Management-defined performance measures (MPMs) — IFRS 18</title>",
+    ),
+    "ifrs-18/draft-v1-linked/ch08.html": (
+        "<title>Ch8 Transition — IFRS 18</title>",
+        "<title>Ch8 Transition &amp; effective date — IFRS 18</title>",
+    ),
+}
+IFRS18_INDENT_PREFIXES = (
+    (' <h1 id="chapter-title">', '  <h1 id="chapter-title">'),
+    (
+        ' <fieldset class="visual-fieldset" id="page-map">',
+        '  <fieldset class="visual-fieldset" id="page-map">',
+    ),
+    (' <legend class="visual-legend">', "    <legend class=\"visual-legend\">"),
+    (" <iframe ", "    <iframe "),
+    (" </fieldset>", "  </fieldset>"),
+)
+IFRS18_BLANK_DELTAS = {
+    f"ifrs-18/draft-v1-linked/ch{n:02d}.html": (
+        ('<section class="visual-section">', 1),
+        ('<article class="teaching">', 1),
+    )
+    for n in range(1, 9)
+}
+for _n in (1, 2, 3, 4, 5):
+    _rel = f"ifrs-18/draft-v1-linked/ch{_n:02d}.html"
+    IFRS18_BLANK_DELTAS[_rel] = IFRS18_BLANK_DELTAS[_rel] + (
+        ('<section class="key-terms">', 1),
+    )
+for _n in (4, 5, 6):
+    _rel = f"ifrs-18/draft-v1-linked/ch{_n:02d}.html"
+    IFRS18_BLANK_DELTAS[_rel] = IFRS18_BLANK_DELTAS[_rel] + (("</article>", -1),)
+
+
+def _reindent_ifrs18_shell(base_html, head_html):
+    """Give base the head indent on the h1 and map-frame lines. Nothing else."""
+    head_lines = set(head_html.splitlines())
+    for old_prefix, new_prefix in IFRS18_INDENT_PREFIXES:
+        lines = base_html.splitlines(keepends=True)
+        replaced = False
+        out = []
+        for line in lines:
+            body = line[:-1] if line.endswith("\n") else line
+            ending = "\n" if line.endswith("\n") else ""
+            if (
+                not replaced
+                and body.startswith(old_prefix)
+                and new_prefix + body[len(old_prefix) :] in head_lines
+            ):
+                out.append(new_prefix + body[len(old_prefix) :] + ending)
+                replaced = True
+            else:
+                out.append(line)
+        base_html = "".join(out)
+    return base_html
+
+
+def fold_ifrs18_shell(base_html, head_html, path):
+    """Fold the approved IFRS 18 title text, shell indent, and blank lines.
+
+    Johnny 2026-10-16 19:02 option (b). The two title strings are replaced
+    on the base page only, and only when head already has the new string.
+    Head must already have its title on the line after the viewport meta.
+    The h1 and map-frame indent is applied on base only when that exact
+    line is already on head. At each listed marker, base gains or loses
+    exactly one newline when that is the whole difference. A title-text
+    change on any other page, or any other gap, still fails.
+    """
+    if path not in IFRS18_CHAPTERS:
+        return base_html, head_html
+    pair = IFRS18_TITLES.get(path)
+    if pair is not None:
+        old, new = pair
+        if old in base_html and new in head_html and old not in head_html:
+            base_html = base_html.replace(old, new, 1)
+    base_html = _move_title_after_viewport(base_html)
+    base_html = _reindent_ifrs18_shell(base_html, head_html)
+    for marker, delta in IFRS18_BLANK_DELTAS[path]:
+        base_span = _newline_run_before(base_html, marker)
+        head_span = _newline_run_before(head_html, marker)
+        if base_span is None or head_span is None:
+            continue
+        base_len = base_span[1] - base_span[0]
+        head_len = head_span[1] - head_span[0]
+        if head_len - base_len != delta:
+            continue
+        end = base_span[1]
+        if delta == 1:
+            base_html = base_html[:end] + "\n" + base_html[end:]
+        elif delta == -1 and base_len > 0:
+            base_html = base_html[: end - 1] + base_html[end:]
+    return base_html, head_html
+
+
 def fold_pr6_cleanup(html, path):
     """Fold the approved noindex insert and MD-1 body attributes. Nothing else."""
     if path in PR6_NOINDEX_PAGES:
@@ -1089,6 +1193,8 @@ def main(argv=None):
         base_n, head_n = fold_cf2018_shell(base_n, head_n, path)
         # Johnny 2026-10-16 17:11 — IAS 2 title on base only, listed blanks.
         base_n, head_n = fold_ias2_shell(base_n, head_n, path)
+        # Johnny 2026-10-16 19:02 — IFRS 18 title text, indent, listed blanks.
+        base_n, head_n = fold_ifrs18_shell(base_n, head_n, path)
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)
