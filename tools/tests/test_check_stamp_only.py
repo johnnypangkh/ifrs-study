@@ -180,6 +180,119 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertIn("ch04.html", output)
         self.assertNotIn("stamp-only: PASS", output)
 
+    def _cf_shell(self, title_after_css=True, extra_at=None, blanks=()):
+        title = "<title>Ch1 Objective</title>\n"
+        head = [
+            "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n",
+            '<meta name="viewport" content="width=1280">\n',
+        ]
+        if not title_after_css:
+            head.append(title)
+        head.append('<link rel="stylesheet" href="assets/draft.css?v=abc">\n')
+        if title_after_css:
+            head.append(title)
+        head.append("</head>\n<body>\n<div class=\"page-header\">\n</div>\n")
+        gap = {name: "\n" for name in blanks}
+        if extra_at:
+            gap[extra_at] = gap.get(extra_at, "\n") + "\n"
+        head.append(gap.get("map", "") + '<section class="visual-section">\n</section>\n')
+        head.append(gap.get("article", "") + '<article class="teaching">\n')
+        head.append('<h3 id="s-1-1">1.1</h3>\n<p>Kept.</p>\n')
+        head.append(gap.get("close", "") + "</article>\n")
+        head.append(gap.get("terms", "") + '<section class="key-terms">\n</section>\n')
+        head.append("</body>\n</html>\n")
+        return "".join(head)
+
+    def test_cf2018_shell_allowlist_is_folded(self):
+        import tempfile
+
+        rel = "cf-2018/draft-v1-linked/ch01.html"
+        base = self._cf_shell(title_after_css=True)
+        head = self._cf_shell(
+            title_after_css=False,
+            blanks=("map", "article", "close", "terms"),
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_cf2018_unlisted_blank_add_fails(self):
+        """Unlisted CF gap: a blank line before s-1-1 is not on the allow-list."""
+        import tempfile
+
+        rel = "cf-2018/draft-v1-linked/ch01.html"
+        base = self._cf_shell(title_after_css=False, blanks=("map", "article", "close", "terms"))
+        head = base.replace('<h3 id="s-1-1">', '\n<h3 id="s-1-1">', 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch01.html", output)
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n10_cf_title_just_before_head_close_fails(self):
+        """N10: a head title sitting just before </head> on ch02 fails."""
+        import tempfile
+
+        rel = "cf-2018/draft-v1-linked/ch02.html"
+        base = self._cf_shell(title_after_css=False)
+        title = "<title>Ch1 Objective</title>\n"
+        head = base.replace(
+            '<meta name="viewport" content="width=1280">\n' + title,
+            '<meta name="viewport" content="width=1280">\n',
+            1,
+        ).replace("</head>\n", title + "</head>\n", 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch02.html", output)
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n12_cf_title_inside_body_fails(self):
+        """N12: a head title sitting inside <body> on ch09 fails."""
+        import tempfile
+
+        rel = "cf-2018/draft-v1-linked/ch09.html"
+        base = self._cf_shell(title_after_css=False)
+        title = "<title>Ch1 Objective</title>\n"
+        head = base.replace(
+            '<meta name="viewport" content="width=1280">\n' + title,
+            '<meta name="viewport" content="width=1280">\n',
+            1,
+        ).replace("<body>\n", "<body>\n" + title, 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch09.html", output)
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_cf2018_extra_blank_add_fails(self):
+        """Extra add: two new blank lines at an approved one-line spot fail."""
+        import tempfile
+
+        rel = "cf-2018/draft-v1-linked/ch01.html"
+        base = self._cf_shell(title_after_css=False)
+        head = self._cf_shell(
+            title_after_css=False,
+            blanks=("map",),
+            extra_at="map",
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch01.html", output)
+        self.assertNotIn("stamp-only: PASS", output)
+
     def test_ias16_section_word_change_still_fails(self):
         import tempfile
 
