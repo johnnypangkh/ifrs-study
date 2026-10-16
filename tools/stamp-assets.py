@@ -10,9 +10,13 @@ alone, so chapter links like ch06.html#s-6-0 stay as they are.
 IAS 2 and CF 2018 pack pages (draft-v1-linked/*.html, not files under
 visuals/) get the same treatment for every local css/js/html target
 inside that pack. IAS 2, CF 2018, and IFRS 18 visual pages also get
-pack-local .css ?v= values hashed. Shared stylesheets on those visual
+pack-local .css ?v= values hashed. The shared visual kit
+(_shared/visuals.css) gets its own @import ?v= values hashed, and the
+37 visual pages (IAS 16, IAS 2, IFRS 18, CF 2018) then get that
+visuals.css ?v= hashed. Other shared stylesheets on those visual
 pages are left alone. IFRS 18 pack-local stamps outside visuals/ are
-left as they are.
+left as they are. chrome.css and teaching.css inner stamps are left
+alone.
 
 The same hash is written onto _shared asset ?v= values on every pack
 page (ias-16, ias-2, ifrs-18, cf-2018 draft-v1-linked). footer-nav.js
@@ -256,11 +260,33 @@ def stamp_once(ias_files, pack_files, visual_files):
             refs.extend(ref for ref in iter_versioned_refs(text, path) if not ref["skip"])
         refs.sort(key=lambda ref: ref["start"])
         apply(path, refs)
-    for path in visual_files:
-        pack_name = path.resolve().relative_to(ROOT.resolve()).parts[0]
+    kit = ROOT / "_shared" / "visuals.css"
+    if kit.is_file():
+        text = kit.read_text(encoding="utf-8")
+        refs = list(iter_shared_refs(text, kit))
+        refs.sort(key=lambda ref: ref["start"])
+        apply(kit, refs)
+        hashes.pop(kit.resolve(), None)
+    kit_pages = list(visual_files)
+    ias_vis = ROOT / "ias-16" / "draft-v1-linked" / "visuals"
+    if ias_vis.is_dir():
+        kit_pages.extend(sorted(path for path in ias_vis.glob("*.html") if path.is_file()))
+    seen_kit = set()
+    for path in kit_pages:
+        key = path.resolve()
+        if key in seen_kit:
+            continue
+        seen_kit.add(key)
+        pack_name = key.relative_to(ROOT.resolve()).parts[0]
         pack_root = ROOT / pack_name / "draft-v1-linked"
         text = path.read_text(encoding="utf-8")
-        refs = list(iter_pack_local_css_refs(text, path, pack_root))
+        refs = []
+        if path in visual_files:
+            refs.extend(iter_pack_local_css_refs(text, path, pack_root))
+        refs.extend(
+            ref for ref in iter_shared_refs(text, path)
+            if ref["local"].name == "visuals.css"
+        )
         refs.sort(key=lambda ref: ref["start"])
         apply(path, refs)
     return changed

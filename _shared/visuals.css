@@ -10,8 +10,8 @@
    (.consol-boundary / .fs-consol) — not see-also, not nest hierarchy.
    Composition (組成) → .contain / .contain-grid / .contain-cell — never dashed hang.
    Matches CF map family. file:// offline OK via relative link. */
-@import url("tokens-core.css?v=847cbb0253a9");
-@import url("see-also.css?v=see-join-20261005");
+@import url("tokens-core.css?v=f16c7fa3c615");
+@import url("see-also.css?v=7904f60afd50");
 @import url("modules/visuals/colour-1.css?v=f1809b248dce");
 @import url("modules/visuals/teaching-layout-1.css?v=500fdee144ef");
 @import url("modules/visuals/box-1.css?v=3a5ee9c19f38");
@@ -25,5 +25,5 @@
 @import url("modules/visuals/chrome-1.css?v=9807a1768d9c");
 @import url("modules/visuals/grid-3.css?v=4ec5c1ad7dcd");
 @import url("modules/visuals/components-5.css?v=634afd689584");
-@import url("modules/visuals/cite-1.css?v=3066edb355ff");
-@import url("modules/visuals/components-6.css?v=81481c241ab1");
+@import url("modules/visuals/cite-1.css?v=9dd99e1b5537");
+@import url("modules/visuals/components-6.css?v=18232257839c");

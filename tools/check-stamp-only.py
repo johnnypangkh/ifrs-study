@@ -69,6 +69,110 @@ def norm(text):
     return V_QUERY.sub("?v=", text)
 
 
+# Johnny 2026-10-16 20:14 — shared visual stamp cleanup.
+# Only these ?v= lines may differ. A byte change, or a ?v= change on any
+# other line, fails the gate.
+SHARED_VISUAL_CSS = "_shared/visuals.css"
+SHARED_VISUAL_IMPORTS = {
+    13: "tokens-core.css?v=",
+    14: "see-also.css?v=",
+    28: "modules/visuals/cite-1.css?v=",
+    29: "modules/visuals/components-6.css?v=",
+}
+SHARED_VISUAL_PAGES = (
+    "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html",
+    "cf-2018/draft-v1-linked/visuals/ch02-qualitative-characteristics.html",
+    "cf-2018/draft-v1-linked/visuals/ch03-reporting-entity.html",
+    "cf-2018/draft-v1-linked/visuals/ch04-elements.html",
+    "cf-2018/draft-v1-linked/visuals/ch05-recognition-derecognition.html",
+    "cf-2018/draft-v1-linked/visuals/ch06-measurement.html",
+    "cf-2018/draft-v1-linked/visuals/ch07-presentation-disclosure.html",
+    "cf-2018/draft-v1-linked/visuals/ch08-capital.html",
+    "cf-2018/draft-v1-linked/visuals/ch09-combined.html",
+    "cf-2018/draft-v1-linked/visuals/ch10-carve.html",
+    "cf-2018/draft-v1-linked/visuals/ch11-status.html",
+    "ias-2/draft-v1-linked/visuals/ch01-scope.html",
+    "ias-2/draft-v1-linked/visuals/ch02-recognition.html",
+    "ias-2/draft-v1-linked/visuals/ch03-initial.html",
+    "ias-2/draft-v1-linked/visuals/ch04-subsequent.html",
+    "ias-2/draft-v1-linked/visuals/ch05-derecognition.html",
+    "ias-2/draft-v1-linked/visuals/ch06-disclosure.html",
+    "ias-2/draft-v1-linked/visuals/map-formula-board.html",
+    "ifrs-18/draft-v1-linked/visuals/ch01-whats-new.html",
+    "ifrs-18/draft-v1-linked/visuals/ch02-pfs-aggregation.html",
+    "ifrs-18/draft-v1-linked/visuals/ch03-classification-path.html",
+    "ifrs-18/draft-v1-linked/visuals/ch03-mba-nest.html",
+    "ifrs-18/draft-v1-linked/visuals/ch03-pnl-categories.html",
+    "ifrs-18/draft-v1-linked/visuals/ch04-totals-subtotals.html",
+    "ifrs-18/draft-v1-linked/visuals/ch05-operating-expenses.html",
+    "ifrs-18/draft-v1-linked/visuals/ch06-mpms.html",
+    "ifrs-18/draft-v1-linked/visuals/ch07-other-fs.html",
+    "ifrs-18/draft-v1-linked/visuals/ch08-transition.html",
+    "ifrs-18/draft-v1-linked/visuals/map-jumpboard.html",
+    "ias-16/draft-v1-linked/visuals/ch01-scope.html",
+    "ias-16/draft-v1-linked/visuals/ch02-recognition.html",
+    "ias-16/draft-v1-linked/visuals/ch03-initial.html",
+    "ias-16/draft-v1-linked/visuals/ch04-models.html",
+    "ias-16/draft-v1-linked/visuals/ch05-depreciation.html",
+    "ias-16/draft-v1-linked/visuals/ch06-derecognition.html",
+    "ias-16/draft-v1-linked/visuals/ch07-disclosure.html",
+    "ias-16/draft-v1-linked/visuals/master-concept-map.html",
+)
+# In-body iframes in the IFRS 18 ch03 source. ?v= only. Johnny 2026-10-16 21:14.
+IFRS18_CH03 = "ifrs-18/draft-v1-linked/ch03.html"
+IFRS18_CH03_IFRAMES = (
+    "visuals/ch03-mba-nest.html?v=",
+    "visuals/ch03-classification-path.html?v=",
+)
+
+
+def _v_only(old, new):
+    return V_QUERY.sub("?v=", old) == V_QUERY.sub("?v=", new) and old != new
+
+
+def shared_visual_stamp_failure(base, head, path):
+    """Return an error when path differs outside the shared-visual allowlist.
+
+    visuals.css may change ?v= only on lines 13, 14, 28, and 29.
+    Each listed visual page may change ?v= only on its visuals.css link.
+    Identical text is not a failure. None means this path is not in the
+    allowlist, or the difference is allowed.
+    """
+    if path == SHARED_VISUAL_CSS:
+        allowed = SHARED_VISUAL_IMPORTS
+        def listed(line_no, old):
+            needle = allowed.get(line_no)
+            return needle is not None and needle in old
+    elif path in SHARED_VISUAL_PAGES:
+        def listed(line_no, old):
+            return "visuals.css?v=" in old
+    elif path == IFRS18_CH03:
+        def listed(line_no, old):
+            return any(needle in old for needle in IFRS18_CH03_IFRAMES)
+    else:
+        return None
+    # ch03 also carries the accepted map-iframe cascade. Only the two
+    # in-body iframe lines are judged here; other lines stay on the
+    # normal stamp gate.
+    strict = path != IFRS18_CH03
+    base_lines = base.splitlines()
+    head_lines = head.splitlines()
+    if len(base_lines) != len(head_lines):
+        if not strict:
+            return None
+        return f"shared visual stamp: line count changed: {path}"
+    for line_no, (old, new) in enumerate(zip(base_lines, head_lines), 1):
+        if old == new:
+            continue
+        if not listed(line_no, old):
+            if strict:
+                return f"shared visual stamp: diff outside the allowlist: {path}"
+            continue
+        if not _v_only(old, new):
+            return f"shared visual stamp: diff outside the allowlist: {path}"
+    return None
+
+
 def fold_viewport(html):
     """width=device-width, initial-scale=1 and width=1280 are the same page."""
     return html.replace(
@@ -853,10 +957,12 @@ def _reindent_ifrs18_shell(base_html, head_html):
         for line in lines:
             body = line[:-1] if line.endswith("\n") else line
             ending = "\n" if line.endswith("\n") else ""
+            new_body = new_prefix + body[len(old_prefix) :]
             if (
                 not replaced
                 and body.startswith(old_prefix)
-                and new_prefix + body[len(old_prefix) :] in head_lines
+                and body not in head_lines
+                and new_body in head_lines
             ):
                 out.append(new_prefix + body[len(old_prefix) :] + ending)
                 replaced = True
@@ -1170,6 +1276,11 @@ def main(argv=None):
             failed = True
             continue
         head = file.read_text(encoding="utf-8")
+        stamp_error = shared_visual_stamp_failure(base, head, path)
+        if stamp_error:
+            print(stamp_error)
+            failed = True
+            continue
         base_n = fold_cf_iframe_floors(norm(base), path)
         head_n = fold_cf_iframe_floors(norm(head), path)
         base_n = fold_cf2018_pr7(fold_style_media(fold_viewport(base_n)), path)
@@ -1223,6 +1334,18 @@ def main(argv=None):
             base_n, head_n = fold_row42_a1_a6(base_n, head_n, path)
         if head_n != base_n and path not in CONTENT_ALLOW:
             print(f"HTML changed outside ?v= and the homepage link: {path}")
+            failed = True
+    try:
+        base_css = git_text(args.base, SHARED_VISUAL_CSS)
+    except KeyError:
+        base_css = None
+    css_file = ROOT / SHARED_VISUAL_CSS
+    if base_css is not None and css_file.is_file():
+        stamp_error = shared_visual_stamp_failure(
+            base_css, css_file.read_text(encoding="utf-8"), SHARED_VISUAL_CSS
+        )
+        if stamp_error:
+            print(stamp_error)
             failed = True
     base_js = git_text(args.base, "_shared/last-update.js")
     head_js = (ROOT / "_shared" / "last-update.js").read_text(encoding="utf-8")
