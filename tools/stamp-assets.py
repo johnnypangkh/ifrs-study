@@ -9,7 +9,9 @@ alone, so chapter links like ch06.html#s-6-0 stay as they are.
 
 IAS 2 and CF 2018 pack pages (draft-v1-linked/*.html, not files under
 visuals/) get the same treatment for every local css/js/html target
-inside that pack. Visual-page stamps in those packs are left alone.
+inside that pack. CF 2018 visual pages also get pack-local .css ?v=
+values hashed. IAS 2 and IFRS 18 visual pages are left alone, and
+shared stylesheets on the CF visual pages are left alone.
 IFRS 18 pack-local stamps are left as they are.
 
 The same hash is written onto _shared asset ?v= values on every pack
@@ -45,6 +47,9 @@ LIVE_PACKS = ("ias-16", "ias-2", "ifrs-18", "cf-2018")
 # Pack pages whose local css/js/html ?v= is hashed. IAS 16 is handled by
 # the full-tree walk. Visual files under these packs stay put.
 PAGE_LOCAL_PACKS = ("ias-2", "cf-2018")
+# Visual HTML whose pack-local .css ?v= is hashed. Shared CSS on those
+# pages, and every other pack's visuals, stay as they are.
+CF_VISUAL_DIR = ROOT / "cf-2018" / "draft-v1-linked" / "visuals"
 # Name stamp owned by the chapter template. Do not replace it with a hash.
 NAME_STAMP_FILES = {"footer-nav.js"}
 TEXT_SUFFIXES = {".html", ".css", ".js"}
@@ -59,6 +64,13 @@ def pack_text_files(pack=PACK):
             continue
         files.append(path)
     return files
+
+
+def cf_visual_pages():
+    """CF 2018 visual pages. Only their pack-local CSS ?v= is hashed."""
+    if not CF_VISUAL_DIR.is_dir():
+        raise SystemExit(f"missing pack {CF_VISUAL_DIR}")
+    return sorted(path for path in CF_VISUAL_DIR.glob("*.html") if path.is_file())
 
 
 def pack_pages():
@@ -173,7 +185,14 @@ def iter_shared_refs(text, from_file):
         }
 
 
-def stamp_once(ias_files, pack_files):
+def iter_pack_local_css_refs(text, from_file, pack_root):
+    """Pack-local versioned refs whose target is a .css file."""
+    for ref in iter_pack_local_refs(text, from_file, pack_root):
+        if ref["local"].suffix.lower() == ".css":
+            yield ref
+
+
+def stamp_once(ias_files, pack_files, visual_files):
     hashed = {path.resolve() for path in ias_files}
     # Shared targets are outside the pack trees. Hash them on demand.
     hashes = {path: file_stamp(Path(path)) for path in hashed}
@@ -233,6 +252,12 @@ def stamp_once(ias_files, pack_files):
             refs.extend(ref for ref in iter_versioned_refs(text, path) if not ref["skip"])
         refs.sort(key=lambda ref: ref["start"])
         apply(path, refs)
+    pack_root = ROOT / "cf-2018" / "draft-v1-linked"
+    for path in visual_files:
+        text = path.read_text(encoding="utf-8")
+        refs = list(iter_pack_local_css_refs(text, path, pack_root))
+        refs.sort(key=lambda ref: ref["start"])
+        apply(path, refs)
     return changed
 
 
@@ -241,11 +266,15 @@ def main():
         raise SystemExit(f"missing pack {PACK}")
     ias_files = pack_text_files()
     pack_files = pack_pages()
+    visual_files = cf_visual_pages()
     seen = set()
     for _ in range(12):
-        changed = stamp_once(ias_files, pack_files)
+        changed = stamp_once(ias_files, pack_files, visual_files)
         if not changed:
-            print(f"stamps stable ({len(pack_files)} files)")
+            print(
+                f"stamps stable ({len(pack_files)} pack pages, "
+                f"{len(visual_files)} CF visuals)"
+            )
             return 0
         fresh = [name for name in changed if name not in seen]
         seen.update(changed)
