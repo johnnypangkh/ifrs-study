@@ -9,9 +9,9 @@ alone, so chapter links like ch06.html#s-6-0 stay as they are.
 
 IAS 2 and CF 2018 pack pages (draft-v1-linked/*.html, not files under
 visuals/) get the same treatment for every local css/js/html target
-inside that pack. IAS 2 and CF 2018 visual pages also get pack-local
-.css ?v= values hashed. Shared stylesheets on those visual pages are
-left alone. IFRS 18 visual pages and IFRS 18 pack-local stamps are
+inside that pack. IAS 2, CF 2018, and IFRS 18 visual pages also get
+pack-local .css ?v= values hashed. Shared stylesheets on those visual
+pages are left alone. IFRS 18 pack-local stamps outside visuals/ are
 left as they are.
 
 The same hash is written onto _shared asset ?v= values on every pack
@@ -48,8 +48,8 @@ LIVE_PACKS = ("ias-16", "ias-2", "ifrs-18", "cf-2018")
 # the full-tree walk. Visual files under these packs stay put.
 PAGE_LOCAL_PACKS = ("ias-2", "cf-2018")
 # Visual HTML whose pack-local .css ?v= is hashed. Shared CSS on those
-# pages, and IFRS 18 visuals, stay as they are.
-VISUAL_PACKS = ("ias-2", "cf-2018")
+# pages stays as it is. IFRS 18 pack pages outside visuals/ are not hashed.
+VISUAL_PACKS = ("ias-2", "cf-2018", "ifrs-18")
 # Name stamp owned by the chapter template. Do not replace it with a hash.
 NAME_STAMP_FILES = {"footer-nav.js"}
 TEXT_SUFFIXES = {".html", ".css", ".js"}
@@ -67,7 +67,7 @@ def pack_text_files(pack=PACK):
 
 
 def visual_pages():
-    """IAS 2 and CF visual pages. Only their pack-local CSS ?v= is hashed."""
+    """IAS 2, CF, and IFRS 18 visual pages. Only pack-local CSS ?v= is hashed."""
     files = []
     for name in VISUAL_PACKS:
         vis = ROOT / name / "draft-v1-linked" / "visuals"
@@ -278,7 +278,7 @@ def main():
         if not changed:
             print(
                 f"stamps stable ({len(pack_files)} pack pages, "
-                f"{len(visual_files)} IAS 2 and CF visuals)"
+                f"{len(visual_files)} IAS 2, CF, and IFRS 18 visuals)"
             )
             return 0
         fresh = [name for name in changed if name not in seen]
