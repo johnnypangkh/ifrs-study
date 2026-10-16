@@ -720,15 +720,16 @@ def _move_title_after_viewport(html):
 def fold_cf2018_shell(base_html, head_html, path):
     """Fold the approved CF title move and the listed one-line blank adds.
 
-    Johnny 2026-10-16 15:00. The title element is moved to the line after
-    the viewport meta on both sides. At each listed marker, one newline is
-    inserted into base only when head has exactly one more newline there.
-    A second extra newline, or a gap before any other marker, still fails.
+    Johnny 2026-10-16 15:32. The title element is moved to the line after
+    the viewport meta on the base page only. Head must already have its
+    title on that line; any other head position still fails. At each listed
+    marker, one newline is inserted into base only when head has exactly
+    one more newline there. A second extra newline, or a gap before any
+    other marker, still fails.
     """
     if path not in CF2018_CHAPTERS:
         return base_html, head_html
     base_html = _move_title_after_viewport(base_html)
-    head_html = _move_title_after_viewport(head_html)
     for marker in CF2018_BLANK_ADDS[path]:
         base_span = _newline_run_before(base_html, marker)
         head_span = _newline_run_before(head_html, marker)
@@ -1028,7 +1029,7 @@ def main(argv=None):
         head_n = fold_pr6_cleanup(head_n, path)
         # Johnny 2026-10-16 09:57 — collapse only the nine approved IAS 16 gaps.
         base_n, head_n = fold_ias16_section_gap(base_n, head_n, path)
-        # Johnny 2026-10-16 15:00 — CF title position and the listed blank adds.
+        # Johnny 2026-10-16 15:32 — move the CF title on base only.
         base_n, head_n = fold_cf2018_shell(base_n, head_n, path)
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)

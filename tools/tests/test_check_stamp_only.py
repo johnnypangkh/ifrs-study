@@ -234,6 +234,46 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertIn("ch01.html", output)
         self.assertNotIn("stamp-only: PASS", output)
 
+    def test_n10_cf_title_just_before_head_close_fails(self):
+        """N10: a head title sitting just before </head> on ch02 fails."""
+        import tempfile
+
+        rel = "cf-2018/draft-v1-linked/ch02.html"
+        base = self._cf_shell(title_after_css=False)
+        title = "<title>Ch1 Objective</title>\n"
+        head = base.replace(
+            '<meta name="viewport" content="width=1280">\n' + title,
+            '<meta name="viewport" content="width=1280">\n',
+            1,
+        ).replace("</head>\n", title + "</head>\n", 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch02.html", output)
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n12_cf_title_inside_body_fails(self):
+        """N12: a head title sitting inside <body> on ch09 fails."""
+        import tempfile
+
+        rel = "cf-2018/draft-v1-linked/ch09.html"
+        base = self._cf_shell(title_after_css=False)
+        title = "<title>Ch1 Objective</title>\n"
+        head = base.replace(
+            '<meta name="viewport" content="width=1280">\n' + title,
+            '<meta name="viewport" content="width=1280">\n',
+            1,
+        ).replace("<body>\n", "<body>\n" + title, 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch09.html", output)
+        self.assertNotIn("stamp-only: PASS", output)
+
     def test_cf2018_extra_blank_add_fails(self):
         """Extra add: two new blank lines at an approved one-line spot fail."""
         import tempfile
