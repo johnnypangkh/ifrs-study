@@ -484,6 +484,38 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertEqual(code, 1, output)
         self.assertIn(rel, output)
 
+    def test_ifrs18_ch03_inbody_iframes_are_allowlisted(self):
+        import tempfile
+
+        rel = stamp.IFRS18_CH03
+        base = page(
+            '<iframe src="visuals/ch03-mba-nest.html?v=c6b520c6ecf8"></iframe>\n'
+            '<iframe src="visuals/ch03-classification-path.html?v=deba6c7fa271"></iframe>'
+        )
+        head = page(
+            '<iframe src="visuals/ch03-mba-nest.html?v=da47600ecc21"></iframe>\n'
+            '<iframe src="visuals/ch03-classification-path.html?v=628ac37c2497"></iframe>'
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+        bad = head.replace("scrolling", "scrolling", 1)
+        bad = head.replace(
+            "ch03-mba-nest.html?v=da47600ecc21",
+            "ch03-mba-nest.html?v=da47600ecc21&amp;x",
+            1,
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: bad})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn(rel, output)
+
     def test_ias16_section_word_change_still_fails(self):
         import tempfile
 

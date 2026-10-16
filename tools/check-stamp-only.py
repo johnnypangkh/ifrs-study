@@ -118,6 +118,12 @@ SHARED_VISUAL_PAGES = (
     "ias-16/draft-v1-linked/visuals/ch07-disclosure.html",
     "ias-16/draft-v1-linked/visuals/master-concept-map.html",
 )
+# In-body iframes in the IFRS 18 ch03 source. ?v= only. Johnny 2026-10-16 21:14.
+IFRS18_CH03 = "ifrs-18/draft-v1-linked/ch03.html"
+IFRS18_CH03_IFRAMES = (
+    "visuals/ch03-mba-nest.html?v=",
+    "visuals/ch03-classification-path.html?v=",
+)
 
 
 def _v_only(old, new):
@@ -140,8 +146,15 @@ def shared_visual_stamp_failure(base, head, path):
     elif path in SHARED_VISUAL_PAGES:
         def listed(line_no, old):
             return "visuals.css?v=" in old
+    elif path == IFRS18_CH03:
+        def listed(line_no, old):
+            return any(needle in old for needle in IFRS18_CH03_IFRAMES)
     else:
         return None
+    # ch03 also carries the accepted map-iframe cascade. Only the two
+    # in-body iframe lines are judged here; other lines stay on the
+    # normal stamp gate.
+    strict = path != IFRS18_CH03
     base_lines = base.splitlines()
     head_lines = head.splitlines()
     if len(base_lines) != len(head_lines):
@@ -149,7 +162,11 @@ def shared_visual_stamp_failure(base, head, path):
     for line_no, (old, new) in enumerate(zip(base_lines, head_lines), 1):
         if old == new:
             continue
-        if not listed(line_no, old) or not _v_only(old, new):
+        if not listed(line_no, old):
+            if strict:
+                return f"shared visual stamp: diff outside the allowlist: {path}"
+            continue
+        if not _v_only(old, new):
             return f"shared visual stamp: diff outside the allowlist: {path}"
     return None
 
