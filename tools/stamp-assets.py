@@ -24,12 +24,19 @@ keeps its name stamp. search-index.js and last-update.js are skipped.
 homepage/build-search-index.py and tools/build-last-update.py own those
 stamps.
 
+In-body iframe ?v= values inside every pack's source/*.md are hashed
+the same way, against the visual file under draft-v1-linked/. When one
+of those lines changes, the sourced chapters are rebuilt in the same
+run. The script does not add ?v= to an iframe that lacks one.
+
 The hash is of the file on disk, so a stamp inside the target changes
 its hash. The script repeats until a pass rewrites nothing, which is
 stable for the pack's acyclic asset graph (css/js, then visuals, then
 pages that iframe them). A second run of this script rewrites nothing.
 """
 
+import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -57,6 +64,7 @@ VISUAL_PACKS = ("ias-2", "cf-2018", "ifrs-18")
 # Name stamp owned by the chapter template. Do not replace it with a hash.
 NAME_STAMP_FILES = {"footer-nav.js"}
 TEXT_SUFFIXES = {".html", ".css", ".js"}
+IFRAME_TAG = re.compile(r"<iframe\b[^>]*>", re.I)
 
 
 def pack_text_files(pack=PACK):
@@ -200,6 +208,67 @@ def iter_pack_local_css_refs(text, from_file, pack_root):
             yield ref
 
 
+def source_markdown():
+    """Chapter sources for every pack. Missing source/ dirs are skipped."""
+    files = []
+    for name in LIVE_PACKS:
+        src = ROOT / name / "source"
+        if not src.is_dir():
+            continue
+        files.extend(sorted(path for path in src.glob("*.md") if path.is_file()))
+    return files
+
+
+def stamp_source_iframes():
+    """Hash in-body iframe ?v= in source markdown. Do not add a new ?v=."""
+    changed = []
+    for md in source_markdown():
+        out_dir = md.parent.parent / "draft-v1-linked"
+        text = md.read_text(encoding="utf-8")
+        dirty = False
+
+        def repl_tag(match, out_dir=out_dir):
+            nonlocal dirty
+            tag = match.group(0)
+
+            def repl_url(url_match, out_dir=out_dir):
+                nonlocal dirty
+                url = url_match.group("url")
+                path, query, fragment = split_url(url)
+                if query_v(query) is None:
+                    return url_match.group(0)
+                if path.startswith(("#", "?", "data:", "mailto:", "http://", "https://", "//", "/")):
+                    return url_match.group(0)
+                target = (out_dir / path).resolve()
+                try:
+                    target.relative_to(out_dir.resolve())
+                except ValueError:
+                    return url_match.group(0)
+                if target.suffix.lower() != ".html" or not target.is_file():
+                    return url_match.group(0)
+                digest = file_stamp(target)
+                new_url = path + set_query_v(query, digest) + fragment
+                if new_url == url:
+                    return url_match.group(0)
+                dirty = True
+                return url_match.group(0).replace(url, new_url, 1)
+
+            return ATTR_URL.sub(repl_url, tag)
+
+        updated = IFRAME_TAG.sub(repl_tag, text)
+        if dirty and updated != text:
+            md.write_text(updated, encoding="utf-8")
+            changed.append(md.relative_to(ROOT).as_posix())
+    return changed
+
+
+def rebuild_sourced_chapters():
+    script = ROOT / "tools" / "build-chapter.py"
+    result = subprocess.run([sys.executable, str(script), "--all"], cwd=ROOT)
+    if result.returncode != 0:
+        raise SystemExit("build-chapter.py --all failed after stamping source iframes")
+
+
 def stamp_once(ias_files, pack_files, visual_files):
     hashed = {path.resolve() for path in ias_files}
     # Shared targets are outside the pack trees. Hash them on demand.
@@ -289,6 +358,10 @@ def stamp_once(ias_files, pack_files, visual_files):
         )
         refs.sort(key=lambda ref: ref["start"])
         apply(path, refs)
+    source_changed = stamp_source_iframes()
+    if source_changed:
+        rebuild_sourced_chapters()
+        changed.extend(source_changed)
     return changed
 
 

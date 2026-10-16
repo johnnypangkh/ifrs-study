@@ -12,7 +12,26 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+_TOOLS = Path(__file__).resolve().parent
+if str(_TOOLS) not in sys.path:
+    sys.path.insert(0, str(_TOOLS))
+from map_sections import (  # noqa: E402
+    ATTR_URL,
+    CSS_URL,
+    HEX12,
+    SKIP_STAMP_NAMES,
+    file_stamp,
+    query_v,
+    split_url,
+)
+
 V_QUERY = re.compile(r"\?v=[A-Za-z0-9._~%-]*")
+PACK_PAGE = re.compile(
+    r"^(?:ias-16|ias-2|ifrs-18|cf-2018)/draft-v1-linked/.+\.html$"
+)
+FOOTER_NAV_STAMP = "footer-nav-20261010"
+IFRAME_TAG = re.compile(r"<iframe\b[^>]*>", re.I)
+STAMP_PACKS = ("ias-16", "ias-2", "ifrs-18", "cf-2018")
 STAMP = re.compile(r"Last update · \d{4}-\d{2}-\d{2} \d{2}:\d{2} HKT")
 HOME = "homepage/homepage-wireframe-v0.1.html"
 # site/settings/index.html and _shared/settings-rows.html are gated instead by check-settings-rows.py (276/276) and xlsx_to_tokens.py --check.
@@ -67,6 +86,123 @@ def git_paths(rev):
 
 def norm(text):
     return V_QUERY.sub("?v=", text)
+
+
+def _stamp_target(from_file, url_path, root):
+    """A local css/js/html file under _shared or a pack draft tree."""
+    if not url_path or url_path.startswith(("#", "?", "data:", "mailto:")):
+        return None
+    if url_path.startswith(("http://", "https://", "//", "/")):
+        return None
+    path = url_path.split("#", 1)[0].split("?", 1)[0]
+    if not path:
+        return None
+    candidate = (from_file.parent / path).resolve()
+    if candidate.suffix.lower() not in {".css", ".js", ".html"} or not candidate.is_file():
+        return None
+    try:
+        rel = candidate.relative_to(root.resolve())
+    except ValueError:
+        return None
+    if rel.parts[0] == "_shared":
+        return candidate
+    if (
+        len(rel.parts) >= 2
+        and rel.parts[0] in STAMP_PACKS
+        and rel.parts[1] == "draft-v1-linked"
+    ):
+        return candidate
+    return None
+
+
+def iter_checked_stamps(text, from_file, root, iframe_only=False):
+    """Versioned local targets this gate checks against the file hash."""
+    chunks = [match.group(0) for match in IFRAME_TAG.finditer(text)] if iframe_only else [text]
+    seen = set()
+    for chunk in chunks:
+        urls = []
+        for match in ATTR_URL.finditer(chunk):
+            urls.append(match.group("url"))
+        for match in CSS_URL.finditer(chunk):
+            urls.append(match.group("url"))
+        for url in urls:
+            path, query, _fragment = split_url(url)
+            version = query_v(query)
+            if version is None:
+                continue
+            local = _stamp_target(from_file, path, root)
+            if local is None:
+                continue
+            key = (path, str(local))
+            if key in seen:
+                continue
+            seen.add(key)
+            yield path, version, local
+
+
+def stamp_value_failure(text, path, root, from_file=None, iframe_only=False):
+    """Fail when ?v= is not the target sha256[:12].
+
+    footer-nav.js keeps its name stamp. search-index.js and last-update.js
+    stay with their own generators. A non-hash token on any other file is
+    a hand token. A 12-hex value that is not the current file hash is a
+    mismatch, including a stale hash left over from an older file.
+    """
+    origin = from_file or (root / path)
+    for url_path, version, local in iter_checked_stamps(
+        text, origin, root, iframe_only=iframe_only
+    ):
+        if local.name in SKIP_STAMP_NAMES:
+            continue
+        if local.name == "footer-nav.js" and version == FOOTER_NAV_STAMP:
+            continue
+        digest = file_stamp(local)
+        if version == digest:
+            continue
+        if HEX12.fullmatch(version):
+            return (
+                f"stamp hash mismatch: {path} {url_path} "
+                f"?v={version} disk={digest}"
+            )
+        return f"stamp hand token: {path} {url_path} ?v={version}"
+    return None
+
+
+def stamp_added_failure(base, head, path, root):
+    """A ?v= on a URL the base page did not version is off the allowlist."""
+    if not PACK_PAGE.fullmatch(path):
+        return None
+    origin = root / path
+    base_paths = {
+        url_path
+        for url_path, _version, _local in iter_checked_stamps(base, origin, root)
+    }
+    for url_path, _version, _local in iter_checked_stamps(head, origin, root):
+        if url_path not in base_paths:
+            return f"stamp ?v= added off the allowlist: {path} {url_path}"
+    return None
+
+
+def check_source_iframe_stamps(root):
+    """In-body source iframes must carry the visual file's current hash."""
+    errors = []
+    for name in STAMP_PACKS:
+        src = root / name / "source"
+        if not src.is_dir():
+            continue
+        origin = root / name / "draft-v1-linked" / "chapter.html"
+        for md in sorted(src.glob("*.md")):
+            rel = md.relative_to(root).as_posix()
+            error = stamp_value_failure(
+                md.read_text(encoding="utf-8"),
+                rel,
+                root,
+                from_file=origin,
+                iframe_only=True,
+            )
+            if error:
+                errors.append(error)
+    return errors
 
 
 # Johnny 2026-10-16 20:14 — shared visual stamp cleanup.
@@ -1276,6 +1412,15 @@ def main(argv=None):
             failed = True
             continue
         head = file.read_text(encoding="utf-8")
+        if PACK_PAGE.fullmatch(path):
+            hash_error = stamp_value_failure(head, path, ROOT)
+            if hash_error:
+                print(hash_error)
+                failed = True
+            added_error = stamp_added_failure(base, head, path, ROOT)
+            if added_error:
+                print(added_error)
+                failed = True
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)
@@ -1385,6 +1530,9 @@ def main(argv=None):
         print(
             f"{row['page']}\t{row['base_stamp']}\t{row['head_stamp']}\t{row['only_stamp_changed']}"
         )
+    for error in check_source_iframe_stamps(ROOT):
+        print(error)
+        failed = True
     if failed:
         return 1
     print("stamp-only: PASS")
