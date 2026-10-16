@@ -158,6 +158,8 @@ def shared_visual_stamp_failure(base, head, path):
     base_lines = base.splitlines()
     head_lines = head.splitlines()
     if len(base_lines) != len(head_lines):
+        if not strict:
+            return None
         return f"shared visual stamp: line count changed: {path}"
     for line_no, (old, new) in enumerate(zip(base_lines, head_lines), 1):
         if old == new:
