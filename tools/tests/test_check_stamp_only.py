@@ -293,6 +293,69 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertIn("ch01.html", output)
         self.assertNotIn("stamp-only: PASS", output)
 
+    def test_ias2_shell_allowlist_is_folded(self):
+        import tempfile
+
+        rel = "ias-2/draft-v1-linked/ch01.html"
+        base = self._cf_shell(title_after_css=False).replace(
+            "</body>\n",
+            "<!-- pack-stamp:end -->\n\n</main>\n</body>\n",
+            1,
+        )
+        head = self._cf_shell(
+            title_after_css=False,
+            blanks=("map", "article"),
+        ).replace(
+            '<article class="teaching">\n',
+            '<article class="teaching">\n\n',
+            1,
+        ).replace(
+            "</article>\n",
+            "\n</article>\n",
+            1,
+        ).replace(
+            "</body>\n",
+            "<!-- pack-stamp:end -->\n</main>\n</body>\n",
+            1,
+        )
+        # First heading in the fixture is s-1-1, not s-1-0. Point the
+        # allow-list check at the real ch01 marker by renaming it.
+        base = base.replace('id="s-1-1"', 'id="s-1-0"', 1)
+        head = head.replace('id="s-1-1"', 'id="s-1-0"', 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_ias2_unlisted_blank_and_wrong_title_fail(self):
+        """An unlisted IAS 2 gap, and a head title before </head>, fail."""
+        import tempfile
+
+        rel = "ias-2/draft-v1-linked/ch02.html"
+        base = self._cf_shell(title_after_css=False)
+        head = base.replace('<h3 id="s-1-1">', '\n<h3 id="s-1-1">', 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch02.html", output)
+
+        title = "<title>Ch1 Objective</title>\n"
+        head = base.replace(
+            '<meta name="viewport" content="width=1280">\n' + title,
+            '<meta name="viewport" content="width=1280">\n',
+            1,
+        ).replace("</head>\n", title + "</head>\n", 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertNotIn("stamp-only: PASS", output)
+
     def test_ias16_section_word_change_still_fails(self):
         import tempfile
 

@@ -743,6 +743,62 @@ def fold_cf2018_shell(base_html, head_html, path):
     return base_html, head_html
 
 
+# Johnny 2026-10-16 17:11 — IAS 2 chapters use the same shell rules.
+# Title moves on the base only. Blank deltas are exactly +1 or -1.
+IAS2_CHAPTERS = tuple(
+    f"ias-2/draft-v1-linked/ch0{n}.html" for n in range(1, 7)
+)
+IAS2_BLANK_DELTAS = {
+    f"ias-2/draft-v1-linked/ch0{n}.html": (
+        ('<section class="visual-section">', 1),
+        ('<article class="teaching">', 1),
+        (f'<h3 id="s-{n}-0"', 1),
+        ("</main>", -1),
+    )
+    for n in range(1, 7)
+}
+for _rel in (
+    "ias-2/draft-v1-linked/ch01.html",
+    "ias-2/draft-v1-linked/ch02.html",
+    "ias-2/draft-v1-linked/ch05.html",
+    "ias-2/draft-v1-linked/ch06.html",
+):
+    IAS2_BLANK_DELTAS[_rel] = IAS2_BLANK_DELTAS[_rel] + (("</article>", 1),)
+IAS2_BLANK_DELTAS["ias-2/draft-v1-linked/ch03.html"] = (
+    IAS2_BLANK_DELTAS["ias-2/draft-v1-linked/ch03.html"]
+    + (('<h3 id="s-3-3"', -1),)
+)
+
+
+def fold_ias2_shell(base_html, head_html, path):
+    """Fold the IAS 2 title position and the listed one-line blank changes.
+
+    Johnny 2026-10-16 17:11, using the 15:32 title rule. The title element
+    is moved to the line after the viewport meta on the base page only.
+    Head must already have its title on that line. At each listed marker,
+    base gains or loses exactly one newline when that is the whole
+    difference. Any other gap still fails.
+    """
+    if path not in IAS2_CHAPTERS:
+        return base_html, head_html
+    base_html = _move_title_after_viewport(base_html)
+    for marker, delta in IAS2_BLANK_DELTAS[path]:
+        base_span = _newline_run_before(base_html, marker)
+        head_span = _newline_run_before(head_html, marker)
+        if base_span is None or head_span is None:
+            continue
+        base_len = base_span[1] - base_span[0]
+        head_len = head_span[1] - head_span[0]
+        if head_len - base_len != delta:
+            continue
+        end = base_span[1]
+        if delta == 1:
+            base_html = base_html[:end] + "\n" + base_html[end:]
+        elif delta == -1 and base_len > 0:
+            base_html = base_html[: end - 1] + base_html[end:]
+    return base_html, head_html
+
+
 def fold_pr6_cleanup(html, path):
     """Fold the approved noindex insert and MD-1 body attributes. Nothing else."""
     if path in PR6_NOINDEX_PAGES:
@@ -1031,6 +1087,8 @@ def main(argv=None):
         base_n, head_n = fold_ias16_section_gap(base_n, head_n, path)
         # Johnny 2026-10-16 15:32 — move the CF title on base only.
         base_n, head_n = fold_cf2018_shell(base_n, head_n, path)
+        # Johnny 2026-10-16 17:11 — IAS 2 title on base only, listed blanks.
+        base_n, head_n = fold_ias2_shell(base_n, head_n, path)
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)
