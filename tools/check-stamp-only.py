@@ -605,6 +605,20 @@ PR6_IAS2_CHAPTERS = tuple(
 PR6_IAS2_INDEX = "ias-2/draft-v1-linked/index.html"
 
 
+def fold_ias16_section_gap(html, path):
+    """Johnny 2026-10-16 09:21 — one blank line between IAS 16 sections.
+
+    A run of blank lines immediately before an h3, or before the teaching
+    article closes, becomes a single blank line. Any other character still
+    fails the stamp gate.
+    """
+    if path not in PR6_IAS16_CHAPTERS:
+        return html
+    html = re.sub(r"\n(?:\n)+(?=<h3\b)", "\n\n", html)
+    html = re.sub(r"\n(?:\n)+(?=</article>)", "\n\n", html)
+    return html
+
+
 def fold_pr6_cleanup(html, path):
     """Fold the approved noindex insert and MD-1 body attributes. Nothing else."""
     if path in PR6_NOINDEX_PAGES:
@@ -889,6 +903,9 @@ def main(argv=None):
         # Johnny 2026-10-15 23:59 — noindex on 9 IFRS 18 pages; MD-1 body on 14 pages.
         base_n = fold_pr6_cleanup(base_n, path)
         head_n = fold_pr6_cleanup(head_n, path)
+        # Johnny 2026-10-16 09:21 — IAS 16 section gap is one blank line.
+        base_n = fold_ias16_section_gap(base_n, path)
+        head_n = fold_ias16_section_gap(head_n, path)
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)

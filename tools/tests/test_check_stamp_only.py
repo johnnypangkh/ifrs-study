@@ -92,6 +92,40 @@ class IframeFloorFoldTests(unittest.TestCase):
         files[FOURTH] = page("Teaching.", FOURTH_STYLE)
         return files
 
+    def test_ias16_extra_section_blank_is_folded(self):
+        import tempfile
+
+        rel = "ias-16/draft-v1-linked/ch04.html"
+        base_body = (
+            '<article class="teaching">\n'
+            '<h3 id="s-4-3">4.3</h3>\n<p>Kept.</p>\n\n\n'
+            '<h3 id="s-4-4">4.4</h3>\n<p>Kept.</p>\n\n\n</article>'
+        )
+        head_body = (
+            '<article class="teaching">\n'
+            '<h3 id="s-4-3">4.3</h3>\n<p>Kept.</p>\n\n'
+            '<h3 id="s-4-4">4.4</h3>\n<p>Kept.</p>\n\n</article>'
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: page(head_body)})
+            code, output = self.run_gate(root, {rel: page(base_body)})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_ias16_section_word_change_still_fails(self):
+        import tempfile
+
+        rel = "ias-16/draft-v1-linked/ch05.html"
+        base_body = '<article class="teaching">\n<h3 id="s-5-3">5.3</h3>\n<p>Kept.</p>\n\n</article>'
+        head_body = base_body.replace("Kept.", "Edited.")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: page(head_body)})
+            code, output = self.run_gate(root, {rel: page(base_body)})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch05.html", output)
+
     def test_deleting_the_three_approved_blocks_passes(self):
         import tempfile
 

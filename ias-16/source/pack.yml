@@ -1,0 +1,6 @@
+id: ias16
+standard: IAS 16
+noindex: true
+css:
+  - assets/shared.css
+  - assets/draft.css
