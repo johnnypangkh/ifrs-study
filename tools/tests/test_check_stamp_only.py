@@ -92,6 +92,107 @@ class IframeFloorFoldTests(unittest.TestCase):
         files[FOURTH] = page("Teaching.", FOURTH_STYLE)
         return files
 
+    def test_ias16_extra_section_blank_is_folded(self):
+        import tempfile
+
+        ch04 = "ias-16/draft-v1-linked/ch04.html"
+        ch05 = "ias-16/draft-v1-linked/ch05.html"
+        # s-4-4 loses one blank line. s-4-6 keeps two on both sides.
+        # The article close on ch04 is not an approved spot, so it stays equal.
+        base_ch04 = (
+            '<article class="teaching">\n'
+            '<h3 id="s-4-3">4.3</h3>\n<p>Kept.</p>\n\n\n'
+            '<h3 id="s-4-4">4.4</h3>\n<p>Kept.</p>\n\n\n'
+            '<h3 id="s-4-6">4.6</h3>\n<p>Kept.</p>\n\n</article>'
+        )
+        head_ch04 = (
+            '<article class="teaching">\n'
+            '<h3 id="s-4-3">4.3</h3>\n<p>Kept.</p>\n\n'
+            '<h3 id="s-4-4">4.4</h3>\n<p>Kept.</p>\n\n\n'
+            '<h3 id="s-4-6">4.6</h3>\n<p>Kept.</p>\n\n</article>'
+        )
+        base_ch05 = (
+            '<article class="teaching">\n'
+            '<h3 id="s-5-11">5.11</h3>\n<p>Kept.</p>\n\n\n</article>'
+        )
+        head_ch05 = (
+            '<article class="teaching">\n'
+            '<h3 id="s-5-11">5.11</h3>\n<p>Kept.</p>\n\n</article>'
+        )
+        base = {ch04: page(base_ch04), ch05: page(base_ch05)}
+        head = {ch04: page(head_ch04), ch05: page(head_ch05)}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_n6_ias16_section_gap_widen_fails(self):
+        """N6 widen: a blank line removed outside the nine spots fails."""
+        import tempfile
+
+        cases = {
+            "unlisted heading on ch04": (
+                "ias-16/draft-v1-linked/ch04.html",
+                '<h3 id="s-4-5">4.5</h3>',
+            ),
+            "article close on ch04": (
+                "ias-16/draft-v1-linked/ch04.html",
+                "</article>",
+            ),
+            "heading on ch06": (
+                "ias-16/draft-v1-linked/ch06.html",
+                '<h3 id="s-6-1">6.1</h3>',
+            ),
+        }
+        for label, (rel, marker) in cases.items():
+            base_body = f'<article class="teaching">\n<p>Kept.</p>\n\n\n{marker}'
+            head_body = f'<article class="teaching">\n<p>Kept.</p>\n\n{marker}'
+            with tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                self.write_tree(root, {rel: page(head_body)})
+                code, output = self.run_gate(root, {rel: page(base_body)})
+            self.assertEqual(code, 1, f"{label}\n{output}")
+            self.assertIn(Path(rel).name, output)
+            self.assertNotIn("stamp-only: PASS", output)
+
+    def test_n13_ias16_section_gap_addition_fails(self):
+        """N13 addition: a blank line added at an approved spot fails."""
+        import tempfile
+
+        rel = "ias-16/draft-v1-linked/ch04.html"
+        base_body = (
+            '<article class="teaching">\n'
+            '<h3 id="s-4-3">4.3</h3>\n<p>Kept.</p>\n\n'
+            '<h3 id="s-4-4">4.4</h3>\n<p>Kept.</p>\n\n</article>'
+        )
+        head_body = (
+            '<article class="teaching">\n'
+            '<h3 id="s-4-3">4.3</h3>\n<p>Kept.</p>\n\n\n'
+            '<h3 id="s-4-4">4.4</h3>\n<p>Kept.</p>\n\n</article>'
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: page(head_body)})
+            code, output = self.run_gate(root, {rel: page(base_body)})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch04.html", output)
+        self.assertNotIn("stamp-only: PASS", output)
+
+    def test_ias16_section_word_change_still_fails(self):
+        import tempfile
+
+        rel = "ias-16/draft-v1-linked/ch05.html"
+        base_body = '<article class="teaching">\n<h3 id="s-5-3">5.3</h3>\n<p>Kept.</p>\n\n</article>'
+        head_body = base_body.replace("Kept.", "Edited.")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: page(head_body)})
+            code, output = self.run_gate(root, {rel: page(base_body)})
+        self.assertEqual(code, 1, output)
+        self.assertIn("ch05.html", output)
+
     def test_deleting_the_three_approved_blocks_passes(self):
         import tempfile
 

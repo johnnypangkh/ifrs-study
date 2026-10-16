@@ -2,9 +2,11 @@
 """Build a chapter page from source/chNN.md and source/pack.yml.
 
 The teaching body is an HTML fragment under YAML front matter (J-2).
-Headings ``## N.M Title`` become sections. A ``see:`` line becomes the
-shared see-also strip. Packs with no source/ folder are skipped, so this
-can ship before any live pack is wired.
+Headings ``## N.M Title`` become sections. ``## html s-N-M`` keeps a
+heading whose id is not that plain number; the id may end with one
+letter (``s-3-1a``, ``s-3-7a``, ``s-6-0a``). A ``see:`` line becomes the
+shared see-also strip. Purpose is HTML and is copied through as written.
+Packs with no source/ folder are skipped.
 
 Master Design, 2026-10-15:
   MD-1  body carries data-pack, data-page="chapter", and data-chapter.
@@ -43,7 +45,8 @@ DISCLAIMER = (
     "<!-- disclaimer:end -->"
 )
 HEADING_RE = re.compile(r"^## (\d+(?:\.\d+)*) (.+)$")
-HTML_HEADING_RE = re.compile(r"^## html (s-\d+(?:-\d+)*)$")
+# s-N-M, or the same id with one trailing letter (s-3-1a, s-6-0a).
+HTML_HEADING_RE = re.compile(r"^## html (s-\d+(?:-\d+)*[a-z]?)$")
 H3_RE = re.compile(r"<h3\b([^>]*)>(.*?)</h3>", re.S)
 TOP_RE = re.compile(r'<a class="sec-top" href="[^"]*">top</a>')
 SEE_LINE_RE = re.compile(r"^see:\s*(\S.*)$")
@@ -603,7 +606,9 @@ def render_chapter(chapter, profile, out_dir, repo_root, warnings):
         f'  <h1 id="chapter-title">{esc(chapter["title"])}</h1>',
     ]
     if chapter.get("purpose"):
-        header_lines.append(f'  <p class="purpose">{esc(chapter["purpose"])}</p>')
+        # Purpose is HTML passthrough. Live pages keep inline markup
+        # such as <strong>; escaping it would change the teaching line.
+        header_lines.append(f'  <p class="purpose">{chapter["purpose"]}</p>')
     header_lines.append("</div>")
     article = ["<article class=\"teaching\">", ""]
     for section in chapter["sections"]:
@@ -801,8 +806,8 @@ def extract_chapter(page, file_hint=""):
     purpose = None
     purpose_match = re.search(r'<p class="purpose">(.*?)</p>', page, re.S)
     if purpose_match:
-        raw = purpose_match.group(1).strip()
-        purpose = raw if "<" in raw else html_lib.unescape(raw)
+        # Keep the inner HTML, including entities and inline tags.
+        purpose = purpose_match.group(1).strip()
     map_match = re.search(
         r'<fieldset class="visual-fieldset" id="page-map">(.*?)</fieldset>',
         page,

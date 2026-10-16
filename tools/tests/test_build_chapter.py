@@ -153,6 +153,90 @@ class BuildChapterTests(unittest.TestCase):
                 second = build.render_chapter(again, profile, path.parent, ROOT, [])
                 self.assertEqual(second, rendered)
 
+    def test_purpose_html_is_passthrough(self):
+        purpose = "Build <strong>cost</strong> and E&amp;E."
+        text = f"""---
+pack: ias16
+chapter: 3
+file: ch03.html
+title: "Chapter 3 — Initial measurement"
+pill: "3 Initial measurement"
+purpose: "{purpose}"
+---
+
+## 3.0 Measure at cost
+<p>Body.</p>
+"""
+        chapter = build.parse_chapter(text, "ch03.md")
+        self.assertEqual(chapter["purpose"], purpose)
+        profile = {
+            "id": "ias16",
+            "standard": "IAS 16",
+            "noindex": True,
+            "css": ["assets/shared.css"],
+        }
+        out = FIXTURES / "new-chapter" / "draft-v1-linked"
+        page = build.render_chapter(chapter, profile, out, FIXTURES / "new-chapter", [])
+        self.assertIn(f'<p class="purpose">{purpose}</p>', page)
+        self.assertNotIn("&lt;strong&gt;", page)
+        again = build.extract_chapter(page, "ch03.html")
+        self.assertEqual(again["purpose"], purpose)
+        second = build.render_chapter(again, profile, out, FIXTURES / "new-chapter", [])
+        self.assertEqual(second, page)
+
+    def test_lettered_heading_ids(self):
+        samples = (
+            ("3", "s-3-1a", "3.1A Customer contributions of PPE"),
+            ("3", "s-3-7a", "3.7A Variable / contingent consideration on PPE purchase"),
+            ("6", "s-6-0a", "6.0A Partial disposals and undivided interests"),
+        )
+        profile = {
+            "id": "ias16",
+            "standard": "IAS 16",
+            "noindex": True,
+            "css": ["assets/shared.css"],
+        }
+        out = FIXTURES / "new-chapter" / "draft-v1-linked"
+        for chapter_no, ident, heading in samples:
+            with self.subTest(ident=ident):
+                text = f"""---
+pack: ias16
+chapter: {chapter_no}
+file: ch{int(chapter_no):02d}.html
+title: "Chapter {chapter_no} — Sample"
+pill: "{chapter_no} Sample"
+purpose: "Plain purpose."
+---
+
+## html {ident}
+{heading}
+
+<p>Kept.</p>
+"""
+                chapter = build.parse_chapter(text, f"ch{int(chapter_no):02d}.md")
+                self.assertEqual(chapter["sections"][0]["kind"], "html")
+                self.assertEqual(chapter["sections"][0]["id"], ident)
+                self.assertEqual(chapter["sections"][0]["html"], heading)
+                page = build.render_chapter(chapter, profile, out, FIXTURES / "new-chapter", [])
+                self.assertIn(f'<h3 id="{ident}">{heading}<a class="sec-top" ', page)
+                again = build.extract_chapter(page, chapter["file"])
+                self.assertEqual(build.comparable(again), build.comparable(chapter))
+        with self.assertRaises(build.ChapterError):
+            build.parse_chapter(
+                """---
+pack: ias16
+chapter: 3
+file: ch03.html
+title: "Chapter 3 — Sample"
+pill: "3 Sample"
+---
+
+## html s-3-ex
+Not a section id
+""",
+                "ch03.md",
+            )
+
     def test_duplicate_section_id_fails(self):
         text = (FIXTURES / "new-chapter" / "source" / "ch08.md").read_text(encoding="utf-8")
         text = text.replace("## 8.1 Proceeds before intended use", "## 8.0 Again")
@@ -256,12 +340,15 @@ class BuildChapterTests(unittest.TestCase):
             self.assertIn("drifted", out)
 
     def test_check_skips_a_tree_with_no_source(self):
-        code, out = self._run_main(["--check", "--root", str(ROOT)])
-        self.assertEqual(code, 0)
-        self.assertIn("no source/", out)
-        code, out = self._run_main(["--all", "--root", str(ROOT)])
-        self.assertEqual(code, 0)
-        self.assertIn("no source/", out)
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            code, out = self._run_main(["--check", "--root", tmp])
+            self.assertEqual(code, 0)
+            self.assertIn("no source/", out)
+            code, out = self._run_main(["--all", "--root", tmp])
+            self.assertEqual(code, 0)
+            self.assertIn("no source/", out)
 
     def test_see_shorthand_uses_only_see_also_classes(self):
         css = SEE_CSS.read_text(encoding="utf-8")

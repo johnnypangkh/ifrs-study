@@ -605,6 +605,63 @@ PR6_IAS2_CHAPTERS = tuple(
 PR6_IAS2_INDEX = "ias-2/draft-v1-linked/index.html"
 
 
+# Johnny 2026-10-16 09:21 named these nine gaps. Johnny 2026-10-16 09:57
+# (QC r1 item 7, option a) limited the stamp fold to this allow-list.
+# Each marker is the next heading, or the article close after 5.11.
+IAS16_SECTION_GAPS = {
+    "ias-16/draft-v1-linked/ch04.html": (
+        '<h3 id="s-4-4"',
+        '<h3 id="s-4-6"',
+    ),
+    "ias-16/draft-v1-linked/ch05.html": (
+        '<h3 id="s-5-3"',
+        '<h3 id="s-5-4"',
+        '<h3 id="s-5-5"',
+        '<h3 id="s-5-6"',
+        '<h3 id="s-5-8"',
+        '<h3 id="s-5-9"',
+        "</article>",
+    ),
+}
+
+
+def _newline_run_before(html, marker):
+    """Span of newlines sitting immediately before marker, or None.
+
+    The article close is the last </article>. Heading markers occur once.
+    """
+    idx = html.rfind(marker) if marker == "</article>" else html.find(marker)
+    if idx < 0:
+        return None
+    start = idx
+    while start > 0 and html[start - 1] == "\n":
+        start -= 1
+    return start, idx
+
+
+def fold_ias16_section_gap(base_html, head_html, path):
+    """Drop extra blank lines at the nine approved spots. Nothing else.
+
+    Johnny 2026-10-16 09:57. Where base has more newlines immediately before
+    an allow-listed marker than head does, those extra newlines are removed
+    from base. A longer run on head is left alone, so an added blank line
+    still fails the stamp gate. A gap before any other heading is not folded.
+    """
+    markers = IAS16_SECTION_GAPS.get(path)
+    if not markers:
+        return base_html, head_html
+    for marker in markers:
+        base_span = _newline_run_before(base_html, marker)
+        head_span = _newline_run_before(head_html, marker)
+        if base_span is None or head_span is None:
+            continue
+        extra = (base_span[1] - base_span[0]) - (head_span[1] - head_span[0])
+        if extra > 0:
+            end = base_span[1]
+            base_html = base_html[: end - extra] + base_html[end:]
+    return base_html, head_html
+
+
 def fold_pr6_cleanup(html, path):
     """Fold the approved noindex insert and MD-1 body attributes. Nothing else."""
     if path in PR6_NOINDEX_PAGES:
@@ -889,6 +946,8 @@ def main(argv=None):
         # Johnny 2026-10-15 23:59 — noindex on 9 IFRS 18 pages; MD-1 body on 14 pages.
         base_n = fold_pr6_cleanup(base_n, path)
         head_n = fold_pr6_cleanup(head_n, path)
+        # Johnny 2026-10-16 09:57 — collapse only the nine approved IAS 16 gaps.
+        base_n, head_n = fold_ias16_section_gap(base_n, head_n, path)
         if path in IAS2_NOTE_PAGES:
             base_n = fold_ias2_pr5(base_n)
             head_n = fold_ias2_pr5(head_n)

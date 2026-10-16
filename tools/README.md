@@ -8,16 +8,17 @@ bash tools/build-all.sh
 
 The script runs, in order:
 
-1. `tools/build-map-includes.py` — splice IAS 16 chapter map sections into `ias-16/draft-v1-linked/visuals/master-concept-map.html`.
-2. `tools/stamp-assets.py` — set every local `.css` / `.js` / `.html` `?v=` under `ias-16/draft-v1-linked/` to the first 12 hex digits of the SHA-256 of the target file, and set shared-asset `?v=` on all four packs to the on-disk hash.
-3. `homepage/build-search-index.py` — rebuild `homepage/search-index.js` and its own `?v=` stamps.
-4. `tools/build-last-update.py` — rebuild `_shared/last-update.js` and its own `?v=` stamps.
+1. `tools/build-chapter.py --all` — rebuild every pack that has `source/`. A pack with no `source/pack.yml` is skipped.
+2. `tools/build-map-includes.py` — splice IAS 16 chapter map sections into `ias-16/draft-v1-linked/visuals/master-concept-map.html`.
+3. `tools/stamp-assets.py` — set every local `.css` / `.js` / `.html` `?v=` under `ias-16/draft-v1-linked/` to the first 12 hex digits of the SHA-256 of the target file, set the same kind of pack-local `?v=` on IAS 2 and CF 2018 pack pages, and set shared-asset `?v=` on all four packs to the on-disk hash.
+4. `homepage/build-search-index.py` — rebuild `homepage/search-index.js` and its own `?v=` stamps.
+5. `tools/build-last-update.py` — rebuild `_shared/last-update.js` and its own `?v=` stamps.
 
 A second run rewrites nothing. CI runs this script and then `git diff --exit-code`.
 
 ## Chapter template
 
-`tools/build-chapter.py` builds a chapter page from `<pack>/source/chNN.md` and `<pack>/source/pack.yml`. The source file is YAML front matter plus an HTML teaching body. A line `## N.M Title` becomes `<h3 id="s-N-M">` with a `top` pill. A line `see: href — label; href — label :: note` becomes the shared see-also strip (`see-also-strip`, `see-label`, `see-bit`, and `see-strip-note` when a note is present). Those classes are the ones in `_shared/see-also.css`; the tool adds no `style=` and no new token. A target with no label uses the href as the link text.
+`tools/build-chapter.py` builds a chapter page from `<pack>/source/chNN.md` and `<pack>/source/pack.yml`. The source file is YAML front matter plus an HTML teaching body. A line `## N.M Title` becomes `<h3 id="s-N-M">` with a `top` pill. A line `## html s-N-M` (the id may end with one letter, as in `s-3-1a`, `s-3-7a`, or `s-6-0a`) keeps the heading HTML on the next line. A line `see: href — label; href — label :: note` becomes the shared see-also strip (`see-also-strip`, `see-label`, `see-bit`, and `see-strip-note` when a note is present). Those classes are the ones in `_shared/see-also.css`; the tool adds no `style=` and no new token. A target with no label uses the href as the link text. The purpose string is HTML and is copied into the page without escaping, so inline markup such as `<strong>` stays as written.
 
 The page shell is generated: head, `body data-pack` + `data-page="chapter"` + `data-chapter`, the title block, the Concept Map frame when the visual file exists, the empty disclaimer markers, and the footer-nav shell. The chapter's `{ href, label }` row is inserted into `_shared/chrome-packs.js` in chapter order. When the chapter has no visual, or the named file is not on disk, the map frame is omitted and the build prints a warning. It does not fail, and it does not leave an empty frame.
 
@@ -28,7 +29,7 @@ python3 tools/build-chapter.py --all
 python3 tools/build-chapter.py --check
 ```
 
-`--check` regenerates every chapter that has a `source/` file and fails on any diff. `ias-16`, `ias-2`, `ifrs-18`, and `cf-2018` are the packs it looks at. A pack with no `source/pack.yml` is skipped, so the check is green before any live pack is wired. `build-all.sh` does not call this tool yet. Wiring a pack is a later change. A second `--all` rewrites nothing.
+`--check` regenerates every chapter that has a `source/` file and fails on any diff. `ias-16`, `ias-2`, `ifrs-18`, and `cf-2018` are the packs it looks at. A pack with no `source/pack.yml` is skipped. `build-all.sh` runs `--all` first. A second `--all` rewrites nothing.
 
 `tools/generate-chrome.mjs` wrote the old static top bar, including an inline `font-weight:500`, and read a `refs/<pack>/chrome.json` that is not in the tree. Nothing in a live page loads it. It now lives in `design/archive/generate-chrome-2026-10-15/`.
 
@@ -84,7 +85,7 @@ These blocks stay in the master. They are not byte-for-byte the chapter section,
 
 ## Cache stamps
 
-`stamp-assets.py` rewrites an existing `?v=` when the URL resolves to a file inside `ias-16/draft-v1-linked/` whose suffix is `.css`, `.js`, or `.html`. That includes the Map iframe `src` on `index.html`. It does not add `?v=` to fragment links that never had one. On each of the 44 pack pages (`ias-16`, `ias-2`, `ifrs-18`, `cf-2018` `draft-v1-linked/*.html`) it also rewrites `_shared/` `?v=` values to that file's 12-hex SHA-256, except `footer-nav.js` (name stamp `footer-nav-20261010`), `search-index.js`, and `last-update.js`. Visuals and pack-local stamps outside IAS 16 are not rewritten. `build-chapter.py` keeps its own `file_stamp` for the shared assets it emits.
+`stamp-assets.py` rewrites an existing `?v=` when the URL resolves to a file inside `ias-16/draft-v1-linked/` whose suffix is `.css`, `.js`, or `.html`. That includes the Map iframe `src` on `index.html`. It does not add `?v=` to fragment links that never had one. On each IAS 2 and CF 2018 pack page (`draft-v1-linked/*.html`) it rewrites the same kind of local `?v=` when the target sits inside that pack. Files under those packs' `visuals/` directories are not rewritten, and IFRS 18 pack-local stamps are left as they are. On each of the 44 pack pages (`ias-16`, `ias-2`, `ifrs-18`, `cf-2018` `draft-v1-linked/*.html`) it also rewrites `_shared/` `?v=` values to that file's 12-hex SHA-256, except `footer-nav.js` (name stamp `footer-nav-20261010`), `search-index.js`, and `last-update.js`. `build-chapter.py` keeps its own `file_stamp` for the shared assets it emits.
 
 `search-index.js` and `last-update.js` are skipped so this script does not fight `homepage/build-search-index.py` or `tools/build-last-update.py`. Those generators still run after the stamper and write their own 12-hex `?v=` values.
 
