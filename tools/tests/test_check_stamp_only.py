@@ -424,6 +424,66 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertEqual(code, 1, output)
         self.assertIn("ch06.html", output)
 
+    def test_shared_visual_stamp_allowlist(self):
+        import tempfile
+
+        css = "\n".join(
+            [f"/* line {n} */" for n in range(1, 13)]
+            + [
+                '@import url("tokens-core.css?v=aaaaaaaaaaaa");',
+                '@import url("see-also.css?v=bbbbbbbbbbbb");',
+            ]
+            + [f"/* line {n} */" for n in range(15, 28)]
+            + [
+                '@import url("modules/visuals/cite-1.css?v=cccccccccccc");',
+                '@import url("modules/visuals/components-6.css?v=dddddddddddd");',
+                "",
+            ]
+        )
+        head_css = (
+            css.replace("aaaaaaaaaaaa", "111111111111")
+            .replace("bbbbbbbbbbbb", "222222222222")
+            .replace("cccccccccccc", "333333333333")
+            .replace("dddddddddddd", "444444444444")
+        )
+        rel = "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html"
+        base_page = page(
+            '<link rel="stylesheet" href="../../../_shared/visuals.css?v=49cc6a8eed7b">'
+        )
+        head_page = base_page.replace("49cc6a8eed7b", "4a8ba929e022")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head_page, stamp.SHARED_VISUAL_CSS: head_css})
+            code, output = self.run_gate(
+                root, {rel: base_page, stamp.SHARED_VISUAL_CSS: css}
+            )
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+        bad = head_css.replace("/* line 15 */", "/* line 15 edited */", 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head_page, stamp.SHARED_VISUAL_CSS: bad})
+            code, output = self.run_gate(
+                root, {rel: base_page, stamp.SHARED_VISUAL_CSS: css}
+            )
+        self.assertEqual(code, 1, output)
+        self.assertIn("_shared/visuals.css", output)
+
+        other = head_page.replace(
+            "</head>",
+            '<link rel="stylesheet" href="x.css?v=new">\n</head>',
+            1,
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: other, stamp.SHARED_VISUAL_CSS: head_css})
+            code, output = self.run_gate(
+                root, {rel: base_page, stamp.SHARED_VISUAL_CSS: css}
+            )
+        self.assertEqual(code, 1, output)
+        self.assertIn(rel, output)
+
     def test_ias16_section_word_change_still_fails(self):
         import tempfile
 
