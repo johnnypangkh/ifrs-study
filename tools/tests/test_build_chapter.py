@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Chapter template: fixtures, live-page round trip, and the --check gate."""
 
+import hashlib
 import importlib.util
 import io
 import shutil
+import tempfile
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
@@ -375,6 +377,195 @@ Not a section id
         self.assertIn(text.split("disclaimer:", 1)[1], inserted)
         again = build.upsert_chapter_row(inserted, "ias16", "ch08.html", "8 Transition")
         self.assertEqual(again, inserted)
+
+    def test_new_pack_scaffolds_map_chapter_abbr_and_refs(self):
+        """Temp --root only. Map, chapter, abbreviations, and references get chrome."""
+        live_chrome = (ROOT / "_shared" / "chrome-packs.js").read_bytes()
+        live_settings = (ROOT / "site" / "settings" / "index.html").read_bytes()
+        live_packs = build.LIVE_PACKS
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            shared = root / "_shared"
+            shared.mkdir()
+            shutil.copy(ROOT / "_shared" / "chrome-packs.js", shared / "chrome-packs.js")
+            code, output = self._run_main(
+                [
+                    "--new-pack",
+                    "--root",
+                    str(root),
+                    "--folder",
+                    "demo-pack",
+                    "--id",
+                    "demopack",
+                    "--title",
+                    "IAS 38 Intangible Assets",
+                    "--standard",
+                    "IAS 38",
+                    "--search",
+                    "Find in IAS 38…",
+                    "--homepage-stub",
+                    "demo-pack/homepage-card.html",
+                ]
+            )
+            self.assertEqual(code, 0, output)
+            self.assertIn("map frame omitted", output)
+            pack = root / "demo-pack" / "draft-v1-linked"
+            index = (pack / "index.html").read_text(encoding="utf-8")
+            chapter = (pack / "ch01.html").read_text(encoding="utf-8")
+            abbr = (pack / "abbreviations.html").read_text(encoding="utf-8")
+            refs = (pack / "references.html").read_text(encoding="utf-8")
+            for page in (index, chapter, abbr, refs):
+                self.assertIn('content="width=1280"', page)
+                self.assertIn("<!-- chrome:start -->", page)
+                self.assertIn('<header class="chrome-bar"></header>', page)
+                self.assertIn("<!-- disclaimer:start -->", page)
+                self.assertIn('id="pack-disclaimer"', page)
+                self.assertIn("<!-- footer-nav:start -->", page)
+                self.assertIn("footer-nav-20261010", page)
+                self.assertNotIn("style=", page.lower())
+            self.assertIn('data-pack="demopack" data-page="map"', index)
+            self.assertIn("Concept Map", index)
+            self.assertIn('class="visual-fieldset"', index)
+            self.assertNotIn("<iframe", index)
+            self.assertIn('id="pack-stamp"', index)
+            self.assertIn('data-page="chapter" data-chapter="ch01"', chapter)
+            self.assertIn("Starter section.", chapter)
+            self.assertNotIn("visual-fieldset", chapter)
+            self.assertIn('data-page="abbreviations"', abbr)
+            self.assertIn("<th>Full form</th><th>Short form</th>", abbr)
+            self.assertNotIn("<td>", abbr)
+            self.assertIn('data-page="references"', refs)
+            self.assertIn('id="s-ref-official"', refs)
+            self.assertIn('id="s-ref-big4"', refs)
+            self.assertIn('id="s-ref-method"', refs)
+            self.assertNotIn("<td>", refs)
+            for name in ("shared.css", "draft.css"):
+                css = (pack / "assets" / name).read_text(encoding="utf-8")
+                self.assertTrue(css.startswith("/*"))
+                self.assertNotIn("{", css)
+                digest = hashlib.sha256(css.encode("utf-8")).hexdigest()[:12]
+                self.assertIn(f"assets/{name}?v={digest}", index)
+            yml = (root / "demo-pack" / "source" / "pack.yml").read_text(encoding="utf-8")
+            self.assertIn("id: demopack", yml)
+            self.assertIn('standard: "IAS 38"', yml)
+            self.assertIn("noindex: true", yml)
+            chrome = (shared / "chrome-packs.js").read_text(encoding="utf-8")
+            self.assertIn("demopack: {", chrome)
+            self.assertIn('title: "IAS 38 Intangible Assets"', chrome)
+            self.assertIn('search: "Find in IAS 38…"', chrome)
+            self.assertIn('{ href: "abbreviations.html", label: "Abbreviations" }', chrome)
+            self.assertIn('{ href: "references.html", label: "References" }', chrome)
+            self.assertIn('{ href: "ch01.html", label: "1 Overview" }', chrome)
+            self.assertIn("These IAS 38 pages are <strong>personal study notes</strong>", chrome)
+            self.assertIn('["/demo-pack/", "demopack"]', chrome)
+            self.assertLess(chrome.index("demopack: {"), chrome.index("site: {"))
+            self.assertLess(
+                chrome.index('["/demo-pack/", "demopack"]'),
+                chrome.index('["/site/settings/", "site"]'),
+            )
+            card = (root / "demo-pack" / "homepage-card.html").read_text(encoding="utf-8")
+            self.assertIn('class="card planned"', card)
+            self.assertIn(">IAS 38<", card)
+            self.assertIn("IAS 38 Intangible Assets", card)
+            self.assertIn(">Planned<", card)
+            self.assertFalse((root / "homepage" / "homepage-wireframe-v0.1.html").exists())
+            again, again_out = self._run_main(
+                [
+                    "--new-pack",
+                    "--root",
+                    str(root),
+                    "--folder",
+                    "demo-pack",
+                    "--id",
+                    "demopack",
+                    "--title",
+                    "IAS 38 Intangible Assets",
+                    "--standard",
+                    "IAS 38",
+                    "--search",
+                    "Find in IAS 38…",
+                ]
+            )
+            self.assertEqual(again, 1, again_out)
+            self.assertIn("already exists", again_out)
+            shutil.rmtree(root / "demo-pack")
+            collided, collided_out = self._run_main(
+                [
+                    "--new-pack",
+                    "--root",
+                    str(root),
+                    "--folder",
+                    "other-pack",
+                    "--id",
+                    "demopack",
+                    "--title",
+                    "IAS 38 Intangible Assets",
+                    "--standard",
+                    "IAS 38",
+                    "--search",
+                    "Find in IAS 38…",
+                ]
+            )
+            self.assertEqual(collided, 1, collided_out)
+            self.assertIn("already has pack demopack", collided_out)
+            self.assertFalse((root / "other-pack").exists())
+        self.assertEqual((ROOT / "_shared" / "chrome-packs.js").read_bytes(), live_chrome)
+        self.assertEqual((ROOT / "site" / "settings" / "index.html").read_bytes(), live_settings)
+        self.assertEqual(build.LIVE_PACKS, live_packs)
+        self.assertEqual(build.LIVE_PACKS, ("ias-16", "ias-2", "ifrs-18", "cf-2018"))
+
+    def test_new_pack_without_seed_has_no_chapter_pill(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            shared = root / "_shared"
+            shared.mkdir()
+            shutil.copy(ROOT / "_shared" / "chrome-packs.js", shared / "chrome-packs.js")
+            code, output = self._run_main(
+                [
+                    "--new-pack",
+                    "--no-seed-chapter",
+                    "--root",
+                    str(root),
+                    "--folder",
+                    "demo-pack",
+                    "--id",
+                    "demopack",
+                    "--title",
+                    "Demo Pack",
+                    "--standard",
+                    "Demo",
+                    "--search",
+                    "Find in Demo",
+                ]
+            )
+            self.assertEqual(code, 0, output)
+            self.assertIn('class="card planned"', output)
+            self.assertFalse((root / "demo-pack" / "source" / "ch01.md").exists())
+            self.assertFalse((root / "demo-pack" / "draft-v1-linked" / "ch01.html").exists())
+            chrome = (shared / "chrome-packs.js").read_text(encoding="utf-8")
+            self.assertNotIn("ch01.html", chrome.split("demopack: {", 1)[1].split("site: {", 1)[0])
+            wire, wire_out = self._run_main(
+                [
+                    "--new-pack",
+                    "--root",
+                    str(root),
+                    "--folder",
+                    "wire-pack",
+                    "--id",
+                    "wirepack",
+                    "--title",
+                    "Wire",
+                    "--standard",
+                    "Wire",
+                    "--search",
+                    "Find in Wire",
+                    "--homepage-stub",
+                    "homepage/homepage-wireframe-v0.1.html",
+                ]
+            )
+            self.assertEqual(wire, 1, wire_out)
+            self.assertIn("homepage-wireframe", wire_out)
+            self.assertFalse((root / "wire-pack").exists())
 
     def _copied_repo(self):
         return _CopiedRepo()

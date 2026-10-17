@@ -19,6 +19,9 @@ Usage:
   python3 tools/build-chapter.py --check
   python3 tools/build-chapter.py --all
   python3 tools/build-chapter.py ias-16/source/ch08.md
+  python3 tools/build-chapter.py --new-pack --root <repo> \\
+      --folder demo-pack --id demopack --title "…" \\
+      --standard "…" --search "Find in …"
 """
 
 import argparse
@@ -976,6 +979,324 @@ def build_pack(pack_dir, chrome_path, repo_root, write, warnings):
     return {"diffs": diffs, "changed": changed, "count": len(rendered)}
 
 
+FOLDER_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
+PACK_ID_RE = re.compile(r"[a-z][a-z0-9]*")
+CSS_STUB = "/* Empty pack stylesheet. Add rules here when this pack has them. */\n"
+DISCLAIMER_TEMPLATE = (
+    "<strong>Disclaimer — personal study pack.</strong> "
+    "These {standard} pages are <strong>personal study notes</strong> for private learning. "
+    "They are <strong>not</strong> accounting, legal, or professional advice, and are "
+    "<strong>not</strong> for commercial or mass redistribution. Official Standards remain "
+    "authoritative. Big4 / firm-manual extracts and third-party financial-statement examples "
+    "appear only as short teaching paraphrase or cited figures for private study; the pack "
+    "owner has legal counsel. Do not treat this site as a substitute for the Official text, "
+    "firm manuals, or issuer financial statements."
+)
+
+
+def yaml_quote(text):
+    return '"' + text.replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+def require_plain(text, label):
+    if not isinstance(text, str) or not text.strip():
+        raise ChapterError(f"--new-pack needs {label}")
+    cleaned = text.strip()
+    if "\n" in cleaned or "\r" in cleaned or "<" in cleaned or ">" in cleaned:
+        raise ChapterError(f"{label} must be one plain line")
+    return cleaned
+
+
+def homepage_card(standard, title):
+    """A planned-card fragment. Never written into the homepage wireframe."""
+    return (
+        '<article class="card planned">\n'
+        f'  <div class="card-top"><span class="card-code">{esc(standard)}</span></div>\n'
+        f'  <p class="card-title">{esc(title)}</p>\n'
+        '  <span class="card-status">Planned</span>\n'
+        "</article>\n"
+    )
+
+
+def render_shell(profile, out_dir, repo_root, title, page_kind, body_html, pack_stamp):
+    """Map, Abbreviations, or References shell. Same chrome markers as a chapter."""
+    head = ["<!DOCTYPE html>", '<html lang="en">', "<head>"]
+    if profile["noindex"]:
+        head.append('<meta name="robots" content="noindex">')
+    head.extend(
+        [
+            '<meta charset="utf-8">',
+            '<meta name="viewport" content="width=1280">',
+            f"<title>{esc(title)}</title>",
+        ]
+    )
+    for kind, name in SHARED_ASSETS:
+        head.append(shared_tag(kind, name, repo_root))
+    for rel in profile["css"]:
+        head.append(
+            f'<link rel="stylesheet" href="{esc(rel)}?v={file_stamp(out_dir / rel)}">'
+        )
+    head.append("</head>")
+    parts = head + [
+        f'<body data-pack="{esc(profile["id"])}" data-page="{esc(page_kind)}">',
+        "<!-- chrome:start -->",
+        '<header class="chrome-bar"></header>',
+        "<!-- chrome:end -->",
+        '<main class="page">',
+        body_html.rstrip("\n"),
+        "",
+        DISCLAIMER,
+        "",
+        "<!-- footer-nav:start -->",
+        '<nav class="footer-nav"></nav>',
+        f'<script src="../../_shared/footer-nav.js?v={FOOTER_NAV_STAMP}"></script>',
+        "<!-- footer-nav:end -->",
+    ]
+    if pack_stamp:
+        parts.extend(
+            [
+                "<!-- pack-stamp:start -->",
+                '<footer class="footer-note" id="pack-stamp">',
+                "</footer>",
+                "<!-- pack-stamp:end -->",
+            ]
+        )
+    parts.extend(["</main>", "", "</body>", "</html>", ""])
+    page = "\n".join(parts)
+    if "style=" in page.lower():
+        raise ChapterError(f"{page_kind}: output contains style=, which is not allowed")
+    assert_unique_ids(page, page_kind)
+    return page
+
+
+def pack_block(pack_id, title, search, standard):
+    disclaimer = DISCLAIMER_TEMPLATE.replace("{standard}", standard)
+    return (
+        f"  {pack_id}: {{\n"
+        f"    title: {yaml_quote(title)},\n"
+        f"    search: {yaml_quote(search)},\n"
+        '    map: "index.html",\n'
+        "    chapters: [\n"
+        "    ],\n"
+        "    meta: [\n"
+        '      { href: "abbreviations.html", label: "Abbreviations" },\n'
+        '      { href: "references.html", label: "References" }\n'
+        "    ],\n"
+        f"    disclaimer: {yaml_quote(disclaimer)}\n"
+        "  },\n"
+    )
+
+
+def insert_chrome_pack(text, pack_id, folder, block):
+    """Insert a pack block and a CHROME_PACK_PATHS row. Does not edit LIVE_PACKS."""
+    if re.search(rf"(?m)^  {re.escape(pack_id)}: \{{", text):
+        raise ChapterError(f"chrome-packs.js already has pack {pack_id}")
+    if f'"/{folder}/"' in text:
+        raise ChapterError(f"chrome-packs.js already has path /{folder}/")
+    packs = text.find("window.CHROME_PACKS")
+    paths = text.find("window.CHROME_PACK_PATHS")
+    if packs < 0 or paths < 0 or paths < packs:
+        raise ChapterError("chrome-packs.js has no CHROME_PACKS or CHROME_PACK_PATHS")
+    site = text.find("\n  site: {", packs, paths)
+    packs_end = text.find("\n};", packs, paths)
+    if packs_end < 0:
+        raise ChapterError("chrome-packs.js CHROME_PACKS object is unclosed")
+    if site >= 0:
+        text = text[: site + 1] + block + text[site + 1 :]
+    else:
+        text = text[: packs_end + 1] + block + text[packs_end + 1 :]
+    row = f'  ["/{folder}/", "{pack_id}"],\n'
+    paths = text.find("window.CHROME_PACK_PATHS")
+    site_path = text.find('  ["/site/settings/", "site"]', paths)
+    if site_path >= 0:
+        return text[:site_path] + row + text[site_path:]
+    end = text.find("\n];", paths)
+    if end < 0:
+        raise ChapterError("chrome-packs.js CHROME_PACK_PATHS array is unclosed")
+    return text[: end + 1] + row + text[end + 1 :]
+
+
+def seed_chapter_source(pack_id, standard):
+    purpose = yaml_quote(f"Starter shell for {standard}.")
+    return (
+        "---\n"
+        f"pack: {pack_id}\n"
+        "chapter: 1\n"
+        "file: ch01.html\n"
+        'title: "Chapter 1 — Overview"\n'
+        'pill: "1 Overview"\n'
+        f"purpose: {purpose}\n"
+        "---\n"
+        "\n"
+        "## 1.0 Overview\n"
+        "<p>Starter section. Replace this with the chapter body.</p>\n"
+    )
+
+
+def new_pack(root, folder, pack_id, title, standard, search, seed, homepage_stub):
+    """Scaffold an empty pack under root. Tests pass a temp root."""
+    root = root.resolve()
+    folder = require_plain(folder, "--folder")
+    pack_id = require_plain(pack_id, "--id")
+    title = require_plain(title, "--title")
+    standard = require_plain(standard, "--standard")
+    search = require_plain(search, "--search")
+    if not FOLDER_RE.fullmatch(folder):
+        raise ChapterError(f"--folder must be a single lowercase slug, got {folder}")
+    if not PACK_ID_RE.fullmatch(pack_id):
+        raise ChapterError(f"--id must be a lowercase pack id, got {pack_id}")
+    pack_dir = root / folder
+    if pack_dir.exists():
+        raise ChapterError(f"{folder} already exists under {root}")
+    chrome_path = root / "_shared" / "chrome-packs.js"
+    if not chrome_path.is_file():
+        raise ChapterError(f"missing {chrome_path}")
+    chrome_text = chrome_path.read_text(encoding="utf-8")
+    block = pack_block(pack_id, title, search, standard)
+    updated = insert_chrome_pack(chrome_text, pack_id, folder, block)
+    stub_path = None
+    if homepage_stub is not None:
+        stub_path = homepage_stub if homepage_stub.is_absolute() else root / homepage_stub
+        stub_path = stub_path.resolve()
+        if stub_path.name == "homepage-wireframe-v0.1.html":
+            raise ChapterError(
+                "refusing to edit homepage-wireframe-v0.1.html; pass a stub fragment path"
+            )
+        try:
+            stub_path.relative_to(root)
+        except ValueError:
+            raise ChapterError(f"homepage stub must stay under {root}") from None
+    source = pack_dir / "source"
+    out_dir = pack_dir / "draft-v1-linked"
+    assets = out_dir / "assets"
+    source.mkdir(parents=True)
+    assets.mkdir(parents=True)
+    (source / "pack.yml").write_text(
+        "id: "
+        + pack_id
+        + "\nstandard: "
+        + yaml_quote(standard)
+        + "\nnoindex: true\ncss:\n  - assets/shared.css\n  - assets/draft.css\n",
+        encoding="utf-8",
+    )
+    (assets / "shared.css").write_text(CSS_STUB, encoding="utf-8")
+    (assets / "draft.css").write_text(CSS_STUB, encoding="utf-8")
+    profile = load_profile(pack_dir)
+    shells = {
+        "index.html": render_shell(
+            profile,
+            out_dir,
+            root,
+            f"{title} — Map",
+            "map",
+            '<div class="page-header">\n'
+            f"  <h1>{esc(title)}</h1>\n"
+            "</div>\n"
+            "\n"
+            '<section class="visual-section">\n'
+            '  <fieldset class="visual-fieldset">\n'
+            '    <legend class="visual-legend">Concept Map</legend>\n'
+            "  </fieldset>\n"
+            "</section>",
+            True,
+        ),
+        "abbreviations.html": render_shell(
+            profile,
+            out_dir,
+            root,
+            f"Abbreviations — {standard}",
+            "abbreviations",
+            '<div class="page-header">\n'
+            "  <h1>Abbreviations</h1>\n"
+            "</div>\n"
+            "\n"
+            '<article class="teaching">\n'
+            "\n"
+            '<div class="table-wrap"><table class="vis-table">\n'
+            "  <thead><tr><th>Full form</th><th>Short form</th></tr></thead>\n"
+            "  <tbody>\n"
+            "  </tbody>\n"
+            "</table></div>\n"
+            "\n"
+            "</article>",
+            False,
+        ),
+        "references.html": render_shell(
+            profile,
+            out_dir,
+            root,
+            f"References — {standard}",
+            "references",
+            '<div class="page-header">\n'
+            "  <h1>References</h1>\n"
+            "</div>\n"
+            "\n"
+            '<article class="teaching">\n'
+            "\n"
+            '<h3 id="s-ref-official">Official</h3>\n'
+            '<div class="table-wrap"><table class="vis-table">\n'
+            "  <thead><tr><th>Full name</th><th>Short form (cite chip)</th></tr></thead>\n"
+            "  <tbody>\n"
+            "  </tbody>\n"
+            "</table></div>\n"
+            "\n"
+            '<h3 id="s-ref-big4">Big 4 firm manuals</h3>\n'
+            '<div class="table-wrap"><table class="vis-table">\n'
+            "  <thead><tr><th>Full name</th><th>Short form (cite chip)</th></tr></thead>\n"
+            "  <tbody>\n"
+            "  </tbody>\n"
+            "</table></div>\n"
+            "\n"
+            '<h3 id="s-ref-method">How this list was derived</h3>\n'
+            "<ul>\n"
+            "</ul>\n"
+            "\n"
+            "</article>",
+            False,
+        ),
+    }
+    written = []
+    for name, page in shells.items():
+        dest = out_dir / name
+        dest.write_text(page, encoding="utf-8")
+        written.append(dest.relative_to(root).as_posix())
+    written.extend(
+        [
+            (source / "pack.yml").relative_to(root).as_posix(),
+            (assets / "shared.css").relative_to(root).as_posix(),
+            (assets / "draft.css").relative_to(root).as_posix(),
+        ]
+    )
+    chrome_path.write_text(updated, encoding="utf-8")
+    written.append(chrome_path.relative_to(root).as_posix())
+    card = homepage_card(standard, title)
+    if stub_path is not None:
+        stub_path.parent.mkdir(parents=True, exist_ok=True)
+        stub_path.write_text(card, encoding="utf-8")
+        written.append(stub_path.relative_to(root).as_posix())
+    if seed:
+        chapter_path = source / "ch01.md"
+        chapter_path.write_text(seed_chapter_source(pack_id, standard), encoding="utf-8")
+        written.append(chapter_path.relative_to(root).as_posix())
+        warnings = []
+        result = build_pack(pack_dir, chrome_path, root, True, warnings)
+        for warning in warnings:
+            print(f"warning: {warning}", file=sys.stderr)
+        for name in result["changed"]:
+            if name not in written:
+                written.append(name)
+    print("build-chapter: new pack " + pack_id + " in " + folder)
+    print("build-chapter: wrote " + ", ".join(written))
+    if stub_path is None:
+        print("build-chapter: homepage stub (pass --homepage-stub to write it)")
+        sys.stdout.write(card)
+    print(
+        "build-chapter: a live pack still needs LIVE_PACKS in "
+        "build-chapter.py and stamp-assets.py. This command does not edit those lists."
+    )
+    return 0
+
+
 def packs_with_source(root):
     found = []
     for name in LIVE_PACKS:
@@ -1052,9 +1373,40 @@ def main(argv=None):
     parser.add_argument("--check", action="store_true", help="fail if a sourced chapter differs")
     parser.add_argument("--all", action="store_true", help="rebuild every pack that has source/")
     parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--new-pack", action="store_true", help="scaffold an empty pack under --root")
+    parser.add_argument("--folder", help="pack folder slug, such as demo-pack")
+    parser.add_argument("--id", dest="pack_id", help="chrome pack id, such as demopack")
+    parser.add_argument("--title", help="pack title used on the Map and in chrome")
+    parser.add_argument("--standard", help="short standard name used in titles and the disclaimer")
+    parser.add_argument("--search", help="search field placeholder, such as Find in IAS 38…")
+    parser.add_argument(
+        "--seed-chapter",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="write and render source/ch01.md (default on; --no-seed-chapter skips it)",
+    )
+    parser.add_argument(
+        "--homepage-stub",
+        type=Path,
+        help="write a planned-card fragment here; never the homepage wireframe",
+    )
     parser.add_argument("paths", nargs="*")
     args = parser.parse_args(argv)
     try:
+        if args.new_pack and (args.check or args.all or args.paths):
+            print("use --new-pack on its own", file=sys.stderr)
+            return 2
+        if args.new_pack:
+            return new_pack(
+                args.root,
+                args.folder,
+                args.pack_id,
+                args.title,
+                args.standard,
+                args.search,
+                args.seed_chapter,
+                args.homepage_stub,
+            )
         if args.check and (args.all or args.paths):
             print("use --check on its own", file=sys.stderr)
             return 2
