@@ -447,10 +447,12 @@ class IframeFloorFoldTests(unittest.TestCase):
             .replace("dddddddddddd", "444444444444")
         )
         rel = "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html"
+        import hashlib
+        digest = hashlib.sha256(head_css.encode("utf-8")).hexdigest()[:12]
         base_page = page(
             '<link rel="stylesheet" href="../../../_shared/visuals.css?v=49cc6a8eed7b">'
         )
-        head_page = base_page.replace("49cc6a8eed7b", "4a8ba929e022")
+        head_page = base_page.replace("49cc6a8eed7b", digest)
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_tree(root, {rel: head_page, stamp.SHARED_VISUAL_CSS: head_css})
@@ -1118,6 +1120,126 @@ class Pr6CleanupFoldTests(unittest.TestCase):
         self.assertEqual(code, 1, output)
         self.assertIn("ch03.html", output)
         self.assertNotIn("stamp-only: PASS", output)
+
+
+class StampHashTests(unittest.TestCase):
+    """Each checked ?v= must be the target sha256[:12], with one name stamp."""
+
+    REL = "ias-16/draft-v1-linked/ch01.html"
+
+    def run_gate(self, root, base_files):
+        return IframeFloorFoldTests.run_gate(self, root, base_files)
+
+    def write_tree(self, root, files):
+        return IframeFloorFoldTests.write_tree(self, root, files)
+
+    def _css(self, root, text):
+        path = root / "ias-16/draft-v1-linked/assets/extra.css"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8")
+        return path
+
+    def test_wrong_hash_fails(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._css(root, "body{color:red}")
+            good = stamp.file_stamp(root / "ias-16/draft-v1-linked/assets/extra.css")
+            base = page(f'<link rel="stylesheet" href="assets/extra.css?v={good}">')
+            head = page('<link rel="stylesheet" href="assets/extra.css?v=000000000000">')
+            self.write_tree(root, {self.REL: head})
+            code, output = self.run_gate(root, {self.REL: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("stamp hash mismatch", output)
+        self.assertIn("ch01.html", output)
+
+    def test_stale_old_hash_fails(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            css = self._css(root, "v1")
+            old = stamp.file_stamp(css)
+            css.write_text("v2", encoding="utf-8")
+            html = page(f'<link rel="stylesheet" href="assets/extra.css?v={old}">')
+            self.write_tree(root, {self.REL: html})
+            code, output = self.run_gate(root, {self.REL: html})
+        self.assertEqual(code, 1, output)
+        self.assertIn("stamp hash mismatch", output)
+        self.assertIn(old, output)
+
+    def test_correct_hash_passes(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            css = self._css(root, "body{color:red}")
+            good = stamp.file_stamp(css)
+            html = page(f'<link rel="stylesheet" href="assets/extra.css?v={good}">')
+            self.write_tree(root, {self.REL: html})
+            code, output = self.run_gate(root, {self.REL: html})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_hand_token_fails(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._css(root, "body{color:red}")
+            html = page(
+                '<link rel="stylesheet" href="assets/extra.css?v=ias16-flow-v3-20261010">'
+            )
+            self.write_tree(root, {self.REL: html})
+            code, output = self.run_gate(root, {self.REL: html})
+        self.assertEqual(code, 1, output)
+        self.assertIn("stamp hand token", output)
+
+    def test_version_added_off_the_allowlist_fails(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            css = self._css(root, "body{color:red}")
+            good = stamp.file_stamp(css)
+            base = page('<link rel="stylesheet" href="assets/extra.css">')
+            head = page(f'<link rel="stylesheet" href="assets/extra.css?v={good}">')
+            self.write_tree(root, {self.REL: head})
+            code, output = self.run_gate(root, {self.REL: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("added off the allowlist", output)
+        self.assertIn("ch01.html", output)
+
+    def test_non_version_byte_change_fails(self):
+        import tempfile
+
+        rel = self.REL
+        base = page("Teaching.")
+        head = page("Teachinx.")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("HTML changed", output)
+        self.assertIn("ch01.html", output)
+
+    def test_footer_nav_name_stamp_passes(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            script = root / "_shared" / "footer-nav.js"
+            script.parent.mkdir(parents=True, exist_ok=True)
+            script.write_text("/* name stamp, not a hash */", encoding="utf-8")
+            html = page(
+                '<script src="../../_shared/footer-nav.js?v=footer-nav-20261010"></script>'
+            )
+            self.write_tree(root, {self.REL: html})
+            code, output = self.run_gate(root, {self.REL: html})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
 
 
 if __name__ == "__main__":
