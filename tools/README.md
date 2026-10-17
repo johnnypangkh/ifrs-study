@@ -31,6 +31,23 @@ python3 tools/build-chapter.py --check
 
 `--check` regenerates every chapter that has a `source/` file and fails on any diff. `ias-16`, `ias-2`, `ifrs-18`, and `cf-2018` are the packs it looks at. A pack with no `source/pack.yml` is skipped. `build-all.sh` runs `--all` first. A second `--all` rewrites nothing.
 
+## New pack starter
+
+`python3 tools/build-chapter.py --new-pack` writes an empty pack under `--root`: `source/pack.yml`, Map `draft-v1-linked/index.html` (Concept Map fieldset, no iframe), empty Abbreviations and References shells, comment-only `assets/shared.css` and `assets/draft.css`, a pack block plus a `CHROME_PACK_PATHS` row in `_shared/chrome-packs.js`, and a planned homepage-card fragment. `--seed-chapter` is on by default, so it also writes `source/ch01.md` and renders `ch01.html` with one chapter pill. `--no-seed-chapter` leaves `chapters` empty. Pass `--homepage-stub <path-under-root>` to save the card fragment. The command refuses to edit `homepage/homepage-wireframe-v0.1.html`.
+
+```bash
+python3 tools/build-chapter.py --new-pack \
+  --root /tmp/scratch \
+  --folder demo-pack \
+  --id demopack \
+  --title "IAS 38 Intangible Assets" \
+  --standard "IAS 38" \
+  --search "Find in IAS 38…" \
+  --homepage-stub demo-pack/homepage-card.html
+```
+
+It refuses a folder that already exists and a pack id already in chrome-packs. It does not append `LIVE_PACKS`. Promoting a pack onto the live site is a separate change: add the folder to `LIVE_PACKS` in `tools/build-chapter.py` and `tools/stamp-assets.py`. Once that pack is present, the search index picks up pages under its `draft-v1-linked/` on the next `build-all.sh`. Run `--new-pack` against a temp `--root` until that promotion is approved.
+
 `tools/generate-chrome.mjs` wrote the old static top bar, including an inline `font-weight:500`, and read a `refs/<pack>/chrome.json` that is not in the tree. Nothing in a live page loads it. It now lives in `design/archive/generate-chrome-2026-10-15/`.
 
 `tools/check-duplicates.py` fails when a normalised `plate` or `disc-band` section appears twice outside a matching include, when an include body has drifted from its chapter `map-section`, when the during-use axis (`map-section:ch05-axis`) appears twice outside a matching include, or when a local IAS 16 `?v=` is not 12 hex. Whitespace between tags is ignored for the axis, so a pretty-printed copy still counts. A copy inside a matching include is the included axis, not a second source. There is no deferred plate.
