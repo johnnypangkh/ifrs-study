@@ -143,7 +143,7 @@ a.fb-num:focus-visible {
 }
 .formula-board .fb-term .fb-name {
   margin: 0 0 var(--space-1);
-  font-size: var(--t-body);
+  font-size: var(--tb-body-fs);
   font-weight: var(--t1-fw);
 }
 .formula-board .fb-term .fb-body {
@@ -179,7 +179,7 @@ a.fb-num:focus-visible {
 .formula-board .fb-term.equity .contain-title { color: var(--elem-equity); }
 .formula-board .fb-term.equity .contain-title {
   margin: 0 0 var(--space-1); /* peer title spacing, not kit page spacing */
-  font-size: var(--t-body);
+  font-size: var(--tb-body-fs);
 }
 .formula-board .fb-op {
   align-self: flex-start;
@@ -333,7 +333,7 @@ a.fb-num:focus-visible {
 }
 .start-here .sh-gate .sh-title {
   margin: 0 0 var(--stroke-2);
-  font-size: var(--t-body);
+  font-size: var(--tb-body-fs);
   font-weight: var(--t1-fw);
 }
 .start-here .sh-gate .sh-body {
@@ -386,7 +386,7 @@ a.fb-num:focus-visible {
   align-self: center;
   color: var(--accent);
   font-weight: var(--t1-fw);
-  font-size: var(--t-body);
+  font-size: var(--tb-body-fs);
   flex: 0 0 auto;
 }
 .start-here .sh-pointer {

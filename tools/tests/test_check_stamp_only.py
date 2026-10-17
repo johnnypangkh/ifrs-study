@@ -512,6 +512,37 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertEqual(code, 1, output)
         self.assertIn("_shared/visuals.css", output)
 
+    def test_visuals_component_imports_are_stamp_only(self):
+        """#83: visuals.css lines 20, 24, 27, and 29 may change ?v= only."""
+        import tempfile
+
+        lines = [f"/* line {n} */" for n in range(1, 30)]
+        lines[19] = '@import url("modules/visuals/components-2.css?v=63e62dc677fa");'
+        lines[23] = '@import url("modules/visuals/components-4.css?v=d1bf3c1fee98");'
+        lines[26] = '@import url("modules/visuals/components-5.css?v=634afd689584");'
+        lines[28] = '@import url("modules/visuals/components-6.css?v=18232257839c");'
+        base = "\n".join(lines) + "\n"
+        head = (
+            base.replace("63e62dc677fa", "aaaaaaaaaaaa")
+            .replace("d1bf3c1fee98", "bbbbbbbbbbbb")
+            .replace("634afd689584", "cccccccccccc")
+            .replace("18232257839c", "dddddddddddd")
+        )
+        rel = stamp.SHARED_VISUAL_CSS
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+        bad = head.replace("components-2.css", "components-9.css", 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: bad})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("_shared/visuals.css", output)
+
     def test_ifrs18_ch03_inbody_iframes_are_allowlisted(self):
         import tempfile
 
