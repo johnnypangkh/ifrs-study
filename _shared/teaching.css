@@ -7,7 +7,7 @@
    The concept-map iframe keeps height: auto. iframe-fit.js sets the
    used height from the content. The 260px min-height is only the floor
    when that script has not measured yet. */
-@import url("see-also.css?v=see-join-20261005");
+@import url("see-also.css?v=7904f60afd50");
 @import url("modules/teaching/teaching-layout-1.css?v=526e761dcab8");
 @import url("modules/teaching/box-1.css?v=73e63db5b993");
 @import url("modules/teaching/components-1.css?v=988d80b26bb1");
@@ -15,5 +15,5 @@
 @import url("modules/teaching/components-2.css?v=45ae394eb8f2");
 @import url("modules/teaching/teaching-layout-2.css?v=52ea5f53f34c");
 @import url("modules/teaching/chrome-1.css?v=80977a3e1153");
-@import url("modules/teaching/components-3.css?v=c3e01baf3410");
+@import url("modules/teaching/components-3.css?v=bafcabc9bf77");
 @import url("modules/teaching/util-1.css?v=498eb566b6b8");
