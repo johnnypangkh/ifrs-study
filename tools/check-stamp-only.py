@@ -38,22 +38,8 @@ HOME = "homepage/homepage-wireframe-v0.1.html"
 CONTENT_ALLOW = (
     "_shared/settings-rows.html",
 )
-# Johnny 2026-10-17 15:25 Q1 (b). Settings may change only these three head lines.
+# Settings may change ?v= only, and each new value must match the file hash.
 SETTINGS_PAGE = "site/settings/index.html"
-SETTINGS_STAMPS = (
-    (
-        "../../_shared/tokens.css?v=",
-        "../../_shared/tokens.css?v=f16c7fa3c615",
-    ),
-    (
-        "../../_shared/chrome-include.js",
-        "../../_shared/chrome-include.js?v=c185ed7f207b",
-    ),
-    (
-        "../../_shared/teaching.css?v=",
-        "../../_shared/teaching.css?v=6ff1d77715fb",
-    ),
-)
 # W4 replaces these three style attributes with classes. The stamp gate
 # treats that swap as non-content on the six IFRS 18 pages. Any other
 # HTML change on those pages still fails.
@@ -210,7 +196,21 @@ THEME_JS_PAGES = (
 )
 INNER_STAMP_CSS = ("_shared/chrome.css", "_shared/teaching.css")
 CHROME_INCLUDE = "_shared/chrome-include.js"
-CHROME_V_LINE = re.compile(r'var V = "([0-9a-f]{12})";')
+CHROME_ASSETS = (
+    "chrome.css",
+    "theme.js",
+    "iframe-fit.js",
+    "chrome-packs.js",
+    "disclaimer.js",
+    "chrome-bar.js",
+    "search.js",
+)
+CHROME_V_OBJECT = re.compile(r"var V = \{.*?\};", re.S)
+CHROME_V_STRING = re.compile(r'var V = "[0-9a-f]{12}";')
+CHROME_INDEX = re.compile(r'var INDEX = "([0-9a-f]{12})";')
+CHROME_MAP_COMMENT = (
+    "\n   Map values are sha256[:12]. stamp-assets.py rewrites them."
+)
 
 
 def stamp_added_failure(base, head, path, root):
@@ -256,81 +256,104 @@ def inner_css_stamp_errors(root):
     return errors
 
 
-def chrome_include_failure(base, head, root):
-    """Only the V constant may change, and it must be chrome.css's hash."""
-    if base == head:
+def parse_chrome_v_map(text):
+    """Ordered (name, hash) pairs from var V = { ... }, or None."""
+    match = CHROME_V_OBJECT.search(text)
+    if not match:
         return None
-    base_lines = base.splitlines()
-    head_lines = head.splitlines()
-    if len(base_lines) != len(head_lines):
-        return "chrome-include.js changed outside the V constant"
-    diffs = [
-        (old, new)
-        for old, new in zip(base_lines, head_lines)
-        if old != new
-    ]
-    if len(diffs) != 1:
-        return "chrome-include.js changed outside the V constant"
-    old, new = diffs[0]
-    old_v = CHROME_V_LINE.search(old)
-    new_v = CHROME_V_LINE.search(new)
-    if not old_v or not new_v:
-        return "chrome-include.js changed outside the V constant"
-    if old[: old_v.start()] + old[old_v.end() :] != new[: new_v.start()] + new[new_v.end() :]:
-        return "chrome-include.js changed outside the V constant"
-    chrome = root / "_shared" / "chrome.css"
-    if not chrome.is_file():
-        return "chrome-include.js V has no chrome.css to match"
-    digest = file_stamp(chrome)
-    if new_v.group(1) != digest:
-        return f"chrome-include.js V={new_v.group(1)} disk={digest}"
+    pairs = re.findall(r'"([^"]+)": "([0-9a-f]{12})"', match.group(0))
+    return pairs
+
+
+def _mask_chrome_include(text):
+    """Hide the V map, the string-V migration, and INDEX."""
+    text = text.replace(CHROME_MAP_COMMENT, "")
+    text = CHROME_V_OBJECT.sub("var V = {};", text)
+    text = CHROME_V_STRING.sub("var V = {};", text)
+    text = text.replace('"?v=" + V;', '"?v=" + V[file];')
+    text = CHROME_INDEX.sub('var INDEX = "";', text)
+    return text
+
+
+def chrome_include_failure(base, head, root):
+    """Each V map entry must be that asset's sha256[:12].
+
+    The one-time string-V to object migration is allowed. INDEX may differ
+    only when the new value is homepage/search-index.js's hash.
+    asset(), the document.write list, and any other logic still fail.
+    """
+    pairs = parse_chrome_v_map(head)
+    if not pairs:
+        return "chrome-include.js V map missing"
+    keys = [name for name, _value in pairs]
+    unknown = [name for name in keys if name not in CHROME_ASSETS]
+    if unknown:
+        return f"chrome-include.js V map has an extra key: {unknown[0]}"
+    missing = [name for name in CHROME_ASSETS if name not in keys]
+    if missing:
+        return f"chrome-include.js V map missing a key: {missing[0]}"
+    if keys != list(CHROME_ASSETS):
+        return "chrome-include.js V map key order changed"
+    for name, value in pairs:
+        asset = root / "_shared" / name
+        if not asset.is_file():
+            return f"chrome-include.js missing asset {name}"
+        digest = file_stamp(asset)
+        if value != digest:
+            return f"chrome-include.js V[{name}]={value} disk={digest}"
+    index = CHROME_INDEX.search(head)
+    if not index:
+        return "chrome-include.js INDEX missing"
+    search = root / "homepage" / "search-index.js"
+    if search.is_file() and index.group(1) != file_stamp(search):
+        return (
+            f"chrome-include.js INDEX={index.group(1)} "
+            f"disk={file_stamp(search)}"
+        )
+    if _mask_chrome_include(base) != _mask_chrome_include(head):
+        return "chrome-include.js changed outside the V map"
     return None
 
 
-def settings_stamp_failure(base, head):
-    """Only the three approved settings head lines may differ."""
+def settings_stamp_failure(base, head, root):
+    """Settings may change ?v= only, and the new value must match disk."""
     base_lines = base.splitlines()
     head_lines = head.splitlines()
     if len(base_lines) != len(head_lines):
         return f"settings stamp: line count changed: {SETTINGS_PAGE}"
-    allowed = {
-        '<link rel="stylesheet" href="../../_shared/tokens.css?v=a04ec47e17ee">':
-            '<link rel="stylesheet" href="../../_shared/tokens.css?v=f16c7fa3c615">',
-        '<script src="../../_shared/chrome-include.js"></script>':
-            '<script src="../../_shared/chrome-include.js?v=c185ed7f207b"></script>',
-        '<link rel="stylesheet" href="../../_shared/teaching.css?v=26b94e26f3a5">':
-            '<link rel="stylesheet" href="../../_shared/teaching.css?v=6ff1d77715fb">',
-    }
+    origin = root / SETTINGS_PAGE
     for line_no, (old, new) in enumerate(zip(base_lines, head_lines), 1):
         if old == new:
             continue
-        if allowed.get(old) != new:
+        if V_QUERY.sub("", old) != V_QUERY.sub("", new):
+            return f"settings stamp: diff outside the allowlist: {SETTINGS_PAGE}:{line_no}"
+        urls = [match.group("url") for match in ATTR_URL.finditer(new)]
+        checked = False
+        for url in urls:
+            path, query, _fragment = split_url(url)
+            version = query_v(query)
+            if version is None:
+                continue
+            local = _stamp_target(origin, path, root)
+            if local is None:
+                continue
+            if local.name == "footer-nav.js" and version == FOOTER_NAV_STAMP:
+                checked = True
+                continue
+            digest = file_stamp(local)
+            if version != digest:
+                return (
+                    f"settings stamp hash mismatch: {SETTINGS_PAGE}:{line_no} "
+                    f"?v={version} disk={digest}"
+                )
+            checked = True
+        if not checked:
             return f"settings stamp: diff outside the allowlist: {SETTINGS_PAGE}:{line_no}"
     return None
 
 
 def fold_settings_stamps(base_html, head_html, path):
-    """Fold the three settings stamp lines on the base page only."""
-    if path != SETTINGS_PAGE:
-        return base_html
-    if settings_stamp_failure(base_html, head_html):
-        return base_html
-    for old, new in (
-        (
-            '<link rel="stylesheet" href="../../_shared/tokens.css?v=a04ec47e17ee">',
-            '<link rel="stylesheet" href="../../_shared/tokens.css?v=f16c7fa3c615">',
-        ),
-        (
-            '<script src="../../_shared/chrome-include.js"></script>',
-            '<script src="../../_shared/chrome-include.js?v=c185ed7f207b"></script>',
-        ),
-        (
-            '<link rel="stylesheet" href="../../_shared/teaching.css?v=26b94e26f3a5">',
-            '<link rel="stylesheet" href="../../_shared/teaching.css?v=6ff1d77715fb">',
-        ),
-    ):
-        if old in base_html and new in head_html:
-            base_html = base_html.replace(old, new, 1)
+    """?v=-only settings edits compare equal after norm()."""
     return base_html
 
 
@@ -1600,7 +1623,7 @@ def main(argv=None):
                 print(added_error)
                 failed = True
         if path == SETTINGS_PAGE:
-            settings_error = settings_stamp_failure(base, head)
+            settings_error = settings_stamp_failure(base, head, ROOT)
             if settings_error:
                 print(settings_error)
                 failed = True

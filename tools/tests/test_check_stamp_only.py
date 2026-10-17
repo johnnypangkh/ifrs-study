@@ -1241,35 +1241,194 @@ class StampHashTests(unittest.TestCase):
         self.assertEqual(code, 0, output)
         self.assertIn("stamp-only: PASS", output)
 
-    def test_settings_three_lines_pass_and_another_line_fails(self):
+    def test_settings_version_must_match_disk(self):
+        """N-A8: a wrong settings ?v= or a non-?v= edit fails."""
+        import hashlib
         import tempfile
 
         rel = stamp.SETTINGS_PAGE
-        base = (
-            '<link rel="stylesheet" href="../../_shared/tokens.css?v=a04ec47e17ee">\n'
-            '<script src="../../_shared/chrome-include.js"></script>\n'
-            '<link rel="stylesheet" href="../../_shared/teaching.css?v=26b94e26f3a5">\n'
-            "<p>Kept.</p>\n"
-        )
-        head = (
-            '<link rel="stylesheet" href="../../_shared/tokens.css?v=f16c7fa3c615">\n'
-            '<script src="../../_shared/chrome-include.js?v=c185ed7f207b"></script>\n'
-            '<link rel="stylesheet" href="../../_shared/teaching.css?v=6ff1d77715fb">\n'
-            "<p>Kept.</p>\n"
-        )
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
+            script = root / "_shared" / "chrome-include.js"
+            script.parent.mkdir(parents=True, exist_ok=True)
+            script.write_text("include", encoding="utf-8")
+            good = stamp.file_stamp(script)
+            last_hash = hashlib.sha256(LAST_UPDATE.encode("utf-8")).hexdigest()[:12]
+            base = (
+                f'<script src="../../_shared/chrome-include.js?v={good}"></script>\n'
+                f'<script src="../../_shared/last-update.js?v={last_hash}"></script>\n'
+                "<p>Kept.</p>\n"
+            )
+            head = base
             self.write_tree(root, {rel: head})
             code, output = self.run_gate(root, {rel: base})
-        self.assertEqual(code, 0, output)
-        self.assertIn("stamp-only: PASS", output)
-        bad = head.replace("Kept.", "Edited.")
+            self.assertEqual(code, 0, output)
+            wrong = base.replace(good, "000000000000")
+            self.write_tree(root, {rel: wrong})
+            code, output = self.run_gate(root, {rel: base})
+            self.assertEqual(code, 1, output)
+            self.assertIn("settings stamp hash mismatch", output)
+            stale_last = base.replace(last_hash, "111111111111")
+            self.write_tree(root, {rel: stale_last})
+            code, output = self.run_gate(root, {rel: base})
+            self.assertEqual(code, 1, output)
+            self.assertIn("settings stamp hash mismatch", output)
+            edited = head.replace("Kept.", "Edited.")
+            self.write_tree(root, {rel: edited})
+            code, output = self.run_gate(root, {rel: base})
+            self.assertEqual(code, 1, output)
+            self.assertIn("diff outside the allowlist", output)
+
+
+class ChromeMapTests(unittest.TestCase):
+    """Per-asset V map: N-A1 through P-A10."""
+
+    def setUp(self):
+        self.host = StampHashTests()
+
+    def _assets(self, root):
+        values = {}
+        for name in stamp.CHROME_ASSETS:
+            path = root / "_shared" / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(name + "\n", encoding="utf-8")
+            values[name] = stamp.file_stamp(path)
+        return values
+
+    def _include(self, values, index="04ac0c0d58be", asset_expr="V[file]", write_extra=""):
+        lines = ",\n".join(
+            f'    "{name}": "{values[name]}"' for name in stamp.CHROME_ASSETS
+        )
+        return (
+            "/* chrome */\n"
+            "   Map values are sha256[:12]. stamp-assets.py rewrites them.\n"
+            "(function () {\n"
+            "  var V = {\n"
+            f"{lines}\n"
+            "  };\n"
+            f'  var INDEX = "{index}";\n'
+            "  function asset(file) {\n"
+            f'    return dir + file + "?v=" + {asset_expr};\n'
+            "  }\n"
+            "  document.write('<link rel=\"stylesheet\" href=\"' + asset(\"chrome.css\") + '\">');\n"
+            "  document.write('<script src=\"' + asset(\"theme.js\") + '\"><\\/script>');\n"
+            f"{write_extra}"
+            "})();\n"
+        )
+
+    def _gate(self, root, files, base):
+        return self.host.run_gate(root, base)
+
+    def test_n_a1_wrong_theme_hash_fails(self):
+        import tempfile
+
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            self.write_tree(root, {rel: bad})
-            code, output = self.run_gate(root, {rel: base})
+            values = self._assets(root)
+            bad = dict(values)
+            bad["theme.js"] = "000000000000"
+            text = self._include(bad)
+            self.host.write_tree(root, {stamp.CHROME_INCLUDE: text})
+            code, output = self._gate(root, {}, {stamp.CHROME_INCLUDE: text})
         self.assertEqual(code, 1, output)
-        self.assertIn("site/settings/index.html", output)
+        self.assertIn("theme.js", output)
+
+    def test_n_a2_missing_key_fails(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            values = self._assets(root)
+            text = self._include(values).replace(
+                '    "search.js": "' + values["search.js"] + '"\n', ""
+            )
+            self.host.write_tree(root, {stamp.CHROME_INCLUDE: text})
+            code, output = self._gate(root, {}, {stamp.CHROME_INCLUDE: text})
+        self.assertEqual(code, 1, output)
+        self.assertIn("missing a key", output)
+
+    def test_n_a3_extra_key_fails(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            values = self._assets(root)
+            text = self._include(values).replace(
+                "  };",
+                '    "extra.js": "0123456789ab"\n  };',
+                1,
+            )
+            self.host.write_tree(root, {stamp.CHROME_INCLUDE: text})
+            code, output = self._gate(root, {}, {stamp.CHROME_INCLUDE: text})
+        self.assertEqual(code, 1, output)
+        self.assertIn("extra key", output)
+
+    def test_n_a4_write_list_edit_fails(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            values = self._assets(root)
+            good = self._include(values)
+            bad = good.replace('asset("theme.js")', 'asset("other.js")', 1)
+            self.host.write_tree(root, {stamp.CHROME_INCLUDE: bad})
+            code, output = self._gate(root, {}, {stamp.CHROME_INCLUDE: good})
+        self.assertEqual(code, 1, output)
+        self.assertIn("outside the V map", output)
+
+    def test_p_a5_correct_map_passes(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            values = self._assets(root)
+            text = self._include(values)
+            self.host.write_tree(root, {stamp.CHROME_INCLUDE: text})
+            code, output = self._gate(root, {}, {stamp.CHROME_INCLUDE: text})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+
+    def test_n_a6_and_p_a7_page_stamp(self):
+        import tempfile
+
+        rel = "ias-16/draft-v1-linked/ch01.html"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            script = root / "_shared" / "chrome-include.js"
+            script.parent.mkdir(parents=True, exist_ok=True)
+            script.write_text("include-bytes", encoding="utf-8")
+            good = stamp.file_stamp(script)
+            ok = page(f'<script src="../../_shared/chrome-include.js?v={good}"></script>')
+            self.host.write_tree(root, {rel: ok})
+            code, output = self._gate(root, {}, {rel: ok})
+            self.assertEqual(code, 0, output)
+            stale = page(
+                '<script src="../../_shared/chrome-include.js?v=c185ed7f207b"></script>'
+            )
+            self.host.write_tree(root, {rel: stale})
+            code, output = self._gate(root, {}, {rel: ok})
+            self.assertEqual(code, 1, output)
+            self.assertIn("stamp hash mismatch", output)
+
+    def test_p_a10_index_must_match_search_index(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            values = self._assets(root)
+            search = root / "homepage" / "search-index.js"
+            search.parent.mkdir(parents=True, exist_ok=True)
+            search.write_text("search", encoding="utf-8")
+            digest = stamp.file_stamp(search)
+            good = self._include(values, index=digest)
+            self.host.write_tree(root, {stamp.CHROME_INCLUDE: good})
+            code, output = self._gate(root, {}, {stamp.CHROME_INCLUDE: good})
+            self.assertEqual(code, 0, output)
+            bad = self._include(values, index="000000000000")
+            self.host.write_tree(root, {stamp.CHROME_INCLUDE: bad})
+            code, output = self._gate(root, {}, {stamp.CHROME_INCLUDE: good})
+            self.assertEqual(code, 1, output)
+            self.assertIn("INDEX=", output)
 
 
 if __name__ == "__main__":
