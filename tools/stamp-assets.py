@@ -65,6 +65,16 @@ VISUAL_PACKS = ("ias-2", "cf-2018", "ifrs-18")
 NAME_STAMP_FILES = {"footer-nav.js"}
 TEXT_SUFFIXES = {".html", ".css", ".js"}
 IFRAME_TAG = re.compile(r"<iframe\b[^>]*>", re.I)
+# Per-asset map inside chrome-include.js. INDEX stays with build-search-index.py.
+CHROME_ASSETS = (
+    "chrome.css",
+    "theme.js",
+    "iframe-fit.js",
+    "chrome-packs.js",
+    "disclaimer.js",
+    "chrome-bar.js",
+    "search.js",
+)
 
 
 def pack_text_files(pack=PACK):
@@ -98,6 +108,40 @@ def pack_pages():
             raise SystemExit(f"missing pack {pack}")
         files.extend(sorted(pack.glob("*.html")))
     return files
+
+
+def settings_pages():
+    """Settings head. Shared ?v= is hashed the same way as pack pages."""
+    page = ROOT / "site" / "settings" / "index.html"
+    if page.is_file():
+        return [page]
+    return []
+
+
+def stamp_chrome_include_map():
+    """Rewrite chrome-include.js map values from on-disk hashes. Not INDEX."""
+    path = ROOT / "_shared" / "chrome-include.js"
+    if not path.is_file():
+        return []
+    text = path.read_text(encoding="utf-8")
+    for name in CHROME_ASSETS:
+        asset = ROOT / "_shared" / name
+        if not asset.is_file():
+            raise SystemExit(f"chrome-include.js asset missing: {name}")
+        digest = file_stamp(asset)
+        pattern = re.compile(rf'("{re.escape(name)}": ")([0-9a-f]{{12}})(")')
+        updated, count = pattern.subn(
+            lambda match, digest=digest: match.group(1) + digest + match.group(3),
+            text,
+            count=1,
+        )
+        if count != 1:
+            raise SystemExit(f"chrome-include.js missing map entry {name}")
+        text = updated
+    if text == path.read_text(encoding="utf-8"):
+        return []
+    path.write_text(text, encoding="utf-8")
+    return ["_shared/chrome-include.js"]
 
 
 def resolve_shared(from_file, url_path):
@@ -302,11 +346,14 @@ def stamp_once(ias_files, pack_files, visual_files):
             path.write_text(updated, encoding="utf-8")
             changed.append(path.relative_to(ROOT).as_posix())
 
+    changed.extend(stamp_chrome_include_map())
+    hashes.pop((ROOT / "_shared" / "chrome-include.js").resolve(), None)
     ias_set = {path.resolve() for path in ias_files}
     page_set = {path.resolve() for path in pack_files}
+    page_set.update(path.resolve() for path in settings_pages())
     targets = []
     seen = set()
-    for path in list(ias_files) + list(pack_files):
+    for path in list(ias_files) + list(pack_files) + list(settings_pages()):
         key = path.resolve()
         if key in seen:
             continue
