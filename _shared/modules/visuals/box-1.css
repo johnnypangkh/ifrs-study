@@ -7,13 +7,6 @@
 }
 .box.hub { background: var(--elem-hub-soft); border-color: var(--elem-hub); border-width: var(--stroke-2); }
 .box.band { background: var(--band); }
-/* DEPRECATED — dashed=nest anti-pattern. Prefer .contain* for 組成 / .box.see for see-also.
-   Neutralized to solid quiet so leftovers cannot teach dashed=hierarchy. Do not use on new kit. */
-.box.nest {
-  background: var(--elem-nest);
-  border-style: solid;
-  border-color: var(--line);
-}
 .box.ok { background: var(--outcome-yes-soft); border-color: var(--outcome-yes); }
 
 /* Containment kit (Examples B/C) — mirrored from draft assets/shared.css; iframe has no assets link.
@@ -53,14 +46,16 @@
   margin: 0 0 var(--space-1);
 }
 .box-body {
-  font-size: var(--t-meta);
-  color: var(--muted);
+  font-size: var(--tb-box-body-fs);
+  line-height: var(--tb-box-body-lh);
+  font-weight: var(--tb-box-body-fw);
+  color: var(--ink);
   margin: 0;
 }
 .box ul {
   margin: var(--space-1) 0 0;
   padding-left: var(--legacy-pad-4);
-  font-size: var(--t-meta);
+  font-size: var(--tb-box-body-fs);
   color: var(--muted);
 }
 .box li { margin: var(--stroke-2) 0; }
