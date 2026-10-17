@@ -146,7 +146,7 @@
   border: var(--border-na);
 }
 .legend-icon {
-  font-size: var(--t-body);
+  font-size: var(--tb-body-fs);
   line-height: var(--mchip-lh);
   width: var(--legacy-w-30);
   text-align: center;

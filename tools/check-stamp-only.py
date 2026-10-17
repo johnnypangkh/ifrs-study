@@ -403,6 +403,10 @@ SHARED_VISUAL_IMPORTS = {
     # #82: visuals twin of teaching-layout-1 and box-1. ?v= only.
     16: "modules/visuals/teaching-layout-1.css?v=",
     17: "modules/visuals/box-1.css?v=",
+    # #83: leftover visual body type. ?v= only.
+    20: "modules/visuals/components-2.css?v=",
+    24: "modules/visuals/components-4.css?v=",
+    27: "modules/visuals/components-5.css?v=",
     28: "modules/visuals/cite-1.css?v=",
     29: "modules/visuals/components-6.css?v=",
 }
@@ -460,7 +464,7 @@ def _v_only(old, new):
 def shared_visual_stamp_failure(base, head, path):
     """Return an error when path differs outside the shared-visual allowlist.
 
-    visuals.css may change ?v= only on lines 13, 14, 16, 17, 28, and 29.
+    visuals.css may change ?v= only on lines 13, 14, 16, 17, 20, 24, 27, 28, and 29.
     Each listed visual page may change ?v= only on its visuals.css link.
     Identical text is not a failure. None means this path is not in the
     allowlist, or the difference is allowed.
