@@ -36,8 +36,23 @@ STAMP = re.compile(r"Last update · \d{4}-\d{2}-\d{2} \d{2}:\d{2} HKT")
 HOME = "homepage/homepage-wireframe-v0.1.html"
 # site/settings/index.html and _shared/settings-rows.html are gated instead by check-settings-rows.py (276/276) and xlsx_to_tokens.py --check.
 CONTENT_ALLOW = (
-    "site/settings/index.html",
     "_shared/settings-rows.html",
+)
+# Johnny 2026-10-17 15:25 Q1 (b). Settings may change only these three head lines.
+SETTINGS_PAGE = "site/settings/index.html"
+SETTINGS_STAMPS = (
+    (
+        "../../_shared/tokens.css?v=",
+        "../../_shared/tokens.css?v=f16c7fa3c615",
+    ),
+    (
+        "../../_shared/chrome-include.js",
+        "../../_shared/chrome-include.js?v=c185ed7f207b",
+    ),
+    (
+        "../../_shared/teaching.css?v=",
+        "../../_shared/teaching.css?v=6ff1d77715fb",
+    ),
 )
 # W4 replaces these three style attributes with classes. The stamp gate
 # treats that swap as non-content on the six IFRS 18 pages. Any other
@@ -270,6 +285,53 @@ def chrome_include_failure(base, head, root):
     if new_v.group(1) != digest:
         return f"chrome-include.js V={new_v.group(1)} disk={digest}"
     return None
+
+
+def settings_stamp_failure(base, head):
+    """Only the three approved settings head lines may differ."""
+    base_lines = base.splitlines()
+    head_lines = head.splitlines()
+    if len(base_lines) != len(head_lines):
+        return f"settings stamp: line count changed: {SETTINGS_PAGE}"
+    allowed = {
+        '<link rel="stylesheet" href="../../_shared/tokens.css?v=a04ec47e17ee">':
+            '<link rel="stylesheet" href="../../_shared/tokens.css?v=f16c7fa3c615">',
+        '<script src="../../_shared/chrome-include.js"></script>':
+            '<script src="../../_shared/chrome-include.js?v=c185ed7f207b"></script>',
+        '<link rel="stylesheet" href="../../_shared/teaching.css?v=26b94e26f3a5">':
+            '<link rel="stylesheet" href="../../_shared/teaching.css?v=6ff1d77715fb">',
+    }
+    for line_no, (old, new) in enumerate(zip(base_lines, head_lines), 1):
+        if old == new:
+            continue
+        if allowed.get(old) != new:
+            return f"settings stamp: diff outside the allowlist: {SETTINGS_PAGE}:{line_no}"
+    return None
+
+
+def fold_settings_stamps(base_html, head_html, path):
+    """Fold the three settings stamp lines on the base page only."""
+    if path != SETTINGS_PAGE:
+        return base_html
+    if settings_stamp_failure(base_html, head_html):
+        return base_html
+    for old, new in (
+        (
+            '<link rel="stylesheet" href="../../_shared/tokens.css?v=a04ec47e17ee">',
+            '<link rel="stylesheet" href="../../_shared/tokens.css?v=f16c7fa3c615">',
+        ),
+        (
+            '<script src="../../_shared/chrome-include.js"></script>',
+            '<script src="../../_shared/chrome-include.js?v=c185ed7f207b"></script>',
+        ),
+        (
+            '<link rel="stylesheet" href="../../_shared/teaching.css?v=26b94e26f3a5">',
+            '<link rel="stylesheet" href="../../_shared/teaching.css?v=6ff1d77715fb">',
+        ),
+    ):
+        if old in base_html and new in head_html:
+            base_html = base_html.replace(old, new, 1)
+    return base_html
 
 
 def fold_theme_js(base_html, head_html, path):
@@ -1537,6 +1599,12 @@ def main(argv=None):
             if added_error:
                 print(added_error)
                 failed = True
+        if path == SETTINGS_PAGE:
+            settings_error = settings_stamp_failure(base, head)
+            if settings_error:
+                print(settings_error)
+                failed = True
+        base = fold_settings_stamps(base, head, path)
         base = fold_theme_js(base, head, path)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:

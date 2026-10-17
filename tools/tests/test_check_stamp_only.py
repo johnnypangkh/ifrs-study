@@ -1241,6 +1241,36 @@ class StampHashTests(unittest.TestCase):
         self.assertEqual(code, 0, output)
         self.assertIn("stamp-only: PASS", output)
 
+    def test_settings_three_lines_pass_and_another_line_fails(self):
+        import tempfile
+
+        rel = stamp.SETTINGS_PAGE
+        base = (
+            '<link rel="stylesheet" href="../../_shared/tokens.css?v=a04ec47e17ee">\n'
+            '<script src="../../_shared/chrome-include.js"></script>\n'
+            '<link rel="stylesheet" href="../../_shared/teaching.css?v=26b94e26f3a5">\n'
+            "<p>Kept.</p>\n"
+        )
+        head = (
+            '<link rel="stylesheet" href="../../_shared/tokens.css?v=f16c7fa3c615">\n'
+            '<script src="../../_shared/chrome-include.js?v=c185ed7f207b"></script>\n'
+            '<link rel="stylesheet" href="../../_shared/teaching.css?v=6ff1d77715fb">\n'
+            "<p>Kept.</p>\n"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+        bad = head.replace("Kept.", "Edited.")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: bad})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("site/settings/index.html", output)
+
 
 if __name__ == "__main__":
     unittest.main()
