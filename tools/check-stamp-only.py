@@ -168,8 +168,41 @@ def stamp_value_failure(text, path, root, from_file=None, iframe_only=False):
     return None
 
 
+# Johnny 2026-10-17 11:15 — theme.js?v= may be added only on these 22 visuals.
+THEME_JS_PAGES = (
+    "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html",
+    "cf-2018/draft-v1-linked/visuals/ch02-qualitative-characteristics.html",
+    "cf-2018/draft-v1-linked/visuals/ch03-reporting-entity.html",
+    "cf-2018/draft-v1-linked/visuals/ch04-elements.html",
+    "cf-2018/draft-v1-linked/visuals/ch05-recognition-derecognition.html",
+    "cf-2018/draft-v1-linked/visuals/ch06-measurement.html",
+    "cf-2018/draft-v1-linked/visuals/ch07-presentation-disclosure.html",
+    "cf-2018/draft-v1-linked/visuals/ch08-capital.html",
+    "cf-2018/draft-v1-linked/visuals/ch09-combined.html",
+    "cf-2018/draft-v1-linked/visuals/ch10-carve.html",
+    "cf-2018/draft-v1-linked/visuals/ch11-status.html",
+    "ifrs-18/draft-v1-linked/visuals/ch01-whats-new.html",
+    "ifrs-18/draft-v1-linked/visuals/ch02-pfs-aggregation.html",
+    "ifrs-18/draft-v1-linked/visuals/ch03-classification-path.html",
+    "ifrs-18/draft-v1-linked/visuals/ch03-mba-nest.html",
+    "ifrs-18/draft-v1-linked/visuals/ch03-pnl-categories.html",
+    "ifrs-18/draft-v1-linked/visuals/ch04-totals-subtotals.html",
+    "ifrs-18/draft-v1-linked/visuals/ch05-operating-expenses.html",
+    "ifrs-18/draft-v1-linked/visuals/ch06-mpms.html",
+    "ifrs-18/draft-v1-linked/visuals/ch07-other-fs.html",
+    "ifrs-18/draft-v1-linked/visuals/ch08-transition.html",
+    "ifrs-18/draft-v1-linked/visuals/map-jumpboard.html",
+)
+INNER_STAMP_CSS = ("_shared/chrome.css", "_shared/teaching.css")
+CHROME_INCLUDE = "_shared/chrome-include.js"
+CHROME_V_LINE = re.compile(r'var V = "([0-9a-f]{12})";')
+
+
 def stamp_added_failure(base, head, path, root):
-    """A ?v= on a URL the base page did not version is off the allowlist."""
+    """A ?v= on a URL the base page did not version is off the allowlist.
+
+    The one exception is theme.js?v= on the 22 CF and IFRS 18 visual pages.
+    """
     if not PACK_PAGE.fullmatch(path):
         return None
     origin = root / path
@@ -177,10 +210,80 @@ def stamp_added_failure(base, head, path, root):
         url_path
         for url_path, _version, _local in iter_checked_stamps(base, origin, root)
     }
-    for url_path, _version, _local in iter_checked_stamps(head, origin, root):
-        if url_path not in base_paths:
-            return f"stamp ?v= added off the allowlist: {path} {url_path}"
+    for url_path, version, local in iter_checked_stamps(head, origin, root):
+        if url_path in base_paths:
+            continue
+        if (
+            path in THEME_JS_PAGES
+            and local.name == "theme.js"
+            and version == file_stamp(local)
+        ):
+            continue
+        return f"stamp ?v= added off the allowlist: {path} {url_path}"
     return None
+
+
+def inner_css_stamp_errors(root):
+    """@import ?v= inside chrome.css and teaching.css must match the file.
+
+    A parent page's chrome.css?v= or teaching.css?v= only proves the parent
+    file's own hash. It does not prove an import inside that file. This
+    check is what catches a stale or hand-token inner stamp.
+    """
+    errors = []
+    for rel in INNER_STAMP_CSS:
+        path = root / rel
+        if not path.is_file():
+            continue
+        error = stamp_value_failure(path.read_text(encoding="utf-8"), rel, root)
+        if error:
+            errors.append(error)
+    return errors
+
+
+def chrome_include_failure(base, head, root):
+    """Only the V constant may change, and it must be chrome.css's hash."""
+    if base == head:
+        return None
+    base_lines = base.splitlines()
+    head_lines = head.splitlines()
+    if len(base_lines) != len(head_lines):
+        return "chrome-include.js changed outside the V constant"
+    diffs = [
+        (old, new)
+        for old, new in zip(base_lines, head_lines)
+        if old != new
+    ]
+    if len(diffs) != 1:
+        return "chrome-include.js changed outside the V constant"
+    old, new = diffs[0]
+    old_v = CHROME_V_LINE.search(old)
+    new_v = CHROME_V_LINE.search(new)
+    if not old_v or not new_v:
+        return "chrome-include.js changed outside the V constant"
+    if old[: old_v.start()] + old[old_v.end() :] != new[: new_v.start()] + new[new_v.end() :]:
+        return "chrome-include.js changed outside the V constant"
+    chrome = root / "_shared" / "chrome.css"
+    if not chrome.is_file():
+        return "chrome-include.js V has no chrome.css to match"
+    digest = file_stamp(chrome)
+    if new_v.group(1) != digest:
+        return f"chrome-include.js V={new_v.group(1)} disk={digest}"
+    return None
+
+
+def fold_theme_js(base_html, head_html, path):
+    """Accept the theme.js?v= addition on the 22 listed visuals. Base only."""
+    if path not in THEME_JS_PAGES:
+        return base_html
+    theme = ROOT / "_shared" / "theme.js"
+    if not theme.is_file():
+        return base_html
+    old = 'src="../../../_shared/theme.js"'
+    new = 'src="../../../_shared/theme.js?v=' + file_stamp(theme) + '"'
+    if old in base_html and new in head_html:
+        return base_html.replace(old, new, 1)
+    return base_html
 
 
 def check_source_iframe_stamps(root):
@@ -299,6 +402,19 @@ def shared_visual_stamp_failure(base, head, path):
         return f"shared visual stamp: line count changed: {path}"
     for line_no, (old, new) in enumerate(zip(base_lines, head_lines), 1):
         if old == new:
+            continue
+        theme = ROOT / "_shared" / "theme.js"
+        if (
+            path in THEME_JS_PAGES
+            and theme.is_file()
+            and 'src="../../../_shared/theme.js"' in old
+            and old.replace(
+                'src="../../../_shared/theme.js"',
+                'src="../../../_shared/theme.js?v=' + file_stamp(theme) + '"',
+                1,
+            )
+            == new
+        ):
             continue
         if not listed(line_no, old):
             if strict:
@@ -1421,6 +1537,7 @@ def main(argv=None):
             if added_error:
                 print(added_error)
                 failed = True
+        base = fold_theme_js(base, head, path)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)
@@ -1533,6 +1650,23 @@ def main(argv=None):
     for error in check_source_iframe_stamps(ROOT):
         print(error)
         failed = True
+    for error in inner_css_stamp_errors(ROOT):
+        print(error)
+        failed = True
+    try:
+        base_include = git_text(args.base, CHROME_INCLUDE)
+    except KeyError:
+        base_include = None
+    include_path = ROOT / CHROME_INCLUDE
+    if base_include is not None and include_path.is_file():
+        include_error = chrome_include_failure(
+            base_include,
+            include_path.read_text(encoding="utf-8"),
+            ROOT,
+        )
+        if include_error:
+            print(include_error)
+            failed = True
     if failed:
         return 1
     print("stamp-only: PASS")
