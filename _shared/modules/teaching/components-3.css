@@ -22,7 +22,7 @@ article.teaching .cost-sum-term {
   color: var(--ink, #e8eaed);
   padding: var(--space-2) var(--legacy-pad-3);
   font-weight: var(--t1-fw);
-  font-size: var(--t-body);
+  font-size: var(--tb-body-fs);
   line-height: var(--legacy-lh-1);
 }
 

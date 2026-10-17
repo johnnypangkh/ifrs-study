@@ -8,7 +8,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   line-height: var(--tb-body-lh);
-  font-size: var(--t-body);
+  font-size: var(--tb-body-fs);
   min-height: 100vh;
 }
 
