@@ -36,16 +36,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: calc(var(--space-5) + var(--space-1));
-  height: calc(var(--space-4) + var(--space-hairline));
-  padding: 0 var(--space-cell);
+  min-width: var(--mchip-minw);
+  height: var(--mchip-h);
+  padding: 0 var(--mchip-px);
   margin-right: var(--space-cell);
   border: var(--stroke-1) solid var(--accent);
   border-radius: var(--radius-pill);
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: var(--vis-meta);
-  font-weight: var(--t1-fw);
+  font-size: var(--mchip-fs);
+  font-weight: var(--mchip-fw);
+  line-height: var(--mchip-lh);
   font-variant-numeric: tabular-nums;
   line-height: var(--glyph-lh);
   text-decoration: none;
@@ -53,11 +54,13 @@
 }
 .cfmap a.sec:hover { background: var(--accent); color: var(--surface); text-decoration: none; }
 .cfmap a.sec.sec-sm {
-  min-width: var(--space-5);
-  height: var(--space-4);
-  padding: 0 var(--space-1);
+  min-width: var(--mchip-minw);
+  height: var(--mchip-h);
+  padding: 0 var(--mchip-px);
   margin: 0 var(--space-hairline);
-  font-size: var(--t3-fs);
+  font-size: var(--mchip-fs);
+  font-weight: var(--mchip-fw);
+  line-height: var(--mchip-lh);
 }
 .cfmap .sep { margin: 0 var(--space-cell); color: var(--dash); }
 .cfmap .sec-lead {
@@ -68,7 +71,9 @@
 }
 .cfmap .differ-tag {
   margin-left: var(--space-1);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
+  font-weight: var(--t3-fw);
+  line-height: var(--t3-lh);
   font-style: italic;
   font-weight: var(--t2-fw);
   color: var(--muted);
@@ -121,28 +126,29 @@
   align-items: center;
   gap: var(--space-cell);
   margin: 0;
-  font-size: var(--t2-fs);
+  font-size: var(--t1-fs);
   font-weight: var(--t1-fw);
   line-height: var(--t1-lh);
   color: var(--ink);
   text-decoration: none;
 }
 .cfmap a.frame-title:hover { color: var(--accent); text-decoration: none; }
-.cfmap .status-head a.frame-title { font-size: var(--t1-fs); }
 
 .cfmap .fb-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: var(--space-5);
-  height: var(--space-5);
-  border-radius: 50%;
+  width: auto;
+  min-width: var(--mchip-minw);
+  height: var(--mchip-h);
+  border-radius: var(--radius-pill);
   border: var(--stroke-1) solid var(--accent);
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: var(--vis-meta);
-  font-weight: var(--t1-fw);
+  font-size: var(--mchip-fs);
+  font-weight: var(--mchip-fw);
+  line-height: var(--mchip-lh);
   font-variant-numeric: tabular-nums;
   line-height: var(--glyph-lh);
 }
@@ -162,13 +168,14 @@
 .cfmap .cell-title,
 .cfmap .cell-body { margin: 0; }
 .cfmap .cell-title {
-  font-size: var(--t2-fs);
+  font-size: var(--t1-fs);
   font-weight: var(--t1-fw);
-  line-height: var(--legacy-lh-1);
+  line-height: var(--t1-lh);
   color: var(--ink);
 }
 .cfmap .cell-body {
   font-size: var(--t2-fs);
+  font-weight: var(--t2-fw);
   line-height: var(--t2-lh);
   color: var(--muted);
 }
@@ -178,10 +185,10 @@
 .cfmap .tier-label {
   display: block;
   margin: 0;
-  font-size: var(--vis-meta);
-  font-weight: var(--t1-fw);
+  font-size: var(--t3-strong-fs);
+  font-weight: var(--t3-strong-fw);
   letter-spacing: var(--legacy-ls-3);
-  line-height: var(--t2-lh);
+  line-height: var(--t3-strong-lh);
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -206,9 +213,10 @@
 }
 .cfmap .apply-head {
   margin-right: var(--space-3);
-  font-size: var(--vis-meta);
-  font-weight: var(--t1-fw);
+  font-size: var(--t3-strong-fs);
+  font-weight: var(--t3-strong-fw);
   letter-spacing: var(--legacy-ls-3);
+  line-height: var(--t3-strong-lh);
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -216,17 +224,27 @@
   margin: var(--space-3) 0 0;
   padding: var(--space-cell) var(--space-3);
   border-radius: var(--radius-s);
-  font-size: var(--t2-fs);
   color: var(--muted);
+}
+.cfmap .tip-note .see-label {
+  font-size: var(--t3-strong-fs);
+  font-weight: var(--t3-strong-fw);
+  line-height: var(--t3-strong-lh);
+  color: var(--ink);
+}
+.cfmap .tip-note .see-bit {
+  font-size: var(--t3-fs);
+  font-weight: var(--t3-fw);
+  line-height: var(--t3-lh);
 }
 
 /* ---- Connectors ---- */
 .cfmap .stem-label,
 .cfmap .arm-label {
   margin: 0;
-  font-size: var(--vis-meta);
+  font-size: var(--t3-arm-fs);
   font-weight: var(--t3-arm-fw);
-  line-height: var(--legacy-lh-1);
+  line-height: var(--t3-arm-lh);
   color: var(--muted);
 }
 .cfmap .stem-label strong { color: var(--ink); }
@@ -369,12 +387,13 @@
   margin: 0;
   font-size: var(--t1-fs);
   font-weight: var(--t1-fw);
-  line-height: var(--legacy-lh-1);
+  line-height: var(--t1-lh);
   color: var(--ink);
 }
 .cfmap .q-sub {
   margin: var(--space-cell) 0 0;
   font-size: var(--t2-fs);
+  font-weight: var(--t2-fw);
   line-height: var(--t2-lh);
   color: var(--muted);
 }
@@ -390,15 +409,16 @@
 }
 .cfmap .leaf-name {
   margin: 0;
-  font-size: var(--t2-fs);
+  font-size: var(--t1-fs);
   font-weight: var(--t1-fw);
-  line-height: var(--legacy-lh-1);
+  line-height: var(--t1-lh);
   color: var(--ink);
 }
 .cfmap .leaf-no .leaf-name { color: var(--muted); }
 .cfmap .leaf-body {
   margin: 0;
   font-size: var(--t2-fs);
+  font-weight: var(--t2-fw);
   line-height: var(--t2-lh);
   color: var(--muted);
 }
