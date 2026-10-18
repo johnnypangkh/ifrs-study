@@ -6,6 +6,9 @@
   --stroke-3: calc(var(--stroke-1) + var(--stroke-2));
   --see-also: var(--see);
   --outcome-no: var(--danger);
+  --map-field-line: color-mix(in srgb, var(--line) 22%, transparent);
+  --map-field-pitch: var(--space-4);
+  --map-field-stroke: var(--stroke-1);
 }
 
 .m-l0,
@@ -14,6 +17,23 @@
   border-radius: var(--radius-m) !important;
   padding: var(--space-3) var(--space-4) !important;
   box-sizing: border-box;
+}
+
+/* #89 field: graph paper in L0 gutters only. Plates cover it. */
+.m-l0 {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(
+      var(--map-field-line) var(--map-field-stroke),
+      transparent var(--map-field-stroke)
+    ),
+    linear-gradient(
+      90deg,
+      var(--map-field-line) var(--map-field-stroke),
+      transparent var(--map-field-stroke)
+    );
+  background-size: var(--map-field-pitch) var(--map-field-pitch);
+  background-position: 0 0;
 }
 
 /* CF Map: .m-l0 is the only outer stroke. The status frame keeps its padding. */
@@ -336,6 +356,12 @@ body.embed .ias2.m-map.m-l0 {
 /* Inline boards (CF, IFRS 18): “Concept Map” sits on the one L0 top border. */
 .board-l0-div {
   position: relative;
+}
+
+.m-l0 > legend.board-legend,
+.board-legend,
+.board-legend-abs {
+  background-image: none;
 }
 
 .board-legend-abs {

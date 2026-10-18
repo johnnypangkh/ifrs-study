@@ -24,7 +24,6 @@ html { background: var(--bg); color-scheme: dark; }
   border: var(--stroke-2) solid var(--ink);
   border-radius: var(--radius-m);
   padding: calc(14 * var(--stroke-1)) var(--space-4) calc(18 * var(--stroke-1));
-  background: transparent;
 }
 .i18map .std-head {
   display: flex;
