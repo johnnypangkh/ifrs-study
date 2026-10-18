@@ -104,8 +104,8 @@ body.embed {
   min-width: 0;
 }
 
-.ppe .q-title { font-size: var(--t1-fs); }
-.ppe .plate-title { font-size: var(--t1-fs); margin: 0; }
+.ppe .q-title { font-size: var(--t1-fs); font-weight: var(--t1-fw); line-height: var(--t1-lh); }
+.ppe .plate-title { font-size: var(--t1-fs); font-weight: var(--t1-fw); line-height: var(--t1-lh); margin: 0; }
 
 .ppe .leaf {
   min-width: 0;
@@ -115,11 +115,12 @@ body.embed {
   padding: var(--space-cell) var(--space-3);
 }
 
-.ppe .leaf-name { font-size: var(--t2-fs); }
+.ppe .leaf-name { font-size: var(--t1-fs); font-weight: var(--t1-fw); line-height: var(--t1-lh); }
 .ppe .leaf-body, .ppe .tip-body{
   margin-top: var(--space-1);
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t2-fs);
+  font-weight: var(--t2-fw);
   line-height: var(--t2-lh);
 }
 
@@ -177,7 +178,7 @@ body.embed {
   padding: var(--space-cell) var(--space-cell);
 }
 
-.ppe .peer-title { font-size: var(--t2-fs); }
+.ppe .peer-title { font-size: var(--t1-fs); font-weight: var(--t1-fw); line-height: var(--t1-lh); }
 
 .ppe .span-bar {
   justify-content: center;
@@ -421,7 +422,7 @@ body.embed {
 .ppe .q-note {
   margin: var(--space-1) 0 0;
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t1-fw);
 }
 
@@ -464,14 +465,16 @@ body.embed {
 
 .ppe .facet-title,
 .ppe .anno-title {
-  font-size: var(--t2-fs);
+  font-size: var(--t1-fs);
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
 }
 
 .ppe .facet-note,
 .ppe .anno-out {
   margin-top: var(--space-1);
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   line-height: var(--t2-lh);
 }
 
@@ -544,7 +547,7 @@ body.embed {
 .ppe .flow-dest {
   display: block;
   padding: var(--space-1) var(--space-cell);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   text-align: center;
   text-decoration: underline;
   text-decoration-color: var(--dash);
@@ -705,7 +708,7 @@ body.embed {
   min-width: 0;
 }
 
-.ppe .limb-title { font-size: var(--t2-fs); }
+.ppe .limb-title { font-size: var(--t1-fs); font-weight: var(--t1-fw); line-height: var(--t1-lh); }
 .ppe .cost-result .limb-title { font-size: var(--t1-fs); }
 
 .ppe .limb-note,
@@ -713,7 +716,7 @@ body.embed {
 .ppe .ex-line {
   margin: 0;
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t2-fw);
   line-height: var(--t2-lh);
 }
@@ -752,7 +755,7 @@ body.embed {
   border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   padding: var(--space-1) var(--space-cell);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t1-fw);
 }
 
@@ -867,7 +870,7 @@ body.embed {
   border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
   padding: var(--space-1) var(--space-cell);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t1-fw);
 }
 
@@ -1004,7 +1007,7 @@ body.embed {
   gap: var(--space-hairline) var(--space-1);
   margin: var(--space-cell) 0 0;
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t1-fw);
   line-height: var(--legacy-lh-1);
 }
@@ -1153,7 +1156,7 @@ body.embed {
   gap: var(--space-hairline);
   margin: var(--space-1) 0 0;
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t1-fw);
   line-height: var(--legacy-lh-1);
 }
@@ -1205,13 +1208,12 @@ body.embed {
    Disclosure sits below, lighter. One red leaf: IAS 16 does not apply. */
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) {
-  --t-chip: calc(var(--mchip-fs) * var(--type-scale, 1));
-  --t-meta: calc(var(--t2-fs) * var(--type-scale, 1));
-  --t-body: calc(var(--t1-fs) * var(--type-scale, 1));
+  --t-chip: var(--mchip-fs);
+  --t-body: calc(var(--t2-fs) * var(--type-scale, 1));
   --t-head: calc(var(--t1-fs) * var(--type-scale, 1));
   --t-plate: calc(var(--t1-fs) * var(--type-scale, 1));
   --t-op: calc(var(--mt-op-fs) * var(--type-scale, 1));
-  --nx-chip-font: var(--t-chip);
+  --nx-chip-font: var(--mchip-fs);
   --nx-chip-height: calc(var(--space-4) + var(--space-1));
   min-width: 0;
   padding-inline-end: var(--space-hairline);
@@ -3346,6 +3348,13 @@ body.embed {
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer-line,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .split-body { color: var(--ink); }
 
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .limb-note,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .leaf .limb-note {
+  font-size: var(--t3-fs);
+  font-weight: var(--t3-fw);
+  line-height: var(--t3-lh);
+}
+
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .soft-note{ color: var(--muted); }
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .nature-nest, .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .after-nest, .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .before-nest .pl-tip, .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .facet-label, .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .muted-rows{ color: var(--muted); }
@@ -3361,9 +3370,22 @@ body.embed {
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .axis-name { font-weight: var(--t1-fw); }
 
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see-label,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see-label {
+  font-size: var(--t3-strong-fs);
+  font-weight: var(--t3-strong-fw);
+  line-height: var(--t3-strong-lh);
+}
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see-bit,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see-bit a { font-weight: var(--t1-fw); }
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see-bit a {
+  font-size: var(--t3-fs);
+  font-weight: var(--t3-fw);
+  line-height: var(--t3-lh);
+}
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .arm-label {
+  font-size: var(--t3-arm-fs);
+  font-weight: var(--t3-arm-fw);
+  line-height: var(--t3-arm-lh);
+}
 
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .leaf.mute .leaf-body { font-weight: var(--t2-fw); }
 
@@ -3516,8 +3538,9 @@ body.embed {
 .ppe.recog-map .q-note {
   margin: var(--space-1) 0 0;
   color: var(--ink);
-  font-size: var(--t2-fs);
-  font-weight: var(--t2-fw);
+  font-size: var(--t1-fs);
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
 }
 
 .ppe.recog-map .q > .thin-tip { margin-top: var(--space-1); }
@@ -3532,9 +3555,9 @@ body.embed {
   border-radius: var(--card-radius);
   padding: var(--space-1) var(--space-cell);
   color: var(--ink);
-  font-size: var(--t2-fs);
-  font-weight: var(--t2-fw);
-  line-height: var(--legacy-lh-1);
+  font-size: var(--t1-fs);
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
 }
 
 .ppe.recog-map .spare-row > span:not(.spare-split) {
@@ -3600,9 +3623,9 @@ body.embed {
   border-radius: var(--card-radius);
 
   color: var(--ink);
-  font-size: var(--vis-meta);
+  font-size: var(--t1-fs);
   font-weight: var(--t1-fw);
-  line-height: var(--t3-tag-lh);
+  line-height: var(--t1-lh);
   text-align: center;
 }
 
@@ -5150,12 +5173,13 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  block-size: calc(var(--space-4) + var(--space-1));
-  min-inline-size: calc(var(--space-4) + var(--space-1));
+  block-size: var(--mchip-h);
+  min-inline-size: var(--mchip-minw);
   margin: 0 var(--space-cell) var(--space-cell) 0;
-  padding-inline: var(--space-1);
-  font-size: var(--vis-meta);
-  line-height: var(--glyph-lh);
+  padding-inline: var(--mchip-px);
+  font-size: var(--mchip-fs);
+  font-weight: var(--mchip-fw);
+  line-height: var(--mchip-lh);
   vertical-align: middle;
 }
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail > .rail-name,
@@ -5197,7 +5221,6 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .onward,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-label,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .pack-flow-label .onward,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .arm-label,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .exit-label,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .thin-tip a:not(.cite) {
   color: var(--muted);
@@ -5522,17 +5545,17 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .reval-rows > .reval-matrix { grid-column: 1 / -1; display: grid; grid-template-columns: calc(3 * var(--space-6) + var(--space-5) + var(--space-hairline) + var(--stroke-1) + var(--stroke-1) / 2) minmax(0,1fr) minmax(0,1fr); gap: var(--space-1); align-items: stretch; }
 .ppe .reval-matrix > * { margin: 0; }
 .ppe .rm-corner { display:flex; align-items:center; justify-content:center; }
-.ppe .rm-col { border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: var(--space-1) var(--space-cell); font-weight: var(--t1-fw); font-size: var(--vis-meta); text-align: center; }
+.ppe .rm-col { border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: var(--space-1) var(--space-cell); font-weight: var(--t1-fw); font-size: var(--t1-fs); line-height: var(--t1-lh); text-align: center; }
 .ppe .rm-row { border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: var(--space-cell) var(--space-cell); display: flex; flex-direction: column; gap: var(--space-1); align-items: flex-start; }
 .ppe .rm-k { font-weight: var(--t1-fw); }
 .ppe .rm-ind { font-size: var(--t3-fs); border-radius: var(--radius-pill); padding: 0 var(--space-cell); border: var(--stroke-1) solid currentColor; white-space: nowrap; }
 .ppe .rm-up { color: var(--ok); } .ppe .rm-down { color: var(--danger); }
 .ppe .rm-cell { border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); padding: var(--space-cell) var(--space-cell); display: flex; gap: var(--space-cell); align-items: flex-start; }
 .ppe .rm-ord { flex: 0 0 auto; inline-size: calc(var(--space-4) + var(--stroke-1) + var(--stroke-1) / 2); block-size: calc(var(--space-4) + var(--stroke-1) + var(--stroke-1) / 2); border-radius: 50%; border: var(--stroke-1) solid var(--accent); color: var(--accent); font-size: var(--t3-fs); font-weight: var(--t1-fw); display: inline-flex; align-items: center; justify-content: center; }
-.ppe .rm-foot { grid-column: 1 / -1; text-align: center; font-size: var(--vis-meta); color: var(--muted); border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); padding: var(--space-1); }
+.ppe .rm-foot { grid-column: 1 / -1; text-align: center; font-size: var(--t3-fs); color: var(--muted); border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); padding: var(--space-1); }
 
 
-.ppe .rm-sub { font-size: var(--vis-meta); color: var(--muted); }
+.ppe .rm-sub { font-size: var(--t3-fs); color: var(--muted); }
 .ppe .rm-down { color: var(--muted); }
 
 /* v6d: narrow widths — each rail|detail pair reads as ONE unit (compact heading strip attached to its content) */
@@ -5573,7 +5596,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .lc-end-k { font-weight: var(--t1-fw); margin: 0; }
 .ppe .lc-end-line { margin: var(--space-hairline) 0 0; font-size: var(--t2-fs); }
 .ppe .lc-end .see { margin-top: var(--space-1); }
-.ppe .lc-lab { margin: 0; font-weight: var(--t1-fw); font-size: var(--vis-meta); display: flex; align-items: center; gap: var(--space-1); }
+.ppe .lc-lab { margin: 0; font-weight: var(--t1-fw); font-size: var(--t1-fs); line-height: var(--t1-lh); display: flex; align-items: center; gap: var(--space-1); }
 .ppe .lc-lab-axis { grid-column: 1; grid-row: 2; }
 .ppe .lc-axis { grid-column: 2; grid-row: 2; position: relative; block-size: calc(var(--space-3) + var(--space-hairline) + var(--stroke-1) + var(--stroke-1) / 2); }
 .ppe .lc-line { position: absolute; left: calc(var(--space-1) + var(--space-hairline) + var(--stroke-1) / 2); right: calc(var(--space-3) + var(--space-hairline) + var(--stroke-1) + var(--stroke-1) / 2); top: 50%; border-top: var(--stroke-1) solid var(--ink); }
@@ -5595,7 +5618,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .rmx { grid-column: 1 / -1; display: grid; grid-template-columns: calc(4 * var(--space-6) + var(--space-3) + var(--space-hairline) + var(--stroke-1)) minmax(0,1fr) minmax(0,1fr); gap: var(--space-1) var(--space-cell); align-items: stretch; }
 .ppe .rmx-head { grid-column: 1 / -1; display: flex; gap: var(--space-1); align-items: center; }
 .ppe .rmx-cite { font-size: var(--t3-fs); border: var(--stroke-1) solid var(--line); border-radius: var(--radius-pill); padding: 0 var(--space-cell); }
-.ppe .rmx-col { margin: 0; font-weight: var(--t1-fw); font-size: var(--vis-meta); text-align: center; border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: var(--space-1) var(--space-1); }
+.ppe .rmx-col { margin: 0; font-weight: var(--t1-fw); font-size: var(--t1-fs); line-height: var(--t1-lh); text-align: center; border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: var(--space-1) var(--space-1); }
 .ppe .rmx-row { margin: 0; font-weight: var(--t1-fw); border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); background: var(--band); padding: var(--space-cell) var(--space-cell); display: flex; align-items: center; justify-content: space-between; gap: var(--space-1); }
 .ppe .rmx-dir { font-size: var(--t1-fs); }
 .ppe .rmx-flow { grid-column: 2 / 4; display: grid; grid-template-columns: minmax(0,1fr) 0 minmax(0,1fr); column-gap: var(--space-cell); position: relative; }
@@ -5638,7 +5661,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe .lc-detail > .lc-band { order: 0; }
 /* v11: Depreciation and Revaluation as top-level boards; shared-kind axis at top of each */
 .ppe .lc-top { grid-row: auto; margin-bottom: var(--space-1); row-gap: var(--space-cell); }
-.ppe .lc-top > .lc-band-k { grid-column: 1; align-self: center; font-size: var(--vis-meta); }
+.ppe .lc-top > .lc-band-k { grid-column: 1; align-self: center; font-size: var(--t3-fs); }
 .ppe .lc-top > .lc-band { grid-column: 2; margin-inline: var(--space-cell); }
 .ppe .reval-plate .plate-title { display: flex; align-items: center; gap: var(--space-cell); flex-wrap: wrap; }
 .ppe .reval-plate .plate-title .lane-tag { font-size: var(--t3-fs); font-weight: var(--t2-fw); }
@@ -5772,7 +5795,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.pack .impair-seq-note {
   margin: 0;
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   line-height: var(--legacy-lh-1);
 }
 
@@ -5809,7 +5832,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.pack .impair-ca-sub {
   margin-top: var(--space-hairline);
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
 }
 
 .ppe.pack .impair-ca-arrow {
@@ -5884,7 +5907,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.pack .derecog-path-sub {
   margin: 0;
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   line-height: var(--legacy-lh-1);
 }
 
@@ -5955,8 +5978,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ppe.dep-map.ch05-map .echo-k {
   color: var(--muted);
-  font-size: var(--vis-meta);
-  font-weight: var(--t1-fw);
+  font-size: var(--t3-strong-fs);
+  font-weight: var(--t3-strong-fw);
+  line-height: var(--t3-strong-lh);
   letter-spacing: var(--legacy-ls-5);
   text-transform: uppercase;
 }
@@ -5980,7 +6004,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border-radius: var(--card-radius);
   background: var(--bg);
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t3-tag-fw);
   box-sizing: border-box;
 }
@@ -6190,8 +6214,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ppe.models.ch04-map .echo-k {
   color: var(--muted);
-  font-size: var(--vis-meta);
-  font-weight: var(--t1-fw);
+  font-size: var(--t3-strong-fs);
+  font-weight: var(--t3-strong-fw);
+  line-height: var(--t3-strong-lh);
   letter-spacing: var(--legacy-ls-5);
   text-transform: uppercase;
 }
@@ -6215,7 +6240,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border-radius: var(--card-radius);
   background: var(--bg);
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t3-tag-fw);
   box-sizing: border-box;
 }
@@ -6446,8 +6471,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ch06-map .echo-k {
   color: var(--muted);
-  font-size: var(--vis-meta);
-  font-weight: var(--t1-fw);
+  font-size: var(--t3-strong-fs);
+  font-weight: var(--t3-strong-fw);
+  line-height: var(--t3-strong-lh);
   letter-spacing: var(--legacy-ls-5);
   text-transform: uppercase;
 }
@@ -6471,7 +6497,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border-radius: var(--card-radius);
   background: var(--bg);
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t3-tag-fw);
   box-sizing: border-box;
 }
@@ -6623,13 +6649,13 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ch06-map .when-pair .peer-notes {
   margin: 0;
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
 }
 
 .ch06-map .idle-note {
   margin: 0;
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
 }
 
 .ch06-map .cost-eq.fx-grid {
@@ -6674,7 +6700,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 .ch06-map .ctx-line {
   margin: 0;
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   line-height: var(--t2-lh);
 }
 
@@ -6706,7 +6732,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ch06-map .goes-tip {
   margin: 0;
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   line-height: var(--t2-lh);
 }
 
@@ -6850,7 +6876,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   border-radius: var(--card-radius);
   background: var(--bg);
   color: var(--muted);
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
   font-weight: var(--t1-fw);
   box-sizing: border-box;
 }
@@ -6947,9 +6973,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   min-width: 0;
   width: 100%;
   /* Unscaled chapter tokens. The pack multiplies --t-* by --type-scale. */
-  --t-chip: var(--t2-fs);
-  --t-meta: var(--t2-fs);
-  --t-body: var(--t1-fs);
+  --t-chip: var(--mchip-fs);
+  --t-body: var(--t2-fs);
   --t-head: var(--t1-fs);
   --t-plate: var(--t1-fs);
   --t-op: var(--mt-op-fs);
@@ -7027,14 +7052,46 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 /* Scope plate stays on the chapter type scale. Em fractions and the
    0.6875rem badge sit under 12px once --type-scale is applied. */
-.ppe.scope-map .ch01-scope :is(.peer-line, .item-rows, .item-rows li, .leaf-body, .tip-body, .thin-tip, .carve-name, .tip-title),
-.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope :is(.peer-line, .item-rows, .item-rows li, .leaf-body, .tip-body, .thin-tip, .carve-name, .tip-title) {
-  font-size: var(--t-body);
+.ppe.scope-map .ch01-scope :is(.peer-line, .item-rows, .item-rows li, .leaf-body, .tip-body, .thin-tip),
+.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope :is(.peer-line, .item-rows, .item-rows li, .leaf-body, .tip-body, .thin-tip) {
+  font-size: var(--t2-fs);
+  font-weight: var(--t2-fw);
+  line-height: var(--t2-lh);
 }
 
-.ppe.scope-map .ch01-scope :is(.see, .see-label, .see-bit, .see-bit a, .arm-label, a.fb-num),
-.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope :is(.see, .see-label, .see-bit, .see-bit a, .arm-label, a.fb-num) {
-  font-size: var(--t2-fs);
+.ppe.scope-map .ch01-scope :is(.carve-name, .tip-title),
+.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope :is(.carve-name, .tip-title) {
+  font-size: var(--t1-fs);
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
+}
+
+.ppe.scope-map .ch01-scope .see-label,
+.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope .see-label {
+  font-size: var(--t3-strong-fs);
+  font-weight: var(--t3-strong-fw);
+  line-height: var(--t3-strong-lh);
+}
+
+.ppe.scope-map .ch01-scope :is(.see-bit, .see-bit a),
+.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope :is(.see-bit, .see-bit a) {
+  font-size: var(--t3-fs);
+  font-weight: var(--t3-fw);
+  line-height: var(--t3-lh);
+}
+
+.ppe.scope-map .ch01-scope .arm-label,
+.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope .arm-label {
+  font-size: var(--t3-arm-fs);
+  font-weight: var(--t3-arm-fw);
+  line-height: var(--t3-arm-lh);
+}
+
+.ppe.scope-map .ch01-scope a.fb-num,
+.ppe.pack .beat[data-phase="scope"] > .map-include .ch01-scope a.fb-num {
+  font-size: var(--mchip-fs);
+  font-weight: var(--mchip-fw);
+  line-height: var(--mchip-lh);
 }
 
 .ch03-cost .waste-mute { color: var(--muted); }
@@ -7209,7 +7266,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe.pack .beat[data-phase="models"] > .map-include .rev-row .rev-sub {
-  font-size: var(--vis-meta);
+  font-size: var(--t3-fs);
 }
 
 .ppe.pack .beat[data-phase="models"] > .map-include .policy-stage {
@@ -7254,7 +7311,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe.pack .beat[data-phase="recog"] > .map-include .peer-line,
 .ppe.pack .beat[data-phase="recog"] > .map-include .q-note,
 .ppe.pack .beat[data-phase="recog"] > .map-include .spare-row {
-  font-size: var(--t2-fs);
+  font-size: var(--t1-fs);
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
 }
 
 .ppe.pack .beat[data-phase="recog"] > .map-include .peer-line {
@@ -7266,7 +7325,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 .ppe.pack .beat[data-phase="recog"] > .map-include .inner-rail {
-  font-size: var(--vis-meta);
+  font-size: var(--t1-fs);
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
 }
 
 .ppe.recog-map .ch02-recog .spare-row > .see,

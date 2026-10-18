@@ -935,3 +935,65 @@ a.m-cell:hover { border-color: var(--accent); }
 .st-cost .st-down-x { min-height: calc(var(--space-6) + var(--space-3)); }
 .st-cost a.cell:hover { border-color: var(--formula); }
 .st-cost a.cell:hover span.fb-num { background: var(--formula); color: var(--on-accent); }
+
+/* Concept Map only (#96 §2). Chapter visuals keep their own sizes. */
+.ias2.m-map {
+  font-size: var(--t2-fs);
+  line-height: var(--t2-lh);
+}
+.ias2.m-map .q-title,
+.ias2.m-map .cell-title,
+.ias2.m-map .m-head,
+.ias2.m-map .m-arm-head,
+.ias2.m-map .m-board-title,
+.ias2.m-map .m-row-title,
+.ias2.m-map .m-plate-title,
+.ias2.m-map .m-ask,
+.ias2.m-map .m-disc-list a strong {
+  font-size: var(--t1-fs);
+  font-weight: var(--t1-fw);
+  line-height: var(--t1-lh);
+}
+.ias2.m-map .cell-body,
+.ias2.m-map .m-body,
+.ias2.m-map .m-row-body,
+.ias2.m-map .m-arm-def,
+.ias2.m-map .m-out,
+.ias2.m-map .m-disc-list a,
+.ias2.m-map .bar {
+  font-size: var(--t2-fs);
+  font-weight: var(--t2-fw);
+  line-height: var(--t2-lh);
+}
+.ias2.m-map .see-label {
+  font-size: var(--t3-strong-fs);
+  font-weight: var(--t3-strong-fw);
+  line-height: var(--t3-strong-lh);
+}
+.ias2.m-map .see-bit,
+.ias2.m-map .see-bit a {
+  font-size: var(--t3-fs);
+  font-weight: var(--t3-fw);
+  line-height: var(--t3-lh);
+}
+.ias2.m-map .st-h,
+.ias2.m-map .st-h-label,
+.ias2.m-map .stem,
+.ias2.m-map .stem-label,
+.ias2.m-map .st-down,
+.ias2.m-map .st-arm,
+.ias2.m-map .m-stem,
+.ias2.m-map .m-stem-label {
+  font-size: var(--t3-arm-fs);
+  font-weight: var(--t3-arm-fw);
+  line-height: var(--t3-arm-lh);
+}
+.ias2.m-map a.fb-num,
+.ias2.m-map span.fb-num {
+  min-width: var(--mchip-minw);
+  height: var(--mchip-h);
+  padding: 0 var(--mchip-px);
+  font-size: var(--mchip-fs);
+  font-weight: var(--mchip-fw);
+  line-height: var(--mchip-lh);
+}
