@@ -191,20 +191,40 @@
   overflow: visible;
 }
 
+.ias2 .st-h {
+  --st-h-ink: var(--link-semantic);
+}
+
+.ias2 .st-h-line {
+  position: relative;
+  z-index: 0;
+}
+
 .ias2 .st-h-shaft::before {
   content: "";
   position: absolute;
+  z-index: 0;
   top: 50%;
   left: 0;
   right: calc(var(--rail-bar-l) + var(--arrowhead));
   height: var(--stroke-2);
   transform: translateY(-50%);
-  background: var(--link-semantic);
+  /* No paint under the centered label. A z-index punch still lost to this line live. */
+  background: linear-gradient(
+    to right,
+    var(--st-h-ink) 0,
+    var(--st-h-ink) calc(50% - var(--space-5)),
+    transparent calc(50% - var(--space-5)),
+    transparent calc(50% + var(--space-5)),
+    var(--st-h-ink) calc(50% + var(--space-5)),
+    var(--st-h-ink) 100%
+  );
 }
 
 .ias2 .st-h-shaft::after {
   content: "";
   position: absolute;
+  z-index: 0;
   top: 50%;
   right: 0;
   width: 0;
@@ -213,12 +233,13 @@
   border-top: calc(var(--arrowhead) + var(--stroke-2)) solid transparent;
   border-bottom: calc(var(--arrowhead) + var(--stroke-2)) solid transparent;
   border-left: calc(var(--rail-bar-l) + var(--arrowhead)) solid var(--link-semantic);
-  z-index: 1;
 }
 
 .ias2 .st-h-label {
-  z-index: 2; /* > shaft ::before and ::after */
-  background: var(--bg); /* keep absolute mid punch */
+  z-index: 2;
+  isolation: isolate;
+  background: var(--bg);
+  padding: var(--stroke-2) var(--space-2);
 }
 
 .ias2 .m-stem-label {
@@ -236,9 +257,12 @@
   border-top-color: var(--dash);
 }
 
+.ias2 .st-h.mute {
+  --st-h-ink: var(--dash);
+}
+
 .ias2 .st-h.mute .st-h-shaft::before {
   height: var(--stroke-1);
-  background: var(--dash);
 }
 
 .ias2 .st-h.mute .st-h-shaft::after {
