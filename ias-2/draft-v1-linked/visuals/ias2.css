@@ -430,13 +430,16 @@ body.embed .page {
 .st-h-line {
   display: flex;
   align-items: center;
-  min-height: calc(var(--arrowhead) + var(--arrowhead));
+  min-height: calc((var(--arrowhead) + var(--stroke-2)) * 2);
+  overflow: visible;
 }
 .st-h-shaft {
   position: relative;
   flex: 1;
   align-self: center;
-  height: var(--stroke-1);
+  /* Box matches the ::after head so a 1px shaft cannot clip it. */
+  height: calc((var(--arrowhead) + var(--stroke-2)) * 2);
+  overflow: visible;
 }
 .st-exit {
   grid-column: 2 / -1;

@@ -245,6 +245,8 @@ def lint():
         r"body\.embed \.m-l0[\s\S]{0,240}?border:\s*0", box
     ):
         errors.append("map-box missing embed L0 neutralize")
+    if not re.search(r"\.cfmap\.m-l0 \.status-frame\s*\{[^}]*border:\s*0", box):
+        errors.append("map-box missing CF status-frame L0 neutralize")
     if ".stem-shaft::after" not in box or ".st-h-shaft::after" not in box or ".m-shaft::after" not in box:
         errors.append("map-box missing canonical shaft ::after head")
     chrome = (ROOT / "_shared/modules/teaching/chrome-1.css").read_text(encoding="utf-8")
