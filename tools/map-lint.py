@@ -157,6 +157,52 @@ def sibling_head_errors(text, rel):
     return errors
 
 
+# L3: a ▼/▾ inside a stem or arrow class is a glyph connector.
+# ch06-measurement.html still contains the character. The stamp gate folds
+# → ↓ ▶ and not ▼, and this PR does not edit the stamp tool, so the span
+# stays. It is not the connector once map-box paints .mx-stem::after and
+# clears .mx-stem-arrow. Any other hit fails. If that head is removed, the
+# held line fails too.
+STAMP_HELD_GLYPH = "cf-2018/draft-v1-linked/visuals/ch06-measurement.html"
+GLYPH_CONNECTOR_RE = re.compile(r"[▼▾]")
+GLYPH_CLASS_RE = re.compile(r"""class=["'][^"']*(?:stem|arrow)""")
+SHAFT_CLASS_RE = re.compile(r"""class=(["'])([^"']*)\1""")
+SHAFT_TOKEN_RE = re.compile(
+    r"\b(?:stem-shaft|st-h-shaft|m-shaft|pack-flow-shaft|map-visit-arrow)\b"
+)
+SHAFT_ROLE_RE = re.compile(r"\b(?:m-flow|m-link|m-visit)\b")
+
+
+def measurement_stem_rewritten(box):
+    return (
+        re.search(r"\.mx-stem::after\s*\{[^}]*border-top\s*:", box) is not None
+        and re.search(r"\.mx-stem-arrow\s*\{[^}]*color:\s*transparent", box) is not None
+    )
+
+
+def glyph_connector_errors(text, rel, box):
+    errors = []
+    held_ok = rel == STAMP_HELD_GLYPH and measurement_stem_rewritten(box)
+    for line_no, line in enumerate(text.splitlines(), 1):
+        if not GLYPH_CONNECTOR_RE.search(line) or not GLYPH_CLASS_RE.search(line):
+            continue
+        if held_ok and 'class="mx-stem-arrow"' in line:
+            continue
+        errors.append(f"glyph connector in {rel}:{line_no}")
+    return errors
+
+
+def shaft_role_errors(text, rel):
+    """L4: a map shaft needs m-flow, m-link, or m-visit on the same element."""
+    errors = []
+    for line_no, line in enumerate(text.splitlines(), 1):
+        for match in SHAFT_CLASS_RE.finditer(line):
+            classes = match.group(2)
+            if SHAFT_TOKEN_RE.search(classes) and not SHAFT_ROLE_RE.search(classes):
+                errors.append(f"shaft missing semantic role in {rel}:{line_no}")
+    return errors
+
+
 def html_scan_paths():
     paths = []
     for pack in ("cf-2018", "ias-16", "ias-2", "ifrs-18"):
@@ -237,10 +283,13 @@ def lint():
                 r"\b(?:border|background)\b", body
             ):
                 errors.append(f"pack arrow-head look in {rel}: {selector.strip()[:80]}")
+    box = (ROOT / "_shared/modules/visuals/map-box.css").read_text(encoding="utf-8")
     for path in html_scan_paths():
         rel = path.relative_to(ROOT).as_posix()
-        errors.extend(sibling_head_errors(path.read_text(encoding="utf-8"), rel))
-    box = (ROOT / "_shared/modules/visuals/map-box.css").read_text(encoding="utf-8")
+        text = path.read_text(encoding="utf-8")
+        errors.extend(sibling_head_errors(text, rel))
+        errors.extend(glyph_connector_errors(text, rel, box))
+        errors.extend(shaft_role_errors(text, rel))
     if "body.embed .m-l0" not in box or not re.search(
         r"body\.embed \.m-l0[\s\S]{0,240}?border:\s*0", box
     ):
