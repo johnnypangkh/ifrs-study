@@ -1,13 +1,9 @@
-/* Concept Map chrome — Windows/fieldset “Style” group box.
-   Sole full-bleed outer box site-wide; embed .visual-shell / .formula-board outer neutralized in visuals/shared.css.
-   Preferred markup (Design):
-     <section class="visual-section">
-       <fieldset class="visual-fieldset">
-         <legend class="visual-legend">Concept Map</legend>
-         <iframe …></iframe>
-       </fieldset>
-     </section>
-   Interim: section + .visual-label (banner retired → legend overlap on section border).
+/* Concept Map chrome.
+   Chapter visuals: fieldset.visual-fieldset is a group box (stroke-1 --line).
+   Pack Map pages: B′ — fieldset.board-l0-onlabel IS the sole L0
+   (stroke-2 --ink). legend.board-legend punches “Concept Map” on that border.
+   Never paint that fieldset and an inner .m-l0 stroke together. Embed board
+   borders are neutralized in map-box.css (body.embed .m-l0).
    Legend grout uses body --bg so the top stroke breaks. Night-only. Do not clip iframe-fit. */
 .visual-section {
   margin: 0 0 var(--legacy-mg-2);
@@ -40,6 +36,24 @@
   /* no heavy uppercase banner band */
 }
 
+/* B′ Map outer. The fieldset is the L0; the iframe board must not add one. */
+.visual-fieldset.board-l0-onlabel {
+  border: var(--stroke-2) solid var(--ink);
+  border-radius: var(--radius-m);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  background: transparent;
+}
+
+.board-l0-onlabel > legend.board-legend {
+  padding: 0 var(--space-2);
+  margin-inline-start: var(--rail-bar-l);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: var(--t-meta, var(--t3-fs));
+  font-weight: var(--t3-arm-fw);
+  letter-spacing: var(--legacy-ls-5);
+}
+
 
 /* Interim until Design lands fieldset: section is the group box; .visual-label = overlap title */
 .visual-section:not(:has(.visual-fieldset)) {
@@ -69,7 +83,7 @@
 .visual-section iframe {
   display: block;
   width: 100%;
-  border: 0; /* fieldset is the sole rounded group box */
+  border: 0; /* fieldset is the outer frame; the embed board does not add a stroke */
   border-radius: 0;
   height: auto; /* iframe-fit.js sets px from content */
   min-height: var(--legacy-w-11); /* floor if fit fails (file:// / late postMessage); JS grows taller */

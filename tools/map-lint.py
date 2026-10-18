@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Fail Concept Map markup that breaks Pick A.
+"""Fail Concept Map markup that breaks Pick A or the #86 arrow / L0 locks.
 
 IAS 16 already has 34 cite chips on the master map. That count may stay.
 A new cite on any of the four Concept Maps fails. Glyph arrows fail.
+Sibling .stem-head / .m-arrow / .st-h-head fail on every live pack page.
 """
 import re
 import sys
@@ -62,6 +63,18 @@ LOOK_PROP = re.compile(
 )
 PICK_A_CLASS = re.compile(
     r"\.m-(?:l[0-4]|see|stop|warn|result|strip|rule|pill|flow|link|visit)\b"
+)
+SIBLING_HEAD_RE = re.compile(
+    r"""class=["'][^"']*\b(?:stem-head|m-arrow|st-h-head)\b"""
+)
+HEAD_CLASS_RE = re.compile(r"\.(?:stem-head|m-arrow|st-h-head)\b")
+MAP_PARENTS = (
+    "ias-16/draft-v1-linked/index.html",
+    "ias-2/draft-v1-linked/index.html",
+)
+INLINE_MAPS = (
+    "cf-2018/draft-v1-linked/index.html",
+    "ifrs-18/draft-v1-linked/index.html",
 )
 # Base counts at c488600. IAS 16's 34 stay until Content marks destinations.
 # CF's one cite is the page-header purpose chip, not a new map cite.
@@ -136,6 +149,22 @@ def selector_blocks(text):
     return blocks
 
 
+def sibling_head_errors(text, rel):
+    errors = []
+    for line_no, line in enumerate(text.splitlines(), 1):
+        if SIBLING_HEAD_RE.search(line):
+            errors.append(f"sibling arrow head in {rel}:{line_no}")
+    return errors
+
+
+def html_scan_paths():
+    paths = []
+    for pack in ("cf-2018", "ias-16", "ias-2", "ifrs-18"):
+        root = ROOT / pack / "draft-v1-linked"
+        paths.extend(sorted(path for path in root.rglob("*.html") if path.is_file()))
+    return paths
+
+
 def lint():
     errors = []
     for rel in MAPS:
@@ -204,6 +233,36 @@ def lint():
                 if "tip-note" in cls and ".m-see" not in sel and ":not(.m-see)" not in sel:
                     if re.search(r"\bborder(?:-width|-style|-color)?\s*:", body):
                         errors.append(f"pack tip-note border in {rel}: {sel.strip()[:80]}")
+            if HEAD_CLASS_RE.search(selector) and re.search(
+                r"\b(?:border|background)\b", body
+            ):
+                errors.append(f"pack arrow-head look in {rel}: {selector.strip()[:80]}")
+    for path in html_scan_paths():
+        rel = path.relative_to(ROOT).as_posix()
+        errors.extend(sibling_head_errors(path.read_text(encoding="utf-8"), rel))
+    box = (ROOT / "_shared/modules/visuals/map-box.css").read_text(encoding="utf-8")
+    if "body.embed .m-l0" not in box or not re.search(
+        r"body\.embed \.m-l0[\s\S]{0,240}?border:\s*0", box
+    ):
+        errors.append("map-box missing embed L0 neutralize")
+    if ".stem-shaft::after" not in box or ".st-h-shaft::after" not in box or ".m-shaft::after" not in box:
+        errors.append("map-box missing canonical shaft ::after head")
+    chrome = (ROOT / "_shared/modules/teaching/chrome-1.css").read_text(encoding="utf-8")
+    if not re.search(
+        r"\.visual-fieldset\.board-l0-onlabel\s*\{[^}]*--stroke-2[^}]*--ink",
+        chrome,
+    ):
+        errors.append("chrome-1 missing B′ fieldset L0")
+    for rel in MAP_PARENTS:
+        text = (ROOT / rel).read_text(encoding="utf-8")
+        if "board-l0-onlabel" not in text or ">Concept Map<" not in text:
+            errors.append(f"Map page missing B′ fieldset: {rel}")
+    for rel in INLINE_MAPS:
+        text = (ROOT / rel).read_text(encoding="utf-8")
+        if "board-legend-abs" not in text or ">Concept Map<" not in text:
+            errors.append(f"Map page missing B′ on-border label: {rel}")
+        if "visual-fieldset" in text:
+            errors.append(f"inline Map gained a second frame: {rel}")
     return errors
 
 

@@ -55,19 +55,12 @@ body.embed .page {
   width: 100%;
 }
 .stem-shaft {
+  position: relative;
   width: var(--stroke-1);
   flex: 1;
   min-height: calc(var(--space-2) + var(--space-hairline));
-  background: var(--accent);
 }
 .stem-label { text-align: center; line-height: var(--t0-lh); }
-.stem-head {
-  width: 0;
-  height: 0;
-  border-left: var(--arrowhead) solid transparent;
-  border-right: var(--arrowhead) solid transparent;
-  border-top: var(--rail-bar-l) solid var(--accent);
-}
 
 .board {
   display: flex;
@@ -376,8 +369,6 @@ body.embed .page {
 }
 .st-out { display: flex; flex-direction: column; gap: var(--space-cell); padding-bottom: var(--space-3); }
 .st-down-mute { min-height: calc(var(--space-6) + var(--space-3)); }
-.st-down-mute .stem-shaft { background: var(--dash); }
-.st-down-mute .stem-head { border-top-color: var(--dash); }
 .leaf.mute { border-color: var(--line); background: transparent; }
 .leaf.mute .cell-title { color: var(--muted); }
 
@@ -436,14 +427,16 @@ body.embed .page {
   text-align: center;
   line-height: var(--t0-lh);
 }
-.st-h-line { display: flex; align-items: center; }
-.st-h-shaft { flex: 1; height: var(--stroke-1); background: var(--dash); }
-.st-h-head {
-  width: 0;
-  height: 0;
-  border-top: var(--arrowhead) solid transparent;
-  border-bottom: var(--arrowhead) solid transparent;
-  border-left: var(--rail-bar-l) solid var(--dash);
+.st-h-line {
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--arrowhead) + var(--arrowhead));
+}
+.st-h-shaft {
+  position: relative;
+  flex: 1;
+  align-self: center;
+  height: var(--stroke-1);
 }
 .st-exit {
   grid-column: 2 / -1;
@@ -466,7 +459,6 @@ body.embed .page {
   left: calc(50% - calc(var(--stroke-1) / 2));
   width: var(--stroke-1);
   height: calc(var(--space-4) + var(--space-1));
-  background: var(--accent);
 }
 .st-fork-l .st-fork-drop { left: calc((100% - var(--st-gut)) / 4 - calc(var(--stroke-1) / 2)); }
 .st-fork-bar {
@@ -475,16 +467,11 @@ body.embed .page {
   left: calc((100% - var(--st-gut)) / 4);
   right: calc((100% - var(--st-gut)) / 4);
   height: var(--stroke-1);
-  background: var(--accent);
 }
-.st-arm-mute .stem-shaft { background: var(--dash); }
-.st-arm-mute .stem-head { border-top-color: var(--dash); }
-.st-fork-mute3 .st-fork-bar { background: linear-gradient(to right, var(--accent) 50%, var(--dash) 50%); }
-.st-fork-l.st-fork-mute3 .st-fork-bar { background: var(--dash); }
 /* Column-1 continuing route beside a column-3 outcome stack: the tail carries
    the route from the node down to the next fork. */
 .st-col { display: flex; flex-direction: column; min-width: 0; }
-.st-tail { flex: 1 1 auto; align-self: center; width: var(--stroke-1); min-height: 0; background: var(--accent); }
+.st-tail { flex: 1 1 auto; align-self: center; width: var(--stroke-1); min-height: 0; }
 .st-col > .q .see, .q > .see { margin-top: var(--space-cell); }
 .st-peer { display: flex; flex-direction: column; }
 .st > .bar { margin-top: var(--space-3); }
@@ -539,6 +526,7 @@ body.embed .page {
 
 /* Stem from a decision or plate into the next plate */
 .m-stem {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -547,13 +535,22 @@ body.embed .page {
   font-size: var(--vis-meta);
   font-weight: var(--t1-fw);
 }
-.m-shaft { width: var(--stroke-2); flex: 1; min-height: var(--space-2); background: var(--accent); }
-.m-stem-label { padding: var(--space-hairline) 0; line-height: var(--t0-lh); text-align: center; }
-.m-arrow {
-  width: 0; height: 0;
-  border-left: var(--arrowhead) solid transparent;
-  border-right: var(--arrowhead) solid transparent;
-  border-top: var(--rail-bar-l) solid var(--accent);
+.m-shaft {
+  position: relative;
+  width: var(--stroke-2);
+  flex: 1;
+  min-height: var(--space-2);
+}
+.m-stem-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  padding: 0 var(--space-1);
+  line-height: var(--t0-lh);
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* Formula board — the primary plate */

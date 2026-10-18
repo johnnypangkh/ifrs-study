@@ -114,8 +114,9 @@
   line-height: var(--t3-lh);
 }
 
-/* Flow: stroke-2 shaft, arrowhead. Link: stroke-1 line, no head.
-   Mute: stroke-1 dash, with a head. Visit: IFRS 18 jump path only. */
+/* Flow: one continuous shaft, arrowhead on ::after. Link: stroke-1 line, no head.
+   Mute: stroke-1 dash on that same shaft and its head. Visit: IFRS 18 jump path only.
+   Sibling .stem-head / .m-arrow / .st-h-head are not a head path. */
 
 .cfmap .harm.m-flow::before,
 .cfmap .hstem.m-flow .hstem-line {
@@ -141,36 +142,101 @@
   border-top-color: var(--link-semantic) !important;
 }
 
-.ias2.m-map .stem-shaft.m-flow,
-.ias2.m-map .st-h-shaft.m-flow {
-  background: var(--link-semantic) !important;
+/* IAS 2 canonical shaft. The element is the shaft; ::before is the line;
+   ::after is the head. Mid labels stay absolute in the pack stylesheet. */
+.ias2 .stem-shaft,
+.ias2 .st-h-shaft,
+.ias2 .m-shaft {
+  position: relative;
+  background: none !important;
 }
 
-.ias2.m-map .stem-shaft.m-flow {
-  width: var(--stroke-2) !important;
+.ias2 .stem-shaft::before,
+.ias2 .m-shaft::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: var(--rail-bar-l);
+  left: 50%;
+  width: var(--stroke-2);
+  transform: translateX(-50%);
+  background: var(--link-semantic);
 }
 
-.ias2.m-map .st-h-shaft.m-flow {
-  height: var(--stroke-2) !important;
+.ias2 .stem-shaft::after,
+.ias2 .m-shaft::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: var(--arrowhead) solid transparent;
+  border-right: var(--arrowhead) solid transparent;
+  border-top: var(--rail-bar-l) solid var(--link-semantic);
 }
 
-.ias2.m-map .stem-head,
-.ias2.m-map .st-h-head {
-  border-top-color: var(--link-semantic) !important;
-  border-left-color: var(--link-semantic) !important;
+.ias2 .st-h-shaft::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: var(--rail-bar-l);
+  height: var(--stroke-2);
+  transform: translateY(-50%);
+  background: var(--link-semantic);
 }
 
-.ias2.m-map .st-down-mute .stem-shaft.m-flow,
-.ias2.m-map .st-arm-mute .stem-shaft.m-flow,
-.ias2.m-map .st-h.mute .st-h-shaft.m-flow {
-  width: var(--stroke-1) !important;
-  height: var(--stroke-1) !important;
-  background: var(--dash) !important;
+.ias2 .st-h-shaft::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 0;
+  height: 0;
+  transform: translateY(-50%);
+  border-top: var(--arrowhead) solid transparent;
+  border-bottom: var(--arrowhead) solid transparent;
+  border-left: var(--rail-bar-l) solid var(--link-semantic);
 }
 
-.ias2.m-map .st-down-mute .stem-head,
-.ias2.m-map .st-arm-mute .stem-head {
-  border-top-color: var(--dash) !important;
+.ias2 .m-stem-label {
+  background: var(--bg);
+}
+
+.ias2 .st-down-mute .stem-shaft::before,
+.ias2 .st-arm-mute .stem-shaft::before {
+  width: var(--stroke-1);
+  background: var(--dash);
+}
+
+.ias2 .st-down-mute .stem-shaft::after,
+.ias2 .st-arm-mute .stem-shaft::after {
+  border-top-color: var(--dash);
+}
+
+.ias2 .st-h.mute .st-h-shaft::before {
+  height: var(--stroke-1);
+  background: var(--dash);
+}
+
+.ias2 .st-h.mute .st-h-shaft::after {
+  border-left-color: var(--dash);
+}
+
+.ias2 .st-fork-drop,
+.ias2 .st-fork-bar,
+.ias2 .st-tail {
+  background: var(--link-semantic);
+}
+
+.ias2 .st-fork-mute3 .st-fork-bar {
+  background: linear-gradient(to right, var(--link-semantic) 50%, var(--dash) 50%);
+}
+
+.ias2 .st-fork-l.st-fork-mute3 .st-fork-bar {
+  background: var(--dash);
 }
 
 .ppe.pack .pack-flow-shaft::before,
@@ -211,4 +277,35 @@
 
 .ppe.pack .impair-ca-arrow.m-flow.mute {
   border-left-color: var(--dash);
+}
+
+/* B′ — parent fieldset is the sole L0. Embed boards keep .m-l0 for rank
+   aliases, and do not paint a second stroke or a second inset. */
+body.embed .m-l0,
+body.embed .ppe.pack,
+body.embed .ias2.m-map.m-l0 {
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+/* Inline boards (CF, IFRS 18): “Concept Map” sits on the one L0 top border. */
+.board-l0-div {
+  position: relative;
+}
+
+.board-legend-abs {
+  position: absolute;
+  top: calc(-1 * var(--stroke-2) / 2);
+  left: var(--rail-bar-l);
+  z-index: 1;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0 var(--space-2);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: var(--t-meta, var(--t3-fs));
+  font-weight: var(--t3-arm-fw);
+  letter-spacing: var(--legacy-ls-5);
+  line-height: var(--t0-lh);
 }
