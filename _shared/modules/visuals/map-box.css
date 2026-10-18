@@ -217,7 +217,8 @@
 }
 
 .ias2 .st-h-label {
-  z-index: 2;
+  z-index: 2; /* > shaft ::before and ::after */
+  background: var(--bg); /* keep absolute mid punch */
 }
 
 .ias2 .m-stem-label {
