@@ -409,6 +409,8 @@ SHARED_VISUAL_IMPORTS = {
     27: "modules/visuals/components-5.css?v=",
     28: "modules/visuals/cite-1.css?v=",
     29: "modules/visuals/components-6.css?v=",
+    # #85: map-box alias extend. ?v= only.
+    30: "modules/visuals/map-box.css?v=",
 }
 SHARED_VISUAL_PAGES = (
     "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html",
@@ -491,7 +493,7 @@ def fold_map_pick_a(html):
 def shared_visual_stamp_failure(base, head, path):
     """Return an error when path differs outside the shared-visual allowlist.
 
-    visuals.css may change ?v= only on lines 13, 14, 16, 17, 20, 24, 27, 28, and 29.
+    visuals.css may change ?v= only on lines 13, 14, 16, 17, 20, 24, 27, 28, 29, and 30.
     Head may also gain one trailing map-box.css @import.
     Each listed visual page may change ?v= only on its visuals.css link.
     Identical text is not a failure. None means this path is not in the

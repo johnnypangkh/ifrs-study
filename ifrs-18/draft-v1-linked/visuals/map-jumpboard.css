@@ -75,14 +75,14 @@ html { background: var(--bg); color-scheme: dark; }
   flex-wrap: wrap;
   gap: var(--space-cell);
   margin: 0;
-  font-size: calc(var(--tb-box-body-fs) * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   font-weight: var(--t1-fw);
   line-height: var(--t1-lh);
   color: var(--ink);
   text-decoration: none;
 }
 .i18map a.frame-title:hover { color: var(--accent); text-decoration: none; }
-.i18map .std-head a.frame-title { font-size: calc(var(--tb-body-fs) * var(--type-scale, 1)); }
+.i18map .std-head a.frame-title { font-size: var(--t1-fs); }
 
 .i18map .fb-num {
   display: inline-flex;
@@ -127,7 +127,7 @@ html { background: var(--bg); color-scheme: dark; }
   display: flex;
   align-items: center;
   gap: var(--space-cell);
-  font-size: calc(var(--tb-box-body-fs) * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   font-weight: var(--t1-fw);
   color: var(--ink);
 }
@@ -269,7 +269,7 @@ html { background: var(--bg); color-scheme: dark; }
 }
 .i18map .mini-pnl-nest-body {
   font-size: var(--vis-meta);
-  font-weight: var(--tb-body-fw);
+  font-weight: var(--t2-fw);
   color: var(--muted);
 }
 
@@ -299,7 +299,6 @@ html { background: var(--bg); color-scheme: dark; }
   display: block;
   margin-top: auto;
   padding: calc(7 * var(--stroke-1)) calc(10 * var(--stroke-1));
-  border: var(--stroke-1) dashed var(--dash);
   border-radius: var(--radius-s);
   color: var(--muted);
   font-size: var(--vis-meta);
@@ -321,8 +320,6 @@ html { background: var(--bg); color-scheme: dark; }
   display: flex;
   flex-direction: column;
   gap: var(--map-inner);
-  border-width: var(--stroke-1);
-  background: transparent;
 }
 .i18map .close .cell-grid { flex: 1 1 auto; }
 

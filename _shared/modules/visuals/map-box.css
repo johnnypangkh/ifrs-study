@@ -17,7 +17,8 @@
 }
 
 .m-l1,
-.ppe.pack .plate {
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .plate,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .disc-band {
   border-width: var(--stroke-2) !important;
   border-style: solid !important;
   border-color: var(--line) !important;
@@ -30,8 +31,8 @@
 }
 
 .m-l2,
-.ppe.pack .peer,
-.ppe.pack .inner-rail {
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail {
   border-width: var(--stroke-1) !important;
   border-style: solid !important;
   border-color: var(--line) !important;
@@ -39,8 +40,8 @@
 }
 
 .m-l3:not(.m-strip),
-.ppe.pack .item-rows,
-.ppe.pack .inner-detail {
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .item-rows,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-detail {
   border-width: var(--stroke-1) !important;
   border-style: solid !important;
   border-color: var(--line) !important;
@@ -49,8 +50,8 @@
 }
 
 .m-l4,
-.ppe.pack .soft-note,
-.ppe.pack .thin-tip {
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .soft-note,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .thin-tip {
   border-style: none !important;
   background: transparent !important;
   box-shadow: none !important;
@@ -59,7 +60,7 @@
 }
 
 .m-see,
-.ppe.pack .see,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see,
 .cfmap .tip-note.m-see,
 .i18map .tip-note.m-see {
   border-width: var(--stroke-1) !important;
@@ -69,13 +70,13 @@
 }
 
 .m-see .see-label,
-.ppe.pack .see .see-label,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .see .see-label,
 .tip-note.m-see .see-label {
   color: var(--see-also);
 }
 
 .m-stop,
-.ppe.pack .leaf.pack-stop {
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .leaf.pack-stop {
   border-style: solid !important;
   border-width: var(--stroke-2) !important;
   border-color: var(--outcome-no) !important;

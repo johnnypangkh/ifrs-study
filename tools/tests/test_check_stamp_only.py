@@ -512,6 +512,29 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertEqual(code, 1, output)
         self.assertIn("_shared/visuals.css", output)
 
+    def test_visuals_map_box_import_is_stamp_only(self):
+        """#85: visuals.css line 30 may change ?v= and nothing else."""
+        import tempfile
+
+        lines = [f"/* line {n} */" for n in range(1, 32)]
+        lines[29] = '@import url("modules/visuals/map-box.css?v=56bb56b4cee7");'
+        base = "\n".join(lines) + "\n"
+        head = base.replace("56bb56b4cee7", "aaaaaaaaaaaa")
+        rel = stamp.SHARED_VISUAL_CSS
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+        bad = head.replace("map-box.css", "map-box-2.css", 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: bad})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("_shared/visuals.css", output)
+
     def test_visuals_component_imports_are_stamp_only(self):
         """#83: visuals.css lines 20, 24, 27, and 29 may change ?v= only."""
         import tempfile
