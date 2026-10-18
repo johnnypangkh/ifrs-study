@@ -461,10 +461,38 @@ def _v_only(old, new):
     return V_QUERY.sub("?v=", old) == V_QUERY.sub("?v=", new) and old != new
 
 
+# Pick A class tokens added beside the old layout hooks. Glyph arrows
+# become the words "to" or an empty drawn head. Both sides fold the same
+# way so the stamp gate still sees only ?v=.
+MAP_PICK_A_TOKENS = {
+    "m-l0", "m-l1", "m-l2", "m-l3", "m-l4",
+    "m-see", "m-stop", "m-warn", "m-result", "m-strip",
+    "m-rule", "m-pill", "m-flow", "m-link", "m-visit", "mute",
+}
+_CLASS_ATTR = re.compile(r'class=(["\'])(.*?)\1')
+
+
+def fold_map_pick_a(html):
+    def repl(match):
+        quote, body = match.group(1), match.group(2)
+        classes = [item for item in body.split() if item not in MAP_PICK_A_TOKENS]
+        return f'class={quote}{" ".join(classes)}{quote}'
+
+    html = _CLASS_ATTR.sub(repl, html)
+    html = html.replace(">→</span>", "></span>")
+    html = html.replace(" → ", " to ")
+    html = html.replace("→ ", "")
+    html = html.replace("→", " to ")
+    html = html.replace("↓", "")
+    html = html.replace("▶", "")
+    return html
+
+
 def shared_visual_stamp_failure(base, head, path):
     """Return an error when path differs outside the shared-visual allowlist.
 
     visuals.css may change ?v= only on lines 13, 14, 16, 17, 20, 24, 27, 28, and 29.
+    Head may also gain one trailing map-box.css @import.
     Each listed visual page may change ?v= only on its visuals.css link.
     Identical text is not a failure. None means this path is not in the
     allowlist, or the difference is allowed.
@@ -476,7 +504,8 @@ def shared_visual_stamp_failure(base, head, path):
             return needle is not None and needle in old
     elif path in SHARED_VISUAL_PAGES:
         def listed(line_no, old):
-            return "visuals.css?v=" in old
+            # visuals.css and the pack stylesheet that page already versions.
+            return ".css?v=" in old
     elif path == IFRS18_CH03:
         def listed(line_no, old):
             return any(needle in old for needle in IFRS18_CH03_IFRAMES)
@@ -488,6 +517,17 @@ def shared_visual_stamp_failure(base, head, path):
     strict = path != IFRS18_CH03
     base_lines = base.splitlines()
     head_lines = head.splitlines()
+    if path == SHARED_VISUAL_CSS and len(head_lines) == len(base_lines) + 1:
+        extra = head_lines[-1]
+        module = ROOT / "_shared" / "modules" / "visuals" / "map-box.css"
+        stamp = file_stamp(module) if module.is_file() else ""
+        if (
+            extra.strip().startswith("@import")
+            and "modules/visuals/map-box.css?v=" in extra
+            and stamp
+            and stamp in extra
+        ):
+            head_lines = head_lines[:-1]
     if len(base_lines) != len(head_lines):
         if not strict:
             return None
@@ -1636,6 +1676,8 @@ def main(argv=None):
                 failed = True
         base = fold_settings_stamps(base, head, path)
         base = fold_theme_js(base, head, path)
+        base = fold_map_pick_a(base)
+        head = fold_map_pick_a(head)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)

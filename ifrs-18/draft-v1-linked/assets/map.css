@@ -1,3 +1,4 @@
+@import url("../../../_shared/modules/visuals/map-box.css?v=56bb56b4cee7");
 /* IFRS 18 Map — jump board (Standard frame ⊃ three peer pillars + close-out;
    OpEx contained in the Operating band of the mini P&L; dashed banks see-also only).
    Loaded only by index.html, after shared.css + draft.css. Night tokens from those files.
@@ -11,8 +12,8 @@
 }
 .map-page header.page-header h1 {
   margin: 0;
-  font-size: var(--tb-h1-fs);
-  font-weight: var(--tb-h1-fw);
+  font-size: var(--t0-fs);
+  font-weight: var(--t0-fw);
 }
 
 /* ==== board:start — keep byte-identical in assets/map.css and visuals/map-jumpboard.css ==== */
@@ -83,14 +84,14 @@
   flex-wrap: wrap;
   gap: var(--space-cell);
   margin: 0;
-  font-size: calc(var(--tb-box-body-fs) * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   font-weight: var(--t1-fw);
   line-height: var(--t1-lh);
   color: var(--ink);
   text-decoration: none;
 }
 .i18map a.frame-title:hover { color: var(--accent); text-decoration: none; }
-.i18map .std-head a.frame-title { font-size: calc(var(--tb-body-fs) * var(--type-scale, 1)); }
+.i18map .std-head a.frame-title { font-size: var(--t1-fs); }
 
 .i18map .fb-num {
   display: inline-flex;
@@ -135,7 +136,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-cell);
-  font-size: calc(var(--tb-box-body-fs) * var(--type-scale, 1));
+  font-size: var(--t2-fs);
   font-weight: var(--t1-fw);
   color: var(--ink);
 }
@@ -277,7 +278,7 @@
 }
 .i18map .mini-pnl-nest-body {
   font-size: var(--vis-meta);
-  font-weight: var(--tb-body-fw);
+  font-weight: var(--t2-fw);
   color: var(--muted);
 }
 
@@ -307,7 +308,6 @@
   display: block;
   margin-top: auto;
   padding: calc(7 * var(--stroke-1)) calc(10 * var(--stroke-1));
-  border: var(--stroke-1) dashed var(--dash);
   border-radius: var(--radius-s);
   color: var(--muted);
   font-size: var(--vis-meta);

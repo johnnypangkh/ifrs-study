@@ -1,3 +1,4 @@
+@import url("../../../_shared/modules/visuals/map-box.css?v=56bb56b4cee7");
 /* CF 2018 pack Map — containment board with decision walks.
    Status (Ch11) wraps the board; its head is the 11.2 fork. Objective hub → QC (cost rail).
    The reporting entity contains its forms (3.6 ∥ Ch9 ∥ Ch10, one boundary bar) and the elements.
@@ -91,7 +92,7 @@
 .cfmap .status-more {
   margin: 0;
   font-size: var(--t2-fs);
-  line-height: var(--tb-body-lh);
+  line-height: var(--t2-lh);
   color: var(--muted);
 }
 .cfmap .status-more {
@@ -124,7 +125,7 @@
   align-items: center;
   gap: var(--space-cell);
   margin: 0;
-  font-size: var(--tb-box-body-fs);
+  font-size: var(--t2-fs);
   font-weight: var(--t1-fw);
   line-height: var(--t1-lh);
   color: var(--ink);
@@ -167,7 +168,7 @@
 .cfmap .cell-title,
 .cfmap .cell-body { margin: 0; }
 .cfmap .cell-title {
-  font-size: var(--tb-box-body-fs);
+  font-size: var(--t2-fs);
   font-weight: var(--t1-fw);
   line-height: var(--legacy-lh-1);
   color: var(--ink);
@@ -186,7 +187,7 @@
   font-size: var(--vis-meta);
   font-weight: var(--t1-fw);
   letter-spacing: var(--legacy-ls-3);
-  line-height: var(--tb-body-lh);
+  line-height: var(--t2-lh);
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -200,13 +201,13 @@
   border-radius: var(--card-radius);
   background: var(--band);
   font-size: var(--t2-fs);
-  line-height: var(--tb-body-lh);
+  line-height: var(--t2-lh);
   color: var(--ink);
 }
 .cfmap .apply-row {
   margin: var(--space-3) 0 0;
   font-size: var(--t2-fs);
-  line-height: var(--tb-box-title-lh);
+  line-height: var(--t1-lh);
   color: var(--ink);
 }
 .cfmap .apply-head {
@@ -220,7 +221,6 @@
 .cfmap .tip-note {
   margin: var(--space-3) 0 0;
   padding: var(--space-cell) var(--space-3);
-  border: var(--stroke-1) dashed var(--dash);
   border-radius: var(--radius-s);
   font-size: var(--t2-fs);
   color: var(--muted);
@@ -384,7 +384,7 @@
 .cfmap .q-sub {
   margin: var(--space-cell) 0 0;
   font-size: var(--t2-fs);
-  line-height: var(--tb-body-lh);
+  line-height: var(--t2-lh);
   color: var(--muted);
 }
 
@@ -402,7 +402,7 @@
 .cfmap .leaf-yes { border-color: var(--ink); }
 .cfmap .leaf-name {
   margin: 0;
-  font-size: var(--tb-box-body-fs);
+  font-size: var(--t2-fs);
   font-weight: var(--t1-fw);
   line-height: var(--legacy-lh-1);
   color: var(--ink);

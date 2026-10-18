@@ -1,0 +1,213 @@
+/* Map master Pick A. Weight = rank. Specials change colour only.
+   Pack CSS keeps layout. Look for .m-* lives here.
+   --stroke-3 is the strip bar: stroke-1 + stroke-2, day and night. */
+
+:root {
+  --stroke-3: calc(var(--stroke-1) + var(--stroke-2));
+  --see-also: var(--see);
+  --outcome-no: var(--danger);
+}
+
+.m-l0,
+.ppe.pack {
+  border: var(--stroke-2) solid var(--ink) !important;
+  border-radius: var(--radius-m) !important;
+  padding: var(--space-3) var(--space-4) !important;
+  box-sizing: border-box;
+}
+
+.m-l1,
+.ppe.pack .plate {
+  border-width: var(--stroke-2) !important;
+  border-style: solid !important;
+  border-color: var(--line) !important;
+  background: var(--surface) !important;
+}
+
+.m-l1.hub,
+.cfmap .contain.hub {
+  border-color: var(--ink) !important;
+}
+
+.m-l2,
+.ppe.pack .peer,
+.ppe.pack .inner-rail {
+  border-width: var(--stroke-1) !important;
+  border-style: solid !important;
+  border-color: var(--line) !important;
+  background: var(--band) !important;
+}
+
+.m-l3:not(.m-strip),
+.ppe.pack .item-rows,
+.ppe.pack .inner-detail {
+  border-width: var(--stroke-1) !important;
+  border-style: solid !important;
+  border-color: var(--line) !important;
+  border-radius: var(--radius-s) !important;
+  background: var(--surface) !important;
+}
+
+.m-l4,
+.ppe.pack .soft-note,
+.ppe.pack .thin-tip {
+  border-style: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: var(--t3-fs);
+  line-height: var(--t3-lh);
+}
+
+.m-see,
+.ppe.pack .see,
+.cfmap .tip-note.m-see,
+.i18map .tip-note.m-see {
+  border-width: var(--stroke-1) !important;
+  border-style: dashed !important;
+  border-color: var(--see-also) !important;
+  background: transparent !important;
+}
+
+.m-see .see-label,
+.ppe.pack .see .see-label,
+.tip-note.m-see .see-label {
+  color: var(--see-also);
+}
+
+.m-stop,
+.ppe.pack .leaf.pack-stop {
+  border-style: solid !important;
+  border-width: var(--stroke-2) !important;
+  border-color: var(--outcome-no) !important;
+  background: transparent !important;
+}
+
+.m-warn {
+  border-style: solid !important;
+  border-color: var(--warn) !important;
+}
+
+.m-result {
+  border-width: var(--stroke-1) !important;
+  border-style: solid !important;
+  border-color: var(--accent) !important;
+  background: var(--band) !important;
+}
+
+.m-strip,
+.i18map .mini-pnl-band {
+  border-left-width: var(--stroke-3) !important;
+  border-left-style: solid !important;
+}
+
+.m-rule {
+  border: var(--stroke-1) solid var(--line);
+  background: var(--band);
+}
+
+.m-pill {
+  border: var(--stroke-1) solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  font-size: var(--t3-fs);
+  line-height: var(--t3-lh);
+}
+
+/* Flow: stroke-2 shaft, arrowhead. Link: stroke-1 line, no head.
+   Mute: stroke-1 dash, with a head. Visit: IFRS 18 jump path only. */
+
+.cfmap .harm.m-flow::before,
+.cfmap .hstem.m-flow .hstem-line {
+  height: var(--stroke-2) !important;
+  background: var(--link-semantic) !important;
+}
+
+.cfmap .vline.m-flow,
+.cfmap .varm.m-flow::before {
+  width: var(--stroke-2) !important;
+  background: var(--link-semantic) !important;
+}
+
+.cfmap .harm.m-flow::after,
+.cfmap .hstem.m-flow::after {
+  border-left-width: var(--arrowhead) !important;
+  border-left-color: var(--link-semantic) !important;
+}
+
+.cfmap .vline.m-flow::after,
+.cfmap .varm.m-flow::after {
+  border-top-width: var(--arrowhead) !important;
+  border-top-color: var(--link-semantic) !important;
+}
+
+.ias2.m-map .stem-shaft.m-flow,
+.ias2.m-map .st-h-shaft.m-flow {
+  background: var(--link-semantic) !important;
+}
+
+.ias2.m-map .stem-shaft.m-flow {
+  width: var(--stroke-2) !important;
+}
+
+.ias2.m-map .st-h-shaft.m-flow {
+  height: var(--stroke-2) !important;
+}
+
+.ias2.m-map .stem-head,
+.ias2.m-map .st-h-head {
+  border-top-color: var(--link-semantic) !important;
+  border-left-color: var(--link-semantic) !important;
+}
+
+.ias2.m-map .st-down-mute .stem-shaft.m-flow,
+.ias2.m-map .st-arm-mute .stem-shaft.m-flow,
+.ias2.m-map .st-h.mute .st-h-shaft.m-flow {
+  width: var(--stroke-1) !important;
+  height: var(--stroke-1) !important;
+  background: var(--dash) !important;
+}
+
+.ias2.m-map .st-down-mute .stem-head,
+.ias2.m-map .st-arm-mute .stem-head {
+  border-top-color: var(--dash) !important;
+}
+
+.ppe.pack .pack-flow-shaft::before,
+.ppe.pack .pack-flow-shaft.m-flow::before {
+  width: var(--stroke-2) !important;
+  background: var(--link-semantic) !important;
+}
+
+.ppe.pack .pack-flow-shaft::after,
+.ppe.pack .pack-flow-shaft.m-flow::after {
+  border-top-width: var(--arrowhead) !important;
+  border-top-color: var(--link-semantic) !important;
+}
+
+.i18map .map-visit-arrow.m-visit {
+  height: var(--stroke-2) !important;
+  background: var(--accent) !important;
+}
+
+.i18map .map-visit-arrow.m-visit::after {
+  border-left-width: var(--arrowhead) !important;
+  border-left-color: var(--accent) !important;
+}
+
+.ias2.m-map .m-missing {
+  border-style: solid !important;
+  border-color: var(--line) !important;
+}
+
+.ppe.pack .impair-ca-arrow.m-flow {
+  width: 0;
+  height: 0;
+  border-top: var(--arrowhead) solid transparent;
+  border-bottom: var(--arrowhead) solid transparent;
+  border-left: var(--arrowhead) solid var(--link-semantic);
+  color: transparent;
+}
+
+.ppe.pack .impair-ca-arrow.m-flow.mute {
+  border-left-color: var(--dash);
+}
