@@ -2309,7 +2309,7 @@ body.embed {
 /* Kit 4 is the only primary row. Not-costs spans Cost + Purchase.
    The cut-off band spans DA + Dismantling and is linked from DA. */
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-identity {
-  --stem: calc(var(--space-2) + var(--space-hairline) + var(--stroke-1));
+  --stem-len: calc(var(--space-2) + var(--space-hairline) + var(--stroke-1));
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) auto minmax(0, 1fr) auto minmax(0, 1.35fr) auto minmax(0, 1fr);
   grid-template-areas:
@@ -2317,7 +2317,7 @@ body.embed {
     "nature nature nature . axis axis axis"
     "facets facets facets facets facets facets facets";
   column-gap: var(--space-cell);
-  row-gap: var(--stem);
+  row-gap: var(--stem-len);
   align-items: start;
   min-width: 0;
 }
@@ -2430,7 +2430,7 @@ body.embed {
   left: 0;
   bottom: 0;
   width: calc(var(--stroke-1) + var(--stroke-1) / 2);
-  height: calc(var(--stem) + 0.45em);
+  height: calc(var(--stem-len) + 0.45em);
   background: var(--accent);
 }
 
@@ -2476,7 +2476,7 @@ body.embed {
   left: 0;
   bottom: calc(var(--space-1) + var(--stroke-1) / 2);
   width: calc(var(--stroke-1) + var(--stroke-1) / 2);
-  height: calc(var(--stem) + 0.7em);
+  height: calc(var(--stem-len) + 0.7em);
   background: var(--accent);
 }
 

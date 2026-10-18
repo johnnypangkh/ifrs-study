@@ -39,7 +39,7 @@ a.fb-num{display:inline-flex;align-items:center;justify-content:center;box-sizin
 .card li{margin: 0 0 var(--space-1);font-size: var(--t2-fs);}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap: var(--space-3);}
 
-.sec{border: var(--stroke-1) dashed var(--dash);border-radius: var(--card-radius);padding: var(--space-3) var(--space-3);opacity:.92;}
+.sec{border: var(--stroke-1) solid var(--line);border-radius: var(--card-radius);padding: var(--space-3) var(--space-3);opacity:.92;}
 .sec h3{margin: 0 0 var(--space-cell);font-size: var(--t2-fs);font-weight:var(--t1-fw);color: var(--muted);}
 .muted-card{opacity:.88;}
 .peers + .row2{margin-top: var(--space-3);}
