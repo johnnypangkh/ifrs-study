@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+/* CF Map: .m-l0 is the only outer stroke. The status frame keeps its padding. */
+.cfmap.m-l0 .status-frame {
+  border: 0;
+}
+
 .m-l1,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .plate,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .disc-band {
@@ -118,28 +123,31 @@
    Mute: stroke-1 dash on that same shaft and its head. Visit: IFRS 18 jump path only.
    Sibling .stem-head / .m-arrow / .st-h-head are not a head path. */
 
+/* CF index does not load colour-1, so --link-semantic is unset there.
+   An invalid !important var() paints the initial value (transparent shaft,
+   currentColor head). Fall back to the pack stem, which is --accent. */
 .cfmap .harm.m-flow::before,
 .cfmap .hstem.m-flow .hstem-line {
   height: var(--stroke-2) !important;
-  background: var(--link-semantic) !important;
+  background: var(--link-semantic, var(--stem)) !important;
 }
 
 .cfmap .vline.m-flow,
 .cfmap .varm.m-flow::before {
   width: var(--stroke-2) !important;
-  background: var(--link-semantic) !important;
+  background: var(--link-semantic, var(--stem)) !important;
 }
 
 .cfmap .harm.m-flow::after,
 .cfmap .hstem.m-flow::after {
-  border-left-width: var(--arrowhead) !important;
-  border-left-color: var(--link-semantic) !important;
+  border-left-width: var(--rail-bar-l) !important;
+  border-left-color: var(--link-semantic, var(--stem)) !important;
 }
 
 .cfmap .vline.m-flow::after,
 .cfmap .varm.m-flow::after {
-  border-top-width: var(--arrowhead) !important;
-  border-top-color: var(--link-semantic) !important;
+  border-top-width: var(--rail-bar-l) !important;
+  border-top-color: var(--link-semantic, var(--stem)) !important;
 }
 
 /* IAS 2 canonical shaft. The element is the shaft; ::before is the line;
@@ -177,12 +185,18 @@
   border-top: var(--rail-bar-l) solid var(--link-semantic);
 }
 
+.ias2 .st-h-shaft {
+  /* The head must live inside this box. stroke-1 clipped it against the card. */
+  height: calc((var(--arrowhead) + var(--stroke-2)) * 2) !important;
+  overflow: visible;
+}
+
 .ias2 .st-h-shaft::before {
   content: "";
   position: absolute;
   top: 50%;
   left: 0;
-  right: var(--rail-bar-l);
+  right: calc(var(--rail-bar-l) + var(--arrowhead));
   height: var(--stroke-2);
   transform: translateY(-50%);
   background: var(--link-semantic);
@@ -196,9 +210,15 @@
   width: 0;
   height: 0;
   transform: translateY(-50%);
-  border-top: var(--arrowhead) solid transparent;
-  border-bottom: var(--arrowhead) solid transparent;
-  border-left: var(--rail-bar-l) solid var(--link-semantic);
+  border-top: calc(var(--arrowhead) + var(--stroke-2)) solid transparent;
+  border-bottom: calc(var(--arrowhead) + var(--stroke-2)) solid transparent;
+  border-left: calc(var(--rail-bar-l) + var(--arrowhead)) solid var(--link-semantic);
+  z-index: 1;
+}
+
+.ias2 .st-h-label {
+  z-index: 2; /* > shaft ::before and ::after */
+  background: var(--bg); /* keep absolute mid punch */
 }
 
 .ias2 .m-stem-label {
