@@ -49,7 +49,7 @@
   margin-inline-start: var(--rail-bar-l);
   background: var(--bg);
   color: var(--muted);
-  font-size: var(--t-meta, var(--t3-fs));
+  font-size: var(--t3-fs);
   font-weight: var(--t3-arm-fw);
   letter-spacing: var(--legacy-ls-5);
 }

@@ -47,6 +47,7 @@
   border-width: var(--stroke-2) !important;
   border-style: solid !important;
   border-color: var(--line) !important;
+  border-radius: var(--card-radius) !important;
   background: var(--surface) !important;
 }
 
@@ -61,6 +62,7 @@
   border-width: var(--stroke-1) !important;
   border-style: solid !important;
   border-color: var(--line) !important;
+  border-radius: var(--card-radius) !important;
   background: var(--band) !important;
 }
 
@@ -374,7 +376,7 @@ body.embed .ias2.m-map.m-l0 {
   padding: 0 var(--space-2);
   background: var(--bg);
   color: var(--muted);
-  font-size: var(--t-meta, var(--t3-fs));
+  font-size: var(--t3-fs);
   font-weight: var(--t3-arm-fw);
   letter-spacing: var(--legacy-ls-5);
   line-height: var(--t0-lh);
