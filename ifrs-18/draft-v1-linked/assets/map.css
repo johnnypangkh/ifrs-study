@@ -1,4 +1,4 @@
-@import url("../../../_shared/modules/visuals/map-box.css?v=a3c4de14d218");
+@import url("../../../_shared/modules/visuals/map-box.css?v=3fead602e676");
 /* IFRS 18 Map — jump board (Standard frame ⊃ three peer pillars + close-out;
    OpEx contained in the Operating band of the mini P&L; dashed banks see-also only).
    Loaded only by index.html, after shared.css + draft.css. Night tokens from those files.
@@ -33,7 +33,6 @@
   border: var(--stroke-2) solid var(--ink);
   border-radius: var(--radius-m);
   padding: calc(14 * var(--stroke-1)) var(--space-4) calc(18 * var(--stroke-1));
-  background: transparent;
 }
 .i18map .std-head {
   display: flex;
