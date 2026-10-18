@@ -1,4 +1,4 @@
-@import url("../../../_shared/modules/visuals/map-box.css?v=56bb56b4cee7");
+@import url("../../../_shared/modules/visuals/map-box.css?v=be800077c9a3");
 /* CF 2018 pack Map — containment board with decision walks.
    Status (Ch11) wraps the board; its head is the 11.2 fork. Objective hub → QC (cost rail).
    The reporting entity contains its forms (3.6 ∥ Ch9 ∥ Ch10, one boundary bar) and the elements.
@@ -109,14 +109,10 @@
   margin-top: var(--space-4);
 }
 .cfmap .contain {
-  border: var(--stroke-2) solid var(--line);
   border-radius: var(--card-radius);
-  background: var(--surface);
   padding: var(--space-3) var(--space-4) var(--space-4);
   min-width: 0;
 }
-.cfmap .contain.hub { border-color: var(--ink); }
-.cfmap .contain .contain { background: var(--band); }
 .cfmap .contain > * + * { margin-top: var(--space-3); }
 .cfmap .contain > .tier-label + * { margin-top: var(--space-cell); }
 
@@ -160,9 +156,7 @@
   flex-direction: column;
   gap: var(--space-1);
   min-width: 0;
-  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
-  background: var(--surface);
   padding: var(--space-3) var(--space-3);
 }
 .cfmap .cell-title,
@@ -368,12 +362,9 @@
 .cfmap .dgrid .varm { grid-column: 1 / -1; }
 
 .cfmap .q {
-  border: var(--stroke-2) solid var(--line);
   border-radius: var(--card-radius);
-  background: var(--surface);
   padding: var(--space-3) var(--space-3);
 }
-.cfmap .contain .q { background: var(--band); }
 .cfmap .q-text {
   margin: 0;
   font-size: var(--t1-fs);
@@ -394,12 +385,9 @@
   justify-content: center;
   gap: var(--space-1);
   min-width: 0;
-  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
-  background: var(--surface);
   padding: var(--space-3) var(--space-3);
 }
-.cfmap .leaf-yes { border-color: var(--ink); }
 .cfmap .leaf-name {
   margin: 0;
   font-size: var(--t2-fs);
@@ -432,7 +420,6 @@
 .cfmap .cost-rail {
   justify-content: center;
   text-align: center;
-  background: var(--band);
 }
 
 /* ---- Elements equation ---- */

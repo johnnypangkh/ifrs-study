@@ -189,12 +189,10 @@ body.embed .page {
 
 .see {
   display: block;
-  border: var(--stroke-1) dashed var(--see);
   border-radius: var(--card-radius);
   padding: var(--space-cell) var(--space-cell);
   color: var(--ink);
   font-size: var(--vis-meta);
-  background: transparent;
 }
 .see strong { color: var(--see); font-weight: var(--t1-fw); }
 
@@ -223,10 +221,12 @@ body.embed .page {
   gap: var(--space-3);
 }
 .q {
-  border: var(--stroke-1) solid var(--line);
   border-radius: var(--card-radius);
-  background: var(--surface);
   padding: var(--space-3);
+}
+.q:not(.m-l1) {
+  border: var(--stroke-1) solid var(--line);
+  background: var(--surface);
 }
 .q-title {
   margin: 0 0 var(--space-cell);
