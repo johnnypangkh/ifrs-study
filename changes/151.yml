@@ -1,0 +1,51 @@
+# Workbook row #84. Glyph arrows dropped from Concept Map text.
+# Johnny Pick A launch 2026-10-18. The arrow character becomes "to", or is removed when it was the whole arrow.
+
+- action: changed
+  file: cf-2018/draft-v1-linked/index.html
+  old: "8.2Maintenance → profit"
+  new: "8.2Maintenance to profit"
+  source: "brief item glyph DROP"
+- action: changed
+  file: cf-2018/draft-v1-linked/index.html
+  old: "measurement basis × capital concept → profit 8.3"
+  new: "measurement basis × capital concept to profit 8.3"
+  source: "brief item glyph DROP"
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch01-scope.html
+  old: "Meet the PPE definition? → Recognition"
+  new: "Meet the PPE definition? Recognition"
+  source: "brief item glyph DROP"
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch02-recognition.html
+  old: "2.8 Significant parts → Depreciation"
+  new: "2.8 Significant parts to Depreciation"
+  source: "brief item glyph DROP"
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch02-recognition.html
+  old: "Derecognise replaced part → Derecognition"
+  new: "Derecognise replaced part to Derecognition"
+  source: "brief item glyph DROP"
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch02-recognition.html
+  old: "Derecognise replaced part → Derecognition #s-6-0"
+  new: "Derecognise replaced part to Derecognition #s-6-0"
+  source: "brief item glyph DROP"
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch03-initial.html
+  old: "Remeasurements and further payments → P&L, or capitalised."
+  new: "Remeasurements and further payments to P&L, or capitalised."
+  source: "brief item glyph DROP"
+- action: changed
+  file: ias-16/draft-v1-linked/visuals/ch03-initial.html
+  old: "Subsequent expenditure → Recognition"
+  new: "Subsequent expenditure to Recognition"
+  source: "brief item glyph DROP"
+- action: removed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "→"
+  source: "brief item glyph DROP"
+- action: removed
+  file: ias-16/draft-v1-linked/visuals/ch04-models.html
+  old: "→"
+  source: "brief item glyph DROP"
