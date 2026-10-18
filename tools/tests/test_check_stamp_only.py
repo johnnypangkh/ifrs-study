@@ -1511,5 +1511,38 @@ class ChromeMapTests(unittest.TestCase):
             self.assertIn("INDEX=", output)
 
 
+class Row86FoldTests(unittest.TestCase):
+    def test_sibling_heads_and_bprime_fold_back_to_base(self):
+        base = (
+            '<div class="st-down"><span class="stem-shaft"></span>\n'
+            '<span class="stem-head"></span>\n'
+            '</div>\n'
+            '<fieldset class="visual-fieldset">\n'
+            '<legend class="visual-legend">Concept Map</legend>\n'
+            '<div class="cfmap m-l0">\n'
+            '\n'
+            '<section>\n'
+        )
+        head = (
+            '<div class="st-down"><span class="stem-shaft"></span>\n'
+            '</div>\n'
+            '<fieldset class="visual-fieldset board-l0-onlabel">\n'
+            '<legend class="visual-legend board-legend">Concept Map</legend>\n'
+            '<div class="cfmap m-l0 board-l0-div">\n'
+            '<p class="board-legend-abs">Concept Map</p>\n'
+            '\n'
+            '<section>\n'
+        )
+        self.assertEqual(stamp.fold_row86(base), stamp.fold_row86(head))
+        self.assertNotIn("stem-head", stamp.fold_row86(head))
+        kept = stamp.fold_row86(head + "<span>yes</span>\n")
+        self.assertIn(">yes<", kept)
+
+    def test_unrelated_label_is_not_folded_away(self):
+        base = "<p>carrying amount derecognised</p>\n"
+        head = "<p>carrying amount removed</p>\n"
+        self.assertNotEqual(stamp.fold_row86(base), stamp.fold_row86(head))
+
+
 if __name__ == "__main__":
     unittest.main()

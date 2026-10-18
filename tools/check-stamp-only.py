@@ -490,6 +490,38 @@ def fold_map_pick_a(html):
     return html
 
 
+# #86: sibling arrow heads are deleted, and B′ classes / the on-border
+# “Concept Map” label are chrome. Both sides fold so the stamp gate
+# still sees only ?v= on those lines.
+_ROW86_HEAD = re.compile(
+    r"""<span class="(?:stem-head|st-h-head|m-arrow)"></span>"""
+)
+_ROW86_LEGEND = re.compile(
+    r"""[ \t]*<p class="board-legend-abs">Concept Map</p>[ \t]*\n?"""
+)
+_ROW86_TOKENS = {"board-l0-onlabel", "board-legend", "board-l0-div"}
+
+
+def fold_row86(html):
+    """Drop the approved arrow-head nodes and B′ chrome tokens."""
+    lines = []
+    for line in html.splitlines(keepends=True):
+        if _ROW86_HEAD.search(line):
+            line = _ROW86_HEAD.sub("", line)
+            if line.strip() == "":
+                continue
+        lines.append(line)
+    html = "".join(lines)
+    html = _ROW86_LEGEND.sub("", html)
+
+    def repl(match):
+        quote, body = match.group(1), match.group(2)
+        classes = [item for item in body.split() if item not in _ROW86_TOKENS]
+        return f'class={quote}{" ".join(classes)}{quote}'
+
+    return _CLASS_ATTR.sub(repl, html)
+
+
 def shared_visual_stamp_failure(base, head, path):
     """Return an error when path differs outside the shared-visual allowlist.
 
@@ -1680,6 +1712,8 @@ def main(argv=None):
         base = fold_theme_js(base, head, path)
         base = fold_map_pick_a(base)
         head = fold_map_pick_a(head)
+        base = fold_row86(base)
+        head = fold_row86(head)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)
