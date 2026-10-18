@@ -997,3 +997,84 @@ a.m-cell:hover { border-color: var(--accent); }
   font-weight: var(--mchip-fw);
   line-height: var(--mchip-lh);
 }
+
+/* #97 — narrow iframe only. 1280 keeps the authored nowrap titles,
+   the cost-arm gutter, and the authored tracks. T1/T2 sizes stay above. */
+@media (max-width: 42rem) {
+  body.embed .page { max-width: 100%; }
+  .ias2.m-map .q-title,
+  .ias2.m-map .cell-title,
+  .ias2.m-map .board-title,
+  .ias2.m-map .m-row-title,
+  .ias2.m-map .m-board-title,
+  .ias2.m-map .m-head,
+  .ias2.m-map .m-ask,
+  .ias2.m-map .m-out,
+  .ias2.m-map .m-term,
+  .m-scope .q-title,
+  .m-eqn .m-row-title,
+  .m-sub .m-row-title,
+  .st-nrv .cell-title,
+  .st .q-title,
+  .st-exp .board-title,
+  .st-exp .cell-title,
+  .st-disc .board-title,
+  .st-disc .cell-title,
+  .st-cost .cell-title {
+    flex-wrap: wrap;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .ias2.m-map .m-disc-list a,
+  .ias2.m-map .m-disc-list a strong {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+  }
+  .ias2.m-map .m-disc-list a strong { flex-wrap: wrap; }
+  .ias2.m-map .m-row > *,
+  .ias2.m-map .m-eqn > *,
+  .ias2.m-map .m-formula > *,
+  .ias2.m-map .m-disc-list > *,
+  .ias2.m-map .m-disc-group > *,
+  .ias2.m-map .m-arms > *:not(.m-op),
+  .ias2.m-map .m-plate-title,
+  .ias2.m-map .m-row-body,
+  .ias2.m-map .cell-body,
+  .ias2.m-map .m-body,
+  .ias2.m-map .q,
+  .ias2.m-map .st {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .ias2.m-map .q-title > span,
+  .ias2.m-map .cell-title > :is(span, a):not(.fb-num):not(.ias2-mute-chip),
+  .ias2.m-map .board-title > :is(span, a):not(.fb-num):not(.ias2-mute-chip),
+  .ias2.m-map .m-row-title > :is(span, a):not(.fb-num):not(.ias2-mute-chip),
+  .ias2.m-map .m-head > span:not(.fb-num):not(.fb-num-range):not(.ias2-mute-chip),
+  .ias2.m-map .m-ask > span,
+  .ias2.m-map .m-out > span {
+    flex: 1 1 calc(4 * var(--space-6));
+    min-width: 0;
+    white-space: normal;
+  }
+  .ias2.m-map .m-row {
+    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+  }
+  .ias2.m-map .m-disc-list,
+  .ias2.m-map .m-eqn,
+  .ias2.m-map .m-formula,
+  .ias2.m-map .m-arms,
+  .ias2.m-map .m-peers,
+  .ias2.m-map .m-thin-route,
+  .ias2.m-map .branch,
+  .ias2.m-map .cells.g2,
+  .ias2.m-map .cells.g3,
+  .ias2.m-map .cells.g4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ias2.m-map .m-disc-g2,
+  .ias2.m-map .m-disc-g3 {
+    --m-disc-n: 1;
+  }
+}

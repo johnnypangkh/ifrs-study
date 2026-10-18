@@ -603,3 +603,108 @@ body.embed .ias2.m-map.m-l0 {
   letter-spacing: var(--legacy-ls-5);
   line-height: var(--t0-lh);
 }
+
+/* #97 — the embed fills the iframe and wraps. No scale, no inner scroll.
+   Arrow geometry above is unchanged. */
+body.embed .page,
+body.embed .m-l0,
+body.embed .m-map,
+body.embed .ppe.pack {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Narrow iframe: multi-track boards stack and text wraps.
+   1280 keeps the authored tracks. Shafts / .m-flow / .m-link / .m-visit stay. */
+@media (max-width: 42rem) {
+  body.embed .page :where(p, li, h1, h2, h3, td, th, dd, strong, em) {
+    min-width: 0;
+    max-width: 100%;
+  }
+  body.embed .page a:not(.fb-num) {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+  }
+  body.embed .ppe :is(.pack-lr, .inner-board, .cost-identity, .cost-split, .cap, .disc-board, .def-fork, .excl, .criteria, .criteria-2),
+  body.embed .i18map :is(.g-2, .g-3, .cell-grid),
+  body.embed :is(.ou-scene, .ou-lenses, .el-eq, .peers, .pd-outs, .wn-sets, .pa-matrix, .ts-regimes, .oe-branches, .rc-bridge, .ofs-peers, .tr-tl) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* .cap-matrix is a flex column. The tracks live on the row grids,
+     and a min-width floor keeps the matrix wider than a 600/390 iframe. */
+  body.embed .cap-m-head,
+  body.embed .cap-m-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body.embed .cap-matrix {
+    min-width: 0;
+    width: 100%;
+  }
+  /* Three consequence cards fit at 600. At 390 the longest word is wider
+     than a third of the iframe, so the row stacks instead of breaking a word. */
+  @media (max-width: 25rem) {
+    body.embed .cap-links { grid-template-columns: minmax(0, 1fr); }
+  }
+  /* !important only where the pack CSS already sets !important. */
+  body.embed .ppe:is(.pack, .cost-map) .cost-identity > .cost-split,
+  body.embed .ppe:is(.pack, .cost-map) .cost-split .axis-body,
+  body.embed .ppe .cap-row,
+  body.embed .ppe.dep-map.ch05-map .factor-rows[aria-label^="Factors"],
+  body.embed .ppe.dep-map.ch05-map .factor-rows[aria-label^="Special"],
+  body.embed .ppe.dep-map.ch05-map .cap-row,
+  body.embed .ppe.pack .ch05-dep .factor-rows[aria-label^="Factors"],
+  body.embed .ppe.pack .ch05-dep .factor-rows[aria-label^="Special"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  body.embed .ppe:is(.pack, .cost-map) .cost-split .axis-body > :is(.before-nest, .point-at, .after-col) {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+  body.embed .ppe:is(.pack, .scope-map, .recog-map, .cost-map, .models, .dep-map, .derecog-map, .disc) :is(.cost-identity, .cost-split, .inner-board, .cap, .disc-board, .def-fork, .excl, .criteria, .criteria-2) * {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  body.embed .ppe :is(.pack-lr, .inner-board, .cost-identity, .cost-split, .cap, .disc-board, .def-fork, .excl, .criteria, .criteria-2) > * {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  body.embed .ppe .pack-lr > .cx-layer {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+  }
+  /* The master fit script copies beat height onto the phase rail.
+     Side-by-side that matches the row. Stacked, it leaves an empty rail.
+     Used height stays the label; the script and shafts are untouched. */
+  body.embed .ppe .pack-lr > .rail-link {
+    height: auto !important;
+    margin-top: 0 !important;
+  }
+  body.embed .ou-gpfs > .ou-head,
+  body.embed .ou-cast,
+  body.embed .ou-note {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+  body.embed .i18map .pillar-row,
+  body.embed .wn-tl,
+  body.embed .pd-board,
+  body.embed .el-eq,
+  body.embed .ou-decisions,
+  body.embed .el-apply-grid,
+  body.embed .row2,
+  body.embed .st-exp .exp-f,
+  body.embed .ppe:is(.pack, .models) :is(.lens-row, .lens-heads),
+  body.embed .ppe:is(.pack, .scope-map, .recog-map, .cost-map, .models, .dep-map, .derecog-map, .disc) .policy-arms,
+  body.embed .ppe .lc-head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body.embed .el-equity,
+  body.embed :is(.el-eq, .pd-board, .pillar-row, .wn-tl, .row2, .el-apply-grid, .exp-f, .lens-row, .lens-heads, .policy-arms, .lc-head, .lc-top) > * {
+    grid-area: auto;
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+}
