@@ -291,6 +291,51 @@
   border-left-color: var(--dash);
 }
 
+/* Shaft mute is the contract (.m-flow.mute). Parent .st-arm-mute / .st-h.mute
+   stays as a temporary alias so the same dash stroke still paints. */
+.ias2 .stem-shaft.m-flow.mute::before,
+.ias2 .m-shaft.m-flow.mute::before {
+  width: var(--stroke-1);
+  background: var(--dash);
+}
+
+.ias2 .stem-shaft.m-flow.mute::after,
+.ias2 .m-shaft.m-flow.mute::after {
+  border-top-color: var(--dash);
+}
+
+.ias2 .st-h-shaft.m-flow.mute {
+  --st-h-ink: var(--dash);
+}
+
+.ias2 .st-h-shaft.m-flow.mute::before {
+  height: var(--stroke-1);
+}
+
+.ias2 .st-h-shaft.m-flow.mute::after {
+  border-left-color: var(--dash);
+}
+
+/* Link on the IAS 2 aliases: stroke-1 line, no head. 0 live call-sites. */
+.ias2 .stem-shaft.m-link::before,
+.ias2 .m-shaft.m-link::before {
+  width: var(--stroke-1);
+  bottom: 0;
+  background: var(--line);
+}
+
+.ias2 .st-h-shaft.m-link::before {
+  height: var(--stroke-1);
+  right: 0;
+  background: var(--line);
+}
+
+.ias2 .stem-shaft.m-link::after,
+.ias2 .m-shaft.m-link::after,
+.ias2 .st-h-shaft.m-link::after {
+  content: none;
+}
+
 .ias2 .st-fork-drop,
 .ias2 .st-fork-bar,
 .ias2 .st-tail {
@@ -325,6 +370,183 @@
 .i18map .map-visit-arrow.m-visit::after {
   border-left-width: var(--arrowhead) !important;
   border-left-color: var(--accent) !important;
+}
+
+/* Author recipe. 0 production elements use --v/--h today.
+   ::before is the line, ::after is the head. Link removes the head.
+   Horizontal flow keeps the #155 label gap. Placement stays with the pack. */
+.m-shaft.m-shaft--v,
+.m-shaft.m-shaft--h {
+  position: relative;
+  background: none;
+}
+
+.m-shaft.m-shaft--v::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: var(--rail-bar-l);
+  left: 50%;
+  width: var(--stroke-2);
+  transform: translateX(-50%);
+  background: var(--link-semantic);
+}
+
+.m-shaft.m-shaft--v::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: var(--arrowhead) solid transparent;
+  border-right: var(--arrowhead) solid transparent;
+  border-top: var(--rail-bar-l) solid var(--link-semantic);
+}
+
+.m-shaft.m-shaft--h {
+  height: calc((var(--arrowhead) + var(--stroke-2)) * 2);
+}
+
+.m-shaft.m-shaft--h::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 0;
+  right: calc(var(--rail-bar-l) + var(--arrowhead));
+  height: var(--stroke-2);
+  transform: translateY(-50%);
+  background: linear-gradient(
+    to right,
+    var(--link-semantic) 0,
+    var(--link-semantic) calc(50% - var(--space-5)),
+    transparent calc(50% - var(--space-5)),
+    transparent calc(50% + var(--space-5)),
+    var(--link-semantic) calc(50% + var(--space-5)),
+    var(--link-semantic) 100%
+  );
+}
+
+.m-shaft.m-shaft--h::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: 0;
+  width: 0;
+  height: 0;
+  transform: translateY(-50%);
+  border-top: calc(var(--arrowhead) + var(--stroke-2)) solid transparent;
+  border-bottom: calc(var(--arrowhead) + var(--stroke-2)) solid transparent;
+  border-left: calc(var(--rail-bar-l) + var(--arrowhead)) solid var(--link-semantic);
+}
+
+.m-shaft.m-link::after,
+.stem-shaft.m-link::after,
+.st-h-shaft.m-link::after,
+.pack-flow-shaft.m-link::after,
+.map-visit-arrow.m-link::after {
+  content: none;
+}
+
+.m-shaft.m-shaft--v.m-link::before {
+  width: var(--stroke-1);
+  bottom: 0;
+  background: var(--line);
+}
+
+.m-shaft.m-shaft--h.m-link::before {
+  height: var(--stroke-1);
+  right: 0;
+  background: var(--line);
+}
+
+.m-shaft.m-shaft--v.m-flow.mute::before {
+  width: var(--stroke-1);
+  background: var(--dash);
+}
+
+.m-shaft.m-shaft--v.m-flow.mute::after {
+  border-top-color: var(--dash);
+}
+
+.m-shaft.m-shaft--h.m-flow.mute::before {
+  height: var(--stroke-1);
+  background: linear-gradient(
+    to right,
+    var(--dash) 0,
+    var(--dash) calc(50% - var(--space-5)),
+    transparent calc(50% - var(--space-5)),
+    transparent calc(50% + var(--space-5)),
+    var(--dash) calc(50% + var(--space-5)),
+    var(--dash) 100%
+  );
+}
+
+.m-shaft.m-shaft--h.m-flow.mute::after {
+  border-left-color: var(--dash);
+}
+
+.m-shaft.m-shaft--h.m-visit::before {
+  background: var(--accent);
+}
+
+.m-shaft.m-shaft--h.m-visit::after {
+  border-left-color: var(--accent);
+}
+
+.m-shaft-label {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+  background: var(--bg);
+  padding: var(--stroke-2) var(--space-2);
+}
+
+/* CF measurement stem is Flow. The ▼ span stays in the HTML: the stamp
+   gate folds → ↓ ▶ and not this glyph, and stamp-tooling is out of this PR.
+   The span does not paint. The head is ::after. */
+.mx-stem {
+  position: relative;
+}
+
+.mx-stem::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: var(--rail-bar-l);
+  left: 50%;
+  width: var(--stroke-2);
+  transform: translateX(-50%);
+  background: var(--link-semantic, var(--elem-peer));
+}
+
+.mx-stem::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: var(--arrowhead) solid transparent;
+  border-right: var(--arrowhead) solid transparent;
+  border-top: var(--rail-bar-l) solid var(--link-semantic, var(--elem-peer));
+}
+
+.mx-stem-arrow {
+  color: transparent;
+}
+
+.mx-stem-label {
+  position: relative;
+  z-index: 2;
+  background: var(--bg);
+  padding: var(--stroke-2) var(--space-2);
 }
 
 .ias2.m-map .m-missing {
