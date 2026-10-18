@@ -6,7 +6,7 @@ body.embed {
   background: var(--bg);
 }
 body.embed .page {
-  max-width: 100%;
+  max-width: none;
   margin: 0;
   padding: var(--space-hairline) var(--space-hairline) var(--space-cell);
 }
@@ -519,7 +519,7 @@ body.embed .page {
 /* Scope spine: decision in column 1, horizontal exit arm in the gutter, exit
    leaf in column 3 centred on the decision; the continuing arm runs down. */
 .m-scope .q { display: flex; flex-direction: column; gap: var(--space-1); }
-.m-scope .q-title { margin: 0; flex-wrap: wrap; align-items: flex-start; line-height: var(--t1-lh); }
+.m-scope .q-title { margin: 0; flex-wrap: nowrap; align-items: flex-start; line-height: var(--t1-lh); }
 .m-scope .q-title .fb-num { margin-top: calc(-1 * var(--stroke-1)); }
 .m-scope .st-down { min-height: calc(var(--space-6) + var(--space-2) + var(--space-hairline)); }
 .m-scope .st-h { align-self: center; min-height: calc(var(--space-4) + var(--space-1)); }
@@ -723,7 +723,7 @@ a.m-cell:hover { border-color: var(--accent); }
 .m-eq-op { align-self: center; color: var(--formula); font-size: var(--mt-op-fs); font-weight: var(--t1-fw); line-height: var(--glyph-lh); }
 .m-eq-res { border-color: var(--accent); }
 .m-eqn .m-row-title,
-.m-sub .m-row-title { flex-wrap: wrap; align-items: flex-start; line-height: var(--t1-lh); }
+.m-sub .m-row-title { flex-wrap: nowrap; align-items: flex-start; line-height: var(--t1-lh); }
 .m-eqn .m-row-title .fb-num,
 .m-sub .m-row-title .fb-num { margin-top: calc(-1 * var(--stroke-1)); }
 .m-ask-lite { font-weight: var(--t1-fw); color: var(--muted); }
@@ -833,7 +833,7 @@ a.m-cell:hover { border-color: var(--accent); }
 
 .ias2 .fb-num-sep { font-size: var(--vis-meta); }
 .st-nrv .eq { grid-template-columns: minmax(0, .85fr) auto minmax(0, 1.5fr); }
-.st-nrv .cell-title { flex-wrap: wrap; align-items: flex-start; line-height: var(--t1-lh); }
+.st-nrv .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: var(--t1-lh); }
 .st-nrv .cell-title .fb-num { margin-top: calc(-1 * var(--stroke-1)); }
 .st-nrv .arm-lite { border-color: var(--line); background: transparent; }
 .st-nrv .nrv-f {
@@ -871,7 +871,7 @@ a.m-cell:hover { border-color: var(--accent); }
 
 
 
-.st .q-title { flex-wrap: wrap; }
+.st .q-title { flex-wrap: nowrap; }
 
 /* Ch5 map: control decision, then the expense board (sold + write-downs and
    losses − reversals = amount recognised as an expense). */
@@ -889,8 +889,8 @@ a.m-cell:hover { border-color: var(--accent); }
   line-height: var(--glyph-lh);
 }
 .st-exp .exp-res { border-color: var(--accent); }
-.st-exp .board-title { flex-wrap: wrap; align-items: flex-start; }
-.st-exp .cell-title { flex-wrap: wrap; align-items: flex-start; line-height: var(--t1-lh); }
+.st-exp .board-title { flex-wrap: nowrap; align-items: flex-start; }
+.st-exp .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: var(--t1-lh); }
 .st-exp .cell-title .fb-num { margin-top: calc(-1 * var(--stroke-1)); }
 .st-exp a.cell:hover,
 .st-exp a.leaf:hover { border-color: var(--formula); }
@@ -903,8 +903,8 @@ a.m-cell:hover { border-color: var(--accent); }
    function-or-nature decision (paras 38, 39). */
 .st-disc .board { gap: var(--space-3); }
 .st-disc .cells { grid-template-columns: minmax(0, 1fr); }
-.st-disc .board-title { flex-wrap: wrap; align-items: flex-start; line-height: var(--t1-lh); }
-.st-disc .cell-title { flex-wrap: wrap; align-items: flex-start; line-height: var(--t1-lh); }
+.st-disc .board-title { flex-wrap: nowrap; align-items: flex-start; line-height: var(--t1-lh); }
+.st-disc .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: var(--t1-lh); }
 .st-disc .cell-title .fb-num { margin-top: calc(-1 * var(--stroke-1)); }
 .st-disc .st-down-x { min-height: calc(var(--space-6) + var(--space-3)); }
 .st-disc a.cell:hover,
@@ -928,7 +928,7 @@ a.m-cell:hover { border-color: var(--accent); }
   line-height: var(--glyph-lh);
 }
 .st-cost .cost-f .see { margin-top: var(--space-cell); }
-.st-cost .cell-title { flex-wrap: wrap; align-items: flex-start; line-height: var(--t1-lh); }
+.st-cost .cell-title { flex-wrap: nowrap; align-items: flex-start; line-height: var(--t1-lh); }
 .st-cost .cell-title .fb-num { margin-top: calc(-1 * var(--stroke-1)); }
 .st-cost .cost-out .leaf-note { margin-top: var(--space-1); }
 .st-cost .cost-alt .cell { border-color: var(--line); }
@@ -998,64 +998,69 @@ a.m-cell:hover { border-color: var(--accent); }
   line-height: var(--mchip-lh);
 }
 
-/* #97 — titles wrap beside the chip; rows shrink inside the iframe.
-   T1/T2 sizes stay on the rules above. */
-.ias2.m-map .q-title,
-.ias2.m-map .cell-title,
-.ias2.m-map .board-title,
-.ias2.m-map .m-row-title,
-.ias2.m-map .m-board-title,
-.ias2.m-map .m-head,
-.ias2.m-map .m-ask,
-.ias2.m-map .m-out,
-.ias2.m-map .m-term {
-  flex-wrap: wrap;
-  min-width: 0;
-  max-width: 100%;
-}
-.ias2.m-map .q-title > span,
-.ias2.m-map .cell-title > :is(span, a):not(.fb-num),
-.ias2.m-map .board-title > :is(span, a):not(.fb-num),
-.ias2.m-map .m-row-title > :is(span, a):not(.fb-num),
-.ias2.m-map .m-head > span:not(.fb-num):not(.fb-num-range),
-.ias2.m-map .m-ask > span,
-.ias2.m-map .m-out > span {
-  flex: 1 1 calc(4 * var(--space-6));
-  min-width: 0;
-  white-space: normal;
-  overflow-wrap: break-word;
-}
-.ias2.m-map .m-row {
-  grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
-}
-.ias2.m-map .m-disc-list a,
-.ias2.m-map .m-disc-list a strong {
-  min-width: 0;
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
-.ias2.m-map .m-disc-list a strong {
-  flex-wrap: wrap;
-}
-.ias2.m-map .m-row > *,
-.ias2.m-map .m-eqn > *,
-.ias2.m-map .m-formula > *,
-.ias2.m-map .m-disc-list > *,
-.ias2.m-map .m-disc-group > *,
-.ias2.m-map .m-arms > *,
-.ias2.m-map .m-plate-title,
-.ias2.m-map .m-row-body,
-.ias2.m-map .cell-body,
-.ias2.m-map .m-body,
-.ias2.m-map .q,
-.ias2.m-map .st {
-  min-width: 0;
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
-/* Tracks that are several columns at desktop become one column inside a
-   narrow iframe. 1280 keeps the authored tracks. */
+/* #97 — narrow iframe only. 1280 keeps the authored nowrap titles,
+   the cost-arm gutter, and the authored tracks. T1/T2 sizes stay above. */
 @media (max-width: 42rem) {
+  body.embed .page { max-width: 100%; }
+  .ias2.m-map .q-title,
+  .ias2.m-map .cell-title,
+  .ias2.m-map .board-title,
+  .ias2.m-map .m-row-title,
+  .ias2.m-map .m-board-title,
+  .ias2.m-map .m-head,
+  .ias2.m-map .m-ask,
+  .ias2.m-map .m-out,
+  .ias2.m-map .m-term,
+  .m-scope .q-title,
+  .m-eqn .m-row-title,
+  .m-sub .m-row-title,
+  .st-nrv .cell-title,
+  .st .q-title,
+  .st-exp .board-title,
+  .st-exp .cell-title,
+  .st-disc .board-title,
+  .st-disc .cell-title,
+  .st-cost .cell-title {
+    flex-wrap: wrap;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .ias2.m-map .m-disc-list a,
+  .ias2.m-map .m-disc-list a strong {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+  }
+  .ias2.m-map .m-disc-list a strong { flex-wrap: wrap; }
+  .ias2.m-map .m-row > *,
+  .ias2.m-map .m-eqn > *,
+  .ias2.m-map .m-formula > *,
+  .ias2.m-map .m-disc-list > *,
+  .ias2.m-map .m-disc-group > *,
+  .ias2.m-map .m-arms > *:not(.m-op),
+  .ias2.m-map .m-plate-title,
+  .ias2.m-map .m-row-body,
+  .ias2.m-map .cell-body,
+  .ias2.m-map .m-body,
+  .ias2.m-map .q,
+  .ias2.m-map .st {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .ias2.m-map .q-title > span,
+  .ias2.m-map .cell-title > :is(span, a):not(.fb-num):not(.ias2-mute-chip),
+  .ias2.m-map .board-title > :is(span, a):not(.fb-num):not(.ias2-mute-chip),
+  .ias2.m-map .m-row-title > :is(span, a):not(.fb-num):not(.ias2-mute-chip),
+  .ias2.m-map .m-head > span:not(.fb-num):not(.fb-num-range):not(.ias2-mute-chip),
+  .ias2.m-map .m-ask > span,
+  .ias2.m-map .m-out > span {
+    flex: 1 1 calc(4 * var(--space-6));
+    min-width: 0;
+    white-space: normal;
+  }
+  .ias2.m-map .m-row {
+    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+  }
   .ias2.m-map .m-disc-list,
   .ias2.m-map .m-eqn,
   .ias2.m-map .m-formula,
