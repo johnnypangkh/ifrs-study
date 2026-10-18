@@ -199,7 +199,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
 .rel-label .mark {
   display: block;
   color: var(--link-semantic);
-  font-size: var(--t-body);
+  font-size: var(--tb-body-fs);
   font-weight: var(--t1-fw);
   line-height: var(--legacy-lh-2);
   margin-bottom: var(--stroke-2);
@@ -447,7 +447,7 @@ table.lofi td.num { width: var(--legacy-w-3); color: var(--muted); font-weight: 
 .org-link .mark {
   display: block;
   color: var(--accent);
-  font-size: var(--t-body);
+  font-size: var(--tb-body-fs);
   font-weight: var(--t1-fw);
   line-height: var(--legacy-lh-2);
 }
