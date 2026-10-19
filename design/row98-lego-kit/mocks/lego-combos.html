@@ -12,13 +12,14 @@
   .row { display: flex; gap: var(--space-2); align-items: stretch; }
   .row > .cell { flex: 1; }
   .col { display: grid; gap: var(--space-2); justify-items: start; }
-  .mini { padding: var(--space-1) var(--space-2); font-size: var(--t3-fs); }
+  .mini { padding: var(--space-2); font-size: var(--t3-fs); line-height: var(--t3-lh); }
   .id { font-size: var(--t3-fs); color: var(--accent); font-weight: 700; }
   .deep { margin: 0; font-size: var(--t3-fs); color: var(--muted); border-left: var(--stroke-2) solid var(--accent); padding-left: var(--space-2); }
   .deep b { color: var(--ink); }
-  .cell.in { padding: var(--space-1); display: grid; gap: var(--space-1); }
-  .cell.in > .gridbox { grid-template-columns: repeat(3, 1fr); }
-  .cell.in .cell { padding: .1rem .25rem; min-height: .9rem; }
+  .cell.in { padding: var(--space-2); display: grid; gap: var(--space-2); }
+  .cell.in > .gridbox { grid-template-columns: repeat(3, 1fr); gap: var(--space-cell); }
+  .cell.in .cell { padding: var(--space-1); min-height: 1.4rem; }
+  .row .cell.mini .note { margin-top: var(--space-1); }
 </style></head>
 <body>
 <h1 class="sheet-h">How bricks snap into components</h1>
