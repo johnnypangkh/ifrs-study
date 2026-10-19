@@ -56,6 +56,16 @@ Crops:
 - `design/row98-mf-revisit/apply-timeline-arrow-phase-1280.png`
 - `design/row98-mf-revisit/apply-timeline-arrow-gate-1280.png`
 
+## Longer pole, thinner cloth (2026-10-19 ~19:40)
+
+Flagstaff is longer: 56px, was 32px. 32px of pole shows under the cloth, and 12px of staff shows above it. The cloth is a flat ribbon: 12px tall, was 23px. Hoist, right flight, and the axis arrow stay.
+
+Crops:
+
+- `design/row98-mf-revisit/apply-flag-thin-tall-s9-1280.png`
+- `design/row98-mf-revisit/apply-flag-thin-tall-phase-1280.png`
+- `design/row98-mf-revisit/apply-flag-thin-tall-gate-1280.png`
+
 ## Unchanged
 
 - §10.0 three building blocks
