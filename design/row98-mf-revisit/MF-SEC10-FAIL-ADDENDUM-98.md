@@ -1,9 +1,9 @@
 # §10.10 Gate — FAIL rules (addendum)
 
-**Status:** DRAFT-FOR-SIGN · 2026-10-19 · Master Design revisit · **No Build**
-**Insert:** after signed §10.9 in `MAP-MASTER-FORMATTING-PAGE-98.md`. Do not edit §10.0–§10.9 until Johnny signs the card-text swaps in `PROPOSE-CHROME-98.md`.
-**Page delta:** `design/row98-mf-revisit/mf-sec10-gate.html` · night render `mf-sec10-gate-1280.png`.
-**Does not replace** SIGNED `ba-mf-master-revise.png` (~11:07 HKT). That file stays the chrome lock until Johnny signs this addendum.
+**Status:** SIGNED text · **applied** on the MF page · page render still **DRAFT-FOR-SIGN** (verification) · **No Build**
+**Insert:** §10.10, after §10.9a, in `MAP-MASTER-FORMATTING-PAGE-98.md`.
+**Page:** `mf-master-revise.html` and `mf-sec10-gate.html`.
+**Does not replace** SIGNED `ba-mf-master-revise.png` (~11:07 HKT). That file stays the chrome lock.
 **Cite only:** visual-grammar § Grid conditions 3–4 (Alignment, Layers & hierarchy) · Rail-cell · §6 Timelines. Atlas kits 1–23 stay FROZEN. Kit 25 stays the one timeline. `#27` thick-left stays When-not for Dep.
 
 Essence templates stay. This addendum adds the tests. It does not add chapter Content, and it does not add a fourth building block.
@@ -139,15 +139,15 @@ On the mock, night 1280, for each beat that §10.10.1 says needs a rail:
 
 Essence check on the MF page itself: labels stay `Phase` / `Peer` / `Outer` / `Start` / `End` / `marker`. Chapter sentences stay off the template cards.
 
-## 10.10.6 Ambiguous signed lines — gate with this section
+## 10.10.6 Lines replaced on the applied page (P2, P3)
 
-Until Johnny signs the card edits, these lines on the signed BA do not outrank §10.10:
+The applied HTML no longer uses the old sentences. The frozen PNG still shows them. Gate from the applied page, not from those PNG pixels.
 
-| Signed line | How to read it |
+| Old line on the PNG | Applied reading |
 |---|---|
-| Phase card: “no YE markers on signed lock” | Dep’s chapter lock. Year-end is not on Dep’s timeline. It does not ban on-axis markers on kit 25. It does not allow a second band. |
-| Phase recipe: “optional markers” | Markers of this phase go on the axis. A second band is not an optional marker. |
-| §9 timeline min prints “Year-end” twice, and the span “Depreciate over useful life” | Specimen labels on the signed BA. Not an order to restore Dep’s Year-end band. Not permission for a second band. Relabel is PROPOSE P3. |
+| Phase card: “no YE markers on signed lock” | Replaced. Dep’s year-end review is rail 5.8. That chapter lock is not a ban on on-axis markers, and it does not allow a second band. |
+| Phase recipe: “optional markers” | Replaced. Markers of this phase sit on the kit 25 axis. A second band fails. |
+| §9 min “Year-end” and “Depreciate over useful life” | Replaced with `marker` and `span (Start→End)`, plus the second-band caption. |
 
 ## 10.10.7 Stays as signed
 

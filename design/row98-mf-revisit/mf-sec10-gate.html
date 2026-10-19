@@ -377,26 +377,94 @@
     font-size: 1em;
     color: var(--accent);
   }
+  .principle {
+    border: var(--stroke-2) solid var(--ink);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-3);
+    margin: 0 0 var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-family: "WenQuanYi Micro Hei", var(--font-family);
+  }
+  .principle p, .principle li, .principle td, .principle th {
+    font-size: var(--t2-fs);
+    line-height: 1.6;
+  }
+  .principle h2 { font-family: "WenQuanYi Micro Hei", var(--font-family); }
+  .gloss {
+    border-left: var(--stroke-2) solid var(--accent);
+    padding-left: var(--space-2);
+    color: var(--muted);
+    margin: 0;
+  }
+  .qlocks { display: flex; flex-direction: column; gap: var(--space-1); }
+  .q {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--band);
+    border-radius: var(--radius-s);
+    padding: var(--space-2);
+  }
+  h2.gateh { margin: 0 0 var(--space-2); }
 </style>
 </head>
 <body>
 
 <p class="pills">
   <span class="pill">DRAFT-FOR-SIGN</span>
-  <span class="pill">§10.10 addendum</span>
+  <span class="pill">APPLY · P0–P3</span>
   <span class="pill">night 1280</span>
   <span class="pill warn">No Build</span>
   <span class="pill warn">Signed BA unchanged</span>
 </p>
 
-<h1>MF §10 gate</h1>
-<p class="sub">Four FAIL tests for the left rail and kit 25. The three building blocks stay the kit. Abstract labels only — Phase, Peer, Outer, Start, End, marker.</p>
+<h1>MF §10 apply</h1>
+<p class="sub">Johnny signed the text. This page applies it: Principle §10.9a, then Gate §10.10. Three building blocks stay. <code>ba-mf-master-revise.png</code> is not overwritten.</p>
 
-<section class="s0d" aria-label="Why this page">
-  <p><span class="k">1. Logic.</span> A beat that needs a name has a left-rail cell. That cell’s border covers the beat. A phase has one kit 25 axis, and events of that phase sit on it.</p>
-  <p><span class="k">2. Visual.</span> Missing cell, empty cell, short rail, and a second band under the axis are fails a PM can see without opening Dep or Reval.</p>
-  <p><span class="k">3. vs the signed page.</span> §10.0–§10.9 and <code>ba-mf-master-revise.png</code> (~11:07) stay the chrome lock. This page is the gate those files did not spell.</p>
+<section class="s0d" aria-label="Apply status">
+  <p><span class="k">1. Signed.</span> P0 百子櫃 · P1 four FAIL tests · P2 Phase-card sentences · P3 §9 min labels.</p>
+  <p><span class="k">2. Order.</span> Principle is why. §10.10 is how to measure. Principle sits above the gate.</p>
+  <p><span class="k">3. Lock.</span> §10.0 three blocks, atlas 1–23, tokens, and <code>#27</code> When-not stay. This apply is teaching copy, not a fourth building block.</p>
 </section>
+
+<!-- APPLY-BLOCK-START -->
+<section class="principle" id="sec109a" aria-labelledby="p109a">
+  <h2 id="p109a">10.9a Principle — why left rail / nest（百子櫃）</h2>
+  <p>讀 Concept Map 嘅 left rail，唔係貼紙名——係 <span class="k">標準邏輯</span>：大格包細格。</p>
+  <p>想像 <span class="k">百子櫃</span>。大 <span class="k">櫃桶</span> 蓋住一排細櫃桶；每個細櫃桶再開一層更細嘅。讀者由 <span class="k">top→bottom</span> 或者 <span class="k">left→right</span> 讀：先見大櫃桶個名（left rail），再入去佢蓋住嘅內容。</p>
+  <ul>
+    <li><span class="k">L1</span> = 外層 left rail（一個 beat／phase／section 嘅外層名）。</li>
+    <li><span class="k">L1 = some of L2</span>：L1 包住（加總）佢下面嘅 L2——L1 係 Σ 對應嘅 L2。</li>
+    <li><span class="k">each L2 = sum of corresponding L3</span>：每個 L2 再拆開，等於佢下面嗰排 L3；<span class="k">all those L3 = that L2</span>。</li>
+    <li>再入一層就係再加一個櫃桶，<span class="k">唔摺</span>兩名落同一格。</li>
+  </ul>
+  <table>
+    <thead><tr><th>視覺</th><th>對應等式</th></tr></thead>
+    <tbody>
+      <tr><td>Outer left rail 伸到蓋住成個 beat</td><td>L1 真係包住佢啲 L2</td></tr>
+      <tr><td>每個 named peer／nest row 有自己嘅 <code>.inner-rail</code></td><td>每個 L2／L3 有自己個櫃桶名</td></tr>
+      <tr><td>Phase 名喺 left；右邊 kit 25 一條軸 Begins→Ceases</td><td>一個 L1 phase 包住呢個 timeline pane</td></tr>
+      <tr><td>Outer → board → inner rail | detail → peers</td><td>大櫃桶 → 板 → 細櫃桶｜內容 → 同行 peer</td></tr>
+    </tbody>
+  </table>
+  <p>會破壞等式嘅做法（點解後面 §10.10 要量）：</p>
+  <ol class="check">
+    <li><span class="k">短 L1 stub</span>——外層 rail 只得一行高，蓋唔到下面嘅 L2／beat → L1 ≠ Σ L2。</li>
+    <li><span class="k">缺 rail cell</span>——右邊有 named beat，左邊空／冇格／摺兩名一格 → 少咗櫃桶，或者兩個櫃桶共用一個拉手。</li>
+    <li><span class="k">摺 nest</span>——本應分層嘅 L2／L3 摺成一欄 → 讀者睇唔到「大包細」。</li>
+  </ol>
+  <p>Phase + timeline 就係一個大櫃桶（phase 名 = L1 left rail）蓋住一個 kit 25 pane；pane 入面嘅事件屬呢個 phase，打喺同一條軸上——唔係第二個櫃桶橫插喺下面。</p>
+  <p>Principle 講「<span class="k">點解</span>」；§10.10 FAIL tests 講「<span class="k">點量</span>」。</p>
+  <p class="gloss">Left rail is containment, not a sticker: a larger drawer (L1) covers the drawers it sums (L2); each of those sums its own L3. Short stubs, missing cells, and folded names break that sum. Phase + kit 25 is one L1 drawer over one timeline pane.</p>
+  <div class="qlocks">
+    <p class="q"><span class="k">Q1.</span> 短 L1 stub = FAIL。</p>
+    <p class="q"><span class="k">Q2 = A.</span> kit 25 markers 打喺軸上，喺 During-use 嗰個 L1 櫃桶入面。唔係每個 marker 再開一條 L2 rail。軸下面再加一條 band 仍然 FAIL。</p>
+    <p class="q"><span class="k">Q3.</span> 同一深度嘅 L2 同一樣式。例外 = Johnny 寫一句。</p>
+  </div>
+</section>
+
+<h2 class="gateh" id="sec1010">10.10 Gate — how to measure</h2>
 
 <div class="defs">
   <article class="def">
@@ -524,7 +592,7 @@
     <p>One phase pane has one kit 25 axis, from Start to End. Events of this phase sit on that line: one mark, one leader, one label.</p>
     <div class="verdict pass">
       <p class="tag pass">PASS</p>
-      <p>Rings, span, and on-axis markers. Start / End cards belong to this axis. A different concept gets its own rail row. On Dep, year-end review is that rail, so Dep’s timeline has no year-end marks.</p>
+      <p>Rings, span, and on-axis markers sit inside the one L1 drawer. They are not each an L2 rail. Start / End cards belong to this axis. A different concept gets its own rail row. On Dep, year-end review is that rail (5.8), so Dep’s timeline has no year-end marks.</p>
     </div>
     <div class="verdict fail">
       <p class="tag fail">FAIL · second band</p>
@@ -636,15 +704,15 @@
   </div>
 </section>
 
-<section class="call" aria-label="How to read the signed lines">
-  <h2>Signed lines — gate with the four tests</h2>
-  <p>Until Johnny signs the card edits, these lines on the signed BA do not outrank this page.</p>
+<section class="call" id="applied-lines" aria-label="P2 and P3 applied">
+  <h2>P2 and P3 — applied on the MF page</h2>
+  <p>The Phase card and the §9 min on <code>mf-master-revise.html</code> now say this. The file <code>ba-mf-master-revise.png</code> is still the old chrome lock and is not overwritten.</p>
   <ul>
-    <li><span class="k">“no YE markers on signed lock”</span> — Dep’s chapter lock. Year-end is not on Dep’s timeline. It does not ban on-axis markers. It does not allow a second band.</li>
-    <li><span class="k">“optional markers”</span> — markers of this phase go on the axis. A second band is not an optional marker.</li>
-    <li><span class="k">§9 min prints “Year-end”</span> — specimen label on the frozen BA. Not an order to restore Dep’s band. Relabel is propose P3.</li>
+    <li><span class="k">P2.</span> Markers of this phase sit on the kit 25 axis (one mark, one label). A second band under that axis fails. Dep’s year-end review is its own rail (5.8). That chapter lock is not a ban on markers.</li>
+    <li><span class="k">P3.</span> §9 min ticks say <span class="k">marker</span>. The span says <span class="k">span (Start→End)</span>. Caption: second band under this axis fails. Rings, leaders, and end cards stay.</li>
   </ul>
 </section>
+<!-- APPLY-BLOCK-END -->
 
 <h2 style="margin: 0 0 var(--space-2)">Three blocks — unchanged</h2>
 <p class="sub">Signed inventory. This gate is not a fourth component. <code>#27</code> thick-left stays When-not for Dep.</p>
@@ -686,43 +754,20 @@
   </article>
 </div>
 
-<section class="propose" aria-label="Propose for Johnny">
-  <h2>Propose — Johnny sign</h2>
-  <p>No new kit ID. No new token. Recommend yes, yes, yes.</p>
+<section class="propose" id="applied" aria-label="Apply stamp">
+  <h2>Applied — verify, not a new sign</h2>
+  <p>P0–P3 text is signed. This page is the apply check. No new kit ID. No new token. Status stays DRAFT-FOR-SIGN until you accept the render.</p>
   <table>
     <thead>
-      <tr><th>Ask</th><th>Change on the signed page</th><th>Recommend</th></tr>
+      <tr><th>Ask</th><th>On this apply</th><th>Text</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="k">P1</td>
-        <td>Add this gate under §10. Page copy, not a new map component.</td>
-        <td>yes</td>
-      </tr>
-      <tr>
-        <td class="k">P2</td>
-        <td>Phase card: replace “optional markers” and “no YE markers on signed lock” with rule 3.</td>
-        <td>yes</td>
-      </tr>
-      <tr>
-        <td class="k">P3</td>
-        <td>§9 min labels: “Year-end” → <span class="k">marker</span>. Span → <span class="k">span (Start→End)</span>. Caption: second band under this axis fails. Geometry stays.</td>
-        <td>yes</td>
-      </tr>
+      <tr><td class="k">P0</td><td>§10.9a above this gate</td><td>signed</td></tr>
+      <tr><td class="k">P1</td><td>Four FAIL tests and the minis</td><td>signed</td></tr>
+      <tr><td class="k">P2</td><td>Phase card on <code>mf-master-revise.html</code></td><td>signed</td></tr>
+      <tr><td class="k">P3</td><td>§9 min labels → marker / span (Start→End)</td><td>signed</td></tr>
     </tbody>
   </table>
-  <div class="pair">
-    <figure class="mini">
-      <p class="tag" style="color:var(--warn)">FROZEN until P3</p>
-      <p class="nm">Year-end</p>
-      <p class="cap">Specimen words on the signed §9 min. Not the rule.</p>
-    </figure>
-    <figure class="mini pass">
-      <p class="tag pass">P3 label</p>
-      <p class="nm">marker</p>
-      <p class="cap">Same tick, abstract name. Second band under the axis fails.</p>
-    </figure>
-  </div>
 </section>
 
 <section class="def" style="margin-bottom: var(--space-3)" aria-label="PM checklist">
@@ -736,7 +781,7 @@
   </ol>
 </section>
 
-<p class="foot">Text: <code>MF-SEC10-FAIL-ADDENDUM-98.md</code> · <code>DIFF-MF-SEC10-98.md</code> · <code>PROPOSE-CHROME-98.md</code>. Signed lock stays <code>ba-mf-master-revise.png</code>. dep-v2 freeze and atlas 1–23 stay. No Build. Do not merge PR #163.</p>
+<p class="foot" id="sec1010-end">Text: <code>MF-SEC10-PRINCIPLE-98.md</code> · <code>MF-SEC10-FAIL-ADDENDUM-98.md</code> · <code>APPLY-CHANGES-98.md</code>. Chrome lock file stays <code>ba-mf-master-revise.png</code>. No Build. Do not merge PR #163.</p>
 
 </body>
 </html>
