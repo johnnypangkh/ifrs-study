@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>LEGO sheet — 21 bricks</title>
+<link rel="stylesheet" href="kit.css"></head>
+<body>
+<h1 class="sheet-h">Concept-map LEGO sheet — 21 bricks</h1>
+<p class="sheet-sub">Each brick once, abstract. One brick = one job the reader needs done. Real instance of each: <code>evidence/Bxx-*.png</code>. Dark tokens from <code>_shared/tokens-core.css</code>.</p>
+
+<section class="fam"><p class="fam-h">Surface — where things sit</p>
+<div class="tray">
+  <div class="slot"><p class="slot-id"><b>B01</b>Board</p>
+    <div class="stage"><div class="board" style="width:100%;height:4.5rem"></div></div>
+    <p class="slot-job">“This is the whole map.” Solid --bg, one ink frame.</p></div>
+  <div class="slot"><p class="slot-id"><b>B02</b>Plate</p>
+    <div class="stage"><div class="plate" style="width:100%"><span class="chip">5.1</span> <span class="title">Title</span><div class="ghost" style="margin-top:.4rem"></div></div></div>
+    <p class="slot-job">“One numbered topic.” L1: stroke-2 --line, --surface.</p></div>
+  <div class="slot"><p class="slot-id"><b>B03</b>Cell</p>
+    <div class="stage"><div class="cell band" style="width:60%"><span class="title-s">Cell</span><div class="note">one idea</div></div></div>
+    <p class="slot-job">“One idea.” L2/L3: stroke-1 --line.</p></div>
+  <div class="slot"><p class="slot-id"><b>B04</b>Note</p>
+    <div class="stage"><div style="width:80%"><div class="ghost"></div><p class="note" style="margin:.3rem 0 0">Small print about the thing above. No box.</p></div></div>
+    <p class="slot-job">“Small print about my neighbour.” L4: T3, no border.</p></div>
+</div></section>
+
+<section class="fam"><p class="fam-h">Text — what the words are</p>
+<div class="tray t3" style="grid-template-columns:repeat(5,1fr)">
+  <div class="slot"><p class="slot-id"><b>B05</b>Title</p>
+    <div class="stage"><span class="title">Plate title</span></div>
+    <p class="slot-job">“This box is about X.” T1 700.</p></div>
+  <div class="slot"><p class="slot-id"><b>B06</b>Section chip</p>
+    <div class="stage"><span class="chip">5.4</span></div>
+    <p class="slot-job">“Jump to §5.4 of the notes.” <code>a.fb-num</code></p></div>
+  <div class="slot"><p class="slot-id"><b>B07</b>Kicker</p>
+    <div class="stage"><div style="width:90%"><p class="kicker" style="margin:0 0 .3rem">Group name</p><div class="ghost"></div></div></div>
+    <p class="slot-job">“The block below is a group.” Top label.</p></div>
+  <div class="slot"><p class="slot-id"><b>B08</b>Tag</p>
+    <div class="stage"><span class="title-s">Item</span> <span class="tag">Default</span></div>
+    <p class="slot-job">“This item has a status / source.”</p></div>
+  <div class="slot"><p class="slot-id"><b>B09</b>See-also</p>
+    <div class="stage"><span class="see"><b>See also</b> IFRS 5</span></div>
+    <p class="slot-job">“Related rule lives elsewhere.” Dashed --see.</p></div>
+</div></section>
+
+<section class="fam"><p class="fam-h">Structure — how cells line up</p>
+<div class="tray t2">
+  <div class="slot"><p class="slot-id"><b>B10</b>Rail</p>
+    <div class="stage"><div class="railrow s" style="width:100%"><div class="rail"><span class="chip">5.3</span>Group</div>
+      <div class="gridbox" style="grid-template-columns:1fr 1fr"><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost" style="opacity:.4"></div></div></div></div>
+    <p class="slot-job">“Everything to my right is this group.” Right side = only this group, on a grid with room to add (rule 3).</p></div>
+  <div class="slot"><p class="slot-id"><b>B11</b>Grid</p>
+    <div class="stage"><div class="gridbox" style="grid-template-columns:repeat(4,1fr);width:100%"><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div></div></div>
+    <p class="slot-job">“Same row = peers; same column = steps.” Invisible tracks, gap --space-cell.</p></div>
+</div></section>
+
+<section class="fam"><p class="fam-h">Connectors — how cells relate</p>
+<div class="tray t3">
+  <div class="slot"><p class="slot-id"><b>B12</b>Arrow + label</p>
+    <div class="stage" style="gap:0"><div class="cell" style="width:4rem;height:1.6rem"></div><div class="ah" style="width:4.5rem"></div><span class="lab" style="margin:0 -.2rem 0 .4rem">no</span><div class="cell" style="width:4rem;height:1.6rem;margin-left:.6rem"></div></div>
+    <p class="slot-job">“Go there” (+ the condition). Label only when there is a choice.</p></div>
+  <div class="slot"><p class="slot-id"><b>B13</b>Bar</p>
+    <div class="stage"><div style="width:90%"><div class="barband">Applies to all three</div><div class="gridbox" style="grid-template-columns:repeat(3,1fr);margin-top:.3rem"><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div></div></div></div>
+    <p class="slot-job">“This spans / joins the cells under it.”</p></div>
+  <div class="slot"><p class="slot-id"><b>B14</b>Operator</p>
+    <div class="stage"><span class="op">+</span><span class="op">−</span><span class="op">=</span><span class="op">±</span><span class="and">AND</span><span class="and">OR</span></div>
+    <p class="slot-job">“How these combine.” Arithmetic glyphs vs logic pills — never the same mark.</p></div>
+</div></section>
+
+<section class="fam"><p class="fam-h">Time</p>
+<div class="tray t2">
+  <div class="slot"><p class="slot-id"><b>B15</b>Axis + marker</p>
+    <div class="stage" style="display:block"><div class="tl">
+      <div class="axis"></div>
+      <span class="mk" style="left:6%;top:0">Begins</span><span class="leader" style="left:6%;top:.95rem;height:.75rem"></span><span class="ring" style="left:6%"></span>
+      <span class="mk" style="left:50%;top:0">Event</span><span class="leader" style="left:50%;top:.95rem;height:.75rem"></span><span class="ring" style="left:50%"></span>
+      <span class="mk" style="left:93%;top:0">Ceases</span><span class="leader" style="left:93%;top:.95rem;height:.75rem"></span><span class="ring" style="left:93%"></span>
+    </div></div>
+    <p class="slot-job">“When.” Rings ON the axis, each with a leader to its label (kit 25).</p></div>
+  <div class="slot"><p class="slot-id"><b>B16</b>Span</p>
+    <div class="stage" style="display:block"><div class="tl">
+      <div class="axis"></div><span class="ring" style="left:6%"></span><span class="ring" style="left:93%"></span>
+      <span class="span" style="left:8%;width:83%">what happens between the markers</span>
+    </div></div>
+    <p class="slot-job">“What happens in between.” Dashed + T3 muted (rule 5).</p></div>
+</div></section>
+
+<section class="fam"><p class="fam-h">Paint · Navigation · Picture</p>
+<div class="tray" style="grid-template-columns:repeat(5,1fr)">
+  <div class="slot"><p class="slot-id"><b>B17</b>Tone</p>
+    <div class="stage" style="flex-wrap:wrap"><div class="cell stop" style="padding:.2rem .4rem"><span class="title-s">Stop</span></div><div class="cell warn" style="padding:.2rem .4rem">Warn</div><div class="cell result" style="padding:.2rem .4rem">Result</div><div class="cell mute" style="padding:.2rem .4rem;border-style:dashed">Mute</div></div>
+    <p class="slot-job">Border colour only. ≤ 1 red per board.</p></div>
+  <div class="slot"><p class="slot-id"><b>B18</b>Strip</p>
+    <div class="stage" style="display:grid;gap:.25rem;width:100%"><div class="cell strip" style="padding:.15rem .4rem">Operating</div><div class="cell strip inv" style="padding:.15rem .4rem">Investing</div></div>
+    <p class="slot-job">“A line on a financial statement.” K11 only.</p></div>
+  <div class="slot"><p class="slot-id"><b>B19</b>Echo bar</p>
+    <div class="stage" style="gap:.2rem;font-size:var(--t3-fs)"><span class="mute">Step</span><span class="mute">›</span><span class="chip" style="min-width:0">Now</span><span class="mute">›</span><span class="mute">Later</span></div>
+    <p class="slot-job">“You are here in the life cycle.”</p></div>
+  <div class="slot"><p class="slot-id"><b>B20</b>Hand-off</p>
+    <div class="stage" style="gap:0"><div class="ah" style="width:3rem"></div><span class="lab" style="margin-left:.5rem">to next chapter</span></div>
+    <p class="slot-job">“The story continues in …”</p></div>
+  <div class="slot"><p class="slot-id"><b>B21</b>Glyph</p>
+    <div class="stage"><svg width="70" height="34" viewBox="0 0 70 34"><g fill="var(--accent)"><rect x="2" y="10" width="12" height="22"/><rect x="18" y="10" width="12" height="22"/><rect x="34" y="10" width="12" height="22"/><rect x="50" y="10" width="12" height="22"/></g></svg></div>
+    <p class="slot-job">“See the shape.” Tiny chart or icon.</p></div>
+</div></section>
+
+<section class="fam"><p class="fam-h">Retire — found in the files, banned</p>
+<div class="tray t2">
+  <div class="slot"><p class="slot-id"><b>R1</b>Cite chip</p>
+    <div class="stage"><span style="text-decoration:line-through;color:var(--muted);border:var(--stroke-1) solid var(--line);border-radius:var(--radius-s);padding:0 .4rem">IAS 16 · para 41</span></div>
+    <p class="slot-job">Rule 8. 40 left, all IAS 16 (ch04, ch06, ch07, master).</p></div>
+  <div class="slot"><p class="slot-id"><b>R2</b>Graph-paper field</p>
+    <div class="stage"><div style="width:60%;height:3rem;border-radius:var(--radius-m);background-image:linear-gradient(color-mix(in srgb,var(--line) 40%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--line) 40%,transparent) 1px,transparent 1px);background-size:1rem 1rem;position:relative"><span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--danger);font-weight:700">✕</span></div></div>
+    <p class="slot-job">Rule 9 + GB-SOLID. Still in <code>map-box.css</code> L22–37.</p></div>
+</div></section>
+</body></html>
