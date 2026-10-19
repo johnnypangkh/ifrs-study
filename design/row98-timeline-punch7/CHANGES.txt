@@ -91,3 +91,16 @@ Johnny rejected the empty-axis drop. Content lock: replace the period caption. D
 - Ceases right inset 33px. During-use rail vs pane Δ 0. Phase rail vs beat Δ 0. Nothing sticks out of the pane.
 
 Crop: design/row98-timeline-punch7/apply-reval-ribbon-1280.png
+
+## Reval content story (2026-10-19, not signed)
+
+Johnny: the ribbon alone did not teach the story. Dep was not edited.
+
+- Ribbon stays `Carry at revalued amount`, 32px, caption gap 11px / 11px.
+- Three ◆ on this axis at 16% / 32% / 82%. Gaps 77px then 240px (about 1 : 3). Each is centred on its label.
+- Each label is `Revaluation date` with an outcome chip `FV ~ carrying amount`.
+- One shared line under the axis: `Often at year-end`.
+- One foot: `Revalue often enough that carrying amount stays close to FV`.
+- No second band. Ceases right inset 33px. During-use rail vs pane Δ 0. Phase rail vs beat Δ 0.
+
+Crop: design/row98-timeline-punch7/apply-reval-story-1280.png
