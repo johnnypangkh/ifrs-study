@@ -66,6 +66,16 @@ Crops:
 - `design/row98-mf-revisit/apply-flag-thin-tall-phase-1280.png`
 - `design/row98-mf-revisit/apply-flag-thin-tall-gate-1280.png`
 
+## Flag silhouette (2026-10-19 ~19:48)
+
+Matched Johnny’s flag reference. Pole 76px. Cloth is a 24px rectangle, wider than tall, with a 6px gap to the right of the pole. 4px of pole peeks above the cloth. 48px of shaft shows below it. Not a 12px ribbon. Not a lollipop. Axis arrow stays.
+
+Crops:
+
+- `design/row98-mf-revisit/apply-flag-silhouette-s9-1280.png`
+- `design/row98-mf-revisit/apply-flag-silhouette-phase-1280.png`
+- `design/row98-mf-revisit/apply-flag-silhouette-gate-1280.png`
+
 ## Unchanged
 
 - §10.0 three building blocks

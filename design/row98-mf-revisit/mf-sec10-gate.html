@@ -221,13 +221,13 @@
   }
   .axis {
     position: relative;
-    height: calc(var(--space-6) * 3 + var(--space-2));
+    height: calc(var(--space-6) * 3 + var(--space-5));
     margin: 0 var(--space-2);
   }
   .line {
     position: absolute;
     left: 0; right: 0;
-    top: calc(var(--space-6) * 2);
+    top: calc(var(--space-6) * 2 + var(--space-4));
     border-top: var(--stroke-2) solid var(--muted);
   }
   .line::after {
@@ -243,7 +243,7 @@
   }
   .ring {
     position: absolute;
-    top: calc(var(--space-6) * 2);
+    top: calc(var(--space-6) * 2 + var(--space-4));
     width: var(--space-3);
     height: var(--space-3);
     border: var(--stroke-2) solid var(--ink);
@@ -254,16 +254,19 @@
   }
   .mk {
     position: absolute;
-    top: calc(var(--space-6) * 2);
+    top: calc(var(--space-6) * 2 + var(--space-4));
     transform: translateX(-50%);
     width: 0;
     z-index: 3;
   }
   .mk-lab {
     position: absolute;
-    bottom: var(--space-6);
-    left: 0;
+    bottom: calc(var(--space-6) + var(--space-4));
+    left: var(--space-2);
     transform: none;
+    display: flex;
+    align-items: center;
+    min-height: var(--space-5);
     white-space: nowrap;
     font-size: var(--t3-strong-fs);
     font-weight: var(--t3-strong-fw);
@@ -271,13 +274,12 @@
     color: var(--ink);
     background: var(--band);
     border: var(--stroke-1) solid var(--line);
-    border-left: var(--stroke-2) solid var(--ink);
     border-radius: 0;
     padding: 0 var(--space-2);
   }
   .mk-stem {
     position: absolute;
-    top: calc(-1 * (var(--space-6) + var(--space-5)));
+    top: calc(-1 * (var(--space-6) + var(--space-4) + var(--space-5) + var(--space-1)));
     bottom: 0;
     left: 0;
     width: 0;
@@ -286,7 +288,7 @@
   .span {
     position: absolute;
     left: 0; right: 0;
-    top: calc(var(--space-6) * 2 + var(--space-2));
+    top: calc(var(--space-6) * 2 + var(--space-4) + var(--space-2));
     text-align: center;
     font-size: var(--t3-fs);
     color: var(--muted);
