@@ -65,7 +65,8 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 .mock-du .see{font-size:var(--t3-fs);font-weight:var(--t3-strong-fw);color:var(--see-also,var(--accent));border:var(--stroke-1) dashed var(--see-also,var(--dash));border-radius:var(--radius-pill);padding:0 var(--space-2);align-self:flex-start}
 /* punch7 — signed MF flag (PR #164 52cf9a18). Same geometry as .m-tl-lab / .m-tl-lead:
    pole = border-left --stroke-2, cloth flush at left --stroke-2, border --stroke-2, radius 0,
-   arrowhead = --arrowhead. Cloth near the top; shaft below. Every flag flies right. */
+   cloth near the top; shaft below. Every flag flies right.
+   Arrow: shaft continues --space-6 past the End ring, head is --space-4 (16px), not the 5px --arrowhead. */
 .mock-du .m-tl{display:flex;flex-direction:column;gap:0;position:relative;min-width:0}
 .mock-du .m-tl-axis{
   position:relative;
@@ -81,17 +82,17 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
   overflow: visible;
 }
 .mock-du .m-tl-line{
-  position:absolute; left:0; right:0; top: var(--pole-h);
-  border-top: var(--stroke-2) solid var(--muted);
+  --head: var(--space-4); /* 16px. --arrowhead is 5px and read as a fleck. */
+  position:absolute; left:0; top: var(--pole-h);
+  width: calc(100% + var(--space-6)); /* shaft runs past the End ring, then the head */
+  height: var(--stroke-2); background: var(--muted); border: 0;
 }
 .mock-du .m-tl-line::after{
-  content:""; position:absolute;
-  left: calc(100% + var(--space-3) / 2);
-  top: calc(-1 * (var(--arrowhead) + var(--stroke-2) / 2));
-  width:0; height:0;
-  border-top: var(--arrowhead) solid transparent;
-  border-bottom: var(--arrowhead) solid transparent;
-  border-left: var(--arrowhead) solid var(--muted);
+  content:""; position:absolute; left:100%; top:50%;
+  width:0; height:0; margin-top: calc(-1 * var(--head));
+  border-top: var(--head) solid transparent;
+  border-bottom: var(--head) solid transparent;
+  border-left: var(--head) solid var(--muted);
 }
 .mock-du .m-tl-ring{
   position:absolute; top: calc(var(--pole-h) + var(--stroke-2) / 2);

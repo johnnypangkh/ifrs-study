@@ -33,3 +33,16 @@ Kept
 Crops
 - design/row98-timeline-punch7/apply-flag-grammar-dep-1280.png
 - design/row98-timeline-punch7/apply-flag-grammar-reval-1280.png
+
+## Arrow clear (2026-10-19, not signed)
+
+Johnny: the arrowhead was not apparent. The 5px `--arrowhead` sat on the End ring, so the axis read as a line.
+
+- The shaft now runs `--space-6` (32px) past the End ring, then the head.
+- The head is `--space-4` (16px). Painted height is 30px. The old head was 5px.
+- Same colour as the shaft (`--muted`).
+- Flags unchanged. Measured again: gap 0, peek 4px, cloth stroke 2px, radius 0, every cloth flies right, pole foot on the line, shaft under the cloth still the longer part, one「Revaluation date」, ◆ on the axis, no second band.
+
+Crops
+- design/row98-timeline-punch7/apply-arrow-clear-dep-1280.png
+- design/row98-timeline-punch7/apply-arrow-clear-reval-1280.png
