@@ -230,6 +230,17 @@
     top: calc(var(--space-6) * 2);
     border-top: var(--stroke-2) solid var(--muted);
   }
+  .line::after {
+    content: "";
+    position: absolute;
+    left: calc(100% + var(--space-3) / 2);
+    top: calc(-1 * (var(--arrowhead) + var(--stroke-2) / 2));
+    width: 0;
+    height: 0;
+    border-top: var(--arrowhead) solid transparent;
+    border-bottom: var(--arrowhead) solid transparent;
+    border-left: var(--arrowhead) solid var(--muted);
+  }
   .ring {
     position: absolute;
     top: calc(var(--space-6) * 2);
@@ -250,7 +261,7 @@
   }
   .mk-lab {
     position: absolute;
-    bottom: var(--space-5);
+    bottom: var(--space-2);
     left: 0;
     transform: none;
     white-space: nowrap;
@@ -260,17 +271,19 @@
     color: var(--ink);
     background: var(--band);
     border: var(--stroke-1) solid var(--line);
+    border-left: var(--stroke-2) solid var(--ink);
     border-radius: var(--radius-s);
+    border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     padding: var(--space-1) var(--space-2);
   }
   .mk-stem {
     position: absolute;
+    top: calc(-1 * (var(--space-2) + var(--space-5)));
     bottom: 0;
     left: 0;
-    height: var(--space-5);
+    width: 0;
     border-left: var(--stroke-2) solid var(--ink);
-    transform: translateX(-50%);
   }
   .span {
     position: absolute;

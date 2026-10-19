@@ -46,6 +46,16 @@ Crops:
 - `design/row98-mf-revisit/apply-flags-fly-right-phase-1280.png`
 - `design/row98-mf-revisit/apply-flags-fly-right-gate-1280.png`
 
+## Axis arrow + hoist (2026-10-19 ~19:27)
+
+The axis is an arrow: shaft plus an arrowhead at the time-forward end (`--arrowhead`, same ink as the shaft). The pole is the left edge of the card, the hoist, and its foot stays on the axis. The card flies right. The pole does not stop at the bottom of the card.
+
+Crops:
+
+- `design/row98-mf-revisit/apply-timeline-arrow-s9-1280.png`
+- `design/row98-mf-revisit/apply-timeline-arrow-phase-1280.png`
+- `design/row98-mf-revisit/apply-timeline-arrow-gate-1280.png`
+
 ## Unchanged
 
 - §10.0 three building blocks
