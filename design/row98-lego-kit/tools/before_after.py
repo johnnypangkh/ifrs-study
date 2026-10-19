@@ -56,7 +56,10 @@ MARK_LCA = """(sel) => {
 JOBS = [
     # S1 rail chrome: IAS 16 ch05 §5.4 "During use" gets the .inner-rail chrome of §5.1 on the same plate.
     dict(id="S01-ias16-ch05", file=I16 + "ch05-depreciation.html", sel=".ch05-dep > .inner-board", maxh=430,
-         css=".ppe .lc-top > .lc-head-k:not(.lc-band-k){align-self:stretch;align-items:flex-start}",
+         css=".ppe .lc-top > .lc-head-k:not(.lc-band-k){align-self:stretch;align-items:flex-start}"
+             ".ppe .ch05-dep .lc-head{padding-inline:var(--space-cell)}"
+             ".ppe .ch05-dep .lc-end{padding:var(--space-2) var(--space-3)}"
+             ".ppe .ch05-dep ul.item-rows{padding:var(--space-2) var(--space-3)}",
          js=(COPY_RAIL, {"src": ".cap .inner-rail", "dst": ".lc-top > .lc-head-k:not(.lc-band-k)"})),
     # S1(c) kicker recipe: CF ch07 .pd-kicker onto the .ou-label/.pa-label recipe (12px / 700 / uppercase / muted).
     dict(id="S01-cf-ch07-kicker", file=CF + "ch07-presentation-disclosure.html", sel=".pd-board", maxh=240,
@@ -86,7 +89,8 @@ JOBS = [
          css="aside.sec{border:var(--stroke-1) dashed var(--see)!important;background:transparent!important}"
              "aside.sec > *:first-child{color:var(--see)!important}"),
     dict(id="S05-ias16-ch04", file=I16 + "ch04-models.html", sel=".impair-comp", maxh=None,
-         css=".ppe .impair-comp.m-see{border-style:solid!important;border-color:var(--line)!important;background:var(--surface)!important}"),
+         css=".ppe .impair-comp.m-see{border-style:solid!important;border-color:var(--line)!important;background:var(--surface)!important}"
+             ".ppe .impair-comp ul.item-rows{padding:var(--space-2) var(--space-3)}"),
     dict(id="S05-cf-ch06", file=CF + "ch06-measurement.html", sel=".mx-see", maxh=None,
          css=".mx-see{border-color:var(--see)!important}.mx-see .see-label,.mx-see b,.mx-see strong{color:var(--see)!important}"),
     # S6 strip only on FS lines: traps become full-border warn.
@@ -150,7 +154,8 @@ JOBS = [
            body.textContent = ''; body.append(g, j, q);
          }""", None)),
     dict(id="E07-ias2-master", file=I2 + "map-formula-board.html", sel=".m-sum", maxh=None,
-         css=".m-out.e7-region{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-3);align-items:start;"
+         css=".m-sum .m-row{padding:var(--space-2) var(--space-3)}"
+             ".m-out.e7-region{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-3);align-items:start;"
              "padding-block:var(--space-2)}"
              ".e7-region > span{display:grid;gap:var(--space-2)}"
              ".e7-peers{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:var(--space-cell)}"
