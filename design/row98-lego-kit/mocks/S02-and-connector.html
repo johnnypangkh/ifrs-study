@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="color-scheme" content="dark">
+<title>S2 · “All must hold”: AND pill, not +</title><link rel="stylesheet" href="kit.css"><style>
+.draw { display: grid; gap: var(--space-4); }
+.dl { font-size: var(--t3-fs); color: var(--muted); margin: 0 0 var(--space-1); }
+/* K7 timeline: cards above, leader to a ring on the axis, span caption under the axis */
+.k7 { position: relative; height: 11.5rem; margin: 0 var(--space-3); }
+.k7 .card { position: absolute; top: 0; width: 15rem; border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius);
+  background: var(--surface); padding: var(--space-1) var(--space-cell); font-size: var(--t2-fs); }
+.k7 .card b { display: block; }
+.k7 .card.now { border-color: var(--accent); }
+.k7 .ax { position: absolute; left: 0; right: 0; top: 6.4rem; height: var(--stroke-1); background: var(--accent); }
+.k7 .ax::after { content: ""; position: absolute; right: calc(-1 * var(--arrowhead)); top: 50%; transform: translateY(-50%);
+  border: var(--arrowhead) solid transparent; border-left-color: var(--accent); border-right: 0; }
+.k7 .rg { position: absolute; top: calc(6.4rem - .35rem); width: .75rem; height: .75rem; border-radius: 50%;
+  border: var(--stroke-1) solid var(--accent); background: var(--bg); transform: translateX(-50%); }
+.k7 .ld { position: absolute; width: var(--stroke-1); background: var(--accent); transform: translateX(-50%); }
+.k7 .dt { position: absolute; top: calc(6.4rem - 1.5rem); transform: translateX(-50%); font-size: var(--t3-fs); font-weight: 700; white-space: nowrap; }
+.k7 .sp { position: absolute; top: 7.3rem; border-top: var(--stroke-1) dashed var(--dash); padding-top: var(--space-1);
+  font-size: var(--t3-fs); color: var(--muted); text-align: center; }
+.k7 .sp::before, .k7 .sp::after { content: ""; position: absolute; top: calc(-1 * var(--space-1)); height: var(--space-2); border-left: var(--stroke-1) solid var(--dash); }
+.k7 .sp::before { left: 0; } .k7 .sp::after { right: 0; }
+.k7 .lane { position: absolute; left: 0; right: 0; height: 1.6rem; border: var(--stroke-1) solid var(--line); border-radius: var(--radius-s); }
+.k7 .lane-k { position: absolute; left: var(--space-2); top: 50%; transform: translateY(-50%); font-size: var(--t3-fs); font-weight: 700; }
+.k7 .dia { position: absolute; top: 50%; transform: translate(-50%, -50%); color: var(--accent); font-size: var(--t3-fs); }
+.k7 .tick { position: absolute; width: 0; border-left: var(--stroke-1) dotted var(--line); transform: translateX(-50%); }
+/* K8 / K9 */
+.k8 { display: grid; align-items: center; gap: var(--space-cell); }
+.k8 .cell { min-height: 3rem; display: flex; align-items: center; gap: var(--space-1); }
+.k9 { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: var(--space-1) var(--space-cell); max-width: 36rem; align-items: center; }
+.k9 .op { min-width: 0; }
+.k9 .rule1, .k9 .rule2 { grid-column: 2; }
+/* echo bar */
+.echo { display: flex; align-items: center; gap: var(--space-cell); border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius);
+  background: var(--surface); padding: var(--space-1) var(--space-cell); }
+.echo-k { font-size: var(--t3-fs); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.echo-s { font-size: var(--t3-fs); border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); background: var(--bg);
+  padding: var(--space-1) var(--space-cell); color: var(--ink); }
+.echo-s.now { border-color: var(--accent); background: var(--surface); font-weight: 700; box-shadow: inset 0 0 0 calc(var(--stroke-1) / 2) var(--accent); }
+.echo-s.later { opacity: .55; color: var(--muted); }
+.echo-a { color: var(--muted); opacity: .7; font-size: var(--t3-fs); }
+</style></head>
+<body>
+<p class="ba-h">S2 · “All must hold”: AND pill, not +</p>
+<p class="ba-why">Rule 4 — an explicit AND when all conditions must hold; “+” stays for arithmetic. Signed MF §9 pill.</p>
+<div class="ba"><div class="imgs"><div class="pane"><p class="pane-k before">Before · live today<span class="pane-src">IAS 16 ch01 §1.1 <code>span.crit-op</code> “+”</span></p><img src="ba/S02-ias16-ch01-before.png" alt=""></div><div class="pane"><p class="pane-k after">After · proposal<span class="pane-src">AND pill + junction under the row (the Yes arm already leaves the box)</span></p><img src="ba/S02-ias16-ch01-after.png" alt=""></div></div><div class="imgs"><div class="pane"><p class="pane-k before">Before · live today<span class="pane-src">IAS 2 ch02 §2.0 <code>span.or</code> “and”</span></p><img src="ba/S02-ias2-ch02-before.png" alt=""></div><div class="pane"><p class="pane-k after">After · proposal<span class="pane-src">AND pill; question text stays as the junction label</span></p><img src="ba/S02-ias2-ch02-after.png" alt=""></div></div><div class="imgs"><div class="pane"><p class="pane-k before">Before · live today<span class="pane-src">CF ch02 §2.5 <code>.qc-op</code> “+”</span></p><img src="ba/S02-cf-ch02-before.png" alt=""></div><div class="pane"><p class="pane-k after">After · proposal<span class="pane-src">AND pill; kicker “both required” already says it</span></p><img src="ba/S02-cf-ch02-after.png" alt=""></div></div></div>
+</body></html>
