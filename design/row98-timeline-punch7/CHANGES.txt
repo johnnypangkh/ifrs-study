@@ -69,3 +69,13 @@ Johnny: drop「Residual value, useful life and method」. The span was floating 
 - Ceases right inset stays 33px. During-use rail vs pane Δ 0.
 
 Crop: design/row98-timeline-punch7/apply-ye-span-glued-dep-1280.png
+
+## C3 ribbon (SIGNED 2026-10-19)
+
+Johnny signed the L→R gradient ribbon above the axis, caption vertically centered. The under-axis label is「Year-end」, not「Year-end review」.
+
+- Ribbon is 32px, between the two poles, bottom on the line. Gradient uses --accent into --bg. No dashed span.
+- Caption gap above = gap below = 11px.
+- Ceases right inset stays 33px. During-use rail vs pane Δ 0.
+
+Crop: design/row98-timeline-punch7/apply-c3-ribbon-dep-1280.png
