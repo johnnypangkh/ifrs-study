@@ -251,8 +251,8 @@
   .mk-lab {
     position: absolute;
     bottom: var(--space-5);
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    transform: none;
     white-space: nowrap;
     font-size: var(--t3-strong-fs);
     font-weight: var(--t3-strong-fw);
@@ -261,10 +261,9 @@
     background: var(--band);
     border: var(--stroke-1) solid var(--line);
     border-radius: var(--radius-s);
+    border-bottom-left-radius: 0;
     padding: var(--space-1) var(--space-2);
   }
-  .mk.edge-l .mk-lab { left: 0; transform: none; border-bottom-left-radius: 0; }
-  .mk.edge-r .mk-lab { left: 0; transform: translateX(-100%); border-bottom-right-radius: 0; }
   .mk-stem {
     position: absolute;
     bottom: 0;
@@ -621,15 +620,15 @@
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
-            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
             <span class="mk" style="left:40%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
             <span class="mk" style="left:70%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
-            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
           </div>
         </div>
       </div>
-      <figcaption class="cap">Flags: card on a pole, foot on the axis.</figcaption>
+      <figcaption class="cap">Flags all fly right with the time arrow.</figcaption>
     </figure>
     <figure class="mini fail">
       <p class="tag fail">FAIL</p>
@@ -640,8 +639,8 @@
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
-            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
-            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
           </div>
           <div class="band">
@@ -679,8 +678,8 @@
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
-            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
-            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
           </div>
         </div>
@@ -696,8 +695,8 @@
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
-            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
-            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
           </div>
         </div>
@@ -736,9 +735,9 @@
           <div class="line"></div>
           <span class="ring" style="left:0"></span>
           <span class="ring" style="left:100%"></span>
-          <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+          <span class="mk" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
           <span class="mk" style="left:50%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
-          <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
+          <span class="mk" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
           <span class="span">span</span>
         </div>
       </div>

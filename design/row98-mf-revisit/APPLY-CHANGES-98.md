@@ -36,6 +36,16 @@ Johnny: the on-axis words were ticks, not flags. Punch 6 grammar copied onto the
 
 Night crop: `design/row98-mf-revisit/apply-timeline-flag-1280.png`.
 
+## Fly right (SIGNED 2026-10-19 ~19:15)
+
+Flags all fly right with the time arrow. One grammar: the card sits to the right of the pole. Begins, Ceases, marker, Start, and End use that same flight. No left-flying end card. No card centered on the pole.
+
+Crops:
+
+- `design/row98-mf-revisit/apply-flags-fly-right-s9-1280.png`
+- `design/row98-mf-revisit/apply-flags-fly-right-phase-1280.png`
+- `design/row98-mf-revisit/apply-flags-fly-right-gate-1280.png`
+
 ## Unchanged
 
 - §10.0 three building blocks

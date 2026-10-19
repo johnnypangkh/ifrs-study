@@ -58,7 +58,7 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
 .m-tl-line{position:absolute;left:0;right:0;top:calc(var(--space-6)*2);border-top:var(--stroke-2) solid var(--muted)}
 .m-tl-ring{position:absolute;top:calc(var(--space-6)*2);width:var(--space-3);height:var(--space-3);border:var(--stroke-2) solid var(--ink);background:var(--surface);border-radius:50%;transform:translate(-50%,-50%);z-index:2}
 .m-tl-m{position:absolute;top:calc(var(--space-6)*2);transform:translateX(-50%);width:0;z-index:3}
-.m-tl-lab{position:absolute;bottom:var(--space-5);left:50%;transform:translateX(-50%);white-space:nowrap;font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);line-height:var(--t3-strong-lh);color:var(--ink);background:var(--band);border:var(--stroke-1) solid var(--line);border-radius:var(--radius-s);padding:var(--space-1) var(--space-2)}
+.m-tl-lab{position:absolute;bottom:var(--space-5);left:0;transform:none;white-space:nowrap;font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);line-height:var(--t3-strong-lh);color:var(--ink);background:var(--band);border:var(--stroke-1) solid var(--line);border-radius:var(--radius-s);border-bottom-left-radius:0;padding:var(--space-1) var(--space-2)}
 .m-tl-lead{position:absolute;bottom:0;left:0;width:0;height:var(--space-5);border-left:var(--stroke-2) solid var(--ink);transform:translateX(-50%)}
 .m-tl-tick{display:none}
 .m-tl-span{position:absolute;top:calc(var(--space-6)*2 + var(--space-2));font-size:var(--t3-fs);color:var(--muted);text-align:center}
@@ -67,8 +67,6 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
 .m-tl-ends{display:flex;justify-content:space-between;gap:var(--space-3);margin:calc(-1 * var(--space-4)) var(--space-5) 0;padding-top:calc(var(--space-6) * 2);position:relative;z-index:1}
 .m-tl-end{display:flex;flex-direction:column;align-items:flex-start;max-width:46%}
 .m-tl-end.cease{align-items:flex-end;text-align:right}
-.m-tl-m.edge-l .m-tl-lab{left:0;transform:none;border-bottom-left-radius:0}
-.m-tl-m.edge-r .m-tl-lab{left:0;transform:translateX(-100%);border-bottom-right-radius:0}
 .l3{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--radius-s);padding:var(--space-1) var(--space-2);display:flex;flex-direction:column;gap:var(--space-hairline)}
 .head{display:flex;align-items:center;gap:var(--space-2)}
 .key{margin-left:auto;font-size:var(--t3-fs);color:var(--muted);display:inline-flex;align-items:center;gap:var(--space-1)}
@@ -352,8 +350,8 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
   .mk-lab {
     position: absolute;
     bottom: var(--space-5);
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    transform: none;
     white-space: nowrap;
     font-size: var(--t3-strong-fs);
     font-weight: var(--t3-strong-fw);
@@ -362,10 +360,9 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
     background: var(--band);
     border: var(--stroke-1) solid var(--line);
     border-radius: var(--radius-s);
+    border-bottom-left-radius: 0;
     padding: var(--space-1) var(--space-2);
   }
-  .mk.edge-l .mk-lab { left: 0; transform: none; border-bottom-left-radius: 0; }
-  .mk.edge-r .mk-lab { left: 0; transform: translateX(-100%); border-bottom-right-radius: 0; }
   .mk-stem {
     position: absolute;
     bottom: 0;
@@ -586,7 +583,7 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
 
 <section class="sec" id="mf-tl">
 <div class="sec-h"><p class="t1">Timeline component (min)</p><span class="kid">kit 25</span><span class="kid">#10 Flow tones</span></div>
-<p class="note">Q2=A — flags inside the During-use L1 drawer: pole foot on the axis, card on the pole. Labels stay Begins, Ceases, marker. Span stays span (Start→End). Second band = FAIL.</p>
+<p class="note">Q2=A — flags inside the During-use L1 drawer: pole foot on the axis, card on the pole. Flags all fly right with the time arrow. Labels stay Begins, Ceases, marker. Span stays span (Start→End). Second band = FAIL.</p>
 <div class="tlrow">
 <div class="ira on inner-rail"><p class="rname rail-name">During use</p></div>
 <div class="tl-pane">
@@ -595,10 +592,10 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
 <div class="m-tl-line"></div>
 <span class="m-tl-ring" style="left:0"></span>
 <span class="m-tl-ring" style="left:100%"></span>
-<span class="m-tl-m edge-l" style="left:0"><span class="m-tl-lab">Begins</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
+<span class="m-tl-m" style="left:0"><span class="m-tl-lab">Begins</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
 <span class="m-tl-m" style="left:32%"><span class="m-tl-lab">marker</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
 <span class="m-tl-m" style="left:68%"><span class="m-tl-lab">marker</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
-<span class="m-tl-m edge-r" style="left:100%"><span class="m-tl-lab">Ceases</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
+<span class="m-tl-m" style="left:100%"><span class="m-tl-lab">Ceases</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
 <span class="m-tl-span" style="left:22%;width:56%">span (Start→End)</span>
 </div>
 </div>
@@ -722,10 +719,10 @@ Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.<
 <div class="m-tl-line"></div>
 <span class="m-tl-ring" style="left:0"></span>
 <span class="m-tl-ring" style="left:100%"></span>
-<span class="m-tl-m edge-l" style="left:0"><span class="m-tl-lab">Start</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
+<span class="m-tl-m" style="left:0"><span class="m-tl-lab">Start</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
 <span class="m-tl-m" style="left:38%"><span class="m-tl-lab">marker</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
 <span class="m-tl-m" style="left:68%"><span class="m-tl-lab">marker</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
-<span class="m-tl-m edge-r" style="left:100%"><span class="m-tl-lab">End</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
+<span class="m-tl-m" style="left:100%"><span class="m-tl-lab">End</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
 <span class="m-tl-span" style="left:18%;width:64%">span (Start→End)</span>
 </div>
 </div>
@@ -980,15 +977,15 @@ Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.<
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
-            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
             <span class="mk" style="left:40%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
             <span class="mk" style="left:70%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
-            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
           </div>
         </div>
       </div>
-      <figcaption class="cap">Flags: card on a pole, foot on the axis.</figcaption>
+      <figcaption class="cap">Flags all fly right with the time arrow.</figcaption>
     </figure>
     <figure class="mini fail">
       <p class="tag fail">FAIL</p>
@@ -999,8 +996,8 @@ Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.<
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
-            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
-            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
           </div>
           <div class="band">
@@ -1038,8 +1035,8 @@ Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.<
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
-            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
-            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
           </div>
         </div>
@@ -1055,8 +1052,8 @@ Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.<
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
-            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
-            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
           </div>
         </div>
