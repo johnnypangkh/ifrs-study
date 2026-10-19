@@ -144,6 +144,7 @@
     gap: var(--space-cell);
     min-width: 0;
   }
+  #r3 .minis { grid-template-columns: 1fr; }
   .minis.quad { grid-template-columns: 1fr 1fr; }
   .mini {
     border: var(--stroke-1) solid var(--line);
@@ -255,6 +256,8 @@
     font-weight: var(--t3-strong-fw);
     color: var(--accent);
   }
+  .mk.edge-l .mk-lab { left: 0; transform: none; }
+  .mk.edge-r .mk-lab { left: 0; transform: translateX(-100%); }
   .mk-stem {
     position: absolute;
     bottom: 0;
@@ -610,17 +613,15 @@
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
-            <span class="mk" style="left:24%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
-            <span class="mk" style="left:76%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
+            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:40%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:70%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
+            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
-          </div>
-          <div class="ends">
-            <span class="end">Start</span>
-            <span class="end r">End</span>
           </div>
         </div>
       </div>
-      <figcaption class="cap">Marks on the one axis. Start / End are that axis.</figcaption>
+      <figcaption class="cap">Start, End, and markers sit on the one axis.</figcaption>
     </figure>
     <figure class="mini fail">
       <p class="tag fail">FAIL</p>
@@ -631,11 +632,9 @@
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
+            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
-          </div>
-          <div class="ends">
-            <span class="end">Start</span>
-            <span class="end r">End</span>
           </div>
           <div class="band">
             <span class="band-k">event</span>
@@ -672,11 +671,9 @@
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
+            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
-          </div>
-          <div class="ends">
-            <span class="end">Start</span>
-            <span class="end r">End</span>
           </div>
         </div>
       </div>
@@ -691,11 +688,9 @@
             <div class="line"></div>
             <span class="ring" style="left:0"></span>
             <span class="ring" style="left:100%"></span>
+            <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
+            <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
             <span class="span">span</span>
-          </div>
-          <div class="ends">
-            <span class="end">Start</span>
-            <span class="end r">End</span>
           </div>
         </div>
       </div>
@@ -709,7 +704,7 @@
   <p>The Phase card and the §9 min on <code>mf-master-revise.html</code> now say this. The file <code>ba-mf-master-revise.png</code> is still the old chrome lock and is not overwritten.</p>
   <ul>
     <li><span class="k">P2.</span> Markers of this phase sit on the kit 25 axis (one mark, one label). A second band under that axis fails. Dep’s year-end review is its own rail (5.8). That chapter lock is not a ban on markers.</li>
-    <li><span class="k">P3.</span> §9 min ticks say <span class="k">marker</span>. The span says <span class="k">span (Start→End)</span>. Caption: second band under this axis fails. Rings, leaders, and end cards stay.</li>
+    <li><span class="k">P3.</span> §9 min ticks say <span class="k">marker</span>. The span says <span class="k">span (Start→End)</span>. Q2=A punch: Begins / Ceases sit on that axis inside the During-use L1 rail. Second band under the axis fails.</li>
   </ul>
 </section>
 <!-- APPLY-BLOCK-END -->
@@ -733,10 +728,11 @@
           <div class="line"></div>
           <span class="ring" style="left:0"></span>
           <span class="ring" style="left:100%"></span>
+          <span class="mk edge-l" style="left:0"><span class="mk-lab">Start</span><span class="mk-stem"></span></span>
           <span class="mk" style="left:50%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
+          <span class="mk edge-r" style="left:100%"><span class="mk-lab">End</span><span class="mk-stem"></span></span>
           <span class="span">span</span>
         </div>
-        <div class="ends"><span class="end">Start</span><span class="end r">End</span></div>
       </div>
     </div>
   </article>

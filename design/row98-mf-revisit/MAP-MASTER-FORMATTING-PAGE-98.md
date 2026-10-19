@@ -169,7 +169,7 @@ Johnny 2026-10-18 via PM 5: page update **plus** relevant skill MD(s) in the **s
 | `mf-bg` | Solid `--bg` callout | **kit 2 STRUCK** (G6); colour/spacing **#14 #15** | existing |
 | `mf-type` | T0–T3 + `--mchip` + gap strip | **#9** type · **#20** chip · **#15** spacing | existing tokens |
 | `mf-rec` | Recognition pattern (min): criteria AND + fork LEFT; one rail row RIGHT | **#26** AND · **#27** rail-group · **junction** geometry (signed with Rec) · Flow/Mute **#10 #12** | controlled reopen vs atlas 1–23 |
-| `mf-tl` | Timeline (min): markers ON axis, label leaders, span caption, Begins/Ceases ring leaders | **kit 25** shared timeline | controlled reopen (Q3 / §15.15 SIGNED). **P3 applied:** tick labels `marker`, span `span (Start→End)`, caption “second band under this axis = FAIL”. Geometry unchanged. |
+| `mf-tl` | Timeline (min): During use = L1 `.inner-rail` over one kit 25 pane. Begins, Ceases, and markers on that axis. Span `span (Start→End)`. | **kit 25** shared timeline | **Q2=A punch:** no head sticker, no under-axis Begins/Ceases row. Second band under the axis = FAIL. |
 | **`mf-master-revise`** (§10) | Left rail **building blocks** Dep-aligned: `.inner-rail` · kit 25 · nested `.inner-rail` layers | live `.inner-rail` · **kit 25** · visual-grammar Layers · atlas cite · `#27` When-not only | **SIGNED 2026-10-19 ~11:07 HKT** `deliverables/mf-master-revise/ba-mf-master-revise.png` · prior `mf-rail`/`mf-rail-v2` archive |
 | `mf-kit-map` | Index note | cites frozen 1–23 + proposed 25/26/27 | — |
 
