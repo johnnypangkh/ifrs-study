@@ -117,3 +117,16 @@ Dep and Reval files were not edited. Live chapter HTML was not edited. This is t
 - Ceases right inset 33px. Every L2 rail vs its detail Δ 0. Phase rail vs the beat Δ 0. No second band.
 
 Crop: design/row98-timeline-punch7/apply-impair-story-1280.png
+
+## Impairment redo (2026-10-20, not signed)
+
+Johnny rejected a39f3ccd: the axis was a Depreciation twin and the phases were footnotes.
+
+- Hero is the A|B / C|D decision board, 69.6% of the plate. A forks NO (`No indication: no test`) and YES (`Indication: estimate recoverable amount`).
+- Pair sits inside B as two cells.
+- D keeps two separate lines, plus the later-date question and the estimates condition.
+- The reporting-date band is 24.7%. Two marks, not three Year-end ticks. Begins and Ceases are endcaps, 13.7%.
+- `Subject to impairment review` is a state line, not a Dep C3 gradient ribbon.
+- Ceases inset 13px. Every rail matches its detail. Phase rail covers the beat.
+
+Crop: design/row98-timeline-punch7/apply-impair-hero-1280.png
