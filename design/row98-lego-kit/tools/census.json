@@ -1,0 +1,9385 @@
+{
+ "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html": {
+  "bricks": {
+   "title": {
+    "count": 3,
+    "first": {
+     "box": [
+      17,
+      39,
+      390,
+      22
+     ],
+     "cls": "ou-head"
+    },
+    "classes": {
+     "ou-head": 3
+    }
+   },
+   "section-chip": {
+    "count": 5,
+    "first": {
+     "box": [
+      17,
+      39,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 5
+    }
+   },
+   "kicker": {
+    "count": 3,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      16
+     ],
+     "cls": "ou-label"
+    },
+    "classes": {
+     "ou-label": 3
+    }
+   },
+   "tag": {
+    "count": 2,
+    "first": {
+     "box": [
+      175,
+      42,
+      121,
+      14
+     ],
+     "cls": "ou-sub"
+    },
+    "classes": {
+     "ou-sub": 1,
+     "ou-tag": 1
+    }
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 2,
+    "first": {
+     "box": [
+      422,
+      107,
+      76,
+      2
+     ],
+     "cls": "ou-link"
+    },
+    "classes": {
+     "ou-link": 2
+    }
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      191,
+      1280,
+      22
+     ],
+     "cls": "ou-direct"
+    },
+    "classes": {
+     "ou-direct": 1,
+     "ou-lens-foot": 1
+    }
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 4,
+    "first": {
+     "box": [
+      17,
+      68,
+      390,
+      58
+     ],
+     "cls": "party-cast ou-cast"
+    },
+    "classes": {
+     "party-cast": 1,
+     "glyph": 3
+    }
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 8,
+  "box_levels": {
+   "0": 5,
+   "1": 3
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "party",
+   "box": [
+    17,
+    68,
+    125,
+    58
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 4,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   563
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch02-qualitative-characteristics.html": {
+  "bricks": {
+   "title": {
+    "count": 3,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "qc-board-title"
+    },
+    "classes": {
+     "qc-board-title": 1,
+     "qc-head": 2
+    }
+   },
+   "section-chip": {
+    "count": 7,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 7
+    }
+   },
+   "kicker": {
+    "count": 3,
+    "first": {
+     "box": [
+      18,
+      48,
+      1042,
+      22
+     ],
+     "cls": "qc-tier-title"
+    },
+    "classes": {
+     "qc-tier-title": 3
+    }
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 1,
+    "first": {
+     "box": [
+      1090,
+      34,
+      190,
+      663
+     ],
+     "cls": "qc-rail"
+    },
+    "classes": {
+     "qc-rail": 1
+    }
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      473,
+      1078,
+      56
+     ],
+     "cls": "qc-link"
+    },
+    "classes": {
+     "qc-link": 1
+    }
+   },
+   "flow-label": {
+    "count": 1,
+    "first": {
+     "box": [
+      552,
+      482,
+      526,
+      38
+     ],
+     "cls": "qc-link-label"
+    },
+    "classes": {
+     "qc-link-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 2,
+    "first": {
+     "box": [
+      18,
+      376,
+      1042,
+      33
+     ],
+     "cls": "qc-bar"
+    },
+    "classes": {
+     "qc-bar": 2
+    }
+   },
+   "operator": {
+    "count": 1,
+    "first": {
+     "box": [
+      535,
+      217,
+      9,
+      15
+     ],
+     "cls": "qc-op"
+    },
+    "classes": {
+     "qc-op": 1
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 14,
+  "box_levels": {
+   "0": 3,
+   "1": 11
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "qc-peer qc-relevance",
+   "box": [
+    18,
+    82,
+    505,
+    285
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 2
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 6,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   697
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch03-reporting-entity.html": {
+  "bricks": {
+   "title": {
+    "count": 6,
+    "first": {
+     "box": [
+      17,
+      17,
+      1246,
+      41
+     ],
+     "cls": "re-fs-head"
+    },
+    "classes": {
+     "re-fs-head": 2,
+     "re-obj-head": 1,
+     "re-period-head": 1,
+     "re-head": 2
+    }
+   },
+   "section-chip": {
+    "count": 7,
+    "first": {
+     "box": [
+      17,
+      17,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 7
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 2,
+    "first": {
+     "box": [
+      532,
+      929,
+      115,
+      25
+     ],
+     "cls": "re-see"
+    },
+    "classes": {
+     "re-see": 2
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      681,
+      1280,
+      46
+     ],
+     "cls": "re-stem"
+    },
+    "classes": {
+     "re-stem": 1,
+     "org-fork-stem": 1
+    }
+   },
+   "flow-label": {
+    "count": 2,
+    "first": {
+     "box": [
+      654,
+      696,
+      58,
+      14
+     ],
+     "cls": "re-stem-label"
+    },
+    "classes": {
+     "re-stem-label": 1,
+     "re-fork-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 1,
+    "first": {
+     "box": [
+      292,
+      136,
+      22,
+      17
+     ],
+     "cls": "re-dual-and"
+    },
+    "classes": {
+     "re-dual-and": 1
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 1,
+    "first": {
+     "box": [
+      31,
+      348,
+      1232,
+      84
+     ],
+     "cls": "re-axis"
+    },
+    "classes": {
+     "re-axis": 1
+    }
+   },
+   "time-marker": {
+    "count": 3,
+    "first": {
+     "box": [
+      31,
+      348,
+      403,
+      52
+     ],
+     "cls": "re-tick"
+    },
+    "classes": {
+     "re-tick": 3
+    }
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 1,
+    "first": {
+     "box": [
+      28,
+      919,
+      460,
+      120
+     ],
+     "cls": "org-chart"
+    },
+    "classes": {
+     "org-chart": 1
+    }
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 18,
+  "box_levels": {
+   "0": 2,
+   "1": 11,
+   "2": 5
+  },
+  "max_box_depth": 2,
+  "deepest": {
+   "cls": "box entity-parent org-parent",
+   "box": [
+    168,
+    919,
+    180,
+    43
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 4
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 8,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1227
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch04-elements.html": {
+  "bricks": {
+   "title": {
+    "count": 9,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "el-board-title"
+    },
+    "classes": {
+     "el-board-title": 1,
+     "el-head": 6,
+     "el-perf-title": 1,
+     "el-apply-title": 1
+    }
+   },
+   "section-chip": {
+    "count": 10,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 10
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 3,
+    "first": {
+     "box": [
+      800,
+      365,
+      451,
+      47
+     ],
+     "cls": "el-bar"
+    },
+    "classes": {
+     "el-bar": 3
+    }
+   },
+   "operator": {
+    "count": 2,
+    "first": {
+     "box": [
+      364,
+      183,
+      9,
+      15
+     ],
+     "cls": "el-op el-op--minus"
+    },
+    "classes": {
+     "el-op": 2
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 13,
+  "box_levels": {
+   "0": 6,
+   "1": 4,
+   "2": 3
+  },
+  "max_box_depth": 2,
+  "deepest": {
+   "cls": "el-cell",
+   "box": [
+    800,
+    151,
+    219,
+    202
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 3
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 17,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   605
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch05-recognition-derecognition.html": {
+  "bricks": {
+   "title": {
+    "count": 6,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "rc-board-title"
+    },
+    "classes": {
+     "rc-board-title": 1,
+     "rc-head": 3,
+     "rc-peer-head": 2
+    }
+   },
+   "section-chip": {
+    "count": 7,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 7
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 1,
+    "first": {
+     "box": [
+      84,
+      1015,
+      509,
+      17
+     ],
+     "cls": "see-also-strip"
+    },
+    "classes": {
+     "see-also-strip": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 5,
+    "first": {
+     "box": [
+      891,
+      34,
+      54,
+      83
+     ],
+     "cls": "rc-link rc-link--h rc-no-def"
+    },
+    "classes": {
+     "rc-link": 5
+    }
+   },
+   "flow-label": {
+    "count": 5,
+    "first": {
+     "box": [
+      891,
+      65,
+      54,
+      15
+     ],
+     "cls": "rc-link-label"
+    },
+    "classes": {
+     "rc-link-label": 5
+    }
+   },
+   "link-bar": {
+    "count": 3,
+    "first": {
+     "box": [
+      18,
+      483,
+      855,
+      33
+     ],
+     "cls": "rc-bar rc-bar--plain"
+    },
+    "classes": {
+     "rc-bar": 3
+    }
+   },
+   "operator": {
+    "count": 2,
+    "first": {
+     "box": [
+      439,
+      332,
+      14,
+      15
+     ],
+     "cls": "rc-op"
+    },
+    "classes": {
+     "rc-op": 2
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 15,
+  "box_levels": {
+   "0": 6,
+   "1": 9
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "rc-peer rc-relevance",
+   "box": [
+    18,
+    205,
+    409,
+    268
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 4,
+   "ink": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 9,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1061
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch06-measurement.html": {
+  "bricks": {
+   "title": {
+    "count": 5,
+    "first": {
+     "box": [
+      18,
+      199,
+      780,
+      47
+     ],
+     "cls": "mx-zone-head"
+    },
+    "classes": {
+     "mx-zone-head": 1,
+     "mx-board-title": 1,
+     "mx-sec-title": 2,
+     "mx-exit-title": 1
+    }
+   },
+   "section-chip": {
+    "count": 9,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 9
+    }
+   },
+   "kicker": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "mx-kicker"
+    },
+    "classes": {
+     "mx-kicker": 1
+    }
+   },
+   "tag": {
+    "count": 3,
+    "first": {
+     "box": [
+      18,
+      48,
+      780,
+      15
+     ],
+     "cls": "mx-leaf-tag"
+    },
+    "classes": {
+     "mx-leaf-tag": 2,
+     "mx-tag": 1
+    }
+   },
+   "see-also": {
+    "count": 2,
+    "first": {
+     "box": [
+      341,
+      440,
+      443,
+      32
+     ],
+     "cls": "mx-see"
+    },
+    "classes": {
+     "mx-see": 1,
+     "see-also-strip": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      122,
+      816,
+      59
+     ],
+     "cls": "mx-stem m-flow"
+    },
+    "classes": {
+     "mx-stem": 1,
+     "m-flow": 1
+    }
+   },
+   "flow-label": {
+    "count": 2,
+    "first": {
+     "box": [
+      355,
+      146,
+      106,
+      19
+     ],
+     "cls": "mx-stem-label"
+    },
+    "classes": {
+     "mx-stem-label": 1,
+     "mx-dead-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 2,
+    "first": {
+     "box": [
+      18,
+      497,
+      780,
+      33
+     ],
+     "cls": "mx-span"
+    },
+    "classes": {
+     "mx-span": 1,
+     "mx-bar": 1
+    }
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 1,
+    "first": {
+     "box": [
+      31,
+      585,
+      754,
+      158
+     ],
+     "cls": "mx-grid"
+    },
+    "classes": {
+     "mx-grid": 1
+    }
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 46,
+  "box_levels": {
+   "0": 4,
+   "1": 6,
+   "2": 36
+  },
+  "max_box_depth": 2,
+  "deepest": {
+   "cls": "mx-sib",
+   "box": [
+    341,
+    325,
+    218,
+    50
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 19
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 6,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1176
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch07-presentation-disclosure.html": {
+  "bricks": {
+   "title": {
+    "count": 18,
+    "first": {
+     "box": [
+      26,
+      112,
+      245,
+      22
+     ],
+     "cls": "pd-head"
+    },
+    "classes": {
+     "pd-head": 9,
+     "pd-title": 9
+    }
+   },
+   "section-chip": {
+    "count": 9,
+    "first": {
+     "box": [
+      26,
+      112,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 9
+    }
+   },
+   "kicker": {
+    "count": 4,
+    "first": {
+     "box": [
+      13,
+      13,
+      271,
+      12
+     ],
+     "cls": "pd-kicker"
+    },
+    "classes": {
+     "pd-kicker": 3,
+     "pd-nest-label": 1
+    }
+   },
+   "tag": {
+    "count": 1,
+    "first": {
+     "box": [
+      339,
+      552,
+      38,
+      13
+     ],
+     "cls": "pd-levels-tag"
+    },
+    "classes": {
+     "pd-levels-tag": 1
+    }
+   },
+   "see-also": {
+    "count": 2,
+    "first": {
+     "box": [
+      996,
+      551,
+      271,
+      31
+     ],
+     "cls": "pd-see"
+    },
+    "classes": {
+     "pd-see": 1,
+     "see-also-strip": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 2,
+    "first": {
+     "box": [
+      593,
+      266,
+      23,
+      10
+     ],
+     "cls": "pd-stem pd-stem--primary"
+    },
+    "classes": {
+     "pd-stem": 2
+    }
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 18,
+  "box_levels": {
+   "0": 3,
+   "1": 9,
+   "2": 1,
+   "3": 5
+  },
+  "max_box_depth": 3,
+  "deepest": {
+   "cls": "pd-rank pd-rank--primary",
+   "box": [
+    352,
+    247,
+    240,
+    48
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 6
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 3,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   595
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch08-capital.html": {
+  "bricks": {
+   "title": {
+    "count": 4,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "cap-board-title"
+    },
+    "classes": {
+     "cap-board-title": 1,
+     "cap-link-head": 3
+    }
+   },
+   "section-chip": {
+    "count": 7,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 7
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      632,
+      1280,
+      48
+     ],
+     "cls": "cap-see"
+    },
+    "classes": {
+     "cap-see": 1,
+     "see-also-strip": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 3,
+    "first": {
+     "box": [
+      0,
+      494,
+      419,
+      121
+     ],
+     "cls": "cap-link"
+    },
+    "classes": {
+     "cap-link": 3
+    }
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 1,
+    "first": {
+     "box": [
+      17,
+      71,
+      1246,
+      391
+     ],
+     "cls": "cap-matrix"
+    },
+    "classes": {
+     "cap-matrix": 1
+    }
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 6,
+  "box_levels": {
+   "0": 5,
+   "1": 1
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "cap-matrix",
+   "box": [
+    17,
+    71,
+    1246,
+    391
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 7,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   680
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch09-combined.html": {
+  "bricks": {
+   "title": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "section-chip": {
+    "count": 22,
+    "first": {
+     "box": [
+      33,
+      29,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 22
+    }
+   },
+   "kicker": {
+    "count": 6,
+    "first": {
+     "box": [
+      33,
+      29,
+      1214,
+      22
+     ],
+     "cls": "hub-head"
+    },
+    "classes": {
+     "hub-head": 1,
+     "zone-head": 5
+    }
+   },
+   "tag": {
+    "count": 3,
+    "first": {
+     "box": [
+      469,
+      653,
+      40,
+      15
+     ],
+     "cls": "src"
+    },
+    "classes": {
+     "src": 2,
+     "differ-note": 1
+    }
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 1,
+    "first": {
+     "box": [
+      16,
+      1108,
+      1248,
+      127
+     ],
+     "cls": "sec"
+    },
+    "classes": {
+     "sec": 1
+    }
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 2,
+    "first": {
+     "box": [
+      16,
+      310,
+      1248,
+      16
+     ],
+     "cls": "stem"
+    },
+    "classes": {
+     "stem": 2
+    }
+   },
+   "flow-label": {
+    "count": 4,
+    "first": {
+     "box": [
+      42,
+      183,
+      46,
+      22
+     ],
+     "cls": "mid yes"
+    },
+    "classes": {
+     "mid": 4
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 20,
+  "box_levels": {
+   "0": 7,
+   "1": 13
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "branch leaf-yes",
+   "box": [
+    29,
+    170,
+    605,
+    111
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 3,
+   "ink": 2
+  },
+  "graph_paper": false,
+  "para_text": [
+   {
+    "text": "IFRS 1 D16(a)",
+    "cls": ""
+   },
+   {
+    "text": "D16(b) / continuity",
+    "cls": ""
+   }
+  ],
+  "dark_text": [],
+  "grid_containers": 6,
+  "scope_box": [
+   16,
+   16,
+   1248,
+   1219
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch10-carve.html": {
+  "bricks": {
+   "title": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "section-chip": {
+    "count": 25,
+    "first": {
+     "box": [
+      33,
+      29,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 25
+    }
+   },
+   "kicker": {
+    "count": 4,
+    "first": {
+     "box": [
+      33,
+      29,
+      1214,
+      22
+     ],
+     "cls": "hub-head"
+    },
+    "classes": {
+     "hub-head": 1,
+     "zone-head": 3
+    }
+   },
+   "tag": {
+    "count": 6,
+    "first": {
+     "box": [
+      469,
+      757,
+      40,
+      15
+     ],
+     "cls": "src"
+    },
+    "classes": {
+     "src": 4,
+     "differ-note": 2
+    }
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 1,
+    "first": {
+     "box": [
+      16,
+      1054,
+      1248,
+      127
+     ],
+     "cls": "sec"
+    },
+    "classes": {
+     "sec": 1
+    }
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 2,
+    "first": {
+     "box": [
+      16,
+      344,
+      1248,
+      16
+     ],
+     "cls": "stem"
+    },
+    "classes": {
+     "stem": 2
+    }
+   },
+   "flow-label": {
+    "count": 4,
+    "first": {
+     "box": [
+      42,
+      200,
+      46,
+      22
+     ],
+     "cls": "mid yes"
+    },
+    "classes": {
+     "mid": 4
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 17,
+  "box_levels": {
+   "0": 5,
+   "1": 12
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "branch leaf-yes",
+   "box": [
+    29,
+    187,
+    605,
+    128
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 3,
+   "ink": 2
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 5,
+  "scope_box": [
+   16,
+   16,
+   1248,
+   1165
+  ]
+ },
+ "cf-2018/draft-v1-linked/visuals/ch11-status.html": {
+  "bricks": {
+   "title": {
+    "count": 2,
+    "first": {
+     "box": [
+      29,
+      141,
+      1222,
+      22
+     ],
+     "cls": "zone-title"
+    },
+    "classes": {
+     "zone-title": 2
+    }
+   },
+   "section-chip": {
+    "count": 13,
+    "first": {
+     "box": [
+      33,
+      29,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 13
+    }
+   },
+   "kicker": {
+    "count": 4,
+    "first": {
+     "box": [
+      33,
+      29,
+      1214,
+      22
+     ],
+     "cls": "hub-head"
+    },
+    "classes": {
+     "hub-head": 1,
+     "zone-head": 3
+    }
+   },
+   "tag": {
+    "count": 15,
+    "first": {
+     "box": [
+      45,
+      282,
+      40,
+      15
+     ],
+     "cls": "src"
+    },
+    "classes": {
+     "src": 11,
+     "differ-note": 4
+    }
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 1,
+    "first": {
+     "box": [
+      16,
+      1404,
+      1248,
+      216
+     ],
+     "cls": "sec"
+    },
+    "classes": {
+     "sec": 1
+    }
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 4,
+    "first": {
+     "box": [
+      16,
+      416,
+      1248,
+      16
+     ],
+     "cls": "stem"
+    },
+    "classes": {
+     "stem": 3,
+     "step-link": 1
+    }
+   },
+   "flow-label": {
+    "count": 2,
+    "first": {
+     "box": [
+      42,
+      526,
+      43,
+      22
+     ],
+     "cls": "mid no"
+    },
+    "classes": {
+     "mid": 2
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 22,
+  "box_levels": {
+   "0": 6,
+   "1": 16
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "card",
+   "box": [
+    29,
+    175,
+    399,
+    93
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 2,
+   "ink": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 6,
+  "scope_box": [
+   16,
+   16,
+   1248,
+   1604
+  ]
+ },
+ "ias-16/draft-v1-linked/visuals/ch01-scope.html": {
+  "bricks": {
+   "title": {
+    "count": 8,
+    "first": {
+     "box": [
+      13,
+      8,
+      818,
+      29
+     ],
+     "cls": "q-title"
+    },
+    "classes": {
+     "q-title": 2,
+     "peer-title": 3,
+     "tip-title": 3
+    }
+   },
+   "section-chip": {
+    "count": 6,
+    "first": {
+     "box": [
+      13,
+      8,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 6
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 8,
+    "first": {
+     "box": [
+      962,
+      127,
+      94,
+      33
+     ],
+     "cls": "see pack-see-not"
+    },
+    "classes": {
+     "see": 8,
+     "pack-see-not": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 4,
+    "first": {
+     "box": [
+      844,
+      0,
+      118,
+      160
+     ],
+     "cls": "harm harm-mute"
+    },
+    "classes": {
+     "harm": 2,
+     "varm": 2
+    }
+   },
+   "flow-label": {
+    "count": 4,
+    "first": {
+     "box": [
+      891,
+      60,
+      22,
+      17
+     ],
+     "cls": "arm-label"
+    },
+    "classes": {
+     "arm-label": 4
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 2,
+    "first": {
+     "box": [
+      277,
+      86,
+      9,
+      15
+     ],
+     "cls": "crit-op"
+    },
+    "classes": {
+     "crit-op": 2
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 24,
+  "box_levels": {
+   "0": 13,
+   "1": 11
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "peer",
+   "box": [
+    13,
+    49,
+    257,
+    89
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "see": 8,
+   "stop": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 4,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   980
+  ]
+ },
+ "ias-16/draft-v1-linked/visuals/ch02-recognition.html": {
+  "bricks": {
+   "title": {
+    "count": 4,
+    "first": {
+     "box": [
+      13,
+      8,
+      818,
+      35
+     ],
+     "cls": "q-title"
+    },
+    "classes": {
+     "q-title": 1,
+     "peer-title": 2,
+     "plate-title": 1
+    }
+   },
+   "section-chip": {
+    "count": 9,
+    "first": {
+     "box": [
+      13,
+      8,
+      46,
+      27
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 9
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 3,
+    "first": {
+     "box": [
+      734,
+      187,
+      89,
+      26
+     ],
+     "cls": "see"
+    },
+    "classes": {
+     "see": 3
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 3,
+    "first": {
+     "box": [
+      13,
+      265,
+      169,
+      83
+     ],
+     "cls": "inner-rail"
+    },
+    "classes": {
+     "inner-rail": 3
+    }
+   },
+   "rail-link": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      703,
+      1278,
+      34
+     ],
+     "cls": "rail-link handoff"
+    },
+    "classes": {
+     "rail-link": 1
+    }
+   },
+   "flow-arrow": {
+    "count": 2,
+    "first": {
+     "box": [
+      844,
+      0,
+      118,
+      356
+     ],
+     "cls": "harm harm-mute"
+    },
+    "classes": {
+     "harm": 1,
+     "varm": 1
+    }
+   },
+   "flow-label": {
+    "count": 3,
+    "first": {
+     "box": [
+      891,
+      158,
+      22,
+      17
+     ],
+     "cls": "arm-label"
+    },
+    "classes": {
+     "arm-label": 3,
+     "exit-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 1,
+    "first": {
+     "box": [
+      417,
+      83,
+      9,
+      15
+     ],
+     "cls": "crit-op"
+    },
+    "classes": {
+     "crit-op": 1
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      703,
+      1278,
+      34
+     ],
+     "cls": "rail-link handoff"
+    },
+    "classes": {
+     "handoff": 1
+    }
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 16,
+  "box_levels": {
+   "0": 4,
+   "1": 9,
+   "2": 3
+  },
+  "max_box_depth": 2,
+  "deepest": {
+   "cls": "see",
+   "box": [
+    734,
+    187,
+    89,
+    26
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "see": 3
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 4,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   737
+  ]
+ },
+ "ias-16/draft-v1-linked/visuals/ch03-initial.html": {
+  "bricks": {
+   "title": {
+    "count": 11,
+    "first": {
+     "box": [
+      14,
+      14,
+      1250,
+      29
+     ],
+     "cls": "plate-title"
+    },
+    "classes": {
+     "plate-title": 1,
+     "limb-title": 4,
+     "facet-title": 4,
+     "peer-title": 2
+    }
+   },
+   "section-chip": {
+    "count": 13,
+    "first": {
+     "box": [
+      14,
+      14,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 13
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 8,
+    "first": {
+     "box": [
+      682,
+      367,
+      99,
+      33
+     ],
+     "cls": "see"
+    },
+    "classes": {
+     "see": 8
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      1430,
+      1278,
+      34
+     ],
+     "cls": "rail-link handoff"
+    },
+    "classes": {
+     "rail-link": 1
+    }
+   },
+   "flow-arrow": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-label": {
+    "count": 1,
+    "first": {
+     "box": [
+      646,
+      1401,
+      103,
+      20
+     ],
+     "cls": "arm-label exit-label"
+    },
+    "classes": {
+     "arm-label": 1,
+     "exit-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 7,
+    "first": {
+     "box": [
+      338,
+      224,
+      27,
+      15
+     ],
+     "cls": "cost-op op-eq"
+    },
+    "classes": {
+     "cost-op": 3,
+     "op-eq": 1,
+     "mini-op": 3,
+     "op-p1": 1,
+     "op-p2": 1,
+     "differ-op": 1
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 1,
+    "first": {
+     "box": [
+      326,
+      424,
+      938,
+      330
+     ],
+     "cls": "ready-axis"
+    },
+    "classes": {
+     "ready-axis": 1
+    }
+   },
+   "time-marker": {
+    "count": 1,
+    "first": {
+     "box": [
+      700,
+      519,
+      12,
+      15
+     ],
+     "cls": "axis-mark"
+    },
+    "classes": {
+     "axis-mark": 1
+    }
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      1430,
+      1278,
+      34
+     ],
+     "cls": "rail-link handoff"
+    },
+    "classes": {
+     "handoff": 1
+    }
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 36,
+  "box_levels": {
+   "0": 2,
+   "1": 11,
+   "2": 17,
+   "3": 6
+  },
+  "max_box_depth": 3,
+  "deepest": {
+   "cls": "item-rows",
+   "box": [
+    400,
+    550,
+    199,
+    168
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 1,
+   "see": 8
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 5,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1464
+  ]
+ },
+ "ias-16/draft-v1-linked/visuals/ch04-models.html": {
+  "bricks": {
+   "title": {
+    "count": 16,
+    "first": {
+     "box": [
+      14,
+      99,
+      1245,
+      29
+     ],
+     "cls": "plate-title"
+    },
+    "classes": {
+     "plate-title": 3,
+     "policy-title": 1,
+     "peer-title": 8,
+     "model-child-title": 4
+    }
+   },
+   "section-chip": {
+    "count": 30,
+    "first": {
+     "box": [
+      14,
+      99,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 30
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 3,
+    "first": {
+     "box": [
+      165,
+      1609,
+      1093,
+      32
+     ],
+     "cls": "lane-tag"
+    },
+    "classes": {
+     "lane-tag": 1,
+     "impair-formula-tag": 2
+    }
+   },
+   "see-also": {
+    "count": 15,
+    "first": {
+     "box": [
+      156,
+      486,
+      713,
+      46
+     ],
+     "cls": "see see-wide"
+    },
+    "classes": {
+     "see": 15
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 17,
+    "first": {
+     "box": [
+      22,
+      1932,
+      100,
+      26
+     ],
+     "cls": "cite cite-official"
+    },
+    "classes": {
+     "cite": 17
+    }
+   },
+   "rail": {
+    "count": 5,
+    "first": {
+     "box": [
+      15,
+      1731,
+      169,
+      29
+     ],
+     "cls": "lc-head-k"
+    },
+    "classes": {
+     "lc-head-k": 4,
+     "inner-rail": 1
+    }
+   },
+   "rail-link": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      3999,
+      1278,
+      34
+     ],
+     "cls": "rail-link handoff"
+    },
+    "classes": {
+     "rail-link": 1
+    }
+   },
+   "flow-arrow": {
+    "count": 3,
+    "first": {
+     "box": [
+      464,
+      52,
+      350,
+      26
+     ],
+     "cls": "pack-flow-shaft m-flow"
+    },
+    "classes": {
+     "m-flow": 1,
+     "lc-arrow": 2
+    }
+   },
+   "flow-label": {
+    "count": 2,
+    "first": {
+     "box": [
+      464,
+      52,
+      350,
+      26
+     ],
+     "cls": "pack-flow-label"
+    },
+    "classes": {
+     "pack-flow-label": 1,
+     "arm-label": 1,
+     "exit-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      14,
+      1500,
+      662,
+      74
+     ],
+     "cls": "both-bar"
+    },
+    "classes": {
+     "both-bar": 1
+    }
+   },
+   "operator": {
+    "count": 6,
+    "first": {
+     "box": [
+      172,
+      768,
+      24,
+      15
+     ],
+     "cls": "vop"
+    },
+    "classes": {
+     "vop": 6
+    }
+   },
+   "rule-line": {
+    "count": 4,
+    "first": {
+     "box": [
+      200,
+      831,
+      499,
+      7
+     ],
+     "cls": "vrule"
+    },
+    "classes": {
+     "vrule": 4,
+     "vrule-2": 2
+    }
+   },
+   "time-axis": {
+    "count": 2,
+    "first": {
+     "box": [
+      198,
+      1745,
+      1052,
+      16
+     ],
+     "cls": "lc-axis"
+    },
+    "classes": {
+     "lc-axis": 2
+    }
+   },
+   "time-marker": {
+    "count": 11,
+    "first": {
+     "box": [
+      198,
+      1656,
+      211,
+      44
+     ],
+     "cls": "lc-end lc-begin"
+    },
+    "classes": {
+     "lc-end": 4,
+     "lc-ring": 4,
+     "lc-dia": 3
+    }
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      0,
+      1278,
+      40
+     ],
+     "cls": "master-echo"
+    },
+    "classes": {
+     "master-echo": 1
+    }
+   },
+   "hand-off": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      52,
+      1278,
+      26
+     ],
+     "cls": "pack-flow pack-flow-in"
+    },
+    "classes": {
+     "pack-flow": 1,
+     "handoff": 1
+    }
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 2,
+    "first": {
+     "box": [
+      14,
+      662,
+      1245,
+      46
+     ],
+     "cls": "lens-heads"
+    },
+    "classes": {
+     "lens-heads": 1,
+     "rev-table": 1
+    }
+   },
+   "m-see-paint": {
+    "count": 2,
+    "first": {
+     "box": [
+      22,
+      3150,
+      1228,
+      196
+     ],
+     "cls": "impair-formula-cell impair-formula-contrast-cell m-see"
+    },
+    "classes": {
+     "m-see": 2
+    }
+   }
+  },
+  "boxes": 121,
+  "box_levels": {
+   "0": 6,
+   "1": 39,
+   "2": 63,
+   "3": 13
+  },
+  "max_box_depth": 3,
+  "deepest": {
+   "cls": "see",
+   "box": [
+    950,
+    1700,
+    94,
+    33
+   ]
+  },
+  "strips": [
+   {
+    "cls": "lc-arrow",
+    "w": 6,
+    "box": [
+     1244,
+     1747,
+     6,
+     10
+    ],
+    "text": ""
+   },
+   {
+    "cls": "lc-arrow",
+    "w": 6,
+    "box": [
+     1244,
+     2849,
+     6,
+     10
+    ],
+    "text": ""
+   }
+  ],
+  "tones": {
+   "accent": 17,
+   "see": 17
+  },
+  "graph_paper": false,
+  "para_text": [
+   {
+    "text": "IAS 16 \u00b7 para 30",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 117",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 119",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 39",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 41",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 41",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 41",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 42",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 61",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 63",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 63",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 61",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 117",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 65",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 66",
+    "cls": "cite cite-official"
+   }
+  ],
+  "dark_text": [],
+  "grid_containers": 20,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   4033
+  ]
+ },
+ "ias-16/draft-v1-linked/visuals/ch05-depreciation.html": {
+  "bricks": {
+   "title": {
+    "count": 7,
+    "first": {
+     "box": [
+      14,
+      99,
+      1245,
+      37
+     ],
+     "cls": "plate-title"
+    },
+    "classes": {
+     "plate-title": 1,
+     "limb-title": 6
+    }
+   },
+   "section-chip": {
+    "count": 14,
+    "first": {
+     "box": [
+      14,
+      99,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 14
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 4,
+    "first": {
+     "box": [
+      950,
+      204,
+      94,
+      26
+     ],
+     "cls": "see"
+    },
+    "classes": {
+     "see": 4
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 19,
+    "first": {
+     "box": [
+      15,
+      229,
+      169,
+      29
+     ],
+     "cls": "lc-head-k"
+    },
+    "classes": {
+     "lc-head-k": 2,
+     "inner-rail": 17
+    }
+   },
+   "rail-link": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      1760,
+      1278,
+      34
+     ],
+     "cls": "rail-link handoff"
+    },
+    "classes": {
+     "rail-link": 1
+    }
+   },
+   "flow-arrow": {
+    "count": 2,
+    "first": {
+     "box": [
+      545,
+      52,
+      189,
+      26
+     ],
+     "cls": "pack-flow-shaft m-flow"
+    },
+    "classes": {
+     "m-flow": 1,
+     "lc-arrow": 1
+    }
+   },
+   "flow-label": {
+    "count": 2,
+    "first": {
+     "box": [
+      545,
+      52,
+      189,
+      26
+     ],
+     "cls": "pack-flow-label"
+    },
+    "classes": {
+     "pack-flow-label": 1,
+     "arm-label": 1,
+     "exit-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      198,
+      1172,
+      415,
+      19
+     ],
+     "cls": "consume-bar"
+    },
+    "classes": {
+     "consume-bar": 1
+    }
+   },
+   "operator": {
+    "count": 5,
+    "first": {
+     "box": [
+      710,
+      349,
+      9,
+      15
+     ],
+     "cls": "cost-op"
+    },
+    "classes": {
+     "cost-op": 4,
+     "def-op": 1
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 1,
+    "first": {
+     "box": [
+      198,
+      243,
+      1052,
+      16
+     ],
+     "cls": "lc-axis"
+    },
+    "classes": {
+     "lc-axis": 1
+    }
+   },
+   "time-marker": {
+    "count": 8,
+    "first": {
+     "box": [
+      198,
+      161,
+      211,
+      75
+     ],
+     "cls": "lc-end lc-begin"
+    },
+    "classes": {
+     "lc-end": 2,
+     "lc-ring": 2,
+     "lc-tick": 4
+    }
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      0,
+      1278,
+      40
+     ],
+     "cls": "master-echo"
+    },
+    "classes": {
+     "master-echo": 1
+    }
+   },
+   "hand-off": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      52,
+      1278,
+      26
+     ],
+     "cls": "pack-flow pack-flow-in"
+    },
+    "classes": {
+     "pack-flow": 1,
+     "handoff": 1
+    }
+   },
+   "glyph": {
+    "count": 3,
+    "first": {
+     "box": [
+      240,
+      1231,
+      120,
+      48
+     ],
+     "cls": "method-chart"
+    },
+    "classes": {
+     "method-chart": 3
+    }
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 66,
+  "box_levels": {
+   "0": 5,
+   "1": 28,
+   "2": 26,
+   "3": 7
+  },
+  "max_box_depth": 3,
+  "deepest": {
+   "cls": "see",
+   "box": [
+    950,
+    204,
+    94,
+    26
+   ]
+  },
+  "strips": [
+   {
+    "cls": "lc-arrow",
+    "w": 6,
+    "box": [
+     1244,
+     245,
+     6,
+     10
+    ],
+    "text": ""
+   }
+  ],
+  "tones": {
+   "accent": 4,
+   "see": 4
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 13,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1845
+  ]
+ },
+ "ias-16/draft-v1-linked/visuals/ch06-derecognition.html": {
+  "bricks": {
+   "title": {
+    "count": 14,
+    "first": {
+     "box": [
+      14,
+      160,
+      1245,
+      29
+     ],
+     "cls": "plate-title"
+    },
+    "classes": {
+     "plate-title": 1,
+     "peer-title": 10,
+     "limb-title": 3
+    }
+   },
+   "section-chip": {
+    "count": 16,
+    "first": {
+     "box": [
+      14,
+      160,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 16
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 4,
+    "first": {
+     "box": [
+      198,
+      356,
+      207,
+      39
+     ],
+     "cls": "see"
+    },
+    "classes": {
+     "see": 4,
+     "foot-see": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 2,
+    "first": {
+     "box": [
+      22,
+      1404,
+      100,
+      26
+     ],
+     "cls": "cite cite-official"
+    },
+    "classes": {
+     "cite": 2
+    }
+   },
+   "rail": {
+    "count": 5,
+    "first": {
+     "box": [
+      14,
+      205,
+      169,
+      199
+     ],
+     "cls": "inner-rail"
+    },
+    "classes": {
+     "inner-rail": 5
+    }
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      68,
+      671,
+      55
+     ],
+     "cls": "pack-flow-shaft m-flow"
+    },
+    "classes": {
+     "m-flow": 1
+    }
+   },
+   "flow-label": {
+    "count": 1,
+    "first": {
+     "box": [
+      115,
+      82,
+      442,
+      26
+     ],
+     "cls": "pack-flow-label"
+    },
+    "classes": {
+     "pack-flow-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 4,
+    "first": {
+     "box": [
+      526,
+      258,
+      22,
+      14
+     ],
+     "cls": "when-or"
+    },
+    "classes": {
+     "when-or": 1,
+     "cost-op": 2,
+     "differ-op": 1
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      0,
+      1278,
+      40
+     ],
+     "cls": "master-echo"
+    },
+    "classes": {
+     "master-echo": 1
+    }
+   },
+   "hand-off": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      68,
+      1278,
+      55
+     ],
+     "cls": "pack-flow pack-flow-in"
+    },
+    "classes": {
+     "pack-flow": 1,
+     "pack-exit": 1
+    }
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      1337,
+      1273,
+      156
+     ],
+     "cls": "comp-nest m-see"
+    },
+    "classes": {
+     "m-see": 2
+    }
+   }
+  },
+  "boxes": 50,
+  "box_levels": {
+   "0": 5,
+   "1": 16,
+   "2": 18,
+   "3": 9,
+   "4": 2
+  },
+  "max_box_depth": 4,
+  "deepest": {
+   "cls": "item-rows",
+   "box": [
+    215,
+    1169,
+    409,
+    38
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 3,
+   "see": 6
+  },
+  "graph_paper": false,
+  "para_text": [
+   {
+    "text": "IAS 16 \u00b7 para 65",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 66",
+    "cls": "cite cite-official"
+   }
+  ],
+  "dark_text": [],
+  "grid_containers": 7,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1536
+  ]
+ },
+ "ias-16/draft-v1-linked/visuals/ch07-disclosure.html": {
+  "bricks": {
+   "title": {
+    "count": 1,
+    "first": {
+     "box": [
+      14,
+      41,
+      1250,
+      35
+     ],
+     "cls": "plate-title"
+    },
+    "classes": {
+     "plate-title": 1
+    }
+   },
+   "section-chip": {
+    "count": 11,
+    "first": {
+     "box": [
+      14,
+      41,
+      46,
+      27
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 11
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 2,
+    "first": {
+     "box": [
+      14,
+      1267,
+      229,
+      45
+     ],
+     "cls": "see"
+    },
+    "classes": {
+     "see": 2
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 2,
+    "first": {
+     "box": [
+      384,
+      537,
+      113,
+      26
+     ],
+     "cls": "cite cite-official"
+    },
+    "classes": {
+     "cite": 2
+    }
+   },
+   "rail": {
+    "count": 11,
+    "first": {
+     "box": [
+      14,
+      88,
+      169,
+      522
+     ],
+     "cls": "inner-rail"
+    },
+    "classes": {
+     "inner-rail": 11
+    }
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 1,
+    "first": {
+     "box": [
+      375,
+      390,
+      881,
+      115
+     ],
+     "cls": "recon-cols"
+    },
+    "classes": {
+     "recon-cols": 1
+    }
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 36,
+  "box_levels": {
+   "0": 1,
+   "1": 22,
+   "2": 13
+  },
+  "max_box_depth": 2,
+  "deepest": {
+   "cls": "item-rows",
+   "box": [
+    375,
+    153,
+    881,
+    59
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 1,
+   "see": 2
+  },
+  "graph_paper": false,
+  "para_text": [
+   {
+    "text": "IAS 16 \u00b7 para 73(e)",
+    "cls": "cite cite-official"
+   }
+  ],
+  "dark_text": [],
+  "grid_containers": 4,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1466
+  ]
+ },
+ "ias-16/draft-v1-linked/visuals/master-concept-map.html": {
+  "bricks": {
+   "title": {
+    "count": 60,
+    "first": {
+     "box": [
+      163,
+      8,
+      709,
+      29
+     ],
+     "cls": "q-title"
+    },
+    "classes": {
+     "q-title": 3,
+     "peer-title": 24,
+     "tip-title": 3,
+     "plate-title": 8,
+     "limb-title": 13,
+     "facet-title": 4,
+     "policy-title": 1,
+     "model-child-title": 4
+    }
+   },
+   "section-chip": {
+    "count": 97,
+    "first": {
+     "box": [
+      163,
+      8,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 97
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 3,
+    "first": {
+     "box": [
+      316,
+      6820,
+      927,
+      32
+     ],
+     "cls": "lane-tag"
+    },
+    "classes": {
+     "lane-tag": 1,
+     "impair-formula-tag": 2
+    }
+   },
+   "see-also": {
+    "count": 43,
+    "first": {
+     "box": [
+      988,
+      129,
+      94,
+      33
+     ],
+     "cls": "see pack-see-not"
+    },
+    "classes": {
+     "see": 43,
+     "pack-see-not": 1,
+     "foot-see": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 19,
+    "first": {
+     "box": [
+      172,
+      7143,
+      100,
+      26
+     ],
+     "cls": "cite cite-official"
+    },
+    "classes": {
+     "cite": 19
+    }
+   },
+   "rail": {
+    "count": 43,
+    "first": {
+     "box": [
+      163,
+      1421,
+      169,
+      87
+     ],
+     "cls": "inner-rail"
+    },
+    "classes": {
+     "inner-rail": 37,
+     "lc-head-k": 6
+    }
+   },
+   "rail-link": {
+    "count": 9,
+    "first": {
+     "box": [
+      0,
+      0,
+      143,
+      1108
+     ],
+     "cls": "rail-link"
+    },
+    "classes": {
+     "rail-link": 9
+    }
+   },
+   "flow-arrow": {
+    "count": 16,
+    "first": {
+     "box": [
+      885,
+      0,
+      103,
+      163
+     ],
+     "cls": "harm harm-mute"
+    },
+    "classes": {
+     "harm": 3,
+     "varm": 3,
+     "m-flow": 7,
+     "lc-arrow": 3,
+     "impair-ca-arrow": 2
+    }
+   },
+   "flow-label": {
+    "count": 11,
+    "first": {
+     "box": [
+      926,
+      62,
+      22,
+      17
+     ],
+     "cls": "arm-label"
+    },
+    "classes": {
+     "arm-label": 7,
+     "pack-flow-label": 4,
+     "exit-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 2,
+    "first": {
+     "box": [
+      164,
+      4985,
+      573,
+      74
+     ],
+     "cls": "both-bar"
+    },
+    "classes": {
+     "both-bar": 1,
+     "consume-bar": 1
+    }
+   },
+   "operator": {
+    "count": 25,
+    "first": {
+     "box": [
+      391,
+      95,
+      9,
+      15
+     ],
+     "cls": "crit-op"
+    },
+    "classes": {
+     "crit-op": 3,
+     "cost-op": 9,
+     "op-eq": 1,
+     "mini-op": 3,
+     "op-p1": 1,
+     "op-p2": 1,
+     "differ-op": 2,
+     "vop": 6,
+     "def-op": 1,
+     "when-or": 1
+    }
+   },
+   "rule-line": {
+    "count": 4,
+    "first": {
+     "box": [
+      351,
+      4271,
+      416,
+      7
+     ],
+     "cls": "vrule"
+    },
+    "classes": {
+     "vrule": 4,
+     "vrule-2": 2
+    }
+   },
+   "time-axis": {
+    "count": 4,
+    "first": {
+     "box": [
+      435,
+      2355,
+      808,
+      333
+     ],
+     "cls": "ready-axis"
+    },
+    "classes": {
+     "ready-axis": 1,
+     "lc-axis": 3
+    }
+   },
+   "time-marker": {
+    "count": 20,
+    "first": {
+     "box": [
+      756,
+      2450,
+      12,
+      15
+     ],
+     "cls": "axis-mark"
+    },
+    "classes": {
+     "axis-mark": 1,
+     "lc-end": 6,
+     "lc-ring": 6,
+     "lc-tick": 4,
+     "lc-dia": 3
+    }
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 6,
+    "first": {
+     "box": [
+      150,
+      1842,
+      1114,
+      55
+     ],
+     "cls": "pack-flow"
+    },
+    "classes": {
+     "pack-flow": 5,
+     "pack-exit": 1
+    }
+   },
+   "glyph": {
+    "count": 3,
+    "first": {
+     "box": [
+      390,
+      6319,
+      120,
+      48
+     ],
+     "cls": "method-chart"
+    },
+    "classes": {
+     "method-chart": 3
+    }
+   },
+   "matrix": {
+    "count": 3,
+    "first": {
+     "box": [
+      164,
+      4102,
+      1079,
+      46
+     ],
+     "cls": "lens-heads"
+    },
+    "classes": {
+     "lens-heads": 1,
+     "rev-table": 1,
+     "recon-cols": 1
+    }
+   },
+   "m-see-paint": {
+    "count": 2,
+    "first": {
+     "box": [
+      172,
+      8439,
+      1062,
+      206
+     ],
+     "cls": "impair-formula-cell impair-formula-contrast-cell m-see"
+    },
+    "classes": {
+     "m-see": 2
+    }
+   }
+  },
+  "boxes": 327,
+  "box_levels": {
+   "0": 32,
+   "1": 121,
+   "2": 139,
+   "3": 33,
+   "4": 2
+  },
+  "max_box_depth": 4,
+  "deepest": {
+   "cls": "item-rows",
+   "box": [
+    365,
+    10397,
+    409,
+    55
+   ]
+  },
+  "strips": [
+   {
+    "cls": "lc-arrow",
+    "w": 6,
+    "box": [
+     1228,
+     5311,
+     6,
+     10
+    ],
+    "text": ""
+   },
+   {
+    "cls": "lc-arrow",
+    "w": 6,
+    "box": [
+     1229,
+     6959,
+     6,
+     10
+    ],
+    "text": ""
+   },
+   {
+    "cls": "lc-arrow",
+    "w": 6,
+    "box": [
+     1229,
+     8129,
+     6,
+     10
+    ],
+    "text": ""
+   }
+  ],
+  "tones": {
+   "see": 45,
+   "stop": 1,
+   "accent": 19
+  },
+  "graph_paper": true,
+  "para_text": [
+   {
+    "text": "IAS 16 \u00b7 para 30",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 117",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 119",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 39",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 41",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 41",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 41",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 42",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 61",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 63",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 63",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 61",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 36 \u00b7 para 117",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 65",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 66",
+    "cls": "cite cite-official"
+   },
+   {
+    "text": "IAS 16 \u00b7 para 73(e)",
+    "cls": "cite cite-official"
+   }
+  ],
+  "dark_text": [],
+  "grid_containers": 62,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   12040
+  ]
+ },
+ "ias-2/draft-v1-linked/visuals/ch01-scope.html": {
+  "bricks": {
+   "title": {
+    "count": 14,
+    "first": {
+     "box": [
+      15,
+      15,
+      1250,
+      22
+     ],
+     "cls": "q-title"
+    },
+    "classes": {
+     "q-title": 3,
+     "cell-title": 11
+    }
+   },
+   "section-chip": {
+    "count": 8,
+    "first": {
+     "box": [
+      15,
+      15,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 8
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 2,
+    "first": {
+     "box": [
+      676,
+      406,
+      602,
+      61
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "see": 2
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 6,
+    "first": {
+     "box": [
+      303,
+      238,
+      1,
+      76
+     ],
+     "cls": "stem-shaft m-flow"
+    },
+    "classes": {
+     "stem-shaft": 6,
+     "m-flow": 6
+    }
+   },
+   "flow-label": {
+    "count": 6,
+    "first": {
+     "box": [
+      290,
+      264,
+      26,
+      17
+     ],
+     "cls": "stem-label"
+    },
+    "classes": {
+     "stem-label": 6
+    }
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      2,
+      989,
+      1276,
+      31
+     ],
+     "cls": "bar st-span"
+    },
+    "classes": {
+     "bar": 1
+    }
+   },
+   "operator": {
+    "count": 5,
+    "first": {
+     "box": [
+      15,
+      113,
+      1250,
+      15
+     ],
+     "cls": "st-plus"
+    },
+    "classes": {
+     "st-plus": 1,
+     "or": 4
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 2,
+    "first": {
+     "box": [
+      676,
+      406,
+      602,
+      61
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "m-see": 2
+    }
+   }
+  },
+  "boxes": 18,
+  "box_levels": {
+   "0": 10,
+   "1": 8
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "st-asset",
+   "box": [
+    15,
+    73,
+    1250,
+    33
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "see": 2,
+   "stop": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 7,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1028
+  ]
+ },
+ "ias-2/draft-v1-linked/visuals/ch02-recognition.html": {
+  "bricks": {
+   "title": {
+    "count": 11,
+    "first": {
+     "box": [
+      15,
+      15,
+      1250,
+      22
+     ],
+     "cls": "q-title"
+    },
+    "classes": {
+     "q-title": 3,
+     "cell-title": 8
+    }
+   },
+   "section-chip": {
+    "count": 9,
+    "first": {
+     "box": [
+      15,
+      15,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 9
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 4,
+    "first": {
+     "box": [
+      15,
+      163,
+      1250,
+      61
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "see": 4
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 4,
+    "first": {
+     "box": [
+      303,
+      272,
+      1,
+      76
+     ],
+     "cls": "stem-shaft m-flow"
+    },
+    "classes": {
+     "stem-shaft": 4,
+     "m-flow": 4
+    }
+   },
+   "flow-label": {
+    "count": 3,
+    "first": {
+     "box": [
+      290,
+      298,
+      26,
+      17
+     ],
+     "cls": "stem-label"
+    },
+    "classes": {
+     "stem-label": 3
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 2,
+    "first": {
+     "box": [
+      414,
+      101,
+      23,
+      16
+     ],
+     "cls": "or"
+    },
+    "classes": {
+     "or": 2
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 4,
+    "first": {
+     "box": [
+      15,
+      163,
+      1250,
+      61
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "m-see": 4
+    }
+   }
+  },
+  "boxes": 15,
+  "box_levels": {
+   "0": 6,
+   "1": 9
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "cell",
+   "box": [
+    15,
+    73,
+    391,
+    71
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "see": 4
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 4,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   999
+  ]
+ },
+ "ias-2/draft-v1-linked/visuals/ch03-initial.html": {
+  "bricks": {
+   "title": {
+    "count": 11,
+    "first": {
+     "box": [
+      15,
+      65,
+      1250,
+      22
+     ],
+     "cls": "q-title"
+    },
+    "classes": {
+     "q-title": 2,
+     "cell-title": 9
+    }
+   },
+   "section-chip": {
+    "count": 12,
+    "first": {
+     "box": [
+      10,
+      10,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 12
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 2,
+    "first": {
+     "box": [
+      872,
+      207,
+      385,
+      61
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "see": 2
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 3,
+    "first": {
+     "box": [
+      640,
+      447,
+      1,
+      44
+     ],
+     "cls": "stem-shaft m-flow"
+    },
+    "classes": {
+     "stem-shaft": 3,
+     "m-flow": 3
+    }
+   },
+   "flow-label": {
+    "count": 3,
+    "first": {
+     "box": [
+      575,
+      457,
+      130,
+      17
+     ],
+     "cls": "stem-label"
+    },
+    "classes": {
+     "stem-label": 3
+    }
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      2,
+      2,
+      1276,
+      38
+     ],
+     "cls": "bar st-span st-top"
+    },
+    "classes": {
+     "bar": 1
+    }
+   },
+   "operator": {
+    "count": 2,
+    "first": {
+     "box": [
+      424,
+      198,
+      9,
+      15
+     ],
+     "cls": "cost-op"
+    },
+    "classes": {
+     "cost-op": 2
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 2,
+    "first": {
+     "box": [
+      872,
+      207,
+      385,
+      61
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "m-see": 2
+    }
+   }
+  },
+  "boxes": 14,
+  "box_levels": {
+   "0": 5,
+   "1": 8,
+   "2": 1
+  },
+  "max_box_depth": 2,
+  "deepest": {
+   "cls": "see m-see",
+   "box": [
+    872,
+    207,
+    385,
+    61
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "see": 2
+  },
+  "graph_paper": false,
+  "para_text": [
+   {
+    "text": "Para IN13; BC9\u2013BC21",
+    "cls": "leaf-note"
+   }
+  ],
+  "dark_text": [],
+  "grid_containers": 4,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   824
+  ]
+ },
+ "ias-2/draft-v1-linked/visuals/ch04-subsequent.html": {
+  "bricks": {
+   "title": {
+    "count": 14,
+    "first": {
+     "box": [
+      15,
+      15,
+      1250,
+      22
+     ],
+     "cls": "board-title"
+    },
+    "classes": {
+     "board-title": 1,
+     "arm-title": 2,
+     "cell-title": 9,
+     "q-title": 2
+    }
+   },
+   "section-chip": {
+    "count": 9,
+    "first": {
+     "box": [
+      15,
+      15,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 9
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 1,
+    "first": {
+     "box": [
+      541,
+      167,
+      711,
+      31
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "see": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 6,
+    "first": {
+     "box": [
+      640,
+      443,
+      1,
+      52
+     ],
+     "cls": "stem-shaft m-flow"
+    },
+    "classes": {
+     "stem-shaft": 6,
+     "m-flow": 6
+    }
+   },
+   "flow-label": {
+    "count": 6,
+    "first": {
+     "box": [
+      608,
+      458,
+      63,
+      17
+     ],
+     "cls": "stem-label"
+    },
+    "classes": {
+     "stem-label": 6
+    }
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      15,
+      392,
+      1250,
+      38
+     ],
+     "cls": "bar"
+    },
+    "classes": {
+     "bar": 1
+    }
+   },
+   "operator": {
+    "count": 4,
+    "first": {
+     "box": [
+      15,
+      53,
+      1250,
+      199
+     ],
+     "cls": "eq"
+    },
+    "classes": {
+     "eq": 1,
+     "op": 1,
+     "nrv-minus": 2
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 1,
+    "first": {
+     "box": [
+      541,
+      167,
+      711,
+      31
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "m-see": 1
+    }
+   }
+  },
+  "boxes": 19,
+  "box_levels": {
+   "0": 7,
+   "1": 6,
+   "2": 6
+  },
+  "max_box_depth": 2,
+  "deepest": {
+   "cls": "cell",
+   "box": [
+    28,
+    100,
+    391,
+    64
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 5,
+   "see": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 6,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1021
+  ]
+ },
+ "ias-2/draft-v1-linked/visuals/ch05-derecognition.html": {
+  "bricks": {
+   "title": {
+    "count": 9,
+    "first": {
+     "box": [
+      15,
+      65,
+      1250,
+      22
+     ],
+     "cls": "q-title"
+    },
+    "classes": {
+     "q-title": 1,
+     "cell-title": 7,
+     "board-title": 1
+    }
+   },
+   "section-chip": {
+    "count": 9,
+    "first": {
+     "box": [
+      10,
+      10,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 9
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 1,
+    "first": {
+     "box": [
+      15,
+      117,
+      1250,
+      31
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "see": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 4,
+    "first": {
+     "box": [
+      303,
+      196,
+      1,
+      76
+     ],
+     "cls": "stem-shaft m-flow"
+    },
+    "classes": {
+     "stem-shaft": 4,
+     "m-flow": 4
+    }
+   },
+   "flow-label": {
+    "count": 4,
+    "first": {
+     "box": [
+      290,
+      222,
+      26,
+      17
+     ],
+     "cls": "stem-label"
+    },
+    "classes": {
+     "stem-label": 4
+    }
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      2,
+      2,
+      1276,
+      38
+     ],
+     "cls": "bar st-top st-span"
+    },
+    "classes": {
+     "bar": 1
+    }
+   },
+   "operator": {
+    "count": 3,
+    "first": {
+     "box": [
+      317,
+      555,
+      9,
+      15
+     ],
+     "cls": "exp-op"
+    },
+    "classes": {
+     "exp-op": 3
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 1,
+    "first": {
+     "box": [
+      15,
+      117,
+      1250,
+      31
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "m-see": 1
+    }
+   }
+  },
+  "boxes": 11,
+  "box_levels": {
+   "0": 5,
+   "1": 6
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "see m-see",
+   "box": [
+    15,
+    117,
+    1250,
+    31
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "see": 1,
+   "accent": 2
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 3,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   617
+  ]
+ },
+ "ias-2/draft-v1-linked/visuals/ch06-disclosure.html": {
+  "bricks": {
+   "title": {
+    "count": 11,
+    "first": {
+     "box": [
+      15,
+      117,
+      576,
+      22
+     ],
+     "cls": "board-title"
+    },
+    "classes": {
+     "board-title": 2,
+     "cell-title": 8,
+     "q-title": 1
+    }
+   },
+   "section-chip": {
+    "count": 6,
+    "first": {
+     "box": [
+      10,
+      10,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 6
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 5,
+    "first": {
+     "box": [
+      303,
+      52,
+      1,
+      52
+     ],
+     "cls": "stem-shaft m-flow"
+    },
+    "classes": {
+     "stem-shaft": 5,
+     "m-flow": 5
+    }
+   },
+   "flow-label": {
+    "count": 5,
+    "first": {
+     "box": [
+      288,
+      67,
+      29,
+      17
+     ],
+     "cls": "stem-label"
+    },
+    "classes": {
+     "stem-label": 5
+    }
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      2,
+      2,
+      1276,
+      38
+     ],
+     "cls": "bar st-top st-span"
+    },
+    "classes": {
+     "bar": 1
+    }
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 12,
+  "box_levels": {
+   "0": 6,
+   "1": 6
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "cell",
+   "box": [
+    15,
+    151,
+    576,
+    49
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 2
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 4,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   684
+  ]
+ },
+ "ias-2/draft-v1-linked/visuals/map-formula-board.html": {
+  "bricks": {
+   "title": {
+    "count": 30,
+    "first": {
+     "box": [
+      16,
+      16,
+      574,
+      21
+     ],
+     "cls": "q-title"
+    },
+    "classes": {
+     "q-title": 4,
+     "cell-title": 4,
+     "m-board-title": 1,
+     "m-arm-head": 2,
+     "m-plate-title": 4,
+     "m-row-title": 13,
+     "m-head": 2
+    }
+   },
+   "section-chip": {
+    "count": 35,
+    "first": {
+     "box": [
+      16,
+      15,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 35
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 5,
+    "first": {
+     "box": [
+      684,
+      51,
+      586,
+      32
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "see": 5
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 14,
+    "first": {
+     "box": [
+      604,
+      47,
+      72,
+      14
+     ],
+     "cls": "st-h-shaft m-flow"
+    },
+    "classes": {
+     "st-h-shaft": 4,
+     "m-flow": 13,
+     "stem-shaft": 8,
+     "m-stem": 1,
+     "m-shaft": 1
+    }
+   },
+   "flow-label": {
+    "count": 13,
+    "first": {
+     "box": [
+      623,
+      45,
+      29,
+      17
+     ],
+     "cls": "st-h-label"
+    },
+    "classes": {
+     "st-h-label": 4,
+     "stem-label": 8,
+     "m-stem-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 8,
+    "first": {
+     "box": [
+      38,
+      845,
+      28,
+      15
+     ],
+     "cls": "m-plus"
+    },
+    "classes": {
+     "m-plus": 2,
+     "m-op": 1,
+     "m-minus": 2,
+     "m-eq-op": 3
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 5,
+    "first": {
+     "box": [
+      684,
+      51,
+      586,
+      32
+     ],
+     "cls": "see m-see"
+    },
+    "classes": {
+     "m-see": 5
+    }
+   }
+  },
+  "boxes": 38,
+  "box_levels": {
+   "0": 11,
+   "1": 9,
+   "2": 5,
+   "3": 11,
+   "4": 2
+  },
+  "max_box_depth": 4,
+  "deepest": {
+   "cls": "m-missing m-l3",
+   "box": [
+    320,
+    1449,
+    245,
+    89
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "see": 5,
+   "stop": 1
+  },
+  "graph_paper": true,
+  "para_text": [
+   {
+    "text": "IN13",
+    "cls": "ias2-mute-chip"
+   },
+   {
+    "text": "Para IN13; BC9\u2013BC21. Not a third formula beside FIFO and wei",
+    "cls": "m-row-body"
+   }
+  ],
+  "dark_text": [],
+  "grid_containers": 17,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   2102
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch01-whats-new.html": {
+  "bricks": {
+   "title": {
+    "count": 5,
+    "first": {
+     "box": [
+      16,
+      43,
+      602,
+      16
+     ],
+     "cls": "wn-card-title"
+    },
+    "classes": {
+     "wn-card-title": 2,
+     "wn-set-head": 3
+    }
+   },
+   "section-chip": {
+    "count": 12,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 12
+    }
+   },
+   "kicker": {
+    "count": 3,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "wn-label"
+    },
+    "classes": {
+     "wn-label": 3
+    }
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 1,
+    "first": {
+     "box": [
+      13,
+      386,
+      393,
+      29
+     ],
+     "cls": "wn-see"
+    },
+    "classes": {
+     "wn-see": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      175,
+      1280,
+      35
+     ],
+     "cls": "wn-span-bar"
+    },
+    "classes": {
+     "wn-span-bar": 1
+    }
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      485,
+      1280,
+      123
+     ],
+     "cls": "wn-tl"
+    },
+    "classes": {
+     "wn-tl": 1
+    }
+   },
+   "time-marker": {
+    "count": 3,
+    "first": {
+     "box": [
+      0,
+      485,
+      386,
+      123
+     ],
+     "cls": "wn-tl-node"
+    },
+    "classes": {
+     "wn-tl-node": 3
+    }
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 10,
+  "box_levels": {
+   "0": 9,
+   "1": 1
+  },
+  "max_box_depth": 1,
+  "deepest": {
+   "cls": "wn-see",
+   "box": [
+    13,
+    386,
+    393,
+    29
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "warn": 1,
+   "accent": 4
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 6,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   608
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch02-pfs-aggregation.html": {
+  "bricks": {
+   "title": {
+    "count": 5,
+    "first": {
+     "box": [
+      16,
+      43,
+      602,
+      23
+     ],
+     "cls": "pa-peer-head"
+    },
+    "classes": {
+     "pa-peer-head": 2,
+     "head": 3
+    }
+   },
+   "section-chip": {
+    "count": 4,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 4
+    }
+   },
+   "kicker": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "pa-label"
+    },
+    "classes": {
+     "pa-label": 2
+    }
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 2,
+    "first": {
+     "box": [
+      1,
+      159,
+      1278,
+      33
+     ],
+     "cls": "pa-rule"
+    },
+    "classes": {
+     "pa-rule": 2
+    }
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      278,
+      1280,
+      237
+     ],
+     "cls": "matrix pa-matrix"
+    },
+    "classes": {
+     "pa-matrix": 1
+    }
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 23,
+  "box_levels": {
+   "0": 23
+  },
+  "max_box_depth": 0,
+  "deepest": null,
+  "strips": [
+   {
+    "cls": "pa-trap",
+    "w": 4,
+    "box": [
+     0,
+     522,
+     1280,
+     33
+    ],
+    "text": "Trap: Aggregation is not a fixed pipeline; apply i"
+   }
+  ],
+  "tones": {
+   "accent": 2
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 4,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   601
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch03-classification-path.html": {
+  "bricks": {
+   "title": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "section-chip": {
+    "count": 1,
+    "first": {
+     "box": [
+      13,
+      547,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 1
+    }
+   },
+   "kicker": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      0,
+      760,
+      15
+     ],
+     "cls": "cp-kicker"
+    },
+    "classes": {
+     "cp-kicker": 1
+    }
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 5,
+    "first": {
+     "box": [
+      0,
+      82,
+      760,
+      36
+     ],
+     "cls": "pc-stem"
+    },
+    "classes": {
+     "pc-stem": 5
+    }
+   },
+   "flow-label": {
+    "count": 9,
+    "first": {
+     "box": [
+      49,
+      94,
+      711,
+      12
+     ],
+     "cls": "pc-stem-label"
+    },
+    "classes": {
+     "pc-stem-label": 5,
+     "pc-yes-label": 4
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 11,
+  "box_levels": {
+   "0": 11
+  },
+  "max_box_depth": 0,
+  "deepest": null,
+  "strips": [
+   {
+    "cls": "pc-leaf pc-leaf--discontinued",
+    "w": 4,
+    "box": [
+     531,
+     118,
+     229,
+     34
+    ],
+    "text": "Discontinued"
+   },
+   {
+    "cls": "pc-leaf pc-leaf--tax",
+    "w": 4,
+    "box": [
+     531,
+     188,
+     229,
+     34
+    ],
+    "text": "Income taxes"
+   },
+   {
+    "cls": "pc-leaf pc-leaf--investing",
+    "w": 4,
+    "box": [
+     531,
+     258,
+     229,
+     71
+    ],
+    "text": "Investing"
+   },
+   {
+    "cls": "pc-leaf pc-leaf--financing",
+    "w": 4,
+    "box": [
+     531,
+     365,
+     229,
+     71
+    ],
+    "text": "Financing"
+   },
+   {
+    "cls": "pc-leaf pc-leaf--operating pc-leaf--final",
+    "w": 4,
+    "box": [
+     0,
+     471,
+     760,
+     56
+    ],
+    "text": "Operating \u2014 residual default\n\nWhatever remains aft"
+   }
+  ],
+  "tones": {
+   "see": 1,
+   "cat-investing": 1,
+   "warn": 1,
+   "accent": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 9,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   589
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch03-mba-nest.html": {
+  "bricks": {
+   "title": {
+    "count": 5,
+    "first": {
+     "box": [
+      13,
+      40,
+      522,
+      17
+     ],
+     "cls": "pc-mba-head"
+    },
+    "classes": {
+     "pc-mba-head": 3,
+     "pc-mba-out-title": 1,
+     "pc-mba-why-title": 1
+    }
+   },
+   "section-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 1,
+    "first": {
+     "box": [
+      222,
+      40,
+      76,
+      17
+     ],
+     "cls": "pc-mba-tag"
+    },
+    "classes": {
+     "pc-mba-tag": 1
+    }
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 1,
+    "first": {
+     "box": [
+      560,
+      29,
+      200,
+      261
+     ],
+     "cls": "pc-mba-rail"
+    },
+    "classes": {
+     "pc-mba-rail": 1
+    }
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 7,
+  "box_levels": {
+   "0": 3,
+   "1": 1,
+   "2": 1,
+   "3": 2
+  },
+  "max_box_depth": 3,
+  "deepest": {
+   "cls": "pc-mba-peer",
+   "box": [
+    39,
+    186,
+    229,
+    71
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "accent": 1,
+   "warn": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 2,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   290
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch03-pnl-categories.html": {
+  "bricks": {
+   "title": {
+    "count": 6,
+    "first": {
+     "box": [
+      16,
+      45,
+      224,
+      22
+     ],
+     "cls": "pc-band-head"
+    },
+    "classes": {
+     "pc-band-head": 5,
+     "pc-mba-title": 1
+    }
+   },
+   "section-chip": {
+    "count": 8,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 8
+    }
+   },
+   "kicker": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "pc-label"
+    },
+    "classes": {
+     "pc-label": 1
+    }
+   },
+   "tag": {
+    "count": 1,
+    "first": {
+     "box": [
+      143,
+      48,
+      63,
+      17
+     ],
+     "cls": "pc-band-tag"
+    },
+    "classes": {
+     "pc-band-tag": 1
+    }
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      840,
+      95,
+      14,
+      87
+     ],
+     "cls": "pc-bracket"
+    },
+    "classes": {
+     "pc-bracket": 1
+    }
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 7,
+  "box_levels": {
+   "0": 7
+  },
+  "max_box_depth": 0,
+  "deepest": null,
+  "strips": [
+   {
+    "cls": "pc-band pc-band--operating",
+    "w": 4,
+    "box": [
+     0,
+     34,
+     828,
+     44
+    ],
+    "text": "3.2\nOperating\nDEFAULT\n\nEverything not classified i"
+   },
+   {
+    "cls": "pc-band pc-band--investing",
+    "w": 4,
+    "box": [
+     0,
+     85,
+     828,
+     56
+    ],
+    "text": "3.3\nInvesting\n\nReturns from associates, JVs and un"
+   },
+   {
+    "cls": "pc-band pc-band--financing",
+    "w": 4,
+    "box": [
+     0,
+     148,
+     828,
+     44
+    ],
+    "text": "3.4\nFinancing\n\nLiabilities that only raise finance"
+   },
+   {
+    "cls": "pc-mba",
+    "w": 4,
+    "box": [
+     866,
+     87,
+     414,
+     103
+    ],
+    "text": "3.5\nSpecified main business activities\n\nOnly two: "
+   },
+   {
+    "cls": "pc-band pc-band--tax",
+    "w": 4,
+    "box": [
+     0,
+     199,
+     828,
+     44
+    ],
+    "text": "3.6\nIncome taxes\n\nSpecified income-tax amounts"
+   },
+   {
+    "cls": "pc-band pc-band--discontinued",
+    "w": 4,
+    "box": [
+     0,
+     250,
+     828,
+     44
+    ],
+    "text": "3.6\nDiscontinued operations\n\nIFRS 5 bridge \u2014 disco"
+   }
+  ],
+  "tones": {
+   "accent": 1,
+   "cat-investing": 1,
+   "warn": 1,
+   "see": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 6,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   347
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch04-totals-subtotals.html": {
+  "bricks": {
+   "title": {
+    "count": 5,
+    "first": {
+     "box": [
+      845,
+      152,
+      424,
+      22
+     ],
+     "cls": "ts-trap-title"
+    },
+    "classes": {
+     "ts-trap-title": 1,
+     "ts-sec-head": 1,
+     "ts-regime-head": 3
+    }
+   },
+   "section-chip": {
+    "count": 4,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 4
+    }
+   },
+   "kicker": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "ts-label"
+    },
+    "classes": {
+     "ts-label": 2
+    }
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      815,
+      158,
+      16,
+      1
+     ],
+     "cls": "ts-attach"
+    },
+    "classes": {
+     "ts-attach": 1
+    }
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 3,
+    "first": {
+     "box": [
+      0,
+      69,
+      815,
+      32
+     ],
+     "cls": "ts-sub ts-sub--op"
+    },
+    "classes": {
+     "ts-sub": 3
+    }
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 10,
+  "box_levels": {
+   "0": 10
+  },
+  "max_box_depth": 0,
+  "deepest": null,
+  "strips": [
+   {
+    "cls": "ts-band ts-band--operating",
+    "w": 4,
+    "box": [
+     0,
+     34,
+     815,
+     28
+    ],
+    "text": "Operating"
+   },
+   {
+    "cls": "ts-band ts-band--investing",
+    "w": 4,
+    "box": [
+     0,
+     108,
+     815,
+     28
+    ],
+    "text": "Investing"
+   },
+   {
+    "cls": "ts-trap",
+    "w": 4,
+    "box": [
+     831,
+     143,
+     449,
+     79
+    ],
+    "text": "4.2\nException \u2014 financing amounts in Operating\n\nNo"
+   },
+   {
+    "cls": "ts-band ts-band--financing",
+    "w": 4,
+    "box": [
+     0,
+     182,
+     815,
+     28
+    ],
+    "text": "Financing"
+   },
+   {
+    "cls": "ts-band ts-band--tax",
+    "w": 4,
+    "box": [
+     0,
+     217,
+     815,
+     28
+    ],
+    "text": "Income taxes"
+   },
+   {
+    "cls": "ts-band ts-band--discontinued",
+    "w": 4,
+    "box": [
+     0,
+     251,
+     815,
+     28
+    ],
+    "text": "Discontinued operations"
+   },
+   {
+    "cls": "ts-regime ts-regime--ifrs ts-regime--required",
+    "w": 4,
+    "box": [
+     0,
+     372,
+     419,
+     135
+    ],
+    "text": "Required\n\nMust be presented; the middle one drops "
+   },
+   {
+    "cls": "ts-regime ts-regime--ifrs ts-regime--listed",
+    "w": 4,
+    "box": [
+     431,
+     372,
+     419,
+     135
+    ],
+    "text": "Listed IFRS subtotals\n\nIFRS subtotals that are not"
+   },
+   {
+    "cls": "ts-regime ts-regime--mpm",
+    "w": 4,
+    "box": [
+     861,
+     372,
+     419,
+     135
+    ],
+    "text": "6.1\nMPM\n\nMeets the MPM tests; reconciled to the mo"
+   }
+  ],
+  "tones": {
+   "accent": 1,
+   "cat-investing": 1,
+   "warn": 3,
+   "see": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 5,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   546
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch05-operating-expenses.html": {
+  "bricks": {
+   "title": {
+    "count": 5,
+    "first": {
+     "box": [
+      267,
+      208,
+      485,
+      15
+     ],
+     "cls": "oe-lens-head"
+    },
+    "classes": {
+     "oe-lens-head": 1,
+     "oe-spec-head": 1,
+     "oe-opt-head": 3
+    }
+   },
+   "section-chip": {
+    "count": 4,
+    "first": {
+     "box": [
+      15,
+      13,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 4
+    }
+   },
+   "kicker": {
+    "count": 3,
+    "first": {
+     "box": [
+      267,
+      236,
+      227,
+      14
+     ],
+     "cls": "oe-half-kicker"
+    },
+    "classes": {
+     "oe-half-kicker": 2,
+     "oe-label": 1
+    }
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      67,
+      223,
+      52
+     ],
+     "cls": "oe-link"
+    },
+    "classes": {
+     "oe-link": 2
+    }
+   },
+   "flow-label": {
+    "count": 2,
+    "first": {
+     "box": [
+      38,
+      85,
+      155,
+      16
+     ],
+     "cls": "oe-link-label"
+    },
+    "classes": {
+     "oe-link-label": 2
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 19,
+  "box_levels": {
+   "0": 7,
+   "1": 2,
+   "2": 5,
+   "3": 5
+  },
+  "max_box_depth": 3,
+  "deepest": {
+   "cls": "oe-row",
+   "box": [
+    534,
+    288,
+    209,
+    30
+   ]
+  },
+  "strips": [
+   {
+    "cls": "oe-row oe-row--face",
+    "w": 4,
+    "box": [
+     267,
+     256,
+     227,
+     30
+    ],
+    "text": "Cost of sales"
+   },
+   {
+    "cls": "oe-row oe-row--face",
+    "w": 4,
+    "box": [
+     267,
+     291,
+     227,
+     30
+    ],
+    "text": "Distribution costs"
+   },
+   {
+    "cls": "oe-row oe-row--face",
+    "w": 4,
+    "box": [
+     267,
+     325,
+     227,
+     30
+    ],
+    "text": "Administrative expenses"
+   }
+  ],
+  "tones": {
+   "accent": 2,
+   "warn": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 4,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   952
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch06-mpms.html": {
+  "bricks": {
+   "title": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "section-chip": {
+    "count": 4,
+    "first": {
+     "box": [
+      0,
+      0,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 4
+    }
+   },
+   "kicker": {
+    "count": 5,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      22
+     ],
+     "cls": "mpm-label"
+    },
+    "classes": {
+     "mpm-label": 2,
+     "rc-kicker": 3
+    }
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 8,
+    "first": {
+     "box": [
+      928,
+      34,
+      352,
+      38
+     ],
+     "cls": "gt-exit gt-exit--first"
+    },
+    "classes": {
+     "gt-exit": 4,
+     "gt-stem": 4
+    }
+   },
+   "flow-label": {
+    "count": 8,
+    "first": {
+     "box": [
+      934,
+      36,
+      14,
+      13
+     ],
+     "cls": "gt-ans"
+    },
+    "classes": {
+     "gt-ans": 8
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 2,
+    "first": {
+     "box": [
+      363,
+      520,
+      10,
+      18
+     ],
+     "cls": "rc-op"
+    },
+    "classes": {
+     "rc-op": 2
+    }
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 9,
+  "box_levels": {
+   "0": 9
+  },
+  "max_box_depth": 0,
+  "deepest": null,
+  "strips": [
+   {
+    "cls": "rc-step rc-step--mpm",
+    "w": 4,
+    "box": [
+     0,
+     471,
+     351,
+     117
+    ],
+    "text": "LEFT \u00b7 MANAGEMENT REGIME\n\nMPM\n\ne.g. \u201cadjusted oper"
+   },
+   {
+    "cls": "rc-step rc-step--mid",
+    "w": 4,
+    "box": [
+     385,
+     471,
+     404,
+     117
+    ],
+    "text": "BRIDGE\n\nReconciling items\n\nEach with its income-ta"
+   },
+   {
+    "cls": "rc-step rc-step--ifrs",
+    "w": 4,
+    "box": [
+     824,
+     471,
+     456,
+     117
+    ],
+    "text": "RIGHT \u00b7 IFRS REGIME\n\nIFRS anchor\n\nMost directly co"
+   }
+  ],
+  "tones": {
+   "mpm": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 10,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   588
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch07-other-fs.html": {
+  "bricks": {
+   "title": {
+    "count": 3,
+    "first": {
+     "box": [
+      13,
+      39,
+      393,
+      41
+     ],
+     "cls": "ofs-peer-head"
+    },
+    "classes": {
+     "ofs-peer-head": 3
+    }
+   },
+   "section-chip": {
+    "count": 5,
+    "first": {
+     "box": [
+      13,
+      87,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 5
+    }
+   },
+   "kicker": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      16
+     ],
+     "cls": "ofs-label"
+    },
+    "classes": {
+     "ofs-label": 2
+    }
+   },
+   "tag": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      358,
+      607,
+      32
+     ],
+     "cls": "ofs-see"
+    },
+    "classes": {
+     "ofs-see": 1,
+     "see-also-strip": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 1,
+    "first": {
+     "box": [
+      419,
+      275,
+      443,
+      71
+     ],
+     "cls": "ofs-stem"
+    },
+    "classes": {
+     "ofs-stem": 1
+    }
+   },
+   "flow-label": {
+    "count": 1,
+    "first": {
+     "box": [
+      419,
+      275,
+      443,
+      35
+     ],
+     "cls": "ofs-stem-label"
+    },
+    "classes": {
+     "ofs-stem-label": 1
+    }
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 6,
+  "box_levels": {
+   "0": 6
+  },
+  "max_box_depth": 0,
+  "deepest": null,
+  "strips": [
+   {
+    "cls": "ofs-line ofs-line--start",
+    "w": 4,
+    "box": [
+     0,
+     275,
+     419,
+     71
+    ],
+    "text": "Operating profit or loss"
+   }
+  ],
+  "tones": {},
+  "graph_paper": false,
+  "para_text": [
+   {
+    "text": "IFRS 18 App D",
+    "cls": "ofs-cite-text"
+   }
+  ],
+  "dark_text": [],
+  "grid_containers": 6,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   390
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/ch08-transition.html": {
+  "bricks": {
+   "title": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "section-chip": {
+    "count": 6,
+    "first": {
+     "box": [
+      315,
+      125,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 6
+    }
+   },
+   "kicker": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      0,
+      1280,
+      16
+     ],
+     "cls": "tr-label"
+    },
+    "classes": {
+     "tr-label": 2
+    }
+   },
+   "tag": {
+    "count": 4,
+    "first": {
+     "box": [
+      85,
+      345,
+      1,
+      1
+     ],
+     "cls": "tr-mx-tag"
+    },
+    "classes": {
+     "tr-mx-tag": 4
+    }
+   },
+   "see-also": {
+    "count": 2,
+    "first": {
+     "box": [
+      0,
+      443,
+      1280,
+      36
+     ],
+     "cls": "tr-see"
+    },
+    "classes": {
+     "tr-see": 1,
+     "see-also-strip": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-axis": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      61,
+      1280,
+      140
+     ],
+     "cls": "tr-tl"
+    },
+    "classes": {
+     "tr-tl": 1
+    }
+   },
+   "time-marker": {
+    "count": 4,
+    "first": {
+     "box": [
+      0,
+      61,
+      289,
+      140
+     ],
+     "cls": "tr-node"
+    },
+    "classes": {
+     "tr-node": 4
+    }
+   },
+   "time-span": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      213,
+      1280,
+      38
+     ],
+     "cls": "tr-span"
+    },
+    "classes": {
+     "tr-span": 1
+    }
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      294,
+      1280,
+      137
+     ],
+     "cls": "tr-mx"
+    },
+    "classes": {
+     "tr-mx": 1
+    }
+   },
+   "m-see-paint": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   }
+  },
+  "boxes": 6,
+  "box_levels": {
+   "0": 6
+  },
+  "max_box_depth": 0,
+  "deepest": null,
+  "strips": [],
+  "tones": {
+   "accent": 1
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 5,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   479
+  ]
+ },
+ "ifrs-18/draft-v1-linked/visuals/map-jumpboard.html": {
+  "bricks": {
+   "title": {
+    "count": 27,
+    "first": {
+     "box": [
+      18,
+      16,
+      1244,
+      115
+     ],
+     "cls": "std-head"
+    },
+    "classes": {
+     "std-head": 1,
+     "frame-title": 6,
+     "mini-pnl-head": 1,
+     "mini-pnl-nest-title": 1,
+     "cell-title": 18
+    }
+   },
+   "section-chip": {
+    "count": 16,
+    "first": {
+     "box": [
+      18,
+      16,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 16
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 1,
+    "first": {
+     "box": [
+      113,
+      201,
+      58,
+      17
+     ],
+     "cls": "mini-pnl-tag"
+    },
+    "classes": {
+     "mini-pnl-tag": 1
+    }
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 7,
+    "first": {
+     "box": [
+      170,
+      692,
+      18,
+      2
+     ],
+     "cls": "map-visit-arrow m-visit"
+    },
+    "classes": {
+     "m-visit": 7
+    }
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      18,
+      615,
+      1244,
+      35
+     ],
+     "cls": "span-bar"
+    },
+    "classes": {
+     "span-bar": 1
+    }
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 3,
+    "first": {
+     "box": [
+      34,
+      283,
+      375,
+      21
+     ],
+     "cls": "mini-pnl-tick"
+    },
+    "classes": {
+     "mini-pnl-tick": 3
+    }
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 1,
+    "first": {
+     "box": [
+      34,
+      502,
+      375,
+      76
+     ],
+     "cls": "tip-note m-see"
+    },
+    "classes": {
+     "m-see": 1
+    }
+   }
+  },
+  "boxes": 41,
+  "box_levels": {
+   "0": 1,
+   "1": 7,
+   "2": 32,
+   "3": 1
+  },
+  "max_box_depth": 3,
+  "deepest": {
+   "cls": "mini-pnl-nest",
+   "box": [
+    45,
+    225,
+    357,
+    47
+   ]
+  },
+  "strips": [
+   {
+    "cls": "mini-pnl-band mini-pnl-band--contain cat-operating",
+    "w": 3,
+    "box": [
+     34,
+     195,
+     375,
+     84
+    ],
+    "text": "Operating\nDEFAULT\n5\nOperating expenses\nNature \u00b7 fu"
+   },
+   {
+    "cls": "mini-pnl-band cat-investing",
+    "w": 3,
+    "box": [
+     34,
+     308,
+     375,
+     29
+    ],
+    "text": "Investing"
+   },
+   {
+    "cls": "mini-pnl-band cat-financing",
+    "w": 3,
+    "box": [
+     34,
+     365,
+     375,
+     29
+    ],
+    "text": "Financing"
+   },
+   {
+    "cls": "mini-pnl-band cat-tax",
+    "w": 3,
+    "box": [
+     34,
+     398,
+     375,
+     29
+    ],
+    "text": "Income taxes"
+   },
+   {
+    "cls": "mini-pnl-band cat-discontinued",
+    "w": 3,
+    "box": [
+     34,
+     431,
+     375,
+     29
+    ],
+    "text": "Discontinued operations"
+   }
+  ],
+  "tones": {
+   "ink": 1,
+   "accent": 1,
+   "cat-investing": 1,
+   "warn": 1,
+   "see": 2
+  },
+  "graph_paper": false,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 5,
+  "scope_box": [
+   0,
+   0,
+   1280,
+   1021
+  ]
+ },
+ "cf-2018/draft-v1-linked/index.html": {
+  "bricks": {
+   "title": {
+    "count": 40,
+    "first": {
+     "box": [
+      130,
+      313,
+      1020,
+      51
+     ],
+     "cls": "status-head"
+    },
+    "classes": {
+     "status-head": 1,
+     "frame-title": 9,
+     "cell-title": 29,
+     "apply-head": 1
+    }
+   },
+   "section-chip": {
+    "count": 73,
+    "first": {
+     "box": [
+      130,
+      313,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 9,
+     "sec": 64,
+     "sec-sm": 8
+    }
+   },
+   "kicker": {
+    "count": 3,
+    "first": {
+     "box": [
+      148,
+      783,
+      369,
+      13
+     ],
+     "cls": "tier-label"
+    },
+    "classes": {
+     "tier-label": 3
+    }
+   },
+   "tag": {
+    "count": 5,
+    "first": {
+     "box": [
+      1074,
+      348,
+      60,
+      14
+     ],
+     "cls": "differ-tag"
+    },
+    "classes": {
+     "differ-tag": 5
+    }
+   },
+   "see-also": {
+    "count": 1,
+    "first": {
+     "box": [
+      827,
+      2609,
+      83,
+      19
+     ],
+     "cls": "see-also-strip"
+    },
+    "classes": {
+     "see-also-strip": 1
+    }
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 1,
+    "first": {
+     "box": [
+      1012,
+      700,
+      120,
+      248
+     ],
+     "cls": "cell cost-rail m-l2"
+    },
+    "classes": {
+     "cost-rail": 1
+    }
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 15,
+    "first": {
+     "box": [
+      640,
+      381,
+      99,
+      68
+     ],
+     "cls": "harm m-flow"
+    },
+    "classes": {
+     "harm": 4,
+     "m-flow": 15,
+     "varm": 3,
+     "hstem": 2,
+     "vline": 4,
+     "vstem": 2
+    }
+   },
+   "flow-label": {
+    "count": 13,
+    "first": {
+     "box": [
+      644,
+      396,
+      85,
+      13
+     ],
+     "cls": "arm-label"
+    },
+    "classes": {
+     "arm-label": 7,
+     "stem-label": 6
+    }
+   },
+   "link-bar": {
+    "count": 2,
+    "first": {
+     "box": [
+      148,
+      1391,
+      984,
+      38
+     ],
+     "cls": "span-bar m-rule"
+    },
+    "classes": {
+     "span-bar": 2
+    }
+   },
+   "operator": {
+    "count": 2,
+    "first": {
+     "box": [
+      414,
+      1488,
+      24,
+      112
+     ],
+     "cls": "fb-op"
+    },
+    "classes": {
+     "fb-op": 2
+    }
+   },
+   "rule-line": {
+    "count": 2,
+    "first": {
+     "box": [
+      148,
+      1391,
+      984,
+      38
+     ],
+     "cls": "span-bar m-rule"
+    },
+    "classes": {
+     "m-rule": 2
+    }
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 1,
+    "first": {
+     "box": [
+      757,
+      2599,
+      359,
+      38
+     ],
+     "cls": "tip-note m-see"
+    },
+    "classes": {
+     "m-see": 1
+    }
+   }
+  },
+  "boxes": 47,
+  "box_levels": {
+   "0": 1,
+   "1": 9,
+   "2": 31,
+   "3": 4,
+   "4": 2
+  },
+  "max_box_depth": 4,
+  "deepest": {
+   "cls": "cell inner m-l3",
+   "box": [
+    748,
+    1555,
+    171,
+    110
+   ]
+  },
+  "strips": [],
+  "tones": {
+   "ink": 2,
+   "stop": 2,
+   "see": 1
+  },
+  "graph_paper": true,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 23,
+  "scope_box": [
+   96,
+   283,
+   1088,
+   2679
+  ]
+ },
+ "ifrs-18/draft-v1-linked/index.html": {
+  "bricks": {
+   "title": {
+    "count": 27,
+    "first": {
+     "box": [
+      114,
+      239,
+      1052,
+      115
+     ],
+     "cls": "std-head"
+    },
+    "classes": {
+     "std-head": 1,
+     "frame-title": 6,
+     "mini-pnl-head": 1,
+     "mini-pnl-nest-title": 1,
+     "cell-title": 18
+    }
+   },
+   "section-chip": {
+    "count": 16,
+    "first": {
+     "box": [
+      114,
+      239,
+      46,
+      22
+     ],
+     "cls": "fb-num"
+    },
+    "classes": {
+     "fb-num": 16
+    }
+   },
+   "kicker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "tag": {
+    "count": 1,
+    "first": {
+     "box": [
+      209,
+      423,
+      58,
+      17
+     ],
+     "cls": "mini-pnl-tag"
+    },
+    "classes": {
+     "mini-pnl-tag": 1
+    }
+   },
+   "see-also": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "see-also-zone": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "cite-chip": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rail-link": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "flow-arrow": {
+    "count": 7,
+    "first": {
+     "box": [
+      266,
+      916,
+      18,
+      2
+     ],
+     "cls": "map-visit-arrow m-visit"
+    },
+    "classes": {
+     "m-visit": 7
+    }
+   },
+   "flow-label": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "link-bar": {
+    "count": 1,
+    "first": {
+     "box": [
+      114,
+      839,
+      1052,
+      35
+     ],
+     "cls": "span-bar m-rule"
+    },
+    "classes": {
+     "span-bar": 1
+    }
+   },
+   "operator": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "rule-line": {
+    "count": 4,
+    "first": {
+     "box": [
+      130,
+      506,
+      311,
+      21
+     ],
+     "cls": "mini-pnl-tick"
+    },
+    "classes": {
+     "mini-pnl-tick": 3,
+     "m-rule": 1
+    }
+   },
+   "time-axis": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-marker": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "time-span": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "echo-bar": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "hand-off": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "glyph": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "matrix": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
+   "m-see-paint": {
+    "count": 1,
+    "first": {
+     "box": [
+      130,
+      724,
+      311,
+      78
+     ],
+     "cls": "tip-note m-see"
+    },
+    "classes": {
+     "m-see": 1
+    }
+   }
+  },
+  "boxes": 41,
+  "box_levels": {
+   "0": 1,
+   "1": 7,
+   "2": 32,
+   "3": 1
+  },
+  "max_box_depth": 3,
+  "deepest": {
+   "cls": "mini-pnl-nest m-l3",
+   "box": [
+    141,
+    448,
+    293,
+    47
+   ]
+  },
+  "strips": [
+   {
+    "cls": "mini-pnl-band mini-pnl-band--contain cat-operating m-l3 m-strip",
+    "w": 3,
+    "box": [
+     130,
+     417,
+     311,
+     84
+    ],
+    "text": "Operating\nDEFAULT\n5\nOperating expenses\nNature \u00b7 fu"
+   },
+   {
+    "cls": "mini-pnl-band cat-investing m-l3 m-strip",
+    "w": 3,
+    "box": [
+     130,
+     531,
+     311,
+     29
+    ],
+    "text": "Investing"
+   },
+   {
+    "cls": "mini-pnl-band cat-financing m-l3 m-strip",
+    "w": 3,
+    "box": [
+     130,
+     588,
+     311,
+     29
+    ],
+    "text": "Financing"
+   },
+   {
+    "cls": "mini-pnl-band cat-tax m-l3 m-strip",
+    "w": 3,
+    "box": [
+     130,
+     621,
+     311,
+     29
+    ],
+    "text": "Income taxes"
+   },
+   {
+    "cls": "mini-pnl-band cat-discontinued m-l3 m-strip",
+    "w": 3,
+    "box": [
+     130,
+     654,
+     311,
+     29
+    ],
+    "text": "Discontinued operations"
+   }
+  ],
+  "tones": {
+   "ink": 1,
+   "accent": 1,
+   "cat-investing": 1,
+   "warn": 1,
+   "see": 2
+  },
+  "graph_paper": true,
+  "para_text": [],
+  "dark_text": [],
+  "grid_containers": 5,
+  "scope_box": [
+   96,
+   225,
+   1088,
+   1070
+  ]
+ }
+}
