@@ -79,3 +79,15 @@ Johnny signed the L→R gradient ribbon above the axis, caption vertically cente
 - Ceases right inset stays 33px. During-use rail vs pane Δ 0.
 
 Crop: design/row98-timeline-punch7/apply-c3-ribbon-dep-1280.png
+
+## Reval ribbon REPLACE (2026-10-19, not signed)
+
+Johnny rejected the empty-axis drop. Content lock: replace the period caption. Do not drop the ribbon. Dep was not edited.
+
+- The dashed span is gone. A 32px L→R ribbon sits between the Begins and Ceases poles, bottom on the line. Same chrome as Dep C3.
+- Caption is「Carry at revalued amount」, vertically centered (gap above = gap below = 11px).
+- The date pole still reaches the axis. The ribbon paints in front of it so the caption stays whole. ◆ stay at 35% and 70%. One「Revaluation date」.
+- No Year-end marks. No second band. Banned caption is absent from this file.
+- Ceases right inset 33px. During-use rail vs pane Δ 0. Phase rail vs beat Δ 0. Nothing sticks out of the pane.
+
+Crop: design/row98-timeline-punch7/apply-reval-ribbon-1280.png

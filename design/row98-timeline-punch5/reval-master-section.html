@@ -13,7 +13,7 @@
    Johnny punch5 2026-10-19 · DRAFT-FOR-SIGN · No Build · No live merge
    APPLY punch7 (timeline only): signed MF flag. Axis is an arrow. Every cloth flies
      right of a long pole, flush, stroke-2. One「Revaluation date」. ◆ stay at 35% / 70%.
-     No second band. Span「Revalue during useful life」.
+     No second band. Period ribbon between the poles. No Year-end marks.
    KEEP punch4: Impairment reversal L2 .inner-rail | detail
    KEEP punch3: L1 stretch · drop plate-title · other L2 · solid L0 · B11 · rev-nest width
    PROPOSE ONLY: Dep timeline (signed kit25, no unreadability named)
@@ -78,7 +78,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 .mock-du .m-tl-shaft{
   --pole-h: calc(var(--space-6) * 7 + var(--space-2)); /* 232px so the shaft under the tallest cloth is the longer part */
   position: relative;
-  height: calc(var(--pole-h) + var(--space-6) + var(--space-3));
+  height: calc(var(--pole-h) + var(--space-6));
   overflow: visible;
 }
 .mock-du .m-tl-line{
@@ -118,15 +118,20 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 .mock-du .m-tl-flag.date{ left: 52.5%; max-width: none; }
 .mock-du .m-tl-flag.date .l3{ max-width: none; }
 .mock-du .m-tl-flag.date .t1{ white-space: nowrap; }
-.mock-du .m-tl-span{
-  position:absolute; top: calc(var(--pole-h) + var(--stroke-2) + var(--space-2));
-  left: var(--space-3); right: var(--space-3);
-  font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
-  color: var(--muted); text-align: center;
+/* Period ribbon: same chrome as Dep C3 (gradient between the poles, caption centered on the band). */
+.mock-du .m-tl-ribbon{
+  position:absolute;
+  left: var(--stroke-2);
+  width: calc(100% - var(--stroke-2) * 2);
+  top: calc(var(--pole-h) - var(--space-6));
+  height: var(--space-6);
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(to right, color-mix(in srgb, var(--accent) 35%, var(--bg)), var(--accent));
+  z-index:5; /* in front of the date pole so the caption stays whole; diamonds stay above */
 }
-.mock-du .m-tl-span::before{
-  content:""; display:block; border-top: var(--stroke-1) dashed var(--dash);
-  margin: 0 var(--space-2) var(--space-1);
+.mock-du .m-tl-ribbon p{
+  margin:0; line-height:1;
+  font-size: var(--t3-fs); font-weight: var(--t3-strong-fw); color: var(--ink);
 }
 .mock-du .m-tl-shaft > .lc-dia{
   top: calc(var(--pole-h) + var(--stroke-2) / 2); z-index: 7;
@@ -275,7 +280,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
   <p class="meta">DRAFT-FOR-SIGN (punch7) · night 1280 · signed MF flag · Impairment-reversal L2 kept · No Build · Atlas FROZEN cite</p>
 </div>
 
-<p class="mock-cap">#98 AFTER — master Revaluation · punch7: signed MF flag on an arrow · one Revaluation date · punch4 rail kept · DRAFT-FOR-SIGN</p>
+<p class="mock-cap">#98 AFTER — master Revaluation · period ribbon between the poles · ◆ Revaluation date on the axis · punch4 rail kept · DRAFT-FOR-SIGN</p>
 
 <div class="ppe pack m-l0" id="after-board" aria-label="IAS 16 master — Revaluation phase AFTER">
   <div class="pack-lr">
@@ -311,7 +316,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
                         <span class="m-tl-pole" aria-hidden="true"></span>
                         <div class="l3"><p class="t1">Ceases</p><p class="t2">Earlier of: classified as held for sale or derecognised</p><span class="see">See also - IFRS 5</span></div>
                       </div>
-                      <span class="m-tl-span">Revalue during useful life</span>
+                      <div class="m-tl-ribbon"><p>Carry at revalued amount</p></div>
                     </div>
                   </div>
                 </div>
