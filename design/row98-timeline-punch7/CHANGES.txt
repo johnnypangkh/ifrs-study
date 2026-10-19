@@ -58,3 +58,14 @@ Johnny rejected the year-end draft because the Ceases cloth crossed the pane. Re
 - Phase rail stretches over the beat (§10.10.4). During-use rail matches the pane (Δ 0).
 
 Crop: design/row98-timeline-punch7/apply-ye-inside-pane-dep-1280.png
+
+## Span glued, shared sub dropped (2026-10-19)
+
+Johnny: drop「Residual value, useful life and method」. The span was floating too far below the axis.
+
+- That line is gone. Nothing replaced it.
+- Span「Depreciate over useful life」is back in the punch7 family: dashed line, then the words.
+  Punch7 BEFORE started 8px under the line. With the three ticks in between, it now starts 36px under the line, and 7px under the Year-end labels.
+- Ceases right inset stays 33px. During-use rail vs pane Δ 0.
+
+Crop: design/row98-timeline-punch7/apply-ye-span-glued-dep-1280.png

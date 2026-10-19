@@ -57,8 +57,8 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
   --pole-h: calc(var(--space-6) * 7 + var(--space-2)); /* 232px so the shaft under the tallest cloth is the longer part */
   --ye-tick: var(--space-4);
   position: relative;
-  /* room under the line for the hang, the shared sub, and the span — all inside this box */
-  height: calc(var(--pole-h) + var(--space-6) * 3 + var(--space-4));
+  /* room under the line for the hang and the span, kept tight so the span stays with the axis */
+  height: calc(var(--pole-h) + var(--space-6) * 2);
   overflow: visible;
 }
 .mock-du .m-tl-line{
@@ -110,17 +110,10 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
   font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
   color: var(--muted);
 }
-.mock-du .m-tl-ye-sub{
-  position:absolute;
-  top: calc(var(--pole-h) + var(--stroke-2) + var(--ye-tick) + var(--space-5));
-  left: var(--space-3); right: var(--space-3);
-  text-align: center;
-  font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
-  color: var(--muted);
-}
 .mock-du .m-tl-span{
   position:absolute;
-  top: calc(var(--pole-h) + var(--stroke-2) + var(--ye-tick) + var(--space-5) + var(--space-5));
+  /* punch7 BEFORE was stroke-2 + space-2 under the line. The tick and its label sit in that gap; the span starts on the next token. */
+  top: calc(var(--pole-h) + var(--stroke-2) + var(--ye-tick) + var(--space-4) + var(--space-1));
   left: var(--space-3); right: var(--space-3);
   font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
   color: var(--muted); text-align: center;
@@ -166,7 +159,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
   <p class="meta">DRAFT-FOR-SIGN · night 1280 · solid L0 · During use = .inner-rail + kit25 · No Build · Atlas FROZEN cite</p>
 </div>
 
-<p class="mock-cap">#98 AFTER — master Depreciation · Year-end review under the axis · Ceases flag inside the pane · DRAFT-FOR-SIGN</p>
+<p class="mock-cap">#98 AFTER — master Depreciation · Year-end ticks under the axis · span glued to the line · Ceases inside the pane · DRAFT</p>
 
 <div class="ppe pack m-l0" id="after-board" aria-label="IAS 16 master — Depreciation phase AFTER">
   <div class="pack-lr">
@@ -198,7 +191,6 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
                       <span class="m-tl-ye" style="left:25%"><span class="m-tl-ye-tick" aria-hidden="true"></span><span class="m-tl-ye-lab">Year-end review</span></span>
                       <span class="m-tl-ye" style="left:50%"><span class="m-tl-ye-tick" aria-hidden="true"></span><span class="m-tl-ye-lab">Year-end review</span></span>
                       <span class="m-tl-ye" style="left:75%"><span class="m-tl-ye-tick" aria-hidden="true"></span><span class="m-tl-ye-lab">Year-end review</span></span>
-                      <span class="m-tl-ye-sub">Residual value, useful life and method</span>
                       <span class="m-tl-span">Depreciate over useful life</span>
                     </div>
                   </div>
