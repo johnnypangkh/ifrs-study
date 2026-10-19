@@ -227,7 +227,7 @@ PAGES = {
               f'<div class="imgs">{pane("after", "K9 ledger + K8 formula rows, same cell recipe", S07_AFTER[1])}</div>']),
     "S08-matrix": dict(
         t="S8 · Matrix: one table recipe",
-        why="Grammar skill §4 — an all-boxed grid adds a border level for no meaning; ruled rows read straight across.",
+        why="Boxing every cell draws a border that carries no meaning (a cell is not a group); one frame with ruled rows reads straight across.",
         body=[ba("S08-cf-ch06", "CF ch06 §6.4 <code>.mx-grid</code> — every cell boxed, UPPERCASE stub",
                  "one frame, hairline rules, stub on <code>--band</code> in sentence case")]),
     "S10-solid-bg": dict(
@@ -246,12 +246,10 @@ PAGES = {
         why="Rule 7 — don’t restate content already on the same map. The master shows the same Begins / Ceases axis three times.",
         body=[pair("../evidence/S-master-timeline-repeat.png", S12_AFTER,
                    "IAS 16 master <code>.ch04-reval</code> — 2nd copy of the axis (3rd is in <code>.ch04-impair</code>)", "one axis + event lanes")]),
-    "S13-stop-and-depth": dict(
-        t="S13 · One red stop per board; max two box levels",
-        why="Grammar skill §3 (≤ 1 red stop, justify a second) and §4 (2 bordered levels, a 3rd only for formula / ledger / see-also).",
-        body=[ba("S13-cf-index", "CF index — 2 red <code>.leaf-no.m-stop</code>", "<i>Not that element</i> muted; <i>Do not recognise</i> keeps red (Johnny to confirm)"),
-              ba("S13-depth-ias16-ch06", "IAS 16 ch06 <i>Partial disposal</i> — 5 bordered levels",
-                 "<code>.partial-nest</code> frame and <code>.item-rows</code> boxes dropped → 3 levels")]),
+    "S13-red-stop": dict(
+        t="S13 · One red stop per board",
+        why="Grammar skill §3 — at most one red stop per board; justify a second. (The box-depth half of S13 is on HOLD: owner override 2026-10-19, see LEGO-LOGIC snap rule 9 and ENHANCE E7.)",
+        body=[ba("S13-cf-index", "CF index — 2 red <code>.leaf-no.m-stop</code>", "<i>Not that element</i> muted; <i>Do not recognise</i> keeps red (Johnny to confirm)")]),
     "E01-kicker-to-rail": dict(
         t="E1 · PROPOSAL — stacked groups get a left rail, not a top kicker",
         why="Rules 2–3: a group label on the left, that group’s content on a grid to its right; all rails on one track.",
@@ -278,6 +276,15 @@ PAGES = {
         why="Rule 6: IAS 2 chapters walk the same life cycle as IAS 16, which already shows the reader where they are.",
         body=[pair("ba/E05-ias2-ch03-before.png", E05_AFTER, "IAS 2 ch03 top — no path marker", "IAS 16 echo recipe"),
               f'<div class="imgs">{pane("ref", "IAS 16 ch05 <code>nav.master-echo</code> — the recipe being reused", img("../evidence/B19-echo-bar.png"))}</div>']),
+    "E07-text-dump-deeper": dict(
+        t="E7 · PROPOSAL — a text-dump cell is a cue to go one layer deeper",
+        why="Owner heuristic 2026-10-19: when a cell is a list in prose, give the list its own grid (wrapped peers + a bar for the shared rule) instead of a run-on line. Same words, same order.",
+        body=[ba("E07-ias2-ch02", "IAS 2 ch02 §2.2 <i>Indicators that control has passed</i> — five indicators in one <code>.cell-body</code> line",
+                 "five peer cells (wrap) + junction bracket carrying the live qualifier",
+                 "Only the “; ” separators become cell boundaries and “ — ” becomes the bracket; first letters capitalised by CSS. No word added or removed."),
+              ba("E07-ias2-master", "IAS 2 master §3.6 <i>Not included in the cost of inventories</i> — four items in one <code>.m-out</code> line",
+                 "chip + title, then a 2 × 2 wrapped grid of the four items, then the live consequence as a Note",
+                 "This adds one bordered layer inside the <i>Cost of inventories</i> plate. Under the 2026-10-19 rule that is the point, not a defect.")]),
 }
 
 

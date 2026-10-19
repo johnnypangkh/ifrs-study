@@ -119,15 +119,53 @@ JOBS = [
                  s.style.setProperty('border', 'var(--stroke-1) solid var(--line)', 'important');
                  s.style.setProperty('background', 'transparent', 'important');
                  for (const t of s.querySelectorAll('*')) t.style.setProperty('color', 'var(--muted)', 'important'); }""", None)),
-    # S13 depth: IAS 16 ch06 partial disposal is plate > inner-detail > partial-nest > peer > item-rows (5 levels).
-    dict(id="S13-depth-ias16-ch06", file=I16 + "ch06-derecognition.html", sel=".inner-detail.story-special", maxh=None,
-         css=".ppe .partial-nest .item-rows{border:0!important;background:transparent!important;padding-inline:0!important}"
-             ".ppe .partial-nest{border-color:transparent!important;background:transparent!important;padding-inline:0!important}"),
     # Before-only crops for the hand-drawn S7 / E5 after panels.
     dict(id="S07-ias2-master-sum", file=I2 + "map-formula-board.html", sel=".m-sum", maxh=None, css=None),
     dict(id="S07-ias2-master-nrv", file=I2 + "map-formula-board.html", sel=".m-formula", maxh=None, css=None),
     dict(id="S07-ias2-master-eqn", file=I2 + "map-formula-board.html", sel=".m-eqn", maxh=None, css=None),
     dict(id="E05-ias2-ch03", file=I2 + "ch03-initial.html", sel="body", maxh=170, css=None),
+    # E7 text dump -> deeper grid. The JS moves the live words into child cells: list separators
+    # ("; ") become cell boundaries, every word stays, in order. No text is added.
+    dict(id="E07-ias2-ch02", file=I2 + "ch02-recognition.html", sel="[data-ba=e7]", maxh=None,
+         pre=("""() => [...document.querySelectorAll('.st-list .cell-title')]
+                 .find(t => t.textContent.startsWith('Indicators that control')).closest('section.q').setAttribute('data-ba', 'e7')""", None),
+         css=".e7-peers{display:grid;grid-template-columns:repeat(auto-fit,minmax(6.25rem,1fr));gap:var(--space-1);margin-top:var(--space-1)}"
+             ".e7-peer{border:var(--stroke-1) solid var(--line);border-radius:var(--radius-s);background:var(--band);"
+             "padding:var(--space-1) var(--space-cell);color:var(--ink);font-size:var(--t3-fs);font-weight:700;line-height:1.3}"
+             ".e7-peer::first-letter{text-transform:uppercase}"
+             ".e7-join{display:block;margin:0 12% 0;height:var(--space-2);border:var(--stroke-1) solid var(--line);border-top:0;"
+             "border-radius:0 0 var(--radius-s) var(--radius-s)}"
+             ".e7-qual{display:block;text-align:center;margin-top:var(--space-1);color:var(--muted);font-size:var(--t3-fs)}"
+             ".e7-qual::first-letter{text-transform:uppercase}",
+         js=("""() => {
+           const t = [...document.querySelectorAll('.st-list .cell-title')].find(t => t.textContent.startsWith('Indicators that control'));
+           const body = t.parentElement.querySelector('.cell-body');
+           const [list, qual] = body.textContent.split(' — ');
+           const g = document.createElement('span'); g.className = 'e7-peers';
+           for (const s of list.split('; ')) { const c = document.createElement('span'); c.className = 'e7-peer'; c.textContent = s; g.append(c); }
+           const j = document.createElement('span'); j.className = 'e7-join';
+           const q = document.createElement('span'); q.className = 'e7-qual'; q.textContent = qual;
+           body.textContent = ''; body.append(g, j, q);
+         }""", None)),
+    dict(id="E07-ias2-master", file=I2 + "map-formula-board.html", sel=".m-sum", maxh=None,
+         css=".m-out.e7-region{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-cell);align-items:start}"
+             ".e7-region > span{display:grid;gap:var(--space-1)}"
+             ".e7-peers{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:var(--space-1)}"
+             ".e7-peer{border:var(--stroke-1) solid var(--line);border-radius:var(--radius-s);background:var(--band);"
+             "padding:var(--space-1) var(--space-cell);color:var(--ink);font-size:var(--t3-fs);line-height:1.3}"
+             ".e7-peer::first-letter{text-transform:uppercase}"
+             ".e7-note{font-size:var(--t3-fs);color:var(--muted)}",
+         js=("""() => {
+           const p = [...document.querySelectorAll('.m-sum .m-out')].find(e => e.textContent.includes('Not included in the cost'));
+           p.classList.add('e7-region');
+           const span = p.querySelector(':scope > span'); const strong = span.querySelector('strong');
+           const rest = span.textContent.slice(strong.textContent.length).replace(/^\\s*—\\s*/, '');
+           const i = rest.indexOf('. ');
+           const g = document.createElement('span'); g.className = 'e7-peers';
+           for (const s of rest.slice(0, i).split('; ')) { const c = document.createElement('span'); c.className = 'e7-peer'; c.textContent = s; g.append(c); }
+           const n = document.createElement('span'); n.className = 'e7-note'; n.textContent = rest.slice(i + 2);
+           span.textContent = ''; span.append(strong, g, n);
+         }""", None)),
     # E1 kicker becomes a left rail with the group's content on a grid to its right.
     dict(id="E01-cf-ch01", file=CF + "ch01-objective-users.html", sel=".ou-board", maxh=None,
          css=".ou-sec{display:grid!important;grid-template-columns:calc(5*var(--space-6) + var(--space-2) + var(--stroke-1)) minmax(0,1fr);"
