@@ -46,3 +46,15 @@ Johnny: the arrowhead was not apparent. The 5px `--arrowhead` sat on the End rin
 Crops
 - design/row98-timeline-punch7/apply-arrow-clear-dep-1280.png
 - design/row98-timeline-punch7/apply-arrow-clear-reval-1280.png
+
+## Dep containment + Year-end under the axis (2026-10-19)
+
+Johnny rejected the year-end draft because the Ceases cloth crossed the pane. Reval was not edited.
+
+- Three「Year-end review」marks hang from this axis at 25 / 50 / 75%. No cloth. No .lc-band.
+- Shared line:「Residual value, useful life and method」.
+- Span「Depreciate over useful life」sits under those marks so the centre tick does not run through the words.
+- Ceases still flies right, inside the pane (right inset 33px). Arrowhead right inset 241px.
+- Phase rail stretches over the beat (§10.10.4). During-use rail matches the pane (Δ 0).
+
+Crop: design/row98-timeline-punch7/apply-ye-inside-pane-dep-1280.png
