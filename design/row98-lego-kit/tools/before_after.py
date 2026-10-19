@@ -155,6 +155,7 @@ JOBS = [
          }""", None)),
     dict(id="E07-ias2-master", file=I2 + "map-formula-board.html", sel=".m-sum", maxh=None,
          css=".m-sum .m-row{padding:var(--space-2) var(--space-3)}"
+             ".m-sum .m-plus{width:auto;font-size:calc(2 * var(--mt-op-fs));padding-block:var(--space-1)}"
              ".m-out.e7-region{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-3);align-items:start;"
              "padding-block:var(--space-2)}"
              ".e7-region > span{display:grid;gap:var(--space-2)}"
