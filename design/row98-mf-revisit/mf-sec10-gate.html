@@ -221,54 +221,62 @@
   }
   .axis {
     position: relative;
-    height: calc(var(--space-6) * 2 + var(--space-3));
+    height: calc(var(--space-6) * 3 + var(--space-2));
     margin: 0 var(--space-2);
   }
   .line {
     position: absolute;
     left: 0; right: 0;
-    top: calc(var(--space-6) + var(--space-1));
+    top: calc(var(--space-6) * 2);
     border-top: var(--stroke-2) solid var(--muted);
   }
   .ring {
     position: absolute;
-    top: calc(var(--space-6) + var(--space-1));
+    top: calc(var(--space-6) * 2);
     width: var(--space-3);
     height: var(--space-3);
     border: var(--stroke-2) solid var(--ink);
     background: var(--surface);
     border-radius: 50%;
     transform: translate(-50%, -50%);
+    z-index: 2;
   }
   .mk {
     position: absolute;
-    top: calc(var(--space-6) + var(--space-1));
+    top: calc(var(--space-6) * 2);
     transform: translateX(-50%);
     width: 0;
+    z-index: 3;
   }
   .mk-lab {
     position: absolute;
-    bottom: var(--space-2);
+    bottom: var(--space-5);
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
     font-size: var(--t3-strong-fs);
     font-weight: var(--t3-strong-fw);
-    color: var(--accent);
+    line-height: var(--t3-strong-lh);
+    color: var(--ink);
+    background: var(--band);
+    border: var(--stroke-1) solid var(--line);
+    border-radius: var(--radius-s);
+    padding: var(--space-1) var(--space-2);
   }
-  .mk.edge-l .mk-lab { left: 0; transform: none; }
-  .mk.edge-r .mk-lab { left: 0; transform: translateX(-100%); }
+  .mk.edge-l .mk-lab { left: 0; transform: none; border-bottom-left-radius: 0; }
+  .mk.edge-r .mk-lab { left: 0; transform: translateX(-100%); border-bottom-right-radius: 0; }
   .mk-stem {
     position: absolute;
     bottom: 0;
-    left: 50%;
-    height: var(--space-2);
-    border-left: var(--stroke-1) solid var(--accent);
+    left: 0;
+    height: var(--space-5);
+    border-left: var(--stroke-2) solid var(--ink);
+    transform: translateX(-50%);
   }
   .span {
     position: absolute;
     left: 0; right: 0;
-    top: calc(var(--space-6) + var(--space-2));
+    top: calc(var(--space-6) * 2 + var(--space-2));
     text-align: center;
     font-size: var(--t3-fs);
     color: var(--muted);
@@ -621,7 +629,7 @@
           </div>
         </div>
       </div>
-      <figcaption class="cap">Start, End, and markers sit on the one axis.</figcaption>
+      <figcaption class="cap">Flags: card on a pole, foot on the axis.</figcaption>
     </figure>
     <figure class="mini fail">
       <p class="tag fail">FAIL</p>

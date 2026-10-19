@@ -23,7 +23,18 @@ Johnny: the §9 min and the Gate PASS minis still drew Start/End under the axis.
 
 §10.9a and §10.10 wording stays. Night crop (before, §9 after, gate tests 3 and 4): `design/row98-mf-revisit/apply-timeline-q2a-1280.png`.
 
-Measured at night 1280: During-use rail and the kit 25 pane share top, bottom, and height (0px). Gate PASS rails do the same. Test 4 FAIL rail is 59px short of its pane. No `.ends` row remains.
+Measured at night 1280: During-use rail and the kit 25 pane share top, bottom, and height (0px). Gate PASS rails do the same. Test 4 FAIL rail is short of its pane. No `.ends` row remains.
+
+## Flag punch (2026-10-19)
+
+Johnny: the on-axis words were ticks, not flags. Punch 6 grammar copied onto the abstract specimen: pole foot on the axis or ring, card standing on the pole. Labels stay `Begins` / `Ceases` / `marker` / `Start` / `End`. Span stays `span (Start→End)`. No chapter sentences. No new kit or token.
+
+| Surface | Now |
+|---|---|
+| §9 Timeline min | During-use L1 rail still covers the pane. Begins, marker, marker, Ceases are flags. |
+| Gate test 3 PASS and the Phase schem | Start, End, and markers are the same flag. Test 3 FAIL is still the second band. |
+
+Night crop: `design/row98-mf-revisit/apply-timeline-flag-1280.png`.
 
 ## Unchanged
 
