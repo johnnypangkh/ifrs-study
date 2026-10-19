@@ -1,54 +1,49 @@
-#98 punch5 — Dep + Reval During-use timeline
+#98 punch6 — flag on the floor, axis is an arrow
 DRAFT-FOR-SIGN · mock only · No Build · No live merge · PR #163 DO NOT MERGE
 2026-10-19
 
-Choice: P2, with the one-label half of P3.
-Fold the two live ◆ onto the kit25 axis. Drop the second band.
-Not P1 (that would drop the words「Revaluation date」).
-Not P4 on Dep (no unreadability named; signed kit25 left as it is).
+Johnny: a timeline label is a flag punched on the floor, and a timeline is an arrow.
+Punch5 had the right words and no second band, but「Revaluation date」floated above the
+line, and Begins / Ceases hung below a plain line.
 
-What was wrong (file-truth, TIMELINE-AUDIT-98)
-- Reval AFTER (punch4) kept .reval-date-row under kit25:
-  legend「◆ Revaluation date」+ two .lc-dia both labelled「Revaluation date」.
-  Three copies. The ◆ sat in a separate .lc-band below the Begins/Ceases cards,
-  not on the axis. Two timelines in one pane.
-- Dep AFTER was already kit25-only. Year-end legend and 4 ticks were dropped
-  in the signed picks. The only「Year-end」left is the L2 peer 5.8 Year-end review.
+Grammar used (existing, not new chrome)
+- Visual-grammar §6: ring on the axis, 2px pole, card on the pole; arrowhead on the axis;
+  snapshot above the line; the span (what happens during) under the line.
+- Pole width = --stroke-2 (2px). Arrowhead = the IFRS 18 .tr-tl arrow (--rail-bar-l).
+- Line colour stays --muted, same as punch5.
 
-What changed
-- reval-master-section.html, timeline only (#reval-during-use):
-  - Removed .reval-date-row (legend + .lc-band.lc-band-rev).
-  - The same two ◆ stay at left:35% and left:70% (live positions, not new dates).
-  - They are .lc-dia on .m-tl-axis, centred on the kit25 line.
-  - One label, .m-tl-date-lab「Revaluation date」, between the diamonds, above the line.
-  - Span stays「Revalue during useful life」. Begins / Ceases cards unchanged.
-- Stylesheet hrefs in both HTML files point at this repo
-  (_shared/, ias-16/) instead of file:///workspace/main-scan/ifrs-study/
-  (that path is not on this machine). Dep teaching markup is otherwise identical.
+What changed (both During-use timelines)
+- The axis is a line that ends in an arrowhead. Time runs left → right.
+- Begins is a flag: the pole's foot is on the start ring, the card stands on the pole
+  and extends to the right.
+- Ceases is a flag: the pole's foot is on the end ring, just before the arrowhead.
+  The card extends back along the axis so it stays inside the frame.
+  A card past the arrowhead would leave the pane.
+- The span stays under the line, dashed, one line of the live words.
+- Dep words:「Depreciate over useful life」, Begins, Ceases, See also - IFRS 5.
+- Reval words:「Revalue during useful life」. The two live ◆ stay at 35% and 70%.
+  「Revaluation date」is one flag. Its pole is planted on the axis at the midpoint
+  of those two ◆. No .reval-date-row. No second copy of the words.
 
 What stayed
-- Dep timeline: no chrome change. AFTER crop is the signed kit25.
-- Reval punch4 Impairment reversal L2 .inner-rail | detail (verify-impair-rail.png).
-- Reval punch3: L1 stretch, no plate-title, other L2 peers, solid L0, B11, rev-nest width.
-- No live site file. No IFRS wording added or removed.
-  「Revaluation date」and「Revalue during useful life」are the live phrases.
+- No second ◆ band (punch5).
+- Reval punch4 Impairment reversal L2 rail | detail.
+- Reval punch3: L1 stretch, no plate-title, other L2, solid L0, B11, rev-nest width.
+- No live site file. No new IFRS wording.
 
-Measured on the punch5 render (1280, dark)
-- No .reval-date-row and no .lc-band in the after DOM.
-- Visible「Revaluation date」on the map: 1 (the axis label). The job card repeats it as a caption.
-- ◆ centres = 35% and 70% of the axis (682.9 and 936.5; axis 429.4–1153.8).
-- Both ◆ midlines = the axis line (329.4). Rings at the same midline, at 0% and 100%.
-- Label ink ends 8px above the line. Span ink「Revalue during useful life」starts 8px below the line.
-- Label sits between the diamonds (ink 767–852; diamonds at 683 and 937).
+Measured (punch6 render, 1280, dark, #reval-during-use)
+- Pole foot = line top (gap 0) on Begins, Revaluation date, and Ceases.
+- Card bottom = pole top. The card stands on the pole.
+- Arrow starts where the line ends (line right 1155.8, arrow left 1155.8).
+- Rings at 417.4 and 1147.8. Poles at 425.4 and 1139.8 (about 1px off the ring edge).
+- ◆ centres 677.9 and 938.5 (35% and 70%). Date pole 808.2 = their midpoint.
+- Date card 740–877, between the diamonds. Ceases card 969–1148, clear of the 70% ◆.
+- 「Revaluation date」on the timeline: 1. No .reval-date-row.
 
 Crops (design/row98-timeline-punch5/ba/)
-- dep-timeline-before.png     live ch05 .lc-head (Year-end band)
-- dep-timeline-after.png      signed kit25, unchanged  (= verify-during-use.png)
-- reval-timeline-before.png   live ch04 .lc-head (◆ band, triple label)
-- reval-timeline-after.png    punch5                 (= verify-timeline.png)
-- ba-dep-reval-timeline.png   the four crops on one page
-- verify-impair-rail.png      punch4 rail still there
-- after-dep-master.png / after-reval-master.png   full section boards
-
-Before crops are the live chapter .lc-head (the markup the master includes).
-The style-base deliverable folder named in the audit is not on this machine.
+- dep-punch5.png / reval-punch5.png     the punch5 arrangement (before)
+- dep-timeline-after.png                punch6 Dep   (= verify-during-use.png)
+- reval-timeline-after.png              punch6 Reval (= verify-timeline.png)
+- ba-dep-reval-timeline.png             the four panes
+- verify-impair-rail.png                punch4 rail still there
+- after-dep-master.png / after-reval-master.png
