@@ -76,6 +76,16 @@ Crops:
 - `design/row98-mf-revisit/apply-flag-silhouette-phase-1280.png`
 - `design/row98-mf-revisit/apply-flag-silhouette-gate-1280.png`
 
+## Flag flush (2026-10-19 ~20:20)
+
+Pole and cloth are flush. The 6px gap is gone; the cloth’s left edge sits on the pole. Cloth outline is `--stroke-2` (2px), was 1px. Pole length, cloth rectangle, right flight, and the axis arrow stay.
+
+Crops:
+
+- `design/row98-mf-revisit/apply-flag-flush-s9-1280.png`
+- `design/row98-mf-revisit/apply-flag-flush-phase-1280.png`
+- `design/row98-mf-revisit/apply-flag-flush-gate-1280.png`
+
 ## Unchanged
 
 - §10.0 three building blocks
