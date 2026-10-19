@@ -193,10 +193,10 @@ The stub column is UPPERCASE on CF ch06, IFRS 18 ch02 and IFRS 18 ch08, but sent
 **Standard.**
 - One frame (L3), hairline row and column rules (`--stroke-1 --line`).
 - Stub column on `--band`, header row T2-band, stub labels in sentence case bold (no CSS uppercase).
-- Cells are unboxed unless they hold a formula or ledger (the allowed 3rd level).
+- Cells are unboxed by default. A cell that holds a nested grid, a formula or a ledger keeps that inner component's own chrome. A matrix may go deeper inside a cell (LEGO-LOGIC snap rule 9).
 
 **Why.**
-- An all-boxed grid adds a border level for no meaning (grammar skill §4: max 2).
+- Boxing every cell draws a border that carries no meaning: a matrix cell is a crossing point, not a group. This is about what a border says, not about depth; depth is not capped (owner rule 2026-10-19).
 - Ruled rows read straight across (grammar skill: “one shared row grid”).
 
 **Affects.** CF ch06 §6.4; IFRS 18 ch02 §2.3; stub case on IFRS 18 ch08.
@@ -242,13 +242,14 @@ The stub column is UPPERCASE on CF ch06, IFRS 18 ch02 and IFRS 18 ch08, but sent
 - **IAS 16 ch01 §1.3 *Excluded from IAS 16?*** lists the four exclusions as `.item-rows` inside the question. It then repeats the same four as cells under *IAS 16 does not apply*, each with its See-also. **Standard:** show each exclusion once. See ENHANCE E3 (it touches what is shown, so it is a proposal).
 - **Mock:** `mocks/S12-draw-once.png`.
 
-### S13 · Red stops and box depth (grammar skill §3, §4)
-- **Red stops.** The CF index has **2** red `.m-stop` leaves: *Not that element* and *Do not recognise*. The skill says “≤ 1 per board, justify a second”. Every other board has ≤ 1. **Standard:** keep *Do not recognise* red (the true hard stop); *Not that element* becomes a muted dead-end (`.m-flow.mute` + plain Cell). Johnny to confirm which is the true stop.
-- **Box depth.** Measured nesting of bordered, non-pill boxes, from `CENSUS.md` §3 (the deepest chain found: IAS 16 ch06 *Partial disposal*, `.plate.pack-exit` › `.inner-detail.story-special` › `.partial-nest` › `.peer` › `.item-rows`):
-  - 5 levels: IAS 16 ch06, IAS 16 master, IAS 2 master, CF index;
-  - 4 levels: IAS 16 ch03 / ch04 / ch05, CF ch07, IFRS 18 ch03-mba-nest / ch05 / jumpboard / index.
-  - The cap is 2, with a 3rd only for formula, ledger and see-also. **Standard:** the innermost `.item-rows` box goes unboxed (a plain list) when it sits inside a Cell, and a frame that only wraps peers (`.partial-nest`) drops its border and keeps its title. A formula or ledger may keep its box. On the ch06 example this takes 5 levels to 3 with no wording change.
-- **Mock:** `mocks/S13-stop-and-depth.png`.
+### S13 · Red stops (grammar skill §3) — box depth on HOLD
+- **Red stops (still proposed).** The CF index has **2** red `.m-stop` leaves: *Not that element* and *Do not recognise*. The skill says “≤ 1 per board, justify a second”. Every other board has ≤ 1. **Standard:** keep *Do not recognise* red (the true hard stop); *Not that element* becomes a muted dead-end (`.m-flow.mute` + plain Cell). Johnny to confirm which is the true stop.
+- **Mock:** `mocks/S13-red-stop.png`.
+- **Box depth: HOLD (owner override, 2026-10-19). Do not apply.**
+  - The earlier proposal was to unbox the innermost `.item-rows` and the `.partial-nest` frame to keep within “max 2 bordered levels” (example: IAS 16 ch06 *Partial disposal*, `.plate.pack-exit` › `.inner-detail.story-special` › `.partial-nest` › `.peer` › `.item-rows`, 5 levels). It is **superseded**.
+  - Owner rule: depth is not capped at 2, nor at a hard L4 / L5. A text-dump cell is an opportunity to add a layer, not a reason to flatten. See `LEGO-LOGIC.md` snap rule 9 and `ENHANCE.md` E7.
+  - The measured depths stay in `CENSUS.md` §3 as facts only: 5 levels on IAS 16 ch06, IAS 16 master, IAS 2 master and CF index; 4 levels on IAS 16 ch03 / ch04 / ch05, CF ch07 and IFRS 18 ch03-mba-nest / ch05 / jumpboard / index. They are not a defect list.
+  - The depth mock was withdrawn; `mocks/S13-red-stop.png` replaces `S13-stop-and-depth.png`.
 
 ---
 
@@ -265,5 +266,5 @@ The stub column is UPPERCASE on CF ch06, IFRS 18 ch02 and IFRS 18 ch08, but sent
 9. **S4 timeline.** Shared component; biggest; after S1.
 10. **S12 draw once.** Needs the splice tool; after S4.
 11. **S11 cites.** Needs the body-text check first.
-12. **S13 depth.**
+12. **S13 red stop** (one choice for Johnny). S13 box depth is on HOLD.
 13. **S9 markup.** Invisible; do it with whichever item touches the file.

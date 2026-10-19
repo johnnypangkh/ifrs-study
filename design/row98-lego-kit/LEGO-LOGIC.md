@@ -29,15 +29,16 @@ The visual is chosen by **what the accounting idea is**, not by what looks nice.
 - **One idea, two shapes?** Nest them, don’t pick one. The outer shape is the bigger question. Example: IAS 16 ch05 §5.1 is a *Rail stack* whose rows are *Formula rows*.
 - **Same logic in another chapter?** Use the same component, even if the chapter CSS differs today (rule 6). `STANDARDISE.md` lists where this fails.
 - **Already shown elsewhere on the same map?** Point to it with B09 or a section chip (B06). Don’t draw it again (rule 7).
+- **A cell is a text dump?** Ask this guide again, *for that cell*, and build the answer inside it (snap rule 9). The guide is recursive: there is no depth at which it stops applying.
 
 ---
 
 ## 2. Snap rules (how bricks join)
 
 1. **Stack order:** Board (B01) › Plate (B02) › [Rail (B10) | Grid (B11) of Cells (B03)] › Note (B04).
-   - Inside one plate, use **at most 2 bordered levels**.
-   - A 3rd level is allowed only for a Formula row, a Ledger or a See-also.
-   - Source: grammar skill §4; MF §10 draft recipe “Max 2 bordered levels”.
+   - **The stack repeats inside a cell.** Any Cell may hold its own Grid of Cells (or a Rail stack, Matrix, Formula row), and so on down.
+   - **No fixed depth cap**, neither 2 nor a hard L4/L5 maximum (owner rule, 2026-10-19). This replaces the earlier “at most 2 bordered levels, a 3rd only for formula / ledger / see-also” (grammar skill §4; MF §10 draft “Max 2 bordered levels”), which no longer applies. The S13 depth-cut is on HOLD.
+   - The ranks L1–L4 name *chrome steps* (plate, cell, inner cell, note), not a depth limit. A deeper grid reuses the L3 cell chrome.
 2. **A rail owns its row.** Right of a rail is a grid holding only that group’s content, so a cell can be added later without redrawing (rule 3). Rails at the same level share one track and one chrome (rule 2; signed unify-A track `calc(5*var(--space-6)+var(--space-2)+var(--stroke-1))`).
 3. **Operators sit *between* cells on one line.** `+ − = ±` combine amounts. **AND / OR** combine conditions and must not look like arithmetic.
 4. **Arrows carry a label only when there is a choice** (Yes / No, or a short condition). A plain sequence arrow has no label.
@@ -48,6 +49,25 @@ The visual is chosen by **what the accounting idea is**, not by what looks nice.
    - **Under** an AND-gate: the junction (“Both required”).
 7. **Paint never makes a new shape.** Tone (B17) only recolours a border. Strip (B18) belongs only to a financial-statement line inside K11.
 8. **No cite chips, no graph paper** (R1, R2).
+9. **A text dump is a cue to go one layer deeper, not to flatten** (owner heuristic, 2026-10-19; with signed rules “add layers, never fold”, “prefer pivot / matrix”, “wrap rows across”, “right of a rail is a grid for that group”).
+   - **Spot it.** A Cell body (or plate region) that:
+     - lists **3+ items** in one line, joined by `;`, `·` or commas;
+     - says the **same attribute** for several items (“X: a; Y: b”);
+     - holds **two or more groups** in one paragraph;
+     - ends with a **qualifier for the whole list** (“— evaluated together …”).
+   - **Go deeper with the right component, inside that cell:**
+
+     | the dump is … | build inside the cell | brick that carries the extra words |
+     |---|---|---|
+     | a list of same-kind items | **K1 Peer row**, wrapped across | qualifier for all → B13 Bar / junction |
+     | items × the same attribute | **K10 Matrix** (stub = item, column = attribute) | — |
+     | several groups | **K2 Rail stack** | rail name = group name |
+     | a base rule plus an added layer | **K3 Nest** | — |
+     | amounts that combine | **K8 Formula row** / **K9 Ledger** | B14 operators |
+
+   - **Words stay exactly as they are.** Only the separators (`;`, `·`, “ — ”) turn into cell boundaries or a bar, and every word stays in order. If splitting would need new words, stop and ask Johnny.
+   - **Where to stop:** when each cell holds one idea (B03's job). A single explanatory sentence stays a Note (B04); not every paragraph is a list.
+   - Real examples and mocks: `ENHANCE.md` E7 (`mocks/E07-text-dump-deeper.png`).
 
 ---
 
@@ -62,6 +82,10 @@ Each row: the bricks it is made of, what it says to the reader, and where it alr
   - CF ch02 §2.6 *Enhancing* (4 peers).
   - CF ch04 *Shared by Asset and Liability* (`.el-bar`).
   - IFRS 18 ch02 *Rules shared by both roles* (`.pa-rule`).
+- **Also used *inside* a cell**, as the deeper layer for a prose list (snap rule 9). Mocked in E7:
+  - IAS 2 ch02 §2.2 *Indicators that control has passed*: 5 peers plus a junction bracket for “evaluated together under IFRS 15, none individually determinative”.
+  - IAS 2 master §3.6 *Not included in the cost of inventories*: 4 peers, wrapped 2 × 2.
+  - Same list, not mocked: IAS 2 ch03 `.leaf-note`, and IFRS 18 ch04 `.ts-regime-eg` *Listed IFRS subtotals*.
 
 ### K2 Rail stack — “each group, with only its own content”
 - **Bricks:** Rail | Grid of Cells, repeated down the plate on one shared rail track.
@@ -71,14 +95,18 @@ Each row: the bricks it is made of, what it says to the reader, and where it alr
 - **Same job done with a top label (Kicker B07) instead of a rail:**
   - CF ch01 (`.ou-label`).
   - IFRS 18 ch02 (`.pa-label`), ch04 (`.ts-label`), ch06 (`.mpm-label`), ch08 (`.tr-label`).
+- **Go deeper when** a cell to the right of a rail is a prose list. Give that cell its own grid (wrapped peers, or a matrix if the items share attributes) inside the same row; the rail still owns the row (rule 3). Do not move the list into a longer paragraph or a second column of prose.
+  - Live candidate: IFRS 18 index / jumpboard *Other FS impacts* (`.cell-grid.g-3`): each of *SCF*, *SFP*, *EPS*, *Interim* has a body of “·”-joined points that could be peer cells under that heading.
 
 ### K3 Nest — “a base, plus a layer, plus a layer”
-- **Bricks:** Plate › inner board › Rail stack › Peer row. Each step adds one level, within the 2+1 limit.
+- **Bricks:** Plate › inner board › Rail stack › Peer row › … Each step adds one level. Add as many as the idea has layers; there is no depth cap (snap rule 1).
 - **Real:**
   - **IAS 16 ch05 §5.1:** rail *Depreciable amount* › `.cap-model` rows *Cost model* / *Revaluation model* › formula row.
   - IAS 16 ch05 §5.3 *Useful life* › Definition / Factors / Land & buildings.
   - IFRS 18 ch03 *ch03-mba-nest* (`.pc-mba-rail`; `evidence/C-nest-ifrs18-mba.png`).
-- **Over the limit today:** IAS 16 ch06 and master (5 levels), IAS 16 ch03/04/05 (4), CF ch07 (4), IFRS 18 ch05 (4). See `CENSUS.md` §3.
+- **Deep today, and that is fine:** IAS 16 ch06 and master (5 levels), IAS 16 ch03/04/05 (4), CF ch07 (4), IFRS 18 ch05 (4) (`CENSUS.md` §3). Under the 2026-10-19 rule, depth alone is **not** a defect. The S13 depth-cut is on **HOLD**, superseded by snap rule 9.
+- **Go deeper when** one cell holds a base rule *and* an added layer in one paragraph. Split it into the base cell with the layer nested under it, rather than leaving both in one prose block.
+  - Live candidate: IAS 16 ch04 `p.thin-tip.revaluation-reversal` (*Revaluation (revaluation model only)*). The base rule is “the carrying amount cannot rise above what it would have been, net of depreciation, had no impairment loss been recognised”; the added layer is “On a revalued asset the reversal is treated as a revaluation increase …”.
 
 ### K4 AND-gate / OR-gate — “all of these must hold” / “any one is enough”
 - **Bricks:** criteria Cells in one row, an Operator between each pair, a Bar under them (the junction), then Arrows to a result Cell and a stop Cell.
@@ -171,6 +199,9 @@ Each row: the bricks it is made of, what it says to the reader, and where it alr
 | IAS 16 ch04 §4.2/4.3 policy | `.lens-heads/.lens-row/.lens-k/.lens-cell` | boxed row cells holding ledgers | sentence case bold | `C-matrix-ias16-ch04.png` |
 | IAS 16 ch04 §4.5 *Revaluation increase and decrease* | `.rev-table/.rev-row/.rev-cell` | — | — | — |
 | IAS 16 ch07 *Disclosure* | `.recon-cols` | — | — | — |
+
+- **Go deeper when** a cell says the same attribute for several items in one line (“X: a; Y: b”). That is an unpivoted matrix: pivot it into a small K10 inside the cell (stub = item, value = attribute). A matrix may sit inside a matrix cell or a rail row.
+  - Live candidate: IAS 2 ch04 §4.5 *Purpose for which the inventory is held*: “Firm sales or service contracts: contract price; excess quantities: general selling prices.” That is 2 items × 1 attribute (the selling price used); the trailing “Provisions for contracts beyond inventory held: IAS 37” stays a See-also line.
 
 ### K11 Statement — “what the face of the statement looks like”
 - **Bricks:**
