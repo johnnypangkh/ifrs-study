@@ -55,8 +55,10 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 }
 .mock-du .m-tl-shaft{
   --pole-h: calc(var(--space-6) * 7 + var(--space-2)); /* 232px so the shaft under the tallest cloth is the longer part */
+  --ye-tick: var(--space-4);
   position: relative;
-  height: calc(var(--pole-h) + var(--space-6) + var(--space-3));
+  /* room under the line for the hang, the shared sub, and the span — all inside this box */
+  height: calc(var(--pole-h) + var(--space-6) * 3 + var(--space-4));
   overflow: visible;
 }
 .mock-du .m-tl-line{
@@ -93,8 +95,32 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
   margin-left: var(--stroke-2); margin-top: var(--space-1);
   border: var(--stroke-2) solid var(--line); border-radius: 0;
 }
+/* Year-end review hangs under this same axis. No cloth, no legend box. */
+.mock-du .m-tl-ye{
+  position:absolute; top: calc(var(--pole-h) + var(--stroke-2));
+  width:0; z-index:3;
+}
+.mock-du .m-tl-ye-tick{
+  position:absolute; top:0; left:0; width:0; height: var(--ye-tick);
+  border-left: var(--stroke-2) solid var(--ink);
+}
+.mock-du .m-tl-ye-lab{
+  position:absolute; top: var(--ye-tick); left:0; transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
+  color: var(--muted);
+}
+.mock-du .m-tl-ye-sub{
+  position:absolute;
+  top: calc(var(--pole-h) + var(--stroke-2) + var(--ye-tick) + var(--space-5));
+  left: var(--space-3); right: var(--space-3);
+  text-align: center;
+  font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
+  color: var(--muted);
+}
 .mock-du .m-tl-span{
-  position:absolute; top: calc(var(--pole-h) + var(--stroke-2) + var(--space-2));
+  position:absolute;
+  top: calc(var(--pole-h) + var(--stroke-2) + var(--ye-tick) + var(--space-5) + var(--space-5));
   left: var(--space-3); right: var(--space-3);
   font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
   color: var(--muted); text-align: center;
@@ -102,6 +128,14 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 .mock-du .m-tl-span::before{
   content:""; display:block; border-top: var(--stroke-1) dashed var(--dash);
   margin: 0 var(--space-2) var(--space-1);
+}
+/* §10.10.4 — the phase rail covers the beat. Live align-self:start is the short stub. */
+.ppe.pack.m-l0 > .pack-lr{ align-items: stretch; }
+.ppe.pack.m-l0 > .pack-lr > a.rail-link{
+  align-self: stretch !important;
+  height: auto;
+  min-height: 100%;
+  box-sizing: border-box;
 }
 .mock-du.srow{display:grid;grid-template-columns:calc(5 * var(--space-6) + var(--space-2) + var(--stroke-1)) minmax(0,1fr);gap:var(--space-cell);align-items:stretch}
 .mock-du .tl-pane{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;box-sizing:border-box;height:100%}
@@ -128,11 +162,11 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
   <h1>#98 IAS 16 master — Depreciation COMPLETE SECTION</h1>
   <p class="q"><b>1. Standard logic:</b> IAS 16 Depreciation is a life-cycle (Begins → During use → Ceases) with AND-conditions, residual/useful-life peers, and year-end reassessment — the reader must see phases + what must both hold, not a flat text dump of paragraphs.</p>
   <p class="q"><b>2. Visual signal:</b> Apply signed LEGO kit (PR #163 draft, DO NOT MERGE live) — layers/rails/grids/timeline/operators; prefer pivot/matrix + wrap rows over folding; text-dump cell = opportunity for deeper nest (no hard L4/L5 cap; S13 HOLD). Add building-block grammar, not collage.</p>
-  <p class="q"><b>3. vs Before:</b> Keep Johnny-signed dep-v2 picks already locked (#1–4): keep During use left rail; drop top Depreciation plate title; keep timeline span (Content full Begins→Ceases Depreciate over useful life); drop Year-end legend and markers; Residual = sibling wrap. Everything else follow live BEFORE byte-identical unless this card names a new delta. Only Johnny-named deltas; no redesign for chrome-only.</p>
+  <p class="q"><b>3. vs Before:</b> Keep Johnny-signed dep-v2 picks already locked (#1–4): keep During use left rail; drop top Depreciation plate title; keep timeline span (Content full Begins→Ceases Depreciate over useful life); Year-end review hangs under this same axis (no legend band); Residual = sibling wrap. Everything else follow live BEFORE byte-identical unless this card names a new delta. Only Johnny-named deltas; no redesign for chrome-only.</p>
   <p class="meta">DRAFT-FOR-SIGN · night 1280 · solid L0 · During use = .inner-rail + kit25 · No Build · Atlas FROZEN cite</p>
 </div>
 
-<p class="mock-cap">#98 AFTER — master Depreciation · punch7: signed MF flag on an arrow · wording unchanged · DRAFT-FOR-SIGN</p>
+<p class="mock-cap">#98 AFTER — master Depreciation · Year-end review under the axis · Ceases flag inside the pane · DRAFT-FOR-SIGN</p>
 
 <div class="ppe pack m-l0" id="after-board" aria-label="IAS 16 master — Depreciation phase AFTER">
   <div class="pack-lr">
@@ -142,7 +176,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 <!-- include:ch05-depreciation.html#ch05-dep:start -->
         <section class="plate ch05-dep" aria-label="Depreciable amount equals cost or revalued amount minus residual value">
 <div class="inner-board">
-                        <!-- APPLY picks 1–3 + unify-A: During use = .inner-rail + kit25; no YE -->
+                        <!-- During use = .inner-rail + kit25. Year-end review hangs under this axis. No .lc-band. -->
             <div class="mock-du srow" id="dep-signed-top" role="group" aria-label="During use">
               <div class="inner-rail" aria-current="true"><span class="rail-name">During use</span></div>
               <div class="tl-pane">
@@ -161,6 +195,10 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
                         <span class="m-tl-pole" aria-hidden="true"></span>
                         <div class="l3"><p class="t1">Ceases</p><p class="t2">Earlier of: classified as held for sale or derecognised</p><span class="see">See also - IFRS 5</span></div>
                       </div>
+                      <span class="m-tl-ye" style="left:25%"><span class="m-tl-ye-tick" aria-hidden="true"></span><span class="m-tl-ye-lab">Year-end review</span></span>
+                      <span class="m-tl-ye" style="left:50%"><span class="m-tl-ye-tick" aria-hidden="true"></span><span class="m-tl-ye-lab">Year-end review</span></span>
+                      <span class="m-tl-ye" style="left:75%"><span class="m-tl-ye-tick" aria-hidden="true"></span><span class="m-tl-ye-lab">Year-end review</span></span>
+                      <span class="m-tl-ye-sub">Residual value, useful life and method</span>
                       <span class="m-tl-span">Depreciate over useful life</span>
                     </div>
                   </div>
