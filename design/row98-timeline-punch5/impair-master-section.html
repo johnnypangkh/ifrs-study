@@ -1,0 +1,315 @@
+<!doctype html>
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>#98 AFTER — IAS 16 master Impairment section</title>
+<link rel="stylesheet" href="../../_shared/visuals.css">
+<link rel="stylesheet" href="../../_shared/type-scale.css">
+<link rel="stylesheet" href="../../ias-16/draft-v1-linked/visuals/ias16.css">
+
+<style>
+/* MOCK ONLY — #98 impair-master-section
+   Content story 2026-10-20. DRAFT-FOR-SIGN. No Build. No live merge.
+   One kit 25 axis. Reporting-date checkpoints, not diamonds, not a Dep twin.
+   Phases A–D and Pair are their own L2 rails. No second band. */
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif}
+body.embed{background:var(--bg)}
+body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4);box-sizing:border-box;display:flex;flex-direction:column;gap:var(--space-3)}
+.mock-cap{font-size:var(--t3-fs);color:var(--muted);margin:0}
+.job-card{border:var(--stroke-2) solid var(--line);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-3);display:flex;flex-direction:column;gap:var(--space-2)}
+.job-card h1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
+.job-card .q{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0}
+.job-card .meta{font-size:var(--t3-fs);color:var(--muted);margin:0;line-height:var(--t3-lh)}
+
+.ppe.pack.m-l0{
+  background-image:none !important;
+  background-size:auto !important;
+  background-position:initial !important;
+  background-color:var(--bg) !important;
+}
+.ppe.pack.m-l0 > .pack-lr{
+  display:grid;
+  grid-template-columns:minmax(calc(3 * var(--space-6) + var(--space-4)), calc(4 * var(--space-6) + var(--space-3) + var(--space-hairline) + var(--stroke-1))) minmax(0, 1fr);
+  column-gap:var(--space-cell);
+  row-gap:0;
+  align-items:stretch;
+}
+.ppe.pack.m-l0 > .pack-lr > a.rail-link[data-phase="impair"]{
+  align-self:stretch !important;
+  height:auto;
+  min-height:100%;
+  box-sizing:border-box;
+  align-items:flex-start;
+  justify-content:center;
+}
+
+.mock-du .t1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
+.mock-du .t2{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0;color:var(--muted)}
+.mock-du .head{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.mock-du .l3{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:0;padding:var(--space-1) var(--space-2);display:flex;flex-direction:column;gap:var(--space-hairline);min-width:0;box-sizing:border-box}
+.mock-du .see{font-size:var(--t3-fs);font-weight:var(--t3-strong-fw);color:var(--see-also,var(--accent));border:var(--stroke-1) dashed var(--see-also,var(--dash));border-radius:var(--radius-pill);padding:0 var(--space-2);align-self:flex-start}
+
+.mock-du .m-tl{display:flex;flex-direction:column;gap:0;position:relative;min-width:0}
+.mock-du .m-tl-axis{
+  position:relative;
+  margin: 0 var(--space-2) 0 var(--space-3);
+  padding-right: 17rem;
+  box-sizing: border-box;
+  overflow: visible;
+}
+.mock-du .m-tl-shaft{
+  --pole-h: calc(var(--space-6) * 7 + var(--space-2));
+  position: relative;
+  height: calc(var(--pole-h) + var(--space-6) * 3);
+  overflow: visible;
+}
+.mock-du .m-tl-line{
+  --head: var(--space-4);
+  position:absolute; left:0; top: var(--pole-h);
+  width: calc(100% + var(--space-6));
+  height: var(--stroke-2); background: var(--muted); border: 0;
+}
+.mock-du .m-tl-line::after{
+  content:""; position:absolute; left:100%; top:50%;
+  width:0; height:0; margin-top: calc(-1 * var(--head));
+  border-top: var(--head) solid transparent;
+  border-bottom: var(--head) solid transparent;
+  border-left: var(--head) solid var(--muted);
+}
+.mock-du .m-tl-ring{
+  position:absolute; top: calc(var(--pole-h) + var(--stroke-2) / 2);
+  width: var(--space-3); height: var(--space-3);
+  border: var(--stroke-2) solid var(--ink); background: var(--surface); border-radius: 50%;
+  transform: translate(-50%, -50%); z-index: 6;
+}
+.mock-du .m-tl-flag{
+  position:absolute; top: 0;
+  height: calc(var(--pole-h) + var(--stroke-2) / 2);
+  width: max-content; max-width: 16rem;
+  z-index: 4;
+}
+.mock-du .m-tl-pole{
+  position:absolute; left:0; top:0; bottom:0; width:0; margin:0;
+  border-left: var(--stroke-2) solid var(--ink); background: none;
+}
+.mock-du .m-tl-flag .l3{
+  width: max-content; max-width: calc(16rem - var(--stroke-2));
+  margin-left: var(--stroke-2); margin-top: var(--space-1);
+  border: var(--stroke-2) solid var(--line); border-radius: 0;
+}
+.mock-du .m-tl-ribbon{
+  position:absolute;
+  left: var(--stroke-2);
+  width: calc(100% - var(--stroke-2) * 2);
+  top: calc(var(--pole-h) - var(--space-6));
+  height: var(--space-6);
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(to right, color-mix(in srgb, var(--accent) 35%, var(--bg)), var(--accent));
+  z-index:3;
+}
+.mock-du .m-tl-ribbon p{
+  margin:0; line-height:1;
+  font-size: var(--t3-fs); font-weight: var(--t3-strong-fw); color: var(--ink);
+}
+/* Checkpoint squares on the line. Two lines hang under each: the date, then the action. */
+.mock-du .m-tl-rd{
+  position:absolute; top: var(--pole-h); width:0; z-index:6;
+}
+.mock-du .rd-box{
+  position:absolute; left:0; top:0;
+  width: var(--space-2); height: var(--space-2);
+  transform: translate(-50%, -50%);
+  border: var(--stroke-2) solid var(--ink);
+  background: var(--surface);
+}
+.mock-du .rd-pole{
+  position:absolute; left:0; top:0; width:0; height: var(--space-3);
+  border-left: var(--stroke-2) solid var(--ink);
+}
+.mock-du .rd-lab{
+  position:absolute; left:0; top: var(--space-3); transform: translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap: var(--space-hairline);
+  width: max-content;
+}
+.mock-du .rd-lab .k,
+.mock-du .rd-lab .act{
+  margin:0; white-space:nowrap;
+  font-size: var(--t3-fs); line-height: var(--t3-lh); color: var(--ink);
+}
+.mock-du .rd-lab .k{ font-weight: var(--t1-fw); }
+.mock-du .rd-lab .act{ font-weight: var(--t3-fw); }
+.mock-du .m-tl-foot{
+  position:absolute; left:0; right:0; margin:0; text-align:center;
+  top: calc(var(--pole-h) + var(--space-6) * 2);
+  font-size: var(--t2-fs); font-weight: var(--t2-fw); line-height: var(--t2-lh); color: var(--ink);
+}
+.mock-du .tl-pane{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;box-sizing:border-box;height:100%}
+
+.ch04-impair .inner-board{
+  display:flex; flex-direction:column; gap: var(--space-cell); min-width:0;
+}
+.ch04-impair .srow,
+.mock-du.srow{
+  display:grid;
+  grid-template-columns:calc(5 * var(--space-6) + var(--space-2) + var(--stroke-1)) minmax(0,1fr);
+  gap:var(--space-cell);
+  align-items:stretch;
+  min-width:0;
+  box-sizing:border-box;
+}
+.ch04-impair .srow > .inner-rail{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  align-self:stretch !important;
+  justify-content:flex-start;
+  width:auto !important;
+  max-width:none;
+  height:auto;
+  min-height:0;
+  gap:var(--space-1);
+  margin:0;
+  padding:var(--space-cell);
+  border-radius:var(--card-radius);
+  text-align:left;
+  box-sizing:border-box;
+}
+.ch04-impair .srow > .inner-rail > a.fb-num,
+.ch04-impair .srow > .inner-rail > .rail-name{
+  flex:0 0 auto;
+  margin:0;
+  text-align:left;
+}
+.ch04-impair .srow > .inner-detail,
+.ch04-impair .srow > .tl-pane{ min-width:0; box-sizing:border-box; }
+.ch04-impair .srow > .inner-detail{
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-2);
+  padding:var(--space-2) var(--space-3);
+  border:var(--stroke-1) solid var(--line);
+  border-radius:var(--card-radius);
+  background:var(--surface);
+}
+.ch04-impair .phase-line{
+  margin:0;
+  font-size: var(--t2-fs);
+  font-weight: var(--t2-fw);
+  line-height: var(--t2-lh);
+  color: var(--ink);
+}
+.ch04-impair .phase-line.lead{ font-weight: var(--t1-fw); }
+.ch04-impair .inner-detail .see{ align-self:flex-start; }
+</style>
+</head>
+<body class="embed">
+<div class="page" id="pkg">
+
+<div class="job-card" id="s0d">
+  <h1>#98 IAS 16 master — Impairment section</h1>
+  <p class="q">Each reporting date: assess whether there is any indication. Test only if there is. Write down only if recoverable amount is below carrying amount. Later, consider reversal. PPE has no mandatory annual full test.</p>
+  <p class="meta">DRAFT-FOR-SIGN · night 1280 · Content story · No Build · Dep and Reval untouched</p>
+</div>
+
+<p class="mock-cap">#98 AFTER — master Impairment · each reporting date assess indication · phases A–D · DRAFT-FOR-SIGN</p>
+
+<div class="ppe pack m-l0" id="after-board" aria-label="IAS 16 master — Impairment phase AFTER">
+  <div class="pack-lr">
+    <a class="rail-link" data-phase="impair" href="#">Impairment</a>
+    <div class="beat" data-phase="impair">
+      <div class="map-include" data-phase-start data-phase-end>
+<section class="plate ch04-impair" aria-label="Impairment">
+          <div class="inner-board">
+            <div class="mock-du srow" id="impair-reporting" role="group" aria-label="Each reporting date">
+              <div class="inner-rail" aria-current="true"><a class="fb-num" href="../ch04.html#s-4-8" target="_parent">4.8</a><span class="rail-name">Each reporting date</span></div>
+              <div class="tl-pane">
+                <div class="m-tl" role="group" aria-label="Impairment review timeline">
+                  <div class="m-tl-axis">
+                    <div class="m-tl-shaft">
+                      <div class="m-tl-line"></div>
+                      <span class="m-tl-ring" style="left:0"></span>
+                      <span class="m-tl-ring end" style="left:100%"></span>
+                      <div class="m-tl-flag begin" style="left:0">
+                        <span class="m-tl-pole" aria-hidden="true"></span>
+                        <div class="l3"><p class="t1">Begins</p><p class="t2">While the item is held as PPE</p></div>
+                      </div>
+                      <div class="m-tl-flag cease" style="left:100%">
+                        <span class="m-tl-pole" aria-hidden="true"></span>
+                        <div class="l3"><p class="t1">Ceases</p><p class="t2">Classified as held for sale or derecognised</p><span class="see">See also · IFRS 5</span></div>
+                      </div>
+                      <div class="m-tl-ribbon"><p>Subject to impairment review</p></div>
+                      <div class="m-tl-rd" style="left:22%">
+                        <span class="rd-box" aria-hidden="true"></span>
+                        <span class="rd-pole" aria-hidden="true"></span>
+                        <div class="rd-lab"><p class="k">Reporting date</p><p class="act">Assess any indication</p></div>
+                      </div>
+                      <div class="m-tl-rd" style="left:50%">
+                        <span class="rd-box" aria-hidden="true"></span>
+                        <span class="rd-pole" aria-hidden="true"></span>
+                        <div class="rd-lab"><p class="k">Reporting date</p><p class="act">Assess any indication</p></div>
+                      </div>
+                      <div class="m-tl-rd" style="left:78%">
+                        <span class="rd-box" aria-hidden="true"></span>
+                        <span class="rd-pole" aria-hidden="true"></span>
+                        <div class="rd-lab"><p class="k">Reporting date</p><p class="act">Assess any indication</p></div>
+                      </div>
+                      <p class="m-tl-foot">Each reporting date: assess indication — test only if needed</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="srow" id="phase-a" role="group" aria-label="A - Test">
+              <div class="inner-rail"><span class="rail-name">A - Test</span></div>
+              <div class="inner-detail">
+                <p class="phase-line lead">Assess any indication?</p>
+                <p class="phase-line">Indicators: external + internal</p>
+                <p class="phase-line">No indication: no test</p>
+              </div>
+            </div>
+
+            <div class="srow" id="phase-b" role="group" aria-label="B - Measure + write down">
+              <div class="inner-rail"><span class="rail-name">B - Measure + write down</span></div>
+              <div class="inner-detail">
+                <p class="phase-line lead">Indication: estimate recoverable amount</p>
+                <p class="phase-line">Recoverable amount = higher of FV less costs of disposal and value in use</p>
+                <p class="phase-line">Recoverable amount &lt; carrying amount: write down</p>
+                <span class="see">See also · IAS 36</span>
+              </div>
+            </div>
+
+            <div class="srow" id="phase-c" role="group" aria-label="C - After write-down">
+              <div class="inner-rail"><span class="rail-name">C - After write-down</span></div>
+              <div class="inner-detail">
+                <p class="phase-line lead">After write-down: depreciate revised carrying amount</p>
+                <a class="see" href="../ch05.html#s-5-4" target="_parent"><span class="fb-num">5.4</span> See also · Depreciation</a>
+              </div>
+            </div>
+
+            <div class="srow" id="phase-d" role="group" aria-label="D - Reversal">
+              <div class="inner-rail"><span class="rail-name">D - Reversal</span></div>
+              <div class="inner-detail">
+                <p class="phase-line">Reversal cap: carrying amount had no impairment been recognised</p>
+                <p class="phase-line">Revalued asset: treated as a revaluation increase</p>
+              </div>
+            </div>
+
+            <div class="srow" id="phase-pair" role="group" aria-label="Pair">
+              <div class="inner-rail"><span class="rail-name">Pair</span></div>
+              <div class="inner-detail">
+                <p class="phase-line">Cost: loss to P&amp;L</p>
+                <p class="phase-line">Revaluation: revaluation decrease, surplus first</p>
+              </div>
+            </div>
+          </div>
+</section>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

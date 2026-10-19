@@ -104,3 +104,16 @@ Johnny: the ribbon alone did not teach the story. Dep was not edited.
 - No second band. Ceases right inset 33px. During-use rail vs pane Δ 0. Phase rail vs beat Δ 0.
 
 Crop: design/row98-timeline-punch7/apply-reval-story-1280.png
+
+## Impairment content story (2026-10-20, not signed)
+
+Dep and Reval files were not edited. Live chapter HTML was not edited. This is the Impairment master-section mock.
+
+- Rail is `Each reporting date`, under the phase rail `Impairment`.
+- Ribbon `Subject to impairment review`. Three regular checkpoint squares. Each hangs `Reporting date` and `Assess any indication`.
+- Begins `While the item is held as PPE`. Ceases `Classified as held for sale or derecognised` with `See also · IFRS 5`.
+- Foot `Each reporting date: assess indication — test only if needed`.
+- L2 rows: `A - Test`, `B - Measure + write down`, `C - After write-down` (jump 5.4), `D - Reversal` (two lines), `Pair`.
+- Ceases right inset 33px. Every L2 rail vs its detail Δ 0. Phase rail vs the beat Δ 0. No second band.
+
+Crop: design/row98-timeline-punch7/apply-impair-story-1280.png
