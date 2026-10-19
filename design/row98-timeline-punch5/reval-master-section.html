@@ -1,0 +1,340 @@
+<!doctype html>
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>#98 AFTER — IAS 16 master Revaluation COMPLETE SECTION</title>
+<link rel="stylesheet" href="../../_shared/visuals.css">
+<link rel="stylesheet" href="../../_shared/type-scale.css">
+<link rel="stylesheet" href="../../ias-16/draft-v1-linked/visuals/ias16.css">
+
+<style>
+/* MOCK ONLY — #98 reval-master-section-98
+   Johnny punch5 2026-10-19 · DRAFT-FOR-SIGN · No Build · No live merge
+   APPLY punch5 (timeline only): drop .reval-date-row second band.
+     Fold the two live ◆ (35% / 70%) onto the kit25 axis. One label「Revaluation date」.
+     Span stays「Revalue during useful life」. No new wording.
+   KEEP punch4: Impairment reversal L2 .inner-rail | detail
+   KEEP punch3: L1 stretch · drop plate-title · other L2 · solid L0 · B11 · rev-nest width
+   PROPOSE ONLY: Dep timeline (signed kit25, no unreadability named)
+*/
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif}
+body.embed{background:var(--bg)}
+body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4);box-sizing:border-box;display:flex;flex-direction:column;gap:var(--space-3)}
+.mock-cap{font-size:var(--t3-fs);color:var(--muted);margin:0}
+.job-card{border:var(--stroke-2) solid var(--line);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-3);display:flex;flex-direction:column;gap:var(--space-2)}
+.job-card h1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
+.job-card .q{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0}
+.job-card .q b{color:var(--accent)}
+.job-card .meta{font-size:var(--t3-fs);color:var(--muted);margin:0;line-height:var(--t3-lh)}
+
+/* Isolate one master phase: rail-link + beat — stretch so L1 matches beat height (punch3) */
+.ppe.pack.m-l0 > .pack-lr{
+  display:grid;
+  grid-template-columns:minmax(calc(3 * var(--space-6) + var(--space-4)), calc(4 * var(--space-6) + var(--space-3) + var(--space-hairline) + var(--stroke-1))) minmax(0, 1fr);
+  column-gap:var(--space-cell);
+  row-gap:0;
+  align-items:stretch; /* was start — short stub */
+}
+/* L1 phase rail = full-height continuous left (MF: height = whole beat) */
+.ppe.pack.m-l0 > .pack-lr > a.rail-link[data-phase="reval"]{
+  align-self:stretch !important; /* override live align-self:start */
+  height:auto;
+  min-height:100%;
+  box-sizing:border-box;
+  /* label stays at top of tall rail */
+  align-items:flex-start;
+  justify-content:center;
+}
+
+/* Step 5 SIGNED solid bg — kill graph-paper on this L0 (same recipe as signed Dep) */
+.ppe.pack.m-l0{
+  background-image:none !important;
+  background-size:auto !important;
+  background-position:initial !important;
+  background-color:var(--bg) !important;
+}
+
+/* During use mock-du (from signed dep-v2 unify-A / LEGO B10) */
+.plate .inner-board > .mock-du{grid-column:1/-1;min-width:0;box-sizing:border-box}
+.mock-du{display:flex;flex-direction:column;gap:var(--space-3);min-width:0}
+.mock-du .t1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
+.mock-du .t2{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0;color:var(--muted)}
+.mock-du .head{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.mock-du .l3{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--radius-s);padding:var(--space-1) var(--space-2);display:flex;flex-direction:column;gap:var(--space-hairline);min-width:0;box-sizing:border-box}
+.mock-du .see{font-size:var(--t3-fs);font-weight:var(--t3-strong-fw);color:var(--see-also,var(--accent));border:var(--stroke-1) dashed var(--see-also,var(--dash));border-radius:var(--radius-pill);padding:0 var(--space-2);align-self:flex-start}
+.mock-du .m-tl{display:flex;flex-direction:column;gap:0;position:relative;min-width:0}
+.mock-du .m-tl-axis{position:relative;height:calc(var(--space-6)*2 + var(--space-4));margin:0 var(--space-5);overflow:visible}
+.mock-du .m-tl-line{position:absolute;left:0;right:0;top:calc(var(--space-6) + var(--space-2));border-top:var(--stroke-2) solid var(--muted)}
+.mock-du .m-tl-ring{position:absolute;top:calc(var(--space-6) + var(--space-2));width:var(--space-3);height:var(--space-3);border:var(--stroke-2) solid var(--ink);background:var(--surface);border-radius:50%;transform:translate(-50%,-50%);z-index:6}
+.mock-du .m-tl-span{position:absolute;top:calc(var(--space-6) + var(--space-4));left:0;width:100%;font-size:var(--t3-fs);font-weight:var(--t3-fw);line-height:var(--t3-lh);color:var(--muted);text-align:center;box-sizing:border-box}
+.mock-du .m-tl-span::before{content:"";display:block;border-top:var(--stroke-1) dashed var(--dash);margin:0 var(--space-1) var(--space-hairline)}
+.mock-du .m-tl-ring-lead{position:absolute;top:calc(var(--space-6) + var(--space-2));transform:translateX(-50%);width:var(--stroke-1);height:calc(var(--space-6) * 2 + var(--space-4) + var(--space-2));background:var(--accent);border:none;z-index:5;pointer-events:none}
+.mock-du .m-tl-ends{display:flex;justify-content:space-between;gap:var(--space-3);margin:calc(-1 * var(--space-4)) var(--space-5) 0;padding-top:calc(var(--space-6) * 2);position:relative;z-index:1}
+.mock-du .m-tl-end{display:flex;flex-direction:column;align-items:flex-start;max-width:46%;min-width:0}
+.mock-du .m-tl-end.cease{align-items:flex-end;text-align:right}
+.mock-du .m-tl-end .l3{width:100%}
+.mock-du .m-tl-end.cease .l3{align-items:flex-end}
+.mock-du .tl-pane{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;box-sizing:border-box;height:100%}
+/* punch5: live ◆ sit ON the kit25 axis (same 35% / 70%). One label. No second band. */
+.mock-du .m-tl-axis > .lc-dia{top:calc(var(--space-6) + var(--space-2));z-index:7;background:var(--band);padding:0 var(--space-1)}
+.mock-du .m-tl-date-lab{position:absolute;left:52.5%;top:calc(var(--space-6) + var(--space-2) - var(--space-2));transform:translate(-50%,-100%);z-index:7;margin:0;font-size:var(--t3-fs);font-weight:var(--t1-fw);line-height:var(--t3-lh);color:var(--accent);white-space:nowrap}
+
+/* Dep unify-A rail track — shared by mock-du + L2 peer srows (B10) */
+.ch04-reval .srow,
+.mock-du.srow{
+  display:grid;
+  grid-template-columns:calc(5 * var(--space-6) + var(--space-2) + var(--stroke-1)) minmax(0,1fr);
+  gap:var(--space-cell);
+  align-items:stretch;
+  min-width:0;
+  box-sizing:border-box;
+}
+/* Tall L2 rails: override live ch04-reval fit-content short-pill on bare > .inner-rail */
+.ch04-reval .srow > .inner-rail{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  align-self:stretch !important;
+  justify-content:flex-start;
+  width:auto !important;
+  max-width:none;
+  height:auto;
+  min-height:0;
+  gap:var(--space-1);
+  margin:0;
+  padding:var(--space-cell);
+  border-radius:var(--card-radius);
+  text-align:left;
+  box-sizing:border-box;
+}
+.ch04-reval .srow > .inner-rail > a.fb-num,
+.ch04-reval .srow > .inner-rail > .rail-name{
+  flex:0 0 auto;
+  margin:0;
+  text-align:left;
+}
+.ch04-reval .srow > .inner-detail,
+.ch04-reval .srow > .tl-pane{
+  min-width:0;
+  box-sizing:border-box;
+}
+.ch04-reval .srow > .inner-detail{
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-2);
+  padding:var(--space-2) var(--space-3);
+  border:var(--stroke-1) solid var(--line);
+  border-radius:var(--card-radius);
+  background:var(--surface);
+}
+/* Thin kicker above Cost/Reval peer srows — not a second Revaluation title */
+.ch04-reval .mock-kicker{
+  margin:0;
+  padding:0;
+  font-size:var(--t3-fs);
+  font-weight:var(--t3-strong-fw);
+  line-height:var(--t3-lh);
+  color:var(--muted);
+  letter-spacing:var(--legacy-ls-5,0.04em);
+  text-transform:uppercase;
+}
+
+/* LEGO B11 SIGNED spacing — object-to-border */
+.ch04-reval .srow > .inner-detail > .item-rows{
+  padding:var(--space-2) var(--space-3) !important;
+  box-sizing:border-box;
+  margin:0;
+}
+/* punch4: thin-tip.revaluation-reversal → .srow.mock-impair-rev (shared L2 stretch CSS) */
+.ch04-reval .srow.mock-impair-rev > .inner-detail{
+  gap:var(--space-2);
+}
+
+.ch04-reval .inner-board{
+  gap:var(--space-cell);
+}
+.ch04-reval .surplus-transfer{
+  margin:0;
+  padding:var(--space-2) var(--space-3);
+  box-sizing:border-box;
+}
+/* punch3: rev-nest inside .inner-detail was width:0 (container + flex) → matrix text stacked ~3800px.
+   Force nest/table to fill detail; restore 3-col rev-line; no overflow-wrap:anywhere. */
+.ch04-reval .srow > .inner-detail{
+  min-width:0;
+  width:auto;
+  overflow:visible;
+}
+.ch04-reval .srow > .inner-detail > .rev-nest{
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-1);
+  width:100%;
+  min-width:0;
+  align-self:stretch;
+  flex:0 0 auto;
+  container-type:normal; /* kill live inline-size on zero-shrink parent */
+  box-sizing:border-box;
+}
+.ch04-reval .srow .rev-table{
+  display:flex !important;
+  flex-direction:column;
+  gap:var(--space-cell);
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+  grid-template-columns:none !important;
+}
+.ch04-reval .srow .rev-head,
+.ch04-reval .srow .rev-line{
+  display:grid;
+  grid-template-columns:minmax(calc(2 * var(--space-6) + var(--space-5)), 0.7fr) minmax(0, 1fr) minmax(0, 1fr);
+  column-gap:var(--space-cell);
+  row-gap:var(--space-cell);
+  align-items:stretch;
+  min-width:0;
+  width:100%;
+}
+.ch04-reval .srow .rev-cell > span,
+.ch04-reval .srow .rev-row .rev-k,
+.ch04-reval .srow .rev-row .rev-sub,
+.ch04-reval .srow .rev-col > span{
+  white-space:normal;
+  overflow-wrap:normal;
+  word-break:normal;
+  max-width:100%;
+}
+.ch04-reval .srow .mock-kicker{
+  margin:0 0 var(--space-1);
+}
+</style>
+</head>
+<body class="embed">
+<div class="page" id="pkg">
+
+<div class="job-card" id="s0d">
+  <h1>#98 IAS 16 master — Revaluation COMPLETE SECTION</h1>
+  <p class="q"><b>1. Standard logic:</b> Under the revaluation model, carrying amount is adjusted to fair value; the reader must see when revaluation applies, how surplus/deficit flows (OCI vs P&amp;L), and how it sits <b>During use</b> as the same life-cycle phase brick as Depreciation — not a flat paragraph dump, and not a duplicate「Revaluation」plate title on top of the phase rail.</p>
+  <p class="q"><b>2. Visual signal:</b> LEGO <b>B10</b> L2 <code>.inner-rail</code> stack + <b>B11</b> padding + solid L0. Punch3: L1 <code>a.rail-link</code> <b>stretches full beat height</b> (MF outer-rail = whole beat; visual-grammar Layers: parent height = children it covers). Continuous left = tall L1 + dense L2 — not a short stub.</p>
+  <p class="q"><b>3. vs Before:</b> KEEP punch3 + punch4. CHANGE timeline only: the ◆ band under kit25 is gone. The two live revaluation-date marks sit on the Begins→Ceases axis, with the words「Revaluation date」once.</p>
+  <p class="meta">DRAFT-FOR-SIGN (punch5) · night 1280 · kit25 + ◆ on the axis · Impairment-reversal L2 kept · No Build · Atlas FROZEN cite</p>
+</div>
+
+<p class="mock-cap">#98 AFTER — master Revaluation · punch5 timeline: ◆ on the kit25 axis, no second band · punch4 rail kept · DRAFT-FOR-SIGN</p>
+
+<div class="ppe pack m-l0" id="after-board" aria-label="IAS 16 master — Revaluation phase AFTER">
+  <div class="pack-lr">
+    <a class="rail-link" data-phase="reval" href="#">Revaluation</a>
+    <div class="beat" data-phase="reval">
+      <div class="map-include" data-phase-start data-phase-end>
+<!-- include:ch04-models.html#ch04-reval:start -->
+<section class="plate ch04-reval" aria-label="Revaluation (revaluation model only)">
+          <!-- DROP plate-title 4.5 Revaluation + lane-tag (Dep pick 1 / Johnny punch: useless duplicate of phase rail) -->
+          <div class="inner-board">
+            <!-- punch5: Dep kit25 grammar. Live ◆ (35% / 70%) sit on that axis. One label. No .reval-date-row. -->
+            <div class="mock-du srow" id="reval-during-use" role="group" aria-label="During use">
+              <div class="inner-rail" aria-current="true"><span class="rail-name">During use</span></div>
+              <div class="tl-pane">
+                <div class="head"><a class="fb-num" href="../ch05.html#s-5-4" target="_parent">5.4</a></div>
+                <div class="m-tl" role="group" aria-label="During use timeline">
+                  <div class="m-tl-axis">
+                    <div class="m-tl-line"></div>
+                    <span class="m-tl-ring" style="left:0"></span>
+                    <span class="m-tl-ring" style="left:100%"></span>
+                    <span class="lc-dia" style="left:35%">◆</span>
+                    <span class="lc-dia" style="left:70%">◆</span>
+                    <p class="m-tl-date-lab">Revaluation date</p>
+                    <span class="m-tl-ring-lead" style="left:0" aria-hidden="true"></span>
+                    <span class="m-tl-ring-lead" style="left:100%" aria-hidden="true"></span>
+                    <span class="m-tl-span">Revalue during useful life</span>
+                  </div>
+                  <div class="m-tl-ends">
+                    <div class="m-tl-end"><div class="l3"><p class="t1">Begins</p><p class="t2">When the asset is available for use</p></div></div>
+                    <div class="m-tl-end cease"><div class="l3"><p class="t1">Ceases</p><p class="t2">Earlier of: classified as held for sale or derecognised</p><span class="see">See also - IFRS 5</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHANGE: lens-pair → Dep B10 peer srows (Cost | board) (Reval model | OCI/P&L)
+                 punch3: kicker moved into Reval-model detail — no full-width hole in L2 rail column -->
+            <div class="srow mock-cost" role="group" aria-label="Cost model">
+              <div class="inner-rail"><a class="fb-num" href="../ch04.html#s-4-2" target="_parent">4.2</a><span class="rail-name">Cost model</span></div>
+              <div class="inner-detail">
+                <ul class="item-rows">
+                  <li>No revaluation; FV changes are not recognised.</li>
+                </ul>
+                <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias16-p30" target="_parent">IAS 16 · para 30</a></span>
+              </div>
+            </div>
+            <div class="srow mock-reval-model" role="group" aria-label="Revaluation model">
+              <div class="inner-rail"><a class="fb-num" href="../ch04.html#s-4-3" target="_parent">4.3</a><span class="rail-name">Revaluation model</span></div>
+              <div class="inner-detail">
+                <p class="mock-kicker">Revaluation increase or decrease</p>
+                <div class="rev-nest">
+                  <div class="rev-table" role="group" aria-label="Revaluation increase and decrease">
+                    <div class="rev-head">
+                      <span class="rev-corner"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a></span>
+                      <p class="rev-col" role="columnheader"><span>OCI · revaluation surplus</span></p>
+                      <p class="rev-col" role="columnheader"><span>P&amp;L</span></p>
+                    </div>
+                    <div class="rev-line">
+                      <p class="rev-row" role="rowheader"><span class="rev-k">Increase</span><span class="rev-sub">(carrying amount rises)</span></p>
+                      <p class="rev-cell" role="cell"><span>Recognise in OCI and accumulate in equity under the heading of revaluation surplus</span></p>
+                      <p class="rev-cell" role="cell"><span>Recognise in P&amp;L to the extent it reverses a revaluation decrease of the same asset previously recognised in P&amp;L</span></p>
+                    </div>
+                    <div class="rev-line">
+                      <p class="rev-row" role="rowheader"><span class="rev-k">Decrease</span><span class="rev-sub">(carrying amount falls)</span></p>
+                      <p class="rev-cell" role="cell"><span>Recognise in OCI to the extent of any credit balance in the revaluation surplus for that asset; this reduces the revaluation surplus</span></p>
+                      <p class="rev-cell" role="cell"><span>Recognise in P&amp;L</span></p>
+                    </div>
+                  </div>
+                  <p class="rev-foot">Same asset only.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- punch4: bare thin-tip → L2 srow rail|detail (Johnny: Missing left rail for impairment reversal) -->
+            <div class="srow mock-impair-rev" role="group" aria-label="Impairment reversal">
+              <div class="inner-rail"><span class="rail-name">Impairment reversal</span></div>
+              <div class="inner-detail">
+                <span>Impairment reversal: the carrying amount cannot rise above what it would have been, net of depreciation, had no impairment loss been recognised. On a revalued asset the reversal is treated as a revaluation increase - P&amp;L to the extent it reverses an impairment loss previously recognised in P&amp;L, the rest to OCI.</span>
+                <a href="../ch04.html#s-4-ex-rev-dep" target="_parent">Illustration 4.5.4</a>
+                <span class="cite-run">
+                  <a class="cite cite-official" href="../references.html#ref-ias36-p117" target="_parent">IAS 36 · para 117</a>
+                  <a class="cite cite-official" href="../references.html#ref-ias36-p119" target="_parent">IAS 36 · para 119</a>
+                  <a class="cite cite-official" href="../references.html#ref-ias16-p39" target="_parent">IAS 16 · para 39</a>
+                  <a class="cite cite-ey" href="../references.html#ref-ey-igaap-ch19-s62" target="_parent"><span class="cite-house">EY</span> iGAAP 2026 Ch19 · section 6.2</a>
+                </span>
+              </div>
+            </div>
+
+            <!-- CHANGE: bare 4.6 fit-content pill → srow tall .inner-rail + right detail -->
+            <div class="srow mock-46" role="group" aria-label="4.6 During use">
+              <div class="inner-rail"><a class="fb-num" href="../ch04.html#s-4-6" target="_parent">4.6</a><span class="rail-name">During use</span></div>
+              <div class="inner-detail">
+                <p class="peer-title"><span>As the asset is used</span></p>
+                <p class="freq-result">Amount = depreciation on the revalued carrying amount − depreciation on the original cost.</p>
+                <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias16-p41" target="_parent">IAS 16 · para 41</a></span>
+              </div>
+            </div>
+            <div class="srow mock-derecog" role="group" aria-label="On derecognition">
+              <div class="inner-rail"><span class="rail-name">On derecognition</span></div>
+              <div class="inner-detail">
+                <p class="freq-result">The whole surplus may be transferred directly to retained earnings when the asset is retired or disposed of.</p>
+                <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias16-p41" target="_parent">IAS 16 · para 41</a></span>
+                <p class="see"><a class="fb-num" href="../ch06.html#s-6-1" target="_parent">6.1</a><span class="see-label">See also</span> <span class="see-bit">Derecognition · Revaluation surplus</span></p>
+              </div>
+            </div>
+            <p class="surplus-transfer"><span>Transfers from revaluation surplus to retained earnings are not made through P&amp;L.</span><span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias16-p41" target="_parent">IAS 16 · para 41</a><span class="see"><span class="see-label">See also</span> <span class="see-bit">IAS 12</span></span><a class="cite cite-official" href="../references.html#ref-ias16-p42" target="_parent">IAS 16 · para 42</a></span></p>
+          </div>
+        </section>
+<!-- include:ch04-models.html#ch04-reval:end -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

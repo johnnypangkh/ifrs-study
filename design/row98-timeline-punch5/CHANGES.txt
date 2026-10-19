@@ -1,0 +1,54 @@
+#98 punch5 — Dep + Reval During-use timeline
+DRAFT-FOR-SIGN · mock only · No Build · No live merge · PR #163 DO NOT MERGE
+2026-10-19
+
+Choice: P2, with the one-label half of P3.
+Fold the two live ◆ onto the kit25 axis. Drop the second band.
+Not P1 (that would drop the words「Revaluation date」).
+Not P4 on Dep (no unreadability named; signed kit25 left as it is).
+
+What was wrong (file-truth, TIMELINE-AUDIT-98)
+- Reval AFTER (punch4) kept .reval-date-row under kit25:
+  legend「◆ Revaluation date」+ two .lc-dia both labelled「Revaluation date」.
+  Three copies. The ◆ sat in a separate .lc-band below the Begins/Ceases cards,
+  not on the axis. Two timelines in one pane.
+- Dep AFTER was already kit25-only. Year-end legend and 4 ticks were dropped
+  in the signed picks. The only「Year-end」left is the L2 peer 5.8 Year-end review.
+
+What changed
+- reval-master-section.html, timeline only (#reval-during-use):
+  - Removed .reval-date-row (legend + .lc-band.lc-band-rev).
+  - The same two ◆ stay at left:35% and left:70% (live positions, not new dates).
+  - They are .lc-dia on .m-tl-axis, centred on the kit25 line.
+  - One label, .m-tl-date-lab「Revaluation date」, between the diamonds, above the line.
+  - Span stays「Revalue during useful life」. Begins / Ceases cards unchanged.
+- Stylesheet hrefs in both HTML files point at this repo
+  (_shared/, ias-16/) instead of file:///workspace/main-scan/ifrs-study/
+  (that path is not on this machine). Dep teaching markup is otherwise identical.
+
+What stayed
+- Dep timeline: no chrome change. AFTER crop is the signed kit25.
+- Reval punch4 Impairment reversal L2 .inner-rail | detail (verify-impair-rail.png).
+- Reval punch3: L1 stretch, no plate-title, other L2 peers, solid L0, B11, rev-nest width.
+- No live site file. No IFRS wording added or removed.
+  「Revaluation date」and「Revalue during useful life」are the live phrases.
+
+Measured on the punch5 render (1280, dark)
+- No .reval-date-row and no .lc-band in the after DOM.
+- Visible「Revaluation date」on the map: 1 (the axis label). The job card repeats it as a caption.
+- ◆ centres = 35% and 70% of the axis (682.9 and 936.5; axis 429.4–1153.8).
+- Both ◆ midlines = the axis line (329.4). Rings at the same midline, at 0% and 100%.
+- Label ink ends 8px above the line. Span ink「Revalue during useful life」starts 8px below the line.
+- Label sits between the diamonds (ink 767–852; diamonds at 683 and 937).
+
+Crops (design/row98-timeline-punch5/ba/)
+- dep-timeline-before.png     live ch05 .lc-head (Year-end band)
+- dep-timeline-after.png      signed kit25, unchanged  (= verify-during-use.png)
+- reval-timeline-before.png   live ch04 .lc-head (◆ band, triple label)
+- reval-timeline-after.png    punch5                 (= verify-timeline.png)
+- ba-dep-reval-timeline.png   the four crops on one page
+- verify-impair-rail.png      punch4 rail still there
+- after-dep-master.png / after-reval-master.png   full section boards
+
+Before crops are the live chapter .lc-head (the markup the master includes).
+The style-base deliverable folder named in the audit is not on this machine.
