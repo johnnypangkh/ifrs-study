@@ -1,0 +1,742 @@
+<!doctype html>
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=1280">
+<title>#98 MF §10.10 gate — DRAFT-FOR-SIGN · No Build</title>
+<link rel="stylesheet" href="../../_shared/tokens-core.css">
+<link rel="stylesheet" href="../../_shared/modules/visuals/colour-1.css">
+<style>
+  html { background: var(--bg); color-scheme: dark; }
+  body {
+    margin: 0 auto;
+    width: 1280px;
+    box-sizing: border-box;
+    padding: var(--space-4);
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-family);
+  }
+  * { box-sizing: border-box; }
+  figure { margin: 0; }
+  h1 {
+    font-size: var(--t0-fs);
+    font-weight: var(--t0-fw);
+    line-height: var(--t0-lh);
+    margin: 0 0 var(--space-2);
+  }
+  h2 {
+    font-size: var(--t1-fs);
+    font-weight: var(--t1-fw);
+    line-height: var(--t1-lh);
+    margin: 0;
+  }
+  p { margin: 0; }
+  .sub {
+    font-size: var(--t2-fs);
+    line-height: var(--t2-lh);
+    color: var(--muted);
+    margin: 0 0 var(--space-3);
+  }
+  .pills { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0 0 var(--space-3); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    line-height: var(--t3-strong-lh);
+    color: var(--accent);
+    border: var(--stroke-1) solid var(--accent);
+    border-radius: var(--radius-pill);
+    padding: 0 var(--space-2);
+    background: var(--accent-soft);
+    min-height: var(--mchip-h);
+  }
+  .pill.warn { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+  .s0d {
+    border: var(--stroke-1) solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: var(--card-radius);
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-3);
+  }
+  .s0d p, .prose, .rule p, .note, li {
+    font-size: var(--t2-fs);
+    line-height: var(--t2-lh);
+    color: var(--ink);
+  }
+  .muted { color: var(--muted); }
+  .k { font-weight: var(--t1-fw); }
+  .defs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-cell);
+    margin: 0 0 var(--space-3);
+  }
+  .def {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-2) var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .def .lab {
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--accent);
+    margin: 0;
+  }
+  .rule {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-3);
+    margin: 0 0 var(--space-3);
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
+    gap: var(--space-3);
+    align-items: stretch;
+  }
+  .rule-copy { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+  .rule-h { display: flex; align-items: center; gap: var(--space-2); }
+  .num {
+    flex: none;
+    width: var(--space-6);
+    height: var(--space-6);
+    border-radius: var(--radius-pill);
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: var(--stroke-1) solid var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--t1-fs);
+    font-weight: var(--t1-fw);
+  }
+  .verdict {
+    border-radius: var(--radius-s);
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .verdict.fail { background: var(--danger-soft); }
+  .verdict.pass { background: var(--ok-soft); }
+  .tag {
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    letter-spacing: .04em;
+    margin: 0;
+  }
+  .tag.fail { color: var(--danger); }
+  .tag.pass { color: var(--ok); }
+  .verdict p { font-size: var(--t2-fs); line-height: var(--t2-lh); color: var(--ink); }
+  .rule ul { margin: 0; padding-left: var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); }
+  .minis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-cell);
+    min-width: 0;
+  }
+  .minis.quad { grid-template-columns: 1fr 1fr; }
+  .mini {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--bg);
+    border-radius: var(--card-radius);
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .mini.pass { border-color: var(--ok); }
+  .mini.fail { border-color: var(--danger); }
+  .cap {
+    font-size: var(--t3-fs);
+    line-height: var(--t3-lh);
+    color: var(--muted);
+    margin: 0;
+  }
+  .stack { display: flex; flex-direction: column; gap: var(--space-cell); min-width: 0; }
+  .row {
+    display: grid;
+    grid-template-columns: calc(4 * var(--space-6)) minmax(0, 1fr);
+    gap: var(--space-cell);
+    align-items: stretch;
+    min-width: 0;
+  }
+  .row.slim { grid-template-columns: calc(2 * var(--space-6) + var(--space-2)) minmax(0, 1fr); }
+  .row.stub { align-items: start; }
+  .rail, .detail, .end, .band-k, .band-lane {
+    border: var(--stroke-1) solid var(--line);
+    border-radius: var(--card-radius);
+    padding: var(--space-2);
+    min-width: 0;
+  }
+  .rail {
+    background: var(--band);
+    display: flex;
+    align-items: flex-start;
+  }
+  .row.stub .rail { align-self: start; }
+  .detail {
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-height: calc(var(--space-6) + var(--space-4));
+  }
+  .detail.tall { min-height: calc(var(--space-6) * 3); }
+  .nm {
+    font-size: var(--t2-band-fs);
+    font-weight: var(--t2-band-fw);
+    line-height: var(--t2-band-lh);
+    margin: 0;
+    color: var(--ink);
+  }
+  .ghost {
+    font-size: var(--t3-fs);
+    line-height: var(--t3-lh);
+    color: var(--muted);
+    margin: 0;
+  }
+  .hole { min-height: calc(var(--space-6) + var(--space-4)); }
+  .pane {
+    background: var(--surface);
+    border: var(--stroke-1) solid var(--line);
+    border-radius: var(--card-radius);
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+    height: 100%;
+  }
+  .axis {
+    position: relative;
+    height: calc(var(--space-6) * 2 + var(--space-3));
+    margin: 0 var(--space-2);
+  }
+  .line {
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(var(--space-6) + var(--space-1));
+    border-top: var(--stroke-2) solid var(--muted);
+  }
+  .ring {
+    position: absolute;
+    top: calc(var(--space-6) + var(--space-1));
+    width: var(--space-3);
+    height: var(--space-3);
+    border: var(--stroke-2) solid var(--ink);
+    background: var(--surface);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .mk {
+    position: absolute;
+    top: calc(var(--space-6) + var(--space-1));
+    transform: translateX(-50%);
+    width: 0;
+  }
+  .mk-lab {
+    position: absolute;
+    bottom: var(--space-2);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--accent);
+  }
+  .mk-stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: var(--space-2);
+    border-left: var(--stroke-1) solid var(--accent);
+  }
+  .span {
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(var(--space-6) + var(--space-2));
+    text-align: center;
+    font-size: var(--t3-fs);
+    color: var(--muted);
+  }
+  .ends { display: flex; justify-content: space-between; gap: var(--space-2); }
+  .end {
+    background: var(--band);
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--ink);
+    max-width: 46%;
+  }
+  .end.r { margin-left: auto; }
+  .band {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+    border: var(--stroke-1) solid var(--line);
+    border-radius: var(--card-radius);
+    background: var(--band);
+    padding: var(--space-2);
+    min-width: 0;
+  }
+  .band-k, .band-lane {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    max-width: 100%;
+  }
+  .call {
+    border: var(--stroke-1) solid var(--warn);
+    background: var(--warn-soft);
+    border-radius: var(--card-radius);
+    padding: var(--space-3);
+    margin: 0 0 var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .call h2 { color: var(--warn); }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: var(--t2-fs);
+    line-height: var(--t2-lh);
+  }
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--space-2);
+    border-bottom: var(--stroke-1) solid var(--line);
+    color: var(--ink);
+  }
+  th {
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--accent);
+  }
+  .blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-cell);
+    margin: 0 0 var(--space-3);
+  }
+  .block {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .propose {
+    border: var(--stroke-2) solid var(--ink);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-3);
+    margin: 0 0 var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-cell);
+  }
+  .check { margin: 0; padding-left: var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); }
+  .foot {
+    font-size: var(--t3-fs);
+    line-height: var(--t3-lh);
+    color: var(--muted);
+    margin: 0;
+  }
+  code {
+    font-family: var(--font-mono);
+    font-size: 1em;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<p class="pills">
+  <span class="pill">DRAFT-FOR-SIGN</span>
+  <span class="pill">§10.10 addendum</span>
+  <span class="pill">night 1280</span>
+  <span class="pill warn">No Build</span>
+  <span class="pill warn">Signed BA unchanged</span>
+</p>
+
+<h1>MF §10 gate</h1>
+<p class="sub">Four FAIL tests for the left rail and kit 25. The three building blocks stay the kit. Abstract labels only — Phase, Peer, Outer, Start, End, marker.</p>
+
+<section class="s0d" aria-label="Why this page">
+  <p><span class="k">1. Logic.</span> A beat that needs a name has a left-rail cell. That cell’s border covers the beat. A phase has one kit 25 axis, and events of that phase sit on it.</p>
+  <p><span class="k">2. Visual.</span> Missing cell, empty cell, short rail, and a second band under the axis are fails a PM can see without opening Dep or Reval.</p>
+  <p><span class="k">3. vs the signed page.</span> §10.0–§10.9 and <code>ba-mf-master-revise.png</code> (~11:07) stay the chrome lock. This page is the gate those files did not spell.</p>
+</section>
+
+<div class="defs">
+  <article class="def">
+    <p class="lab">Measure</p>
+    <p class="prose">Night 1280. Border boxes. Greater than 2px fails. 2px or under passes. Do not subtract padding.</p>
+  </article>
+  <article class="def">
+    <p class="lab">L1 on this page</p>
+    <p class="prose">The outer left rail of a beat (phase rail or first-column section rail). Atlas <code>.m-l1</code> plate fill is a different rule and stays as signed.</p>
+  </article>
+</div>
+
+<!-- 1 -->
+<section class="rule" id="r1" aria-labelledby="r1h">
+  <div class="rule-copy">
+    <div class="rule-h"><span class="num">1</span><h2 id="r1h">Missing grid</h2></div>
+    <p>Every right-hand beat that needs a name has its own left-rail cell. That is each peer, each section, the phase, and each nest row.</p>
+    <div class="verdict fail">
+      <p class="tag fail">FAIL</p>
+      <p>The detail is drawn and the left cell is missing, empty, or collapsed — or two named beats share one rail.</p>
+    </div>
+    <div class="verdict pass">
+      <p class="tag pass">PASS</p>
+      <p>Each of those beats has its own named <code>.inner-rail</code>. One phase rail covers the whole kit 25 pane: rings, markers, span, Begins / Ceases, and a See-also chip on the card it qualifies. Formula terms and fork arms are not rails.</p>
+    </div>
+    <p class="muted">Exception only when Johnny writes one sentence on that mock. An unsigned mock has no exception. “The head label counts” is not an exception.</p>
+  </div>
+  <div class="minis">
+    <figure class="mini pass">
+      <p class="tag pass">PASS</p>
+      <div class="stack">
+        <div class="row">
+          <div class="rail"><p class="nm">Peer</p></div>
+          <div class="detail"><p class="ghost">detail</p></div>
+        </div>
+        <div class="row">
+          <div class="rail"><p class="nm">Peer</p></div>
+          <div class="detail"><p class="ghost">detail</p></div>
+        </div>
+      </div>
+      <figcaption class="cap">One named rail per beat.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL</p>
+      <div class="stack">
+        <div class="row">
+          <div class="rail"><p class="nm">Peer</p></div>
+          <div class="detail"><p class="ghost">detail</p></div>
+        </div>
+        <div class="row">
+          <div class="hole" aria-hidden="true"></div>
+          <div class="detail"><p class="ghost">detail</p></div>
+        </div>
+      </div>
+      <figcaption class="cap">Second beat has no rail cell. An empty cell is the same fail.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="rule" id="r2" aria-labelledby="r2h">
+  <div class="rule-copy">
+    <div class="rule-h"><span class="num">2</span><h2 id="r2h">Equal height, parent covers</h2></div>
+    <p>The rail border and its detail border share a top and a bottom. The outer rail and the board that holds its children are that same pair.</p>
+    <div class="verdict fail">
+      <p class="tag fail">FAIL</p>
+      <p><span class="k">|Δtop|</span>, <span class="k">|Δbottom|</span>, or <span class="k">|Δheight|</span> greater than 2px. A parent only as tall as its label fails. A parent taller than its children by more than its own padding fails.</p>
+    </div>
+    <div class="verdict pass">
+      <p class="tag pass">PASS</p>
+      <p>The two border boxes match within 2px. Signed Dep: During use matches the timeline pane, and Useful life matches its nest board. Words may sit centered inside a rail that already stretches.</p>
+    </div>
+    <p class="muted">Cite visual-grammar Alignment and Layers. This test is now on the MF page.</p>
+  </div>
+  <div class="minis">
+    <figure class="mini pass">
+      <p class="tag pass">PASS · row</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Peer</p></div>
+        <div class="detail tall"><p class="ghost">detail</p></div>
+      </div>
+      <figcaption class="cap">Same top, same bottom.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL · row</p>
+      <div class="row stub">
+        <div class="rail"><p class="nm">Peer</p></div>
+        <div class="detail tall"><p class="ghost">detail</p></div>
+      </div>
+      <figcaption class="cap">Rail shorter than its detail by more than 2px.</figcaption>
+    </figure>
+    <figure class="mini pass">
+      <p class="tag pass">PASS · parent</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Outer</p></div>
+        <div class="detail">
+          <div class="stack">
+            <div class="row slim"><div class="rail"><p class="nm">Inner</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+            <div class="row slim"><div class="rail"><p class="nm">Peer</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Outer covers the child board.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL · parent</p>
+      <div class="row stub">
+        <div class="rail"><p class="nm">Outer</p></div>
+        <div class="detail">
+          <div class="stack">
+            <div class="row slim"><div class="rail"><p class="nm">Inner</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+            <div class="row slim"><div class="rail"><p class="nm">Peer</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Outer stops. The children continue.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="rule" id="r3" aria-labelledby="r3h">
+  <div class="rule-copy">
+    <div class="rule-h"><span class="num">3</span><h2 id="r3h">Markers on the axis</h2></div>
+    <p>One phase pane has one kit 25 axis, from Start to End. Events of this phase sit on that line: one mark, one leader, one label.</p>
+    <div class="verdict pass">
+      <p class="tag pass">PASS</p>
+      <p>Rings, span, and on-axis markers. Start / End cards belong to this axis. A different concept gets its own rail row. On Dep, year-end review is that rail, so Dep’s timeline has no year-end marks.</p>
+    </div>
+    <div class="verdict fail">
+      <p class="tag fail">FAIL · second band</p>
+      <p>A legend plus a tick row in its own box under the kit 25 ends, inside the same pane. Reval’s ◆ row under kit 25 is this pattern. The Year-end band Dep dropped is this pattern. Live Impairment’s band under the axis is this pattern.</p>
+    </div>
+    <p class="muted">Dropping Reval’s dates, or drawing them on the axis, both pass. The band fails either way. That content pick stays with Johnny (timeline audit P1 / P2). This page does not redraw Reval or Dep.</p>
+  </div>
+  <div class="minis">
+    <figure class="mini pass">
+      <p class="tag pass">PASS</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Phase</p></div>
+        <div class="pane">
+          <div class="axis" aria-hidden="true">
+            <div class="line"></div>
+            <span class="ring" style="left:0"></span>
+            <span class="ring" style="left:100%"></span>
+            <span class="mk" style="left:24%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:76%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
+            <span class="span">span</span>
+          </div>
+          <div class="ends">
+            <span class="end">Start</span>
+            <span class="end r">End</span>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Marks on the one axis. Start / End are that axis.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Phase</p></div>
+        <div class="pane">
+          <div class="axis" aria-hidden="true">
+            <div class="line"></div>
+            <span class="ring" style="left:0"></span>
+            <span class="ring" style="left:100%"></span>
+            <span class="span">span</span>
+          </div>
+          <div class="ends">
+            <span class="end">Start</span>
+            <span class="end r">End</span>
+          </div>
+          <div class="band">
+            <span class="band-k">event</span>
+            <span class="band-lane"><span>◆</span><span>event</span><span>◆</span><span>event</span></span>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Second band under kit 25. Not a building block.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="rule" id="r4" aria-labelledby="r4h">
+  <div class="rule-copy">
+    <div class="rule-h"><span class="num">4</span><h2 id="r4h">L1 short stub</h2></div>
+    <p>Yes. A short outer rail or phase rail that does not cover its beat fails. Same 2px test as rule 2.</p>
+    <div class="verdict fail">
+      <p class="tag fail">FAIL</p>
+      <p>The phase name is a text-height label beside a tall kit 25 pane. Live <code>.lc-head-k</code> does this with <code>align-self: end</code>. An outer rail one line tall beside a nest that continues below it fails the same way.</p>
+    </div>
+    <div class="verdict pass">
+      <p class="tag pass">PASS</p>
+      <p>The rail border covers the beat. Dep During use stretched to the timeline pane is the control. Reval’s L1 stretch stays; shrinking it fails. A nested peer that matches its own short detail passes. A dropped plate title is not a stub.</p>
+    </div>
+  </div>
+  <div class="minis">
+    <figure class="mini pass">
+      <p class="tag pass">PASS · L1 covers the beat</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Phase</p></div>
+        <div class="pane">
+          <div class="axis" aria-hidden="true">
+            <div class="line"></div>
+            <span class="ring" style="left:0"></span>
+            <span class="ring" style="left:100%"></span>
+            <span class="span">span</span>
+          </div>
+          <div class="ends">
+            <span class="end">Start</span>
+            <span class="end r">End</span>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Phase rail matches the pane.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL · stub</p>
+      <div class="row stub">
+        <div class="rail"><p class="nm">Phase</p></div>
+        <div class="pane">
+          <div class="axis" aria-hidden="true">
+            <div class="line"></div>
+            <span class="ring" style="left:0"></span>
+            <span class="ring" style="left:100%"></span>
+            <span class="span">span</span>
+          </div>
+          <div class="ends">
+            <span class="end">Start</span>
+            <span class="end r">End</span>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Phase rail does not cover the beat.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="call" aria-label="How to read the signed lines">
+  <h2>Signed lines — gate with the four tests</h2>
+  <p>Until Johnny signs the card edits, these lines on the signed BA do not outrank this page.</p>
+  <ul>
+    <li><span class="k">“no YE markers on signed lock”</span> — Dep’s chapter lock. Year-end is not on Dep’s timeline. It does not ban on-axis markers. It does not allow a second band.</li>
+    <li><span class="k">“optional markers”</span> — markers of this phase go on the axis. A second band is not an optional marker.</li>
+    <li><span class="k">§9 min prints “Year-end”</span> — specimen label on the frozen BA. Not an order to restore Dep’s band. Relabel is propose P3.</li>
+  </ul>
+</section>
+
+<h2 style="margin: 0 0 var(--space-2)">Three blocks — unchanged</h2>
+<p class="sub">Signed inventory. This gate is not a fourth component. <code>#27</code> thick-left stays When-not for Dep.</p>
+<div class="blocks">
+  <article class="block">
+    <p class="lab" style="font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);color:var(--accent);margin:0">1 · Left label</p>
+    <div class="stack">
+      <div class="row"><div class="rail"><p class="nm">Peer</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+      <div class="row"><div class="rail"><p class="nm">Peer</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+    </div>
+  </article>
+  <article class="block">
+    <p class="lab" style="font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);color:var(--accent);margin:0">2 · Phase + kit 25</p>
+    <div class="row">
+      <div class="rail"><p class="nm">Phase</p></div>
+      <div class="pane">
+        <div class="axis" aria-hidden="true">
+          <div class="line"></div>
+          <span class="ring" style="left:0"></span>
+          <span class="ring" style="left:100%"></span>
+          <span class="mk" style="left:50%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
+          <span class="span">span</span>
+        </div>
+        <div class="ends"><span class="end">Start</span><span class="end r">End</span></div>
+      </div>
+    </div>
+  </article>
+  <article class="block">
+    <p class="lab" style="font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);color:var(--accent);margin:0">3 · Nested layers</p>
+    <div class="row">
+      <div class="rail"><p class="nm">Outer</p></div>
+      <div class="detail">
+        <div class="stack">
+          <div class="row slim"><div class="rail"><p class="nm">Inner</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+          <div class="row slim"><div class="rail"><p class="nm">Peer</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<section class="propose" aria-label="Propose for Johnny">
+  <h2>Propose — Johnny sign</h2>
+  <p>No new kit ID. No new token. Recommend yes, yes, yes.</p>
+  <table>
+    <thead>
+      <tr><th>Ask</th><th>Change on the signed page</th><th>Recommend</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="k">P1</td>
+        <td>Add this gate under §10. Page copy, not a new map component.</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td class="k">P2</td>
+        <td>Phase card: replace “optional markers” and “no YE markers on signed lock” with rule 3.</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td class="k">P3</td>
+        <td>§9 min labels: “Year-end” → <span class="k">marker</span>. Span → <span class="k">span (Start→End)</span>. Caption: second band under this axis fails. Geometry stays.</td>
+        <td>yes</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pair">
+    <figure class="mini">
+      <p class="tag" style="color:var(--warn)">FROZEN until P3</p>
+      <p class="nm">Year-end</p>
+      <p class="cap">Specimen words on the signed §9 min. Not the rule.</p>
+    </figure>
+    <figure class="mini pass">
+      <p class="tag pass">P3 label</p>
+      <p class="nm">marker</p>
+      <p class="cap">Same tick, abstract name. Second band under the axis fails.</p>
+    </figure>
+  </div>
+</section>
+
+<section class="def" style="margin-bottom: var(--space-3)" aria-label="PM checklist">
+  <p class="lab">PM checklist — night 1280</p>
+  <ol class="check">
+    <li>Each beat that needs a name has a named rail. Otherwise fail, unless Johnny’s sentence is on the mock.</li>
+    <li>Rail and detail: top, bottom, and height within 2px.</li>
+    <li>Parent rail covers the child board by that same test.</li>
+    <li>Phase events sit on the kit 25 axis. A band under the ends fails.</li>
+    <li>The outer / phase rail is not a short stub.</li>
+  </ol>
+</section>
+
+<p class="foot">Text: <code>MF-SEC10-FAIL-ADDENDUM-98.md</code> · <code>DIFF-MF-SEC10-98.md</code> · <code>PROPOSE-CHROME-98.md</code>. Signed lock stays <code>ba-mf-master-revise.png</code>. dep-v2 freeze and atlas 1–23 stay. No Build. Do not merge PR #163.</p>
+
+</body>
+</html>
