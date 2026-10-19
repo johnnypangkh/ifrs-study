@@ -1,0 +1,35 @@
+#98 punch7 — signed MF flag on Dep + Reval During-use
+DRAFT-FOR-SIGN · mock only · No Build · No live merge · PR #163 DO NOT MERGE
+2026-10-19
+
+Authority: Johnny signed the MF flag on PR #164 commit 52cf9a18.
+Copied that grammar onto the IAS 16 master specimens. MF pages not edited.
+
+What changed
+- Axis is a shaft plus an --arrowhead at End (same triangle as the signed MF line).
+- Every label is a flag that flies right: Begins, Ceases, and Revaluation date.
+- Pole is a 2px staff. Foot is on the axis. 4px peeks above the cloth.
+  The shaft under the cloth is the longer part of the pole.
+- Cloth is a rectangle flush on the right of the pole (gap 0), border --stroke-2, radius 0.
+- Words unchanged. Span stays under the line. No second band.
+
+Self-check (night 1280)
+
+| Lock | Dep | Reval |
+|---|---|---|
+| 1 Arrow at End | shaft + 5px --arrowhead at the end ring | same |
+| 2 Flags fly right | Begins and Ceases, cloth to the right of the pole | Begins, Revaluation date, Ceases |
+| 3 Long pole, cloth near the top | peek 4px. Shaft under the cloth 180px (Begins, cloth 49) and 131px (Ceases, cloth 98) | peek 4px. Shaft 180 / 199 / 125px under cloths 49 / 30 / 104px |
+| 4 Pole and cloth flush | gap 0 | gap 0 |
+| 5 Cloth stroke 2px | border 2px, radius 0 | border 2px, radius 0 |
+| 6 Inside the During-use drawer | L1 rail height = pane (dH 0). No per-marker rail. No second band | same. ◆ at 35% and 70% on the shaft. One「Revaluation date」, pole at their midpoint |
+| 7 Foot on the axis | pole bottom = line centre | pole bottom = line centre |
+
+Kept
+- Punch5: no .reval-date-row. One「Revaluation date」.
+- Punch4 Impairment reversal L2 rail.
+- Punch3 locks. No live site file. No new IFRS wording.
+
+Crops
+- design/row98-timeline-punch7/apply-flag-grammar-dep-1280.png
+- design/row98-timeline-punch7/apply-flag-grammar-reval-1280.png

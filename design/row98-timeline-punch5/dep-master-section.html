@@ -41,50 +41,60 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 .mock-du .head{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
 .mock-du .l3{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--radius-s);padding:var(--space-1) var(--space-2);display:flex;flex-direction:column;gap:var(--space-hairline);min-width:0;box-sizing:border-box}
 .mock-du .see{font-size:var(--t3-fs);font-weight:var(--t3-strong-fw);color:var(--see-also,var(--accent));border:var(--stroke-1) dashed var(--see-also,var(--dash));border-radius:var(--radius-pill);padding:0 var(--space-2);align-self:flex-start}
-/* punch6 — flag on the axis, axis is an arrow. Same tokens as IFRS 18 .tr-tl:
-   pole = --stroke-2, arrowhead = --rail-bar-l. No new chrome. */
+/* punch7 — signed MF flag (PR #164 52cf9a18). Same geometry as .m-tl-lab / .m-tl-lead:
+   pole = border-left --stroke-2, cloth flush at left --stroke-2, border --stroke-2, radius 0,
+   arrowhead = --arrowhead. Cloth near the top; shaft below. Every flag flies right. */
 .mock-du .m-tl{display:flex;flex-direction:column;gap:0;position:relative;min-width:0}
 .mock-du .m-tl-axis{
-  --tl-y: calc(var(--space-6) * 3);
   position:relative;
-  height: calc(var(--tl-y) + var(--space-6) + var(--space-2));
-  margin: 0 var(--space-4) 0 var(--space-3);
+  margin: 0 var(--space-2) 0 var(--space-3);
+  padding-right: 17rem; /* room for the Ceases cloth, which flies right of End */
+  box-sizing: border-box;
+  overflow: visible;
+}
+.mock-du .m-tl-shaft{
+  --pole-h: calc(var(--space-6) * 7 + var(--space-2)); /* 232px so the shaft under the tallest cloth is the longer part */
+  position: relative;
+  height: calc(var(--pole-h) + var(--space-6) + var(--space-3));
   overflow: visible;
 }
 .mock-du .m-tl-line{
-  position:absolute; left:0; right: var(--rail-bar-l); top: var(--tl-y);
-  height: var(--stroke-2); background: var(--muted); border: 0;
+  position:absolute; left:0; right:0; top: var(--pole-h);
+  border-top: var(--stroke-2) solid var(--muted);
 }
-.mock-du .m-tl-arrow{
-  position:absolute; right:0; top: calc(var(--tl-y) + var(--stroke-2) / 2); transform: translateY(-50%);
-  border-top: var(--rail-bar-l) solid transparent;
-  border-bottom: var(--rail-bar-l) solid transparent;
-  border-left: var(--rail-bar-l) solid var(--muted);
+.mock-du .m-tl-line::after{
+  content:""; position:absolute;
+  left: calc(100% + var(--space-3) / 2);
+  top: calc(-1 * (var(--arrowhead) + var(--stroke-2) / 2));
+  width:0; height:0;
+  border-top: var(--arrowhead) solid transparent;
+  border-bottom: var(--arrowhead) solid transparent;
+  border-left: var(--arrowhead) solid var(--muted);
 }
 .mock-du .m-tl-ring{
-  position:absolute; top: calc(var(--tl-y) + var(--stroke-2) / 2);
+  position:absolute; top: calc(var(--pole-h) + var(--stroke-2) / 2);
   width: var(--space-3); height: var(--space-3);
   border: var(--stroke-2) solid var(--ink); background: var(--surface); border-radius: 50%;
   transform: translate(-50%, -50%); z-index: 6;
 }
-.mock-du .m-tl-ring.end{ left: auto; right: calc(var(--rail-bar-l) + var(--space-2)); transform: translate(50%, -50%); }
 .mock-du .m-tl-flag{
-  position:absolute; bottom: calc(100% - var(--tl-y));
-  display:flex; flex-direction:column; align-items:flex-start;
-  max-width: 34%; z-index: 4;
+  position:absolute; top: 0;
+  height: calc(var(--pole-h) + var(--stroke-2) / 2);
+  width: max-content; max-width: 16rem;
+  z-index: 4;
 }
-.mock-du .m-tl-flag .l3{ width: 100%; }
 .mock-du .m-tl-pole{
-  width: var(--stroke-2); height: var(--space-4); background: var(--ink);
-  margin-left: calc(var(--space-2) - var(--stroke-2) / 2);
+  position:absolute; left:0; top:0; bottom:0; width:0; margin:0;
+  border-left: var(--stroke-2) solid var(--ink); background: none;
 }
-.mock-du .m-tl-flag.begin{ left: 0; }
-.mock-du .m-tl-flag.cease{ right: calc(var(--rail-bar-l) + var(--space-2)); align-items: flex-end; text-align: right; }
-.mock-du .m-tl-flag.cease .l3{ align-items: flex-end; }
-.mock-du .m-tl-flag.cease .m-tl-pole{ margin-left: 0; margin-right: calc(var(--space-2) - var(--stroke-2) / 2); }
+.mock-du .m-tl-flag .l3{
+  width: max-content; max-width: calc(16rem - var(--stroke-2));
+  margin-left: var(--stroke-2); margin-top: var(--space-1);
+  border: var(--stroke-2) solid var(--line); border-radius: 0;
+}
 .mock-du .m-tl-span{
-  position:absolute; top: calc(var(--tl-y) + var(--stroke-2) + var(--space-2));
-  left: var(--space-3); right: calc(var(--rail-bar-l) + var(--space-3));
+  position:absolute; top: calc(var(--pole-h) + var(--stroke-2) + var(--space-2));
+  left: var(--space-3); right: var(--space-3);
   font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
   color: var(--muted); text-align: center;
 }
@@ -121,7 +131,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
   <p class="meta">DRAFT-FOR-SIGN · night 1280 · solid L0 · During use = .inner-rail + kit25 · No Build · Atlas FROZEN cite</p>
 </div>
 
-<p class="mock-cap">#98 AFTER — master Depreciation · punch6 timeline: flags on an arrow · wording unchanged · DRAFT-FOR-SIGN</p>
+<p class="mock-cap">#98 AFTER — master Depreciation · punch7: signed MF flag on an arrow · wording unchanged · DRAFT-FOR-SIGN</p>
 
 <div class="ppe pack m-l0" id="after-board" aria-label="IAS 16 master — Depreciation phase AFTER">
   <div class="pack-lr">
@@ -138,19 +148,20 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
                 <div class="head"><a class="fb-num" href="#">5.4</a></div>
                 <div class="m-tl" role="group" aria-label="During use timeline">
                   <div class="m-tl-axis">
-                    <div class="m-tl-line"></div>
-                    <span class="m-tl-arrow" aria-hidden="true"></span>
-                    <span class="m-tl-ring" style="left:0"></span>
-                    <span class="m-tl-ring end"></span>
-                    <div class="m-tl-flag begin">
-                      <div class="l3"><p class="t1">Begins</p><p class="t2">When the asset is available for use</p></div>
-                      <span class="m-tl-pole" aria-hidden="true"></span>
+                    <div class="m-tl-shaft">
+                      <div class="m-tl-line"></div>
+                      <span class="m-tl-ring" style="left:0"></span>
+                      <span class="m-tl-ring end" style="left:100%"></span>
+                      <div class="m-tl-flag begin" style="left:0">
+                        <span class="m-tl-pole" aria-hidden="true"></span>
+                        <div class="l3"><p class="t1">Begins</p><p class="t2">When the asset is available for use</p></div>
+                      </div>
+                      <div class="m-tl-flag cease" style="left:100%">
+                        <span class="m-tl-pole" aria-hidden="true"></span>
+                        <div class="l3"><p class="t1">Ceases</p><p class="t2">Earlier of: classified as held for sale or derecognised</p><span class="see">See also - IFRS 5</span></div>
+                      </div>
+                      <span class="m-tl-span">Depreciate over useful life</span>
                     </div>
-                    <div class="m-tl-flag cease">
-                      <div class="l3"><p class="t1">Ceases</p><p class="t2">Earlier of: classified as held for sale or derecognised</p><span class="see">See also - IFRS 5</span></div>
-                      <span class="m-tl-pole" aria-hidden="true"></span>
-                    </div>
-                    <span class="m-tl-span">Depreciate over useful life</span>
                   </div>
                 </div>
               </div>
