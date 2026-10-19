@@ -14,10 +14,15 @@
   .col { display: grid; gap: var(--space-2); justify-items: start; }
   .mini { padding: var(--space-1) var(--space-2); font-size: var(--t3-fs); }
   .id { font-size: var(--t3-fs); color: var(--accent); font-weight: 700; }
+  .deep { margin: 0; font-size: var(--t3-fs); color: var(--muted); border-left: var(--stroke-2) solid var(--accent); padding-left: var(--space-2); }
+  .deep b { color: var(--ink); }
+  .cell.in { padding: var(--space-1); display: grid; gap: var(--space-1); }
+  .cell.in > .gridbox { grid-template-columns: repeat(3, 1fr); }
+  .cell.in .cell { padding: .1rem .25rem; min-height: .9rem; }
 </style></head>
 <body>
 <h1 class="sheet-h">How bricks snap into components</h1>
-<p class="sheet-sub">Pick the component from the accounting idea (LEGO-LOGIC.md §1), then build it only from bricks B01–B21. Real examples: <code>evidence/C-*.png</code>.</p>
+<p class="sheet-sub">Pick the component from the accounting idea (LEGO-LOGIC.md §1), then build it only from bricks B01–B21. Real examples: <code>evidence/C-*.png</code>. Components nest inside a cell with <b>no depth cap</b>: a text-dump cell is the cue to snap one more component inside it (snap rule 9, ENHANCE E7).</p>
 
 <div class="tray t3">
 
@@ -25,19 +30,22 @@
   <div class="barband">Shared rule — spans all peers <span class="id">B13</span></div>
   <div class="row"><div class="cell mini"><span class="title-s">Peer</span><div class="note">B03</div></div><div class="cell mini"><span class="title-s">Peer</span><div class="note">B03</div></div><div class="cell mini"><span class="title-s">Peer</span><div class="note">B03</div></div></div>
   <p class="recipe"><code>B11 row</code> of <code>B03</code> + optional <code>B13</code> above + optional <code>B21</code></p>
-  <p class="real">IAS 16 ch05 §5.5 Method · CF ch02 §2.6 Enhancing</p></div>
+  <p class="real">IAS 16 ch05 §5.5 Method · CF ch02 §2.6 Enhancing</p>
+  <p class="deep"><b>Go deeper:</b> a cell that lists same-kind items in one line → a wrapped K1 inside that cell (IAS 2 ch02 indicators, E7).</p></div>
 
 <div class="combo"><p class="combo-h"><b>K2</b>Rail stack</p><p class="ask">“Each group, with only its own content.”</p>
   <div class="railrow s"><div class="rail mini">Group A <span class="id">B10</span></div><div class="gridbox" style="grid-template-columns:1fr 1fr"><div class="cell mini">B03</div><div class="ghost"></div></div></div>
   <div class="railrow s"><div class="rail mini">Group B</div><div class="gridbox" style="grid-template-columns:1fr 1fr"><div class="cell mini">B03</div><div class="cell mini">B03</div></div></div>
   <p class="recipe"><code>B10</code> | <code>B11</code> of <code>B03</code>, repeated · one shared rail track</p>
-  <p class="real">IAS 16 ch07 Disclosure · ch05 §5.1–5.3</p></div>
+  <p class="real">IAS 16 ch07 Disclosure · ch05 §5.1–5.3</p>
+  <p class="deep"><b>Go deeper:</b> a prose list right of a rail → its own grid in that row; the rail still owns the row.</p></div>
 
 <div class="combo"><p class="combo-h"><b>K3</b>Nest</p><p class="ask">“A base, plus a layer, plus a layer.”</p>
   <div class="railrow s"><div class="rail mini">Outer</div>
-    <div class="railrow s" style="grid-template-columns:4.5rem 1fr"><div class="rail mini">Inner</div><div class="gridbox" style="grid-template-columns:1fr 1fr"><div class="cell mini">Peer</div><div class="cell mini">Peer</div></div></div></div>
-  <p class="recipe"><code>B02</code> › <code>B10</code> › <code>B10</code> › <code>B03</code> · max 2 bordered levels (+1 formula / ledger / see-also)</p>
-  <p class="real">IAS 16 ch05 §5.3 Useful life · IFRS 18 ch03 MBA nest</p></div>
+    <div class="railrow s" style="grid-template-columns:4.5rem 1fr"><div class="rail mini">Inner</div><div class="gridbox" style="grid-template-columns:1fr 1.6fr"><div class="cell mini">Peer</div><div class="cell mini in"><span class="note">Peer › its own grid</span><div class="gridbox"><div class="cell"></div><div class="cell"></div><div class="cell"></div></div></div></div></div></div>
+  <p class="recipe"><code>B02</code> › <code>B10</code> › <code>B10</code> › <code>B03</code> › … · <b>no depth cap</b>: add a level for each layer the idea has</p>
+  <p class="real">IAS 16 ch05 §5.3 Useful life · IFRS 18 ch03 MBA nest</p>
+  <p class="deep"><b>Go deeper:</b> base rule + added layer in one paragraph → base cell with the layer nested under it. S13 depth-cut on HOLD.</p></div>
 
 <div class="combo"><p class="combo-h"><b>K4</b>AND-gate (OR-gate)</p><p class="ask">“All of these must hold.”</p>
   <div class="row"><div class="cell mini">Criterion</div><span class="and">AND</span><div class="cell mini">Criterion</div></div>
@@ -90,7 +98,8 @@
     <div style="background:var(--band);padding:.25rem .4rem;font-weight:700;border-top:var(--stroke-1) solid var(--line)">Question 1</div><div style="padding:.25rem .4rem;border-top:var(--stroke-1) solid var(--line);border-left:var(--stroke-1) solid var(--line)">…</div><div style="padding:.25rem .4rem;border-top:var(--stroke-1) solid var(--line);border-left:var(--stroke-1) solid var(--line)">…</div>
     <div style="background:var(--band);padding:.25rem .4rem;font-weight:700;border-top:var(--stroke-1) solid var(--line)">Question 2</div><div style="padding:.25rem .4rem;border-top:var(--stroke-1) solid var(--line);border-left:var(--stroke-1) solid var(--line)">…</div><div style="padding:.25rem .4rem;border-top:var(--stroke-1) solid var(--line);border-left:var(--stroke-1) solid var(--line)">…</div></div>
   <p class="recipe">one frame + <code>B11</code> tracks + rules · stub column on --band · header <code>B05</code></p>
-  <p class="real">CF ch08 §8.1 · CF ch06 §6.4 · IFRS 18 ch02 §2.3</p></div>
+  <p class="real">CF ch08 §8.1 · CF ch06 §6.4 · IFRS 18 ch02 §2.3</p>
+  <p class="deep"><b>Go deeper:</b> “X: a; Y: b” in one cell is an unpivoted matrix → a small K10 inside the cell (IAS 2 ch04 §4.5).</p></div>
 
 <div class="combo"><p class="combo-h"><b>K11</b>Statement</p><p class="ask">“What the face looks like.”</p>
   <div class="col" style="width:100%;gap:.25rem">

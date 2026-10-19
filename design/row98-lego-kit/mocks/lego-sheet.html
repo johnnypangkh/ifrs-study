@@ -1,6 +1,21 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>LEGO sheet — 21 bricks</title>
-<link rel="stylesheet" href="kit.css"></head>
+<link rel="stylesheet" href="kit.css">
+<style>
+  .nest-c { padding: .25rem; background: var(--surface); min-height: 2.6rem; }
+  .nest-c.in { background: var(--band); min-height: 1.8rem; }
+  .nest-d { padding: 0; min-height: .9rem; background: var(--surface); }
+  .lv { display: block; font-size: var(--t3-fs); color: var(--muted); font-weight: 700; line-height: 1.2; }
+  .deeper { border: var(--stroke-1) solid var(--accent); border-radius: var(--radius-m); padding: var(--space-3); margin-top: var(--space-3); }
+  .deeper .slot-id b { color: var(--accent); margin-right: var(--space-2); }
+  .dref { font-size: var(--t3-fs); color: var(--muted); font-weight: 400; margin-left: var(--space-2); }
+  .deeper-row { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.5fr) minmax(0, .95fr); gap: var(--space-3); align-items: center; margin-top: var(--space-2); }
+  .pk { padding: .2rem .3rem; font-size: var(--t3-fs); font-weight: 700; line-height: 1.25; }
+  .dk { font-size: var(--t3-fs); color: var(--accent); font-weight: 700; margin: .35rem 0 0; }
+  .routes { border-left: var(--stroke-1) solid var(--line); padding-left: var(--space-3); }
+  .rt { margin: 0 0 .15rem; font-size: var(--t3-fs); }
+  .rt b { color: var(--accent); }
+</style></head>
 <body>
 <h1 class="sheet-h">Concept-map LEGO sheet — 21 bricks</h1>
 <p class="sheet-sub">Each brick once, abstract. One brick = one job the reader needs done. Real instance of each: <code>evidence/Bxx-*.png</code>. Dark tokens from <code>_shared/tokens-core.css</code>.</p>
@@ -15,7 +30,7 @@
     <p class="slot-job">“One numbered topic.” L1: stroke-2 --line, --surface.</p></div>
   <div class="slot"><p class="slot-id"><b>B03</b>Cell</p>
     <div class="stage"><div class="cell band" style="width:60%"><span class="title-s">Cell</span><div class="note">one idea</div></div></div>
-    <p class="slot-job">“One idea.” L2/L3: stroke-1 --line.</p></div>
+    <p class="slot-job">“One idea.” L2/L3: stroke-1 --line. A text-dump cell → give it its own grid (B11).</p></div>
   <div class="slot"><p class="slot-id"><b>B04</b>Note</p>
     <div class="stage"><div style="width:80%"><div class="ghost"></div><p class="note" style="margin:.3rem 0 0">Small print about the thing above. No box.</p></div></div>
     <p class="slot-job">“Small print about my neighbour.” L4: T3, no border.</p></div>
@@ -46,10 +61,43 @@
     <div class="stage"><div class="railrow s" style="width:100%"><div class="rail"><span class="chip">5.3</span>Group</div>
       <div class="gridbox" style="grid-template-columns:1fr 1fr"><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost" style="opacity:.4"></div></div></div></div>
     <p class="slot-job">“Everything to my right is this group.” Right side = only this group, on a grid with room to add (rule 3).</p></div>
-  <div class="slot"><p class="slot-id"><b>B11</b>Grid</p>
-    <div class="stage"><div class="gridbox" style="grid-template-columns:repeat(4,1fr);width:100%"><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div><div class="ghost"></div></div></div>
-    <p class="slot-job">“Same row = peers; same column = steps.” Invisible tracks, gap --space-cell.</p></div>
-</div></section>
+  <div class="slot"><p class="slot-id"><b>B11</b>Grid — nests at any depth</p>
+    <div class="stage"><div class="gridbox" style="grid-template-columns:1fr 2.2fr 1fr;width:100%;align-items:stretch">
+      <div class="cell nest-c"><span class="lv">L2</span></div>
+      <div class="cell nest-c"><span class="lv">L2 cell › its own grid</span>
+        <div class="gridbox" style="grid-template-columns:1fr 1.6fr;margin-top:.25rem">
+          <div class="cell nest-c in"><span class="lv">L3</span></div>
+          <div class="cell nest-c in"><span class="lv">L3 › wrap row</span>
+            <div class="gridbox" style="grid-template-columns:repeat(3,1fr);gap:.2rem;margin-top:.2rem"><div class="cell nest-d"></div><div class="cell nest-d"></div><div class="cell nest-d"></div><div class="cell nest-d"></div><div class="cell nest-d"></div><div class="ghost" style="min-height:.9rem"></div></div></div>
+        </div></div>
+      <div class="cell nest-c"><span class="lv">L2</span></div></div></div>
+    <p class="slot-job">“Same row = peers; same column = steps.” Any cell can hold its own grid — <b>no depth cap</b>. Deeper grids reuse the L3 cell chrome.</p></div>
+</div>
+
+<div class="deeper">
+  <p class="slot-id"><b>Rule</b>Text dump = opportunity → go one layer deeper <span class="dref">owner heuristic 2026-10-19 · LEGO-LOGIC snap rule 9 · ENHANCE E7</span></p>
+  <div class="deeper-row">
+    <div class="cell"><span class="title-s">Indicators that control has passed</span>
+      <div class="note" style="margin-top:.2rem">Present obligation to pay; physical possession; legal title; risks and rewards of ownership; acceptance — evaluated together under IFRS 15, none individually determinative</div>
+      <p class="dk">Before · one cell, one run-on line</p></div>
+    <div class="ah" style="width:2.5rem"></div>
+    <div class="cell"><span class="title-s">Indicators that control has passed</span>
+      <div class="gridbox" style="grid-template-columns:repeat(5,1fr);gap:.25rem;margin-top:.3rem">
+        <div class="cell band pk">Present obligation to pay</div><div class="cell band pk">Physical possession</div><div class="cell band pk">Legal title</div><div class="cell band pk">Risks and rewards of ownership</div><div class="cell band pk">Acceptance</div></div>
+      <div class="junction" style="margin:0 10%"></div>
+      <div class="note" style="text-align:center;margin-top:.2rem">Evaluated together under IFRS 15, none individually determinative</div>
+      <p class="dk">After · same words, one layer deeper (K1 wrapped peers + B13 bracket)</p></div>
+    <div class="routes">
+      <p class="dk" style="margin:0 0 .2rem">The dump is … → build inside the cell</p>
+      <p class="rt">a list of same-kind items → <b>K1</b> wrapped peers</p>
+      <p class="rt">items × same attribute → <b>K10</b> matrix</p>
+      <p class="rt">several groups → <b>K2</b> rail stack</p>
+      <p class="rt">a base + an added layer → <b>K3</b> nest</p>
+      <p class="rt">amounts that combine → <b>K8 / K9</b></p>
+      <p class="rt mute">Stop when each cell holds one idea. Words unchanged — only <code>;</code> <code>·</code> “ — ” become boundaries.</p></div>
+  </div>
+</div>
+</section>
 
 <section class="fam"><p class="fam-h">Connectors — how cells relate</p>
 <div class="tray t3">
