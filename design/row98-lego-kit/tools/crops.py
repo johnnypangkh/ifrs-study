@@ -43,6 +43,7 @@ CROPS = [
     # components
     ("C-and-gate-ias16", "ias-16" + V + "ch01-scope.html", ".scope-stack", 0, 420),
     ("C-and-gate-ias2", "ias-2" + V + "ch02-recognition.html", ".st-def", 0, None),
+    ("C-and-gate-cf02", "cf-2018" + V + "ch02-qualitative-characteristics.html", ".qc-tier", 0, None),
     ("C-and-gate-cf05", "cf-2018" + V + "ch05-recognition-derecognition.html", ".rc-test--useful", 0, None),
     ("C-and-gate-cf03", "cf-2018" + V + "ch03-reporting-entity.html", "p.re-dual", 0, None),
     ("C-fork-ias16", "ias-16" + V + "ch01-scope.html", ".scope-stack", 0, None),

@@ -1,6 +1,21 @@
 {
  "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      1017,
+      380,
+      246,
+      22
+     ],
+     "cls": "ou-note"
+    },
+    "classes": {
+     "ou-note": 1
+    }
+   },
    "title": {
     "count": 3,
     "first": {
@@ -217,6 +232,11 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch02-qualitative-characteristics.html": {
   "bricks": {
+   "note": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
    "title": {
     "count": 3,
     "first": {
@@ -441,6 +461,21 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch03-reporting-entity.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      28,
+      1137,
+      460,
+      17
+     ],
+     "cls": "re-plate-note"
+    },
+    "classes": {
+     "re-plate-note": 1
+    }
+   },
    "title": {
     "count": 6,
     "first": {
@@ -680,6 +715,21 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch04-elements.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      178,
+      468,
+      153,
+      18
+     ],
+     "cls": "el-apply-note"
+    },
+    "classes": {
+     "el-apply-note": 1
+    }
+   },
    "title": {
     "count": 9,
     "first": {
@@ -867,6 +917,11 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch05-recognition-derecognition.html": {
   "bricks": {
+   "note": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
    "title": {
     "count": 6,
     "first": {
@@ -1083,6 +1138,21 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch06-measurement.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      18,
+      229,
+      780,
+      17
+     ],
+     "cls": "mx-lead"
+    },
+    "classes": {
+     "mx-lead": 1
+    }
+   },
    "title": {
     "count": 5,
     "first": {
@@ -1325,6 +1395,21 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch07-presentation-disclosure.html": {
   "bricks": {
+   "note": {
+    "count": 2,
+    "first": {
+     "box": [
+      13,
+      550,
+      271,
+      32
+     ],
+     "cls": "pd-cue pd-cue--foot"
+    },
+    "classes": {
+     "pd-cue": 2
+    }
+   },
    "title": {
     "count": 18,
     "first": {
@@ -1533,6 +1618,11 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch08-capital.html": {
   "bricks": {
+   "note": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
    "title": {
     "count": 4,
     "first": {
@@ -1728,6 +1818,11 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch09-combined.html": {
   "bricks": {
+   "note": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
    "title": {
     "count": 0,
     "first": null,
@@ -1943,6 +2038,21 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch10-carve.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      29,
+      555,
+      1222,
+      22
+     ],
+     "cls": "zone-foot"
+    },
+    "classes": {
+     "zone-foot": 1
+    }
+   },
    "title": {
     "count": 0,
     "first": null,
@@ -2149,6 +2259,11 @@
  },
  "cf-2018/draft-v1-linked/visuals/ch11-status.html": {
   "bricks": {
+   "note": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
    "title": {
     "count": 2,
     "first": {
@@ -2366,6 +2481,24 @@
  },
  "ias-16/draft-v1-linked/visuals/ch01-scope.html": {
   "bricks": {
+   "note": {
+    "count": 5,
+    "first": {
+     "box": [
+      962,
+      0,
+      316,
+      160
+     ],
+     "cls": "side-note"
+    },
+    "classes": {
+     "side-note": 1,
+     "tip": 3,
+     "scope-tip": 1,
+     "thin-tip": 1
+    }
+   },
    "title": {
     "count": 8,
     "first": {
@@ -2574,6 +2707,23 @@
  },
  "ias-16/draft-v1-linked/visuals/ch02-recognition.html": {
   "bricks": {
+   "note": {
+    "count": 11,
+    "first": {
+     "box": [
+      13,
+      130,
+      818,
+      36
+     ],
+     "cls": "q-note"
+    },
+    "classes": {
+     "q-note": 2,
+     "limb-note": 7,
+     "thin-tip": 2
+    }
+   },
    "title": {
     "count": 4,
     "first": {
@@ -2812,6 +2962,24 @@
  },
  "ias-16/draft-v1-linked/visuals/ch03-initial.html": {
   "bricks": {
+   "note": {
+    "count": 9,
+    "first": {
+     "box": [
+      682,
+      104,
+      266,
+      39
+     ],
+     "cls": "limb-note"
+    },
+    "classes": {
+     "limb-note": 2,
+     "thin-tip": 5,
+     "pl-tip": 1,
+     "facet-foot": 1
+    }
+   },
    "title": {
     "count": 11,
     "first": {
@@ -3057,6 +3225,27 @@
  },
  "ias-16/draft-v1-linked/visuals/ch04-models.html": {
   "bricks": {
+   "note": {
+    "count": 10,
+    "first": {
+     "box": [
+      156,
+      486,
+      1089,
+      138
+     ],
+     "cls": "policy-foot"
+    },
+    "classes": {
+     "policy-foot": 1,
+     "limb-note": 3,
+     "pair-foot": 1,
+     "rev-foot": 1,
+     "thin-tip": 2,
+     "impair-formula-note": 1,
+     "impair-seq-note": 1
+    }
+   },
    "title": {
     "count": 16,
     "first": {
@@ -3480,6 +3669,24 @@
  },
  "ias-16/draft-v1-linked/visuals/ch05-depreciation.html": {
   "bricks": {
+   "note": {
+    "count": 14,
+    "first": {
+     "box": [
+      190,
+      479,
+      1068,
+      91
+     ],
+     "cls": "cap-foot"
+    },
+    "classes": {
+     "cap-foot": 1,
+     "limb-note": 5,
+     "soft-note": 7,
+     "junction-tip": 1
+    }
+   },
    "title": {
     "count": 7,
     "first": {
@@ -3787,6 +3994,25 @@
  },
  "ias-16/draft-v1-linked/visuals/ch06-derecognition.html": {
   "bricks": {
+   "note": {
+    "count": 7,
+    "first": {
+     "box": [
+      198,
+      325,
+      902,
+      24
+     ],
+     "cls": "soft-note idle-note"
+    },
+    "classes": {
+     "soft-note": 1,
+     "idle-note": 1,
+     "goes-tip": 1,
+     "limb-note": 4,
+     "thin-tip": 1
+    }
+   },
    "title": {
     "count": 14,
     "first": {
@@ -4059,6 +4285,23 @@
  },
  "ias-16/draft-v1-linked/visuals/ch07-disclosure.html": {
   "bricks": {
+   "note": {
+    "count": 11,
+    "first": {
+     "box": [
+      190,
+      88,
+      1074,
+      24
+     ],
+     "cls": "soft-note"
+    },
+    "classes": {
+     "soft-note": 10,
+     "land-tip": 1,
+     "foot-tip": 6
+    }
+   },
    "title": {
     "count": 1,
     "first": {
@@ -4269,6 +4512,39 @@
  },
  "ias-16/draft-v1-linked/visuals/master-concept-map.html": {
   "bricks": {
+   "note": {
+    "count": 66,
+    "first": {
+     "box": [
+      988,
+      0,
+      276,
+      163
+     ],
+     "cls": "side-note"
+    },
+    "classes": {
+     "side-note": 1,
+     "tip": 3,
+     "scope-tip": 1,
+     "thin-tip": 11,
+     "q-note": 2,
+     "limb-note": 21,
+     "pl-tip": 1,
+     "facet-foot": 1,
+     "policy-foot": 1,
+     "pair-foot": 1,
+     "cap-foot": 1,
+     "soft-note": 18,
+     "rev-foot": 1,
+     "impair-formula-note": 1,
+     "impair-seq-note": 1,
+     "idle-note": 1,
+     "goes-tip": 1,
+     "land-tip": 1,
+     "foot-tip": 6
+    }
+   },
    "title": {
     "count": 60,
     "first": {
@@ -4732,6 +5008,21 @@
  },
  "ias-2/draft-v1-linked/visuals/ch01-scope.html": {
   "bricks": {
+   "note": {
+    "count": 2,
+    "first": {
+     "box": [
+      684,
+      342,
+      586,
+      37
+     ],
+     "cls": "leaf-note"
+    },
+    "classes": {
+     "leaf-note": 2
+    }
+   },
    "title": {
     "count": 14,
     "first": {
@@ -4959,6 +5250,21 @@
  },
  "ias-2/draft-v1-linked/visuals/ch02-recognition.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      684,
+      376,
+      586,
+      44
+     ],
+     "cls": "leaf-note"
+    },
+    "classes": {
+     "leaf-note": 1
+    }
+   },
    "title": {
     "count": 11,
     "first": {
@@ -5174,6 +5480,21 @@
  },
  "ias-2/draft-v1-linked/visuals/ch03-initial.html": {
   "bricks": {
+   "note": {
+    "count": 2,
+    "first": {
+     "box": [
+      23,
+      327,
+      1234,
+      37
+     ],
+     "cls": "leaf-note"
+    },
+    "classes": {
+     "leaf-note": 2
+    }
+   },
    "title": {
     "count": 11,
     "first": {
@@ -5405,6 +5726,21 @@
  },
  "ias-2/draft-v1-linked/visuals/ch04-subsequent.html": {
   "bricks": {
+   "note": {
+    "count": 4,
+    "first": {
+     "box": [
+      10,
+      697,
+      343,
+      15
+     ],
+     "cls": "leaf-note"
+    },
+    "classes": {
+     "leaf-note": 4
+    }
+   },
    "title": {
     "count": 14,
     "first": {
@@ -5636,6 +5972,21 @@
  },
  "ias-2/draft-v1-linked/visuals/ch05-derecognition.html": {
   "bricks": {
+   "note": {
+    "count": 3,
+    "first": {
+     "box": [
+      10,
+      297,
+      513,
+      15
+     ],
+     "cls": "leaf-note"
+    },
+    "classes": {
+     "leaf-note": 3
+    }
+   },
    "title": {
     "count": 9,
     "first": {
@@ -5863,6 +6214,21 @@
  },
  "ias-2/draft-v1-linked/visuals/ch06-disclosure.html": {
   "bricks": {
+   "note": {
+    "count": 2,
+    "first": {
+     "box": [
+      10,
+      623,
+      558,
+      45
+     ],
+     "cls": "leaf-note"
+    },
+    "classes": {
+     "leaf-note": 2
+    }
+   },
    "title": {
     "count": 11,
     "first": {
@@ -6059,6 +6425,24 @@
  },
  "ias-2/draft-v1-linked/visuals/map-formula-board.html": {
   "bricks": {
+   "note": {
+    "count": 6,
+    "first": {
+     "box": [
+      684,
+      176,
+      586,
+      15
+     ],
+     "cls": "leaf-note"
+    },
+    "classes": {
+     "leaf-note": 3,
+     "m-note": 1,
+     "m-foot": 1,
+     "m-disc-lead": 1
+    }
+   },
    "title": {
     "count": 30,
     "first": {
@@ -6300,6 +6684,21 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch01-whats-new.html": {
   "bricks": {
+   "note": {
+    "count": 2,
+    "first": {
+     "box": [
+      16,
+      132,
+      602,
+      22
+     ],
+     "cls": "wn-foot"
+    },
+    "classes": {
+     "wn-foot": 2
+    }
+   },
    "title": {
     "count": 5,
     "first": {
@@ -6515,6 +6914,21 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch02-pfs-aggregation.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      563,
+      1280,
+      38
+     ],
+     "cls": "pa-tip"
+    },
+    "classes": {
+     "pa-tip": 1
+    }
+   },
    "title": {
     "count": 5,
     "first": {
@@ -6712,6 +7126,21 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch03-classification-path.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      537,
+      760,
+      52
+     ],
+     "cls": "pc-mba-cue"
+    },
+    "classes": {
+     "pc-mba-cue": 1
+    }
+   },
    "title": {
     "count": 0,
     "first": null,
@@ -6946,6 +7375,21 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch03-mba-nest.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      560,
+      215,
+      200,
+      75
+     ],
+     "cls": "pc-mba-why"
+    },
+    "classes": {
+     "pc-mba-why": 1
+    }
+   },
    "title": {
     "count": 5,
     "first": {
@@ -7124,6 +7568,11 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch03-pnl-categories.html": {
   "bricks": {
+   "note": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
    "title": {
     "count": 6,
     "first": {
@@ -7379,6 +7828,11 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch04-totals-subtotals.html": {
   "bricks": {
+   "note": {
+    "count": 0,
+    "first": null,
+    "classes": {}
+   },
    "title": {
     "count": 5,
     "first": {
@@ -7668,6 +8122,22 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch05-operating-expenses.html": {
   "bricks": {
+   "note": {
+    "count": 2,
+    "first": {
+     "box": [
+      267,
+      362,
+      227,
+      16
+     ],
+     "cls": "oe-half-note"
+    },
+    "classes": {
+     "oe-half-note": 1,
+     "oe-foot": 1
+    }
+   },
    "title": {
     "count": 5,
     "first": {
@@ -7901,6 +8371,21 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch06-mpms.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      433,
+      1280,
+      17
+     ],
+     "cls": "rc-why"
+    },
+    "classes": {
+     "rc-why": 1
+    }
+   },
    "title": {
     "count": 0,
     "first": null,
@@ -8121,6 +8606,21 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch07-other-fs.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      246,
+      1280,
+      17
+     ],
+     "cls": "ofs-lead"
+    },
+    "classes": {
+     "ofs-lead": 1
+    }
+   },
    "title": {
     "count": 3,
     "first": {
@@ -8331,6 +8831,21 @@
  },
  "ifrs-18/draft-v1-linked/visuals/ch08-transition.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      0,
+      28,
+      1280,
+      17
+     ],
+     "cls": "tr-lead"
+    },
+    "classes": {
+     "tr-lead": 1
+    }
+   },
    "title": {
     "count": 0,
     "first": null,
@@ -8546,6 +9061,21 @@
  },
  "ifrs-18/draft-v1-linked/visuals/map-jumpboard.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      34,
+      502,
+      375,
+      76
+     ],
+     "cls": "tip-note m-see"
+    },
+    "classes": {
+     "tip-note": 1
+    }
+   },
    "title": {
     "count": 27,
     "first": {
@@ -8825,6 +9355,23 @@
  },
  "cf-2018/draft-v1-linked/index.html": {
   "bricks": {
+   "note": {
+    "count": 5,
+    "first": {
+     "box": [
+      739,
+      383,
+      395,
+      63
+     ],
+     "cls": "leaf leaf-yes m-l4"
+    },
+    "classes": {
+     "m-l4": 3,
+     "sec-lead": 1,
+     "tip-note": 1
+    }
+   },
    "title": {
     "count": 40,
     "first": {
@@ -9104,6 +9651,21 @@
  },
  "ifrs-18/draft-v1-linked/index.html": {
   "bricks": {
+   "note": {
+    "count": 1,
+    "first": {
+     "box": [
+      130,
+      724,
+      311,
+      78
+     ],
+     "cls": "tip-note m-see"
+    },
+    "classes": {
+     "tip-note": 1
+    }
+   },
    "title": {
     "count": 27,
     "first": {

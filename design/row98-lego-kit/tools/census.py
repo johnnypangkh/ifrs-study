@@ -23,6 +23,10 @@ OUT = os.path.join(os.path.dirname(__file__), "census.json")
 
 # brick id -> (include regex on class tokens, exclude regex, optional allowed tag names)
 BRICKS = {
+    "note": (r"^(soft-note|thin-tip|m-l4|leaf-note|limb-note|side-note|q-note|tip|scope-tip|pl-tip|foot-tip|land-tip|"
+             r"junction-tip|goes-tip|idle-note|tip-note|ou-note|re-plate-note|el-apply-note|pd-cue|mx-lead|pc-mba-cue|"
+             r"pc-mba-why|rc-why|tr-lead|ofs-lead|pa-tip|wn-foot|oe-foot|oe-half-note|m-note|m-foot|zone-foot|cap-foot|"
+             r"policy-foot|rev-foot|pair-foot|facet-foot|impair-seq-note|impair-formula-note|sec-lead|m-disc-lead)$", None),
     "title": (r"(^|-)(title|head)$|^frame-title$",
               r"^(lc-|lens|rev-|cap-m|tr-mx|pa-mx|mx-row|mx-head|wn-tl-head|tr-head|oe-leaf-head|zone-head|hub-head|qc-tier-title)"),
     "section-chip": (r"^(fb-num|sec|sec-sm)$", None, ["A", "SPAN"]),
