@@ -134,7 +134,7 @@ Each row: the bricks it is made of, what it says to the reader, and where it alr
 
 | map · section | markup | markers ↔ labels | between-marker note | crop |
 |---|---|---|---|---|
-| IAS 16 ch05 §5.4 *During use* | `.lc-head` › `.lc-head-k` + `.lc-end` cards + `.lc-axis` rings + `.lc-band` ticks | cards sit above the rings, with no leader to the ring | none; 4 “Year-end” ticks (signed Dep lock has none) | `B15-time-axis.png` |
+| IAS 16 ch05 §5.4 *During use* | `.lc-head` › `.lc-head-k` + `.lc-end` cards + `.lc-axis` rings + `.lc-band` ticks | cards sit above the rings, joined by a runtime `.lc-drop` hairline leader (`ias16.css` L5698) | none; 4 “Year-end” ticks (signed Dep lock has none) | `B15-time-axis.png` |
 | IAS 16 ch04 §4.5 *Revaluation*; impairment | same `.lc-head`, twice on one map, + `.lc-dia` diamonds | same | none | `C-timeline-ias16-ch04.png` |
 | IAS 16 ch03 §3.5 *When recognition of directly attributable costs …* | `.ready-axis` + `.axis-mark` | one mark | none | — |
 | CF ch03 §3.2 *Reporting period* | `.re-axis` + `.re-tick` | label under each ring | none | `C-timeline-cf03.png` |

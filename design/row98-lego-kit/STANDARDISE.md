@@ -8,7 +8,11 @@ Each item gives:
 - the map sections it affects;
 - the before/after mock.
 
-**Before** panels are real crops from the live maps (`evidence/`). **After** panels are drawn with the site’s dark tokens (`_shared/tokens-core.css`).
+How the mocks are made:
+- **Before** panes are real crops of the live maps (dark, 1280 wide): `mocks/ba/*-before.png` from `tools/before_after.py`, or `evidence/` from `tools/crops.py`.
+- **After** panes are the *same live map* re-rendered with the proposal CSS injected (`mocks/ba/*-after.png`). So wording, order and data are exactly the live ones, and the only difference is formatting.
+- Where CSS alone cannot show the change (S4 timeline, S7 formula, S12 draw-once), the after pane is drawn with tokens only (`tools/build_ba_pages.py`, `_shared/tokens-core.css`), using only wording already on that map.
+- Rebuild with `python3 tools/before_after.py && python3 tools/build_ba_pages.py && python3 tools/render_mocks.py`.
 
 Order = how much each item helps the reader, highest first.
 
@@ -92,9 +96,9 @@ Part A is “same job, different markup”. Part B is “breaks an owner rule”
 
 Across them:
 - **Markers to labels:**
-  - IAS 16 cards float above the end rings, with no leader to the ring.
-  - CF ch03 puts labels under the rings.
-  - IFRS 18 puts dates above and cards below.
+  - IAS 16 puts the Begins / Ceases cards above the end rings, joined by a hairline accent leader (`.lc-head-axis > .lc-drop`, `ias16.css` L5698; the span is added at runtime, not in the HTML source).
+  - CF ch03 puts unboxed labels under the rings, with no leader.
+  - IFRS 18 puts the dates above the axis and the cards below it, with no leader from ring to card.
 - **Between-marker note:** only IFRS 18 ch08 §8.2 *Retrospective* (`p.tr-span`).
 - **Live ch05 §5.4** still shows 4 “Year-end” ticks plus a “Year-end” key. The signed Dep lock removed them (kit 25: “no YE markers”), but only in `dep-v2.html`.
 
@@ -162,7 +166,7 @@ Outside IFRS 18 the nearest thing is CF ch03 `.re-obj`, a 2 px accent-mix left b
 **Today.**
 - IAS 16 uses `.cost-eq` / `.cost-identity` / `.mini-formula` and the ledger `.vledger`.
 - IAS 2 ch05 uses `.exp-f`.
-- The **IAS 2 master alone** uses three: `.m-sum` (vertical, `+` between `.m-row` boxes, *Cost of inventories*), `.m-formula` (unboxed terms, *Measure NRV*), and `.m-eqn` (boxed cells, *Inventories sold …*). Plus `p.m-op` “lower of”.
+- The **IAS 2 master alone** uses three: `.m-sum` (vertical, `span.m-plus` at the left edge between `.m-row` boxes, *Cost of inventories*), `.m-formula` (boxed `a.m-term` links, 11 px / 700 centred, no section chip; `span.m-minus`, *Measure NRV*), and `.m-eqn` (boxed cells with chip + title + body, 12 px; `span.m-eq-op`, *Inventories sold …*). Plus `p.m-op` “lower of”. All the operators already measure the same (15 px / 700 `--accent`); the difference is three term recipes and three operator classes on one map.
 - CF ch04 uses `.el-eq`. IFRS 18 ch06 uses `.rc-bridge`, whose `±` is the only muted, 18 px operator (all others are accent 15 px).
 - **Result side.** IAS 16 puts the result first (`X = a − b`). IAS 2 ch05, CF ch04 and IFRS 18 ch06 put it last. This follows a real rule, so it is **not** an inconsistency:
   - **define** a term → result first;
@@ -240,10 +244,10 @@ The stub column is UPPERCASE on CF ch06, IFRS 18 ch02 and IFRS 18 ch08, but sent
 
 ### S13 · Red stops and box depth (grammar skill §3, §4)
 - **Red stops.** The CF index has **2** red `.m-stop` leaves: *Not that element* and *Do not recognise*. The skill says “≤ 1 per board, justify a second”. Every other board has ≤ 1. **Standard:** keep *Do not recognise* red (the true hard stop); *Not that element* becomes a muted dead-end (`.m-flow.mute` + plain Cell). Johnny to confirm which is the true stop.
-- **Box depth.** Measured nesting of bordered, non-pill boxes, from `CENSUS.md` §3:
+- **Box depth.** Measured nesting of bordered, non-pill boxes, from `CENSUS.md` §3 (the deepest chain found: IAS 16 ch06 *Partial disposal*, `.plate.pack-exit` › `.inner-detail.story-special` › `.partial-nest` › `.peer` › `.item-rows`):
   - 5 levels: IAS 16 ch06, IAS 16 master, IAS 2 master, CF index;
   - 4 levels: IAS 16 ch03 / ch04 / ch05, CF ch07, IFRS 18 ch03-mba-nest / ch05 / jumpboard / index.
-  - The cap is 2, with a 3rd only for formula, ledger and see-also. **Standard:** the innermost `.item-rows` / `.inner-detail` box goes unboxed (a Note-weight list) when it sits inside a rail detail. A formula or ledger may keep its box.
+  - The cap is 2, with a 3rd only for formula, ledger and see-also. **Standard:** the innermost `.item-rows` box goes unboxed (a plain list) when it sits inside a Cell, and a frame that only wraps peers (`.partial-nest`) drops its border and keeps its title. A formula or ledger may keep its box. On the ch06 example this takes 5 levels to 3 with no wording change.
 - **Mock:** `mocks/S13-stop-and-depth.png`.
 
 ---
