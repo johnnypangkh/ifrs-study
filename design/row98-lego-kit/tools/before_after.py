@@ -129,17 +129,19 @@ JOBS = [
     dict(id="E07-ias2-ch02", file=I2 + "ch02-recognition.html", sel="[data-ba=e7]", maxh=None,
          pre=("""() => [...document.querySelectorAll('.st-list .cell-title')]
                  .find(t => t.textContent.startsWith('Indicators that control')).closest('section.q').setAttribute('data-ba', 'e7')""", None),
-         css=".e7-peers{display:grid;grid-template-columns:repeat(auto-fit,minmax(6.25rem,1fr));gap:var(--space-1);margin-top:var(--space-1)}"
+         css=".e7-host{padding:var(--space-3)!important}"
+             ".e7-peers{display:grid;grid-template-columns:repeat(auto-fit,minmax(6.5rem,1fr));gap:var(--space-cell);margin-top:var(--space-2)}"
              ".e7-peer{border:var(--stroke-1) solid var(--line);border-radius:var(--radius-s);background:var(--band);"
-             "padding:var(--space-1) var(--space-cell);color:var(--ink);font-size:var(--t3-fs);font-weight:700;line-height:1.3}"
+             "padding:var(--space-2);color:var(--ink);font-size:var(--t3-fs);font-weight:700;line-height:var(--t3-lh)}"
              ".e7-peer::first-letter{text-transform:uppercase}"
-             ".e7-join{display:block;margin:0 12% 0;height:var(--space-2);border:var(--stroke-1) solid var(--line);border-top:0;"
+             ".e7-join{display:block;margin:var(--space-1) 12% 0;height:var(--space-2);border:var(--stroke-1) solid var(--line);border-top:0;"
              "border-radius:0 0 var(--radius-s) var(--radius-s)}"
-             ".e7-qual{display:block;text-align:center;margin-top:var(--space-1);color:var(--muted);font-size:var(--t3-fs)}"
+             ".e7-qual{display:block;text-align:center;margin-top:var(--space-2);color:var(--muted);font-size:var(--t3-fs)}"
              ".e7-qual::first-letter{text-transform:uppercase}",
          js=("""() => {
            const t = [...document.querySelectorAll('.st-list .cell-title')].find(t => t.textContent.startsWith('Indicators that control'));
            const body = t.parentElement.querySelector('.cell-body');
+           t.parentElement.classList.add('e7-host');
            const [list, qual] = body.textContent.split(' — ');
            const g = document.createElement('span'); g.className = 'e7-peers';
            for (const s of list.split('; ')) { const c = document.createElement('span'); c.className = 'e7-peer'; c.textContent = s; g.append(c); }
@@ -148,11 +150,12 @@ JOBS = [
            body.textContent = ''; body.append(g, j, q);
          }""", None)),
     dict(id="E07-ias2-master", file=I2 + "map-formula-board.html", sel=".m-sum", maxh=None,
-         css=".m-out.e7-region{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-cell);align-items:start}"
-             ".e7-region > span{display:grid;gap:var(--space-1)}"
-             ".e7-peers{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:var(--space-1)}"
+         css=".m-out.e7-region{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-3);align-items:start;"
+             "padding-block:var(--space-2)}"
+             ".e7-region > span{display:grid;gap:var(--space-2)}"
+             ".e7-peers{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:var(--space-cell)}"
              ".e7-peer{border:var(--stroke-1) solid var(--line);border-radius:var(--radius-s);background:var(--band);"
-             "padding:var(--space-1) var(--space-cell);color:var(--ink);font-size:var(--t3-fs);line-height:1.3}"
+             "padding:var(--space-2) var(--space-3);color:var(--ink);font-size:var(--t3-fs);line-height:var(--t3-lh)}"
              ".e7-peer::first-letter{text-transform:uppercase}"
              ".e7-note{font-size:var(--t3-fs);color:var(--muted)}",
          js=("""() => {
