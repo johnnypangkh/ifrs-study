@@ -130,3 +130,20 @@ Johnny rejected a39f3ccd: the axis was a Depreciation twin and the phases were f
 - Ceases inset 13px. Every rail matches its detail. Phase rail covers the beat.
 
 Crop: design/row98-timeline-punch7/apply-impair-hero-1280.png
+
+## Impairment left-rail redo (2026-10-20, not signed)
+
+Johnny rejected 33274fd3: the phases were a 2×2 card grid, and the flags were not the signed pole-and-cloth.
+
+Dep and Reval files were not edited. Live chapter HTML was not edited.
+
+- Hero is a vertical left rail, 68% of the plate: `A - Test`, `B - Measure + write down`, `C - Pair`, `D - After write-down`, `E - Reversal`. Each rail matches its detail.
+- A forks NO `No indication: no test` and YES `Indication: continue`.
+- C is its own row. The two cells are Cost and Revaluation.
+- E keeps two separate lines.
+- The reporting-date band is 22%. Title `Each reporting date`. Two marks: `Reporting date` / `Assess any indication`. No Year-end.
+- Begins and Ceases use the signed flag: 2px pole, cloth flush on the right, radius 0. Begins `While the item is held as PPE`. Ceases `Classified as held for sale or derecognised` with `See also · IFRS 5`.
+- `Subject to impairment review` is a state line under the band, not a gradient ribbon. Compensation 6.6 stays off the axis.
+- Ceases right inset 33px. Phase rail covers the beat. No second band.
+
+Crop: design/row98-timeline-punch7/apply-impair-leftrail-1280.png
