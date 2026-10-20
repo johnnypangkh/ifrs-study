@@ -77,6 +77,8 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 }
 .ch04-impair .phase-line{margin:0;font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);color:var(--ink)}
 .ch04-impair .ppe-note{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2)}
+.ch04-impair .node{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-1)}
+.ch04-impair .see.chip{padding:0 var(--space-2) !important;border-radius:var(--radius-pill)}
 .ch04-impair .phase-line.lead{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh)}
 .ch04-impair .fork{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
 .ch04-impair .arm{
@@ -94,18 +96,25 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 .ch04-impair .arm p{margin:0;font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);color:var(--ink)}
 .ch04-impair .pair-cells{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
 .ch04-impair .pair-cells article{
+  display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2);
   margin:0;padding:var(--space-3);
   border:var(--stroke-2) solid var(--line);
   border-radius:var(--card-radius);
   background:var(--band);
-  font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);color:var(--ink);
+  min-width:0;
 }
+.ch04-impair .pair-line{margin:0;font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);color:var(--ink)}
 .ch04-impair .d-line{
+  display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-1);
   margin:0;padding:var(--space-2);
   border:var(--stroke-1) solid var(--line);
   border-radius:var(--card-radius);
   background:var(--band);
   font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);
+}
+.ch04-impair .impair-comp{
+  display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2);
+  width:100%;padding:var(--space-3);box-sizing:border-box;
 }
 .ch04-impair .see{
   font-size:var(--t3-fs);font-weight:var(--t3-strong-fw);
@@ -195,10 +204,10 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
 }
 .ch04-impair .foot-copy{
   grid-column:2;
-  display:flex;flex-direction:column;align-items:center;
+  display:flex;flex-direction:column;align-items:stretch;
   gap:var(--space-2);padding-top:var(--space-1);
 }
-.ch04-impair .offaxis .see{align-self:center}
+.ch04-impair .offaxis .see{align-self:flex-start}
 </style>
 </head>
 <body class="embed">
@@ -217,17 +226,24 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
     <a class="rail-link" data-phase="impair" href="#">Impairment</a>
     <div class="beat" data-phase="impair">
       <section class="plate ch04-impair" aria-label="Impairment">
+        <p class="plate-title"><a class="fb-num" href="../ch04.html#s-4-8" target="_parent">4.8</a><span>Impairment</span></p>
         <div class="inner-board">
 
           <div class="phase-stack" id="impair-hero">
             <div class="srow" id="phase-a" role="group" aria-label="A - Test">
               <div class="inner-rail"><span class="rail-name">A - Test</span></div>
               <div class="inner-detail">
-                <p class="phase-line lead">Assess any indication?</p>
-                <p class="phase-line">Indicators: external + internal</p>
+                <div class="node">
+                  <p class="phase-line lead">Assess any indication?</p>
+                  <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p9" target="_parent">IAS 36 · para 9</a></span>
+                </div>
+                <div class="node">
+                  <p class="phase-line">Indicators: external + internal</p>
+                  <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p12" target="_parent">IAS 36 · para 12</a></span>
+                </div>
                 <div class="ppe-note">
                   <p class="phase-line">PPE: no mandatory annual full test</p>
-                  <span class="see">See also · IAS 38</span>
+                  <span class="see chip">See also · IAS 38</span>
                 </div>
                 <div class="fork">
                   <div class="arm no">
@@ -246,11 +262,29 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
               <div class="inner-rail"><span class="rail-name">B - Measure + write down</span></div>
               <div class="inner-detail">
                 <p class="phase-line lead">Indication: estimate recoverable amount</p>
-                <p class="phase-line">Recoverable amount = higher of FV less costs of disposal and value in use</p>
-                <p class="phase-line">Recoverable amount &lt; carrying amount: write down</p>
+                <div class="node">
+                  <p class="phase-line">Recoverable amount = higher of FV less costs of disposal and value in use</p>
+                  <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p18" target="_parent">IAS 36 · para 18</a></span>
+                </div>
+                <div class="impair-ca-flow" role="group" aria-label="Carrying amount reduced to recoverable amount">
+                  <div class="impair-ca-cell">
+                    <p class="impair-ca-k">Carrying amount</p>
+                    <p class="impair-ca-sub">before</p>
+                  </div>
+                  <span class="impair-ca-arrow m-flow" aria-label="reduced to"></span>
+                  <div class="impair-ca-cell impair-ca-after">
+                    <p class="impair-ca-k">Recoverable amount</p>
+                    <p class="impair-ca-sub">write-down target</p>
+                  </div>
+                </div>
+                <p class="impair-formula-note">Input from IAS 36 · both models</p>
+                <div class="node">
+                  <p class="phase-line">Recoverable amount &lt; carrying amount: write down</p>
+                  <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p59" target="_parent">IAS 36 · para 59</a></span>
+                </div>
                 <p class="phase-line">If recoverable ≥ carrying amount: no write-down</p>
                 <p class="phase-line">Write-down amount = carrying amount − recoverable amount</p>
-                <span class="see">See also · IAS 36</span>
+                <span class="see chip">See also · IAS 36</span>
               </div>
             </div>
 
@@ -258,10 +292,32 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
               <div class="inner-rail"><span class="rail-name">C - Pair</span></div>
               <div class="inner-detail">
                 <div class="pair-cells">
-                  <article>Cost: loss to P&amp;L</article>
-                  <article>Revaluation: revaluation decrease, surplus first</article>
+                  <article>
+                    <p class="pair-line">Cost: loss to P&amp;L</p>
+                    <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p60" target="_parent">IAS 36 · para 60</a></span>
+                  </article>
+                  <article>
+                    <p class="pair-line">Revaluation</p>
+                    <p class="phase-line">Treated as a revaluation decrease — against the surplus for that asset first, excess to P&amp;L</p>
+                    <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p61" target="_parent">IAS 36 · para 61</a><a class="cite cite-ey" href="../references.html#ref-ey-igaap-ch19-s62" target="_parent"><span class="cite-house">EY</span> iGAAP 2026 Ch19 · section 6.2</a></span>
+                    <p class="see"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a><span class="see-label">See also</span> <span class="see-bit">Revaluation</span></p>
+                  </article>
                 </div>
                 <p class="phase-line">Surplus: that same asset only</p>
+                <p class="impair-seq-note">Impairment on a revalued asset follows the same <span class="seq-word">surplus-first</span> sequence as a revaluation decrease; the trigger (IAS 36) and the target (recoverable amount, not FV) differ.</p>
+                <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p61" target="_parent">IAS 36 · para 61</a></span>
+                <article class="impair-formula-cell impair-formula-contrast-cell m-see">
+                  <div class="impair-ca-flow" role="group" aria-label="Carrying amount and revalued amount (FV)">
+                    <div class="impair-ca-cell">
+                      <p class="impair-ca-k">Carrying amount</p>
+                      <p class="impair-ca-sub">before</p>
+                    </div>
+                    <span class="impair-ca-arrow impair-ca-arrow-mute m-flow mute" aria-label="moved to"></span>
+                    <div class="impair-ca-cell">
+                      <p class="impair-ca-k">Revalued amount (FV)</p>
+                    </div>
+                  </div>
+                </article>
               </div>
             </div>
 
@@ -270,17 +326,34 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
               <div class="inner-detail">
                 <p class="phase-line lead">After write-down: depreciate revised carrying amount</p>
                 <p class="phase-line">Allocate revised carrying amount less residual over remaining useful life</p>
-                <a class="see" href="../ch05.html#s-5-4" target="_parent"><span class="fb-num">5.4</span> See also · Depreciation</a>
+                <div class="node">
+                  <p class="phase-line">Depreciate the impaired carrying amount, less residual value, over the remaining useful life</p>
+                  <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias16-p63" target="_parent">IAS 16 · para 63</a><a class="cite cite-official" href="../references.html#ref-ias36-p63" target="_parent">IAS 36 · para 63</a></span>
+                </div>
+                <p class="see"><a class="fb-num" href="../ch05.html#s-5-1" target="_parent">5.1</a><span class="see-label">See also</span> <span class="see-bit">Depreciation</span></p>
               </div>
             </div>
 
             <div class="srow" id="phase-e" role="group" aria-label="E - Reversal">
               <div class="inner-rail"><span class="rail-name">E - Reversal</span></div>
               <div class="inner-detail">
-                <p class="phase-line lead">Later date: indication loss decreased?</p>
-                <p class="phase-line">Reverse only if estimates changed</p>
-                <p class="d-line">Reversal cap: carrying amount had no impairment been recognised</p>
-                <p class="d-line">Revalued asset: treated as a revaluation increase</p>
+                <div class="node">
+                  <p class="phase-line lead">Later date: indication loss decreased?</p>
+                  <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p110" target="_parent">IAS 36 · para 110</a></span>
+                </div>
+                <div class="node">
+                  <p class="phase-line">Reverse only if estimates changed</p>
+                  <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p114" target="_parent">IAS 36 · para 114</a></span>
+                </div>
+                <div class="d-line">
+                  <span>Reversal cap: carrying amount had no impairment been recognised</span>
+                  <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p117" target="_parent">IAS 36 · para 117</a></span>
+                </div>
+                <div class="d-line">
+                  <span>Revalued asset: treated as a revaluation increase</span>
+                  <span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias36-p119" target="_parent">IAS 36 · para 119</a></span>
+                  <p class="see"><a class="fb-num" href="../ch04.html#s-4-5" target="_parent">4.5</a><span class="see-label">See also</span> <span class="see-bit">Revaluation</span></p>
+                </div>
               </div>
             </div>
           </div>
@@ -300,7 +373,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
                     </div>
                     <div class="m-tl-flag cease" style="left:100%">
                       <span class="m-tl-pole" aria-hidden="true"></span>
-                      <div class="l3"><p class="t1">Ceases</p><p class="t2">Classified as held for sale or derecognised</p><span class="see">See also · IFRS 5</span></div>
+                      <div class="l3"><p class="t1">Ceases</p><p class="t2">Earlier of: classified as held for sale or derecognised</p><span class="see chip">See also · IFRS 5</span></div>
                     </div>
                     <div class="m-tl-rd" style="left:34%">
                       <span class="rd-tick" aria-hidden="true"></span>
@@ -320,7 +393,14 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
             <div class="foot-copy">
               <p class="state">Subject to impairment review</p>
               <p class="foot">Each reporting date: assess indication — test only if needed</p>
-              <a class="see" href="../ch06.html#s-6-6" target="_parent"><span class="fb-num">6.6</span> See also · Compensation</a>
+              <article class="impair-comp m-see" aria-label="Compensation for impairment">
+                <p class="card-k"><span>Compensation for impairment</span></p>
+                <ul class="item-rows">
+                  <li><span>Compensation from third parties for items that were impaired, lost or given up is included in P&amp;L when the compensation becomes receivable.</span><span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias16-p65" target="_parent">IAS 16 · para 65</a></span></li>
+                  <li><span>Impairment, claims for or payments of compensation, and the purchase or construction of replacement items are separate economic events, accounted for separately.</span><span class="cite-run"><a class="cite cite-official" href="../references.html#ref-ias16-p66" target="_parent">IAS 16 · para 66</a></span></li>
+                </ul>
+                <p class="see"><a class="fb-num" href="../ch06.html#s-6-6" target="_parent">6.6</a><span class="see-label">See also</span> <span class="see-bit">Derecognition</span></p>
+              </article>
             </div>
           </div>
 

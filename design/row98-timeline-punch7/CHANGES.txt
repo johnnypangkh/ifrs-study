@@ -159,3 +159,17 @@ Same left rail and the same reporting-date flags. Strings only.
 - E stays `Revalued asset: treated as a revaluation increase`.
 
 Crop: design/row98-timeline-punch7/apply-impair-dense-1280.png
+
+## Impairment live restore (2026-10-20e, not signed)
+
+Same left rail and the same reporting-date flags. Live 4.8 items go back into the right detail.
+
+- Para chips sit at the end of the matching node. Official before EY.
+- B has the carrying-amount to recoverable-amount ladder, with `Input from IAS 36 · both models` under it.
+- C keeps the live revaluation sentence, the surplus-first sentence, and a muted dashed ladder to `Revalued amount (FV)`.
+- Ceases uses the live line `Earlier of: classified as held for sale or derecognised`. Begins stays `While the item is held as PPE`.
+- D uses the live 5.1 sentence and the chip `5.1 See also · Depreciation`.
+- The foot compensation box uses both live sentences and `6.6 See also · Derecognition`.
+- Dropped only `Write-down · formula and inputs`.
+
+Crops: design/row98-timeline-punch7/apply-impair-restore-dark-1280.png and apply-impair-restore-light-1280.png
