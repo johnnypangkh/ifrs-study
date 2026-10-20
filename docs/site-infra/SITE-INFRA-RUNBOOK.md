@@ -38,6 +38,13 @@ Live base: `https://johnnypangkh.github.io/ifrs-study/`
 - Effort: Johnny picks before every reply  
 - Reuse: reply; do not launch a second chrome agent
 
+## CI gates with pinned counts
+
+| Gate | Pin | Source |
+|---|---|---|
+| `tools/map-lint.py` `CITE_ALLOW` for `ias-16/draft-v1-linked/visuals/master-concept-map.html` | **4** | Johnny lock FINAL-B2 2026-10-20 19:31 / PR #98. The three #98 plates cite 0. The remaining 4 are ch07 Disclosure. Do not trim ch07. |
+| `tools/check-stamp-only.py` | #98 scoped allow | visuals `ch04-models.html`, `ch05-depreciation.html`, `master-concept-map.html` (plate regions), `ch06-derecognition.html` (compensation wrapper), and `ch04.html` + `ch05.html` + `references.html` (#98 change spots only). PM 5 approved 2026-10-20 15:23 + 18:02 + FINAL-B2 19:39 / PR #98. `check-incremental` owns the teaching rows. |
+
 ## Docs home
 
 - Repo: `docs/site-infra/`  

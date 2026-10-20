@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Fail Concept Map markup that breaks Pick A or the #86 arrow / L0 locks.
 
-IAS 16 already has 34 cite chips on the master map. That count may stay.
+IAS 16 master cite cap is 4 (Johnny SIGNED FINAL-B2 2026-10-20 19:31 / #98).
+The three #98 plates cite 0. The remaining 4 are ch07 Disclosure. Do not trim them.
 A new cite on any of the four Concept Maps fails. Glyph arrows fail.
 Sibling .stem-head / .m-arrow / .st-h-head fail on every live pack page.
 """
@@ -76,11 +77,12 @@ INLINE_MAPS = (
     "cf-2018/draft-v1-linked/index.html",
     "ifrs-18/draft-v1-linked/index.html",
 )
-# Base counts at c488600. IAS 16's 34 stay until Content marks destinations.
+# IAS 16 master: Johnny SIGNED FINAL-B2 2026-10-20 19:31 / #98.
+# Three #98 plates cite 0. Remaining 4 are ch07 Disclosure (untouched).
 # CF's one cite is the page-header purpose chip, not a new map cite.
 CITE_ALLOW = {
     "cf-2018/draft-v1-linked/index.html": 1,
-    "ias-16/draft-v1-linked/visuals/master-concept-map.html": 34,
+    "ias-16/draft-v1-linked/visuals/master-concept-map.html": 4,
     "ias-2/draft-v1-linked/visuals/map-formula-board.html": 0,
     "ifrs-18/draft-v1-linked/index.html": 0,
 }
