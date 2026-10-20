@@ -147,3 +147,15 @@ Dep and Reval files were not edited. Live chapter HTML was not edited.
 - Ceases right inset 33px. Phase rail covers the beat. No second band.
 
 Crop: design/row98-timeline-punch7/apply-impair-leftrail-1280.png
+
+## Impairment densify (2026-10-20d, not signed)
+
+Same left rail and the same reporting-date flags. Strings only.
+
+- A adds `PPE: no mandatory annual full test` and `See also · IAS 38` beside that line.
+- B adds `If recoverable ≥ carrying amount: no write-down` and `Write-down amount = carrying amount − recoverable amount`.
+- C adds `Surplus: that same asset only`.
+- D adds `Allocate revised carrying amount less residual over remaining useful life`.
+- E stays `Revalued asset: treated as a revaluation increase`.
+
+Crop: design/row98-timeline-punch7/apply-impair-dense-1280.png

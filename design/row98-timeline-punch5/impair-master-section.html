@@ -76,6 +76,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
   min-height:calc(var(--space-6) * 5 + var(--space-4));
 }
 .ch04-impair .phase-line{margin:0;font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);color:var(--ink)}
+.ch04-impair .ppe-note{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2)}
 .ch04-impair .phase-line.lead{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh)}
 .ch04-impair .fork{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
 .ch04-impair .arm{
@@ -224,6 +225,10 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
               <div class="inner-detail">
                 <p class="phase-line lead">Assess any indication?</p>
                 <p class="phase-line">Indicators: external + internal</p>
+                <div class="ppe-note">
+                  <p class="phase-line">PPE: no mandatory annual full test</p>
+                  <span class="see">See also · IAS 38</span>
+                </div>
                 <div class="fork">
                   <div class="arm no">
                     <p class="arm-k">NO</p>
@@ -243,6 +248,8 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
                 <p class="phase-line lead">Indication: estimate recoverable amount</p>
                 <p class="phase-line">Recoverable amount = higher of FV less costs of disposal and value in use</p>
                 <p class="phase-line">Recoverable amount &lt; carrying amount: write down</p>
+                <p class="phase-line">If recoverable ≥ carrying amount: no write-down</p>
+                <p class="phase-line">Write-down amount = carrying amount − recoverable amount</p>
                 <span class="see">See also · IAS 36</span>
               </div>
             </div>
@@ -254,6 +261,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
                   <article>Cost: loss to P&amp;L</article>
                   <article>Revaluation: revaluation decrease, surplus first</article>
                 </div>
+                <p class="phase-line">Surplus: that same asset only</p>
               </div>
             </div>
 
@@ -261,6 +269,7 @@ body.embed .page{width:1200px;max-width:100%;margin:0 auto;padding:var(--space-4
               <div class="inner-rail"><span class="rail-name">D - After write-down</span></div>
               <div class="inner-detail">
                 <p class="phase-line lead">After write-down: depreciate revised carrying amount</p>
+                <p class="phase-line">Allocate revised carrying amount less residual over remaining useful life</p>
                 <a class="see" href="../ch05.html#s-5-4" target="_parent"><span class="fb-num">5.4</span> See also · Depreciation</a>
               </div>
             </div>
