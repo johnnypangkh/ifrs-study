@@ -105,11 +105,17 @@
   locator: "section:ch05-dep"
   new: "Significant parts"
   source: "Content C1 row D22 (IAS16-DEP-REVAL-BASE-VS-NEW-98.md Rev f FINAL); Johnny lock 2026-10-20 15:12 (via PM 5); X17 / FS1 F3 D5-b L453 (Johnny SIGNED 15:49)"
-- action: removed
+- action: changed
   file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
   locator: "section:ch04-reval"
   old: "◆ Revaluation date ◆ Revaluation date"
-  source: "Content C1 row R10 (IAS16-DEP-REVAL-BASE-VS-NEW-98.md Rev f FINAL); Johnny lock 2026-10-20 15:12 (via PM 5); brief §3b(A) L9 L249"
+  new: "No revaluation; FV changes are not recognised."
+  source: "FINAL-B2-R2 Cost hit (FINALB2R2-master-concept-map.html L867, FINALB2R2-ch04-models.html L258, FINALB2R2-reval-master.html L386); Johnny 2026-10-21 02:15 single-item / no L2 inner grid; PM Option A 2026-10-21 03:05; old side Content C1 row R10 (IAS16-DEP-REVAL-BASE-VS-NEW-98.md Rev f FINAL); Johnny lock 2026-10-20 15:12 (via PM 5)"
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
+  locator: "section:ch04-reval"
+  old: "No revaluation; FV changes are not recognised."
+  source: "FINAL-B2-R2 Cost hit (FINALB2R2-master-concept-map.html L867, FINALB2R2-ch04-models.html L258, FINALB2R2-reval-master.html L386); Johnny 2026-10-21 02:15 single-item / no L2 inner grid; PM Option A 2026-10-21 03:05"
 - action: added
   file: "ias-16/draft-v1-linked/visuals/ch04-models.html"
   locator: "section:ch04-reval"
