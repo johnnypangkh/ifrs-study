@@ -55,6 +55,21 @@ class MapLintRow86Tests(unittest.TestCase):
     def test_live_tree_passes(self):
         self.assertEqual(lint.lint(), [])
 
+    def test_plate_class_colliding_with_bare_shared_rule_fails(self):
+        css = ".tl-row { display: flex; max-width: var(--legacy-w-17); }\n.cap { }\n"
+        bare = lint.bare_shared_classes([css])
+        hits = lint.plate98_shared_collisions({"tl-row", "cap"}, bare)
+        self.assertEqual(hits, ["tl-row"])
+        self.assertNotIn("tl-row", lint.bare_shared_classes([
+            ".plate .tl-row { max-width: none; }\n",
+        ]))
+
+    def test_allowlist_only_plate_classes_pass(self):
+        css = ".cap{}\n.inner-board{}\n.see-bit{}\n.see-label{}\n.tl-row{}\n"
+        bare = lint.bare_shared_classes([css])
+        hits = lint.plate98_shared_collisions(set(lint.PLATE98_SHARED_OK), bare)
+        self.assertEqual(hits, [])
+
 
 if __name__ == "__main__":
     unittest.main()

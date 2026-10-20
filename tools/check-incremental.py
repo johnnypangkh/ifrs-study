@@ -996,6 +996,93 @@ def dump_changes(rows):
     return "\n".join(lines) + ("\n" if lines else "")
 
 
+def _side_locator(row, action):
+    """Locator of the old item, or of the new item, on a tool-paired change."""
+    if action == "removed":
+        if row.base_item is not None:
+            return row.base_item.locator or ""
+        return row.old_locator or ""
+    if row.head_item is not None:
+        return row.head_item.locator or ""
+    return row.locator or ""
+
+
+def _entry_matches_changed_side(entry, row, action):
+    """True when a yml half names this changed row's old or new side.
+
+    Same file. Same locator only when the entry gives one, compared to that
+    side's own locator. Pairing is not consulted again.
+    """
+    if entry.get("action") != action or entry.get("file", "") != row.file:
+        return False
+    wanted = (entry.get("locator") or "").strip()
+    if wanted and wanted != _side_locator(row, action):
+        return False
+    if action == "removed":
+        return normalise_key(entry.get("old", "")) == row.old_key
+    return normalise_key(entry.get("new", "")) == row.new_key
+
+
+def split_explicit_pairs(rows, entries, books, counts):
+    """Unpair a tool-paired change when the YAML names both halves.
+
+    A changed row becomes one removed row and one added row only when one
+    removed entry matches the old side and one added entry matches the new
+    side. A lone half stays changed. Each new row is approved later by its
+    own entry. Books move with the items so the balance is unchanged.
+    """
+    if not entries:
+        return rows
+    used = set()
+    out = []
+    for row in rows:
+        if row.status != "changed" or row.base_item is None or row.head_item is None:
+            out.append(row)
+            continue
+        removed_at = None
+        added_at = None
+        for index, entry in enumerate(entries):
+            if index in used:
+                continue
+            if removed_at is None and _entry_matches_changed_side(entry, row, "removed"):
+                removed_at = index
+                continue
+            if added_at is None and _entry_matches_changed_side(entry, row, "added"):
+                added_at = index
+        if removed_at is None or added_at is None:
+            out.append(row)
+            continue
+        if not _discard(books.changed_old, row.base_item):
+            out.append(row)
+            continue
+        if not _discard(books.changed_new, row.head_item):
+            books.changed_old.append(row.base_item)
+            out.append(row)
+            continue
+        used.add(removed_at)
+        used.add(added_at)
+        old_row = Row(
+            "removed", row.kind, row.file, _side_locator(row, "removed"),
+            row.old, "", row.old_key, "",
+        )
+        old_row.base_item = row.base_item
+        old_row.old_file = row.old_file
+        old_row.old_locator = row.old_locator
+        new_row = Row(
+            "added", row.kind, row.file, _side_locator(row, "added"),
+            "", row.new, "", row.new_key,
+        )
+        new_row.head_item = row.head_item
+        books.removed.append(row.base_item)
+        books.added.append(row.head_item)
+        counts["changed"] -= 1
+        counts["removed"] += 1
+        counts["added"] += 1
+        out.append(old_row)
+        out.append(new_row)
+    return out
+
+
 def match_entries(rows, entries):
     if not entries:
         return
@@ -1202,6 +1289,7 @@ def evaluate(base_files, head_files, approval=None, strict_added=False):
     missing = approval is None
     if not missing:
         entries = parse_changes(approval)
+        rows = split_explicit_pairs(rows, entries, books, counts)
         match_entries(rows, entries)
     issues = problems(rows, entries, missing, strict_added)
     issues.extend(reconciliation_errors(base_items, head_cmp, books))

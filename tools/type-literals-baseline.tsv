@@ -21,7 +21,7 @@ homepage/how-these-notes-are-made.html	.flow > li + li::before	line-height	1	1	D
 homepage/how-these-notes-are-made.html	.step-no	font-weight	700	1	DRIFT	99
 homepage/how-these-notes-are-made.html	h2	font-weight	700	1	DRIFT	106
 homepage/how-these-notes-are-made.html	.flow p	line-height	1.45	1	DRIFT	113
-ias-16/draft-v1-linked/visuals/ias16.css	.tl-row .m-tl-ribbon p	line-height	1	1	DRIFT	8124
+ias-16/draft-v1-linked/visuals/ias16.css	.ppe-tl-row .m-tl-ribbon p	line-height	1	1	DRIFT	8124
 ias-16/draft-v1-linked/visuals/ias16.css	.ch04-impair .m-tl-ribbon p	line-height	1	1	DRIFT	8506
 ias-16/draft-v1-linked/visuals/ias16.css	.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-dia	line-height	1	1	DRIFT	8608
-ias-16/draft-v1-linked/visuals/ias16.css	.plate.ch04-reval .tl-row .m-tl-evt .lc-dia	line-height	0	1	DRIFT	8671
+ias-16/draft-v1-linked/visuals/ias16.css	.plate.ch04-reval .ppe-tl-row .m-tl-evt .lc-dia	line-height	0	1	DRIFT	8671
