@@ -1,14 +1,13 @@
 <!doctype html><html><head><meta charset="utf-8">
 <title>Master formatting</title>
 <link rel="stylesheet" href="../../_shared/tokens-core.css?v=f16c7fa3c615">
+<script src="../../_shared/chrome-include.js?v=1b0b524e46f0"></script>
+<script src="../../_shared/last-update.js?v=e87b8f274905"></script>
 <link rel="stylesheet" href="../../_shared/modules/visuals/colour-1.css?v=f1809b248dce">
 <link rel="stylesheet" href="../../_shared/modules/visuals/map-box.css?v=fd369c1a3cca">
 <style>
-/* MOCK ONLY — full MF §9+§10. Solid --bg. No Build. Tokens only. */
-
-/* MOCK ONLY - Master formatting page wire aligned to signed Rec layout + kit 25 timeline.
-   Solid --bg (kit 2 field STRUCK). Existing tokens only. No chapter edit. */
-body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif;width:1280px;padding:var(--space-4);box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif;width:1280px;box-sizing:border-box}
+#mf{padding:var(--space-4)}
 *{box-sizing:border-box}
 h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);margin:0 0 var(--space-1)}
 .sub{font-size:var(--t2-fs);color:var(--muted);margin:0 0 var(--space-4);line-height:var(--t2-lh)}
@@ -74,9 +73,6 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
 .solid-note{border:var(--stroke-1) dashed var(--dash);border-radius:var(--card-radius);padding:var(--space-2);font-size:var(--t3-fs);color:var(--muted)}
 
 
-.s0d{border:var(--stroke-1) solid var(--accent);background:var(--accent-soft);border-radius:var(--card-radius);padding:var(--space-3);margin:0 0 var(--space-3);display:flex;flex-direction:column;gap:var(--space-1)}
-.s0d p{margin:0;font-size:var(--t3-fs);line-height:var(--t3-lh);color:var(--ink)}
-.s0d strong{font-weight:var(--t3-strong-fw)}
 .prior{font-size:var(--t3-fs);color:var(--muted);line-height:var(--t3-lh);margin:0 0 var(--space-3);padding:var(--space-2);border:var(--stroke-1) dashed var(--dash);border-radius:var(--radius-s)}
 .prior strong{color:var(--ink)}
 .lead{font-size:var(--t2-fs);line-height:var(--t2-lh);margin:0 0 var(--space-3)}
@@ -153,16 +149,6 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
     min-height: var(--mchip-h);
   }
   .pill.warn { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
-  .s0d {
-    border: var(--stroke-1) solid var(--accent);
-    background: var(--accent-soft);
-    border-radius: var(--card-radius);
-    padding: var(--space-3);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    margin: 0 0 var(--space-3);
-  }
   .s0d p, .prose, .rule p, .note, li {
     font-size: var(--t2-fs);
     line-height: var(--t2-lh);
@@ -228,6 +214,13 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
   .verdict.fail { background: var(--danger-soft); }
   .verdict.pass { background: var(--ok-soft); }
   .tag {
+    display: block;
+    min-height: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    white-space: normal;
     font-size: var(--t3-strong-fs);
     font-weight: var(--t3-strong-fw);
     letter-spacing: .04em;
@@ -475,6 +468,7 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
     font-family: var(--font-mono);
     font-size: 1em;
     color: var(--accent);
+    white-space: nowrap;
   }
   .principle {
     border: var(--stroke-2) solid var(--ink);
@@ -518,19 +512,11 @@ h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);marg
 .struck{text-decoration:line-through;color:var(--muted)}
 .ba-banner{border:var(--stroke-2) solid var(--accent);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);margin:0 0 var(--space-3);font-size:var(--t3-fs);color:var(--muted)}
 
-</style></head><body>
-
+</style></head><body data-pack="site">
+<header class="chrome-bar"></header>
 <div id="mf">
-<h1>Master formatting — proposed live page (#100)</h1>
-<p class="sub">Live Master formatting · signed MF §9+§10 + LEGO sheet section · night 1280</p>
-
-<section class="s0d" id="s0d" aria-label="Teaching reason §0d — #100 live MF page">
-<p><strong>1. What changes:</strong> Main 加一頁 <strong>live Master formatting</strong> page；LEGO sheet 做呢頁入面一個 section；file Johnny 02:15 lock「single-item → no L2 inner grid」；MF 文案 <strong>strike Max 2 bordered levels</strong>，改指向 LEGO「no depth cap」。</p>
-<p><strong>2. What stays:</strong> IAS 16 Concept Map plates（#165 live）唔掂；signed MF <code>52cf9a18</code> / LEGO <code>142c0d5a</code> 用 copy+delta 唔原地改；Settings token table 繼續係 Settings（唔係 MF）；#163/#164 DNM。</p>
-<p><strong>3. How we prove:</strong> Dark 1280 BA = BEFORE（Settings ≠ MF / 冇 live MF）vs AFTER（呢個 proposed page）；rule table + addenda loci；X-a ruling 一行。</p>
-</section>
-
-<p class="prior"><strong>Priors:</strong> §9 <code>ba-mf-align.png</code> SIGNED · dep-v2 unify-A SIGNED · MF §10 v2 #27 encyclopedia FAIL vs Dep · thick-left ≈ IFRS 18 FS <code>.m-strip</code> · gap <code>DEP-VS-MF10-GAP-98.md</code> CLOSED · Atlas FROZEN cite.</p>
+<h1>Master formatting</h1>
+<p class="sub">Signed reference · MF §9+§10 + LEGO kit sheet</p>
 
 
 <section class="sec" id="mf-bg">
@@ -805,8 +791,8 @@ Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.<
   <p>想像 <span class="k">百子櫃</span>。大 <span class="k">櫃桶</span> 蓋住一排細櫃桶；每個細櫃桶再開一層更細嘅。讀者由 <span class="k">top→bottom</span> 或者 <span class="k">left→right</span> 讀：先見大櫃桶個名（left rail），再入去佢蓋住嘅內容。</p>
   <ul>
     <li><span class="k">L1</span> = 外層 left rail（一個 beat／phase／section 嘅外層名）。</li>
-    <li><span class="k">L1 = some of L2</span>：L1 包住（加總）佢下面嘅 L2——L1 係 Σ 對應嘅 L2。</li>
-    <li><span class="k">each L2 = sum of corresponding L3</span>：每個 L2 再拆開，等於佢下面嗰排 L3；<span class="k">all those L3 = that L2</span>。</li>
+    <li><span class="k">L1 = sum of L2</span>：L1 包住（加總）佢下面嘅 L2——L1 係 Σ 對應嘅 L2。</li>
+    <li><span class="k">Each L2 = sum of corresponding L3</span>：每個 L2 再拆開，等於佢下面嗰排 L3；<span class="k">all those L3 = that L2</span>。</li>
     <li>再入一層就係再加一個櫃桶，<span class="k">唔摺</span>兩名落同一格。</li>
   </ul>
   <table>
@@ -829,7 +815,7 @@ Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.<
   <p class="gloss">Left rail is containment, not a sticker: a larger drawer (L1) covers the drawers it sums (L2); each of those sums its own L3. Short stubs, missing cells, and folded names break that sum. Phase + kit 25 is one L1 drawer over one timeline pane.</p>
   <div class="qlocks">
     <p class="q"><span class="k">Q1.</span> 短 L1 stub = FAIL。</p>
-    <p class="q"><span class="k">Q2 = A.</span> kit 25 markers 打喺軸上，喺 During-use 嗰個 L1 櫃桶入面。唔係每個 marker 再開一條 L2 rail。軸下面再加一條 band 仍然 FAIL。</p>
+    <p class="q"><span class="k">Q2 = A.</span> Kit 25 markers 打喺軸上，喺 During-use 嗰個 L1 櫃桶入面。唔係每個 marker 再開一條 L2 rail。軸下面再加一條 band 仍然 FAIL。</p>
     <p class="q"><span class="k">Q3.</span> 同一深度嘅 L2 同一樣式。例外 = Johnny 寫一句。</p>
   </div>
 </section>
@@ -1092,8 +1078,8 @@ Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.<
 </section>
 
 <section class="rule-lock" id="xa-ruling" aria-label="X-a depth ruling">
-<p class="lab">X-a ruling · depth</p>
-<p class="body"><strong>LEGO「no depth cap」governs.</strong> MF live text strikes <span class="struck">Max 2 bordered levels</span> and points to LEGO-LOGIC snap rule 1 / LEGO-BRICKS stack note（owner rule 2026-10-19, commit <code>d04316ae</code>, later than MF §10 SIGNED 11:07）. VG skill §4 max-2 = superseded-by-LEGO pending skill sync. UNV: LEGO kit primary SIGNED stamp / no-depth-cap stamp（gap L1/L4 secondary only）.</p>
+<p class="lab">Depth ruling</p>
+<p class="body"><strong>LEGO「no depth cap」governs.</strong> <span class="struck">Max 2 bordered levels</span> is retired; nest depth follows LEGO-LOGIC snap rule 1 / LEGO-BRICKS stack note（owner rule 2026-10-19, commit <code>d04316ae</code>; Johnny SIGN 2026-10-21）.</p>
 </section>
 
 <section class="lego-sec" id="lego-sheet" aria-label="LEGO kit sheet — section of MF page">
@@ -1109,5 +1095,6 @@ Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.<
 </section>
 </div>
 <p class="foot">Recycles signed MF §9+§10（52cf9a18 apply text）+ LEGO sheet section（142c0d5a）. Max-2 struck → LEGO no-depth-cap. Single-item-no-L2 filed.</p>
-
+<nav class="footer-nav"></nav>
+<script src="../../_shared/footer-nav.js"></script>
 </body></html>
