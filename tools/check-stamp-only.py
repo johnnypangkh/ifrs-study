@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Existing pages may change only the Last update stamp text and ?v= restamps.
 
-The homepage may also gain the one Settings link. Writes nothing unless
---csv is given.
+The homepage may also gain the one Settings link. The live Master formatting
+page (site/master-formatting/index.html, #100) may change ?v= only, the same
+shape as Settings, once it is on the base. A copy that is not on the base yet
+must still carry ?v= hashes that match disk. Writes nothing unless --csv is
+given.
 """
 import argparse
 import csv
@@ -40,6 +43,10 @@ CONTENT_ALLOW = (
 )
 # Settings may change ?v= only, and each new value must match the file hash.
 SETTINGS_PAGE = "site/settings/index.html"
+# #100 Johnny V6 path A. Same ?v=-only rule as Settings. Not a blank cheque
+# for teaching edits on the Master formatting page.
+MF_PAGE = "site/master-formatting/index.html"
+STAMP_ONLY_HTML = (SETTINGS_PAGE, MF_PAGE)
 # W4 replaces these three style attributes with classes. The stamp gate
 # treats that swap as non-content on the six IFRS 18 pages. Any other
 # HTML change on those pages still fails.
@@ -315,18 +322,23 @@ def chrome_include_failure(base, head, root):
     return None
 
 
-def settings_stamp_failure(base, head, root):
-    """Settings may change ?v= only, and the new value must match disk."""
+def settings_stamp_failure(base, head, root, page=SETTINGS_PAGE):
+    """A stamp-only HTML page may change ?v= only, and the new value must match disk.
+
+    Settings keeps the historical "settings stamp" wording. The live Master
+    formatting page uses the same rule with its own label.
+    """
+    label = "settings stamp" if page == SETTINGS_PAGE else "master-formatting stamp"
     base_lines = base.splitlines()
     head_lines = head.splitlines()
     if len(base_lines) != len(head_lines):
-        return f"settings stamp: line count changed: {SETTINGS_PAGE}"
-    origin = root / SETTINGS_PAGE
+        return f"{label}: line count changed: {page}"
+    origin = root / page
     for line_no, (old, new) in enumerate(zip(base_lines, head_lines), 1):
         if old == new:
             continue
         if V_QUERY.sub("", old) != V_QUERY.sub("", new):
-            return f"settings stamp: diff outside the allowlist: {SETTINGS_PAGE}:{line_no}"
+            return f"{label}: diff outside the allowlist: {page}:{line_no}"
         urls = [match.group("url") for match in ATTR_URL.finditer(new)]
         checked = False
         for url in urls:
@@ -343,12 +355,12 @@ def settings_stamp_failure(base, head, root):
             digest = file_stamp(local)
             if version != digest:
                 return (
-                    f"settings stamp hash mismatch: {SETTINGS_PAGE}:{line_no} "
+                    f"{label} hash mismatch: {page}:{line_no} "
                     f"?v={version} disk={digest}"
                 )
             checked = True
         if not checked:
-            return f"settings stamp: diff outside the allowlist: {SETTINGS_PAGE}:{line_no}"
+            return f"{label}: diff outside the allowlist: {page}:{line_no}"
     return None
 
 
@@ -1807,8 +1819,8 @@ def main(argv=None):
             if added_error:
                 print(added_error)
                 failed = True
-        if path == SETTINGS_PAGE:
-            settings_error = settings_stamp_failure(base, head, ROOT)
+        if path in STAMP_ONLY_HTML:
+            settings_error = settings_stamp_failure(base, head, ROOT, page=path)
             if settings_error:
                 print(settings_error)
                 failed = True
@@ -1948,6 +1960,22 @@ def main(argv=None):
         )
         if include_error:
             print(include_error)
+            failed = True
+    # #100: the new MF page is absent from base, so the loop above does not
+    # see it. Its ?v= values must still match disk. Once the page is on main,
+    # STAMP_ONLY_HTML applies the Settings-shaped ?v=-only rule.
+    mf_on_base = None
+    try:
+        mf_on_base = git_text(args.base, MF_PAGE)
+    except KeyError:
+        mf_on_base = None
+    mf_file = ROOT / MF_PAGE
+    if mf_on_base is None and mf_file.is_file():
+        mf_error = stamp_value_failure(
+            mf_file.read_text(encoding="utf-8"), MF_PAGE, ROOT
+        )
+        if mf_error:
+            print(mf_error)
             failed = True
     if failed:
         return 1

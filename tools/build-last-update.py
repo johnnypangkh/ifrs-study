@@ -212,11 +212,16 @@ def embed_json(value):
 
 
 def site_fingerprint_paths():
-    """Inputs for the /settings stamp: the page, settings modules, tokens.css."""
+    """Inputs for the site pack stamp.
+
+    Settings (token table) plus the live Master formatting page (#100,
+    site/master-formatting/). Shared inputs stay tokens.css and settings*.
+    """
     paths = []
-    page = ROOT / "site" / "settings"
-    if page.is_dir():
-        paths.extend(iter_files(page))
+    for rel in ("site/settings", "site/master-formatting"):
+        page = ROOT / rel
+        if page.is_dir():
+            paths.extend(iter_files(page))
     shared = ROOT / "_shared"
     if shared.is_dir():
         for path in iter_files(shared):
@@ -238,6 +243,8 @@ def render(stamps, packs):
     paths = [[f"/{pack['directory']}/", pack["key"]] for pack in packs]
     if "site" in stamps:
         paths.append(["/site/settings/", "site"])
+        # #100 Johnny V6 path A. Same pack key as Settings. Not a Settings rename.
+        paths.append(["/site/master-formatting/", "site"])
     paths.sort()
     ordered = {key: stamps[key] for key in sorted(stamps)}
     stamps_js = embed_json(ordered)

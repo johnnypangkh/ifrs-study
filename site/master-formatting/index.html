@@ -1,0 +1,1100 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Master formatting</title>
+<link rel="stylesheet" href="../../_shared/tokens-core.css?v=f16c7fa3c615">
+<script src="../../_shared/chrome-include.js?v=1b0b524e46f0"></script>
+<script src="../../_shared/last-update.js?v=aeeb51c4707b"></script>
+<link rel="stylesheet" href="../../_shared/modules/visuals/colour-1.css?v=f1809b248dce">
+<link rel="stylesheet" href="../../_shared/modules/visuals/map-box.css?v=fd369c1a3cca">
+<style>
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif;width:1280px;box-sizing:border-box}
+#mf{padding:var(--space-4)}
+*{box-sizing:border-box}
+h1{font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh);margin:0 0 var(--space-1)}
+.sub{font-size:var(--t2-fs);color:var(--muted);margin:0 0 var(--space-4);line-height:var(--t2-lh)}
+.sec{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-3);margin-bottom:var(--space-3);display:flex;flex-direction:column;gap:var(--space-2)}
+.sec-h{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.kid{display:inline-flex;align-items:center;font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);color:var(--accent);border:var(--stroke-1) solid var(--accent);border-radius:var(--radius-pill);padding:0 var(--space-2);background:var(--accent-soft)}
+.note{font-size:var(--t3-fs);color:var(--muted);margin:0;line-height:var(--t3-lh)}
+.t1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
+.t2{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0;color:var(--muted)}
+.t2b{font-size:var(--t2-band-fs);font-weight:var(--t2-band-fw);line-height:var(--t2-band-lh);margin:0}
+.t3{font-size:var(--t3-fs);font-weight:var(--t3-fw);line-height:var(--t3-lh);margin:0;color:var(--muted)}
+.t3s{font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);line-height:var(--t3-strong-lh);margin:0}
+.chip{display:inline-flex;align-items:center;justify-content:center;font-size:var(--mchip-fs);font-weight:var(--mchip-fw);line-height:var(--mchip-lh);height:var(--mchip-h);min-width:var(--mchip-minw);padding:0 var(--mchip-px);border:var(--stroke-1) solid var(--line);border-radius:var(--radius-pill);color:var(--accent);flex:none}
+.scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-2)}
+.swatch{border:var(--stroke-1) solid var(--line);border-radius:var(--radius-s);padding:var(--space-2);background:var(--band);display:flex;flex-direction:column;gap:var(--space-1)}
+.gaps{display:flex;align-items:flex-end;gap:var(--space-2);flex-wrap:wrap}
+.gapbox{background:var(--accent-soft);border:var(--stroke-1) dashed var(--accent);height:var(--space-5);display:flex;align-items:center;justify-content:center;font-size:var(--t3-fs);color:var(--accent)}
+/* Recognition min - signed pattern */
+.board{display:grid;grid-template-columns:minmax(0,11fr) minmax(0,13fr);gap:var(--space-3);align-items:start}
+.col{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.q{border:var(--stroke-2) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);text-align:center}
+.crit{border:var(--stroke-2) solid var(--line);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-1);flex:1;min-width:0}
+.pair{display:flex;gap:var(--space-2);align-items:stretch}
+.and{align-self:center;font-size:var(--t2-band-fs);font-weight:var(--t2-band-fw);color:var(--accent);border:var(--stroke-1) solid var(--accent);border-radius:var(--radius-pill);padding:0 var(--space-2);background:var(--accent-soft);flex:none}
+.brk{margin:0 var(--space-4);border:var(--stroke-1) solid var(--accent);border-top:none;height:var(--space-2);border-radius:0 0 var(--radius-s) var(--radius-s)}
+.brkcap{text-align:center;font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);color:var(--accent)}
+.fork{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--space-2)}
+.m-junction{grid-column:1/-1;position:relative;height:var(--space-4)}
+.m-junction::before{content:"";position:absolute;left:50%;top:0;height:100%;width:var(--stroke-2);transform:translateX(-50%);background:var(--link-semantic)}
+.m-junction::after{content:"";position:absolute;left:25%;right:25%;bottom:0;height:var(--stroke-2);background:var(--link-semantic)}
+.arm{display:flex;flex-direction:column;align-items:center;min-width:0}
+.arm .m-shaft{width:100%;height:calc(var(--space-5));display:flex;align-items:center;justify-content:center}
+.arm .m-shaft-label{background:var(--surface);font-size:var(--t3-arm-fs);font-weight:var(--t3-arm-fw);color:var(--link-semantic)}
+.arm .m-flow.mute .m-shaft-label{color:var(--muted)}
+.out{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);align-self:stretch;display:flex;flex-direction:column;gap:var(--space-1)}
+.out.res{border:var(--stroke-2) solid var(--accent)}
+.out.mute{border-color:var(--dash)}.out.mute .t1{color:var(--muted)}
+.rgrow{display:grid;grid-template-columns:calc(4*var(--space-6)) minmax(0,1fr);gap:var(--space-cell);align-items:stretch}
+.ira{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;align-items:flex-start}
+.ira.on{background:var(--accent-soft);border-color:var(--accent)}
+.ira.mute{opacity:.55}
+.rname{font-size:var(--t2-band-fs);font-weight:var(--t2-band-fw);line-height:var(--t2-band-lh);margin:0}
+.l2{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-1)}
+/* Timeline min - kit 25 */
+.m-tl{display:flex;flex-direction:column;gap:0;position:relative}
+.m-tl-axis{position:relative;height:calc(var(--space-6)*2 + var(--space-4));margin:0 var(--space-5);overflow:visible}
+.m-tl-line{position:absolute;left:0;right:0;top:calc(var(--space-6) + var(--space-2));border-top:var(--stroke-2) solid var(--muted)}
+.m-tl-ring{position:absolute;top:calc(var(--space-6) + var(--space-2));width:var(--space-3);height:var(--space-3);border:var(--stroke-2) solid var(--ink);background:var(--surface);border-radius:50%;transform:translate(-50%,-50%)}
+.m-tl-m{position:absolute;top:calc(var(--space-6) + var(--space-2));transform:translateX(-50%);width:0}
+.m-tl-lab{position:absolute;bottom:calc(var(--space-3) + var(--space-1));left:50%;transform:translateX(-50%);white-space:nowrap;font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);color:var(--accent)}
+.m-tl-lead{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:var(--space-3);border-left:var(--stroke-1) solid var(--accent)}
+.m-tl-tick{position:absolute;top:calc(-1 * var(--space-2));left:50%;transform:translateX(-50%);height:var(--space-4);border-left:var(--stroke-2) solid var(--accent)}
+.m-tl-span{position:absolute;top:calc(var(--space-6) + var(--space-4));font-size:var(--t3-fs);color:var(--muted);text-align:center}
+.m-tl-span::before{content:"";display:block;border-top:var(--stroke-1) dashed var(--dash);margin:0 var(--space-1) var(--space-hairline)}
+.m-tl-ring-lead{position:absolute;top:calc(var(--space-6) + var(--space-2));transform:translateX(-50%);width:var(--stroke-1);height:calc(var(--space-6) * 2 + var(--space-4) + var(--space-2));background:var(--accent);z-index:5;pointer-events:none}
+.m-tl-ends{display:flex;justify-content:space-between;gap:var(--space-3);margin:calc(-1 * var(--space-4)) var(--space-5) 0;padding-top:calc(var(--space-6) * 2);position:relative;z-index:1}
+.m-tl-end{display:flex;flex-direction:column;align-items:flex-start;max-width:46%}
+.m-tl-end.cease{align-items:flex-end;text-align:right}
+.l3{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--radius-s);padding:var(--space-1) var(--space-2);display:flex;flex-direction:column;gap:var(--space-hairline)}
+.head{display:flex;align-items:center;gap:var(--space-2)}
+.key{margin-left:auto;font-size:var(--t3-fs);color:var(--muted);display:inline-flex;align-items:center;gap:var(--space-1)}
+.key .ks{display:inline-block;width:var(--stroke-2);height:var(--space-3);background:var(--accent)}
+.solid-note{border:var(--stroke-1) dashed var(--dash);border-radius:var(--card-radius);padding:var(--space-2);font-size:var(--t3-fs);color:var(--muted)}
+
+
+.prior{font-size:var(--t3-fs);color:var(--muted);line-height:var(--t3-lh);margin:0 0 var(--space-3);padding:var(--space-2);border:var(--stroke-1) dashed var(--dash);border-radius:var(--radius-s)}
+.prior strong{color:var(--ink)}
+.lead{font-size:var(--t2-fs);line-height:var(--t2-lh);margin:0 0 var(--space-3)}
+.outnote{border:var(--stroke-1) dashed var(--dash);border-radius:var(--radius-s);padding:var(--space-2);margin:0 0 var(--space-3);font-size:var(--t3-fs);color:var(--muted);line-height:var(--t3-lh)}
+.outnote strong{color:var(--ink)}
+.dec{border:var(--stroke-2) solid var(--ink);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-3);margin:0 0 var(--space-3);display:flex;flex-direction:column;gap:var(--space-2)}
+.dec-h{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.dec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-cell)}
+.dec-cell{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-1);min-width:0}
+.dec-if{font-size:var(--t3-fs);color:var(--muted);line-height:var(--t3-lh);margin:0}
+.dec-use{font-size:var(--t2-band-fs);font-weight:var(--t2-band-fw);line-height:var(--t2-band-lh);margin:0;color:var(--accent)}
+.dec-rule{font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);margin:0;color:var(--ink)}
+.kit{display:flex;flex-direction:column;gap:var(--space-3)}
+.card{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-3);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:var(--space-3);align-items:stretch;min-width:0}
+.card-left{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.card-right{min-width:0;display:flex;flex-direction:column}
+.blk{display:flex;flex-direction:column;gap:var(--space-1)}
+.blk-lab{font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);color:var(--accent);margin:0;letter-spacing:.02em}
+.blk ul{margin:0;padding-left:var(--space-4);font-size:var(--t3-fs);color:var(--muted);line-height:var(--t3-lh)}
+.cite{font-size:var(--t3-fs);color:var(--muted);margin:0;line-height:var(--t3-lh)}
+.recipe{font-size:var(--t3-fs);color:var(--muted);line-height:var(--t3-lh);margin:0;font-family:ui-monospace,monospace}
+.schem{border:var(--stroke-1) dashed var(--dash);border-radius:var(--card-radius);padding:var(--space-2);background:var(--band);display:flex;flex-direction:column;gap:var(--space-2);flex:1}
+.schem-cap{font-size:var(--t3-fs);color:var(--muted);margin:0}
+.rgstack{display:flex;flex-direction:column;gap:var(--space-cell)}
+.box{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-2);display:flex;align-items:center;justify-content:center;min-height:var(--space-6);height:100%}
+.box.mute{opacity:.55}
+.ghost{font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);color:var(--muted);margin:0}
+.tlrow{display:grid;grid-template-columns:calc(4*var(--space-6)) minmax(0,1fr);gap:var(--space-cell);align-items:stretch}
+.tl-pane{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;height:100%}
+.srow{display:grid;grid-template-columns:calc(4*var(--space-6)) minmax(0,1fr);gap:var(--space-cell);align-items:stretch}
+.nest-board{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;height:100%}
+.nest{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.nest-deep{display:flex;flex-direction:column;gap:var(--space-cell);min-width:0}
+.nest-deep > .srow{grid-template-columns:calc(4*var(--space-6) + var(--space-2)) minmax(0,1fr)}
+.depth{font-size:var(--t3-fs);color:var(--accent);margin:0}
+.foot{font-size:var(--t3-fs);color:var(--muted);margin:var(--space-3) 0 0;line-height:var(--t3-lh)}
+.sec10h{margin:var(--space-4) 0 var(--space-2);font-size:var(--t0-fs);font-weight:var(--t0-fw);line-height:var(--t0-lh)}
+.endbox{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--radius-s);padding:var(--space-1) var(--space-2)}
+
+
+  * { box-sizing: border-box; }
+  figure { margin: 0; }
+  h1 {
+    font-size: var(--t0-fs);
+    font-weight: var(--t0-fw);
+    line-height: var(--t0-lh);
+    margin: 0 0 var(--space-2);
+  }
+  h2 {
+    font-size: var(--t1-fs);
+    font-weight: var(--t1-fw);
+    line-height: var(--t1-lh);
+    margin: 0;
+  }
+  p { margin: 0; }
+  .sub {
+    font-size: var(--t2-fs);
+    line-height: var(--t2-lh);
+    color: var(--muted);
+    margin: 0 0 var(--space-3);
+  }
+  .pills { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0 0 var(--space-3); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    line-height: var(--t3-strong-lh);
+    color: var(--accent);
+    border: var(--stroke-1) solid var(--accent);
+    border-radius: var(--radius-pill);
+    padding: 0 var(--space-2);
+    background: var(--accent-soft);
+    min-height: var(--mchip-h);
+  }
+  .pill.warn { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+  .s0d p, .prose, .rule p, .note, li {
+    font-size: var(--t2-fs);
+    line-height: var(--t2-lh);
+    color: var(--ink);
+  }
+  .muted { color: var(--muted); }
+  .k { font-weight: var(--t1-fw); }
+  .defs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-cell);
+    margin: 0 0 var(--space-3);
+  }
+  .def {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-2) var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .def .lab {
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--accent);
+    margin: 0;
+  }
+  .rule {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-3);
+    margin: 0 0 var(--space-3);
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
+    gap: var(--space-3);
+    align-items: stretch;
+  }
+  .rule-copy { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+  .rule-h { display: flex; align-items: center; gap: var(--space-2); }
+  .num {
+    flex: none;
+    width: var(--space-6);
+    height: var(--space-6);
+    border-radius: var(--radius-pill);
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: var(--stroke-1) solid var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--t1-fs);
+    font-weight: var(--t1-fw);
+  }
+  .verdict {
+    border-radius: var(--radius-s);
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .verdict.fail { background: var(--danger-soft); }
+  .verdict.pass { background: var(--ok-soft); }
+  .tag {
+    display: block;
+    min-height: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    white-space: normal;
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    letter-spacing: .04em;
+    margin: 0;
+  }
+  .tag.fail { color: var(--danger); }
+  .tag.pass { color: var(--ok); }
+  .verdict p { font-size: var(--t2-fs); line-height: var(--t2-lh); color: var(--ink); }
+  .rule ul { margin: 0; padding-left: var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); }
+  .minis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-cell);
+    min-width: 0;
+  }
+  .minis.quad { grid-template-columns: 1fr 1fr; }
+  .mini {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--bg);
+    border-radius: var(--card-radius);
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .mini.pass { border-color: var(--ok); }
+  .mini.fail { border-color: var(--danger); }
+  .cap {
+    font-size: var(--t3-fs);
+    line-height: var(--t3-lh);
+    color: var(--muted);
+    margin: 0;
+  }
+  .stack { display: flex; flex-direction: column; gap: var(--space-cell); min-width: 0; }
+  .row {
+    display: grid;
+    grid-template-columns: calc(4 * var(--space-6)) minmax(0, 1fr);
+    gap: var(--space-cell);
+    align-items: stretch;
+    min-width: 0;
+  }
+  .row.slim { grid-template-columns: calc(2 * var(--space-6) + var(--space-2)) minmax(0, 1fr); }
+  .row.stub { align-items: start; }
+  .rail, .detail, .end, .band-k, .band-lane {
+    border: var(--stroke-1) solid var(--line);
+    border-radius: var(--card-radius);
+    padding: var(--space-2);
+    min-width: 0;
+  }
+  .rail {
+    background: var(--band);
+    display: flex;
+    align-items: flex-start;
+  }
+  .row.stub .rail { align-self: start; }
+  .detail {
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-height: calc(var(--space-6) + var(--space-4));
+  }
+  .detail.tall { min-height: calc(var(--space-6) * 3); }
+  .nm {
+    font-size: var(--t2-band-fs);
+    font-weight: var(--t2-band-fw);
+    line-height: var(--t2-band-lh);
+    margin: 0;
+    color: var(--ink);
+  }
+  .ghost {
+    font-size: var(--t3-fs);
+    line-height: var(--t3-lh);
+    color: var(--muted);
+    margin: 0;
+  }
+  .hole { min-height: calc(var(--space-6) + var(--space-4)); }
+  .pane {
+    background: var(--surface);
+    border: var(--stroke-1) solid var(--line);
+    border-radius: var(--card-radius);
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+    height: 100%;
+  }
+  .axis {
+    position: relative;
+    height: calc(var(--space-6) * 2 + var(--space-3));
+    margin: 0 var(--space-2);
+  }
+  .line {
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(var(--space-6) + var(--space-1));
+    border-top: var(--stroke-2) solid var(--muted);
+  }
+  .ring {
+    position: absolute;
+    top: calc(var(--space-6) + var(--space-1));
+    width: var(--space-3);
+    height: var(--space-3);
+    border: var(--stroke-2) solid var(--ink);
+    background: var(--surface);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .mk {
+    position: absolute;
+    top: calc(var(--space-6) + var(--space-1));
+    transform: translateX(-50%);
+    width: 0;
+  }
+  .mk-lab {
+    position: absolute;
+    bottom: var(--space-2);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--accent);
+  }
+  .mk-stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: var(--space-2);
+    border-left: var(--stroke-1) solid var(--accent);
+  }
+  .span {
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(var(--space-6) + var(--space-2));
+    text-align: center;
+    font-size: var(--t3-fs);
+    color: var(--muted);
+  }
+  .ends { display: flex; justify-content: space-between; gap: var(--space-2); }
+  .end {
+    background: var(--band);
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--ink);
+    max-width: 46%;
+  }
+  .end.r { margin-left: auto; }
+  .band {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+    border: var(--stroke-1) solid var(--line);
+    border-radius: var(--card-radius);
+    background: var(--band);
+    padding: var(--space-2);
+    min-width: 0;
+  }
+  .band-k, .band-lane {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    max-width: 100%;
+  }
+  .call {
+    border: var(--stroke-1) solid var(--warn);
+    background: var(--warn-soft);
+    border-radius: var(--card-radius);
+    padding: var(--space-3);
+    margin: 0 0 var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .call h2 { color: var(--warn); }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: var(--t2-fs);
+    line-height: var(--t2-lh);
+  }
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--space-2);
+    border-bottom: var(--stroke-1) solid var(--line);
+    color: var(--ink);
+  }
+  th {
+    font-size: var(--t3-strong-fs);
+    font-weight: var(--t3-strong-fw);
+    color: var(--accent);
+  }
+  .blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-cell);
+    margin: 0 0 var(--space-3);
+  }
+  .block {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .propose {
+    border: var(--stroke-2) solid var(--ink);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-3);
+    margin: 0 0 var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-cell);
+  }
+  .check { margin: 0; padding-left: var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); }
+  .foot {
+    font-size: var(--t3-fs);
+    line-height: var(--t3-lh);
+    color: var(--muted);
+    margin: 0;
+  }
+  code {
+    font-family: var(--font-mono);
+    font-size: 1em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .principle {
+    border: var(--stroke-2) solid var(--ink);
+    background: var(--surface);
+    border-radius: var(--card-radius);
+    padding: var(--space-3);
+    margin: 0 0 var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-family: "WenQuanYi Micro Hei", var(--font-family);
+  }
+  .principle p, .principle li, .principle td, .principle th {
+    font-size: var(--t2-fs);
+    line-height: var(--tb-box-title-lh);
+  }
+  .principle h2 { font-family: "WenQuanYi Micro Hei", var(--font-family); }
+  .gloss {
+    border-left: var(--stroke-2) solid var(--accent);
+    padding-left: var(--space-2);
+    color: var(--muted);
+    margin: 0;
+  }
+  .qlocks { display: flex; flex-direction: column; gap: var(--space-1); }
+  .q {
+    border: var(--stroke-1) solid var(--line);
+    background: var(--band);
+    border-radius: var(--radius-s);
+    padding: var(--space-2);
+  }
+  h2.gateh { margin: 0 0 var(--space-2); }
+
+
+/* #100 additions — tokens only; no freestyle chrome */
+.rule-lock{border:var(--stroke-1) solid var(--accent);background:var(--accent-soft);border-radius:var(--card-radius);padding:var(--space-3);margin:var(--space-3) 0;display:flex;flex-direction:column;gap:var(--space-2)}
+.rule-lock .lab{font-size:var(--t3-strong-fs);font-weight:var(--t3-strong-fw);color:var(--accent);margin:0}
+.rule-lock .body{font-size:var(--t2-fs);line-height:var(--t2-lh);margin:0}
+.rule-lock .verb{font-size:var(--t3-fs);color:var(--muted);margin:0;font-style:italic}
+.lego-sec{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--card-radius);padding:var(--space-3);margin:var(--space-3) 0;display:flex;flex-direction:column;gap:var(--space-2)}
+.lego-sec img{width:100%;height:auto;border:var(--stroke-1) solid var(--line);border-radius:var(--radius-s);background:var(--band)}
+.struck{text-decoration:line-through;color:var(--muted)}
+.ba-banner{border:var(--stroke-2) solid var(--accent);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);margin:0 0 var(--space-3);font-size:var(--t3-fs);color:var(--muted)}
+
+</style></head><body data-pack="site">
+<header class="chrome-bar"></header>
+<div id="mf">
+<h1>Master formatting</h1>
+<p class="sub">Signed reference · MF §9+§10 + LEGO kit sheet</p>
+
+
+<section class="sec" id="mf-bg">
+<div class="sec-h"><p class="t1">Surface</p><span class="kid">kit 2 STRUCK</span><span class="kid">#14 #15</span></div>
+<div class="solid-note">Solid background = <code>var(--bg)</code> only. No graph-paper field. Tokens: --bg, --surface, --band, --line, --space-cell, --space-2..6.</div>
+</section>
+
+<section class="sec" id="mf-type">
+<div class="sec-h"><p class="t1">Type + spacing scale</p><span class="kid">#9 #20</span><span class="kid">#15</span></div>
+<div class="scale">
+<div class="swatch"><p class="t3s">T0</p><p class="t1" style="font-size:var(--t0-fs);font-weight:var(--t0-fw)">Page title</p><p class="t3">--t0-*</p></div>
+<div class="swatch"><p class="t3s">T1</p><p class="t1">Plate title</p><p class="t3">--t1-*</p></div>
+<div class="swatch"><p class="t3s">T2 / T2 band</p><p class="t2">Body text</p><p class="t2b">Band label</p><p class="t3">--t2-* / --t2-band-*</p></div>
+<div class="swatch"><p class="t3s">T3 + chip</p><p class="t3">Note / leader label</p><span class="chip">2.1</span><p class="t3">--t3-* / --mchip-*</p></div>
+</div>
+<div class="gaps">
+<div class="gapbox" style="width:var(--space-2)">2</div>
+<div class="gapbox" style="width:var(--space-3)">3</div>
+<div class="gapbox" style="width:var(--space-cell)">cell</div>
+<div class="gapbox" style="width:var(--space-4)">4</div>
+<div class="gapbox" style="width:var(--space-5)">5</div>
+</div>
+</section>
+
+<section class="sec" id="mf-rec">
+<div class="sec-h"><p class="t1">Recognition pattern (min)</p><span class="kid">#26 AND</span><span class="kid">.inner-rail</span><span class="kid">junction</span><span class="kid">#10 #12</span></div>
+<p class="note">Signed Rec AND + junction kept. Left cell chrome = live <code>.inner-rail</code> (Dep family) — not #27 thick-left. Specimen trimmed to one rail row.</p>
+<div class="board">
+<div class="col">
+<div class="q"><p class="t1">Capitalise as PPE?</p></div>
+<div class="pair">
+<div class="crit"><p class="t1">Probable future economic benefits</p><p class="t2">It is probable that future economic benefits associated with the item will flow to the entity.</p></div>
+<span class="and" role="img" aria-label="AND: both criteria must be met">AND</span>
+<div class="crit"><p class="t1">Cost measured reliably</p><p class="t2">The cost of the item can be measured reliably.</p></div>
+</div>
+<div class="brk"></div><p class="brkcap">Both required</p>
+<div class="fork">
+<div class="m-junction" aria-hidden="true"></div>
+<div class="arm"><div class="m-shaft m-shaft--v m-flow"><span class="m-shaft-label">Both met</span></div><div class="out res"><p class="t1">Recognise as PPE</p><p class="t2">Measure at cost.</p></div></div>
+<div class="arm"><div class="m-shaft m-shaft--v m-flow mute"><span class="m-shaft-label">Not met</span></div><div class="out mute"><p class="t1">Not recognised as PPE</p><p class="t2">Apply the other applicable standard.</p></div></div>
+</div>
+</div>
+<div class="col">
+<div class="rgrow">
+<div class="ira"><p class="rname">Unit of measure</p></div>
+<div class="l2"><div class="head"><span class="chip">2.1</span></div><p class="t2">Not prescribed. Judgement is required. Individually insignificant items (moulds, tools, dies) may be aggregated.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="mf-tl">
+<div class="sec-h"><p class="t1">Timeline component (min)</p><span class="kid">kit 25</span><span class="kid">#10 Flow tones</span></div>
+<p class="note">Kit 25 geometry stays: rings, leaders, Begins/Ceases. Ticks say marker. Span is abstract. Second band under this axis = FAIL.</p>
+<div class="head"><span class="chip">5.4</span><p class="t1">During use</p><span class="key"><span class="ks" aria-hidden="true"></span>marker</span></div>
+<div class="m-tl" role="group" aria-label="During use timeline specimen">
+<div class="m-tl-axis">
+<div class="m-tl-line"></div>
+<span class="m-tl-ring" style="left:0"></span>
+<span class="m-tl-ring" style="left:100%"></span>
+<span class="m-tl-ring-lead" style="left:0" aria-hidden="true"></span>
+<span class="m-tl-ring-lead" style="left:100%" aria-hidden="true"></span>
+<span class="m-tl-m" style="left:30%"><span class="m-tl-lab">marker</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
+<span class="m-tl-m" style="left:70%"><span class="m-tl-lab">marker</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
+<span class="m-tl-span" style="left:18%;width:64%">span (Start→End)</span>
+</div>
+<div class="m-tl-ends">
+<div class="m-tl-end"><div class="l3"><p class="t1">Begins</p><p class="t2">When the asset is available for use</p></div></div>
+<div class="m-tl-end cease"><div class="l3"><p class="t1">Ceases</p><p class="t2">Earlier of: classified as held for sale or derecognised</p></div></div>
+</div>
+</div>
+</section>
+
+
+<p class="sec10h" id="sec10">§10 — Left-rail building blocks (Dep-actual)</p>
+<p class="lead"><strong>One chrome family</strong> (<code>.inner-rail</code>) · <strong>three patterns</strong>. Building-block / component extraction from signed Depreciation. Not a specimen dump.</p>
+<p class="outnote"><strong>When-not / out of scope for Dep left-rail:</strong>
+Thick left vertical bar (<code>--rail-bar-m</code> / <code>.m-strip</code> / mock <code>#27 .rcell</code>) is <strong>not</strong> the IAS 16 Dep left-rail default.
+Audited use: <strong>IFRS 18</strong> Concept Map FS line-item bands (<code>.mini-pnl-band.m-strip</code>) · Rec <strong>mock-only</strong> #27 in <code>rec-layout/</code> (live Rec = <code>.inner-rail</code>).
+Do <strong>not</strong> teach thick-left as general left-rail. See AUDIT table.</p>
+<section class="dec" id="decision" aria-label="Decision strip — which left-rail pattern">
+<div class="dec-h">
+<p class="t1">Decision — which left-rail pattern? (same chrome family)</p>
+<span class="kid">building block</span>
+<span class="kid">component</span>
+<span class="kid">.inner-rail</span>
+</div>
+<div class="dec-grid">
+<div class="dec-cell">
+<p class="dec-if">If accounting need is…</p>
+<p class="t3s">Named left label · peer / section beside detail</p>
+<p class="dec-use">→ .inner-rail left label</p>
+</div>
+<div class="dec-cell">
+<p class="dec-if">If accounting need is…</p>
+<p class="t3s">Phase name beside calendar / contract time axis</p>
+<p class="dec-use">→ Phase + kit 25 timeline</p>
+</div>
+<div class="dec-cell">
+<p class="dec-if">If accounting need is…</p>
+<p class="t3s">Section needs depth Outer→board→inner→peers</p>
+<p class="dec-use">→ Nested .inner-rail layers</p>
+</div>
+</div>
+<p class="dec-rule">Same level = same chrome (<code>.inner-rail</code>). Never fold nests into one column. Add layers, never fold. Never default to #27 thick-left on Dep.</p>
+</section>
+
+<div class="kit">
+
+<!-- ========== C1 Live .inner-rail ========== -->
+<article class="card" id="comp-inner-rail">
+<div class="card-left">
+<div class="blk">
+<p class="blk-lab">1 · Component (Pattern)</p>
+<p class="t1">Live .inner-rail left label</p>
+<p class="cite">Kit: Dep family PRIMARY · map-box <code>.inner-rail</code> (stroke-1 --line · --band) · atlas L2 cell/peer (#94 / #98 row 5) · <strong>no</strong> --rail-bar accent</p>
+</div>
+<div class="blk">
+<p class="blk-lab">2 · When to use</p>
+<ul>
+<li><strong>Trigger:</strong> named left label for a peer / section; reading model = label | detail</li>
+<li><strong>Not for:</strong> IFRS 18 FS category bands (→ <code>.m-strip</code>) · inventing #27 thick-left on IAS 16</li>
+<li class="cite">Dep verified: During use · Significant parts · Useful life · Method · … all <code>.inner-rail</code> + <code>.rail-name</code></li>
+</ul>
+</div>
+<div class="blk">
+<p class="blk-lab">3 · Chrome recipe (≤3 lines)</p>
+<p class="recipe">1. Grid <code>calc(4*--space-6) | 1fr</code> · gap <code>--space-cell</code></p>
+<p class="recipe">2. <code>.inner-rail</code> = --band · stroke-1 --line · --card-radius · <code>.rail-name</code> T2 band</p>
+<p class="recipe">3. Optional <code>.fb-num</code> · <strong>no</strong> border-left --rail-bar-*</p>
+</div>
+</div>
+<div class="card-right">
+<div class="blk" style="flex:1;display:flex;flex-direction:column">
+<p class="blk-lab">4 · Reusable min (abstract)</p>
+<div class="schem" role="img" aria-label="inner-rail Peer on and Peer mute — no thick left">
+<p class="schem-cap">Component · Peer rows · .inner-rail · no accent bar</p>
+<div class="rgstack">
+<div class="rgrow">
+<div class="ira on"><p class="rname">Peer</p></div>
+<div class="box"><p class="ghost">content (selected)</p></div>
+</div>
+<div class="rgrow">
+<div class="ira mute"><p class="rname">Peer</p></div>
+<div class="box mute"><p class="ghost">content (mute)</p></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+
+<!-- ========== C2 Phase + kit 25 ========== -->
+<article class="card" id="comp-phase">
+<div class="card-left">
+<div class="blk">
+<p class="blk-lab">1 · Component (Pattern)</p>
+<p class="t1">Phase + kit 25 timeline</p>
+<p class="cite">Kit: left = <strong>.inner-rail</strong> (Dep pick A) · right = <strong>kit 25</strong> timeline · signed timeline-final/ · During use inside plate</p>
+</div>
+<div class="blk">
+<p class="blk-lab">2 · When to use</p>
+<ul>
+<li><strong>Trigger:</strong> phase name <strong>is</strong> the left-rail label; right = time axis (calendar/contract)</li>
+<li><strong>Not for:</strong> left cell as #27 <code>.rcell</code></li>
+<li>Markers of this phase sit on the kit 25 axis (one mark, one label). A second band under that axis, inside the same pane, fails.</li>
+<li class="cite">Dep’s year-end review is its own rail (5.8), so Dep’s timeline has no year-end marks. That is the chapter lock, not a ban on markers.</li>
+</ul>
+</div>
+<div class="blk">
+<p class="blk-lab">3 · Chrome recipe (≤3 lines)</p>
+<p class="recipe">1. Left = <code>.inner-rail</code> + <code>.rail-name</code> Phase (not .rcell)</p>
+<p class="recipe">2. Markers of this phase sit on the kit 25 axis — one mark, one label. Not a rail per marker.</p>
+<p class="recipe">3. A second band under that axis fails. Span is abstract Start→End.</p>
+</div>
+</div>
+<div class="card-right">
+<div class="blk" style="flex:1;display:flex;flex-direction:column">
+<p class="blk-lab">4 · Reusable min (abstract)</p>
+<div class="schem" role="img" aria-label="Phase inner-rail beside kit 25 axis">
+<p class="schem-cap">Component · Phase .inner-rail | kit 25 axis</p>
+<div class="tlrow">
+<div class="ira on"><p class="rname">Phase</p></div>
+<div class="tl-pane">
+<div class="m-tl" role="group" aria-label="kit 25 axis schematic">
+<div class="m-tl-axis">
+<div class="m-tl-line"></div>
+<span class="m-tl-ring" style="left:0"></span>
+<span class="m-tl-ring" style="left:100%"></span>
+<span class="m-tl-m" style="left:35%"><span class="m-tl-lab">marker</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
+<span class="m-tl-m" style="left:65%"><span class="m-tl-lab">marker</span><span class="m-tl-lead"></span><span class="m-tl-tick"></span></span>
+<span class="m-tl-span" style="left:0;width:100%">span (Start→End)</span>
+</div>
+<div class="m-tl-ends">
+<div class="m-tl-end"><div class="endbox"><p class="ghost">Start</p></div></div>
+<div class="m-tl-end cease"><div class="endbox"><p class="ghost">End</p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+
+<!-- ========== C3 Nested .inner-rail ========== -->
+<article class="card" id="comp-nest">
+<div class="card-left">
+<div class="blk">
+<p class="blk-lab">1 · Component (Pattern)</p>
+<p class="t1">Nested .inner-rail layers</p>
+<p class="cite">Kit: visual-grammar <strong>Layers</strong> · Dep Useful life wrap-row · stacked <code>.inner-rail</code> inside <code>.inner-board</code> · atlas nest L2/L3</p>
+</div>
+<div class="blk">
+<p class="blk-lab">2 · When to use</p>
+<ul>
+<li><strong>Trigger:</strong> section needs depth — Outer → board → inner rail|detail → stacked Peer rows</li>
+<li><strong>Not for:</strong> folding all labels into one flat left column · putting #27 at every nest level</li>
+<li class="cite">Dep verified: Useful life → Definition / Factors / Land&amp;buildings → factor peers</li>
+</ul>
+</div>
+<div class="blk">
+<p class="blk-lab">3 · Chrome recipe (≤3 lines)</p>
+<p class="recipe">1. Layers: Outer <code>.inner-rail</code> → <code>.inner-board</code> → inner → peers</p>
+<p class="recipe">2. <s>Max 2 bordered levels</s> → <strong>no depth cap</strong>（LEGO-LOGIC snap rule 1 / BRICKS stack note；Depth ruling）· gap <code>--space-cell</code> · same <code>.inner-rail</code> chrome</p>
+<p class="recipe">3. Named peers = stacked rail|detail · <strong>add layers, never fold</strong></p>
+</div>
+</div>
+<div class="card-right">
+<div class="blk" style="flex:1;display:flex;flex-direction:column">
+<p class="blk-lab">4 · Reusable min (abstract)</p>
+<div class="schem" role="img" aria-label="Nested inner-rail depths Outer Inner Peer">
+<p class="schem-cap">Component · nest as deep as the idea · all .inner-rail · no thick-left · no depth cap</p>
+<p class="depth">depth 0 Outer → depth 1 Inner/Group → depth 2 Peer</p>
+<div class="srow">
+<div class="ira on"><p class="rname">Outer</p></div>
+<div class="nest-board">
+<div class="nest">
+<div class="srow">
+<div class="ira"><p class="rname">Inner</p></div>
+<div class="box"><p class="ghost">detail</p></div>
+</div>
+<div class="srow">
+<div class="ira"><p class="rname">Group</p></div>
+<div class="nest-deep">
+<div class="srow">
+<div class="ira"><p class="rname">Peer</p></div>
+<div class="box"><p class="ghost">detail</p></div>
+</div>
+<div class="srow">
+<div class="ira"><p class="rname">Peer</p></div>
+<div class="box"><p class="ghost">detail</p></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+
+</div>
+
+
+
+
+<section class="principle" id="sec109a" aria-labelledby="p109a">
+  <h2 id="p109a">10.9a Principle — why left rail / nest（百子櫃）</h2>
+  <p>讀 Concept Map 嘅 left rail，唔係貼紙名——係 <span class="k">標準邏輯</span>：大格包細格。</p>
+  <p>想像 <span class="k">百子櫃</span>。大 <span class="k">櫃桶</span> 蓋住一排細櫃桶；每個細櫃桶再開一層更細嘅。讀者由 <span class="k">top→bottom</span> 或者 <span class="k">left→right</span> 讀：先見大櫃桶個名（left rail），再入去佢蓋住嘅內容。</p>
+  <ul>
+    <li><span class="k">L1</span> = 外層 left rail（一個 beat／phase／section 嘅外層名）。</li>
+    <li><span class="k">L1 = sum of L2</span>：L1 包住（加總）佢下面嘅 L2——L1 係 Σ 對應嘅 L2。</li>
+    <li><span class="k">Each L2 = sum of corresponding L3</span>：每個 L2 再拆開，等於佢下面嗰排 L3；<span class="k">all those L3 = that L2</span>。</li>
+    <li>再入一層就係再加一個櫃桶，<span class="k">唔摺</span>兩名落同一格。</li>
+  </ul>
+  <table>
+    <thead><tr><th>視覺</th><th>對應等式</th></tr></thead>
+    <tbody>
+      <tr><td>Outer left rail 伸到蓋住成個 beat</td><td>L1 真係包住佢啲 L2</td></tr>
+      <tr><td>每個 named peer／nest row 有自己嘅 <code>.inner-rail</code></td><td>每個 L2／L3 有自己個櫃桶名</td></tr>
+      <tr><td>Phase 名喺 left；右邊 kit 25 一條軸 Begins→Ceases</td><td>一個 L1 phase 包住呢個 timeline pane</td></tr>
+      <tr><td>Outer → board → inner rail | detail → peers</td><td>大櫃桶 → 板 → 細櫃桶｜內容 → 同行 peer</td></tr>
+    </tbody>
+  </table>
+  <p>會破壞等式嘅做法（點解後面 §10.10 要量）：</p>
+  <ol class="check">
+    <li><span class="k">短 L1 stub</span>——外層 rail 只得一行高，蓋唔到下面嘅 L2／beat → L1 ≠ Σ L2。</li>
+    <li><span class="k">缺 rail cell</span>——右邊有 named beat，左邊空／冇格／摺兩名一格 → 少咗櫃桶，或者兩個櫃桶共用一個拉手。</li>
+    <li><span class="k">摺 nest</span>——本應分層嘅 L2／L3 摺成一欄 → 讀者睇唔到「大包細」。</li>
+  </ol>
+  <p>Phase + timeline 就係一個大櫃桶（phase 名 = L1 left rail）蓋住一個 kit 25 pane；pane 入面嘅事件屬呢個 phase，打喺同一條軸上——唔係第二個櫃桶橫插喺下面。</p>
+  <p>Principle 講「<span class="k">點解</span>」；§10.10 FAIL tests 講「<span class="k">點量</span>」。</p>
+  <p class="gloss">Left rail is containment, not a sticker: a larger drawer (L1) covers the drawers it sums (L2); each of those sums its own L3. Short stubs, missing cells, and folded names break that sum. Phase + kit 25 is one L1 drawer over one timeline pane.</p>
+  <div class="qlocks">
+    <p class="q"><span class="k">Q1.</span> 短 L1 stub = FAIL。</p>
+    <p class="q"><span class="k">Q2 = A.</span> Kit 25 markers 打喺軸上，喺 During-use 嗰個 L1 櫃桶入面。唔係每個 marker 再開一條 L2 rail。軸下面再加一條 band 仍然 FAIL。</p>
+    <p class="q"><span class="k">Q3.</span> 同一深度嘅 L2 同一樣式。例外 = Johnny 寫一句。</p>
+  </div>
+</section>
+
+<h2 class="gateh" id="sec1010">10.10 Gate — how to measure</h2>
+
+<div class="defs">
+  <article class="def">
+    <p class="lab">Measure</p>
+    <p class="prose">Night 1280. Border boxes. Greater than 2px fails. 2px or under passes. Do not subtract padding.</p>
+  </article>
+  <article class="def">
+    <p class="lab">L1 on this page</p>
+    <p class="prose">The outer left rail of a beat (phase rail or first-column section rail). Atlas <code>.m-l1</code> plate fill is a different rule and stays as signed.</p>
+  </article>
+</div>
+
+<!-- 1 -->
+<section class="rule" id="r1" aria-labelledby="r1h">
+  <div class="rule-copy">
+    <div class="rule-h"><span class="num">1</span><h2 id="r1h">Missing grid</h2></div>
+    <p>Every right-hand beat that needs a name has its own left-rail cell. That is each peer, each section, the phase, and each nest row.</p>
+    <div class="verdict fail">
+      <p class="tag fail">FAIL</p>
+      <p>The detail is drawn and the left cell is missing, empty, or collapsed — or two named beats share one rail.</p>
+    </div>
+    <div class="verdict pass">
+      <p class="tag pass">PASS</p>
+      <p>Each of those beats has its own named <code>.inner-rail</code>. One phase rail covers the whole kit 25 pane: rings, markers, span, Begins / Ceases, and a See-also chip on the card it qualifies. Formula terms and fork arms are not rails.</p>
+    </div>
+    <p class="muted">Exception only when Johnny writes one sentence on that mock. An unsigned mock has no exception. “The head label counts” is not an exception.</p>
+  </div>
+  <div class="minis">
+    <figure class="mini pass">
+      <p class="tag pass">PASS</p>
+      <div class="stack">
+        <div class="row">
+          <div class="rail"><p class="nm">Peer</p></div>
+          <div class="detail"><p class="ghost">detail</p></div>
+        </div>
+        <div class="row">
+          <div class="rail"><p class="nm">Peer</p></div>
+          <div class="detail"><p class="ghost">detail</p></div>
+        </div>
+      </div>
+      <figcaption class="cap">One named rail per beat.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL</p>
+      <div class="stack">
+        <div class="row">
+          <div class="rail"><p class="nm">Peer</p></div>
+          <div class="detail"><p class="ghost">detail</p></div>
+        </div>
+        <div class="row">
+          <div class="hole" aria-hidden="true"></div>
+          <div class="detail"><p class="ghost">detail</p></div>
+        </div>
+      </div>
+      <figcaption class="cap">Second beat has no rail cell. An empty cell is the same fail.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="rule" id="r2" aria-labelledby="r2h">
+  <div class="rule-copy">
+    <div class="rule-h"><span class="num">2</span><h2 id="r2h">Equal height, parent covers</h2></div>
+    <p>The rail border and its detail border share a top and a bottom. The outer rail and the board that holds its children are that same pair.</p>
+    <div class="verdict fail">
+      <p class="tag fail">FAIL</p>
+      <p><span class="k">|Δtop|</span>, <span class="k">|Δbottom|</span>, or <span class="k">|Δheight|</span> greater than 2px. A parent only as tall as its label fails. A parent taller than its children by more than its own padding fails.</p>
+    </div>
+    <div class="verdict pass">
+      <p class="tag pass">PASS</p>
+      <p>The two border boxes match within 2px. Signed Dep: During use matches the timeline pane, and Useful life matches its nest board. Words may sit centered inside a rail that already stretches.</p>
+    </div>
+    <p class="muted">Cite visual-grammar Alignment and Layers. This test is now on the MF page.</p>
+  </div>
+  <div class="minis">
+    <figure class="mini pass">
+      <p class="tag pass">PASS · row</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Peer</p></div>
+        <div class="detail tall"><p class="ghost">detail</p></div>
+      </div>
+      <figcaption class="cap">Same top, same bottom.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL · row</p>
+      <div class="row stub">
+        <div class="rail"><p class="nm">Peer</p></div>
+        <div class="detail tall"><p class="ghost">detail</p></div>
+      </div>
+      <figcaption class="cap">Rail shorter than its detail by more than 2px.</figcaption>
+    </figure>
+    <figure class="mini pass">
+      <p class="tag pass">PASS · parent</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Outer</p></div>
+        <div class="detail">
+          <div class="stack">
+            <div class="row slim"><div class="rail"><p class="nm">Inner</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+            <div class="row slim"><div class="rail"><p class="nm">Peer</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Outer covers the child board.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL · parent</p>
+      <div class="row stub">
+        <div class="rail"><p class="nm">Outer</p></div>
+        <div class="detail">
+          <div class="stack">
+            <div class="row slim"><div class="rail"><p class="nm">Inner</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+            <div class="row slim"><div class="rail"><p class="nm">Peer</p></div><div class="detail"><p class="ghost">detail</p></div></div>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Outer stops. The children continue.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="rule" id="r3" aria-labelledby="r3h">
+  <div class="rule-copy">
+    <div class="rule-h"><span class="num">3</span><h2 id="r3h">Markers on the axis</h2></div>
+    <p>One phase pane has one kit 25 axis, from Start to End. Events of this phase sit on that line: one mark, one leader, one label.</p>
+    <div class="verdict pass">
+      <p class="tag pass">PASS</p>
+      <p>Rings, span, and on-axis markers sit inside the one L1 drawer. They are not each an L2 rail. Start / End cards belong to this axis. A different concept gets its own rail row. On Dep, year-end review is that rail (5.8), so Dep’s timeline has no year-end marks.</p>
+    </div>
+    <div class="verdict fail">
+      <p class="tag fail">FAIL · second band</p>
+      <p>A legend plus a tick row in its own box under the kit 25 ends, inside the same pane. Reval’s ◆ row under kit 25 is this pattern. The Year-end band Dep dropped is this pattern. Live Impairment’s band under the axis is this pattern.</p>
+    </div>
+    <p class="muted">Dropping Reval’s dates, or drawing them on the axis, both pass. The band fails either way. That content pick stays with Johnny (timeline audit P1 / P2). This page does not redraw Reval or Dep.</p>
+  </div>
+  <div class="minis">
+    <figure class="mini pass">
+      <p class="tag pass">PASS</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Phase</p></div>
+        <div class="pane">
+          <div class="axis" aria-hidden="true">
+            <div class="line"></div>
+            <span class="ring" style="left:0"></span>
+            <span class="ring" style="left:100%"></span>
+            <span class="mk" style="left:24%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
+            <span class="mk" style="left:76%"><span class="mk-lab">marker</span><span class="mk-stem"></span></span>
+            <span class="span">span</span>
+          </div>
+          <div class="ends">
+            <span class="end">Start</span>
+            <span class="end r">End</span>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Marks on the one axis. Start / End are that axis.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Phase</p></div>
+        <div class="pane">
+          <div class="axis" aria-hidden="true">
+            <div class="line"></div>
+            <span class="ring" style="left:0"></span>
+            <span class="ring" style="left:100%"></span>
+            <span class="span">span</span>
+          </div>
+          <div class="ends">
+            <span class="end">Start</span>
+            <span class="end r">End</span>
+          </div>
+          <div class="band">
+            <span class="band-k">event</span>
+            <span class="band-lane"><span>◆</span><span>event</span><span>◆</span><span>event</span></span>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Second band under kit 25. Not a building block.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="rule" id="r4" aria-labelledby="r4h">
+  <div class="rule-copy">
+    <div class="rule-h"><span class="num">4</span><h2 id="r4h">L1 short stub</h2></div>
+    <p>Yes. A short outer rail or phase rail that does not cover its beat fails. Same 2px test as rule 2.</p>
+    <div class="verdict fail">
+      <p class="tag fail">FAIL</p>
+      <p>The phase name is a text-height label beside a tall kit 25 pane. Live <code>.lc-head-k</code> does this with <code>align-self: end</code>. An outer rail one line tall beside a nest that continues below it fails the same way.</p>
+    </div>
+    <div class="verdict pass">
+      <p class="tag pass">PASS</p>
+      <p>The rail border covers the beat. Dep During use stretched to the timeline pane is the control. Reval’s L1 stretch stays; shrinking it fails. A nested peer that matches its own short detail passes. A dropped plate title is not a stub.</p>
+    </div>
+  </div>
+  <div class="minis">
+    <figure class="mini pass">
+      <p class="tag pass">PASS · L1 covers the beat</p>
+      <div class="row">
+        <div class="rail"><p class="nm">Phase</p></div>
+        <div class="pane">
+          <div class="axis" aria-hidden="true">
+            <div class="line"></div>
+            <span class="ring" style="left:0"></span>
+            <span class="ring" style="left:100%"></span>
+            <span class="span">span</span>
+          </div>
+          <div class="ends">
+            <span class="end">Start</span>
+            <span class="end r">End</span>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Phase rail matches the pane.</figcaption>
+    </figure>
+    <figure class="mini fail">
+      <p class="tag fail">FAIL · stub</p>
+      <div class="row stub">
+        <div class="rail"><p class="nm">Phase</p></div>
+        <div class="pane">
+          <div class="axis" aria-hidden="true">
+            <div class="line"></div>
+            <span class="ring" style="left:0"></span>
+            <span class="ring" style="left:100%"></span>
+            <span class="span">span</span>
+          </div>
+          <div class="ends">
+            <span class="end">Start</span>
+            <span class="end r">End</span>
+          </div>
+        </div>
+      </div>
+      <figcaption class="cap">Phase rail does not cover the beat.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="call" id="applied-lines" aria-label="P2 and P3 applied">
+  <h2>P2 and P3 — applied on the MF page</h2>
+  <p>The Phase card and the §9 min on <code>mf-master-revise.html</code> now say this. The file <code>ba-mf-master-revise.png</code> is still the old chrome lock and is not overwritten.</p>
+  <ul>
+    <li><span class="k">P2.</span> Markers of this phase sit on the kit 25 axis (one mark, one label). A second band under that axis fails. Dep’s year-end review is its own rail (5.8). That chapter lock is not a ban on markers.</li>
+    <li><span class="k">P3.</span> §9 min ticks say <span class="k">marker</span>. The span says <span class="k">span (Start→End)</span>. Caption: second band under this axis fails. Rings, leaders, and end cards stay.</li>
+  </ul>
+</section>
+
+
+<section class="rule-lock" id="sec103a" aria-label="§10.3a Single-item detail">
+<p class="lab">§10.3a Single-item detail</p>
+<p class="verb">Verbatim: “cost model → if only one item, no need have L2 inner grid; other than that, can go”</p>
+<p class="body"><strong>Rule:</strong> A single item never gets an L2 inner grid; it sits directly in its L1 row's detail cell as a plain node (<code>.inner-detail &gt; .node</code>), with no inner box, list or bullet.</p>
+<p class="body">Orthogonal to depth: <strong>no depth cap</strong> still lets nests go 4–5 deep when there are multiple ideas. This only bans wrapping <em>one</em> idea in an extra L2 box. Control: Reval 4.2 Cost model after FINAL-B2-R2.</p>
+</section>
+
+<section class="rule-lock" id="xa-ruling" aria-label="X-a depth ruling">
+<p class="lab">Depth ruling</p>
+<p class="body"><strong>LEGO「no depth cap」governs.</strong> <span class="struck">Max 2 bordered levels</span> is retired; nest depth follows LEGO-LOGIC snap rule 1 / LEGO-BRICKS stack note（owner rule 2026-10-19, commit <code>d04316ae</code>; Johnny SIGN 2026-10-21）.</p>
+</section>
+
+<section class="lego-sec" id="lego-sheet" aria-label="LEGO kit sheet — section of MF page">
+<div class="sec-h"><p class="t1">LEGO kit sheet</p><span class="kid">B01–B21</span><span class="kid">section of MF</span><span class="kid">142c0d5a</span></div>
+<p class="note">Build gap §3 option B：LEGO sheet 作為 <strong>呢一頁 MF 嘅 section</strong>（唔另開 design/ page）。Sheet = signed <code>lego-sheet.png</code>；bricks/logic 文檔係 source pack，live 頁嵌圖 + 指向 snap rules。冇 freestyle chrome。</p>
+<img src="lego-sheet.png" alt="LEGO bricks sheet B01–B21 — signed kit 142c0d5a" width="1200" height="auto">
+<p class="note">Snap rule 1：stack repeats inside a cell · <strong>no fixed depth cap</strong>. §10.3a：single item → no L2 wrap.</p>
+</section>
+
+<section class="sec" id="mf-kit-map">
+<div class="sec-h"><p class="t1">MF section to kit ID map</p></div>
+<p class="note">mf-bg: kit 2 STRUCK + #14/#15. mf-type: #9 #20 #15. mf-rec: #26 AND + junction + .inner-rail left cell (#27 thick-left NOT Dep default). mf-tl: kit 25. §10: Dep .inner-rail patterns. Atlas FROZEN 1–23 cite only.</p>
+</section>
+</div>
+<p class="foot">Recycles signed MF §9+§10（52cf9a18 apply text）+ LEGO sheet section（142c0d5a）. Max-2 struck → LEGO no-depth-cap. Single-item-no-L2 filed.</p>
+<nav class="footer-nav"></nav>
+<script src="../../_shared/footer-nav.js"></script>
+</body></html>

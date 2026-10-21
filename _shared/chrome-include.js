@@ -8,7 +8,7 @@
     "chrome.css": "85d3da921d08",
     "theme.js": "a1d54e6efe0c",
     "iframe-fit.js": "afb82ab9f5ec",
-    "chrome-packs.js": "e57789e94f9f",
+    "chrome-packs.js": "9ca5482a2d5b",
     "disclaimer.js": "a7c477196e77",
     "chrome-bar.js": "1f0dd2c5251c",
     "search.js": "85ee050b8575"

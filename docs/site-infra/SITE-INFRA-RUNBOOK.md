@@ -1,6 +1,7 @@
 # Site infra runbook — workbook #95
 
-**Owner:** IFRS Build · pairs with `SITE-INFRA-DIAGRAM.md` · update in same PR as infra change.
+**Owner:** IFRS Build · pairs with `SITE-INFRA-DIAGRAM.md` · update in same PR as infra change.  
+**Updated:** 2026-10-21 Asia/Shanghai · #100 live `site/master-formatting/`.
 
 ## Who
 
@@ -45,6 +46,11 @@ Live base: `https://johnnypangkh.github.io/ifrs-study/`
 | `tools/map-lint.py` `CITE_ALLOW` for `ias-16/draft-v1-linked/visuals/master-concept-map.html` | **4** | Johnny lock FINAL-B2 2026-10-20 19:31 / PR #98. The three #98 plates cite 0. The remaining 4 are ch07 Disclosure. Do not trim ch07. |
 | `tools/check-stamp-only.py` | #98 scoped allow | visuals `ch04-models.html`, `ch05-depreciation.html`, `master-concept-map.html` (plate regions), `ch06-derecognition.html` (compensation wrapper), and `ch04.html` + `ch05.html` + `references.html` (#98 change spots only). PM 5 approved 2026-10-20 15:23 + 18:02 + FINAL-B2 19:39 / PR #98. `check-incremental` owns the teaching rows. |
 | `tools/map-lint.py` `PLATE98_SHARED_OK` | `{cap, inner-board, see-bit, see-label}` | #98 plate classes allowed to match bare `_shared` selectors; any other collision FAILs (root cause: PR #165 `tl-row` vs components-6.css L402). Source = QC round 2 + PM 5 FAIL-only order 2026-10-21. |
+| `site/master-formatting/index.html` | #100 live MF | Johnny V6 path A, 2026-10-21. `tools/stamp-assets.py` `settings_pages()` hashes `_shared` `?v=` on this page. `tools/build-last-update.py` maps `/site/master-formatting/` to pack `site` and includes that folder in the site fingerprint. `_shared/chrome-packs.js` `CHROME_PACK_PATHS` has the same path (generated `_shared/last-update.js` `PACK_PATHS` follows). `tools/check-stamp-only.py` allows `?v=`-only edits once the page is on main (same shape as Settings; not a blank cheque). Page CSS stays on the page. Do not copy `kit.css` into `_shared`. |
+
+## Live Master formatting path
+
+`site/master-formatting/` is the live Master formatting page. `site/settings/` stays the Settings token table and is not MF. The LEGO kit sheet is section `#lego-sheet` on the MF page (signed `lego-sheet.png`), not a separate `design/` page. IAS 16 Concept Map plates are not edited for this path.
 
 `check-incremental` unpairs a tool-paired `changed` row when explicit `removed` + `added` yml entries match both sides.
 
