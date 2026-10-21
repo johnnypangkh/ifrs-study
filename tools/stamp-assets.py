@@ -111,11 +111,21 @@ def pack_pages():
 
 
 def settings_pages():
-    """Settings head. Shared ?v= is hashed the same way as pack pages."""
-    page = ROOT / "site" / "settings" / "index.html"
-    if page.is_file():
-        return [page]
-    return []
+    """Settings and live Master formatting heads.
+
+    Shared ?v= is hashed the same way as pack pages. #100 (Johnny V6 path A)
+    adds site/master-formatting/index.html beside Settings. The page stays
+    page-local; this does not pull kit.css into _shared.
+    """
+    pages = []
+    for rel in (
+        "site/settings/index.html",
+        "site/master-formatting/index.html",
+    ):
+        page = ROOT / rel
+        if page.is_file():
+            pages.append(page)
+    return pages
 
 
 def stamp_chrome_include_map():

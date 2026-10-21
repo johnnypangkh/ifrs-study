@@ -93,5 +93,6 @@ window.CHROME_PACK_PATHS = [
   ["/ias-2/", "ias2"],
   ["/ifrs-18/", "ifrs18"],
   ["/cf-2018/", "cf2018"],
-  ["/site/settings/", "site"]
+  ["/site/settings/", "site"],
+  ["/site/master-formatting/", "site"]
 ];

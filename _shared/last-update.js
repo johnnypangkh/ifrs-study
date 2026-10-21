@@ -7,29 +7,29 @@
 (function () {
   var STAMPS = {
     "cf2018": {
-      "text": "Last update · 2026-10-21 01:23 HKT",
-      "iso": "2026-10-21T01:23:00+08:00",
-      "fingerprint": "622e56db7614bcee947660b8a531d96eb752e3500aa0d7afdf1a632c8a519a21"
+      "text": "Last update · 2026-10-21 10:07 HKT",
+      "iso": "2026-10-21T10:07:00+08:00",
+      "fingerprint": "4a3f9f92261fdd8629f9da36d2f80e208eec263024b5172a2cd107fa59f30ecb"
     },
     "ias16": {
-      "text": "Last update · 2026-10-21 03:08 HKT",
-      "iso": "2026-10-21T03:08:00+08:00",
-      "fingerprint": "dab5c2302b0e04b398b264a28e569c3665fa4d3bc5b00468ea4e74d303cc9728"
+      "text": "Last update · 2026-10-21 10:07 HKT",
+      "iso": "2026-10-21T10:07:00+08:00",
+      "fingerprint": "111fe2a35f1bfb696b9378b6c2618ff0fd8b9cb02c4421b30d505a9bbf90d699"
     },
     "ias2": {
-      "text": "Last update · 2026-10-21 01:23 HKT",
-      "iso": "2026-10-21T01:23:00+08:00",
-      "fingerprint": "12f8d51b6bd3360ff011b05cbf703cd78ec85eb26ca0d2faa1bacdb51469172d"
+      "text": "Last update · 2026-10-21 10:07 HKT",
+      "iso": "2026-10-21T10:07:00+08:00",
+      "fingerprint": "18e97d82cc43e3ca601ceee1969839c690a58d06199f3b497eecc52c3a7defa5"
     },
     "ifrs18": {
-      "text": "Last update · 2026-10-21 01:23 HKT",
-      "iso": "2026-10-21T01:23:00+08:00",
-      "fingerprint": "b2a857eabbb506a4967890d3a91d1f3d8bfe36691555cf60b3f5872b3d7e1be7"
+      "text": "Last update · 2026-10-21 10:07 HKT",
+      "iso": "2026-10-21T10:07:00+08:00",
+      "fingerprint": "e8e704d5901c3dbdabf01b147c68b251f19bae97a6c18e4b841219bf1ca07f6c"
     },
     "site": {
-      "text": "Last update · 2026-10-15 20:53 HKT",
-      "iso": "2026-10-15T20:53:00+08:00",
-      "fingerprint": "384cdcdb0e4cca0ad57151521910974ec7a8382cb7f05f39cf51050a31522650"
+      "text": "Last update · 2026-10-21 10:07 HKT",
+      "iso": "2026-10-21T10:07:00+08:00",
+      "fingerprint": "39ba6299574e899224b37a691943d3cb632414507561bc803f2dc47929194c7b"
     }
   };
 
@@ -38,6 +38,7 @@
     ["/ias-16/", "ias16"],
     ["/ias-2/", "ias2"],
     ["/ifrs-18/", "ifrs18"],
+    ["/site/master-formatting/", "site"],
     ["/site/settings/", "site"]
   ];
 

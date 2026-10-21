@@ -1,6 +1,6 @@
 # Site infra — workbook #95
 
-**Owner:** IFRS Build · **Updated:** 2026-10-21 Asia/Shanghai  
+**Owner:** IFRS Build · **Updated:** 2026-10-21 Asia/Shanghai · #100 live `site/master-formatting/`  
 **Update:** same PR as any infra change.
 
 ## Source of truth
@@ -41,3 +41,11 @@ flowchart LR
 | Full ops steps | `SITE-INFRA-RUNBOOK.md` |
 | Map cite count lint fails? | runbook § CI gates with pinned counts |
 | Map lint says shared class collision? | runbook § CI gates with pinned counts (rename the plate class; never edit the shared rule) |
+| Where is the live Master formatting page? | `site/master-formatting/` (Johnny V6 path A, #100). Settings (`site/settings/`) is the token table, not MF. LEGO sheet is section `#lego-sheet` on the MF page. |
+
+## Live pages under `site/`
+
+| Path | What it is | Stamp |
+|---|---|---|
+| `site/settings/` | Settings — Master styles token table. Not Master formatting. | Pack key `site` |
+| `site/master-formatting/` | Live Master formatting page (#100). LEGO kit sheet is `#lego-sheet` on this same page. | Pack key `site`. `stamp-assets.py` `settings_pages()`, `build-last-update.py` path list + site fingerprint, `chrome-packs.js` `CHROME_PACK_PATHS`, `check-stamp-only.py` `?v=`-only (same shape as Settings). Page CSS stays on the page. `kit.css` is not in `_shared`. |
