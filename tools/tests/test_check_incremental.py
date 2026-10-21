@@ -788,6 +788,85 @@ class IncrementalTests(unittest.TestCase):
         self.assertEqual(added[0].file, "ias-16/draft-v1-linked/ch04.html")
         self._assert_balanced(counts, issues)
 
+    def test_both_halves_split_and_approve(self):
+        """A paired change unpairs only when removed and added entries both match."""
+        base = {"a.html": '<p id="old">See also IAS 12</p>'}
+        head = {"a.html": '<p id="new">See also IAS 38</p>'}
+        code, rows, counts, _issues = judge(base, head)
+        self.assertEqual(counts["changed"], 1)
+        self.assertEqual(rows[0].locator, "new")
+        approval = "\n".join([
+            "- action: removed",
+            "  file: a.html",
+            "  locator: old",
+            '  old: "See also IAS 12"',
+            '  source: "old half"',
+            "- action: added",
+            "  file: a.html",
+            "  locator: new",
+            '  new: "See also IAS 38"',
+            '  source: "new half"',
+            "",
+        ])
+        code, rows, counts, issues = judge(base, head, approval)
+        self.assertEqual(issues, [])
+        self.assertEqual(code, 0)
+        self.assertFalse(any(row.status == "changed" for row in rows))
+        removed = [row for row in rows if row.status == "removed"]
+        added = [row for row in rows if row.status == "added"]
+        self.assertEqual(len(removed), 1)
+        self.assertEqual(len(added), 1)
+        self.assertEqual(removed[0].old, "See also IAS 12")
+        self.assertEqual(removed[0].locator, "old")
+        self.assertEqual(removed[0].source, "old half")
+        self.assertTrue(removed[0].approved)
+        self.assertEqual(added[0].new, "See also IAS 38")
+        self.assertEqual(added[0].locator, "new")
+        self.assertEqual(added[0].source, "new half")
+        self.assertTrue(added[0].approved)
+        self.assertEqual(counts["changed"], 0)
+        self.assertEqual(counts["removed"], 1)
+        self.assertEqual(counts["added"], 1)
+        self._assert_balanced(counts, issues)
+
+    def test_one_half_stays_unapproved_and_stale(self):
+        base = {"a.html": '<p id="old">See also IAS 12</p>'}
+        head = {"a.html": '<p id="new">See also IAS 38</p>'}
+        approval = "\n".join([
+            "- action: removed",
+            "  file: a.html",
+            "  locator: old",
+            '  old: "See also IAS 12"',
+            '  source: "old half only"',
+            "",
+        ])
+        code, rows, counts, issues = judge(base, head, approval)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["changed"], 1)
+        self.assertTrue(any(row.status == "changed" for row in rows))
+        self.assertTrue(any("UNAPPROVED changed" in issue for issue in issues))
+        self.assertTrue(any("stale approval" in issue for issue in issues))
+        self._assert_balanced(counts, issues)
+        mismatched = "\n".join([
+            "- action: removed",
+            "  file: a.html",
+            "  locator: new",
+            '  old: "See also IAS 12"',
+            '  source: "wrong locator"',
+            "- action: added",
+            "  file: a.html",
+            "  locator: new",
+            '  new: "See also IAS 38"',
+            '  source: "new half"',
+            "",
+        ])
+        code, rows, counts, issues = judge(base, head, mismatched)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(counts["changed"], 1)
+        self.assertTrue(any("UNAPPROVED changed" in issue for issue in issues))
+        self.assertTrue(any("stale approval" in issue for issue in issues))
+        self._assert_balanced(counts, issues)
+
 
 if __name__ == "__main__":
     unittest.main()

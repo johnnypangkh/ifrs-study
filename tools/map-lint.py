@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Fail Concept Map markup that breaks Pick A or the #86 arrow / L0 locks.
 
-IAS 16 already has 34 cite chips on the master map. That count may stay.
+IAS 16 master cite cap is 4 (Johnny SIGNED FINAL-B2 2026-10-20 19:31 / #98).
+The three #98 plates cite 0. The remaining 4 are ch07 Disclosure. Do not trim them.
 A new cite on any of the four Concept Maps fails. Glyph arrows fail.
 Sibling .stem-head / .m-arrow / .st-h-head fail on every live pack page.
 """
@@ -76,14 +77,27 @@ INLINE_MAPS = (
     "cf-2018/draft-v1-linked/index.html",
     "ifrs-18/draft-v1-linked/index.html",
 )
-# Base counts at c488600. IAS 16's 34 stay until Content marks destinations.
+# IAS 16 master: Johnny SIGNED FINAL-B2 2026-10-20 19:31 / #98.
+# Three #98 plates cite 0. Remaining 4 are ch07 Disclosure (untouched).
 # CF's one cite is the page-header purpose chip, not a new map cite.
 CITE_ALLOW = {
     "cf-2018/draft-v1-linked/index.html": 1,
-    "ias-16/draft-v1-linked/visuals/master-concept-map.html": 34,
+    "ias-16/draft-v1-linked/visuals/master-concept-map.html": 4,
     "ias-2/draft-v1-linked/visuals/map-formula-board.html": 0,
     "ifrs-18/draft-v1-linked/index.html": 0,
 }
+# #98 plates may reuse these bare shared classes. Any other collision fails.
+# Catches a bare shared rule only (the tl-row failure). Not other width regressions.
+PLATE98_SHARED_OK = {"cap", "inner-board", "see-bit", "see-label"}
+PLATE98_SECTIONS = (
+    ("ias-16/draft-v1-linked/visuals/ch05-depreciation.html", "ch05-dep"),
+    ("ias-16/draft-v1-linked/visuals/ch04-models.html", "ch04-reval"),
+    ("ias-16/draft-v1-linked/visuals/ch04-models.html", "ch04-impair"),
+)
+BARE_CLASS_RE = re.compile(
+    r"\.([A-Za-z_][\w-]*)(?::(?::)?[\w-]+(?:\([^)]*\))?)*"
+)
+IMPORT_URL_RE = re.compile(r'@import\s+url\("([^"?]+)')
 GLYPHS = ("→", "↓", "▶")
 COMMENT_RE = re.compile(r"/\*.*?\*/", re.S)
 IMPORT_RE = re.compile(
@@ -315,6 +329,7 @@ def lint():
         if "visual-fieldset" in text:
             errors.append(f"inline Map gained a second frame: {rel}")
     errors.extend(field_errors(box))
+    errors.extend(plate98_collision_errors())
     return errors
 
 
@@ -373,6 +388,72 @@ def field_errors(box):
         if "--map-field-" in path.read_text(encoding="utf-8"):
             errors.append(f"field token outside map-box: {rel}")
     return errors
+
+
+def _shared_css_texts():
+    """`_shared/visuals.css` (and its @import tree) plus `_shared/type-scale.css`."""
+    texts = []
+    seen = set()
+
+    def walk(path):
+        path = path.resolve()
+        if path in seen or not path.is_file():
+            return
+        seen.add(path)
+        text = path.read_text(encoding="utf-8")
+        texts.append(text)
+        for match in IMPORT_URL_RE.finditer(text):
+            walk(path.parent / match.group(1))
+
+    walk(ROOT / "_shared/visuals.css")
+    walk(ROOT / "_shared/type-scale.css")
+    return texts
+
+
+def bare_shared_classes(css_texts):
+    """Class names whose whole selector is `.name`, optional pseudos only."""
+    names = set()
+    for text in css_texts:
+        stripped = COMMENT_RE.sub("", text)
+        for selector in re.findall(r"([^{}@;]+)\{", stripped):
+            for part in selector.split(","):
+                part = part.strip()
+                match = BARE_CLASS_RE.fullmatch(part)
+                if match:
+                    names.add(match.group(1))
+    return names
+
+
+def plate98_section_classes(html, section):
+    match = re.search(
+        rf"map-section:{re.escape(section)}:start(.*?)map-section:{re.escape(section)}:end",
+        html,
+        re.S,
+    )
+    if match is None:
+        return set()
+    classes = set()
+    for chunk in re.findall(r'class="([^"]+)"', match.group(1)):
+        classes.update(chunk.split())
+    return classes
+
+
+def plate98_shared_collisions(plate_classes, bare_classes):
+    """Plate classes that hit a bare shared rule and are not allowlisted."""
+    return sorted((set(plate_classes) & set(bare_classes)) - PLATE98_SHARED_OK)
+
+
+def plate98_collision_errors():
+    plate = set()
+    for rel, section in PLATE98_SECTIONS:
+        html = (ROOT / rel).read_text(encoding="utf-8")
+        plate |= plate98_section_classes(html, section)
+    hits = plate98_shared_collisions(plate, bare_shared_classes(_shared_css_texts()))
+    return [
+        "shared class collision on #98 plate: "
+        f"{name} (not in PLATE98_SHARED_OK)"
+        for name in hits
+    ]
 
 
 def main():

@@ -8035,3 +8035,1016 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   font-weight: var(--t1-fw);
   font-size: var(--t-head);
 }
+
+/* =====================================================================
+   #98 Dep / Reval / Impair plates.
+   Dep + Reval DOM/CSS: FINAL-B2 (Johnny SIGNED 2026-10-20 19:39).
+   Impair DOM/CSS: FINAL-B6-K5b (Johnny SIGNED 2026-10-21).
+   Class map (X3): ppe-tl-row=mock-du, rev-kicker=mock-kicker, rev-cost=mock-cost,
+   rev-model=mock-reval-model, rev-impair=mock-impair-rev, rev-surplus=mock-46.
+   Shared flag geometry once. Timeline overlay is TL-REDRAW-98-B6-K5b.css,
+   whose Dep/Reval rules match TL-REDRAW-98-B2.css (K5b only appends the Impair gate).
+   Arrowheads are CSS border triangles only. No L1 rail stretch (live JS fit()).
+   Custom props (not new tokens): --pole-h, --head, --ye-tick, --lab-bottom,
+   plus overlay locals --tl-ring-w, --tl-ring, --pe-n, --mo-n, --lane-h, --lane-pt,
+   --lane-top, --tl-tail, --lab2, --drop-h, --fk-w, --fk-stem, --fk-arm, --d1, --d2, --q-w.
+   Literals carried from the signed files (no repo token): 16rem, 17rem.
+   Borrowed: .ch04-impair .m-shaft re-scopes the IAS 2 map-box shaft recipe.
+   =====================================================================
+
+/* --- shared Dep flag geometry (one copy; Reval/Impair plates reuse the roles) --- */
+.plate .inner-board > .ppe-tl-row{grid-column:1/-1;min-width:0;box-sizing:border-box}
+.ppe-tl-row{display:flex;flex-direction:column;gap:var(--space-3);min-width:0}
+.ppe-tl-row .t1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
+.ppe-tl-row .t2{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0;color:var(--muted)}
+.ppe-tl-row .head{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.ppe-tl-row .l3{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--radius-s);padding:var(--space-1) var(--space-2);display:flex;flex-direction:column;gap:var(--space-hairline);min-width:0;box-sizing:border-box}
+.ppe-tl-row .m-tl{display:flex;flex-direction:column;gap:0;position:relative;min-width:0}
+.ppe-tl-row .m-tl-axis{
+  position:relative;
+  margin: 0 var(--space-2) 0 var(--space-3);
+  padding-right: 17rem; /* room for the Ceases cloth, which flies right of End */
+  box-sizing: border-box;
+  overflow: visible;
+}
+.ppe-tl-row .m-tl-shaft{
+  --pole-h: calc(var(--space-6) * 7 + var(--space-2)); /* 232px so the shaft under the tallest cloth is the longer part */
+  --ye-tick: var(--space-4);
+  position: relative;
+  /* under the line: the Year-end hang only. The span is the ribbon above the line. */
+  height: calc(var(--pole-h) + var(--space-6) + var(--space-3));
+  overflow: visible;
+}
+.ppe-tl-row .m-tl-line{
+  --head: var(--space-4); /* 16px. --arrowhead is 5px and read as a fleck. */
+  position:absolute; left:0; top: var(--pole-h);
+  width: calc(100% + var(--space-6)); /* shaft runs past the End ring, then the head */
+  height: var(--stroke-2); background: var(--muted); border: 0;
+}
+.ppe-tl-row .m-tl-line::after{
+  content:""; position:absolute; left:100%; top:50%;
+  width:0; height:0; margin-top: calc(-1 * var(--head));
+  border-top: var(--head) solid transparent;
+  border-bottom: var(--head) solid transparent;
+  border-left: var(--head) solid var(--muted);
+}
+.ppe-tl-row .m-tl-ring{
+  position:absolute; top: calc(var(--pole-h) + var(--stroke-2) / 2);
+  width: var(--space-3); height: var(--space-3);
+  border: var(--stroke-2) solid var(--ink); background: var(--surface); border-radius: 50%;
+  transform: translate(-50%, -50%); z-index: 6;
+}
+.ppe-tl-row .m-tl-flag{
+  position:absolute; top: 0;
+  height: calc(var(--pole-h) + var(--stroke-2) / 2);
+  width: max-content; max-width: 16rem;
+  z-index: 4;
+}
+.ppe-tl-row .m-tl-pole{
+  position:absolute; left:0; top:0; bottom:0; width:0; margin:0;
+  border-left: var(--stroke-2) solid var(--ink); background: none;
+}
+.ppe-tl-row .m-tl-flag .l3{
+  width: max-content; max-width: calc(16rem - var(--stroke-2));
+  margin-left: var(--stroke-2); margin-top: var(--space-1);
+  border: var(--stroke-2) solid var(--line); border-radius: 0;
+}
+/* C3 ribbon: L to R fill between the poles, above the axis. Caption centered in the band. */
+.ppe-tl-row .m-tl-ribbon{
+  position:absolute;
+  left: var(--stroke-2);
+  width: calc(100% - var(--stroke-2) * 2);
+  top: calc(var(--pole-h) - var(--space-6));
+  height: var(--space-6);
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(to right, color-mix(in srgb, var(--accent) 35%, var(--bg)), var(--accent));
+  z-index:3;
+}
+.ppe-tl-row .m-tl-ribbon p{
+  margin:0; line-height:1;
+  font-size: var(--t3-fs); font-weight: var(--t3-strong-fw); color: var(--ink);
+}
+/* Year-end hangs under this same axis. No cloth, no legend box, no dashed span. */
+.ppe-tl-row .m-tl-ye{
+  position:absolute; top: calc(var(--pole-h) + var(--stroke-2));
+  width:0; z-index:3;
+}
+.ppe-tl-row .m-tl-ye-tick{
+  position:absolute; top:0; left:0; width:0; height: var(--ye-tick);
+  border-left: var(--stroke-2) solid var(--ink);
+}
+.ppe-tl-row .m-tl-ye-lab{
+  position:absolute; top: var(--ye-tick); left:0; transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
+  color: var(--muted);
+}
+/* §10.10.4 — the phase rail covers the beat. Live align-self:start is the short stub. */
+.ppe-tl-row.srow{display:grid;grid-template-columns:calc(5 * var(--space-6) + var(--space-2) + var(--stroke-1)) minmax(0,1fr);gap:var(--space-cell);align-items:stretch}
+.ppe-tl-row .tl-pane{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;box-sizing:border-box;height:100%}
+
+
+/* LEGO B11 SIGNED spacing — object-to-border; Residual item-rows was padding:0 flush */
+.ch05-dep .cap-foot > .item-rows{
+  padding: var(--space-2) var(--space-3) !important;
+  box-sizing: border-box;
+}
+.ch05-dep .inner-detail{
+  padding: var(--space-2) var(--space-3);
+  box-sizing: border-box;
+}
+/* Ensure sibling gap on inner-board rows already from live; reinforce --space-cell */
+.ch05-dep .inner-board{
+  gap: var(--space-cell);
+}
+
+/* --- Reval event marks + L2 srows (FINAL-B2 body). inner-detail radius = --radius-s (FS2 §c). --- */
+.ppe-tl-row .m-tl-evt{
+  position:absolute; top:0; width:0; height: var(--pole-h); z-index:6;
+}
+.ppe-tl-row .m-tl-evt.hi{ --lab-bottom: calc(var(--space-6) * 3 + var(--space-2)); }
+.ppe-tl-row .m-tl-evt.lo{ --lab-bottom: calc(var(--space-6) + var(--space-2)); }
+.ppe-tl-row .evt-pole{
+  position:absolute; left:0; bottom:0; width:0; height: var(--lab-bottom);
+  border-left: var(--stroke-2) solid var(--ink);
+}
+.ppe-tl-row .m-tl-evt .lc-dia{
+  position:absolute; left:0; top:100%;
+  transform: translate(-50%, -50%);
+  z-index:7; background: var(--band); padding: 0 var(--space-1);
+  color: var(--accent);
+}
+.ppe-tl-row .evt-lab{
+  position:absolute; left:0; bottom: var(--lab-bottom); transform: translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap: var(--space-1);
+  width: max-content;
+}
+.ppe-tl-row .evt-lab .t1{
+  margin:0; white-space:nowrap;
+  font-size: var(--t3-fs); font-weight: var(--t1-fw); line-height: var(--t3-lh); color: var(--ink);
+}
+.ppe-tl-row .evt-out{
+  display:inline-flex; align-items:center; justify-content:center;
+  height: var(--mchip-h); padding: 0 var(--mchip-px);
+  border: var(--stroke-1) solid var(--accent); border-radius: var(--radius-pill);
+  background: var(--accent-soft); color: var(--accent);
+  font-size: var(--mchip-fs); font-weight: var(--mchip-fw); line-height: var(--mchip-lh);
+  white-space: nowrap;
+}
+
+/* Dep unify-A rail track — shared by ppe-tl-row + L2 peer srows (B10) */
+.ch04-reval .srow,
+.ppe-tl-row.srow{
+  display:grid;
+  grid-template-columns:calc(5 * var(--space-6) + var(--space-2) + var(--stroke-1)) minmax(0,1fr);
+  gap:var(--space-cell);
+  align-items:stretch;
+  min-width:0;
+  box-sizing:border-box;
+}
+/* Tall L2 rails: override live ch04-reval fit-content short-pill on bare > .inner-rail */
+.ch04-reval .srow > .inner-rail{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  align-self:stretch !important;
+  justify-content:flex-start;
+  width:auto !important;
+  max-width:none;
+  height:auto;
+  min-height:0;
+  gap:var(--space-1);
+  margin:0;
+  padding:var(--space-cell);
+  border-radius:var(--radius-s);
+  text-align:left;
+  box-sizing:border-box;
+}
+.ch04-reval .srow > .inner-rail > a.fb-num,
+.ch04-reval .srow > .inner-rail > .rail-name{
+  flex:0 0 auto;
+  margin:0;
+  text-align:left;
+}
+.ch04-reval .srow > .inner-detail,
+.ch04-reval .srow > .tl-pane{
+  min-width:0;
+  box-sizing:border-box;
+}
+.ch04-reval .srow > .inner-detail{
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-2);
+  padding:var(--space-2) var(--space-3);
+}
+/* Thin kicker above Cost/Reval peer srows — not a second Revaluation title */
+.ch04-reval .rev-kicker{
+  margin:0;
+  padding:0;
+  font-size:var(--t3-fs);
+  font-weight:var(--t3-strong-fw);
+  line-height:var(--t3-lh);
+  color:var(--muted);
+  letter-spacing:var(--legacy-ls-5,0.04em);
+  text-transform:uppercase;
+}
+
+/* LEGO B11 SIGNED spacing — object-to-border */
+.ch04-reval .srow > .inner-detail > .item-rows{
+  padding:var(--space-2) var(--space-3) !important;
+  box-sizing:border-box;
+  margin:0;
+}
+/* punch4: thin-tip.revaluation-reversal  to  .srow.rev-impair (shared L2 stretch CSS) */
+.ch04-reval .srow.rev-impair > .inner-detail{
+  gap:var(--space-2);
+}
+
+.ch04-reval .inner-board{
+  gap:var(--space-cell);
+}
+.ch04-reval .surplus-transfer{
+  margin:0;
+  padding:var(--space-2) var(--space-3);
+  box-sizing:border-box;
+}
+/* punch3: rev-nest inside .inner-detail was width:0 (container + flex)  to  matrix text stacked ~3800px.
+   Force nest/table to fill detail; restore 3-col rev-line; no overflow-wrap:anywhere. */
+.ch04-reval .srow > .inner-detail{
+  min-width:0;
+  width:auto;
+  overflow:visible;
+}
+.ch04-reval .srow > .inner-detail > .rev-nest{
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-1);
+  width:100%;
+  min-width:0;
+  align-self:stretch;
+  flex:0 0 auto;
+  container-type:normal; /* kill live inline-size on zero-shrink parent */
+  box-sizing:border-box;
+}
+.ch04-reval .srow .rev-table{
+  display:flex !important;
+  flex-direction:column;
+  gap:var(--space-cell);
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+  grid-template-columns:none !important;
+}
+.ch04-reval .srow .rev-head,
+.ch04-reval .srow .rev-line{
+  display:grid;
+  grid-template-columns:minmax(calc(2 * var(--space-6) + var(--space-5)), 0.7fr) minmax(0, 1fr) minmax(0, 1fr);
+  column-gap:var(--space-cell);
+  row-gap:var(--space-cell);
+  align-items:stretch;
+  min-width:0;
+  width:100%;
+}
+.ch04-reval .srow .rev-cell > span,
+.ch04-reval .srow .rev-row .rev-k,
+.ch04-reval .srow .rev-row .rev-sub,
+.ch04-reval .srow .rev-col > span{
+  white-space:normal;
+  overflow-wrap:normal;
+  word-break:normal;
+  max-width:100%;
+}
+.ch04-reval .srow .rev-kicker{
+  margin:0 0 var(--space-1);
+}
+
+/* --- Impair plate body (FINAL-B6-K5b impair-master style, mock chrome and L1 stretch omitted) --- */
+/* B10 rail | detail rows — unify-A track (unchanged from BEFORE; same as Dep/Reval) */
+.ch04-impair .inner-board{display:flex;flex-direction:column;gap:var(--space-cell);min-width:0}
+.ch04-impair .srow{
+  display:grid;
+  grid-template-columns:calc(5 * var(--space-6) + var(--space-2) + var(--stroke-1)) minmax(0,1fr);
+  gap:var(--space-cell);
+  align-items:stretch;
+  min-width:0;
+  box-sizing:border-box;
+}
+.ch04-impair .srow > .inner-rail{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  align-self:stretch !important;
+  justify-content:flex-start;
+  width:auto !important;
+  max-width:none;
+  height:auto;
+  margin:0;
+  padding:var(--space-cell);
+  border-radius:var(--card-radius);
+  box-sizing:border-box;
+  gap:var(--space-1);
+}
+.ch04-impair .srow > .inner-rail > .rail-name{margin:0;text-align:left}
+.ch04-impair .srow > .inner-detail,
+.ch04-impair .srow > .tl-pane{min-width:0;box-sizing:border-box}
+/* Detail = signed Reval .srow > .inner-detail recipe. Top-aligned (no centring, no min-height). */
+.ch04-impair .srow > .inner-detail{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  gap:var(--space-2);
+  padding:var(--space-2) var(--space-3);
+}
+
+/* Text roles — unchanged from BEFORE */
+.ch04-impair .phase-line{margin:0;font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);color:var(--ink)}
+.ch04-impair .phase-line.lead{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh)}
+/* Delta 2: chip sits at the end of its sentence (row + wrap), not on its own line */
+.ch04-impair .node,
+.ppe.ch06-map > .comp-nest > .impair-comp .node{display:block;min-width:0;margin:0}
+.ch04-impair .node > .phase-line,
+.ch04-impair .node > span:not(.cite-run):not(.see),
+.ppe.ch06-map > .comp-nest > .impair-comp .node > span:not(.cite-run):not(.see){display:inline}
+.ch04-impair .node > .cite-run,
+.ch04-impair .node > .see,
+.ppe.ch06-map > .comp-nest > .impair-comp .node > .cite-run{display:inline-flex;flex-wrap:wrap;align-items:center;gap:var(--space-1);vertical-align:top;margin:0 0 0 var(--space-2)}
+/* vertical-align:top keeps the first text line on the padding edge (rail label top-align ≤1px, as signed Dep) */
+
+/* Delta 2: B11 inner grid. B03 cell = signed 1px nested cell (Dep .peer: stroke-1 --line, --band, --card-radius),
+   LEGO object-to-border padding (--space-2 / --space-3). */
+.ch04-impair .cell-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:var(--space-cell);align-items:stretch;min-width:0}
+.ch04-impair .cell{
+  display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2);
+  margin:0;padding:var(--space-2) var(--space-3);
+  border:var(--stroke-1) solid var(--line);
+  border-radius:var(--card-radius);
+  background:var(--band);
+  min-width:0;box-sizing:border-box;
+}
+
+/* Fork (LOCK: same two leaves, same order). Delta 3: arms use the 1px cell stroke, not stroke-2. */
+.ch04-impair .fork{display:grid;grid-template-columns:repeat(2, max-content);gap:var(--space-cell)}
+.ch04-impair .arm{
+  display:flex;flex-direction:column;gap:var(--space-1);
+  padding:var(--space-2) var(--space-3);
+  border:var(--stroke-1) solid var(--line);
+  border-radius:var(--card-radius);
+  background:var(--band);
+  min-width:0;box-sizing:border-box;
+}
+.ch04-impair .arm.yes{border-color:var(--accent)}
+.ch04-impair .arm-k{margin:0;font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh)}
+.ch04-impair .arm.no .arm-k{color:var(--muted)}
+.ch04-impair .arm.yes .arm-k{color:var(--accent)}
+.ch04-impair .arm p{margin:0;font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);color:var(--ink)}
+
+/* Delta 3: ladder = one component for B and C. Real flow shaft (map-box .m-shaft contract, IAS 2 canonical
+   recipe re-scoped — IAS 16 pack has no scoped .m-shaft; see jobcard "missing"). Gap 0 so the shaft touches both cells. */
+.ppe:is(.pack, .ch04-map) .plate.ch04-impair .impair-ca-flow{display:flex;flex-direction:column;align-items:stretch;gap:0;width:max-content;min-width:0}
+.ch04-impair .m-shaft{position:relative;display:block;height:var(--space-5);margin:0;background:none}
+.ch04-impair .m-shaft.m-flow::before{
+  content:"";position:absolute;top:0;bottom:var(--rail-bar-l);left:50%;
+  width:var(--stroke-2);transform:translateX(-50%);background:var(--link-semantic);
+}
+.ch04-impair .m-shaft.m-flow::after{
+  content:"";position:absolute;left:50%;bottom:0;width:0;height:0;transform:translateX(-50%);
+  border-left:var(--arrowhead) solid transparent;
+  border-right:var(--arrowhead) solid transparent;
+  border-top:var(--rail-bar-l) solid var(--link-semantic);
+}
+/* Atlas #12/#18 mute: stroke-1 --dash on the same shaft + head; solid, never dashed */
+.ch04-impair .m-shaft.m-flow.mute::before{width:var(--stroke-1);background:var(--dash)}
+.ch04-impair .m-shaft.m-flow.mute::after{border-top-color:var(--dash)}
+.ch04-impair .impair-ca-flow.mute .impair-ca-cell{border-color:var(--dash)}
+/* Rev g: C contrast ladder = secondary text token, regular weight; B ladder stays the hero */
+.ppe:is(.pack, .ch04-map) .plate.ch04-impair .impair-ca-flow.mute .impair-ca-k{color:var(--muted);font-weight:var(--t2-fw)}
+
+/* Delta 2: C Pair = nested rail | detail peers (Cost, Revaluation) */
+.ch04-impair .inner-detail > .inner-board.pair-rows{gap:var(--space-cell)}
+
+/* Delta 1/3: Compensation own row; list gets the LEGO padding token (= signed Reval item-rows) */
+.ch04-impair .srow > .inner-detail > .item-rows{padding:var(--space-2) var(--space-3) !important;box-sizing:border-box;margin:0}
+
+/* Timeline pane + head = signed Dep .tl-pane / .head recipe */
+.ch04-impair .tl-pane{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;box-sizing:border-box;height:100%}
+.ch04-impair .head{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+
+/* Flag + axis — BYTE-IDENTICAL to BEFORE (signed flag geometry LOCK) */
+.ch04-impair .t1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
+.ch04-impair .t2{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0;color:var(--muted)}
+.ch04-impair .m-tl{position:relative;min-width:0}
+.ch04-impair .m-tl-axis{
+  position:relative;
+  margin:0 var(--space-2) 0 var(--space-3);
+  padding-right:17rem;
+  box-sizing:border-box;
+}
+.ch04-impair .m-tl-shaft{
+  --pole-h:calc(var(--space-6) * 7 + var(--space-2));
+  position:relative;
+  /* Reval-signed shaft height (room for the note under the ticks) */
+  height:calc(var(--pole-h) + var(--space-6) * 2 + var(--space-3));
+}
+.ch04-impair .m-tl-line{
+  --head:var(--space-4);
+  position:absolute;left:0;top:var(--pole-h);
+  width:calc(100% + var(--space-6));
+  height:var(--stroke-2);background:var(--muted);border:0;
+}
+.ch04-impair .m-tl-line::after{
+  content:"";position:absolute;left:100%;top:50%;
+  width:0;height:0;margin-top:calc(-1 * var(--head));
+  border-top:var(--head) solid transparent;
+  border-bottom:var(--head) solid transparent;
+  border-left:var(--head) solid var(--muted);
+}
+.ch04-impair .m-tl-ring{
+  position:absolute;top:calc(var(--pole-h) + var(--stroke-2) / 2);
+  width:var(--space-3);height:var(--space-3);
+  border:var(--stroke-2) solid var(--ink);background:var(--surface);border-radius:50%;
+  transform:translate(-50%, -50%);z-index:6;
+}
+.ch04-impair .m-tl-flag{
+  position:absolute;top:0;
+  height:calc(var(--pole-h) + var(--stroke-2) / 2);
+  width:max-content;max-width:16rem;z-index:4;
+}
+.ch04-impair .m-tl-pole{
+  position:absolute;left:0;top:0;bottom:0;width:0;margin:0;
+  border-left:var(--stroke-2) solid var(--ink);background:none;
+}
+.ch04-impair .m-tl-flag .l3{
+  width:max-content;max-width:calc(16rem - var(--stroke-2));
+  margin-left:var(--stroke-2);margin-top:var(--space-1);
+  border:var(--stroke-2) solid var(--line);border-radius:0;
+  background:var(--surface);
+  padding:var(--space-1) var(--space-2);
+  display:flex;flex-direction:column;gap:var(--space-hairline);
+}
+.ch04-impair .m-tl-rd{position:absolute;top:calc(var(--pole-h) + var(--stroke-2));width:0;z-index:5}
+.ch04-impair .rd-tick{position:absolute;left:0;top:0;width:0;height:var(--space-3);border-left:var(--stroke-2) solid var(--ink)}
+.ch04-impair .rd-lab{
+  position:absolute;left:0;top:var(--space-3);transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;width:max-content;
+}
+.ch04-impair .rd-lab .k,
+.ch04-impair .rd-lab .act{margin:0;white-space:nowrap;font-size:var(--t3-fs);line-height:var(--t3-lh);color:var(--ink)}
+.ch04-impair .rd-lab .k{font-weight:var(--t1-fw)}
+
+/* Delta 1: span text = signed Dep C3 ribbon recipe (verbatim, re-scoped). Caption v-centred in the band. */
+.ch04-impair .m-tl-ribbon{
+  position:absolute;
+  left: var(--stroke-2);
+  width: calc(100% - var(--stroke-2) * 2);
+  top: calc(var(--pole-h) - var(--space-6));
+  height: var(--space-6);
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(to right, color-mix(in srgb, var(--accent) 35%, var(--bg)), var(--accent));
+  z-index:3;
+}
+.ch04-impair .m-tl-ribbon p{
+  margin:0; line-height:1;
+  font-size: var(--t3-fs); font-weight: var(--t3-strong-fw); color: var(--ink);
+}
+/* Delta 1: note under the ticks = signed Reval .m-tl-foot recipe; top moved one token step below the 2-line tick labels */
+.ch04-impair .m-tl-foot{
+  position:absolute; left:0; right:0; margin:0; text-align:center;
+  top: calc(var(--pole-h) + var(--space-6) + var(--space-4));
+  font-size: var(--t2-fs); font-weight: var(--t2-fw); line-height: var(--t2-lh); color: var(--ink);
+}
+
+
+/* F1-F4 + CS1 selectors. FS2 ADDENDUM-CS1 §a.4 verbatim.
+   F2 cite-run rules stay so a sentence + section chip still share a line (cite chips themselves are stripped). */
+.ppe:is(.pack, .ch04-map) .plate.ch04-reval .node{display:block;min-width:0;margin:0}
+.ppe:is(.pack, .ch04-map) .plate.ch04-reval .node > :is(p,span):not(.cite-run):not(.see),
+.ppe:is(.pack, .ch04-map) .plate.ch04-reval .node > a:not(.cite){display:inline}
+.ppe:is(.pack, .ch04-map) .plate.ch04-reval .node > .cite-run{display:inline-flex;flex-wrap:wrap;align-items:center;gap:var(--space-1);vertical-align:top;margin:0 0 0 var(--space-2)}
+.ppe:is(.pack, .ch04-map) .plate.ch04-reval .srow > .inner-detail > .surplus-transfer.node{display:block;padding:0}
+.ppe:is(.pack, .ch04-map) .plate.ch04-reval .srow > .inner-detail > .inner-board.pair-rows{gap:var(--space-cell)}
+.ppe:is(.pack, .ch05-map) .plate.ch05-dep .cell-grid{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:var(--space-cell);align-items:stretch;min-width:0}
+.ppe:is(.pack, .ch05-map) .plate.ch05-dep .cell{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2);margin:0;padding:var(--space-2) var(--space-3);border:var(--stroke-1) solid var(--line);border-radius:var(--card-radius);background:var(--band);min-width:0;box-sizing:border-box}
+.ppe:is(.pack, .ch05-map) .plate.ch05-dep .cell > .soft-note{margin:0}
+.ppe:is(.pack, .ch05-map) .plate.ch05-dep .inner-detail:has(> .cell-grid:first-child){padding-top:var(--space-1)}
+.ppe:is(.pack, .ch05-map) .plate.ch05-dep .cap-rows{padding:var(--space-2) var(--space-3)}
+
+/* X25 (4): master hides the three plate titles. Chapter pages keep them. */
+.ppe.pack .plate:is(.ch04-reval, .ch05-dep, .ch04-impair) > .plate-title{display:none}
+
+/* Dep timeline row is a grid item on the live 2-column inner-board, and its rail matches the Reval L2 stretch. */
+.ch05-dep .srow > .inner-rail{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  align-self:stretch !important;
+  justify-content:flex-start;
+  width:auto !important;
+  max-width:none;
+  height:auto;
+  min-height:0;
+  gap:var(--space-1);
+  margin:0;
+  padding:var(--space-cell);
+  border-radius:var(--card-radius);
+  text-align:left;
+  box-sizing:border-box;
+}
+.ch05-dep .srow > .inner-rail > .rail-name{
+  flex:0 0 auto;
+  margin:0;
+  text-align:left;
+}
+
+/* --- Timeline redraw overlay: K5b file (= B2 Dep/Reval rules + K5b Impair gate). Loaded last so it wins. --- */
+/* FINAL-B (Johnny 18:52 via PM 5): map 0 cite · VG 4b · L278/L280 lane under the axis with a pointed end + faded tail ·
+   L317 solid lane · L166-168 neutral loss outcome · L184/L188 fork = stem, one bar, two equal arms · L281 fork stays (Johnny exception 18:52).
+   Same tokens as FINAL. This file replaces TL-REDRAW-98.css on the FINALB-* pages only. */
+
+/* =====================================================================
+   #98 V3 timeline redraw — Reval / Dep / Impair (MD2 DRAFT MOCK, 2026-10-20)
+   Source: IAS16-DEP-REVAL-BASE-VS-NEW-98.md Rev f (F1-F3) + IAS36-IMPAIR-TIMELINE-STORY-98.md
+   Tokens only. Loaded AFTER the signed plate CSS on master and on ch04 / ch05.
+   Scope = plate class only (.plate.ch04-reval / .plate.ch05-dep / .plate.ch04-impair),
+   so the same rule set runs on master (.ppe.pack) and on chapter pages (CS1 rule).
+   Signed flags / ribbon / rings / arrow / body rules are NOT restated here.
+   ===================================================================== */
+
+/* ---------- 1. Shared roles ---------- */
+
+/* 1z. ONE ring token for the Reval plate: the ◆ outline and the case (b) pole casing both read it (Johnny 17:55). */
+.plate.ch04-reval{--tl-ring-w:var(--stroke-1); --tl-ring:var(--tl-ring-w) solid var(--band)}   /* --tl-ring-w = its width, read only to seat the case (b) segments */
+
+/* 1a. Period-end tick (Reval + Impair): signed Impair V3 .rd-tick recipe, one rule for both. */
+.plate:is(.ch04-reval, .ch04-impair) .m-tl-rd{
+  position:absolute; top:calc(var(--pole-h) + var(--stroke-2));
+  left:calc(100% * var(--k) / var(--pe-n));
+  width:0; z-index:5;
+}
+.plate:is(.ch04-reval, .ch04-impair) .rd-tick{
+  position:absolute; left:0; top:0; width:0; height:var(--space-3);
+  border-left:var(--stroke-2) solid var(--ink);
+}
+
+/* 1b. Key under the axis (Reval + Dep): left edge = Begins ring, one row per meaning. */
+.plate:is(.ch04-reval, .ch05-dep) .m-tl-key{
+  display:flex; flex-direction:column; gap:var(--space-1);
+  margin:0; min-width:0;
+}
+.plate:is(.ch04-reval, .ch05-dep) .key-row{
+  display:flex; flex-wrap:wrap; align-items:center; column-gap:var(--space-2); row-gap:var(--space-1);
+  margin:0; min-width:0;
+  font-size:var(--t2-fs); font-weight:var(--t2-fw); line-height:var(--t2-lh); color:var(--ink);
+}
+.plate:is(.ch04-reval, .ch05-dep) .key-row.key-head{font-weight:var(--t1-fw)}
+.plate:is(.ch04-reval, .ch05-dep) .key-row.key-case{padding-left:calc(var(--space-4) + var(--space-2))}
+.plate:is(.ch04-reval, .ch05-dep) .key-mark{
+  flex:none; width:var(--space-4); height:var(--space-3);
+  display:flex; justify-content:center; align-items:flex-start;
+}
+/* key swatches = the axis marks themselves (same stroke, same token height) */
+.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-tick::before{content:""; height:var(--space-3); border-left:var(--stroke-2) solid var(--ink)}
+.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-mo::before{content:""; height:var(--space-2); border-left:var(--stroke-1) solid var(--muted)}
+.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-nil::before{content:""; height:var(--space-3); border-left:var(--stroke-1) solid var(--muted)}
+.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-dia{align-items:center; color:var(--accent); font-size:var(--t2-fs); line-height:1}
+.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl .cite-run{
+  display:inline-flex; flex-wrap:wrap; align-items:center; gap:var(--space-1);
+}
+
+/* ---------- 2. Reval (F1): 6 period-end ticks, 2 cases ---------- */
+.plate.ch04-reval .ppe-tl-row .m-tl-shaft{
+  --pe-n:7;                                   /* 6 ticks = k 1..6 of 7 equal steps Begins->Ceases */
+  height:calc(var(--pole-h) + var(--space-6)); /* under the line: tick hang only; key follows in flow */
+}
+.plate.ch04-reval .ppe-tl-row .m-tl-evt{left:calc(100% * var(--k) / var(--pe-n))}
+.plate.ch04-reval .ppe-tl-row .m-tl-evt.nil .evt-lab .t1{color:var(--muted); font-weight:var(--t3-strong-fw); white-space:normal; max-width:calc(var(--space-6) * 3 + var(--space-5)); text-align:center; text-wrap:balance}
+
+/* ---------- 3. Dep (F2): month-end ticks + year-end review ---------- */
+.plate.ch05-dep .ppe-tl-row .m-tl-shaft{--mo-n:48}  /* 4 years shown (year ends at 25/50/75%); 11 month ends per year */
+.plate.ch05-dep .ppe-tl-row .m-tl-mo{
+  position:absolute; top:calc(var(--pole-h) + var(--stroke-2));
+  left:calc(100% * var(--k) / var(--mo-n));
+  width:0; height:var(--space-2);
+  border-left:var(--stroke-1) solid var(--muted);
+  z-index:2;
+}
+
+/* ---------- 4. Impair (IAS 36): 3 period ends, fork drops from Year end ---------- */
+.plate.ch04-impair .m-tl-shaft{
+  --pe-n:4;                                            /* M1 25% · M2 50% · M3 75% */
+  --lab2:calc(2 * var(--t3-lh) * var(--t3-fs));        /* M2 label = 2 lines */
+  --drop-h:calc(var(--space-6) * 2);                   /* room for M1 interim note, then the fork */
+  height:calc(var(--pole-h) + var(--stroke-2) + var(--space-3) + var(--lab2) + var(--drop-h));
+}
+.plate.ch04-impair .rd-lab .sub{
+  margin:0; white-space:nowrap;
+  font-size:var(--t3-fs); font-weight:var(--t3-fw); line-height:var(--t3-lh); color:var(--muted);
+}
+.plate.ch04-impair .rd-lab .rd-note{
+  margin:var(--space-1) 0 0; max-width:calc(var(--space-6) * 6); white-space:normal; text-align:center; text-wrap:balance;
+  font-size:var(--t3-fs); font-weight:var(--t3-fw); line-height:var(--t3-lh); color:var(--muted);
+}
+.plate.ch04-impair .rd-lab .rd-note .cite-run{vertical-align:middle; margin-left:var(--space-1)}
+/* entry stem: Year-end mark -> first decision (flow, unlabelled; = live .varm stroke + head) */
+.plate.ch04-impair .rd-drop{
+  position:absolute; left:0; top:calc(var(--space-3) + var(--lab2));
+  height:var(--drop-h); width:calc(var(--stroke-1) + var(--stroke-1) / 2);
+  transform:translateX(-50%); background:var(--accent);
+}
+.plate.ch04-impair .rd-drop::after{
+  content:""; position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+  border-left:var(--arrowhead) solid transparent; border-right:var(--arrowhead) solid transparent;
+  border-top:var(--rail-bar-l) solid var(--accent);
+}
+
+/* V5 IAS 36 ruling 7: one short foot, signed .m-tl-foot type (t2 ink, centred); in flow under the fork
+   because the signed slot under the mark labels is now taken by the interim note and the entry stem */
+.plate.ch04-impair .tl-foot{position:static; margin:var(--space-4) 0 0; text-align:center}
+
+/* ---------- 5. Reval on-axis ◆ (FINAL = marker V3, Johnny 17:55) ----------
+   Signed ◆ sat 1px left / 1px above the 2px pole + 2px axis centre on a --band box wider than the glyph.
+   FINAL: centre on pole/tick and axis (half of --stroke-2), no box; CSS-drawn ◆ (8px square turned 45° = 11.3px,
+   = glyph ink) with the shared --tl-ring hugging it. Geometry exact, no font metrics. */
+.plate.ch04-reval .ppe-tl-row .m-tl-evt .lc-dia{
+  --dia-side:var(--space-2);
+  left:calc(var(--stroke-2) / 2); top:calc(100% + var(--stroke-2) / 2);
+  width:var(--dia-side); height:var(--dia-side); padding:0; background:none;
+  font-size:0; line-height:0; color:transparent; overflow:visible;
+}
+.plate.ch04-reval .ppe-tl-row .m-tl-evt .lc-dia::before{
+  content:""; position:absolute; inset:0; background:var(--accent);
+  transform:rotate(45deg); outline:var(--tl-ring);
+}
+
+/* ---------- B1. Flow lane under the axis (VG L278, L280; supersedes Dep C3 "above the axis" 10-19) ----------
+   Lane = exactly Begins ring -> End ring (x 0 -> 100%), pointed end at End, solid accent (L317: no gradient).
+   It sits under the recurring ticks and their labels with a 4px (--space-1) clear gap, so ticks stay legible. */
+.plate:is(.ch04-reval, .ch05-dep, .ch04-impair){--lane-h:var(--space-6); --lane-pt:calc(var(--space-6) / 2); --t3-line:calc(var(--t3-fs) * var(--t3-lh))}
+.plate.ch05-dep{--lane-top:calc(var(--stroke-2) + var(--space-4) + var(--t3-line) + var(--space-1))}     /* year-end tick + its label */
+.plate.ch04-reval{--lane-top:calc(var(--stroke-2) + var(--space-3) + var(--space-1))}                    /* period-end tick */
+.plate.ch04-impair{--lane-top:calc(var(--stroke-2) + var(--space-3) + var(--t3-line) * 5 + var(--space-1) * 2)} /* tick + M1 3-line label + 2-line note */
+.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl-ribbon{
+  left:0; width:100%;
+  top:calc(var(--pole-h) + var(--lane-top));
+  height:var(--lane-h);
+  box-sizing:border-box; padding:0 var(--lane-pt) 0 var(--space-3);
+  justify-content:flex-start;                     /* label at the lane start: the Impair entry stem crosses the lane at the Year-end tick, never through the label */
+  background:var(--accent);
+  clip-path:polygon(0 0, calc(100% - var(--lane-pt)) 0, 100% 50%, calc(100% - var(--lane-pt)) 100%, 0 100%);
+  z-index:3;
+}
+.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl-ribbon p{color:var(--bg)}
+/* shaft room: lane + gap before the key (Dep, Reval) */
+.plate:is(.ch04-reval, .ch05-dep) .ppe-tl-row .m-tl-shaft{height:calc(var(--pole-h) + var(--lane-top) + var(--lane-h) + var(--space-2))}
+
+/* ---------- B2. Axis past End = faded tail (L278) + long arrowhead (L279), one faded tone, no gradient ---------- */
+.plate:is(.ch04-reval, .ch05-dep, .ch04-impair){--tl-tail:color-mix(in srgb, var(--muted) 40%, var(--band))}
+.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl-line{
+  background:linear-gradient(to right, var(--muted) 0 calc(100% - var(--space-6)), var(--tl-tail) calc(100% - var(--space-6)) 100%);
+}
+.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl-line::after{border-left-color:var(--tl-tail)}
+
+/* ---------- B3. Reval case (b): no lane above the axis any more, so the pole is one 1px muted line, note -> axis ---------- */
+.plate.ch04-reval .ppe-tl-row .m-tl-evt.nil .evt-pole{
+  width:var(--stroke-1); border-left:0; background:var(--muted);
+  left:calc((var(--stroke-2) - var(--stroke-1)) / 2);       /* 1px core centred on the 2px tick */
+  height:calc(var(--lab-bottom) - var(--space-1));          /* 4px clear under the note; still lands on the axis */
+}
+.plate.ch04-reval .ppe-tl-row .m-tl-evt.nil .evt-lab .t1{color:var(--muted); font-weight:var(--t3-strong-fw); white-space:normal; max-width:calc(var(--space-6) * 3 + var(--space-5)); text-align:center; text-wrap:balance}
+
+/* ---------- B4. Impair: entry stem centred on the 2px Year-end tick, crossing the lane with the ring casing ---------- */
+.plate.ch04-impair .m-tl-shaft{
+  --drop-h:calc(var(--lane-top) + var(--lane-h) + var(--space-3) - var(--stroke-2) - var(--space-3) - var(--lab2));
+  height:calc(var(--pole-h) + var(--lane-top) + var(--lane-h) + var(--space-3));
+}
+.plate.ch04-impair .rd-drop{
+  left:calc(var(--stroke-2) / 2); box-sizing:content-box;
+  border-left:var(--stroke-1) solid var(--band); border-right:var(--stroke-1) solid var(--band);
+}
+
+/* ---------- B5. Impair fork (VG L184, L188): unlabelled stem -> one bar -> two equal arms -> outcomes ----------
+   Fork 1 centre = Year-end tick centre. Yes (continuing) = left arm; its outcome is decision 2, whose own fork
+   hangs under it. All x from the shaft width (the fork sits inside .m-tl-axis, so 50% = the Year-end tick). */
+.plate.ch04-impair .tl-drop{
+  --fork-q-w:calc(var(--space-6) * 8);
+  --fk-w:calc(var(--stroke-1) + var(--stroke-1) / 2);
+  --fk-stem:var(--space-3); --fk-arm:var(--space-6);
+  --x1:calc(50% + var(--stroke-2) / 2);                 /* decision 1 */
+  --d1:calc(var(--space-6) * 3 + var(--space-3));                        /* fork 1 half bar */
+  --x2:calc(var(--x1) - var(--d1));                     /* decision 2 = Yes outcome of fork 1 */
+  --d2:calc(var(--space-6) * 2 + var(--space-4));                        /* fork 2 half bar */
+  display:grid; grid-template-columns:100%; row-gap:0;
+  width:100%; margin:0;
+}
+.plate.ch04-impair .tl-drop > *{grid-column:1; justify-self:start; align-self:start; translate:-50% 0; margin:0}
+.plate.ch04-impair .tl-drop > .q{
+  width:var(--fork-q-w); box-sizing:border-box;
+  display:flex; flex-direction:column; align-items:flex-start; gap:var(--space-1);
+  padding:var(--space-2) var(--space-3);
+}
+.plate.ch04-impair .tl-drop > .q .q-lead{margin:0; font-size:var(--t2-fs); font-weight:var(--t2-fw); line-height:var(--t2-lh); color:var(--ink)}
+.plate.ch04-impair .tl-drop > .q .q-title{margin:0; text-wrap:balance}
+.plate.ch04-impair .tl-drop > .q1{grid-row:1; margin-left:var(--x1)}
+.plate.ch04-impair .tl-drop > .fk1{grid-row:2; --x:var(--x1); --d:var(--d1)}
+.plate.ch04-impair .tl-drop > .q2{grid-row:3; margin-left:var(--x2)}
+.plate.ch04-impair .tl-drop > .leaf.o1{grid-row:3; margin-left:calc(var(--x1) + var(--d1))}
+.plate.ch04-impair .tl-drop > .fk2{grid-row:4; --x:var(--x2); --d:var(--d2)}
+.plate.ch04-impair .tl-drop > .leaf.o2y{grid-row:5; margin-left:calc(var(--x2) - var(--d2))}
+.plate.ch04-impair .tl-drop > .leaf.o2n{grid-row:5; margin-left:calc(var(--x2) + var(--d2))}
+/* outcomes: content width, own height (same on master and chapter), never stretched */
+.plate.ch04-impair .tl-drop > .leaf{width:max-content; height:auto; align-self:start}
+/* L166-168: the loss outcome is neutral (= base .leaf: 1px --line, no fill, ink text) */
+.plate.ch04-impair .tl-drop > .leaf.loss{border:var(--stroke-1) solid var(--line); background:transparent}
+.plate.ch04-impair .tl-drop > .leaf.loss .leaf-name{color:var(--ink)}
+/* connector row: full width, no box; stem + bar + two arms drawn from --x / --d */
+.plate.ch04-impair .tl-drop > .fk{
+  position:relative; justify-self:stretch; translate:none; width:auto;
+  height:calc(var(--fk-stem) + var(--fk-arm));
+}
+.plate.ch04-impair .fk::before{          /* unlabelled stem from the decision's bottom edge */
+  content:""; position:absolute; top:0; left:var(--x); translate:-50% 0;
+  width:var(--fk-w); height:var(--fk-stem); background:var(--accent);
+}
+.plate.ch04-impair .fk-arm{
+  --arm:var(--accent);
+  position:absolute; top:var(--fk-stem); bottom:0; width:var(--fk-w); translate:-50% 0;
+  background:var(--arm);
+}
+.plate.ch04-impair .fk-arm.no{--arm:var(--dash)}
+.plate.ch04-impair .fk-arm.yes{left:calc(var(--x) - var(--d))}
+.plate.ch04-impair .fk-arm.no{left:calc(var(--x) + var(--d))}
+.plate.ch04-impair .fk-arm::before{      /* this arm's half of the one bar, from the arm to the stem */
+  content:""; position:absolute; top:0; height:var(--fk-w); width:var(--d); background:var(--arm);
+}
+.plate.ch04-impair .fk-arm.yes::before{left:0}
+.plate.ch04-impair .fk-arm.no::before{right:0}
+.plate.ch04-impair .fk-arm::after{       /* arrowhead = live .varm head tokens */
+  content:""; position:absolute; left:50%; bottom:0; translate:-50% 0;
+  border-left:var(--arrowhead) solid transparent; border-right:var(--arrowhead) solid transparent;
+  border-top:var(--rail-bar-l) solid var(--arm);
+}
+.plate.ch04-impair .fk-arm .arm-label{  /* one label per arm, centred mid-arm, same height both arms */
+  position:absolute; top:50%; left:calc(100% + var(--space-1)); translate:0 -50%; transform:none;
+  white-space:nowrap; background:none; padding:0;
+}
+
+/* ---------- B6. VG 4b L205-207: pair-reval cells = plain band (ladder = allowed 3rd level). Border width kept, colour off -> zero geometry change. ---------- */
+.plate.ch04-impair #pair-reval > .cell-grid > .cell{border-color:transparent}
+
+/* ---------- B2. Shrink empty space above the axis (Dep + Impair only; Johnny 19:31) ----------
+   Signed --pole-h = 7*space-6 + space-2 = 232px left ~130px empty under the Ceases card once the lane moved below.
+   New --pole-h = 4*space-6 = 128px  to  ~24–26px clear under Ceases (≥4px L254). Reval keeps 232: case (b) note + ◆ sit in that space. */
+.plate:is(.ch05-dep, .ch04-impair) .m-tl-shaft{--pole-h:calc(var(--space-6) * 4)}
+
+/* ---------- B4. Impair Option 1 (Johnny 21:00 / Content STORY-RETHINK §Option 1) — Impair ONLY ----------
+   Delete continuous "Subject to impairment review" Begins to End lane. Axis = period-end ticks; one worked fork
+   hangs from Year end, entirely below the axis (nothing to pierce). L278/L280 n/a on Impair; Dep/Reval lanes stay. */
+.plate.ch04-impair .m-tl-ribbon{display:none}
+/* shaft / entry stem: no lane-h. Label stack under ticks kept (--lane-top); drop reaches past it + --space-3 to Q1. */
+.plate.ch04-impair .m-tl-shaft{
+  --drop-h:calc(var(--lane-top) + var(--space-3) - var(--stroke-2) - var(--space-3) - var(--lab2));
+  height:calc(var(--pole-h) + var(--lane-top) + var(--space-3));
+}
+
+/* ---------- B6. Impair F′ + MF shell (Johnny GO ~21:55 / Content F′ + UAT-MF §5) — Impair ONLY ----------
+   Three equal on-axis period-end ticks. Fork/ribbon gone. Gate 1 to 2 = own .srow under timeline.
+   Tokens only. No pe-pill / stack / board / caption. Ceases fly-right; pole = stroke-2 (2px). */
+.plate.ch04-impair .m-tl-ribbon{display:none}
+.plate.ch04-impair .tl-drop,
+.plate.ch04-impair .rd-drop,
+.plate.ch04-impair .m-tl-rd.feat .rd-drop{display:none}
+.plate.ch04-impair .rd-lab .act{display:none}
+/* Equal ticks — strip feat accent if any leftover class */
+.plate.ch04-impair .m-tl-rd.feat .rd-tick{border-left-color:var(--ink)}
+/* Shaft: tick + 2-line lab + M1 note room; no fork drop */
+.plate.ch04-impair{
+  --lane-top:calc(var(--stroke-2) + var(--space-3) + var(--t3-line) * 4 + var(--space-1) * 2);
+}
+.plate.ch04-impair .m-tl-shaft{
+  --drop-h:calc(var(--stroke-2) - var(--stroke-2));
+  height:calc(var(--pole-h) + var(--lane-top) + var(--space-3));
+}
+/* Foot under ticks (not a second teaching band) */
+.plate.ch04-impair .m-tl-foot{
+  position:absolute; left:0; right:0; margin:0; text-align:center;
+  top:calc(var(--pole-h) + var(--lane-top));
+  font-size:var(--t2-fs); font-weight:var(--t2-fw); line-height:var(--t2-lh); color:var(--ink);
+}
+/* Pole = 2px (VG §6). B4 Impair already stroke-2; keep explicit for Impair flags. */
+.plate.ch04-impair .m-tl-pole{
+  width:0; border-left:var(--stroke-2) solid var(--ink); background:none;
+}
+/* Ceases / Begins card flies RIGHT of pole (margin-left on .l3 already in base; reinforce) */
+.plate.ch04-impair .m-tl-flag .l3{
+  margin-left:var(--stroke-2);
+}
+.plate.ch04-impair .m-tl-flag.cease .l3{
+  margin-left:var(--stroke-2);
+  margin-right:0;
+}
+/* (ALPHA phase-line Gate nest removed — replaced by B6-K5 block below) */
+
+/* ---------- B6-ALPHA. S1 chrome + compress + foot DROP — Impair ONLY ----------
+   Structure = B6 (equal ticks · Gate own srow · nest nth-child). Foot DROP.
+   Design A may omit .k in HTML; CSS stays shared. Tokens only. */
+.plate.ch04-impair .m-tl-foot{display:none}
+
+
+/* ---------- B6-K5b. Impair Gate = K5 Fork nested; Gate2 CHILD of Yes leaf column ----------
+   Relocate (Johnny punch ~00:50): empty space was vertical void + dead under-No slab because
+   .g2 sat as sibling-after-.gate-out (full-width under left-border cue). Move .g2 inside
+   .leaf.cont.o-yes so nest-under-Yes is spatial. No-test leaf has nothing stacked under it.
+   Tighten: shorter --fk-stem/--fk-arm and kill sibling void margins (existing tokens only).
+   NO on-axis fork · NO IG · S1 chrome · foot DROP · cite=0. */
+.plate.ch04-impair .m-tl-foot{display:none}
+
+.plate.ch04-impair #impair-gates > .inner-detail{
+  display:flex; flex-direction:column; justify-content:flex-start; align-items:stretch;
+  gap:var(--space-2);
+  padding:var(--space-2) var(--space-3);
+}
+.plate.ch04-impair #impair-gates > .inner-detail > .node{display:none}
+
+/* Gate 1 — tightened shaft tokens */
+.plate.ch04-impair #impair-gates .g1{
+  --fk-w:calc(var(--stroke-1) + var(--stroke-1) / 2);
+  --fk-stem:var(--space-1);
+  --fk-arm:var(--space-3);
+  --d1:calc(var(--space-6) * 4);
+  --d2:calc(var(--space-6) * 2);
+  --q-w:calc(var(--space-6) * 7);
+  display:grid; grid-template-columns:100%; row-gap:0; justify-items:center;
+  width:100%;
+  box-sizing:border-box;
+}
+.plate.ch04-impair #impair-gates .g1 > .q{
+  width:var(--q-w); max-width:100%; box-sizing:border-box; margin:0; justify-self:center;
+  display:flex; flex-direction:column; align-items:flex-start; gap:var(--space-1);
+  padding:var(--space-1) var(--space-2);
+  border:var(--stroke-1) solid var(--line); border-radius:var(--radius-s);
+  background:var(--bg);
+}
+.plate.ch04-impair #impair-gates .g1 > .q .q-title{
+  margin:0; text-wrap:balance;
+  font-size:var(--t1-fs); font-weight:var(--t1-fw); line-height:var(--t1-lh); color:var(--ink);
+}
+.plate.ch04-impair #impair-gates .g1 > .q .q-title > span{display:inline}
+
+/* unlabelled drop  to  bar  to  equal arms (VG §3) */
+.plate.ch04-impair #impair-gates .g1 > .fk{
+  position:relative; justify-self:center;
+  width:calc(var(--d1) * 2); height:calc(var(--fk-stem) + var(--fk-arm));
+  margin-top:0;
+}
+.plate.ch04-impair #impair-gates .g1 > .fk::before{
+  content:""; position:absolute; top:0; left:50%; translate:-50% 0;
+  width:var(--fk-w); height:var(--fk-stem); background:var(--accent);
+}
+.plate.ch04-impair #impair-gates .g1 .fk-arm{
+  --arm:var(--accent);
+  position:absolute; top:var(--fk-stem); bottom:0; width:var(--fk-w); translate:-50% 0; background:var(--arm);
+}
+/* continuing Yes = col1 (left); mute No exit = right */
+.plate.ch04-impair #impair-gates .g1 .fk-arm.yes{left:calc(50% - var(--d1))}
+.plate.ch04-impair #impair-gates .g1 .fk-arm.no{--arm:var(--dash); left:calc(50% + var(--d1))}
+.plate.ch04-impair #impair-gates .g1 .fk-arm::before{
+  content:""; position:absolute; top:0; height:var(--fk-w); width:var(--d1); background:var(--arm);
+}
+.plate.ch04-impair #impair-gates .g1 .fk-arm.yes::before{left:0}
+.plate.ch04-impair #impair-gates .g1 .fk-arm.no::before{right:0}
+.plate.ch04-impair #impair-gates .g1 .fk-arm::after{
+  content:""; position:absolute; left:50%; bottom:0; translate:-50% 0;
+  border-left:var(--arrowhead) solid transparent; border-right:var(--arrowhead) solid transparent;
+  border-top:var(--rail-bar-l) solid var(--arm);
+}
+.plate.ch04-impair #impair-gates .g1 .fk-arm .arm-label{
+  position:absolute; top:50%; left:calc(100% + var(--space-1)); translate:0 -50%;
+  white-space:nowrap; background:none; padding:0; margin:0;
+  font-size:var(--t3-fs); font-weight:var(--t3-fw); line-height:var(--t3-lh); color:var(--ink);
+}
+.plate.ch04-impair #impair-gates .g1 .fk-arm.no .arm-label{color:var(--muted)}
+
+/* outcomes: Yes column IN FLOW (owns nest height); No leaf ABSOLUTE short at right — no dead slab */
+.plate.ch04-impair #impair-gates .g1 > .gate-out{
+  position:relative; width:calc(var(--d1) * 2); justify-self:center;
+  margin:0; /* no sibling void under leaves */
+  min-height:0;
+}
+.plate.ch04-impair #impair-gates .g1 > .gate-out > .leaf{
+  box-sizing:border-box; margin:0;
+  padding:var(--space-1) var(--space-2);
+  border:var(--stroke-1) solid var(--line); border-radius:var(--radius-s);
+  background:var(--bg);
+}
+/* No-test: short chip only, absolute under No arm — nothing stacked beneath */
+.plate.ch04-impair #impair-gates .g1 > .gate-out > .leaf.o-no{
+  position:absolute; top:var(--space-1); left:calc(50% + var(--d1));
+  width:max-content; max-width:calc(var(--space-6) * 5);
+  translate:-50% 0;
+  border-color:var(--dash);
+}
+/* Estimate RA column: in-flow under Yes arm; centres on Yes axis; owns .g2 */
+.plate.ch04-impair #impair-gates .g1 > .gate-out > .leaf.o-yes{
+  position:relative; left:calc(50% - var(--d1));
+  translate:-50% 0;
+  top:var(--space-1);
+  display:flex; flex-direction:column; align-items:center; gap:var(--space-1);
+  width:max-content; max-width:none;
+  padding:0; border:none; background:transparent;
+}
+.plate.ch04-impair #impair-gates .g1 .leaf .leaf-name{
+  margin:0; font-size:var(--t2-fs); font-weight:var(--t2-fw); line-height:var(--t2-lh); color:var(--ink);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.mute .leaf-name{color:var(--muted); font-weight:var(--t3-fw)}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont .leaf-name{color:var(--ink)}
+/* Yes column leaf-name reads as chip */
+.plate.ch04-impair #impair-gates .g1 > .gate-out > .leaf.o-yes > .leaf-name{
+  padding:var(--space-1) var(--space-2);
+  border:var(--stroke-1) solid var(--line); border-radius:var(--radius-s);
+  background:var(--bg);
+  align-self:center;
+}
+
+/* Gate 2 — CHILD of Yes leaf (spatial nest-under-Yes = column-1 continue) */
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2{
+  --d:var(--d2);
+  --q-w:calc(var(--space-6) * 7);
+  display:grid; grid-template-columns:100%; row-gap:0; justify-items:center;
+  width:max-content; max-width:100%;
+  margin:0; /* was sibling void margin-top space-6+space-4 — killed */
+  padding:0;
+  box-sizing:border-box;
+  border-left:none; /* spatial ownership replaces left-border cue */
+  padding-left:0;
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .q-lead{
+  margin:0 0 var(--space-1); justify-self:center; width:var(--q-w); max-width:100%;
+  font-size:var(--t3-fs); font-weight:var(--t3-fw); line-height:var(--t3-lh); color:var(--muted);
+  text-align:center;
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .q{
+  width:var(--q-w); max-width:100%; box-sizing:border-box; margin:0; justify-self:center;
+  display:flex; flex-direction:column; align-items:flex-start; gap:var(--space-1);
+  padding:var(--space-1) var(--space-2);
+  border:var(--stroke-1) solid var(--line); border-radius:var(--radius-s);
+  background:var(--bg);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .q .q-title{
+  margin:0; text-wrap:balance;
+  font-size:var(--t1-fs); font-weight:var(--t1-fw); line-height:var(--t1-lh); color:var(--ink);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .fk{
+  position:relative; justify-self:center;
+  width:calc(var(--d2) * 2); height:calc(var(--fk-stem) + var(--fk-arm));
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .fk::before{
+  content:""; position:absolute; top:0; left:50%; translate:-50% 0;
+  width:var(--fk-w); height:var(--fk-stem); background:var(--accent);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 .fk-arm{
+  --arm:var(--accent);
+  position:absolute; top:var(--fk-stem); bottom:0; width:var(--fk-w); translate:-50% 0; background:var(--arm);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 .fk-arm.yes{left:calc(50% - var(--d2))}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 .fk-arm.no{--arm:var(--dash); left:calc(50% + var(--d2))}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 .fk-arm::before{
+  content:""; position:absolute; top:0; height:var(--fk-w); width:var(--d2); background:var(--arm);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 .fk-arm.yes::before{left:0}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 .fk-arm.no::before{right:0}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 .fk-arm::after{
+  content:""; position:absolute; left:50%; bottom:0; translate:-50% 0;
+  border-left:var(--arrowhead) solid transparent; border-right:var(--arrowhead) solid transparent;
+  border-top:var(--rail-bar-l) solid var(--arm);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 .fk-arm .arm-label{
+  position:absolute; top:50%; left:calc(100% + var(--space-1)); translate:0 -50%;
+  white-space:nowrap; background:none; padding:0; margin:0;
+  font-size:var(--t3-fs); font-weight:var(--t3-fw); line-height:var(--t3-lh); color:var(--ink);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 .fk-arm.no .arm-label{color:var(--muted)}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .gate-out{
+  position:relative; width:calc(var(--d2) * 2); height:calc(var(--space-5) + var(--space-1)); justify-self:center;
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .gate-out > .leaf{
+  position:absolute; top:var(--space-1); width:max-content; max-width:calc(var(--space-6) * 6);
+  box-sizing:border-box; margin:0;
+  padding:var(--space-1) var(--space-2);
+  border:var(--stroke-1) solid var(--line); border-radius:var(--radius-s);
+  background:var(--bg);
+  translate:-50% 0;
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .gate-out > .leaf.o-no{
+  left:calc(50% + var(--d2)); border-color:var(--dash);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .gate-out > .leaf.o-yes{
+  left:calc(50% - var(--d2));
+  /* g2 outcome leaves stay absolute chips — not nested columns */
+  display:block; translate:-50% 0; flex-direction:unset; align-items:unset; gap:unset;
+  width:max-content; max-width:calc(var(--space-6) * 6);
+  background:var(--bg);
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .gate-out > .leaf.loss{
+  border:var(--stroke-1) solid var(--line); background:transparent;
+}
+.plate.ch04-impair #impair-gates .g1 .leaf.cont.o-yes > .g2 > .gate-out > .leaf.loss .leaf-name{color:var(--ink); font-weight:var(--t2-fw)}
+

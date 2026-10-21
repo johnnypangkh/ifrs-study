@@ -1,6 +1,6 @@
 # Site infra — workbook #95
 
-**Owner:** IFRS Build · **Updated:** 2026-10-18 Asia/Shanghai  
+**Owner:** IFRS Build · **Updated:** 2026-10-21 Asia/Shanghai  
 **Update:** same PR as any infra change.
 
 ## Source of truth
@@ -39,3 +39,5 @@ flowchart LR
 | OD path? | `00. IFRS Web/ifrs-website-refs/` |
 | Repo docs path? | `docs/site-infra/` |
 | Full ops steps | `SITE-INFRA-RUNBOOK.md` |
+| Map cite count lint fails? | runbook § CI gates with pinned counts |
+| Map lint says shared class collision? | runbook § CI gates with pinned counts (rename the plate class; never edit the shared rule) |

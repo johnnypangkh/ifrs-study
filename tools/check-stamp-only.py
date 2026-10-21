@@ -522,6 +522,110 @@ def fold_row86(html):
     return _CLASS_ATTR.sub(repl, html)
 
 
+# #98 Dep/Reval/Impair plates — PM 5 approved 2026-10-20 15:23; FINAL-B2 19:39 +ch05; check-incremental owns teaching.
+# Folds only the #98 spots. A change outside these spots still fails.
+_ROW98_SENTENCE = (
+    " The revaluation date need not be the period end; what matters is that "
+    "at each period end the carrying amount does not differ materially from FV."
+)
+_ROW98_F3 = (
+    "<p>Useful life is the period over which an asset is expected to be available "
+    "for use by an entity, or the number of production or similar units expected "
+    "to be obtained from the asset by an entity. "
+    '<span class="cite cite-official">IAS 16 · para 6</span></p>\n'
+)
+_ROW98_F2 = re.compile(
+    r"\n[ \t]*<li>During use: depreciate over useful life;.*?</li>",
+    re.S,
+)
+_ROW98_REFS = re.compile(
+    r'\n[ \t]*<tr id="ref-ias16-p(?:6|48|50|51|61)">.*?</tr>',
+    re.S,
+)
+
+
+def _blank_span(html, start, end, token):
+    begin = html.find(start)
+    if begin < 0:
+        return html
+    finish = html.find(end, begin + len(start))
+    if finish < 0:
+        return html
+    finish += len(end)
+    return html[:begin] + token + html[finish:]
+
+
+def _blank_ch05_axis(html):
+    """Drop the kept ch05-axis source, including the hidden wrapper on head.
+
+    The marker stays in the chapter file so the AXIS gate has one source.
+    The three plates no longer render it. Stamp comparison ignores that spot.
+    """
+    hidden = html.find("<!-- X5: map-section:ch05-axis")
+    marker = html.find("<!-- map-section:ch05-axis:start -->")
+    end = html.find("<!-- map-section:ch05-axis:end -->")
+    if marker < 0 or end < 0:
+        return html
+    begin = hidden if 0 <= hidden < marker else marker
+    finish = end + len("<!-- map-section:ch05-axis:end -->")
+    if hidden >= 0 and hidden < marker:
+        close = html.find("</div>", finish)
+        if close >= 0:
+            finish = close + len("</div>")
+    return html[:begin] + "<!-- row98 ch05-axis -->" + html[finish:]
+
+
+def fold_row98(html, path):
+    """Ignore the signed #98 plate rewrites and the body/anchor spots only."""
+    if path in {
+        "ias-16/draft-v1-linked/visuals/ch05-depreciation.html",
+        "ias-16/draft-v1-linked/visuals/master-concept-map.html",
+    }:
+        html = _blank_span(
+            html,
+            "<!-- map-section:ch05-dep:start -->",
+            "<!-- map-section:ch05-dep:end -->",
+            "<!-- row98 ch05-dep -->",
+        )
+        html = _blank_span(
+            html,
+            "<!-- include:ch05-depreciation.html#ch05-dep:start -->",
+            "<!-- include:ch05-depreciation.html#ch05-dep:end -->",
+            "<!-- row98 ch05-dep -->",
+        )
+        html = _blank_ch05_axis(html)
+    if path in {
+        "ias-16/draft-v1-linked/visuals/ch04-models.html",
+        "ias-16/draft-v1-linked/visuals/master-concept-map.html",
+    }:
+        for section in ("ch04-reval", "ch04-impair"):
+            html = _blank_span(
+                html,
+                f"<!-- map-section:{section}:start -->",
+                f"<!-- map-section:{section}:end -->",
+                f"<!-- row98 {section} -->",
+            )
+            html = _blank_span(
+                html,
+                f"<!-- include:ch04-models.html#{section}:start -->",
+                f"<!-- include:ch04-models.html#{section}:end -->",
+                f"<!-- row98 {section} -->",
+            )
+    if path == "ias-16/draft-v1-linked/visuals/ch06-derecognition.html":
+        begin = html.find('<article class="comp-nest"')
+        finish = html.find('<p class="soft-onward">')
+        if begin >= 0 and finish > begin:
+            html = html[:begin] + "<!-- row98 ch06-comp -->\n  " + html[finish:]
+    if path == "ias-16/draft-v1-linked/ch04.html":
+        html = html.replace(_ROW98_SENTENCE, "")
+    if path == "ias-16/draft-v1-linked/ch05.html":
+        html = html.replace(_ROW98_F3, "")
+        html = _ROW98_F2.sub("", html, count=1)
+    if path == "ias-16/draft-v1-linked/references.html":
+        html = _ROW98_REFS.sub("", html)
+    return html
+
+
 def shared_visual_stamp_failure(base, head, path):
     """Return an error when path differs outside the shared-visual allowlist.
 
@@ -1714,6 +1818,8 @@ def main(argv=None):
         head = fold_map_pick_a(head)
         base = fold_row86(base)
         head = fold_row86(head)
+        base = fold_row98(base, path)
+        head = fold_row98(head, path)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)
