@@ -27,9 +27,9 @@
       "fingerprint": "e8e704d5901c3dbdabf01b147c68b251f19bae97a6c18e4b841219bf1ca07f6c"
     },
     "site": {
-      "text": "Last update · 2026-10-21 10:07 HKT",
-      "iso": "2026-10-21T10:07:00+08:00",
-      "fingerprint": "39ba6299574e899224b37a691943d3cb632414507561bc803f2dc47929194c7b"
+      "text": "Last update · 2026-10-21 11:18 HKT",
+      "iso": "2026-10-21T11:18:00+08:00",
+      "fingerprint": "cc906a2e4d57a977040bc43c8c5837e7e80924de6163573e890b37bb17307998"
     }
   };
 
