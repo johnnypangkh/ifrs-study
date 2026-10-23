@@ -1,0 +1,138 @@
+# PR 170 · #107 How-notes deepen.
+# CI approval path (pull_request number). Same rows as changes/cursor/how-notes-deepen-107-7ce3.yml.
+# Approval = Johnny V2 confirm V1 wording-only / STORY §1 bodies / STORY §3 BvN.
+# check-incremental pairs some card <li> text with a nested bullet because the
+# step locator lags one heading. Each row is still one of C1–C4.
+- action: changed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  old: "Check A cite has to match a source. Invented points are not kept."
+  new: "A cite has to match a source that was actually used for that pack."
+  source: "brief item C4"
+- action: changed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  old: "Read Against the standard and Big4, separate requirements from firm view."
+  new: "Read Against those sources, the notes separate what the Standard requires from how a firm explains or illustrates it."
+  source: "brief item C2"
+- action: changed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  old: "Against the standard and Big4, separate requirements from firm view."
+  new: "Against those sources, the notes separate what the Standard requires from how a firm explains or illustrates it."
+  source: "brief item C2"
+- action: changed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made"
+  old: "Sources Official standard plus the Big4 actually used. A source that was not used is not listed as if it were."
+  new: "Sources These notes start from sources that can be named."
+  source: "brief item C1"
+- action: changed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  old: "Shape What the page shows: Concept Map, sections, cite chips, Illustrations."
+  new: "Shape What each chapter page is built to show:"
+  source: "brief item C3"
+- action: changed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  old: "A cite has to match a source. Invented points are not kept."
+  new: "Before a point stays on the page, it has to survive a source check."
+  source: "brief item C4"
+- action: changed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  old: "Official standard plus the Big4 actually used. A source that was not used is not listed as if it were."
+  new: "These notes start from sources that can be named."
+  source: "brief item C1"
+- action: changed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  old: "What the page shows: Concept Map, sections, cite chips, Illustrations."
+  new: "What each chapter page is built to show:"
+  source: "brief item C3"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  new: "Case facts and numbers come from Official or pack Big4 examples. Invented companies or CU amounts are not kept."
+  source: "brief item C2"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  new: "Check Before a point stays on the page, it has to survive a source check."
+  source: "brief item C4"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  new: "Cite chips — on every sourced point: firm (or Official) + work + locator inside the chip (no bare house name, no § in chips)."
+  source: "brief item C3"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  new: "Concept Map — a teaching story in space and a jump board into the chapter. One glance should show how the parts relate; section chips jump to the matching body section. The map does not re-teach the full text."
+  source: "brief item C3"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  new: "Every pack lists its real sources on the References page. Cite chips in the chapter point back to those same works."
+  source: "brief item C1"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  new: "Firm FAQs / alerts only as support that densifies a manual view — never as a substitute for the Official text or for a manual that was never opened."
+  source: "brief item C1"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  new: "Firm manuals actually used for that pack (PwC, Deloitte / DTT, EY, KPMG where on disk and scanned for the chapter). A firm that was not used is not listed as if it were."
+  source: "brief item C1"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  new: "Firm views, examples, and FAQs keep their own house tags — they are not rewritten as if they were the Standard."
+  source: "brief item C2"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  new: "Illustrations — worked examples taken from Official or pack Big4 named examples / case facts (Facts → Assessment / Conclusion). Plain firm prose without case facts stays ordinary teaching text, not an Illustration."
+  source: "brief item C3"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  new: "Invented requirements, fake examples, and unsupported tips are removed."
+  source: "brief item C4"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  new: "Official Standard first — IFRS / IAS text for that pack, including Basis for Conclusions and Illustrative Examples where the chapter uses them."
+  source: "brief item C1"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  new: "Pack chrome the reader also sees: Abbreviations (short forms used in that standard), References, bottom Disclaimer, and Last update on every pack page."
+  source: "brief item C3"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  new: "Requirements and definitions stay tied to Official locators."
+  source: "brief item C2"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  new: "Sections — the deep study surface: definitions, tests, tables, and callouts in technical IFRS wording, detail-first so the reader does not have to reopen the PDFs for every point the pack covers."
+  source: "brief item C3"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  new: "Structure alone is not enough: thin placeholders that only restate a heading are not treated as finished teaching."
+  source: "brief item C4"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  new: "What the page promises the reader is traceability — every teaching claim can be walked back to Official or a named firm work — not that every PDF on earth was scanned."
+  source: "brief item C4"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  new: "When sources treat one point differently, the page shows both side by side and does not reconcile them into a third “in practice” answer."
+  source: "brief item C2"
