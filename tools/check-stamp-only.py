@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Existing pages may change only the Last update stamp text and ?v= restamps.
 
-The homepage may also gain the one Settings link. How these notes are made
-(homepage/how-these-notes-are-made.html) may change teaching body wording
-under the four steps (Sources / Read / Shape / Check). Stamp still owns
-chrome outside that fold: the step titles, step numbers, the flow rail,
-the Home link, and the page title. The live Master formatting
+The homepage Settings entry is a dual-allow: the legacy bare blue link or the
+#106 .card.ready card (card-code Settings, open-link to
+../site/settings/index.html). Either form is folded out of the comparison.
+How these notes are made (homepage/how-these-notes-are-made.html) may change
+teaching body wording under the four steps (Sources / Read / Shape / Check).
+Stamp still owns chrome outside that fold: the step titles, step numbers,
+the flow rail, the Home link, and the page title. The live Master formatting
 page (site/master-formatting/index.html, #100) may change ?v= only, the same
 shape as Settings, once it is on the base. A copy that is not on the base yet
 must still carry ?v= hashes that match disk. Writes nothing unless --csv is
@@ -73,6 +75,20 @@ UTILITY_CLASS = {
 LINK = (
     '    <p><a href="../site/settings/index.html" style="color:var(--blue)">Settings</a></p>\n'
 )
+# #106 signed Settings card, byte-for-byte with the live homepage, including
+# the proof comment. Presence accepts LINK or this block. The fold strips
+# whichever form is on each side.
+SETTINGS_CARD = (
+    "    <!-- #106 proof: Settings text link → .card.ready (How-notes sibling) -->\n"
+    '    <div class="card-row" style="margin-top:12px">\n'
+    '      <article class="card ready">\n'
+    '        <p class="card-code">Settings</p>\n'
+    '        <p class="card-title">Master styles / tokens</p>\n'
+    '        <a class="open-link" href="../site/settings/index.html">Open &gt;</a>\n'
+    '      </article>\n'
+    '    </div>\n'
+)
+SETTINGS_ENTRY = (LINK, SETTINGS_CARD)
 STAMPS_OBJ = re.compile(r"var STAMPS = \{.*?\n  \};", re.S)
 PATHS_OBJ = re.compile(r"var PACK_PATHS = \[.*?\n  \];", re.S)
 
@@ -506,6 +522,38 @@ def fold_map_pick_a(html):
     html = html.replace("→", " to ")
     html = html.replace("↓", "")
     html = html.replace("▶", "")
+    return html
+
+
+def _settings_forms(form):
+    """Raw markup and the same block after fold_map_pick_a (arrow rewrite)."""
+    folded = fold_map_pick_a(form)
+    if folded == form:
+        return (form,)
+    return (form, folded)
+
+
+def settings_entry_present(html):
+    """True when html still has the legacy link or the #106 Settings card."""
+    return any(
+        variant in html
+        for form in SETTINGS_ENTRY
+        for variant in _settings_forms(form)
+    )
+
+
+def fold_settings_entry(html):
+    """Drop one legacy Settings link and one #106 Settings card, if present.
+
+    Each form is removed at most once. fold_map_pick_a rewrites the card
+    comment's arrow before this strip, so both the raw block and that
+    rewrite count as the same entry.
+    """
+    for form in SETTINGS_ENTRY:
+        for variant in _settings_forms(form):
+            if variant in html:
+                html = html.replace(variant, "", 1)
+                break
     return html
 
 
@@ -2004,14 +2052,14 @@ def main(argv=None):
             base_n = fold_cf_theme(base_n)
             head_n = fold_cf_theme(head_n)
         if path == HOME:
-            if LINK not in head:
+            if not settings_entry_present(head):
                 print("homepage is missing the Settings link")
                 failed = True
-            # The Settings link is already on main. Strip it on both sides so an
-            # unchanged homepage is not reported as an edit, and a new link on
-            # an older base still compares equal.
-            head_n = head_n.replace(LINK, "", 1)
-            base_n = base_n.replace(LINK, "", 1)
+            # #106 dual-allow: legacy bare link or the Settings .card.ready.
+            # Strip whichever form is on each side (once) so an unchanged
+            # homepage still compares equal and the card swap is not content.
+            head_n = fold_settings_entry(head_n)
+            base_n = fold_settings_entry(base_n)
         # Johnny 2026-10-14 Option S / PR #124 — stamp gate ignores cite DOM order; check-incremental owns teaching.
         base_n = fold_cite_order(base_n)
         head_n = fold_cite_order(head_n)
