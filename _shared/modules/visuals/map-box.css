@@ -56,13 +56,37 @@
   border-color: var(--ink) !important;
 }
 
+/* #103 U1 — D4 KEEP pack names. Join the existing level whose tokens match tip.
+   .cell = full L2, same chrome as .peer (stroke-1, --line, --card-radius, --band).
+   .limb / .method-name = L2 border and radius. Tip fill is --bg; L2 --band and L3
+   --surface would repaint the formula and method cards.
+   .cost-result = that same L2 width, style, and radius. Not L2 --line: the result
+   border is --accent on ch03/ch05 and --line on ch06. Not L3 --radius-s. */
 .m-l2,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail {
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cell,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .limb,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .method-name,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cost-result {
   border-width: var(--stroke-1) !important;
   border-style: solid !important;
-  border-color: var(--line) !important;
   border-radius: var(--card-radius) !important;
+}
+
+.m-l2,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cell,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .limb,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .method-name {
+  border-color: var(--line) !important;
+}
+
+.m-l2,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .peer,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .inner-rail,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cell {
   background: var(--band) !important;
 }
 
@@ -76,9 +100,12 @@
   background: var(--surface) !important;
 }
 
+/* #103 U1 — .limb-note and .cap-mute join L4 (muted, unboxed), same job as .soft-note / .thin-tip. */
 .m-l4,
 .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .soft-note,
-.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .thin-tip {
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .thin-tip,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .limb-note,
+.ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map,.disc) .cap-mute {
   border-style: none !important;
   background: transparent !important;
   box-shadow: none !important;

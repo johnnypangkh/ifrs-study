@@ -8787,8 +8787,10 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   white-space:nowrap; background:none; padding:0;
 }
 
-/* ---------- B6. VG 4b L205-207: pair-reval cells = plain band (ladder = allowed 3rd level). Border width kept, colour off -> zero geometry change. ---------- */
-.plate.ch04-impair #pair-reval > .cell-grid > .cell{border-color:transparent}
+/* ---------- B6. VG 4b L205-207: pair-reval cells = plain band (ladder = allowed 3rd level). Border width kept, colour off -> zero geometry change. ----------
+   #103 U1: .cell joins L2, which sets border-color --line !important. This signed
+   exception keeps colour off, so the ladder cells stay plain band. */
+.plate.ch04-impair #pair-reval > .cell-grid > .cell{border-color:transparent !important}
 
 /* ---------- B2. Shrink empty space above the axis (Dep + Impair only; Johnny 19:31) ----------
    Signed --pole-h = 7*space-6 + space-2 = 232px left ~130px empty under the Ceases card once the lane moved below.
