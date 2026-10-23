@@ -113,6 +113,25 @@
       line-height: 1.45;
     }
 
+    .flow ul {
+      margin-top: 8px;
+      padding-left: 1.15em;
+      list-style: disc;
+    }
+
+    .flow ul li {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .flow ul li + li {
+      margin-top: 8px;
+    }
+
+    .flow strong {
+      color: var(--text);
+    }
+
   </style>
 </head>
 <body>
@@ -123,22 +142,47 @@
       <li>
         <span class="step-no" aria-hidden="true"></span>
         <h2>Sources</h2>
-        <p>Official standard plus the Big4 actually used. A source that was not used is not listed as if it were.</p>
+        <p>These notes start from sources that can be named.</p>
+        <ul>
+          <li><strong>Official Standard</strong> first — IFRS / IAS text for that pack, including Basis for Conclusions and Illustrative Examples where the chapter uses them.</li>
+          <li><strong>Firm manuals actually used</strong> for that pack (PwC, Deloitte / DTT, EY, KPMG where on disk and scanned for the chapter). A firm that was not used is not listed as if it were.</li>
+          <li><strong>Firm FAQs / alerts</strong> only as support that densifies a manual view — never as a substitute for the Official text or for a manual that was never opened.</li>
+          <li>Every pack lists its real sources on the <strong>References</strong> page. Cite chips in the chapter point back to those same works.</li>
+        </ul>
       </li>
       <li>
         <span class="step-no" aria-hidden="true"></span>
         <h2>Read</h2>
-        <p>Against the standard and Big4, separate requirements from firm view.</p>
+        <p>Against those sources, the notes separate what the Standard requires from how a firm explains or illustrates it.</p>
+        <ul>
+          <li>Requirements and definitions stay tied to Official locators.</li>
+          <li>Firm views, examples, and FAQs keep their own house tags — they are not rewritten as if they were the Standard.</li>
+          <li>When sources treat one point differently, the page shows both side by side and <strong>does not reconcile</strong> them into a third “in practice” answer.</li>
+          <li>Case facts and numbers come from Official or pack Big4 examples. Invented companies or CU amounts are not kept.</li>
+        </ul>
       </li>
       <li>
         <span class="step-no" aria-hidden="true"></span>
         <h2>Shape</h2>
-        <p>What the page shows: Concept Map, sections, cite chips, Illustrations.</p>
+        <p>What each chapter page is built to show:</p>
+        <ul>
+          <li><strong>Concept Map</strong> — a teaching story in space and a jump board into the chapter. One glance should show how the parts relate; section chips jump to the matching body section. The map does not re-teach the full text.</li>
+          <li><strong>Sections</strong> — the deep study surface: definitions, tests, tables, and callouts in technical IFRS wording, detail-first so the reader does not have to reopen the PDFs for every point the pack covers.</li>
+          <li><strong>Cite chips</strong> — on every sourced point: firm (or Official) + work + locator inside the chip (no bare house name, no § in chips).</li>
+          <li><strong>Illustrations</strong> — worked examples taken from Official or pack Big4 named examples / case facts (Facts → Assessment / Conclusion). Plain firm prose without case facts stays ordinary teaching text, not an Illustration.</li>
+          <li>Pack chrome the reader also sees: <strong>Abbreviations</strong> (short forms used in that standard), <strong>References</strong>, bottom <strong>Disclaimer</strong>, and <strong>Last update</strong> on every pack page.</li>
+        </ul>
       </li>
       <li>
         <span class="step-no" aria-hidden="true"></span>
         <h2>Check</h2>
-        <p>A cite has to match a source. Invented points are not kept.</p>
+        <p>Before a point stays on the page, it has to survive a source check.</p>
+        <ul>
+          <li>A cite has to match a source that was actually used for that pack.</li>
+          <li>Invented requirements, fake examples, and unsupported tips are removed.</li>
+          <li>Structure alone is not enough: thin placeholders that only restate a heading are not treated as finished teaching.</li>
+          <li>What the page promises the reader is traceability — every teaching claim can be walked back to Official or a named firm work — not that every PDF on earth was scanned.</li>
+        </ul>
       </li>
     </ol>
   </main>
