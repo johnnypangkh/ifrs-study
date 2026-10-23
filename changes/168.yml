@@ -1,0 +1,12 @@
+# PR 168 Wave2a B16: ribbon→span markup; teaching string KEEP (SIGNED D4).
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+  locator: "dep-signed-top"
+  old: "Depreciate over useful life"
+  source: "brief item C2 / D4-SPAN ADD; Johnny V6 SIGN Wave2a t777s4085 (via PM 5); SIGNED proof-ch05-wave2a — string KEEP, DOM class swap only"
+- action: changed
+  file: "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+  locator: "dep-signed-top"
+  old: "Year-end review Year-end review Year-end review"
+  new: "Depreciate over useful life Year-end review Year-end review Year-end review"
+  source: "brief item C2 / D4-SPAN ADD; Johnny V6 SIGN Wave2a t777s4085 (via PM 5); SIGNED proof-ch05-wave2a — locator regroup from ribbon→span; YE×3 KEEP"

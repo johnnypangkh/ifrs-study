@@ -8693,6 +8693,30 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   z-index:3;
 }
 .plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl-ribbon p{color:var(--bg)}
+/* ---------- Wave2a B16 Span (D4 ADD · ch05 During-use only) ----------
+   Same lane locus as the retired ribbon. Chrome = MF .m-tl-span:
+   muted caption + dashed rule. No new pack class. B15 is inventory only.
+   Reval / Impair ribbons stay on .m-tl-ribbon. */
+.plate.ch05-dep .m-tl-ribbon,
+.plate.ch05-dep .ppe-tl-row .m-tl-ribbon{display:none !important}
+.plate.ch05-dep .ppe-tl-row .m-tl-span{
+  position:absolute; left:0; width:100%;
+  top:calc(var(--pole-h) + var(--lane-top));
+  height:var(--lane-h);
+  box-sizing:border-box;
+  display:flex; align-items:center; justify-content:center;
+  margin:0; padding:0 var(--space-3);
+  font-size:var(--t3-fs); font-weight:var(--t3-fw); line-height:var(--t3-lh);
+  color:var(--muted); text-align:center;
+  background:transparent; clip-path:none;
+  z-index:3; pointer-events:none;
+}
+.plate.ch05-dep .ppe-tl-row .m-tl-span::before{
+  content:""; position:absolute;
+  left:var(--space-1); right:var(--space-1); top:0;
+  border-top:var(--stroke-1) dashed var(--dash);
+  pointer-events:none;
+}
 /* shaft room: lane + gap before the key (Dep, Reval) */
 .plate:is(.ch04-reval, .ch05-dep) .ppe-tl-row .m-tl-shaft{height:calc(var(--pole-h) + var(--lane-top) + var(--lane-h) + var(--space-2))}
 
