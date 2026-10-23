@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """Existing pages may change only the Last update stamp text and ?v= restamps.
 
-The homepage may also gain the one Settings link. The live Master formatting
+The homepage may also gain the one Settings link. How these notes are made
+(homepage/how-these-notes-are-made.html) may change teaching body wording
+under the four steps (Sources / Read / Shape / Check). Stamp still owns
+chrome outside that fold: the step titles, step numbers, the flow rail,
+the Home link, and the page title. The live Master formatting
 page (site/master-formatting/index.html, #100) may change ?v= only, the same
 shape as Settings, once it is on the base. A copy that is not on the base yet
 must still carry ?v= hashes that match disk. Writes nothing unless --csv is
@@ -37,6 +41,9 @@ IFRAME_TAG = re.compile(r"<iframe\b[^>]*>", re.I)
 STAMP_PACKS = ("ias-16", "ias-2", "ifrs-18", "cf-2018")
 STAMP = re.compile(r"Last update · \d{4}-\d{2}-\d{2} \d{2}:\d{2} HKT")
 HOME = "homepage/homepage-wireframe-v0.1.html"
+# #107 wording-only. Teaching bodies under the four steps may change.
+# Stamp still owns titles, step chrome, Home, and h1. Not a CONTENT_ALLOW.
+HOW_NOTES = "homepage/how-these-notes-are-made.html"
 # site/settings/index.html and _shared/settings-rows.html are gated instead by check-settings-rows.py (276/276) and xlsx_to_tokens.py --check.
 CONTENT_ALLOW = (
     "_shared/settings-rows.html",
@@ -1777,6 +1784,129 @@ def fold_disclaimer_injector(html, path, base_aside=None):
     return _ensure_disclaimer_shell(_remove_disclaimer_block(html, start, end))
 
 
+# #107. List-body rules that render the deepened step bullets. Folded with
+# the teaching bodies. Any other how-notes style rule stays under stamp.
+HOW_NOTES_LIST_SELECTORS = (
+    ".flow ul li + li",
+    ".flow ul li",
+    ".flow ul",
+    ".flow strong",
+)
+
+
+def _selector_key(raw):
+    text = " ".join(raw.split())
+    return re.sub(r"\s*\+\s*", " + ", text)
+
+
+def _find_close(html, start, open_token, close_token):
+    """Index of the matching close token, with depth, or None."""
+    depth = 1
+    i = start
+    while i < len(html):
+        next_open = html.find(open_token, i)
+        next_close = html.find(close_token, i)
+        if next_close < 0:
+            return None
+        if next_open >= 0 and next_open < next_close:
+            depth += 1
+            i = next_open + len(open_token)
+            continue
+        depth -= 1
+        if depth == 0:
+            return next_close
+        i = next_close + len(close_token)
+    return None
+
+
+def _strip_how_notes_step_bodies(html):
+    """Drop the nodes after each step h2 inside ol.flow. Titles stay."""
+    marker = '<ol class="flow">'
+    start = html.find(marker)
+    if start < 0:
+        return html
+    inner_at = start + len(marker)
+    close = _find_close(html, inner_at, "<ol", "</ol>")
+    if close is None:
+        return html
+    inner = html[inner_at:close]
+    out = []
+    i = 0
+    while True:
+        open_at = inner.find("<li>", i)
+        if open_at < 0:
+            out.append(inner[i:])
+            break
+        out.append(inner[i:open_at + len("<li>")])
+        body_at = open_at + len("<li>")
+        close_at = _find_close(inner, body_at, "<li>", "</li>")
+        if close_at is None:
+            out.append(inner[body_at:])
+            break
+        chunk = inner[body_at:close_at]
+        h2 = chunk.find("</h2>")
+        if h2 < 0:
+            out.append(chunk)
+        else:
+            suffix = re.search(r"\s*$", chunk).group(0)
+            out.append(chunk[:h2 + len("</h2>")] + suffix)
+        out.append("</li>")
+        i = close_at + len("</li>")
+    return html[:inner_at] + "".join(out) + html[close:]
+
+
+def _strip_how_notes_list_css(html):
+    """Drop the list-body style rules. Other style rules stay."""
+
+    def repl(match):
+        prefix, inner, suffix = match.group(1), match.group(2), match.group(3)
+        out = []
+        i = 0
+        n = len(inner)
+        while i < n:
+            brace = inner.find("{", i)
+            if brace < 0:
+                out.append(inner[i:])
+                break
+            end = inner.find("}", brace)
+            if end < 0:
+                out.append(inner[i:])
+                break
+            key = _selector_key(inner[i:brace])
+            if key in HOW_NOTES_LIST_SELECTORS:
+                # Keep the blank line after the previous rule. Drop the
+                # indent that belonged only to the removed rule.
+                lead = re.match(r"\s*", inner[i:brace]).group(0)
+                out.append("\n" * lead.count("\n"))
+                i = end + 1
+                if i < n and inner[i] == "\n":
+                    i += 1
+                continue
+            out.append(inner[i:end + 1])
+            i = end + 1
+        rebuilt = re.sub(r"\n{3,}", "\n\n", "".join(out))
+        return prefix + rebuilt + suffix
+
+    return re.sub(
+        r"(<style\b[^>]*>)(.*?)(</style>)",
+        repl,
+        html,
+        count=1,
+        flags=re.S | re.I,
+    )
+
+
+def fold_how_notes(html):
+    """#107. Ignore teaching wording under Sources / Read / Shape / Check.
+
+    The fold removes the body after each step h2 inside ol.flow (the
+    paragraph and bullet list) and the list-body rules that render those
+    bullets. Step titles, .step-no, the flow rail, the Home link, h1, and
+    the page title stay in the comparison.
+    """
+    return _strip_how_notes_list_css(_strip_how_notes_step_bodies(html))
+
+
 def load_stamps(text):
     match = re.search(r"var STAMPS = (\{.*?\n  \});", text, re.S)
     if not match:
@@ -1888,6 +2018,11 @@ def main(argv=None):
         # Row #42 A1–A6, Johnny 2026-10-14 21:39
         if path in ROW42_A1_A6_LINES:
             base_n, head_n = fold_row42_a1_a6(base_n, head_n, path)
+        # #107. Teaching bodies under the four how-notes steps, plus the
+        # list CSS that renders them. Chrome outside the fold still fails.
+        if path == HOW_NOTES:
+            base_n = fold_how_notes(base_n)
+            head_n = fold_how_notes(head_n)
         if head_n != base_n and path not in CONTENT_ALLOW:
             print(f"HTML changed outside ?v= and the homepage link: {path}")
             failed = True
