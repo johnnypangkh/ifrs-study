@@ -1,0 +1,13 @@
+# PR 169 #106: bare Settings link → .card.ready Open >. Johnny V6 SIGN t792s4183.
+# Same href. Card subtext is locked D3, not new IFRS teaching prose.
+- action: changed
+  file: "homepage/homepage-wireframe-v0.1.html"
+  locator: "Johnny Pang IFRS Research / Provisions"
+  old: "Settings #../site/settings/index.html"
+  new: "Open > #../site/settings/index.html"
+  source: "brief item C1 — Johnny V6 SIGN D5 proof-settings-106; replace bare Settings link with Open > on the same href"
+- action: added
+  file: "homepage/homepage-wireframe-v0.1.html"
+  locator: "Johnny Pang IFRS Research / Provisions"
+  new: "Master styles / tokens"
+  source: "brief item C1 — Johnny V6 SIGN D3 proof-settings-106; card subtext Master styles / tokens"
