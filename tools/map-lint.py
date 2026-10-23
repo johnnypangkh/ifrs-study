@@ -44,6 +44,7 @@ DASH_OK = (
     ".v-lead",
     ".v-tail",
     ".reval-event",
+    ".m-tl-span",  # #104 Wave2a B16: MF timeline span (muted + dashed), ch05 only
 )
 OWNED_SUBJECT = {
     "plate",
