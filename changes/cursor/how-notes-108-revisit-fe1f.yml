@@ -1,0 +1,343 @@
+# #108 How-notes professional revisit.
+# Teaching removals and additions on homepage/how-these-notes-are-made.html.
+# Approval = brief C1 / C1a–C1d · STORY §3 BvN · Johnny V2 t831s4372 · V6 t837s4396 · A t840s4412.
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  old: "Check"
+  source: "brief item C1"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  old: "Read"
+  source: "brief item C1"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  old: "Shape"
+  source: "brief item C1"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  old: "Sources"
+  source: "brief item C1"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  old: "A cite has to match a source that was actually used for that pack."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  old: "Case facts and numbers come from Official or pack Big4 examples. Invented companies or CU amounts are not kept."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  old: "Check Before a point stays on the page, it has to survive a source check."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  old: "Cite chips — on every sourced point: firm (or Official) + work + locator inside the chip (no bare house name, no § in chips)."
+  source: "brief item C1d"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  old: "Concept Map — a teaching story in space and a jump board into the chapter. One glance should show how the parts relate; section chips jump to the matching body section. The map does not re-teach the full text."
+  source: "brief item C1d"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  old: "Every pack lists its real sources on the References page. Cite chips in the chapter point back to those same works."
+  source: "brief item C1b"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  old: "Firm FAQs / alerts only as support that densifies a manual view — never as a substitute for the Official text or for a manual that was never opened."
+  source: "brief item C1b"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  old: "Firm manuals actually used for that pack (PwC, Deloitte / DTT, EY, KPMG where on disk and scanned for the chapter). A firm that was not used is not listed as if it were."
+  source: "brief item C1b"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  old: "Firm views, examples, and FAQs keep their own house tags — they are not rewritten as if they were the Standard."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  old: "Illustrations — worked examples taken from Official or pack Big4 named examples / case facts (Facts → Assessment / Conclusion). Plain firm prose without case facts stays ordinary teaching text, not an Illustration."
+  source: "brief item C1d"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  old: "Invented requirements, fake examples, and unsupported tips are removed."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  old: "Official Standard first — IFRS / IAS text for that pack, including Basis for Conclusions and Illustrative Examples where the chapter uses them."
+  source: "brief item C1b"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  old: "Pack chrome the reader also sees: Abbreviations (short forms used in that standard), References, bottom Disclaimer, and Last update on every pack page."
+  source: "brief item C1d"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  old: "Read Against those sources, the notes separate what the Standard requires from how a firm explains or illustrates it."
+  source: "brief item C1b"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  old: "Requirements and definitions stay tied to Official locators."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  old: "Sections — the deep study surface: definitions, tests, tables, and callouts in technical IFRS wording, detail-first so the reader does not have to reopen the PDFs for every point the pack covers."
+  source: "brief item C1d"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  old: "Shape What each chapter page is built to show:"
+  source: "brief item C1d"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made"
+  old: "Sources These notes start from sources that can be named."
+  source: "brief item C1b"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  old: "Structure alone is not enough: thin placeholders that only restate a heading are not treated as finished teaching."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  old: "What the page promises the reader is traceability — every teaching claim can be walked back to Official or a named firm work — not that every PDF on earth was scanned."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  old: "When sources treat one point differently, the page shows both side by side and does not reconcile them into a third “in practice” answer."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Read"
+  old: "Against those sources, the notes separate what the Standard requires from how a firm explains or illustrates it."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Check"
+  old: "Before a point stays on the page, it has to survive a source check."
+  source: "brief item C1c"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Sources"
+  old: "These notes start from sources that can be named."
+  source: "brief item C1b"
+- action: removed
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made / Shape"
+  old: "What each chapter page is built to show:"
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "How these notes are made"
+  new: "Purpose"
+  source: "brief item C1a"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Cite chips"
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "Claim discipline"
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Concept Map"
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Illustrations"
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Pack chrome"
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Sections"
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "Source hierarchy"
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Surfaces on a chapter page"
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "1 Official Standard"
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "2 Firm manuals actually used"
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "3 Firm FAQs / alerts"
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "A cite must match a source that was actually used for that pack. The page promises every teaching claim can be walked back to Official or a named firm work — not that every PDF on earth was scanned."
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Abbreviations (short forms used in that standard), References, bottom Disclaimer, and Last update on every pack page."
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "Case facts and numbers come from Official or pack Big4 examples. Invented companies, CU amounts, requirements, or unsupported tips are not kept."
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "Cite chips"
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Deep study surface: definitions, tests, tables, callouts in technical IFRS wording — detail-first so the reader does not reopen the PDFs for every point the pack covers."
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Equal-rank things the reader meets — a collection, not a procedure."
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "Every pack lists its real sources on the References page. Cite chips in the chapter point back to those same works."
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "How claims stay honest before they stay on the page."
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "IFRS / IAS text for that pack, including Basis for Conclusions and Illustrative Examples where the chapter uses them."
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "No invent"
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "Official is primary. Firm manuals densify. FAQs and alerts only support a manual view."
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "Official vs firm"
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "On every sourced point: firm (or Official) + work + locator inside the chip — no bare house name, no § in chips."
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "PwC, Deloitte / DTT, EY, KPMG where on disk and scanned for the chapter."
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "Requirements and definitions stay tied to Official locators. Firm views, examples, and FAQs keep their own house tags — they are not rewritten as if they were the Standard."
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "Rule: A firm that was not used is not listed as if it were."
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "Rule: Never a substitute for Official text or for a manual that was never opened."
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "Rule: Requirements and definitions stay tied to Official locators."
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Source attribution on every sourced point (firm/Official + work + locator)."
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "Sources differ"
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "Structure alone is not enough: placeholders that only restate a heading are not treated as finished teaching."
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-source"
+  new: "Support that densifies a manual view."
+  source: "brief item C1b"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Teaching story in space and jump board into the chapter. One glance should show how the parts relate; section chips jump to the matching body section. The map does not re-teach the full text."
+  source: "brief item C1d"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "Thin ≠ done"
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "Traceability, not omniscience"
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-claim"
+  new: "When sources treat one point differently, the page shows both side by side and does not reconcile them into a third “in practice” answer."
+  source: "brief item C1c"
+- action: added
+  file: "homepage/how-these-notes-are-made.html"
+  locator: "z-surfaces"
+  new: "Worked examples from Official or pack Big4 named examples / case facts (Facts → Assessment / Conclusion). Plain firm prose without case facts stays ordinary teaching text, not an Illustration."
+  source: "brief item C1d"
