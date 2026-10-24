@@ -4,6 +4,11 @@
 The homepage Settings entry is a dual-allow: the legacy bare blue link or the
 #106 .card.ready card (card-code Settings, open-link to
 ../site/settings/index.html). Either form is folded out of the comparison.
+#110 (Johnny t879s4600) folds the signed homepage job-card chrome back to
+that shell: the punch-rev-hover style block, empty .card-updated slots,
+data-pack hooks, and the last-update.js script tag. The chrome-bar mount
+in _shared/last-update.js stays; the additive card mount is folded out
+before the logic compare. Fingerprints and STAMPS shape are still gated.
 How these notes are made (homepage/how-these-notes-are-made.html) may change
 from the #107 four-box deepen (Sources / Read / Shape / Check) to the #108
 SIGNED structure (Purpose, Source hierarchy, Claim discipline, Surfaces),
@@ -538,12 +543,77 @@ def _settings_forms(form):
 
 
 def settings_entry_present(html):
-    """True when html still has the legacy link or the #106 Settings card."""
-    return any(
+    """True when html still has the legacy link or the #106 Settings card.
+
+    #110 keeps the same Settings open-link and adds a date foot, so the
+    href alone still counts. The fold restores the #106 card before the
+    byte compare.
+    """
+    if any(
         variant in html
         for form in SETTINGS_ENTRY
         for variant in _settings_forms(form)
-    )
+    ):
+        return True
+    return 'href="../site/settings/index.html"' in html
+
+
+_HOMEPAGE_110_CSS = re.compile(
+    r"\n    /\* #110-card-chrome \*/\n.*?\n    /\* /#110-card-chrome \*/\n",
+    re.S,
+)
+_HOMEPAGE_110_SCRIPT = re.compile(
+    r'\n  <script src="\.\./_shared/last-update\.js\?v=[^"]*"></script>'
+)
+_CARD_MOUNT_FNS = re.compile(
+    r"\n  /\* #110-card-mount \*/\n.*?\n  /\* /#110-card-mount \*/\n",
+    re.S,
+)
+_CARD_MOUNT_CALL = "    /* #110-card-mount-call */ mountCardUpdated();\n"
+_PACK_FOOT = (
+    '          <div class="card-foot">\n'
+    '            <span class="card-status">Ready</span>\n'
+    '            <span class="card-updated"></span>\n'
+    "          </div>"
+)
+_PACK_STATUS = '          <span class="card-status">Ready</span>'
+_HOW_NOTES_FOOT = (
+    '          <div class="card-foot">\n'
+    '            <span class="card-status">Ready</span>\n'
+    "          </div>\n"
+)
+_SETTINGS_FOOT = (
+    '        <div class="card-foot">\n'
+    '          <span class="card-status">Ready</span>\n'
+    '          <span class="card-updated"></span>\n'
+    "        </div>\n"
+)
+_DATA_PACK_ATTR = re.compile(
+    r' data-pack="(?:cf2018|ifrs18|ias16|ias2|site)"'
+)
+
+
+def fold_homepage_110(html):
+    """Drop the signed #110 card chrome so the wireframe shell still compares.
+
+    Restores empty date slots and data-pack hooks to the tip markup.
+    A date literal, a mock attribute, or a proof banner is not folded
+    away, so those edits still fail the byte compare.
+    """
+    html = _HOMEPAGE_110_CSS.sub("", html, count=1)
+    html = _HOMEPAGE_110_SCRIPT.sub("", html, count=1)
+    html = _DATA_PACK_ATTR.sub("", html)
+    html = html.replace(_PACK_FOOT, _PACK_STATUS)
+    html = html.replace(_HOW_NOTES_FOOT, "")
+    html = html.replace(_SETTINGS_FOOT, "")
+    return html
+
+
+def fold_card_mount(text):
+    """Drop the #110 .card-updated filler. The chrome-bar mount stays."""
+    text = _CARD_MOUNT_FNS.sub("\n", text, count=1)
+    text = text.replace(_CARD_MOUNT_CALL, "", 1)
+    return text
 
 
 def fold_settings_entry(html):
@@ -1992,6 +2062,7 @@ def logic_same(base, head):
     def mask(text):
         text = STAMPS_OBJ.sub("var STAMPS = {};", text, count=1)
         text = PATHS_OBJ.sub("var PACK_PATHS = [];", text, count=1)
+        text = fold_card_mount(text)
         return text
     return mask(base) == mask(head)
 
@@ -2080,9 +2151,10 @@ def main(argv=None):
             if not settings_entry_present(head):
                 print("homepage is missing the Settings link")
                 failed = True
-            # #106 dual-allow: legacy bare link or the Settings .card.ready.
-            # Strip whichever form is on each side (once) so an unchanged
-            # homepage still compares equal and the card swap is not content.
+            # #110 signed card chrome, then #106 Settings entry. Both sides
+            # fold so an unchanged homepage still compares equal.
+            head_n = fold_homepage_110(head_n)
+            base_n = fold_homepage_110(base_n)
             head_n = fold_settings_entry(head_n)
             base_n = fold_settings_entry(base_n)
         # Johnny 2026-10-14 Option S / PR #124 — stamp gate ignores cite DOM order; check-incremental owns teaching.

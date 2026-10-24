@@ -1,7 +1,7 @@
 # Site infra runbook — workbook #95
 
 **Owner:** IFRS Build · pairs with `SITE-INFRA-DIAGRAM.md` · update in same PR as infra change.  
-**Updated:** 2026-10-21 Asia/Shanghai · #100 live `site/master-formatting/` · #109 timeline module.
+**Updated:** 2026-10-24 Asia/Hong_Kong · #110 homepage `.card-updated` STAMPS consumer · #100 live `site/master-formatting/` · #109 timeline module.
 
 ## Who
 
@@ -48,6 +48,7 @@ Live base: `https://johnnypangkh.github.io/ifrs-study/`
 | `tools/map-lint.py` `PLATE98_SHARED_OK` | `{cap, inner-board, see-bit, see-label, m-tl}` | #98 plate classes allowed to match bare `_shared` selectors; any other collision FAILs (root cause: PR #165 `tl-row` vs components-6.css L402). Source = QC round 2 + PM 5 FAIL-only order 2026-10-21. #109 adds bare `.m-tl` only: that is the shared timeline root. Child `.m-tl-*` rules are descendants, not bare. |
 | Shared timeline module | `_shared/modules/visuals/timeline-1.css` | #109. Imported by `_shared/visuals.css` after `map-box.css`. Stamp `?v=` via `tools/stamp-assets.py` / `bash tools/build-all.sh` (do not hand-edit hashes). `tools/check-stamp-only.py` allows that one trailing `timeline-1.css` import when its hash matches disk (same shape as the map-box trailing import). Packs that load the kit inherit it (IAS 16 via the existing visuals import). IAS 16 `ias16.css` keeps plate placement only (shaft height, `--mo-n`, flex, flag extras, ch05 span show, ribbon hide, Reval evt/nil, Impair rd/foot/cease). Not part of `map-box.css`. `tools/map-lint.py` fails a new pack paint class that does not alias into L* / `m-flow\|link\|visit` / `m-tl*`. |
 | `site/master-formatting/index.html` | #100 live MF | Johnny V6 path A, 2026-10-21. `tools/stamp-assets.py` `settings_pages()` hashes `_shared` `?v=` on this page. `tools/build-last-update.py` maps `/site/master-formatting/` to pack `site` and includes that folder in the site fingerprint. `_shared/chrome-packs.js` `CHROME_PACK_PATHS` has the same path (generated `_shared/last-update.js` `PACK_PATHS` follows). `tools/check-stamp-only.py` allows `?v=`-only edits once the page is on main (same shape as Settings; not a blank cheque). Page CSS stays on the page. Do not copy `kit.css` into `_shared`. |
+| Homepage READY card dates | #110 | Homepage READY pack + Settings cards use empty `.card-updated` under `[data-pack]` filled from `_shared/last-update.js` `STAMPS` as `Updated · YYYY-MM-DD`. How-notes and PLANNED omit. `tools/build-last-update.py` template must keep the `#110-card-mount` card filler so `build-all.sh` does not wipe it. STAMPS keys / fingerprints / iso unchanged. Chrome-bar `mount()` unchanged. |
 
 ## Live Master formatting path
 

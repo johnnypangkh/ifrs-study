@@ -12,6 +12,10 @@ run does not depend on the clock.
 The script also writes last-update.js?v=<hash> on every page that loads
 the file. The value is the first 12 hex digits of the SHA-256 of the
 generated file. Other script src values are left as they are.
+
+Homepage job cards (.card-updated) read this same STAMPS object. The
+card label is the iso date only ("Updated · YYYY-MM-DD"). The chrome-bar
+label is unchanged. STAMPS keys and fingerprint math are unchanged.
 """
 
 import hashlib
@@ -282,7 +286,31 @@ def render(stamps, packs):
         "    return stamp.text || \"\";\n"
         "  }\n"
         "\n"
+        "  /* #110-card-mount */\n"
+        "  function formatCardStamp(stamp) {\n"
+        "    var match = /^(\\d{4}-\\d{2}-\\d{2})/.exec(stamp.iso || \"\");\n"
+        "    if (match) return \"Updated \\u00b7 \" + match[1];\n"
+        "    return \"\";\n"
+        "  }\n"
+        "\n"
+        "  function mountCardUpdated() {\n"
+        "    var nodes = document.querySelectorAll(\".card-updated\");\n"
+        "    var i;\n"
+        "    for (i = 0; i < nodes.length; i++) {\n"
+        "      var el = nodes[i];\n"
+        "      var host = el.closest(\"[data-pack]\");\n"
+        "      var id = host ? host.getAttribute(\"data-pack\") : \"\";\n"
+        "      var stamp = id && STAMPS[id];\n"
+        "      if (!stamp) continue;\n"
+        "      var label = formatCardStamp(stamp);\n"
+        "      if (!label) continue;\n"
+        "      el.textContent = label;\n"
+        "      el.setAttribute(\"data-last-update\", stamp.iso);\n"
+        "    }\n"
+        "  }\n"
+        "  /* /#110-card-mount */\n"
         "  function mount() {\n"
+        "    /* #110-card-mount-call */ mountCardUpdated();\n"
         "    var stamp = STAMPS[packId()];\n"
         "    if (!stamp) return false;\n"
         "    var el = document.querySelector(\"span.chrome-last-update\");\n"
