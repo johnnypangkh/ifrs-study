@@ -13,6 +13,16 @@ homepage/homepage-wireframe-v0.1.html	.card-code	font-weight	700	1	DRIFT	309
 homepage/homepage-wireframe-v0.1.html	.open-link	font-weight	600	1	DRIFT	317
 homepage/homepage-wireframe-v0.1.html	.card-title	line-height	1.35	1	DRIFT	335
 homepage/homepage-wireframe-v0.1.html	.card-status	font-weight	700	1	DRIFT	342
+homepage/homepage-wireframe-v0.1.html	.card.ready .card-code	font-weight	700	1	DRIFT	419
+homepage/homepage-wireframe-v0.1.html	.card.ready .card-code	line-height	1.25	1	DRIFT	421
+homepage/homepage-wireframe-v0.1.html	.card.ready .card-title	line-height	1.4	1	DRIFT	427
+homepage/homepage-wireframe-v0.1.html	.card.ready .card-status	font-weight	600	1	DRIFT	437
+homepage/homepage-wireframe-v0.1.html	.card.ready > .open-link, .card.ready .card-top > .open-link	line-height	0	1	DRIFT	522
+homepage/homepage-wireframe-v0.1.html	.card.planned .card-code	font-weight	700	1	DRIFT	552
+homepage/homepage-wireframe-v0.1.html	.card.planned .card-title	line-height	1.4	1	DRIFT	558
+homepage/homepage-wireframe-v0.1.html	.card.planned .card-status	font-weight	600	1	DRIFT	567
+homepage/homepage-wireframe-v0.1.html	.card-updated	font-weight	500	1	DRIFT	666
+homepage/homepage-wireframe-v0.1.html	.card-updated	line-height	1.2	1	DRIFT	669
 homepage/how-these-notes-are-made.html	body	line-height	1.45	1	DRIFT	47
 homepage/how-these-notes-are-made.html	body	font-weight	400	1	DRIFT	50
 homepage/how-these-notes-are-made.html	.home-link	font-weight	600	1	DRIFT	63

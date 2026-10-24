@@ -60,7 +60,31 @@
     return stamp.text || "";
   }
 
+  /* #110-card-mount */
+  function formatCardStamp(stamp) {
+    var match = /^(\d{4}-\d{2}-\d{2})/.exec(stamp.iso || "");
+    if (match) return "Updated \u00b7 " + match[1];
+    return "";
+  }
+
+  function mountCardUpdated() {
+    var nodes = document.querySelectorAll(".card-updated");
+    var i;
+    for (i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var host = el.closest("[data-pack]");
+      var id = host ? host.getAttribute("data-pack") : "";
+      var stamp = id && STAMPS[id];
+      if (!stamp) continue;
+      var label = formatCardStamp(stamp);
+      if (!label) continue;
+      el.textContent = label;
+      el.setAttribute("data-last-update", stamp.iso);
+    }
+  }
+  /* /#110-card-mount */
   function mount() {
+    /* #110-card-mount-call */ mountCardUpdated();
     var stamp = STAMPS[packId()];
     if (!stamp) return false;
     var el = document.querySelector("span.chrome-last-update");
