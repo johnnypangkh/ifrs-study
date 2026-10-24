@@ -65,10 +65,31 @@ class MapLintRow86Tests(unittest.TestCase):
         ]))
 
     def test_allowlist_only_plate_classes_pass(self):
-        css = ".cap{}\n.inner-board{}\n.see-bit{}\n.see-label{}\n.tl-row{}\n"
+        css = ".cap{}\n.inner-board{}\n.see-bit{}\n.see-label{}\n.m-tl{}\n.tl-row{}\n"
         bare = lint.bare_shared_classes([css])
         hits = lint.plate98_shared_collisions(set(lint.PLATE98_SHARED_OK), bare)
         self.assertEqual(hits, [])
+
+    def test_invented_map_chrome_class_fails(self):
+        css = ".foo-cell { border: var(--stroke-1) solid var(--line); background: var(--surface); }\n"
+        errors = lint.map_chrome_alias_errors(css, "fixture.css")
+        self.assertEqual(len(errors), 1)
+        self.assertIn("invented map chrome class", errors[0])
+        self.assertIn(".foo-cell", errors[0])
+
+    def test_unscoped_timeline_paint_fails(self):
+        css = ".m-tl-line { background: var(--muted); border: 0; }\n"
+        errors = lint.map_chrome_alias_errors(css, "fixture.css")
+        self.assertEqual(len(errors), 1)
+        self.assertIn("without plate parent", errors[0])
+
+    def test_plate_timeline_placement_passes(self):
+        css = (
+            ".plate.ch05-dep .m-tl-line { background: var(--accent); }\n"
+            ".ppe-tl-row .m-tl { display: flex; }\n"
+            ".lens-cell { border: var(--stroke-1) solid var(--line); background: var(--band); }\n"
+        )
+        self.assertEqual(lint.map_chrome_alias_errors(css, "fixture.css"), [])
 
 
 if __name__ == "__main__":

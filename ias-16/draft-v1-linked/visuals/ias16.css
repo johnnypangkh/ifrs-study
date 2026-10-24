@@ -8059,86 +8059,18 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ppe-tl-row .t2{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0;color:var(--muted)}
 .ppe-tl-row .head{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
 .ppe-tl-row .l3{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--radius-s);padding:var(--space-1) var(--space-2);display:flex;flex-direction:column;gap:var(--space-hairline);min-width:0;box-sizing:border-box}
-.ppe-tl-row .m-tl{display:flex;flex-direction:column;gap:0;position:relative;min-width:0}
-.ppe-tl-row .m-tl-axis{
-  position:relative;
-  margin: 0 var(--space-2) 0 var(--space-3);
-  padding-right: 17rem; /* room for the Ceases cloth, which flies right of End */
-  box-sizing: border-box;
-  overflow: visible;
-}
-.ppe-tl-row .m-tl-shaft{
-  --pole-h: calc(var(--space-6) * 7 + var(--space-2)); /* 232px so the shaft under the tallest cloth is the longer part */
-  --ye-tick: var(--space-4);
-  position: relative;
-  /* under the line: the Year-end hang only. The span is the ribbon above the line. */
-  height: calc(var(--pole-h) + var(--space-6) + var(--space-3));
-  overflow: visible;
-}
-.ppe-tl-row .m-tl-line{
-  --head: var(--space-4); /* 16px. --arrowhead is 5px and read as a fleck. */
-  position:absolute; left:0; top: var(--pole-h);
-  width: calc(100% + var(--space-6)); /* shaft runs past the End ring, then the head */
-  height: var(--stroke-2); background: var(--muted); border: 0;
-}
-.ppe-tl-row .m-tl-line::after{
-  content:""; position:absolute; left:100%; top:50%;
-  width:0; height:0; margin-top: calc(-1 * var(--head));
-  border-top: var(--head) solid transparent;
-  border-bottom: var(--head) solid transparent;
-  border-left: var(--head) solid var(--muted);
-}
-.ppe-tl-row .m-tl-ring{
-  position:absolute; top: calc(var(--pole-h) + var(--stroke-2) / 2);
-  width: var(--space-3); height: var(--space-3);
-  border: var(--stroke-2) solid var(--ink); background: var(--surface); border-radius: 50%;
-  transform: translate(-50%, -50%); z-index: 6;
-}
-.ppe-tl-row .m-tl-flag{
-  position:absolute; top: 0;
-  height: calc(var(--pole-h) + var(--stroke-2) / 2);
-  width: max-content; max-width: 16rem;
-  z-index: 4;
-}
-.ppe-tl-row .m-tl-pole{
-  position:absolute; left:0; top:0; bottom:0; width:0; margin:0;
-  border-left: var(--stroke-2) solid var(--ink); background: none;
-}
-.ppe-tl-row .m-tl-flag .l3{
-  width: max-content; max-width: calc(16rem - var(--stroke-2));
-  margin-left: var(--stroke-2); margin-top: var(--space-1);
-  border: var(--stroke-2) solid var(--line); border-radius: 0;
-}
-/* C3 ribbon: L to R fill between the poles, above the axis. Caption centered in the band. */
-.ppe-tl-row .m-tl-ribbon{
-  position:absolute;
-  left: var(--stroke-2);
-  width: calc(100% - var(--stroke-2) * 2);
-  top: calc(var(--pole-h) - var(--space-6));
-  height: var(--space-6);
-  display:flex; align-items:center; justify-content:center;
-  background: linear-gradient(to right, color-mix(in srgb, var(--accent) 35%, var(--bg)), var(--accent));
-  z-index:3;
-}
-.ppe-tl-row .m-tl-ribbon p{
-  margin:0; line-height:1;
-  font-size: var(--t3-fs); font-weight: var(--t3-strong-fw); color: var(--ink);
-}
-/* Year-end hangs under this same axis. No cloth, no legend box, no dashed span. */
-.ppe-tl-row .m-tl-ye{
-  position:absolute; top: calc(var(--pole-h) + var(--stroke-2));
-  width:0; z-index:3;
-}
-.ppe-tl-row .m-tl-ye-tick{
-  position:absolute; top:0; left:0; width:0; height: var(--ye-tick);
-  border-left: var(--stroke-2) solid var(--ink);
-}
-.ppe-tl-row .m-tl-ye-lab{
-  position:absolute; top: var(--ye-tick); left:0; transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: var(--t3-fs); font-weight: var(--t3-fw); line-height: var(--t3-lh);
-  color: var(--muted);
-}
+/* #109: shared .m-tl* chrome is _shared/modules/visuals/timeline-1.css.
+   Placement only. Flex is Dep/Reval (.ppe-tl-row); Impair stays block.
+   16rem / 17rem / line-height:1 have no token and stay here (shared lint). */
+.ppe-tl-row .m-tl{display:flex;flex-direction:column;gap:0}
+.ppe-tl-row .m-tl-axis,
+.ch04-impair .m-tl-axis{padding-right:17rem}
+.ppe-tl-row .m-tl-flag,
+.ch04-impair .m-tl-flag{max-width:16rem}
+.ppe-tl-row .m-tl-flag .l3,
+.ch04-impair .m-tl-flag .l3{max-width:calc(16rem - var(--stroke-2))}
+.ppe-tl-row .m-tl-ribbon p{line-height:1}
+
 /* §10.10.4 — the phase rail covers the beat. Live align-self:start is the short stub. */
 .ppe-tl-row.srow{display:grid;grid-template-columns:calc(5 * var(--space-6) + var(--space-2) + var(--stroke-1)) minmax(0,1fr);gap:var(--space-cell);align-items:stretch}
 .ppe-tl-row .tl-pane{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;box-sizing:border-box;height:100%}
@@ -8159,20 +8091,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 }
 
 /* --- Reval event marks + L2 srows (FINAL-B2 body). inner-detail radius = --radius-s (FS2 §c). --- */
-.ppe-tl-row .m-tl-evt{
-  position:absolute; top:0; width:0; height: var(--pole-h); z-index:6;
-}
-.ppe-tl-row .m-tl-evt.hi{ --lab-bottom: calc(var(--space-6) * 3 + var(--space-2)); }
-.ppe-tl-row .m-tl-evt.lo{ --lab-bottom: calc(var(--space-6) + var(--space-2)); }
 .ppe-tl-row .evt-pole{
   position:absolute; left:0; bottom:0; width:0; height: var(--lab-bottom);
   border-left: var(--stroke-2) solid var(--ink);
-}
-.ppe-tl-row .m-tl-evt .lc-dia{
-  position:absolute; left:0; top:100%;
-  transform: translate(-50%, -50%);
-  z-index:7; background: var(--band); padding: 0 var(--space-1);
-  color: var(--accent);
 }
 .ppe-tl-row .evt-lab{
   position:absolute; left:0; bottom: var(--lab-bottom); transform: translateX(-50%);
@@ -8432,87 +8353,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 /* Flag + axis — BYTE-IDENTICAL to BEFORE (signed flag geometry LOCK) */
 .ch04-impair .t1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
 .ch04-impair .t2{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0;color:var(--muted)}
-.ch04-impair .m-tl{position:relative;min-width:0}
-.ch04-impair .m-tl-axis{
-  position:relative;
-  margin:0 var(--space-2) 0 var(--space-3);
-  padding-right:17rem;
-  box-sizing:border-box;
-}
-.ch04-impair .m-tl-shaft{
-  --pole-h:calc(var(--space-6) * 7 + var(--space-2));
-  position:relative;
-  /* Reval-signed shaft height (room for the note under the ticks) */
-  height:calc(var(--pole-h) + var(--space-6) * 2 + var(--space-3));
-}
-.ch04-impair .m-tl-line{
-  --head:var(--space-4);
-  position:absolute;left:0;top:var(--pole-h);
-  width:calc(100% + var(--space-6));
-  height:var(--stroke-2);background:var(--muted);border:0;
-}
-.ch04-impair .m-tl-line::after{
-  content:"";position:absolute;left:100%;top:50%;
-  width:0;height:0;margin-top:calc(-1 * var(--head));
-  border-top:var(--head) solid transparent;
-  border-bottom:var(--head) solid transparent;
-  border-left:var(--head) solid var(--muted);
-}
-.ch04-impair .m-tl-ring{
-  position:absolute;top:calc(var(--pole-h) + var(--stroke-2) / 2);
-  width:var(--space-3);height:var(--space-3);
-  border:var(--stroke-2) solid var(--ink);background:var(--surface);border-radius:50%;
-  transform:translate(-50%, -50%);z-index:6;
-}
-.ch04-impair .m-tl-flag{
-  position:absolute;top:0;
-  height:calc(var(--pole-h) + var(--stroke-2) / 2);
-  width:max-content;max-width:16rem;z-index:4;
-}
-.ch04-impair .m-tl-pole{
-  position:absolute;left:0;top:0;bottom:0;width:0;margin:0;
-  border-left:var(--stroke-2) solid var(--ink);background:none;
-}
-.ch04-impair .m-tl-flag .l3{
-  width:max-content;max-width:calc(16rem - var(--stroke-2));
-  margin-left:var(--stroke-2);margin-top:var(--space-1);
-  border:var(--stroke-2) solid var(--line);border-radius:0;
-  background:var(--surface);
-  padding:var(--space-1) var(--space-2);
-  display:flex;flex-direction:column;gap:var(--space-hairline);
-}
-.ch04-impair .m-tl-rd{position:absolute;top:calc(var(--pole-h) + var(--stroke-2));width:0;z-index:5}
-.ch04-impair .rd-tick{position:absolute;left:0;top:0;width:0;height:var(--space-3);border-left:var(--stroke-2) solid var(--ink)}
-.ch04-impair .rd-lab{
-  position:absolute;left:0;top:var(--space-3);transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;width:max-content;
-}
-.ch04-impair .rd-lab .k,
-.ch04-impair .rd-lab .act{margin:0;white-space:nowrap;font-size:var(--t3-fs);line-height:var(--t3-lh);color:var(--ink)}
-.ch04-impair .rd-lab .k{font-weight:var(--t1-fw)}
-
-/* Delta 1: span text = signed Dep C3 ribbon recipe (verbatim, re-scoped). Caption v-centred in the band. */
-.ch04-impair .m-tl-ribbon{
-  position:absolute;
-  left: var(--stroke-2);
-  width: calc(100% - var(--stroke-2) * 2);
-  top: calc(var(--pole-h) - var(--space-6));
-  height: var(--space-6);
-  display:flex; align-items:center; justify-content:center;
-  background: linear-gradient(to right, color-mix(in srgb, var(--accent) 35%, var(--bg)), var(--accent));
-  z-index:3;
-}
-.ch04-impair .m-tl-ribbon p{
-  margin:0; line-height:1;
-  font-size: var(--t3-fs); font-weight: var(--t3-strong-fw); color: var(--ink);
-}
-/* Delta 1: note under the ticks = signed Reval .m-tl-foot recipe; top moved one token step below the 2-line tick labels */
-.ch04-impair .m-tl-foot{
-  position:absolute; left:0; right:0; margin:0; text-align:center;
-  top: calc(var(--pole-h) + var(--space-6) + var(--space-4));
-  font-size: var(--t2-fs); font-weight: var(--t2-fw); line-height: var(--t2-lh); color: var(--ink);
-}
-
+.ch04-impair .m-tl-ribbon p{line-height:1}
 
 /* F1-F4 + CS1 selectors. FS2 ADDENDUM-CS1 §a.4 verbatim.
    F2 cite-run rules stay so a sentence + section chip still share a line (cite chips themselves are stripped). */
@@ -8576,13 +8417,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 /* 1a. Period-end tick (Reval + Impair): signed Impair V3 .rd-tick recipe, one rule for both. */
 .plate:is(.ch04-reval, .ch04-impair) .m-tl-rd{
-  position:absolute; top:calc(var(--pole-h) + var(--stroke-2));
   left:calc(100% * var(--k) / var(--pe-n));
-  width:0; z-index:5;
-}
-.plate:is(.ch04-reval, .ch04-impair) .rd-tick{
-  position:absolute; left:0; top:0; width:0; height:var(--space-3);
-  border-left:var(--stroke-2) solid var(--ink);
 }
 
 /* 1b. Key under the axis (Reval + Dep): left edge = Begins ring, one row per meaning. */
@@ -8620,13 +8455,6 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 
 /* ---------- 3. Dep (F2): month-end ticks + year-end review ---------- */
 .plate.ch05-dep .ppe-tl-row .m-tl-shaft{--mo-n:48}  /* 4 years shown (year ends at 25/50/75%); 11 month ends per year */
-.plate.ch05-dep .ppe-tl-row .m-tl-mo{
-  position:absolute; top:calc(var(--pole-h) + var(--stroke-2));
-  left:calc(100% * var(--k) / var(--mo-n));
-  width:0; height:var(--space-2);
-  border-left:var(--stroke-1) solid var(--muted);
-  z-index:2;
-}
 
 /* ---------- 4. Impair (IAS 36): 3 period ends, fork drops from Year end ---------- */
 .plate.ch04-impair .m-tl-shaft{
@@ -8712,9 +8540,8 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
   z-index:3; pointer-events:none;
 }
 .plate.ch05-dep .ppe-tl-row .m-tl-span::before{
-  content:""; position:absolute;
+  position:absolute;
   left:var(--space-1); right:var(--space-1); top:0;
-  border-top:var(--stroke-1) dashed var(--dash);
   pointer-events:none;
 }
 /* shaft room: lane + gap before the key (Dep, Reval) */

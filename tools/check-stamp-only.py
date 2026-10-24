@@ -697,11 +697,25 @@ def fold_row98(html, path):
     return html
 
 
+def _one_trailing_visual_import(extra):
+    """True when extra is the one allowed new visuals.css @import, hash-matched."""
+    text = extra.strip()
+    if not text.startswith("@import"):
+        return False
+    for name in ("map-box.css", "timeline-1.css"):
+        if f"modules/visuals/{name}?v=" not in text:
+            continue
+        module = ROOT / "_shared" / "modules" / "visuals" / name
+        stamp = file_stamp(module) if module.is_file() else ""
+        return bool(stamp) and stamp in text
+    return False
+
+
 def shared_visual_stamp_failure(base, head, path):
     """Return an error when path differs outside the shared-visual allowlist.
 
     visuals.css may change ?v= only on lines 13, 14, 16, 17, 20, 24, 27, 28, 29, and 30.
-    Head may also gain one trailing map-box.css @import.
+    Head may also gain one trailing map-box.css or timeline-1.css @import.
     Each listed visual page may change ?v= only on its visuals.css link.
     Identical text is not a failure. None means this path is not in the
     allowlist, or the difference is allowed.
@@ -727,15 +741,8 @@ def shared_visual_stamp_failure(base, head, path):
     base_lines = base.splitlines()
     head_lines = head.splitlines()
     if path == SHARED_VISUAL_CSS and len(head_lines) == len(base_lines) + 1:
-        extra = head_lines[-1]
-        module = ROOT / "_shared" / "modules" / "visuals" / "map-box.css"
-        stamp = file_stamp(module) if module.is_file() else ""
-        if (
-            extra.strip().startswith("@import")
-            and "modules/visuals/map-box.css?v=" in extra
-            and stamp
-            and stamp in extra
-        ):
+        # #85 map-box, or #109 timeline-1. One new import, hash must match disk.
+        if _one_trailing_visual_import(head_lines[-1]):
             head_lines = head_lines[:-1]
     if len(base_lines) != len(head_lines):
         if not strict:

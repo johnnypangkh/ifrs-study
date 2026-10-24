@@ -89,7 +89,38 @@ CITE_ALLOW = {
 }
 # #98 plates may reuse these bare shared classes. Any other collision fails.
 # Catches a bare shared rule only (the tl-row failure). Not other width regressions.
-PLATE98_SHARED_OK = {"cap", "inner-board", "see-bit", "see-label"}
+# #109 adds bare `.m-tl` (timeline root). Child `.m-tl-*` rules are descendants,
+# not bare selectors, so they are not in this set.
+PLATE98_SHARED_OK = {"cap", "inner-board", "see-bit", "see-label", "m-tl"}
+# #109 do-now #3. Map chrome paint must sit on an alias:
+# L* / m-flow|link|visit / m-tl* (D4 .cell / .limb count as the alias names).
+# A plate-parent override of .m-tl* is placement and stays. A new class shaped
+# like timeline/map chrome (.foo-cell, .tl-axis, …) fails. Pre-#109 pack
+# classes that already paint stay listed so the gate does not blank them.
+MAP_CHROME_ALIAS = re.compile(
+    r"^(?:m-l[0-4]|m-flow|m-link|m-visit|m-tl(?:-[\w-]+)?|cell|limb)$"
+)
+CHROME_SHAPED = re.compile(
+    r"(?:timeline|(?:^|-)tl-(?:axis|shaft|line|ring|flag|pole|ribbon|span)$|-(?:cell|limb)$)"
+)
+PACK_CHROME_KNOWN = frozenset({
+    "case-cell",
+    "cmp-cell",
+    "goes-cell",
+    "impair-ca-cell",
+    "impair-formula-cell",
+    "lens-cell",
+    "m-cell",
+    "rev-cell",
+    "rm-cell",
+    "rmx-cell",
+    "split-cell",
+    "when-cell",
+})
+PLACEMENT_PARENT = re.compile(
+    r"\.(?:plate|ppe-tl-row|ch04-reval|ch05-dep|ch04-impair)\b"
+)
+PAINT_DECL = re.compile(r"\b(?:border|background|font-size)\s*:")
 PLATE98_SECTIONS = (
     ("ias-16/draft-v1-linked/visuals/ch05-depreciation.html", "ch05-dep"),
     ("ias-16/draft-v1-linked/visuals/ch04-models.html", "ch04-reval"),
@@ -248,6 +279,7 @@ def lint():
             errors.append(f"map-box import stamp mismatch in {rel}")
         if re.search(r"var\(--tb-|var\(--t-meta\)", strip_comments(text)):
             errors.append(f"teaching type token in map scope: {rel}")
+        errors.extend(map_chrome_alias_errors(text, rel))
         for selector, body in selector_blocks(text):
             pick = PICK_A_CLASS.sub(
                 "",
@@ -437,6 +469,38 @@ def plate98_section_classes(html, section):
     for chunk in re.findall(r'class="([^"]+)"', match.group(1)):
         classes.update(chunk.split())
     return classes
+
+
+def map_chrome_alias_errors(css_text, rel="pack.css"):
+    """#109: new map chrome must alias into L* / m-flow|link|visit / m-tl*.
+
+    Placement overrides under a plate parent stay. Inventing a pack paint
+    class (.foo-cell, a raw .tl-axis, an unscoped .m-tl* repaint) fails.
+    """
+    errors = []
+    for selector, body in selector_blocks(css_text):
+        if not PAINT_DECL.search(body):
+            continue
+        classes = set()
+        for sel in split_selectors(selector):
+            classes.update(re.findall(r"\.([A-Za-z0-9_-]+)", sel))
+        placed = PLACEMENT_PARENT.search(selector) is not None
+        for name in sorted(classes):
+            if MAP_CHROME_ALIAS.match(name):
+                if name.startswith("m-tl") and not placed:
+                    errors.append(
+                        "pack timeline paint without plate parent in "
+                        f"{rel}: {selector.strip()[:80]}"
+                    )
+                    break
+                continue
+            if CHROME_SHAPED.search(name) and name not in PACK_CHROME_KNOWN:
+                errors.append(
+                    f"invented map chrome class in {rel}: .{name} "
+                    f"({selector.strip()[:60]})"
+                )
+                break
+    return errors
 
 
 def plate98_shared_collisions(plate_classes, bare_classes):
