@@ -1744,6 +1744,16 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
     def test_live_map_folds_back_to_tip(self):
         import subprocess
 
+        # #111 splices one attribute onto the ch05 Method bar inside the
+        # master include. The #112 pin still rejects every other byte.
+        b13_old = (
+            '<p class="consume-bar">'
+            "<span>Reflect the pattern of consumption of future economic benefits</span></p>"
+        )
+        b13_new = (
+            '<p class="consume-bar" data-brick="B13">'
+            "<span>Reflect the pattern of consumption of future economic benefits</span></p>"
+        )
         base = subprocess.check_output(
             ["git", "show", f"d2cd6c9f:{self.PAGE}"],
             cwd=stamp.ROOT,
@@ -1752,8 +1762,12 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         head = (stamp.ROOT / self.PAGE).read_text(encoding="utf-8")
         self.assertEqual(head.count(self.NEEDLE), 1)
         self.assertNotIn(self.NEEDLE, base)
+        self.assertEqual(head.count(b13_new), 1)
+        self.assertEqual(base.count(b13_old), 1)
+        self.assertNotIn(b13_new, base)
         folded_head = stamp.fold_mf_lego_entry(head, self.PAGE)
         self.assertNotIn("mf-lego-entry", folded_head)
+        folded_head = folded_head.replace(b13_new, b13_old, 1)
         self.assertIsNone(
             stamp.shared_visual_stamp_failure(
                 stamp.fold_mf_lego_entry(base, self.PAGE),
