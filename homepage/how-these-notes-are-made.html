@@ -7,184 +7,344 @@
   <title>How these notes are made</title>
   <style>
     :root {
-      --bg: #0f1419;
-      --surface: #1a222c;
-      --surface-2: #222b36;
-      --border: #3a4553;
-      --text: #e8eef5;
-      --muted: #8b97a8;
-      --dim: #5c6775;
-      --blue: #6ba3d9;
-      --green: #3dba6e;
+      --bg: #12151a;
+      --surface: #1c2128;
+      --surface-2: #222830;
+      --ink: #e8eaed;
+      --muted: #9aa3ad;
+      --line: #3a4250;
+      --dash: #6b7580;
+      --accent: #7ba3c9;
+      --accent-soft: #1e2a38;
+      --ok: #6fad87;
+      --ok-soft: #1a2e24;
+      --band: #1a1f26;
+      --nest: #222830;
+      --card-radius: 8px;
+      --stroke-1: 1px;
+      --stroke-2: 2px;
+      --space-1: .25rem;
+      --space-2: .5rem;
+      --space-3: .75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-cell: .45rem;
+      --page-max: 61.25rem;
+      --t-body: .875rem;
+      --t-head: 1rem;
+      --t-meta: .75rem;
+      --rail-bar-s: 2px;
+      --rail-w: 11.5rem;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
       background: var(--bg);
-      color: var(--text);
+      color: var(--ink);
       line-height: 1.45;
       min-height: 100vh;
+      font-size: 14px;
+      font-weight: 400;
     }
 
     .page {
-      max-width: 1100px;
+      max-width: var(--page-max);
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: var(--space-6) var(--space-5) 5rem;
     }
 
     .home-link {
       display: inline-block;
-      margin-bottom: 16px;
+      margin-bottom: var(--space-3);
       font-size: 13px;
       font-weight: 600;
-      color: var(--green);
+      color: var(--ok);
       text-decoration: none;
     }
-
     .home-link:hover,
-    .home-link:focus {
-      text-decoration: underline;
-    }
+    .home-link:focus { text-decoration: underline; }
 
     h1 {
-      font-size: 28px;
-      font-weight: 650;
-      letter-spacing: -0.02em;
-      margin-bottom: 28px;
-    }
-
-    .flow {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 28px;
-      counter-reset: step;
-    }
-
-    .flow > li {
-      position: relative;
-      counter-increment: step;
-      background: var(--surface);
-      border: 2px solid var(--green);
-      border-radius: 6px;
-      padding: 16px 14px 18px;
-      min-height: 220px;
-    }
-
-    .flow > li + li::before {
-      content: ">";
-      position: absolute;
-      left: -20px;
-      top: 28px;
-      color: var(--dim);
-      font-size: 16px;
+      font-size: 1.75rem;
       font-weight: 700;
-      line-height: 1;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: var(--space-4);
     }
 
-    .step-no {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      margin-bottom: 12px;
-      border-radius: 999px;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      color: var(--blue);
+    /* ---- A · Purpose lead ---- */
+    .purpose {
+      background: var(--accent-soft);
+      border: var(--stroke-1) solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--card-radius);
+      padding: var(--space-4) var(--space-5);
+      margin-bottom: var(--space-5);
+      color: var(--ink);
+      font-size: var(--t-body);
+      line-height: 1.5;
+    }
+    .purpose strong { font-weight: 700; }
+
+    /* ---- Zone chrome ---- */
+    .zone {
+      margin-top: var(--space-5);
+    }
+    .zone-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 var(--space-3);
+    }
+    .zone-lead {
+      font-size: var(--t-body);
+      color: var(--muted);
+      margin: 0 0 var(--space-3);
+    }
+
+    /* ---- B · Source hierarchy (containment stack) ---- */
+    .hierarchy {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-cell);
+      background: var(--surface);
+      border: var(--stroke-2) solid var(--accent);
+      border-radius: var(--card-radius);
+      padding: var(--space-3);
+    }
+    .hier-tier {
+      border: var(--stroke-1) solid var(--line);
+      border-radius: calc(var(--card-radius) - 2px);
+      background: var(--nest);
+      padding: var(--space-3) var(--space-4);
+    }
+    .hier-tier.t1 {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .hier-tier.t2 {
+      margin-inline: var(--space-4);
+      background: var(--surface);
+    }
+    .hier-tier.t3 {
+      margin-inline: var(--space-6);
+      background: var(--band);
+      border-style: solid;
+      border-color: var(--dash);
+    }
+    .hier-label {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-2);
+      margin-bottom: var(--space-2);
+    }
+    .hier-rank {
+      flex: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      min-width: 1.6rem;
+    }
+    .hier-name {
+      font-size: var(--t-head);
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .hier-tier p {
+      font-size: var(--t-body);
+      color: var(--muted);
+      margin: 0;
+    }
+    .hier-tier p + p { margin-top: var(--space-2); }
+    .hier-tier strong { color: var(--ink); font-weight: 700; }
+    .hier-foot {
+      margin-top: var(--space-3);
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--t-meta);
+      color: var(--muted);
+      border-top: var(--stroke-1) solid var(--line);
+    }
+
+    /* ---- C · Claim discipline (rail|detail) ---- */
+    .claim-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-cell);
+    }
+    .claim-row {
+      display: grid;
+      grid-template-columns: var(--rail-w) 1fr;
+      gap: var(--space-cell);
+      align-items: stretch;
+    }
+    .claim-rail,
+    .claim-detail {
+      border: var(--stroke-1) solid var(--line);
+      border-radius: var(--card-radius);
+      background: var(--surface);
+      padding: var(--space-3) var(--space-4);
+      min-height: 100%;
+    }
+    .claim-rail {
+      border-left: var(--rail-bar-s) solid var(--accent);
+      background: var(--band);
+      display: flex;
+      align-items: flex-start;
+    }
+    .claim-rail strong {
       font-size: 13px;
       font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
     }
-
-    .step-no::before { content: counter(step); }
-
-    h2 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .flow p {
-      font-size: 14px;
+    .claim-detail {
+      font-size: var(--t-body);
       color: var(--muted);
       line-height: 1.45;
     }
+    .claim-detail strong { color: var(--ink); font-weight: 700; }
 
-    .flow ul {
-      margin-top: 8px;
-      padding-left: 1.15em;
-      list-style: disc;
+    /* ---- D · Surfaces peer grid (collection — no flow arrows) ---- */
+    .surfaces {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--space-3);
     }
-
-    .flow ul li {
+    .surface {
+      background: var(--surface);
+      border: var(--stroke-1) solid var(--line);
+      border-radius: var(--card-radius);
+      padding: var(--space-3) var(--space-3) var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      min-height: 100%;
+    }
+    .surface-name {
       font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      padding-bottom: var(--space-2);
+      border-bottom: var(--stroke-1) solid var(--line);
+    }
+    .surface p {
+      font-size: 13px;
       color: var(--muted);
+      line-height: 1.4;
+      flex: 1;
     }
-
-    .flow ul li + li {
-      margin-top: 8px;
-    }
-
-    .flow strong {
-      color: var(--text);
-    }
-
+    .surface strong { color: var(--ink); font-weight: 700; }
   </style>
 </head>
 <body>
   <main class="page">
     <a class="home-link" href="homepage-wireframe-v0.1.html">Home</a>
     <h1>How these notes are made</h1>
-    <ol class="flow">
-      <li>
-        <span class="step-no" aria-hidden="true"></span>
-        <h2>Sources</h2>
-        <p>These notes start from sources that can be named.</p>
-        <ul>
-          <li><strong>Official Standard</strong> first — IFRS / IAS text for that pack, including Basis for Conclusions and Illustrative Examples where the chapter uses them.</li>
-          <li><strong>Firm manuals actually used</strong> for that pack (PwC, Deloitte / DTT, EY, KPMG where on disk and scanned for the chapter). A firm that was not used is not listed as if it were.</li>
-          <li><strong>Firm FAQs / alerts</strong> only as support that densifies a manual view — never as a substitute for the Official text or for a manual that was never opened.</li>
-          <li>Every pack lists its real sources on the <strong>References</strong> page. Cite chips in the chapter point back to those same works.</li>
-        </ul>
-      </li>
-      <li>
-        <span class="step-no" aria-hidden="true"></span>
-        <h2>Read</h2>
-        <p>Against those sources, the notes separate what the Standard requires from how a firm explains or illustrates it.</p>
-        <ul>
-          <li>Requirements and definitions stay tied to Official locators.</li>
-          <li>Firm views, examples, and FAQs keep their own house tags — they are not rewritten as if they were the Standard.</li>
-          <li>When sources treat one point differently, the page shows both side by side and <strong>does not reconcile</strong> them into a third “in practice” answer.</li>
-          <li>Case facts and numbers come from Official or pack Big4 examples. Invented companies or CU amounts are not kept.</li>
-        </ul>
-      </li>
-      <li>
-        <span class="step-no" aria-hidden="true"></span>
-        <h2>Shape</h2>
-        <p>What each chapter page is built to show:</p>
-        <ul>
-          <li><strong>Concept Map</strong> — a teaching story in space and a jump board into the chapter. One glance should show how the parts relate; section chips jump to the matching body section. The map does not re-teach the full text.</li>
-          <li><strong>Sections</strong> — the deep study surface: definitions, tests, tables, and callouts in technical IFRS wording, detail-first so the reader does not have to reopen the PDFs for every point the pack covers.</li>
-          <li><strong>Cite chips</strong> — on every sourced point: firm (or Official) + work + locator inside the chip (no bare house name, no § in chips).</li>
-          <li><strong>Illustrations</strong> — worked examples taken from Official or pack Big4 named examples / case facts (Facts → Assessment / Conclusion). Plain firm prose without case facts stays ordinary teaching text, not an Illustration.</li>
-          <li>Pack chrome the reader also sees: <strong>Abbreviations</strong> (short forms used in that standard), <strong>References</strong>, bottom <strong>Disclaimer</strong>, and <strong>Last update</strong> on every pack page.</li>
-        </ul>
-      </li>
-      <li>
-        <span class="step-no" aria-hidden="true"></span>
-        <h2>Check</h2>
-        <p>Before a point stays on the page, it has to survive a source check.</p>
-        <ul>
-          <li>A cite has to match a source that was actually used for that pack.</li>
-          <li>Invented requirements, fake examples, and unsupported tips are removed.</li>
-          <li>Structure alone is not enough: thin placeholders that only restate a heading are not treated as finished teaching.</li>
-          <li>What the page promises the reader is traceability — every teaching claim can be walked back to Official or a named firm work — not that every PDF on earth was scanned.</li>
-        </ul>
-      </li>
-    </ol>
+
+    <!-- A · Purpose -->
+    <section class="purpose" aria-label="Purpose">
+      These notes are a <strong>personal study pack</strong> for technical accountants — not a legal reprint and not advice. Each standard pack is built so you can study without reopening every Official and firm PDF for the points the pack covers: a <strong>Concept Map</strong> as the jump board, and a <strong>detail-dense teaching body</strong> under it. Claims stay tied to the <strong>Official Standard</strong> and to <strong>firm works that were actually used</strong> for that pack.
+    </section>
+
+    <!-- B · Source hierarchy -->
+    <section class="zone" aria-labelledby="z-source">
+      <h2 class="zone-title" id="z-source">Source hierarchy</h2>
+      <p class="zone-lead">Official is primary. Firm manuals densify. FAQs and alerts only support a manual view.</p>
+      <div class="hierarchy">
+        <div class="hier-tier t1">
+          <div class="hier-label">
+            <span class="hier-rank">1</span>
+            <span class="hier-name">Official Standard</span>
+          </div>
+          <p>IFRS / IAS text for that pack, including Basis for Conclusions and Illustrative Examples where the chapter uses them.</p>
+          <p><strong>Rule:</strong> Requirements and definitions stay tied to Official locators.</p>
+        </div>
+        <div class="hier-tier t2">
+          <div class="hier-label">
+            <span class="hier-rank">2</span>
+            <span class="hier-name">Firm manuals actually used</span>
+          </div>
+          <p>PwC, Deloitte / DTT, EY, KPMG <strong>where on disk and scanned for the chapter</strong>.</p>
+          <p><strong>Rule:</strong> A firm that was not used is <strong>not</strong> listed as if it were.</p>
+        </div>
+        <div class="hier-tier t3">
+          <div class="hier-label">
+            <span class="hier-rank">3</span>
+            <span class="hier-name">Firm FAQs / alerts</span>
+          </div>
+          <p>Support that densifies a manual view.</p>
+          <p><strong>Rule:</strong> Never a substitute for Official text or for a manual that was never opened.</p>
+        </div>
+        <p class="hier-foot">Every pack lists its real sources on the <strong style="color:var(--ink)">References</strong> page. Cite chips in the chapter point back to those same works.</p>
+      </div>
+    </section>
+
+    <!-- C · Claim discipline -->
+    <section class="zone" aria-labelledby="z-claim">
+      <h2 class="zone-title" id="z-claim">Claim discipline</h2>
+      <p class="zone-lead">How claims stay honest before they stay on the page.</p>
+      <div class="claim-grid">
+        <div class="claim-row">
+          <div class="claim-rail"><strong>Official vs firm</strong></div>
+          <div class="claim-detail">Requirements and definitions stay tied to Official locators. Firm views, examples, and FAQs keep their own house tags — they are not rewritten as if they were the Standard.</div>
+        </div>
+        <div class="claim-row">
+          <div class="claim-rail"><strong>Sources differ</strong></div>
+          <div class="claim-detail">When sources treat one point differently, the page shows both side by side and <strong>does not reconcile</strong> them into a third “in practice” answer.</div>
+        </div>
+        <div class="claim-row">
+          <div class="claim-rail"><strong>No invent</strong></div>
+          <div class="claim-detail">Case facts and numbers come from Official or pack Big4 examples. Invented companies, CU amounts, requirements, or unsupported tips are not kept.</div>
+        </div>
+        <div class="claim-row">
+          <div class="claim-rail"><strong>Cite chips</strong></div>
+          <div class="claim-detail">On every sourced point: firm (or Official) + work + locator inside the chip — no bare house name, no <code style="font-family:inherit;color:var(--ink)">§</code> in chips.</div>
+        </div>
+        <div class="claim-row">
+          <div class="claim-rail"><strong>Traceability, not omniscience</strong></div>
+          <div class="claim-detail">A cite must match a source that was actually used for that pack. The page promises every teaching claim can be walked back to Official or a named firm work — not that every PDF on earth was scanned.</div>
+        </div>
+        <div class="claim-row">
+          <div class="claim-rail"><strong>Thin ≠ done</strong></div>
+          <div class="claim-detail">Structure alone is not enough: placeholders that only restate a heading are not treated as finished teaching.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- D · Surfaces peer grid -->
+    <section class="zone" aria-labelledby="z-surfaces">
+      <h2 class="zone-title" id="z-surfaces">Surfaces on a chapter page</h2>
+      <p class="zone-lead">Equal-rank things the reader meets — a collection, not a procedure.</p>
+      <div class="surfaces">
+        <article class="surface">
+          <h3 class="surface-name">Concept Map</h3>
+          <p>Teaching story in space and jump board into the chapter. One glance should show how the parts relate; section chips jump to the matching body section. The map does <strong>not</strong> re-teach the full text.</p>
+        </article>
+        <article class="surface">
+          <h3 class="surface-name">Sections</h3>
+          <p>Deep study surface: definitions, tests, tables, callouts in technical IFRS wording — detail-first so the reader does not reopen the PDFs for every point the pack covers.</p>
+        </article>
+        <article class="surface">
+          <h3 class="surface-name">Cite chips</h3>
+          <p>Source attribution on every sourced point (firm/Official + work + locator).</p>
+        </article>
+        <article class="surface">
+          <h3 class="surface-name">Illustrations</h3>
+          <p>Worked examples from Official or pack Big4 named examples / case facts (Facts → Assessment / Conclusion). Plain firm prose without case facts stays ordinary teaching text, not an Illustration.</p>
+        </article>
+        <article class="surface">
+          <h3 class="surface-name">Pack chrome</h3>
+          <p><strong>Abbreviations</strong> (short forms used in that standard), <strong>References</strong>, bottom <strong>Disclaimer</strong>, and <strong>Last update</strong> on every pack page.</p>
+        </article>
+      </div>
+    </section>
   </main>
 </body>
 </html>

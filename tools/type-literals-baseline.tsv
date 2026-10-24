@@ -13,14 +13,24 @@ homepage/homepage-wireframe-v0.1.html	.card-code	font-weight	700	1	DRIFT	309
 homepage/homepage-wireframe-v0.1.html	.open-link	font-weight	600	1	DRIFT	317
 homepage/homepage-wireframe-v0.1.html	.card-title	line-height	1.35	1	DRIFT	335
 homepage/homepage-wireframe-v0.1.html	.card-status	font-weight	700	1	DRIFT	342
-homepage/how-these-notes-are-made.html	body	line-height	1.45	1	DRIFT	27
-homepage/how-these-notes-are-made.html	.home-link	font-weight	600	1	DRIFT	41
-homepage/how-these-notes-are-made.html	h1	font-weight	650	1	DRIFT	53
-homepage/how-these-notes-are-made.html	.flow > li + li::before	font-weight	700	1	DRIFT	83
-homepage/how-these-notes-are-made.html	.flow > li + li::before	line-height	1	1	DRIFT	84
-homepage/how-these-notes-are-made.html	.step-no	font-weight	700	1	DRIFT	99
-homepage/how-these-notes-are-made.html	h2	font-weight	700	1	DRIFT	106
-homepage/how-these-notes-are-made.html	.flow p	line-height	1.45	1	DRIFT	113
+homepage/how-these-notes-are-made.html	body	line-height	1.45	1	DRIFT	47
+homepage/how-these-notes-are-made.html	body	font-weight	400	1	DRIFT	50
+homepage/how-these-notes-are-made.html	.home-link	font-weight	600	1	DRIFT	63
+homepage/how-these-notes-are-made.html	h1	font-weight	700	1	DRIFT	72
+homepage/how-these-notes-are-made.html	h1	line-height	1.2	1	DRIFT	74
+homepage/how-these-notes-are-made.html	.purpose	line-height	1.5	1	DRIFT	88
+homepage/how-these-notes-are-made.html	.purpose strong	font-weight	700	1	DRIFT	90
+homepage/how-these-notes-are-made.html	.zone-title	font-weight	700	1	DRIFT	98
+homepage/how-these-notes-are-made.html	.hier-rank	font-weight	700	1	DRIFT	149
+homepage/how-these-notes-are-made.html	.hier-name	font-weight	700	1	DRIFT	157
+homepage/how-these-notes-are-made.html	.hier-tier strong	font-weight	700	1	DRIFT	166
+homepage/how-these-notes-are-made.html	.claim-rail strong	font-weight	700	1	DRIFT	203
+homepage/how-these-notes-are-made.html	.claim-rail strong	line-height	1.35	1	DRIFT	205
+homepage/how-these-notes-are-made.html	.claim-detail	line-height	1.45	1	DRIFT	210
+homepage/how-these-notes-are-made.html	.claim-detail strong	font-weight	700	1	DRIFT	212
+homepage/how-these-notes-are-made.html	.surface-name	font-weight	700	1	DRIFT	232
+homepage/how-these-notes-are-made.html	.surface p	line-height	1.4	1	DRIFT	240
+homepage/how-these-notes-are-made.html	.surface strong	font-weight	700	1	DRIFT	243
 ias-16/draft-v1-linked/visuals/ias16.css	.ppe-tl-row .m-tl-ribbon p	line-height	1	1	DRIFT	8124
 ias-16/draft-v1-linked/visuals/ias16.css	.ch04-impair .m-tl-ribbon p	line-height	1	1	DRIFT	8506
 ias-16/draft-v1-linked/visuals/ias16.css	.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-dia	line-height	1	1	DRIFT	8608

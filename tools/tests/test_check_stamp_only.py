@@ -1544,5 +1544,144 @@ class Row86FoldTests(unittest.TestCase):
         self.assertNotEqual(stamp.fold_row86(base), stamp.fold_row86(head))
 
 
+class HowNotes108FoldTests(unittest.TestCase):
+    """#108. SIGNED how-notes teaching folds. Freestyle chrome does not.
+
+    Not a CONTENT_ALLOW. Stamp still owns the Home link, the title, and h1.
+    """
+
+    TIP = "1a591c83bc8bab3d0ccd137907b17003d0a2cc91"
+
+    def tip_html(self):
+        import subprocess
+
+        return subprocess.check_output(
+            ["git", "show", f"{self.TIP}:{stamp.HOW_NOTES}"],
+            cwd=stamp.ROOT,
+            text=True,
+        )
+
+    def live_html(self):
+        return (stamp.ROOT / stamp.HOW_NOTES).read_text(encoding="utf-8")
+
+    def test_signed_structure_folds_equal_to_four_box(self):
+        base = self.tip_html()
+        live = self.live_html()
+        folded = stamp.fold_how_notes(live)
+        self.assertEqual(stamp.fold_how_notes(base), folded)
+        self.assertIn('href="homepage-wireframe-v0.1.html"', folded)
+        self.assertIn("<title>How these notes are made</title>", folded)
+        self.assertIn("<h1>How these notes are made</h1>", folded)
+        self.assertNotIn('class="flow"', folded)
+        self.assertNotIn("proof-banner", folded)
+
+    def test_wording_inside_the_shell_still_folds(self):
+        live = self.live_html()
+        edited = live.replace("personal study pack", "personal study pack edited", 1)
+        self.assertNotEqual(live, edited)
+        self.assertEqual(stamp.fold_how_notes(live), stamp.fold_how_notes(edited))
+
+    def test_freestyle_outside_the_fold_does_not_fold(self):
+        folded_base = stamp.fold_how_notes(self.tip_html())
+        live = self.live_html()
+        extra = live.replace(
+            "</main>",
+            '<p class="traffic">Go</p>\n  </main>',
+            1,
+        )
+        self.assertNotEqual(stamp.fold_how_notes(extra), folded_base)
+        self.assertIn("traffic", stamp.fold_how_notes(extra))
+        bad_h1 = live.replace(
+            "<h1>How these notes are made</h1>",
+            "<h1>Notes</h1>",
+            1,
+        )
+        self.assertNotEqual(stamp.fold_how_notes(bad_h1), folded_base)
+        bad_href = live.replace(
+            'href="homepage-wireframe-v0.1.html"',
+            'href="elsewhere.html"',
+            1,
+        )
+        self.assertNotEqual(stamp.fold_how_notes(bad_href), folded_base)
+        bad_title = live.replace(
+            "<title>How these notes are made</title>",
+            "<title>Other</title>",
+            1,
+        )
+        self.assertNotEqual(stamp.fold_how_notes(bad_title), folded_base)
+        bad_css = live.replace(
+            "</style>",
+            ".traffic { color: red; }\n  </style>",
+            1,
+        )
+        self.assertNotEqual(stamp.fold_how_notes(bad_css), folded_base)
+
+    def test_how_notes_is_not_a_content_allow(self):
+        self.assertNotIn(stamp.HOW_NOTES, stamp.CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW, ("_shared/settings-rows.html",))
+
+    def test_gate_passes_signed_and_fails_freestyle(self):
+        import tempfile
+
+        base = self.tip_html()
+        live = self.live_html()
+
+        def git_text(rev, path):
+            if path == "_shared/last-update.js":
+                return LAST_UPDATE
+            if path == stamp.HOW_NOTES:
+                return base
+            raise KeyError(path)
+
+        def git_paths(rev):
+            return [stamp.HOW_NOTES]
+
+        def run(root):
+            original_root = stamp.ROOT
+            original_text = stamp.git_text
+            original_paths = stamp.git_paths
+            stamp.ROOT = root
+            stamp.git_text = git_text
+            stamp.git_paths = git_paths
+            buffer = io.StringIO()
+            try:
+                with redirect_stdout(buffer):
+                    code = stamp.main(["--base", "fixture"])
+            finally:
+                stamp.ROOT = original_root
+                stamp.git_text = original_text
+                stamp.git_paths = original_paths
+            return code, buffer.getvalue()
+
+        def write(root, html):
+            page = root / stamp.HOW_NOTES
+            page.parent.mkdir(parents=True, exist_ok=True)
+            page.write_text(html, encoding="utf-8")
+            last = root / "_shared" / "last-update.js"
+            last.parent.mkdir(parents=True, exist_ok=True)
+            last.write_text(LAST_UPDATE, encoding="utf-8")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write(root, live)
+            code, output = run(root)
+            self.assertEqual(code, 0, output)
+            self.assertIn("stamp-only: PASS", output)
+            write(
+                root,
+                live.replace(
+                    "</main>",
+                    '<p class="traffic">Go</p>\n  </main>',
+                    1,
+                ),
+            )
+            code, output = run(root)
+            self.assertEqual(code, 1, output)
+            self.assertIn(
+                "HTML changed outside ?v= and the homepage link: " + stamp.HOW_NOTES,
+                output,
+            )
+
+
 if __name__ == "__main__":
     unittest.main()
