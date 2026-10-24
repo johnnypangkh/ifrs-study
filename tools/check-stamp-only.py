@@ -5,9 +5,11 @@ The homepage Settings entry is a dual-allow: the legacy bare blue link or the
 #106 .card.ready card (card-code Settings, open-link to
 ../site/settings/index.html). Either form is folded out of the comparison.
 How these notes are made (homepage/how-these-notes-are-made.html) may change
-teaching body wording under the four steps (Sources / Read / Shape / Check).
-Stamp still owns chrome outside that fold: the step titles, step numbers,
-the flow rail, the Home link, and the page title. The live Master formatting
+from the #107 four-box deepen (Sources / Read / Shape / Check) to the #108
+SIGNED structure (Purpose, Source hierarchy, Claim discipline, Surfaces),
+including that page-local CSS. Stamp still owns chrome outside the fold:
+the Home link, the page title, and the h1 text. Freestyle outside that
+shell still fails. Not a CONTENT_ALLOW. The live Master formatting
 page (site/master-formatting/index.html, #100) may change ?v= only, the same
 shape as Settings, once it is on the base. A copy that is not on the base yet
 must still carry ?v= hashes that match disk. Writes nothing unless --csv is
@@ -43,8 +45,10 @@ IFRAME_TAG = re.compile(r"<iframe\b[^>]*>", re.I)
 STAMP_PACKS = ("ias-16", "ias-2", "ifrs-18", "cf-2018")
 STAMP = re.compile(r"Last update · \d{4}-\d{2}-\d{2} \d{2}:\d{2} HKT")
 HOME = "homepage/homepage-wireframe-v0.1.html"
-# #107 wording-only. Teaching bodies under the four steps may change.
-# Stamp still owns titles, step chrome, Home, and h1. Not a CONTENT_ALLOW.
+# #108. Teaching shell may be the #107 four-box or the SIGNED zones
+# (Purpose / Source hierarchy / Claim discipline / Surfaces), plus the
+# page-local CSS of those shells. Stamp still owns the Home link, <title>,
+# and h1. Not a CONTENT_ALLOW.
 HOW_NOTES = "homepage/how-these-notes-are-made.html"
 # site/settings/index.html and _shared/settings-rows.html are gated instead by check-settings-rows.py (276/276) and xlsx_to_tokens.py --check.
 CONTENT_ALLOW = (
@@ -1832,19 +1836,44 @@ def fold_disclaimer_injector(html, path, base_aside=None):
     return _ensure_disclaimer_shell(_remove_disclaimer_block(html, start, end))
 
 
-# #107. List-body rules that render the deepened step bullets. Folded with
-# the teaching bodies. Any other how-notes style rule stays under stamp.
-HOW_NOTES_LIST_SELECTORS = (
-    ".flow ul li + li",
-    ".flow ul li",
-    ".flow ul",
-    ".flow strong",
+# #108. How-notes may move from the #107 four-box (ol.flow / Sources /
+# Read / Shape / Check) to the SIGNED shell: Purpose, Source hierarchy,
+# Claim discipline, Surfaces. Page-local CSS for those two shells is part
+# of the fold. Home link, <title>, and h1 stay outside it. Not a CONTENT_ALLOW.
+HOW_NOTES_STYLE_107 = """:root { --bg: #0f1419; --surface: #1a222c; --surface-2: #222b36; --border: #3a4553; --text: #e8eef5; --muted: #8b97a8; --dim: #5c6775; --blue: #6ba3d9; --green: #3dba6e; } * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.45; min-height: 100vh; } .page { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; } .home-link { display: inline-block; margin-bottom: 16px; font-size: 13px; font-weight: 600; color: var(--green); text-decoration: none; } .home-link:hover, .home-link:focus { text-decoration: underline; } h1 { font-size: 28px; font-weight: 650; letter-spacing: -0.02em; margin-bottom: 28px; } .flow { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; counter-reset: step; } .flow > li { position: relative; counter-increment: step; background: var(--surface); border: 2px solid var(--green); border-radius: 6px; padding: 16px 14px 18px; min-height: 220px; } .flow > li + li::before { content: ">"; position: absolute; left: -20px; top: 28px; color: var(--dim); font-size: 16px; font-weight: 700; line-height: 1; } .step-no { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin-bottom: 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); color: var(--blue); font-size: 13px; font-weight: 700; } .step-no::before { content: counter(step); } h2 { font-size: 16px; font-weight: 700; margin-bottom: 8px; } .flow p { font-size: 14px; color: var(--muted); line-height: 1.45; } .flow ul { margin-top: 8px; padding-left: 1.15em; list-style: disc; } .flow ul li { font-size: 14px; color: var(--muted); } .flow ul li + li { margin-top: 8px; } .flow strong { color: var(--text); }"""
+HOW_NOTES_STYLE_108 = """:root { --bg: #12151a; --surface: #1c2128; --surface-2: #222830; --ink: #e8eaed; --muted: #9aa3ad; --line: #3a4250; --dash: #6b7580; --accent: #7ba3c9; --accent-soft: #1e2a38; --ok: #6fad87; --ok-soft: #1a2e24; --band: #1a1f26; --nest: #222830; --card-radius: 8px; --stroke-1: 1px; --stroke-2: 2px; --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem; --space-5: 1.5rem; --space-6: 2rem; --space-cell: .45rem; --page-max: 61.25rem; --t-body: .875rem; --t-head: 1rem; --t-meta: .75rem; --rail-bar-s: 2px; --rail-w: 11.5rem; } * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.45; min-height: 100vh; font-size: 14px; font-weight: 400; } .page { max-width: var(--page-max); margin: 0 auto; padding: var(--space-6) var(--space-5) 5rem; } .home-link { display: inline-block; margin-bottom: var(--space-3); font-size: 13px; font-weight: 600; color: var(--ok); text-decoration: none; } .home-link:hover, .home-link:focus { text-decoration: underline; } h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: var(--space-4); } .purpose { background: var(--accent-soft); border: var(--stroke-1) solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--card-radius); padding: var(--space-4) var(--space-5); margin-bottom: var(--space-5); color: var(--ink); font-size: var(--t-body); line-height: 1.5; } .purpose strong { font-weight: 700; } .zone { margin-top: var(--space-5); } .zone-title { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--space-3); } .zone-lead { font-size: var(--t-body); color: var(--muted); margin: 0 0 var(--space-3); } .hierarchy { display: flex; flex-direction: column; gap: var(--space-cell); background: var(--surface); border: var(--stroke-2) solid var(--accent); border-radius: var(--card-radius); padding: var(--space-3); } .hier-tier { border: var(--stroke-1) solid var(--line); border-radius: calc(var(--card-radius) - 2px); background: var(--nest); padding: var(--space-3) var(--space-4); } .hier-tier.t1 { border-color: var(--accent); background: var(--accent-soft); } .hier-tier.t2 { margin-inline: var(--space-4); background: var(--surface); } .hier-tier.t3 { margin-inline: var(--space-6); background: var(--band); border-style: solid; border-color: var(--dash); } .hier-label { display: flex; align-items: baseline; gap: var(--space-2); margin-bottom: var(--space-2); } .hier-rank { flex: none; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); min-width: 1.6rem; } .hier-name { font-size: var(--t-head); font-weight: 700; color: var(--ink); } .hier-tier p { font-size: var(--t-body); color: var(--muted); margin: 0; } .hier-tier p + p { margin-top: var(--space-2); } .hier-tier strong { color: var(--ink); font-weight: 700; } .hier-foot { margin-top: var(--space-3); padding: var(--space-2) var(--space-3); font-size: var(--t-meta); color: var(--muted); border-top: var(--stroke-1) solid var(--line); } .claim-grid { display: flex; flex-direction: column; gap: var(--space-cell); } .claim-row { display: grid; grid-template-columns: var(--rail-w) 1fr; gap: var(--space-cell); align-items: stretch; } .claim-rail, .claim-detail { border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); background: var(--surface); padding: var(--space-3) var(--space-4); min-height: 100%; } .claim-rail { border-left: var(--rail-bar-s) solid var(--accent); background: var(--band); display: flex; align-items: flex-start; } .claim-rail strong { font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.35; } .claim-detail { font-size: var(--t-body); color: var(--muted); line-height: 1.45; } .claim-detail strong { color: var(--ink); font-weight: 700; } .surfaces { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-3); } .surface { background: var(--surface); border: var(--stroke-1) solid var(--line); border-radius: var(--card-radius); padding: var(--space-3) var(--space-3) var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); min-height: 100%; } .surface-name { font-size: 14px; font-weight: 700; color: var(--ink); padding-bottom: var(--space-2); border-bottom: var(--stroke-1) solid var(--line); } .surface p { font-size: 13px; color: var(--muted); line-height: 1.4; flex: 1; } .surface strong { color: var(--ink); font-weight: 700; }"""
+HOW_NOTES_STYLES = frozenset({HOW_NOTES_STYLE_107, HOW_NOTES_STYLE_108})
+HOW_NOTES_FLOW_OPEN = '<ol class="flow">'
+HOW_NOTES_SIGNED_OPENS = (
+    '<section class="purpose" aria-label="Purpose">',
+    '<section class="zone" aria-labelledby="z-source">',
+    '<section class="zone" aria-labelledby="z-claim">',
+    '<section class="zone" aria-labelledby="z-surfaces">',
 )
+HOW_NOTES_STYLE_RE = re.compile(r"<style\b[^>]*>.*?</style>", re.S | re.I)
+HOW_NOTES_BODY_MARK = "\n    <!-- how-notes-body -->\n  "
 
 
-def _selector_key(raw):
-    text = " ".join(raw.split())
-    return re.sub(r"\s*\+\s*", " + ", text)
+def _norm_how_notes_css(text):
+    text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _skip_how_notes_gap(text, index):
+    """Walk whitespace and HTML comments. None if a comment is unclosed."""
+    length = len(text)
+    while index < length:
+        if text[index].isspace():
+            index += 1
+            continue
+        if text.startswith("<!--", index):
+            end = text.find("-->", index + 4)
+            if end < 0:
+                return None
+            index = end + 3
+            continue
+        return index
+    return index
 
 
 def _find_close(html, start, open_token, close_token):
@@ -1867,92 +1896,81 @@ def _find_close(html, start, open_token, close_token):
     return None
 
 
-def _strip_how_notes_step_bodies(html):
-    """Drop the nodes after each step h2 inside ol.flow. Titles stay."""
-    marker = '<ol class="flow">'
-    start = html.find(marker)
-    if start < 0:
+def _take_how_notes_element(text, index, open_tag):
+    if not text.startswith(open_tag, index):
+        return None
+    tag = open_tag[1:].split()[0].rstrip(">")
+    close_at = _find_close(text, index + len(open_tag), f"<{tag}", f"</{tag}>")
+    if close_at is None:
+        return None
+    return close_at + len(f"</{tag}>")
+
+
+def _how_notes_teaching_region(fragment):
+    """True when fragment is only the #107 flow list or the #108 four zones."""
+    index = _skip_how_notes_gap(fragment, 0)
+    if index is None:
+        return False
+    if fragment.startswith(HOW_NOTES_FLOW_OPEN, index):
+        end = _take_how_notes_element(fragment, index, HOW_NOTES_FLOW_OPEN)
+        if end is None:
+            return False
+        rest = _skip_how_notes_gap(fragment, end)
+        return rest == len(fragment)
+    for open_tag in HOW_NOTES_SIGNED_OPENS:
+        if not fragment.startswith(open_tag, index):
+            return False
+        end = _take_how_notes_element(fragment, index, open_tag)
+        if end is None:
+            return False
+        index = _skip_how_notes_gap(fragment, end)
+        if index is None:
+            return False
+    return index == len(fragment)
+
+
+def _fold_how_notes_style(html):
+    """Replace a recognised #107 or #108 style block. Leave any other CSS."""
+    match = HOW_NOTES_STYLE_RE.search(html)
+    if not match:
         return html
-    inner_at = start + len(marker)
-    close = _find_close(html, inner_at, "<ol", "</ol>")
-    if close is None:
+    inner = re.search(r"<style\b[^>]*>(.*)</style>", match.group(0), re.S | re.I)
+    if inner is None or _norm_how_notes_css(inner.group(1)) not in HOW_NOTES_STYLES:
         return html
-    inner = html[inner_at:close]
-    out = []
-    i = 0
-    while True:
-        open_at = inner.find("<li>", i)
-        if open_at < 0:
-            out.append(inner[i:])
-            break
-        out.append(inner[i:open_at + len("<li>")])
-        body_at = open_at + len("<li>")
-        close_at = _find_close(inner, body_at, "<li>", "</li>")
-        if close_at is None:
-            out.append(inner[body_at:])
-            break
-        chunk = inner[body_at:close_at]
-        h2 = chunk.find("</h2>")
-        if h2 < 0:
-            out.append(chunk)
-        else:
-            suffix = re.search(r"\s*$", chunk).group(0)
-            out.append(chunk[:h2 + len("</h2>")] + suffix)
-        out.append("</li>")
-        i = close_at + len("</li>")
-    return html[:inner_at] + "".join(out) + html[close:]
+    folded = "<style>/* how-notes-style */</style>"
+    return html[: match.start()] + folded + html[match.end() :]
 
 
-def _strip_how_notes_list_css(html):
-    """Drop the list-body style rules. Other style rules stay."""
-
-    def repl(match):
-        prefix, inner, suffix = match.group(1), match.group(2), match.group(3)
-        out = []
-        i = 0
-        n = len(inner)
-        while i < n:
-            brace = inner.find("{", i)
-            if brace < 0:
-                out.append(inner[i:])
-                break
-            end = inner.find("}", brace)
-            if end < 0:
-                out.append(inner[i:])
-                break
-            key = _selector_key(inner[i:brace])
-            if key in HOW_NOTES_LIST_SELECTORS:
-                # Keep the blank line after the previous rule. Drop the
-                # indent that belonged only to the removed rule.
-                lead = re.match(r"\s*", inner[i:brace]).group(0)
-                out.append("\n" * lead.count("\n"))
-                i = end + 1
-                if i < n and inner[i] == "\n":
-                    i += 1
-                continue
-            out.append(inner[i:end + 1])
-            i = end + 1
-        rebuilt = re.sub(r"\n{3,}", "\n\n", "".join(out))
-        return prefix + rebuilt + suffix
-
-    return re.sub(
-        r"(<style\b[^>]*>)(.*?)(</style>)",
-        repl,
-        html,
-        count=1,
-        flags=re.S | re.I,
-    )
+def _fold_how_notes_body(html):
+    """Replace a recognised teaching region after h1. Leave any other node."""
+    h1_end = html.find("</h1>")
+    if h1_end < 0:
+        return html
+    h1_end += len("</h1>")
+    main_close = html.find("</main>", h1_end)
+    if main_close < 0:
+        return html
+    fragment = html[h1_end:main_close]
+    if not _how_notes_teaching_region(fragment):
+        return html
+    return html[:h1_end] + HOW_NOTES_BODY_MARK + html[main_close:]
 
 
 def fold_how_notes(html):
-    """#107. Ignore teaching wording under Sources / Read / Shape / Check.
+    """#108. Fold how-notes teaching from the four-box shell to SIGNED zones.
 
-    The fold removes the body after each step h2 inside ol.flow (the
-    paragraph and bullet list) and the list-body rules that render those
-    bullets. Step titles, .step-no, the flow rail, the Home link, h1, and
-    the page title stay in the comparison.
+    Recognises two teaching shells on homepage/how-these-notes-are-made.html
+    only (the caller checks the path). The #107 shell is ol.flow (Sources /
+    Read / Shape / Check, step numbers, and the > rail). The #108 shell is
+    Purpose, Source hierarchy, Claim discipline, and Surfaces, including the
+    page-local CSS of either shell. Wording inside a recognised shell is
+    teaching and is folded. Stamp still owns chrome outside the fold: the
+    Home link (presence and target), the <title>, and the h1 text
+    "How these notes are made". An extra element, an invented class, or any
+    other freestyle outside those shells stays in the comparison and fails.
+    This is not a CONTENT_ALLOW.
     """
-    return _strip_how_notes_list_css(_strip_how_notes_step_bodies(html))
+    return _fold_how_notes_body(_fold_how_notes_style(html))
 
 
 def load_stamps(text):
@@ -2066,8 +2084,9 @@ def main(argv=None):
         # Row #42 A1–A6, Johnny 2026-10-14 21:39
         if path in ROW42_A1_A6_LINES:
             base_n, head_n = fold_row42_a1_a6(base_n, head_n, path)
-        # #107. Teaching bodies under the four how-notes steps, plus the
-        # list CSS that renders them. Chrome outside the fold still fails.
+        # #108. Fold the #107 four-box shell or the SIGNED Purpose / Source /
+        # Claim / Surfaces shell, including that page-local CSS. Home link,
+        # title, and h1 stay in the comparison. Not a CONTENT_ALLOW.
         if path == HOW_NOTES:
             base_n = fold_how_notes(base_n)
             head_n = fold_how_notes(head_n)
