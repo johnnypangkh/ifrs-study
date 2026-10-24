@@ -14,11 +14,14 @@ from the #107 four-box deepen (Sources / Read / Shape / Check) to the #108
 SIGNED structure (Purpose, Source hierarchy, Claim discipline, Surfaces),
 including that page-local CSS. Stamp still owns chrome outside the fold:
 the Home link, the page title, and the h1 text. Freestyle outside that
-shell still fails. Not a CONTENT_ALLOW. The live Master formatting
-page (site/master-formatting/index.html, #100) may change ?v= only, the same
-shape as Settings, once it is on the base. A copy that is not on the base yet
-must still carry ?v= hashes that match disk. Writes nothing unless --csv is
-given.
+shell still fails. Not a CONTENT_ALLOW. #112 Master Map
+(ias-16/draft-v1-linked/visuals/master-concept-map.html) may gain this one
+a.mf-lego-entry chrome line. The shared-visual ?v=-only rule is otherwise
+unchanged. The page stays in SHARED_VISUAL_PAGES. Not a CONTENT_ALLOW.
+The live Master formatting page (site/master-formatting/index.html, #100)
+may change ?v= only, the same shape as Settings, once it is on the base.
+A copy that is not on the base yet must still carry ?v= hashes that match
+disk. Writes nothing unless --csv is given.
 """
 import argparse
 import csv
@@ -765,6 +768,40 @@ def fold_row98(html, path):
     if path == "ias-16/draft-v1-linked/references.html":
         html = _ROW98_REFS.sub("", html)
     return html
+
+
+# #112: one Master Map chrome line. Stamp still owns anything else on that page.
+MF_LEGO_ENTRY_PAGE = "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+MF_LEGO_ENTRY = (
+    '<a class="mf-lego-entry" '
+    'href="../../../site/master-formatting/index.html#lego-sheet" '
+    'target="_top" rel="noopener">LEGO kit · Master formatting</a>'
+)
+
+
+def fold_mf_lego_entry(html, path):
+    """Drop the signed #112 Master Map LEGO-entry anchor, and nothing else.
+
+    #112 Master Map may gain this one a.mf-lego-entry chrome line. The
+    shared-visual ?v=-only rule is otherwise unchanged. One exact line is
+    folded out before the shared-visual compare. A second entry, a changed
+    href, an extra class, or any other chrome still fails. Not a
+    CONTENT_ALLOW. Other paths are left untouched, so a chapter page
+    cannot hide the same link behind this fold.
+    """
+    if path != MF_LEGO_ENTRY_PAGE:
+        return html
+    kept = []
+    removed = False
+    for line in html.splitlines(keepends=True):
+        body = line[:-2] if line.endswith("\r\n") else (
+            line[:-1] if line.endswith("\n") else line
+        )
+        if not removed and body == MF_LEGO_ENTRY:
+            removed = True
+            continue
+        kept.append(line)
+    return "".join(kept)
 
 
 def _one_trailing_visual_import(extra):
@@ -2106,6 +2143,8 @@ def main(argv=None):
         head = fold_row86(head)
         base = fold_row98(base, path)
         head = fold_row98(head, path)
+        base = fold_mf_lego_entry(base, path)
+        head = fold_mf_lego_entry(head, path)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)

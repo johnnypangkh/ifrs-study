@@ -1709,5 +1709,91 @@ class HowNotes108FoldTests(unittest.TestCase):
             )
 
 
+class MfLegoEntry112FoldTests(unittest.TestCase):
+    """#112: one exact Master Map anchor folds. Freestyle chrome still fails."""
+
+    PAGE = stamp.MF_LEGO_ENTRY_PAGE
+    NEEDLE = stamp.MF_LEGO_ENTRY
+
+    def base_page(self):
+        return (
+            '<div class="page">\n'
+            '<link rel="stylesheet" href="ias16.css?v=aaaaaaaaaaaa" />\n'
+            '<div class="ppe pack">\n'
+            "</div>\n"
+        )
+
+    def signed_head(self):
+        return self.base_page().replace(
+            '<div class="page">\n',
+            '<div class="page">\n' + self.NEEDLE + "\n",
+            1,
+        ).replace("aaaaaaaaaaaa", "bbbbbbbbbbbb")
+
+    def test_signed_entry_passes_shared_visual(self):
+        base = self.base_page()
+        head = self.signed_head()
+        folded_base = stamp.fold_mf_lego_entry(base, self.PAGE)
+        folded_head = stamp.fold_mf_lego_entry(head, self.PAGE)
+        self.assertEqual(folded_base, base)
+        self.assertNotIn(self.NEEDLE, folded_head)
+        self.assertIsNone(
+            stamp.shared_visual_stamp_failure(folded_base, folded_head, self.PAGE)
+        )
+
+    def test_live_map_folds_back_to_tip(self):
+        import subprocess
+
+        base = subprocess.check_output(
+            ["git", "show", f"d2cd6c9f:{self.PAGE}"],
+            cwd=stamp.ROOT,
+            text=True,
+        )
+        head = (stamp.ROOT / self.PAGE).read_text(encoding="utf-8")
+        self.assertEqual(head.count(self.NEEDLE), 1)
+        self.assertNotIn(self.NEEDLE, base)
+        folded_head = stamp.fold_mf_lego_entry(head, self.PAGE)
+        self.assertNotIn("mf-lego-entry", folded_head)
+        self.assertIsNone(
+            stamp.shared_visual_stamp_failure(
+                stamp.fold_mf_lego_entry(base, self.PAGE),
+                folded_head,
+                self.PAGE,
+            )
+        )
+
+    def test_freestyle_chrome_still_fails(self):
+        base = stamp.fold_mf_lego_entry(self.base_page(), self.PAGE)
+        extra = self.signed_head().replace(
+            self.NEEDLE + "\n",
+            self.NEEDLE + '\n<a class="rail-link" href="elsewhere.html">More</a>\n',
+            1,
+        )
+        folded = stamp.fold_mf_lego_entry(extra, self.PAGE)
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(base, folded, self.PAGE)
+        )
+        wrong = self.signed_head().replace("#lego-sheet", "#other", 1)
+        self.assertIn("mf-lego-entry", stamp.fold_mf_lego_entry(wrong, self.PAGE))
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(
+                base, stamp.fold_mf_lego_entry(wrong, self.PAGE), self.PAGE
+            )
+        )
+        indented = self.base_page().replace(
+            '<div class="page">\n',
+            '<div class="page">\n  ' + self.NEEDLE + "\n",
+            1,
+        )
+        self.assertIn(self.NEEDLE, stamp.fold_mf_lego_entry(indented, self.PAGE))
+
+    def test_chapter_path_is_not_folded_and_page_stays_gated(self):
+        chapter = "ias-16/draft-v1-linked/ch01.html"
+        html = "<p>\n" + self.NEEDLE + "\n</p>\n"
+        self.assertEqual(stamp.fold_mf_lego_entry(html, chapter), html)
+        self.assertIn(self.PAGE, stamp.SHARED_VISUAL_PAGES)
+        self.assertNotIn(self.PAGE, stamp.CONTENT_ALLOW)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,7 +1,7 @@
 # Site infra runbook — workbook #95
 
 **Owner:** IFRS Build · pairs with `SITE-INFRA-DIAGRAM.md` · update in same PR as infra change.  
-**Updated:** 2026-10-24 Asia/Hong_Kong · #110 homepage `.card-updated` STAMPS consumer · #100 live `site/master-formatting/` · #109 timeline module.
+**Updated:** 2026-10-24 Asia/Hong_Kong · #112 Master Map mf-lego-entry SHARED_VISUAL fold · #110 homepage `.card-updated` STAMPS consumer · #100 live `site/master-formatting/` · #109 timeline module.
 
 ## Who
 
@@ -49,6 +49,7 @@ Live base: `https://johnnypangkh.github.io/ifrs-study/`
 | Shared timeline module | `_shared/modules/visuals/timeline-1.css` | #109. Imported by `_shared/visuals.css` after `map-box.css`. Stamp `?v=` via `tools/stamp-assets.py` / `bash tools/build-all.sh` (do not hand-edit hashes). `tools/check-stamp-only.py` allows that one trailing `timeline-1.css` import when its hash matches disk (same shape as the map-box trailing import). Packs that load the kit inherit it (IAS 16 via the existing visuals import). IAS 16 `ias16.css` keeps plate placement only (shaft height, `--mo-n`, flex, flag extras, ch05 span show, ribbon hide, Reval evt/nil, Impair rd/foot/cease). Not part of `map-box.css`. `tools/map-lint.py` fails a new pack paint class that does not alias into L* / `m-flow\|link\|visit` / `m-tl*`. |
 | `site/master-formatting/index.html` | #100 live MF | Johnny V6 path A, 2026-10-21. `tools/stamp-assets.py` `settings_pages()` hashes `_shared` `?v=` on this page. `tools/build-last-update.py` maps `/site/master-formatting/` to pack `site` and includes that folder in the site fingerprint. `_shared/chrome-packs.js` `CHROME_PACK_PATHS` has the same path (generated `_shared/last-update.js` `PACK_PATHS` follows). `tools/check-stamp-only.py` allows `?v=`-only edits once the page is on main (same shape as Settings; not a blank cheque). Page CSS stays on the page. Do not copy `kit.css` into `_shared`. |
 | Homepage READY card dates | #110 | Homepage READY pack + Settings cards use empty `.card-updated` under `[data-pack]` filled from `_shared/last-update.js` `STAMPS` as `Updated · YYYY-MM-DD`. How-notes and PLANNED omit. `tools/build-last-update.py` template must keep the `#110-card-mount` card filler so `build-all.sh` does not wipe it. STAMPS keys / fingerprints / iso unchanged. Chrome-bar `mount()` unchanged. |
+| Master Map LEGO entry | #112 | Live `ias-16/draft-v1-linked/visuals/master-concept-map.html` may add one chrome line `a.mf-lego-entry` (label `LEGO kit · Master formatting`, href `../../../site/master-formatting/index.html#lego-sheet`, `target="_top"`) above `.ppe.pack`. Page stays in `SHARED_VISUAL_PAGES`. `tools/check-stamp-only.py` folds that exact anchor out of the shared-visual / stamp compare (same dedicated-fold shape as #98 plates / #108 how-notes / #110 homepage card chrome). Stamp still owns freestyle outside that needle. Pack token CSS lives in `ias16.css` (not `_shared`). `check-incremental` owns teaching rows — chrome label ADD alone does not require `changes/<pr>.yml`. |
 
 ## Live Master formatting path
 
