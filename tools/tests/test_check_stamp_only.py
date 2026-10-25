@@ -1970,5 +1970,174 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertNotIn(self.PAGE, stamp.CONTENT_ALLOW)
 
 
+TIP_116 = "05cd82a9ecba6189d47d93386b34517eb06a1f0f"
+
+
+def _fold_homepage_116(html):
+    """Same homepage folds the stamp CLI applies before the byte compare."""
+    html = stamp.fold_map_pick_a(html)
+    html = stamp.norm(html)
+    html = stamp.fold_homepage_110(html)
+    return stamp.fold_settings_entry(html)
+
+
+class HomepageMfLego116FoldTests(unittest.TestCase):
+    """#116: the two-card foot folds. The Settings card stays required."""
+
+    PAGE = stamp.HOME
+
+    def tip_html(self):
+        import subprocess
+
+        return subprocess.check_output(
+            ["git", "show", f"{TIP_116}:{self.PAGE}"],
+            cwd=stamp.ROOT,
+            text=True,
+        )
+
+    def live_html(self):
+        return (stamp.ROOT / self.PAGE).read_text(encoding="utf-8")
+
+    def test_live_two_card_folds_back_to_tip(self):
+        base = self.tip_html()
+        head = self.live_html()
+        self.assertEqual(head.count('data-entry="mf-lego"'), 1)
+        self.assertEqual(base.count('data-entry="mf-lego"'), 0)
+        self.assertIn(
+            'href="../site/master-formatting/index.html#lego-sheet"',
+            head,
+        )
+        self.assertIn('class="card-updated"', head)
+        self.assertTrue(stamp.settings_entry_present(head))
+        self.assertTrue(stamp.settings_entry_present(base))
+        self.assertNotIn(stamp.SETTINGS_CARD, head)
+        self.assertEqual(_fold_homepage_116(base), _fold_homepage_116(head))
+
+    def test_single_card_needle_is_not_inside_the_two_card_needle(self):
+        single = stamp._settings_forms(stamp.SETTINGS_CARD)
+        double = stamp._settings_forms(stamp.SETTINGS_CARD_116)
+        for left in single:
+            for right in double:
+                self.assertNotIn(left, right)
+                self.assertNotIn(right, left)
+
+    def test_settings_href_still_required(self):
+        head = self.live_html().replace(
+            'href="../site/settings/index.html"',
+            'href="../site/elsewhere/index.html"',
+            1,
+        )
+        self.assertFalse(stamp.settings_entry_present(head))
+
+    def test_wrong_lego_href_does_not_fold(self):
+        base = self.tip_html()
+        head = self.live_html().replace("#lego-sheet", "#other", 1)
+        self.assertNotEqual(_fold_homepage_116(base), _fold_homepage_116(head))
+        self.assertIn('data-entry="mf-lego"', _fold_homepage_116(head))
+
+    def test_second_card_row_does_not_fully_fold(self):
+        base = self.tip_html()
+        head = self.live_html()
+        start = head.find(
+            '      <article class="card ready" data-pack="site" data-entry="mf-lego">'
+        )
+        end = head.find("      </article>", start)
+        article = head[start:end + len("      </article>")]
+        doubled = head.replace(article, article + "\n" + article, 1)
+        self.assertEqual(doubled.count('data-entry="mf-lego"'), 2)
+        folded = _fold_homepage_116(doubled)
+        self.assertIn('data-entry="mf-lego"', folded)
+        self.assertNotEqual(_fold_homepage_116(base), folded)
+
+    def test_chapter_html_is_not_a_homepage_fold_target(self):
+        chapter = "<p>\n" + stamp.SETTINGS_MF_LEGO_ENTRY + "\n</p>\n"
+        self.assertEqual(stamp.fold_settings_mf_lego_entry(chapter, "ias-16/draft-v1-linked/ch01.html"), chapter)
+        self.assertNotIn(self.PAGE, stamp.CONTENT_ALLOW)
+
+
+class SettingsMfLego116FoldTests(unittest.TestCase):
+    """#116: one exact Settings anchor folds. Freestyle chrome still fails."""
+
+    PAGE = stamp.SETTINGS_MF_LEGO_PAGE
+    NEEDLE = stamp.SETTINGS_MF_LEGO_ENTRY
+
+    def tip_html(self):
+        import subprocess
+
+        return subprocess.check_output(
+            ["git", "show", f"{TIP_116}:{self.PAGE}"],
+            cwd=stamp.ROOT,
+            text=True,
+        )
+
+    def live_html(self):
+        return (stamp.ROOT / self.PAGE).read_text(encoding="utf-8")
+
+    def test_signed_line_folds_and_live_stamp_is_v_only(self):
+        base = self.tip_html()
+        head = self.live_html()
+        self.assertEqual(head.count(self.NEEDLE), 1)
+        self.assertNotIn(self.NEEDLE, base)
+        self.assertNotIn("mock116-lego-entry", head)
+        self.assertNotIn("<style", head)
+        folded_base = stamp.fold_settings_mf_lego_entry(base, self.PAGE)
+        folded_head = stamp.fold_settings_mf_lego_entry(head, self.PAGE)
+        self.assertEqual(folded_base, base)
+        self.assertNotIn("mf-lego-entry", folded_head)
+        self.assertIsNone(
+            stamp.settings_stamp_failure(
+                folded_base, folded_head, stamp.ROOT, page=self.PAGE
+            )
+        )
+
+    def test_freestyle_chrome_still_fails(self):
+        base = self.tip_html()
+        folded_base = stamp.fold_settings_mf_lego_entry(base, self.PAGE)
+        wrong = self.live_html().replace("#lego-sheet", "#other", 1)
+        self.assertIn("mf-lego-entry", stamp.fold_settings_mf_lego_entry(wrong, self.PAGE))
+        self.assertIsNotNone(
+            stamp.settings_stamp_failure(
+                folded_base,
+                stamp.fold_settings_mf_lego_entry(wrong, self.PAGE),
+                stamp.ROOT,
+                page=self.PAGE,
+            )
+        )
+        indented = self.live_html().replace(self.NEEDLE, "  " + self.NEEDLE, 1)
+        self.assertIn(self.NEEDLE, stamp.fold_settings_mf_lego_entry(indented, self.PAGE))
+        styled = self.live_html().replace(
+            self.NEEDLE,
+            '<style id="mf-lego-entry">.x{color:var(--muted)}</style>\n' + self.NEEDLE,
+            1,
+        )
+        folded = stamp.fold_settings_mf_lego_entry(styled, self.PAGE)
+        self.assertIn('id="mf-lego-entry"', folded)
+        self.assertNotIn(self.NEEDLE, folded)
+        self.assertIsNotNone(
+            stamp.settings_stamp_failure(folded_base, folded, stamp.ROOT, page=self.PAGE)
+        )
+
+    def test_only_one_line_folds_and_other_paths_stay(self):
+        doubled = self.live_html().replace(self.NEEDLE, self.NEEDLE + "\n" + self.NEEDLE, 1)
+        folded = stamp.fold_settings_mf_lego_entry(doubled, self.PAGE)
+        self.assertEqual(folded.count(self.NEEDLE), 1)
+        chapter = "ias-16/draft-v1-linked/ch01.html"
+        self.assertEqual(
+            stamp.fold_settings_mf_lego_entry(self.live_html(), chapter),
+            self.live_html(),
+        )
+        self.assertEqual(
+            stamp.fold_settings_mf_lego_entry(self.live_html(), stamp.MF_LEGO_ENTRY_PAGE),
+            self.live_html(),
+        )
+        master = stamp.MF_LEGO_ENTRY
+        self.assertEqual(
+            stamp.fold_settings_mf_lego_entry(master + "\n", self.PAGE),
+            master + "\n",
+        )
+        self.assertNotIn(self.PAGE, stamp.CONTENT_ALLOW)
+        self.assertIn(self.PAGE, stamp.STAMP_ONLY_HTML)
+
+
 if __name__ == "__main__":
     unittest.main()
