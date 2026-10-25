@@ -869,7 +869,7 @@ def fold_b19_echo(html, path):
 # map-section:ch05-dep:start and a.rail-link.handoff sits after
 # map-section:ch05-dep:end, so the #98 ch05-dep blank does not see
 # either. Master has no pack-flow-in and no a.rail-link.handoff twin.
-# Not a CONTENT_ALLOW. exit-label stays untagged and is not folded.
+# Not a CONTENT_ALLOW. The exit-label is a separate #119 B12 pin.
 B20_HANDOFF_PAGE = "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
 B20_PACK_FLOW_OLD = (
     '<div class="pack-flow pack-flow-in" aria-label="Inbound from models">'
@@ -917,6 +917,53 @@ def fold_b20_handoff(html, path):
     if html.count(B20_HANDOFF_NEW) != 1:
         return html
     return html.replace(B20_HANDOFF_NEW, B20_HANDOFF_OLD, 1)
+
+
+# #119: two chapter-only Arrow open tags. The shaft sits before
+# map-section:ch05-dep:start and the exit-label sits after
+# map-section:ch05-dep:end, so the #98 ch05-dep blank does not see
+# either. Master has other .pack-flow-shaft.m-flow and .exit-label
+# nodes — do not invent B12 on them. Not a CONTENT_ALLOW.
+B12_ARROW_PAGE = "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+B12_SHAFT_OLD = '<div class="pack-flow-shaft m-flow">'
+B12_SHAFT_NEW = '<div class="pack-flow-shaft m-flow" data-brick="B12">'
+B12_EXIT_LABEL_OLD = '<p class="arm-label exit-label">'
+B12_EXIT_LABEL_NEW = '<p class="arm-label exit-label" data-brick="B12">'
+
+
+def fold_b12_shaft(html, path):
+    """Fold the signed #119 chapter-only shaft attribute.
+
+    One exact open tag, on the chapter page only, and only when it
+    appears once. Class then data-brick. A second copy, a different
+    brick, attribute order other than class then data-brick, an extra
+    class, or any other byte stays in the compare and fails. The master
+    map is left untouched. Other chapters' shafts are not this tag.
+    Call this before fold_map_pick_a: that fold strips the m-flow token,
+    and the exact open tag would no longer match.
+    """
+    if path != B12_ARROW_PAGE:
+        return html
+    if html.count(B12_SHAFT_NEW) != 1:
+        return html
+    return html.replace(B12_SHAFT_NEW, B12_SHAFT_OLD, 1)
+
+
+def fold_b12_exit_label(html, path):
+    """Fold the signed #119 chapter-only exit-label attribute.
+
+    One exact open tag, on the chapter page only, and only when it
+    appears once. Class then data-brick. A second copy, a different
+    brick, attribute order other than class then data-brick, an extra
+    class, or any other byte stays in the compare and fails. The master
+    map is left untouched. The shaft is not this tag. Other chapters'
+    exit-labels are not folded.
+    """
+    if path != B12_ARROW_PAGE:
+        return html
+    if html.count(B12_EXIT_LABEL_NEW) != 1:
+        return html
+    return html.replace(B12_EXIT_LABEL_NEW, B12_EXIT_LABEL_OLD, 1)
 
 
 # #116: one Settings-page chrome line. Stamp still owns anything else on
@@ -2316,6 +2363,10 @@ def main(argv=None):
                 failed = True
         base = fold_settings_stamps(base, head, path)
         base = fold_theme_js(base, head, path)
+        # #119 shaft class includes m-flow. fold_map_pick_a strips that
+        # token, so the exact open tag has to fold before that strip.
+        base = fold_b12_shaft(base, path)
+        head = fold_b12_shaft(head, path)
         base = fold_map_pick_a(base)
         head = fold_map_pick_a(head)
         base = fold_row86(base)
@@ -2332,6 +2383,8 @@ def main(argv=None):
         head = fold_b20_pack_flow(head, path)
         base = fold_b20_handoff(base, path)
         head = fold_b20_handoff(head, path)
+        base = fold_b12_exit_label(base, path)
+        head = fold_b12_exit_label(head, path)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)
