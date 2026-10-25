@@ -22,6 +22,11 @@ unchanged. The page stays in SHARED_VISUAL_PAGES. Not a CONTENT_ALLOW.
 gain data-brick="B19" on the one nav.master-echo open tag (class then
 data-brick). That nav sits outside #ch05-dep, so the master map is not
 folded and must not gain master-echo. Not a CONTENT_ALLOW.
+#118 ch05 Hand-off on the same chapter file may gain data-brick="B20"
+on div.pack-flow.pack-flow-in and on a.rail-link.handoff (class then
+data-brick, one each). Both sit outside #ch05-dep, so the master map is
+not folded and must not gain pack-flow-in or a.rail-link.handoff. Not a
+CONTENT_ALLOW.
 The live Master formatting page (site/master-formatting/index.html, #100)
 may change ?v= only, the same shape as Settings, once it is on the base.
 A copy that is not on the base yet must still carry ?v= hashes that match
@@ -858,6 +863,60 @@ def fold_b19_echo(html, path):
     if html.count(B19_ECHO_NEW) != 1:
         return html
     return html.replace(B19_ECHO_NEW, B19_ECHO_OLD, 1)
+
+
+# #118: two chapter-only Hand-off open tags. pack-flow-in sits before
+# map-section:ch05-dep:start and a.rail-link.handoff sits after
+# map-section:ch05-dep:end, so the #98 ch05-dep blank does not see
+# either. Master has no pack-flow-in and no a.rail-link.handoff twin.
+# Not a CONTENT_ALLOW. exit-label stays untagged and is not folded.
+B20_HANDOFF_PAGE = "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+B20_PACK_FLOW_OLD = (
+    '<div class="pack-flow pack-flow-in" aria-label="Inbound from models">'
+)
+B20_PACK_FLOW_NEW = (
+    '<div class="pack-flow pack-flow-in" data-brick="B20" '
+    'aria-label="Inbound from models">'
+)
+B20_HANDOFF_OLD = (
+    '<a class="rail-link handoff" href="../ch06.html#s-6-0" target="_parent">'
+)
+B20_HANDOFF_NEW = (
+    '<a class="rail-link handoff" data-brick="B20" href="../ch06.html#s-6-0" '
+    'target="_parent">'
+)
+
+
+def fold_b20_pack_flow(html, path):
+    """Fold the signed #118 chapter-only pack-flow-in attribute.
+
+    One exact open tag, on the chapter page only, and only when it
+    appears once. Class then data-brick. A second copy, a different
+    brick, attribute order other than class then data-brick, an extra
+    class, or any other byte stays in the compare and fails. The master
+    map is left untouched.
+    """
+    if path != B20_HANDOFF_PAGE:
+        return html
+    if html.count(B20_PACK_FLOW_NEW) != 1:
+        return html
+    return html.replace(B20_PACK_FLOW_NEW, B20_PACK_FLOW_OLD, 1)
+
+
+def fold_b20_handoff(html, path):
+    """Fold the signed #118 chapter-only handoff attribute.
+
+    One exact open tag, on the chapter page only, and only when it
+    appears once. Class then data-brick. A second copy, a different
+    brick, attribute order other than class then data-brick, an extra
+    class, or any other byte stays in the compare and fails. The master
+    map is left untouched. The exit-label is not this tag.
+    """
+    if path != B20_HANDOFF_PAGE:
+        return html
+    if html.count(B20_HANDOFF_NEW) != 1:
+        return html
+    return html.replace(B20_HANDOFF_NEW, B20_HANDOFF_OLD, 1)
 
 
 # #116: one Settings-page chrome line. Stamp still owns anything else on
@@ -2269,6 +2328,10 @@ def main(argv=None):
         head = fold_b09_junction(head, path)
         base = fold_b19_echo(base, path)
         head = fold_b19_echo(head, path)
+        base = fold_b20_pack_flow(base, path)
+        head = fold_b20_pack_flow(head, path)
+        base = fold_b20_handoff(base, path)
+        head = fold_b20_handoff(head, path)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)
