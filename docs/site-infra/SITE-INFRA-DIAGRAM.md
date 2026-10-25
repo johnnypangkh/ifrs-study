@@ -1,6 +1,6 @@
 # Site infra — workbook #95
 
-**Owner:** IFRS Build · **Updated:** 2026-10-21 Asia/Shanghai · #100 live `site/master-formatting/` · #109 timeline module  
+**Owner:** IFRS Build · **Updated:** 2026-10-26 Asia/Hong_Kong · #100 live `site/master-formatting/` · #109 timeline module · #120 remaining extract (pack placement only)
 **Update:** same PR as any infra change.
 
 ## Source of truth
@@ -42,7 +42,7 @@ flowchart LR
 | Map cite count lint fails? | runbook § CI gates with pinned counts |
 | Map lint says shared class collision? | runbook § CI gates with pinned counts (rename the plate class; never edit the shared rule) |
 | Where is the live Master formatting page? | `site/master-formatting/` (Johnny V6 path A, #100). Settings (`site/settings/`) is the token table, not MF. LEGO sheet is section `#lego-sheet` on the MF page. |
-| Where is shared timeline chrome? | `_shared/modules/visuals/timeline-1.css`, imported by `_shared/visuals.css` (#109). Not `map-box.css`. Packs load the kit; IAS 16 keeps plate placement in `ias16.css`. |
+| Where is shared timeline chrome? | `_shared/modules/visuals/timeline-1.css`, imported by `_shared/visuals.css` (#109, remaining extract #120). Not `map-box.css`. #120 is done: B1/B2/key/rd-left/cite-run and the Dep/Impair layout near-dup live here. IAS 16 `ias16.css` keeps plate placement only. |
 
 ## Live pages under `site/`
 

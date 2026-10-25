@@ -1,13 +1,21 @@
 /* #109 shared timeline chrome (.m-tl*).
+   #120 extends the same file (do not add a second timeline file, do not
+   put this in map-box): B1 solid lane, B2 faded tail, key, period-end
+   left, cite-run, and the Dep/Impair layout near-dup.
    One recipe for every pack. Plate placement (shaft height, --mo-n,
-   ribbon hide, span show, Reval evt/nil, Impair rd/foot/cease) stays
-   in the pack. Not map-box (site-rules §1.1).
+   --pe-n, --lane-top, ribbon hide, span show, Reval evt/nil,
+   Impair rd/foot/cease/gates) stays in the pack. Not map-box (site-rules §1.1).
    Literals with no token (16rem, 17rem, line-height:1) stay in the pack:
    shared lint rejects them. Tokens only here. */
 
 .m-tl{
   position:relative;
   min-width:0;
+  /* #120 B1 lane size. Plates set --lane-top (and hide the ribbon). */
+  --lane-h: var(--space-6);
+  --lane-pt: calc(var(--space-6) / 2);
+  /* #120 B2. Same mix the three plates already used. */
+  --tl-tail: color-mix(in srgb, var(--muted) 40%, var(--band));
 }
 .m-tl .m-tl-axis{
   position:relative;
@@ -27,14 +35,16 @@
   --head: var(--space-4);
   position:absolute; left:0; top: var(--pole-h);
   width: calc(100% + var(--space-6));
-  height: var(--stroke-2); background: var(--muted); border: 0;
+  height: var(--stroke-2);
+  background: linear-gradient(to right, var(--muted) 0 calc(100% - var(--space-6)), var(--tl-tail) calc(100% - var(--space-6)) 100%);
+  border: 0;
 }
 .m-tl .m-tl-line::after{
   content:""; position:absolute; left:100%; top:50%;
   width:0; height:0; margin-top: calc(-1 * var(--head));
   border-top: var(--head) solid transparent;
   border-bottom: var(--head) solid transparent;
-  border-left: var(--head) solid var(--muted);
+  border-left: var(--head) solid var(--tl-tail);
 }
 .m-tl .m-tl-ring{
   position:absolute; top: calc(var(--pole-h) + var(--stroke-2) / 2);
@@ -62,17 +72,20 @@
 }
 .m-tl .m-tl-ribbon{
   position:absolute;
-  left: var(--stroke-2);
-  width: calc(100% - var(--stroke-2) * 2);
-  top: calc(var(--pole-h) - var(--space-6));
-  height: var(--space-6);
-  display:flex; align-items:center; justify-content:center;
-  background: linear-gradient(to right, color-mix(in srgb, var(--accent) 35%, var(--bg)), var(--accent));
+  left:0;
+  width:100%;
+  top: calc(var(--pole-h) + var(--lane-top, calc(-1 * var(--space-6))));
+  height: var(--lane-h);
+  display:flex; align-items:center; justify-content:flex-start;
+  box-sizing:border-box;
+  padding: 0 var(--lane-pt) 0 var(--space-3);
+  background: var(--accent);
+  clip-path: polygon(0 0, calc(100% - var(--lane-pt)) 0, 100% 50%, calc(100% - var(--lane-pt)) 100%, 0 100%);
   z-index:3;
 }
 .m-tl .m-tl-ribbon p{
   margin:0;
-  font-size: var(--t3-fs); font-weight: var(--t3-strong-fw); color: var(--ink);
+  font-size: var(--t3-fs); font-weight: var(--t3-strong-fw); color: var(--bg);
 }
 .m-tl .m-tl-ye{
   position:absolute; top: calc(var(--pole-h) + var(--stroke-2));
@@ -114,6 +127,7 @@
 }
 .m-tl .m-tl-rd{
   position:absolute; top:calc(var(--pole-h) + var(--stroke-2));
+  left: calc(100% * var(--k) / var(--pe-n));
   width:0; z-index:5;
 }
 .m-tl .rd-tick{
@@ -134,4 +148,49 @@
   position:absolute; left:0; right:0; margin:0; text-align:center;
   top: calc(var(--pole-h) + var(--space-6) + var(--space-4));
   font-size: var(--t2-fs); font-weight: var(--t2-fw); line-height: var(--t2-lh); color: var(--ink);
+}
+
+/* #120 key under the axis. .key-dia line-height:1 stays in the pack (no token). */
+.m-tl .m-tl-key{
+  display:flex; flex-direction:column; gap:var(--space-1);
+  margin:0; min-width:0;
+}
+.m-tl .key-row{
+  display:flex; flex-wrap:wrap; align-items:center; column-gap:var(--space-2); row-gap:var(--space-1);
+  margin:0; min-width:0;
+  font-size:var(--t2-fs); font-weight:var(--t2-fw); line-height:var(--t2-lh); color:var(--ink);
+}
+.m-tl .key-row.key-head{font-weight:var(--t1-fw)}
+.m-tl .key-row.key-case{padding-left:calc(var(--space-4) + var(--space-2))}
+.m-tl .key-mark{
+  flex:none; width:var(--space-4); height:var(--space-3);
+  display:flex; justify-content:center; align-items:flex-start;
+}
+.m-tl .key-mark.key-tick::before{content:""; height:var(--space-3); border-left:var(--stroke-2) solid var(--ink)}
+.m-tl .key-mark.key-mo::before{content:""; height:var(--space-2); border-left:var(--stroke-1) solid var(--muted)}
+.m-tl .key-mark.key-nil::before{content:""; height:var(--space-3); border-left:var(--stroke-1) solid var(--muted)}
+.m-tl .key-mark.key-dia{align-items:center; color:var(--accent); font-size:var(--t2-fs)}
+.m-tl .cite-run{
+  display:inline-flex; flex-wrap:wrap; align-items:center; gap:var(--space-1);
+}
+
+/* #120 Dep/Impair layout near-dup. Dep, Reval, and Impair rows are already
+   .srow and the pane's direct child is .m-tl. Not a new class.
+   Impair stays block — flex stays on .ppe-tl-row in the pack. */
+.srow > .tl-pane:has(> .m-tl){
+  border:var(--stroke-1) solid var(--line);
+  background:var(--band);
+  border-radius:var(--card-radius);
+  padding:var(--space-2);
+  display:flex; flex-direction:column; gap:var(--space-2);
+  min-width:0; box-sizing:border-box; height:100%;
+}
+.srow > .tl-pane:has(> .m-tl) > .head{
+  display:flex; align-items:center; gap:var(--space-2); flex-wrap:wrap;
+}
+.m-tl .t1{
+  font-size:var(--t1-fs); font-weight:var(--t1-fw); line-height:var(--t1-lh); margin:0;
+}
+.m-tl .t2{
+  font-size:var(--t2-fs); font-weight:var(--t2-fw); line-height:var(--t2-lh); margin:0; color:var(--muted);
 }

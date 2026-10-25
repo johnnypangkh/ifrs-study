@@ -535,6 +535,29 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertEqual(code, 1, output)
         self.assertIn("_shared/visuals.css", output)
 
+    def test_visuals_timeline_import_is_stamp_only(self):
+        """#120: visuals.css line 31 may change ?v= and nothing else."""
+        import tempfile
+
+        lines = [f"/* line {n} */" for n in range(1, 32)]
+        lines[30] = '@import url("modules/visuals/timeline-1.css?v=250ee95e17c2");'
+        base = "\n".join(lines) + "\n"
+        head = base.replace("250ee95e17c2", "a0c4f0ba4cc9")
+        rel = stamp.SHARED_VISUAL_CSS
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+        bad = head.replace("timeline-1.css", "timeline-2.css", 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: bad})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("_shared/visuals.css", output)
+
     def test_visuals_timeline_import_may_be_one_trailing_line(self):
         """#109: one trailing timeline-1.css import is allowed when the hash matches."""
         import hashlib

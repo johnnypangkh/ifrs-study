@@ -41,7 +41,6 @@ homepage/how-these-notes-are-made.html	.claim-detail strong	font-weight	700	1	DR
 homepage/how-these-notes-are-made.html	.surface-name	font-weight	700	1	DRIFT	232
 homepage/how-these-notes-are-made.html	.surface p	line-height	1.4	1	DRIFT	240
 homepage/how-these-notes-are-made.html	.surface strong	font-weight	700	1	DRIFT	243
-ias-16/draft-v1-linked/visuals/ias16.css	.ppe-tl-row .m-tl-ribbon p	line-height	1	1	DRIFT	8124
-ias-16/draft-v1-linked/visuals/ias16.css	.ch04-impair .m-tl-ribbon p	line-height	1	1	DRIFT	8506
+ias-16/draft-v1-linked/visuals/ias16.css	.ppe-tl-row .m-tl-ribbon p, .ch04-impair .m-tl-ribbon p	line-height	1	1	DRIFT	8071
 ias-16/draft-v1-linked/visuals/ias16.css	.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-dia	line-height	1	1	DRIFT	8608
 ias-16/draft-v1-linked/visuals/ias16.css	.plate.ch04-reval .ppe-tl-row .m-tl-evt .lc-dia	line-height	0	1	DRIFT	8671
