@@ -779,6 +779,30 @@ MF_LEGO_ENTRY = (
 )
 
 
+# #114: one chapter-only See-also open tag. The four in-include B09
+# nodes sit inside the #98 ch05-dep blank. This tag is after
+# map-section:ch05-dep:end, so that blank does not see it. Master has
+# no junction-tip twin. Not a CONTENT_ALLOW.
+B09_JUNCTION_PAGE = "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+B09_JUNCTION_OLD = '<p class="junction-tip see">'
+B09_JUNCTION_NEW = '<p class="junction-tip see" data-brick="B09">'
+
+
+def fold_b09_junction(html, path):
+    """Fold the signed #114 chapter-only junction See-also attribute.
+
+    One exact open tag, on the chapter page only, and only when it
+    appears once. A second copy, a different brick, an extra class, or
+    any other byte stays in the compare and fails. The master map is
+    left untouched.
+    """
+    if path != B09_JUNCTION_PAGE:
+        return html
+    if html.count(B09_JUNCTION_NEW) != 1:
+        return html
+    return html.replace(B09_JUNCTION_NEW, B09_JUNCTION_OLD, 1)
+
+
 def fold_mf_lego_entry(html, path):
     """Drop the signed #112 Master Map LEGO-entry anchor, and nothing else.
 
@@ -2145,6 +2169,8 @@ def main(argv=None):
         head = fold_row98(head, path)
         base = fold_mf_lego_entry(base, path)
         head = fold_mf_lego_entry(head, path)
+        base = fold_b09_junction(base, path)
+        head = fold_b09_junction(head, path)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)
