@@ -1755,6 +1755,9 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         # master-echo twin. #118 adds data-brick="B20" on the chapter
         # pack-flow-in and a.rail-link.handoff only; both sit outside
         # #ch05-dep and the master has no pack-flow-in or handoff twin.
+        # #119 adds data-brick="B12" on the chapter shaft and exit-label
+        # only; both sit outside #ch05-dep. Master has other shafts and
+        # exit-labels — do not invent B12 on them.
         # The #112 pin still rejects every other byte.
         b13_old = (
             '<p class="consume-bar">'
@@ -1874,6 +1877,9 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertEqual(chapter.count('data-brick="B20"'), 2)
         self.assertEqual(chapter.count(stamp.B20_PACK_FLOW_NEW), 1)
         self.assertEqual(chapter.count(stamp.B20_HANDOFF_NEW), 1)
+        self.assertEqual(chapter.count('data-brick="B12"'), 2)
+        self.assertEqual(chapter.count(stamp.B12_SHAFT_NEW), 1)
+        self.assertEqual(chapter.count(stamp.B12_EXIT_LABEL_NEW), 1)
         self.assertIn('data-brick="B15"', chapter)
         self.assertIn('data-brick="B16"', chapter)
         self.assertNotIn("pack-exit", chapter)
@@ -1886,6 +1892,9 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertNotIn("pack-flow-in", head)
         self.assertNotIn("rail-link handoff", head)
         self.assertNotIn('data-brick="B20"', head)
+        self.assertNotIn('data-brick="B12"', head)
+        self.assertNotIn(stamp.B12_SHAFT_NEW, head)
+        self.assertNotIn(stamp.B12_EXIT_LABEL_NEW, head)
         for needle in outside:
             self.assertEqual(base.count(needle), 1)
             self.assertEqual(head.count(needle), 1)
@@ -1938,11 +1947,22 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertIsNotNone(
             stamp.shared_visual_stamp_failure(b19_base, b19_head, page)
         )
-        folded_base = stamp.fold_b20_handoff(
+        b20_base = stamp.fold_b20_handoff(
             stamp.fold_b20_pack_flow(b19_base, page), page
         )
-        folded_head = stamp.fold_b20_handoff(
+        b20_head = stamp.fold_b20_handoff(
             stamp.fold_b20_pack_flow(b19_head, page), page
+        )
+        # #119 Arrow attrs sit outside the plate blank. fold_b20 alone
+        # leaves those attributes in the compare.
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(b20_base, b20_head, page)
+        )
+        folded_base = stamp.fold_b12_exit_label(
+            stamp.fold_b12_shaft(b20_base, page), page
+        )
+        folded_head = stamp.fold_b12_exit_label(
+            stamp.fold_b12_shaft(b20_head, page), page
         )
         self.assertIsNone(
             stamp.shared_visual_stamp_failure(folded_base, folded_head, page)
@@ -1956,11 +1976,17 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertIsNotNone(
             stamp.shared_visual_stamp_failure(
                 folded_base,
-                stamp.fold_b20_handoff(
-                    stamp.fold_b20_pack_flow(
-                        stamp.fold_b19_echo(
-                            stamp.fold_b09_junction(
-                                stamp.fold_row98(freestyle, page), page
+                stamp.fold_b12_exit_label(
+                    stamp.fold_b12_shaft(
+                        stamp.fold_b20_handoff(
+                            stamp.fold_b20_pack_flow(
+                                stamp.fold_b19_echo(
+                                    stamp.fold_b09_junction(
+                                        stamp.fold_row98(freestyle, page), page
+                                    ),
+                                    page,
+                                ),
+                                page,
                             ),
                             page,
                         ),
@@ -2008,17 +2034,29 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertIsNotNone(
             stamp.shared_visual_stamp_failure(b19_base, b19_head, page)
         )
-        folded_base = stamp.fold_b20_handoff(
+        b20_base = stamp.fold_b20_handoff(
             stamp.fold_b20_pack_flow(b19_base, page), page
         )
-        folded_head = stamp.fold_b20_handoff(
+        b20_head = stamp.fold_b20_handoff(
             stamp.fold_b20_pack_flow(b19_head, page), page
+        )
+        # #119 Arrow attrs sit outside the plate blank. fold_b20 alone
+        # leaves them in the compare.
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(b20_base, b20_head, page)
+        )
+        folded_base = stamp.fold_b12_exit_label(
+            stamp.fold_b12_shaft(b20_base, page), page
+        )
+        folded_head = stamp.fold_b12_exit_label(
+            stamp.fold_b12_shaft(b20_head, page), page
         )
         self.assertIsNone(
             stamp.shared_visual_stamp_failure(folded_base, folded_head, page)
         )
         self.assertNotIn('data-brick="B19"', folded_head)
         self.assertNotIn('data-brick="B20"', folded_head)
+        self.assertNotIn('data-brick="B12"', folded_head)
         self.assertEqual(stamp.fold_b19_echo(head, stamp.MF_LEGO_ENTRY_PAGE), head)
         master = (stamp.ROOT / stamp.MF_LEGO_ENTRY_PAGE).read_text(encoding="utf-8")
         self.assertNotIn("master-echo", master)
@@ -2045,9 +2083,17 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertIsNotNone(
             stamp.shared_visual_stamp_failure(
                 folded_base,
-                stamp.fold_b20_handoff(
-                    stamp.fold_b20_pack_flow(
-                        stamp.fold_b19_echo(stamp.fold_row98(swapped, page), page),
+                stamp.fold_b12_exit_label(
+                    stamp.fold_b12_shaft(
+                        stamp.fold_b20_handoff(
+                            stamp.fold_b20_pack_flow(
+                                stamp.fold_b19_echo(
+                                    stamp.fold_row98(swapped, page), page
+                                ),
+                                page,
+                            ),
+                            page,
+                        ),
                         page,
                     ),
                     page,
@@ -2064,9 +2110,17 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertIsNotNone(
             stamp.shared_visual_stamp_failure(
                 folded_base,
-                stamp.fold_b20_handoff(
-                    stamp.fold_b20_pack_flow(
-                        stamp.fold_b19_echo(stamp.fold_row98(extra, page), page),
+                stamp.fold_b12_exit_label(
+                    stamp.fold_b12_shaft(
+                        stamp.fold_b20_handoff(
+                            stamp.fold_b20_pack_flow(
+                                stamp.fold_b19_echo(
+                                    stamp.fold_row98(extra, page), page
+                                ),
+                                page,
+                            ),
+                            page,
+                        ),
                         page,
                     ),
                     page,
@@ -2104,8 +2158,10 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertNotIn(stamp.B20_PACK_FLOW_NEW, base)
         self.assertNotIn(stamp.B20_HANDOFF_NEW, base)
         self.assertNotIn('data-brick="B20"', base)
-        self.assertIn('<p class="arm-label exit-label">', head)
+        self.assertIn(stamp.B12_SHAFT_NEW, head)
         self.assertNotIn("pack-exit", head)
+        self.assertIn(stamp.B12_EXIT_LABEL_NEW, head)
+        self.assertNotIn(stamp.B12_EXIT_LABEL_OLD, head)
         bare = stamp.fold_row98(base, page)
         raw = stamp.fold_row98(head, page)
         self.assertIsNotNone(stamp.shared_visual_stamp_failure(bare, raw, page))
@@ -2114,12 +2170,24 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertIsNotNone(
             stamp.shared_visual_stamp_failure(flow_base, flow_head, page)
         )
-        folded_base = stamp.fold_b20_handoff(flow_base, page)
-        folded_head = stamp.fold_b20_handoff(flow_head, page)
+        b20_base = stamp.fold_b20_handoff(flow_base, page)
+        b20_head = stamp.fold_b20_handoff(flow_head, page)
+        # #119 Arrow attrs sit outside the plate blank. fold_b20 alone
+        # leaves them in the compare.
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(b20_base, b20_head, page)
+        )
+        folded_base = stamp.fold_b12_exit_label(
+            stamp.fold_b12_shaft(b20_base, page), page
+        )
+        folded_head = stamp.fold_b12_exit_label(
+            stamp.fold_b12_shaft(b20_head, page), page
+        )
         self.assertIsNone(
             stamp.shared_visual_stamp_failure(folded_base, folded_head, page)
         )
         self.assertNotIn('data-brick="B20"', folded_head)
+        self.assertNotIn('data-brick="B12"', folded_head)
         self.assertEqual(
             stamp.fold_b20_pack_flow(head, stamp.MF_LEGO_ENTRY_PAGE), head
         )
@@ -2149,8 +2217,16 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertIsNotNone(
             stamp.shared_visual_stamp_failure(
                 folded_base,
-                stamp.fold_b20_handoff(
-                    stamp.fold_b20_pack_flow(stamp.fold_row98(swapped, page), page),
+                stamp.fold_b12_exit_label(
+                    stamp.fold_b12_shaft(
+                        stamp.fold_b20_handoff(
+                            stamp.fold_b20_pack_flow(
+                                stamp.fold_row98(swapped, page), page
+                            ),
+                            page,
+                        ),
+                        page,
+                    ),
                     page,
                 ),
                 page,
@@ -2166,8 +2242,16 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertIsNotNone(
             stamp.shared_visual_stamp_failure(
                 folded_base,
-                stamp.fold_b20_handoff(
-                    stamp.fold_b20_pack_flow(stamp.fold_row98(extra, page), page),
+                stamp.fold_b12_exit_label(
+                    stamp.fold_b12_shaft(
+                        stamp.fold_b20_handoff(
+                            stamp.fold_b20_pack_flow(
+                                stamp.fold_row98(extra, page), page
+                            ),
+                            page,
+                        ),
+                        page,
+                    ),
                     page,
                 ),
                 page,
@@ -2186,6 +2270,154 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertEqual(second_flow.count(stamp.B20_PACK_FLOW_NEW), 2)
         self.assertIn(
             stamp.B20_PACK_FLOW_NEW, stamp.fold_b20_pack_flow(second_flow, page)
+        )
+        self.assertNotIn("proof-banner", head)
+        self.assertNotIn("proof-delta", head)
+        self.assertNotIn("master-formatting", head)
+        self.assertNotIn("#lego-sheet", head)
+        self.assertEqual(head.count('data-brick="B09"'), 5)
+        self.assertEqual(head.count('data-brick="B13"'), 1)
+        self.assertEqual(head.count('data-brick="B14"'), 5)
+        self.assertEqual(head.count('data-brick="B19"'), 1)
+        self.assertIn('data-brick="B15"', head)
+        self.assertIn('data-brick="B16"', head)
+
+    def test_chapter_arrow_b12_folds_and_freestyle_fails(self):
+        import subprocess
+
+        page = stamp.B12_ARROW_PAGE
+        tip = "d64be024602e0ff4f1d06add7e0ec95716c651f6"
+        base = subprocess.check_output(
+            ["git", "show", f"{tip}:{page}"],
+            cwd=stamp.ROOT,
+            text=True,
+        )
+        head = (stamp.ROOT / page).read_text(encoding="utf-8")
+        self.assertEqual(head.count(stamp.B12_SHAFT_NEW), 1)
+        self.assertEqual(head.count(stamp.B12_EXIT_LABEL_NEW), 1)
+        self.assertEqual(head.count('data-brick="B12"'), 2)
+        self.assertEqual(base.count(stamp.B12_SHAFT_OLD), 1)
+        self.assertEqual(base.count(stamp.B12_EXIT_LABEL_OLD), 1)
+        self.assertNotIn(stamp.B12_SHAFT_NEW, base)
+        self.assertNotIn(stamp.B12_EXIT_LABEL_NEW, base)
+        self.assertNotIn('data-brick="B12"', base)
+        self.assertEqual(head.count(stamp.B20_PACK_FLOW_NEW), 1)
+        self.assertEqual(head.count(stamp.B20_HANDOFF_NEW), 1)
+        self.assertEqual(head.count('data-brick="B20"'), 2)
+        self.assertNotIn("pack-exit", head)
+        self.assertEqual(head.count("lc-arrow"), base.count("lc-arrow"))
+        self.assertIn(
+            "Depreciate under both models",
+            head,
+        )
+        self.assertIn(
+            "Derecognise on disposal or when no future benefits are expected",
+            head,
+        )
+        self.assertEqual(
+            head.count("Derecognition"),
+            base.count("Derecognition"),
+        )
+        bare = stamp.fold_row98(base, page)
+        raw = stamp.fold_row98(head, page)
+        self.assertIsNotNone(stamp.shared_visual_stamp_failure(bare, raw, page))
+        shaft_base = stamp.fold_b12_shaft(bare, page)
+        shaft_head = stamp.fold_b12_shaft(raw, page)
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(shaft_base, shaft_head, page)
+        )
+        folded_base = stamp.fold_b12_exit_label(shaft_base, page)
+        folded_head = stamp.fold_b12_exit_label(shaft_head, page)
+        self.assertIsNone(
+            stamp.shared_visual_stamp_failure(folded_base, folded_head, page)
+        )
+        self.assertNotIn('data-brick="B12"', folded_head)
+        # fold_map_pick_a strips m-flow before the later brick folds.
+        # The exact shaft tag has to fold first or data-brick survives.
+        picked = stamp.fold_map_pick_a(head)
+        self.assertNotIn(stamp.B12_SHAFT_NEW, picked)
+        self.assertIn(
+            '<div class="pack-flow-shaft" data-brick="B12">', picked
+        )
+        self.assertIn('data-brick="B12"', stamp.fold_b12_shaft(picked, page))
+        cleared = stamp.fold_b12_exit_label(
+            stamp.fold_map_pick_a(stamp.fold_b12_shaft(head, page)), page
+        )
+        self.assertNotIn('data-brick="B12"', cleared)
+        self.assertEqual(stamp.fold_b12_shaft(head, stamp.MF_LEGO_ENTRY_PAGE), head)
+        self.assertEqual(
+            stamp.fold_b12_exit_label(head, stamp.MF_LEGO_ENTRY_PAGE), head
+        )
+        master = (stamp.ROOT / stamp.MF_LEGO_ENTRY_PAGE).read_text(encoding="utf-8")
+        self.assertNotIn('data-brick="B12"', master)
+        self.assertGreaterEqual(master.count(stamp.B12_SHAFT_OLD), 1)
+        self.assertIn(stamp.B12_EXIT_LABEL_OLD, master)
+        self.assertNotIn(stamp.B12_SHAFT_NEW, master)
+        self.assertNotIn(stamp.B12_EXIT_LABEL_NEW, master)
+        self.assertEqual(
+            stamp.fold_b12_shaft(master, stamp.MF_LEGO_ENTRY_PAGE), master
+        )
+        self.assertEqual(
+            stamp.fold_b12_exit_label(master, stamp.MF_LEGO_ENTRY_PAGE), master
+        )
+        for sibling in (
+            "ias-16/draft-v1-linked/visuals/ch02-recognition.html",
+            "ias-16/draft-v1-linked/visuals/ch03-initial.html",
+            "ias-16/draft-v1-linked/visuals/ch04-models.html",
+        ):
+            text = (stamp.ROOT / sibling).read_text(encoding="utf-8")
+            self.assertIn(stamp.B12_EXIT_LABEL_OLD, text)
+            self.assertNotIn('data-brick="B12"', text)
+            self.assertEqual(stamp.fold_b12_shaft(text, sibling), text)
+            self.assertEqual(stamp.fold_b12_exit_label(text, sibling), text)
+        swapped = head.replace(
+            stamp.B12_SHAFT_NEW,
+            '<div data-brick="B12" class="pack-flow-shaft m-flow">',
+            1,
+        )
+        self.assertEqual(swapped.count(stamp.B12_SHAFT_NEW), 0)
+        self.assertIn('data-brick="B12"', stamp.fold_b12_shaft(swapped, page))
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(
+                folded_base,
+                stamp.fold_b12_exit_label(
+                    stamp.fold_b12_shaft(stamp.fold_row98(swapped, page), page),
+                    page,
+                ),
+                page,
+            )
+        )
+        extra = head.replace(
+            stamp.B12_EXIT_LABEL_NEW,
+            '<p class="arm-label exit-label extra" data-brick="B12">',
+            1,
+        )
+        self.assertIn('data-brick="B12"', stamp.fold_b12_exit_label(extra, page))
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(
+                folded_base,
+                stamp.fold_b12_exit_label(
+                    stamp.fold_b12_shaft(stamp.fold_row98(extra, page), page),
+                    page,
+                ),
+                page,
+            )
+        )
+        second = head.replace(
+            stamp.B12_EXIT_LABEL_NEW,
+            stamp.B12_EXIT_LABEL_NEW + stamp.B12_EXIT_LABEL_NEW,
+            1,
+        )
+        self.assertEqual(second.count(stamp.B12_EXIT_LABEL_NEW), 2)
+        self.assertIn(
+            stamp.B12_EXIT_LABEL_NEW, stamp.fold_b12_exit_label(second, page)
+        )
+        second_shaft = head.replace(
+            stamp.B12_SHAFT_NEW, stamp.B12_SHAFT_NEW + stamp.B12_SHAFT_NEW, 1
+        )
+        self.assertEqual(second_shaft.count(stamp.B12_SHAFT_NEW), 2)
+        self.assertIn(
+            stamp.B12_SHAFT_NEW, stamp.fold_b12_shaft(second_shaft, page)
         )
         self.assertNotIn("proof-banner", head)
         self.assertNotIn("proof-delta", head)
