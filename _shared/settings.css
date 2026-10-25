@@ -345,3 +345,26 @@ body[data-pack="site"] > .footer-nav {
   margin-inline: auto;
   padding-inline: var(--space-4);
 }
+
+/* job 116 Settings quiet entry to Master formatting. Tokens only. */
+.page.settings > a.mf-lego-entry {
+  display: inline-block;
+  margin: 0 0 var(--space-2) 0;
+  padding: 0;
+  font-family: var(--font-family);
+  font-size: var(--t3-fs);
+  font-weight: var(--t3-fw);
+  line-height: var(--t3-lh);
+  letter-spacing: var(--legacy-ls-3);
+  color: var(--muted);
+  text-decoration: underline;
+  text-decoration-color: var(--control-border);
+  text-underline-offset: var(--space-hairline);
+  background: transparent;
+  border: 0;
+}
+.page.settings > a.mf-lego-entry:hover,
+.page.settings > a.mf-lego-entry:focus-visible {
+  color: var(--ink);
+  text-decoration-color: var(--muted);
+}

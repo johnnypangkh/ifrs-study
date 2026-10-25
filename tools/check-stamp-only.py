@@ -100,7 +100,27 @@ SETTINGS_CARD = (
     '      </article>\n'
     '    </div>\n'
 )
-SETTINGS_ENTRY = (LINK, SETTINGS_CARD)
+# #116: the same foot row after fold_homepage_110, once the LEGO Ready
+# card sits beside Settings. data-pack and both _SETTINGS_FOOT blocks are
+# already gone. The #106 comment stays so the single-card needle is not a
+# substring of this one (the #116 comment sits between them).
+SETTINGS_CARD_116 = (
+    "    <!-- #106 proof: Settings text link → .card.ready (How-notes sibling) -->\n"
+    "    <!-- #116 Wave A Gate1: LEGO kit Ready card sibling → MF #lego-sheet -->\n"
+    '    <div class="card-row" style="margin-top:12px">\n'
+    '      <article class="card ready">\n'
+    '        <p class="card-code">Settings</p>\n'
+    '        <p class="card-title">Master styles / tokens</p>\n'
+    '        <a class="open-link" href="../site/settings/index.html">Open &gt;</a>\n'
+    '      </article>\n'
+    '      <article class="card ready" data-entry="mf-lego">\n'
+    '        <p class="card-code">LEGO kit · Master formatting</p>\n'
+    '        <p class="card-title">Opus brick kit on Master formatting</p>\n'
+    '        <a class="open-link" href="../site/master-formatting/index.html#lego-sheet">Open &gt;</a>\n'
+    '      </article>\n'
+    '    </div>\n'
+)
+SETTINGS_ENTRY = (LINK, SETTINGS_CARD, SETTINGS_CARD_116)
 STAMPS_OBJ = re.compile(r"var STAMPS = \{.*?\n  \};", re.S)
 PATHS_OBJ = re.compile(r"var PACK_PATHS = \[.*?\n  \];", re.S)
 
@@ -620,11 +640,13 @@ def fold_card_mount(text):
 
 
 def fold_settings_entry(html):
-    """Drop one legacy Settings link and one #106 Settings card, if present.
+    """Drop one legacy Settings link and one homepage Settings card, if present.
 
-    Each form is removed at most once. fold_map_pick_a rewrites the card
-    comment's arrow before this strip, so both the raw block and that
-    rewrite count as the same entry.
+    Each form is removed at most once. The #106 single-card block and the
+    #116 two-card foot (Settings + data-entry="mf-lego") are separate
+    forms, so a base page and a head page each lose their own row.
+    fold_map_pick_a rewrites the card comment's arrow before this strip,
+    so both the raw block and that rewrite count as the same entry.
     """
     for form in SETTINGS_ENTRY:
         for variant in _settings_forms(form):
@@ -801,6 +823,43 @@ def fold_b09_junction(html, path):
     if html.count(B09_JUNCTION_NEW) != 1:
         return html
     return html.replace(B09_JUNCTION_NEW, B09_JUNCTION_OLD, 1)
+
+
+# #116: one Settings-page chrome line. Stamp still owns anything else on
+# that page. Not the Master Map needle (#112 uses a different href and
+# its own fold). Chapters must not hide this link (t941).
+SETTINGS_MF_LEGO_PAGE = SETTINGS_PAGE
+SETTINGS_MF_LEGO_ENTRY = (
+    '<a class="mf-lego-entry" '
+    'href="../master-formatting/index.html#lego-sheet" '
+    'target="_top" rel="noopener">LEGO kit · Master formatting</a>'
+)
+
+
+def fold_settings_mf_lego_entry(html, path):
+    """Drop the signed #116 Settings LEGO-entry anchor, and nothing else.
+
+    site/settings/index.html may gain this one a.mf-lego-entry chrome line.
+    The ?v=-only rule is otherwise unchanged. One exact line is folded out
+    before settings_stamp_failure and the later byte compare. A second
+    entry, a changed href, an extra attribute, a page-local style block,
+    or any other chrome still fails. Not a CONTENT_ALLOW. Other paths are
+    left untouched, so a chapter page cannot hide the same link behind
+    this fold. Master Map keeps fold_mf_lego_entry.
+    """
+    if path != SETTINGS_MF_LEGO_PAGE:
+        return html
+    kept = []
+    removed = False
+    for line in html.splitlines(keepends=True):
+        body = line[:-2] if line.endswith("\r\n") else (
+            line[:-1] if line.endswith("\n") else line
+        )
+        if not removed and body == SETTINGS_MF_LEGO_ENTRY:
+            removed = True
+            continue
+        kept.append(line)
+    return "".join(kept)
 
 
 def fold_mf_lego_entry(html, path):
@@ -2145,6 +2204,8 @@ def main(argv=None):
             failed = True
             continue
         head = file.read_text(encoding="utf-8")
+        base = fold_settings_mf_lego_entry(base, path)
+        head = fold_settings_mf_lego_entry(head, path)
         if PACK_PAGE.fullmatch(path):
             hash_error = stamp_value_failure(head, path, ROOT)
             if hash_error:
@@ -2216,8 +2277,9 @@ def main(argv=None):
             if not settings_entry_present(head):
                 print("homepage is missing the Settings link")
                 failed = True
-            # #110 signed card chrome, then #106 Settings entry. Both sides
-            # fold so an unchanged homepage still compares equal.
+            # #110 signed card chrome, then #106/#116 Settings foot. Both
+            # sides fold so an unchanged homepage still compares equal, and
+            # the two-card LEGO sibling folds with the Settings card.
             head_n = fold_homepage_110(head_n)
             base_n = fold_homepage_110(base_n)
             head_n = fold_settings_entry(head_n)
