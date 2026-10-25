@@ -1750,7 +1750,9 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         # #114 splices data-brick="B09" onto the four See-also nodes in
         # that include (timeline Ceases, see-wide, Lessee, lc-cease).
         # The fifth B09 is chapter-only (p.junction-tip.see) and has no
-        # master twin. The #112 pin still rejects every other byte.
+        # master twin. #117 adds data-brick="B19" on the chapter Echo nav
+        # only; that nav is outside #ch05-dep and the master has no
+        # master-echo twin. The #112 pin still rejects every other byte.
         b13_old = (
             '<p class="consume-bar">'
             "<span>Reflect the pattern of consumption of future economic benefits</span></p>"
@@ -1864,12 +1866,16 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertEqual(chapter.count('data-brick="B09"'), 5)
         self.assertEqual(chapter.count('data-brick="B13"'), 1)
         self.assertEqual(chapter.count('data-brick="B14"'), 5)
+        self.assertEqual(chapter.count('data-brick="B19"'), 1)
+        self.assertEqual(chapter.count(stamp.B19_ECHO_NEW), 1)
         self.assertIn('data-brick="B15"', chapter)
         self.assertIn('data-brick="B16"', chapter)
         self.assertNotIn("proof-banner", chapter)
         self.assertNotIn("proof-delta", chapter)
         self.assertNotIn("master-formatting", chapter)
         self.assertNotIn("#lego-sheet", chapter)
+        self.assertNotIn("master-echo", head)
+        self.assertNotIn('data-brick="B19"', head)
         for needle in outside:
             self.assertEqual(base.count(needle), 1)
             self.assertEqual(head.count(needle), 1)
@@ -1908,8 +1914,15 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         bare = stamp.fold_row98(base, page)
         raw = stamp.fold_row98(head, page)
         self.assertIsNotNone(stamp.shared_visual_stamp_failure(bare, raw, page))
-        folded_base = stamp.fold_b09_junction(bare, page)
-        folded_head = stamp.fold_b09_junction(raw, page)
+        # #117 Echo is the other chapter-only pin. fold_b09_junction
+        # alone leaves that attribute in the compare.
+        b09_base = stamp.fold_b09_junction(bare, page)
+        b09_head = stamp.fold_b09_junction(raw, page)
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(b09_base, b09_head, page)
+        )
+        folded_base = stamp.fold_b19_echo(b09_base, page)
+        folded_head = stamp.fold_b19_echo(b09_head, page)
         self.assertIsNone(
             stamp.shared_visual_stamp_failure(folded_base, folded_head, page)
         )
@@ -1922,7 +1935,10 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertIsNotNone(
             stamp.shared_visual_stamp_failure(
                 folded_base,
-                stamp.fold_b09_junction(stamp.fold_row98(freestyle, page), page),
+                stamp.fold_b19_echo(
+                    stamp.fold_b09_junction(stamp.fold_row98(freestyle, page), page),
+                    page,
+                ),
                 page,
             )
         )
@@ -1936,6 +1952,85 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
             stamp.B09_JUNCTION_NEW,
             stamp.fold_b09_junction(second, page),
         )
+
+    def test_chapter_echo_b19_folds_and_freestyle_fails(self):
+        import subprocess
+
+        page = stamp.B19_ECHO_PAGE
+        tip = "2a5f94cb51521fbbb4fee28a554f52c9c85b884a"
+        base = subprocess.check_output(
+            ["git", "show", f"{tip}:{page}"],
+            cwd=stamp.ROOT,
+            text=True,
+        )
+        head = (stamp.ROOT / page).read_text(encoding="utf-8")
+        self.assertEqual(head.count(stamp.B19_ECHO_NEW), 1)
+        self.assertEqual(head.count('data-brick="B19"'), 1)
+        self.assertEqual(base.count(stamp.B19_ECHO_OLD), 1)
+        self.assertNotIn(stamp.B19_ECHO_NEW, base)
+        self.assertNotIn('data-brick="B19"', base)
+        bare = stamp.fold_row98(base, page)
+        raw = stamp.fold_row98(head, page)
+        self.assertIsNotNone(stamp.shared_visual_stamp_failure(bare, raw, page))
+        folded_base = stamp.fold_b19_echo(bare, page)
+        folded_head = stamp.fold_b19_echo(raw, page)
+        self.assertIsNone(
+            stamp.shared_visual_stamp_failure(folded_base, folded_head, page)
+        )
+        self.assertNotIn('data-brick="B19"', folded_head)
+        self.assertEqual(stamp.fold_b19_echo(head, stamp.MF_LEGO_ENTRY_PAGE), head)
+        master = (stamp.ROOT / stamp.MF_LEGO_ENTRY_PAGE).read_text(encoding="utf-8")
+        self.assertNotIn("master-echo", master)
+        self.assertNotIn('data-brick="B19"', master)
+        self.assertEqual(
+            stamp.fold_b19_echo(master, stamp.MF_LEGO_ENTRY_PAGE),
+            master,
+        )
+        for sibling in (
+            "ias-16/draft-v1-linked/visuals/ch04-models.html",
+            "ias-16/draft-v1-linked/visuals/ch06-derecognition.html",
+        ):
+            text = (stamp.ROOT / sibling).read_text(encoding="utf-8")
+            self.assertIn("master-echo", text)
+            self.assertNotIn('data-brick="B19"', text)
+            self.assertEqual(stamp.fold_b19_echo(text, sibling), text)
+        swapped = head.replace(
+            stamp.B19_ECHO_NEW,
+            '<nav data-brick="B19" class="master-echo" aria-label="Master during-use path; Depreciation is the current chapter">',
+            1,
+        )
+        self.assertEqual(swapped.count(stamp.B19_ECHO_NEW), 0)
+        self.assertIn('data-brick="B19"', stamp.fold_b19_echo(swapped, page))
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(
+                folded_base,
+                stamp.fold_b19_echo(stamp.fold_row98(swapped, page), page),
+                page,
+            )
+        )
+        extra = head.replace(
+            stamp.B19_ECHO_NEW,
+            '<nav class="master-echo extra" data-brick="B19" aria-label="Master during-use path; Depreciation is the current chapter">',
+            1,
+        )
+        self.assertIn('data-brick="B19"', stamp.fold_b19_echo(extra, page))
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(
+                folded_base,
+                stamp.fold_b19_echo(stamp.fold_row98(extra, page), page),
+                page,
+            )
+        )
+        second = head.replace(stamp.B19_ECHO_NEW, stamp.B19_ECHO_NEW + stamp.B19_ECHO_NEW, 1)
+        self.assertEqual(second.count(stamp.B19_ECHO_NEW), 2)
+        self.assertIn(stamp.B19_ECHO_NEW, stamp.fold_b19_echo(second, page))
+        self.assertNotIn("proof-banner", head)
+        self.assertNotIn("proof-delta", head)
+        self.assertNotIn("master-formatting", head)
+        self.assertNotIn("#lego-sheet", head)
+        self.assertEqual(head.count('data-brick="B09"'), 5)
+        self.assertEqual(head.count('data-brick="B13"'), 1)
+        self.assertEqual(head.count('data-brick="B14"'), 5)
 
     def test_freestyle_chrome_still_fails(self):
         base = stamp.fold_mf_lego_entry(self.base_page(), self.PAGE)
