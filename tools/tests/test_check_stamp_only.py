@@ -1747,7 +1747,10 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         # #111 splices one attribute onto the ch05 Method bar inside the
         # master include. #113 splices data-brick="B14" onto the five
         # Operator nodes in that same include (.cost-op ×4, .def-op ×1).
-        # The #112 pin still rejects every other byte.
+        # #114 splices data-brick="B09" onto the four See-also nodes in
+        # that include (timeline Ceases, see-wide, Lessee, lc-cease).
+        # The fifth B09 is chapter-only (p.junction-tip.see) and has no
+        # master twin. The #112 pin still rejects every other byte.
         b13_old = (
             '<p class="consume-bar">'
             "<span>Reflect the pattern of consumption of future economic benefits</span></p>"
@@ -1762,6 +1765,47 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         b14_minus_new = '<span class="cost-op" data-brick="B14" aria-hidden="true">−</span>'
         b14_or_old = '<span class="def-op">OR</span>'
         b14_or_new = '<span class="def-op" data-brick="B14">OR</span>'
+        b09_ifrs_old = (
+            '<p class="see"><span class="see-label">See also</span> '
+            '<span class="see-bit"><a href="../ch05.html#s-5-4" '
+            'target="_parent">IFRS 5</a></span></p>'
+        )
+        b09_ifrs_new = (
+            '<p class="see" data-brick="B09"><span class="see-label">See also</span> '
+            '<span class="see-bit"><a href="../ch05.html#s-5-4" '
+            'target="_parent">IFRS 5</a></span></p>'
+        )
+        b09_wide_old = (
+            '<p class="see see-wide"><a class="fb-num" href="../ch02.html#s-2-6" '
+            'target="_parent">2.6</a><span class="see-line">Replacement or major '
+            'inspection — capitalise the new part; derecognise the replaced '
+            'carrying amount.</span></p>'
+        )
+        b09_wide_new = (
+            '<p class="see see-wide" data-brick="B09"><a class="fb-num" '
+            'href="../ch02.html#s-2-6" target="_parent">2.6</a><span class="see-line">'
+            'Replacement or major inspection — capitalise the new part; '
+            'derecognise the replaced carrying amount.</span></p>'
+        )
+        b09_lessee_old = (
+            '<p class="see"><a class="fb-num" href="../ch05.html#s-5-9" '
+            'target="_parent">5.9</a><span class="see-label">See also</span> '
+            '<span class="see-bit">Lessee right-of-use asset — depreciation applies '
+            'IAS 16, subject to IFRS 16 (useful life / lease term)</span></p>'
+        )
+        b09_lessee_new = (
+            '<p class="see" data-brick="B09"><a class="fb-num" href="../ch05.html#s-5-9" '
+            'target="_parent">5.9</a><span class="see-label">See also</span> '
+            '<span class="see-bit">Lessee right-of-use asset — depreciation applies '
+            'IAS 16, subject to IFRS 16 (useful life / lease term)</span></p>'
+        )
+        b09_junction_new = (
+            '<p class="junction-tip see" data-brick="B09"><a class="fb-num" '
+            'href="../ch04.html#s-4-8" target="_parent">4.8</a>'
+            '<span class="see-label">See also</span> <span class="see-bit">'
+            'Impairment (IAS 36) sits on the Master path after Depreciation — '
+            'not a Depreciation fork</span></p>'
+        )
         outside = (
             '<span class="cost-op op-eq" aria-hidden="true">=</span>',
             '<span class="cost-op op-p1" aria-hidden="true">+</span>',
@@ -1794,6 +1838,38 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertNotIn(b14_minus_new, base)
         self.assertNotIn(b14_or_new, base)
         self.assertNotIn('data-brick="B14"', base)
+        self.assertEqual(head.count(b09_ifrs_new), 2)
+        self.assertEqual(head.count(b09_wide_new), 1)
+        self.assertEqual(head.count(b09_lessee_new), 1)
+        self.assertEqual(head.count('data-brick="B09"'), 4)
+        self.assertNotIn(b09_junction_new, head)
+        self.assertNotIn("junction-tip", head)
+        self.assertEqual(head.count(b09_ifrs_old), 2)
+        self.assertEqual(head.count(b09_wide_old), 0)
+        self.assertEqual(head.count(b09_lessee_old), 0)
+        self.assertEqual(base.count(b09_ifrs_old), 4)
+        self.assertEqual(base.count(b09_wide_old), 1)
+        self.assertEqual(base.count(b09_lessee_old), 1)
+        self.assertNotIn(b09_ifrs_new, base)
+        self.assertNotIn(b09_wide_new, base)
+        self.assertNotIn(b09_lessee_new, base)
+        self.assertNotIn('data-brick="B09"', base)
+        chapter = (
+            stamp.ROOT / "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+        ).read_text(encoding="utf-8")
+        self.assertEqual(chapter.count(b09_ifrs_new), 2)
+        self.assertEqual(chapter.count(b09_wide_new), 1)
+        self.assertEqual(chapter.count(b09_lessee_new), 1)
+        self.assertEqual(chapter.count(b09_junction_new), 1)
+        self.assertEqual(chapter.count('data-brick="B09"'), 5)
+        self.assertEqual(chapter.count('data-brick="B13"'), 1)
+        self.assertEqual(chapter.count('data-brick="B14"'), 5)
+        self.assertIn('data-brick="B15"', chapter)
+        self.assertIn('data-brick="B16"', chapter)
+        self.assertNotIn("proof-banner", chapter)
+        self.assertNotIn("proof-delta", chapter)
+        self.assertNotIn("master-formatting", chapter)
+        self.assertNotIn("#lego-sheet", chapter)
         for needle in outside:
             self.assertEqual(base.count(needle), 1)
             self.assertEqual(head.count(needle), 1)
@@ -1804,12 +1880,61 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         folded_head = folded_head.replace(b14_eq_new, b14_eq_old, 2)
         folded_head = folded_head.replace(b14_minus_new, b14_minus_old, 2)
         folded_head = folded_head.replace(b14_or_new, b14_or_old, 1)
+        folded_head = folded_head.replace(b09_ifrs_new, b09_ifrs_old, 2)
+        folded_head = folded_head.replace(b09_wide_new, b09_wide_old, 1)
+        folded_head = folded_head.replace(b09_lessee_new, b09_lessee_old, 1)
+        self.assertNotIn('data-brick="B09"', folded_head)
         self.assertIsNone(
             stamp.shared_visual_stamp_failure(
                 stamp.fold_mf_lego_entry(base, self.PAGE),
                 folded_head,
                 self.PAGE,
             )
+        )
+
+    def test_chapter_junction_folds_and_freestyle_fails(self):
+        import subprocess
+
+        page = stamp.B09_JUNCTION_PAGE
+        base = subprocess.check_output(
+            ["git", "show", f"f15fbffcd3f7522c5e66bdd3f3c43c867e10da7e:{page}"],
+            cwd=stamp.ROOT,
+            text=True,
+        )
+        head = (stamp.ROOT / page).read_text(encoding="utf-8")
+        self.assertEqual(head.count(stamp.B09_JUNCTION_NEW), 1)
+        self.assertEqual(base.count(stamp.B09_JUNCTION_OLD), 1)
+        self.assertNotIn(stamp.B09_JUNCTION_NEW, base)
+        bare = stamp.fold_row98(base, page)
+        raw = stamp.fold_row98(head, page)
+        self.assertIsNotNone(stamp.shared_visual_stamp_failure(bare, raw, page))
+        folded_base = stamp.fold_b09_junction(bare, page)
+        folded_head = stamp.fold_b09_junction(raw, page)
+        self.assertIsNone(
+            stamp.shared_visual_stamp_failure(folded_base, folded_head, page)
+        )
+        self.assertEqual(stamp.fold_b09_junction(head, stamp.MF_LEGO_ENTRY_PAGE), head)
+        freestyle = head.replace(
+            stamp.B09_JUNCTION_NEW,
+            '<p class="junction-tip see extra" data-brick="B09">',
+            1,
+        )
+        self.assertIsNotNone(
+            stamp.shared_visual_stamp_failure(
+                folded_base,
+                stamp.fold_b09_junction(stamp.fold_row98(freestyle, page), page),
+                page,
+            )
+        )
+        second = head.replace(
+            stamp.B09_JUNCTION_NEW,
+            stamp.B09_JUNCTION_NEW + stamp.B09_JUNCTION_NEW,
+            1,
+        )
+        self.assertEqual(second.count(stamp.B09_JUNCTION_NEW), 2)
+        self.assertIn(
+            stamp.B09_JUNCTION_NEW,
+            stamp.fold_b09_junction(second, page),
         )
 
     def test_freestyle_chrome_still_fails(self):
