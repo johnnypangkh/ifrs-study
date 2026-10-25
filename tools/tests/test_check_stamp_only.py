@@ -1745,7 +1745,9 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         import subprocess
 
         # #111 splices one attribute onto the ch05 Method bar inside the
-        # master include. The #112 pin still rejects every other byte.
+        # master include. #113 splices data-brick="B14" onto the five
+        # Operator nodes in that same include (.cost-op ×4, .def-op ×1).
+        # The #112 pin still rejects every other byte.
         b13_old = (
             '<p class="consume-bar">'
             "<span>Reflect the pattern of consumption of future economic benefits</span></p>"
@@ -1753,6 +1755,19 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         b13_new = (
             '<p class="consume-bar" data-brick="B13">'
             "<span>Reflect the pattern of consumption of future economic benefits</span></p>"
+        )
+        b14_eq_old = '<span class="cost-op" aria-hidden="true">=</span>'
+        b14_eq_new = '<span class="cost-op" data-brick="B14" aria-hidden="true">=</span>'
+        b14_minus_old = '<span class="cost-op" aria-hidden="true">−</span>'
+        b14_minus_new = '<span class="cost-op" data-brick="B14" aria-hidden="true">−</span>'
+        b14_or_old = '<span class="def-op">OR</span>'
+        b14_or_new = '<span class="def-op" data-brick="B14">OR</span>'
+        outside = (
+            '<span class="cost-op op-eq" aria-hidden="true">=</span>',
+            '<span class="cost-op op-p1" aria-hidden="true">+</span>',
+            '<span class="cost-op op-p2" aria-hidden="true">+</span>',
+            '<span class="cost-op fx-o1" aria-hidden="true">=</span>',
+            '<span class="cost-op fx-o2" aria-hidden="true">−</span>',
         )
         base = subprocess.check_output(
             ["git", "show", f"d2cd6c9f:{self.PAGE}"],
@@ -1765,9 +1780,30 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertEqual(head.count(b13_new), 1)
         self.assertEqual(base.count(b13_old), 1)
         self.assertNotIn(b13_new, base)
+        self.assertEqual(head.count(b14_eq_new), 2)
+        self.assertEqual(head.count(b14_minus_new), 2)
+        self.assertEqual(head.count(b14_or_new), 1)
+        self.assertEqual(head.count('data-brick="B14"'), 5)
+        self.assertEqual(head.count(b14_eq_old), 0)
+        self.assertEqual(head.count(b14_minus_old), 0)
+        self.assertEqual(head.count(b14_or_old), 0)
+        self.assertEqual(base.count(b14_eq_old), 2)
+        self.assertEqual(base.count(b14_minus_old), 2)
+        self.assertEqual(base.count(b14_or_old), 1)
+        self.assertNotIn(b14_eq_new, base)
+        self.assertNotIn(b14_minus_new, base)
+        self.assertNotIn(b14_or_new, base)
+        self.assertNotIn('data-brick="B14"', base)
+        for needle in outside:
+            self.assertEqual(base.count(needle), 1)
+            self.assertEqual(head.count(needle), 1)
+            self.assertNotIn('data-brick="B14"', needle)
         folded_head = stamp.fold_mf_lego_entry(head, self.PAGE)
         self.assertNotIn("mf-lego-entry", folded_head)
         folded_head = folded_head.replace(b13_new, b13_old, 1)
+        folded_head = folded_head.replace(b14_eq_new, b14_eq_old, 2)
+        folded_head = folded_head.replace(b14_minus_new, b14_minus_old, 2)
+        folded_head = folded_head.replace(b14_or_new, b14_or_old, 1)
         self.assertIsNone(
             stamp.shared_visual_stamp_failure(
                 stamp.fold_mf_lego_entry(base, self.PAGE),
