@@ -18,6 +18,10 @@ shell still fails. Not a CONTENT_ALLOW. #112 Master Map
 (ias-16/draft-v1-linked/visuals/master-concept-map.html) may gain this one
 a.mf-lego-entry chrome line. The shared-visual ?v=-only rule is otherwise
 unchanged. The page stays in SHARED_VISUAL_PAGES. Not a CONTENT_ALLOW.
+#117 ch05 Echo on ias-16/draft-v1-linked/visuals/ch05-depreciation.html may
+gain data-brick="B19" on the one nav.master-echo open tag (class then
+data-brick). That nav sits outside #ch05-dep, so the master map is not
+folded and must not gain master-echo. Not a CONTENT_ALLOW.
 The live Master formatting page (site/master-formatting/index.html, #100)
 may change ?v= only, the same shape as Settings, once it is on the base.
 A copy that is not on the base yet must still carry ?v= hashes that match
@@ -823,6 +827,37 @@ def fold_b09_junction(html, path):
     if html.count(B09_JUNCTION_NEW) != 1:
         return html
     return html.replace(B09_JUNCTION_NEW, B09_JUNCTION_OLD, 1)
+
+
+# #117: one chapter-only Echo open tag. The nav sits before
+# map-section:ch05-dep:start, so the #98 ch05-dep blank does not see
+# it. Master has no master-echo twin. Not a CONTENT_ALLOW.
+B19_ECHO_PAGE = "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+B19_ECHO_OLD = (
+    '<nav class="master-echo" aria-label="Master during-use path; '
+    'Depreciation is the current chapter">'
+)
+B19_ECHO_NEW = (
+    '<nav class="master-echo" data-brick="B19" aria-label="Master during-use path; '
+    'Depreciation is the current chapter">'
+)
+
+
+def fold_b19_echo(html, path):
+    """Fold the signed #117 chapter-only Echo attribute.
+
+    One exact open tag, on the chapter page only, and only when it
+    appears once. Class then data-brick. A second copy, a different
+    brick, attribute order other than class then data-brick, an extra
+    class, or any other byte stays in the compare and fails. The master
+    map is left untouched. ch04 and ch06 echoes use a different
+    aria-label and a different path, so this fold does not hide them.
+    """
+    if path != B19_ECHO_PAGE:
+        return html
+    if html.count(B19_ECHO_NEW) != 1:
+        return html
+    return html.replace(B19_ECHO_NEW, B19_ECHO_OLD, 1)
 
 
 # #116: one Settings-page chrome line. Stamp still owns anything else on
@@ -2232,6 +2267,8 @@ def main(argv=None):
         head = fold_mf_lego_entry(head, path)
         base = fold_b09_junction(base, path)
         head = fold_b09_junction(head, path)
+        base = fold_b19_echo(base, path)
+        head = fold_b19_echo(head, path)
         stamp_error = shared_visual_stamp_failure(base, head, path)
         if stamp_error:
             print(stamp_error)
