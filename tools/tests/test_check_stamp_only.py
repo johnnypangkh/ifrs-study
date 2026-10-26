@@ -584,6 +584,55 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertIsNone(ok)
         self.assertIn("line count changed", mismatch)
 
+    def test_visuals_lego_bricks_import_is_stamp_only(self):
+        """#121: visuals.css line 32 may change ?v= and nothing else."""
+        import tempfile
+
+        lines = [f"/* line {n} */" for n in range(1, 33)]
+        lines[31] = '@import url("modules/visuals/lego-bricks.css?v=000000000000");'
+        base = "\n".join(lines) + "\n"
+        head = base.replace("000000000000", "aaaaaaaaaaaa")
+        rel = stamp.SHARED_VISUAL_CSS
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: head})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+        bad = head.replace("lego-bricks.css", "lego-bricks-1.css", 1)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {rel: bad})
+            code, output = self.run_gate(root, {rel: base})
+        self.assertEqual(code, 1, output)
+        self.assertIn("_shared/visuals.css", output)
+
+    def test_visuals_lego_bricks_import_may_be_one_trailing_line(self):
+        """#121: one trailing lego-bricks.css import is allowed when the hash matches."""
+        import hashlib
+        import tempfile
+
+        lines = [f"/* line {n} */" for n in range(1, 32)]
+        lines[30] = '@import url("modules/visuals/timeline-1.css?v=a0c4f0ba4cc9");'
+        base = "\n".join(lines) + "\n"
+        module = "/* #121 brick */\n[data-brick=\"B09\"]{}\n"
+        digest = hashlib.sha256(module.encode("utf-8")).hexdigest()[:12]
+        head = base + f'@import url("modules/visuals/lego-bricks.css?v={digest}");\n'
+        bad = base + '@import url("modules/visuals/lego-bricks.css?v=000000000000");\n'
+        mod = "_shared/modules/visuals/lego-bricks.css"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, {mod: module})
+            original = stamp.ROOT
+            stamp.ROOT = root
+            try:
+                ok = stamp.shared_visual_stamp_failure(base, head, stamp.SHARED_VISUAL_CSS)
+                mismatch = stamp.shared_visual_stamp_failure(base, bad, stamp.SHARED_VISUAL_CSS)
+            finally:
+                stamp.ROOT = original
+        self.assertIsNone(ok)
+        self.assertIn("line count changed", mismatch)
+
     def test_visuals_component_imports_are_stamp_only(self):
         """#83: visuals.css lines 20, 24, 27, and 29 may change ?v= only."""
         import tempfile
