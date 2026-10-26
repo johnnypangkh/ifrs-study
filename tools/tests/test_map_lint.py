@@ -91,6 +91,43 @@ class MapLintRow86Tests(unittest.TestCase):
         )
         self.assertEqual(lint.map_chrome_alias_errors(css, "fixture.css"), [])
 
+    def test_unknown_data_brick_fails(self):
+        """#121: B22 / B00 / B9 / b09 / free text FAIL. B01–B21 and a missing attr pass."""
+        for value in ("B22", "B00", "B9", "b09", "see-also"):
+            text = f'<p data-brick="{value}">x</p>\n'
+            errors = lint.data_brick_errors(text, "fixture.html")
+            self.assertEqual(len(errors), 1, value)
+            self.assertIn("unknown data-brick", errors[0])
+            self.assertIn(repr(value), errors[0])
+        self.assertEqual(len(lint.data_brick_errors("<p data-brick='B9'>x</p>\n", "fixture.html")), 1)
+        self.assertEqual(len(lint.data_brick_errors("<p data-brick=B22>x</p>\n", "fixture.html")), 1)
+        self.assertEqual(lint.data_brick_errors("<p>no brick</p>\n", "zero-map.html"), [])
+        for value in ("B01", "B09", "B21"):
+            self.assertEqual(
+                lint.data_brick_errors(f'<p data-brick="{value}"></p>\n', "fixture.html"),
+                [],
+                value,
+            )
+
+    def test_phase1_loci_are_not_force_tagged(self):
+        self.assertEqual(
+            lint.BRICK_PHASE1_LOCI,
+            (
+                "ias-16/draft-v1-linked/visuals/ch05-depreciation.html",
+                "ias-16/draft-v1-linked/visuals/master-concept-map.html",
+            ),
+        )
+        for rel in lint.BRICK_PHASE1_LOCI:
+            text = (lint.ROOT / rel).read_text(encoding="utf-8")
+            self.assertEqual(lint.data_brick_errors(text, rel), [])
+        self.assertEqual(
+            lint.data_brick_errors(
+                "<div class='m-l0'></div>\n",
+                "ias-2/draft-v1-linked/visuals/ch01-scope.html",
+            ),
+            [],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

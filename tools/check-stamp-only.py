@@ -489,6 +489,8 @@ SHARED_VISUAL_IMPORTS = {
     30: "modules/visuals/map-box.css?v=",
     # #109/#120: timeline module. ?v= only, same shape as map-box line 30.
     31: "modules/visuals/timeline-1.css?v=",
+    # #121: brick module. ?v= only, same shape as timeline-1 line 31.
+    32: "modules/visuals/lego-bricks.css?v=",
 }
 SHARED_VISUAL_PAGES = (
     "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html",
@@ -1035,7 +1037,7 @@ def _one_trailing_visual_import(extra):
     text = extra.strip()
     if not text.startswith("@import"):
         return False
-    for name in ("map-box.css", "timeline-1.css"):
+    for name in ("map-box.css", "timeline-1.css", "lego-bricks.css"):
         if f"modules/visuals/{name}?v=" not in text:
             continue
         module = ROOT / "_shared" / "modules" / "visuals" / name
@@ -1047,8 +1049,8 @@ def _one_trailing_visual_import(extra):
 def shared_visual_stamp_failure(base, head, path):
     """Return an error when path differs outside the shared-visual allowlist.
 
-    visuals.css may change ?v= only on lines 13, 14, 16, 17, 20, 24, 27, 28, 29, 30, and 31.
-    Head may also gain one trailing map-box.css or timeline-1.css @import.
+    visuals.css may change ?v= only on lines 13, 14, 16, 17, 20, 24, 27, 28, 29, 30, 31, and 32.
+    Head may also gain one trailing map-box.css, timeline-1.css, or lego-bricks.css @import.
     Each listed visual page may change ?v= only on its visuals.css link.
     Identical text is not a failure. None means this path is not in the
     allowlist, or the difference is allowed.
@@ -1074,7 +1076,7 @@ def shared_visual_stamp_failure(base, head, path):
     base_lines = base.splitlines()
     head_lines = head.splitlines()
     if path == SHARED_VISUAL_CSS and len(head_lines) == len(base_lines) + 1:
-        # #85 map-box, or #109 timeline-1. One new import, hash must match disk.
+        # #85 map-box, #109 timeline-1, or #121 lego-bricks. One new import, hash must match disk.
         if _one_trailing_visual_import(head_lines[-1]):
             head_lines = head_lines[:-1]
     if len(base_lines) != len(head_lines):

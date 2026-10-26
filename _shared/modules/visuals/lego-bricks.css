@@ -1,0 +1,54 @@
+/* #121 Shared brick CSS · FINDINGS Gap G2 / Option 4
+   tip SoT a60c49fd727c6e73876c4309250270d6f4a4e36f
+   no paint Δ
+   Ownership: MD3 owns B## meaning (kit). Build owns this file, the
+   visuals.css import, and the unknown-B## lint. Not map-box L0–L4.
+   Namespace: kit IDs B01–B21 only (row98 LEGO-BRICKS).
+   Attrs are inventory labels. Look stays on existing classes.
+   Phase-1 hooks below add no properties, so computed style stays the tip look. */
+
+/* B01 Board — deferred; allowlist only; no force-tag */
+/* B02 Plate — deferred; allowlist only; no force-tag */
+/* B03 Cell — deferred; allowlist only; no force-tag */
+/* B04 Note — deferred; allowlist only; no force-tag */
+/* B05 Title — deferred; allowlist only; no force-tag */
+/* B06 Section chip — deferred; allowlist only; no force-tag */
+/* B07 Kicker — deferred; allowlist only; no force-tag */
+/* B08 Tag — deferred; allowlist only; no force-tag */
+/* B09 See-also — phase-1 live: p.see / .see-wide / .junction-tip.see */
+[data-brick="B09"] {
+  /* zero-visual hook: no properties */
+}
+/* B10 Rail — deferred; allowlist only; no force-tag */
+/* B11 Grid — deferred; allowlist only; no force-tag */
+/* B12 Arrow (+ label) — phase-1 live: .pack-flow-shaft.m-flow / p.arm-label.exit-label */
+[data-brick="B12"] {
+  /* zero-visual hook: no properties */
+}
+/* B13 Bar — phase-1 live: .consume-bar */
+[data-brick="B13"] {
+  /* zero-visual hook: no properties */
+}
+/* B14 Operator — phase-1 live: .cost-op / .def-op */
+[data-brick="B14"] {
+  /* zero-visual hook: no properties */
+}
+/* B15 Axis + marker — phase-1 live: .m-tl */
+[data-brick="B15"] {
+  /* zero-visual hook: no properties */
+}
+/* B16 Span — phase-1 live: .m-tl-span */
+[data-brick="B16"] {
+  /* zero-visual hook: no properties */
+}
+/* B17 Tone — deferred; allowlist only; no force-tag */
+/* B18 Strip — deferred; allowlist only; no force-tag */
+/* B19 Echo bar — phase-1 live: nav.master-echo */
+[data-brick="B19"] {
+  /* zero-visual hook: no properties */
+}
+/* B20 Hand-off — phase-1 live: .pack-flow.pack-flow-in / a.rail-link.handoff */
+[data-brick="B20"] {
+  /* zero-visual hook: no properties */
+}
+/* B21 Glyph — deferred; allowlist only; no force-tag */

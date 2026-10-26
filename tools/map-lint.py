@@ -249,6 +249,36 @@ def shaft_role_errors(text, rel):
     return errors
 
 
+# #121 Gap G2. Kit IDs B01–B21 only. An unknown data-brick value FAILs.
+# Phase-1 loci record the Wave B files. Missing attrs do not fail:
+# the 35 zero-brick maps stay untagged, and deferred IDs are not required.
+BRICK_IDS = frozenset(f"B{n:02d}" for n in range(1, 22))
+BRICK_PHASE1_LOCI = (
+    "ias-16/draft-v1-linked/visuals/ch05-depreciation.html",
+    "ias-16/draft-v1-linked/visuals/master-concept-map.html",
+)
+BRICK_ATTR_RE = re.compile(
+    r"""data-brick\s*=\s*(?:(?P<q>["'])(?P<quoted>.*?)(?P=q)|(?P<bare>[^\s"'=<>`]+))"""
+)
+
+
+def data_brick_errors(text, rel):
+    """#121: data-brick must be a kit ID B01–B21.
+
+    Does not require an attr. BRICK_PHASE1_LOCI names the Wave B files
+    (ch05 + master) and is not a force-tag. Zero-brick maps stay quiet.
+    """
+    errors = []
+    for line_no, line in enumerate(text.splitlines(), 1):
+        for match in BRICK_ATTR_RE.finditer(line):
+            value = match.group("quoted")
+            if value is None:
+                value = match.group("bare")
+            if value not in BRICK_IDS:
+                errors.append(f"unknown data-brick {value!r} in {rel}:{line_no}")
+    return errors
+
+
 def html_scan_paths():
     paths = []
     for pack in ("cf-2018", "ias-16", "ias-2", "ifrs-18"):
@@ -337,6 +367,7 @@ def lint():
         errors.extend(sibling_head_errors(text, rel))
         errors.extend(glyph_connector_errors(text, rel, box))
         errors.extend(shaft_role_errors(text, rel))
+        errors.extend(data_brick_errors(text, rel))
     if "body.embed .m-l0" not in box or not re.search(
         r"body\.embed \.m-l0[\s\S]{0,240}?border:\s*0", box
     ):
