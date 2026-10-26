@@ -397,60 +397,48 @@ def lint():
     return errors
 
 
-FIELD_TOKENS = (
-    "--map-field-line: color-mix(in srgb, var(--line) 22%, transparent);",
-    "--map-field-pitch: var(--space-4);",
-    "--map-field-stroke: var(--stroke-1);",
-)
-FIELD_USES = (
-    "var(--map-field-line)",
-    "var(--map-field-pitch)",
-    "var(--map-field-stroke)",
-)
 BOARD_HOST = re.compile(
     r"(?:\.m-l0|#conceptMap|\.cfmap\b|\.std-frame|\.ppe\.pack|\.ias2\.m-map)"
 )
 FIELD_IMAGE = re.compile(
     r"background-image\s*:[^;}]*(?:repeating-(?:linear|radial)-gradient|radial-gradient|linear-gradient)"
 )
-FIELD_LITERAL = re.compile(r"16px|22%|#[0-9A-Fa-f]{3,8}")
+ML0_SUBJECT = re.compile(r"^\.m-l0(?:[:]{1,2}[\w-]+)*$")
+
+
+def _selector_is_ml0(selector):
+    """True when a selector part is the board host `.m-l0` itself."""
+    for part in split_selectors(selector):
+        if ML0_SUBJECT.fullmatch(part.strip()):
+            return True
+    return False
 
 
 def field_errors(box):
-    """#89: the graph field comes from map-box tokens, on .m-l0 only."""
+    """#122: graph-paper field retired. Solid --bg only. Residual field FAILs."""
     errors = []
     for rel in MAPS:
         text = (ROOT / rel).read_text(encoding="utf-8")
         if "m-l0" not in text:
             errors.append(f"Concept Map board lacks .m-l0: {rel}")
-    for needle in FIELD_TOKENS:
-        if box.count(needle) != 1:
-            errors.append(f"map-box field token missing: {needle.split(':')[0]}")
-    rule = re.search(r"\.m-l0 \{[^}]*background-image:[^}]*\}", box)
-    if rule is None:
-        errors.append("map-box missing .m-l0 field recipe")
-    else:
-        body = rule.group(0)
-        for token in FIELD_USES:
-            if token not in body and token not in box[rule.start():rule.end() + 120]:
-                errors.append(f"map-box field recipe missing {token}")
-        if FIELD_LITERAL.search(body):
-            errors.append("map-box field recipe uses a literal")
+    for selector, body in selector_blocks(box):
+        if _selector_is_ml0(selector) and FIELD_IMAGE.search(body):
+            errors.append(
+                f"residual graph-paper field on .m-l0: {selector.strip()[:80]}"
+            )
     for rel in MAP_CSS:
         text = strip_comments((ROOT / rel).read_text(encoding="utf-8"))
         if "--map-field-" in text:
-            errors.append(f"field token outside map-box: {rel}")
+            errors.append(f"residual --map-field- token in {rel}")
         for selector, body in selector_blocks(text):
             if BOARD_HOST.search(selector) and FIELD_IMAGE.search(body):
                 errors.append(f"pack-local field image in {rel}: {selector.strip()[:80]}")
     for path in ROOT.rglob("*.css"):
         rel = path.relative_to(ROOT).as_posix()
-        if rel == "_shared/modules/visuals/map-box.css":
-            continue
         if "_archive" in path.parts or "node_modules" in path.parts:
             continue
         if "--map-field-" in path.read_text(encoding="utf-8"):
-            errors.append(f"field token outside map-box: {rel}")
+            errors.append(f"residual --map-field- token in {rel}")
     return errors
 
 
