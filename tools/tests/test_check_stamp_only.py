@@ -1782,7 +1782,12 @@ class HowNotes108FoldTests(unittest.TestCase):
 
 
 class MfLegoEntry112FoldTests(unittest.TestCase):
-    """#112: one exact Master Map anchor folds. Freestyle chrome still fails."""
+    """#112 added one exact Master Map anchor; #124 removed the live line.
+
+    The fold still strips a synthetic ADD of that exact needle. On the live
+    head the needle is absent, so the fold is a no-op. Freestyle chrome
+    still fails.
+    """
 
     PAGE = stamp.MF_LEGO_ENTRY_PAGE
     NEEDLE = stamp.MF_LEGO_ENTRY
@@ -1830,7 +1835,9 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         # #119 adds data-brick="B12" on the chapter shaft and exit-label
         # only; both sit outside #ch05-dep. Master has other shafts and
         # exit-labels — do not invent B12 on them.
-        # The #112 pin still rejects every other byte.
+        # #124 removed the live Master Map a.mf-lego-entry line. The fold
+        # stays strip-if-present. On this live head it is a no-op. The
+        # brick pins still reject every other byte.
         b13_old = (
             '<p class="consume-bar">'
             "<span>Reflect the pattern of consumption of future economic benefits</span></p>"
@@ -1899,7 +1906,8 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
             text=True,
         )
         head = (stamp.ROOT / self.PAGE).read_text(encoding="utf-8")
-        self.assertEqual(head.count(self.NEEDLE), 1)
+        self.assertEqual(head.count(self.NEEDLE), 0)
+        self.assertNotIn("mf-lego-entry", head)
         self.assertNotIn(self.NEEDLE, base)
         self.assertEqual(head.count(b13_new), 1)
         self.assertEqual(base.count(b13_old), 1)
@@ -1972,6 +1980,7 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
             self.assertEqual(head.count(needle), 1)
             self.assertNotIn('data-brick="B14"', needle)
         folded_head = stamp.fold_mf_lego_entry(head, self.PAGE)
+        self.assertEqual(folded_head, head)
         self.assertNotIn("mf-lego-entry", folded_head)
         folded_head = folded_head.replace(b13_new, b13_old, 1)
         folded_head = folded_head.replace(b14_eq_new, b14_eq_old, 2)

@@ -1,0 +1,8 @@
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "LEGO kit · Master formatting #lego-sheet"
+  source: "ruling Johnny SIGN #124 remove Concept Map mf-lego-entry 2026-10-26"
+- action: removed
+  file: "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+  old: "LEGO kit · Master formatting"
+  source: "brief item Map remove LEGO kit link"
