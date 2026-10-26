@@ -27,6 +27,12 @@ on div.pack-flow.pack-flow-in and on a.rail-link.handoff (class then
 data-brick, one each). Both sit outside #ch05-dep, so the master map is
 not folded and must not gain pack-flow-in or a.rail-link.handoff. Not a
 CONTENT_ALLOW.
+#123 CF Status Yes leaf on cf-2018/draft-v1-linked/index.html may change
+three outcome open tags from mute .m-l4 to framed .m-l2 plus
+data-brick="B03" (class then data-brick, one each): Apply the Standard,
+Recognise 5.1, and Derecognise 5.6. Teaching strings, 11.2, 11.3, and
+the #122 solid L0 stay. Freestyle outside those needles still fails.
+Not a CONTENT_ALLOW.
 The live Master formatting page (site/master-formatting/index.html, #100)
 may change ?v= only, the same shape as Settings, once it is on the base.
 A copy that is not on the base yet must still carry ?v= hashes that match
@@ -968,6 +974,72 @@ def fold_b12_exit_label(html, path):
     if html.count(B12_EXIT_LABEL_NEW) != 1:
         return html
     return html.replace(B12_EXIT_LABEL_NEW, B12_EXIT_LABEL_OLD, 1)
+
+
+# #123: three CF Pack Map outcome open tags. Apply the Standard,
+# Recognise 5.1, and Derecognise 5.6 move from mute .m-l4 to framed
+# .m-l2 plus data-brick="B03". Class then data-brick. 11.3 is already
+# .m-l2 without B03 and is not one of these needles. Not a CONTENT_ALLOW.
+# Call these before fold_map_pick_a: that fold strips m-l2 and m-l4, and
+# the exact open tag would no longer match.
+B03_STATUS_YES_PAGE = "cf-2018/draft-v1-linked/index.html"
+B03_APPLY_OLD = '<div class="leaf leaf-yes m-l4">'
+B03_APPLY_NEW = '<div class="leaf leaf-yes m-l2" data-brick="B03">'
+B03_RECOG_OLD = '<div class="leaf leaf-yes leaf-cont m-l4">'
+B03_RECOG_NEW = '<div class="leaf leaf-yes leaf-cont m-l2" data-brick="B03">'
+B03_DERECOG_OLD = '<div class="leaf m-l4">'
+B03_DERECOG_NEW = '<div class="leaf m-l2" data-brick="B03">'
+
+
+def fold_b03_apply(html, path):
+    """Fold the signed #123 Apply the Standard open tag.
+
+    One exact open tag, on the CF Concept Map index only, and only when
+    it appears once. Class then data-brick. A second copy, a different
+    brick, attribute order other than class then data-brick, an extra
+    class, or any other byte stays in the compare and fails. Not a
+    CONTENT_ALLOW. Call this before fold_map_pick_a: that fold strips
+    m-l2 and m-l4, and the exact open tag would no longer match.
+    """
+    if path != B03_STATUS_YES_PAGE:
+        return html
+    if html.count(B03_APPLY_NEW) != 1:
+        return html
+    return html.replace(B03_APPLY_NEW, B03_APPLY_OLD, 1)
+
+
+def fold_b03_recog(html, path):
+    """Fold the signed #123 Recognise 5.1 open tag.
+
+    One exact open tag, on the CF Concept Map index only, and only when
+    it appears once. Class then data-brick. A second copy, a different
+    brick, attribute order other than class then data-brick, an extra
+    class, or any other byte stays in the compare and fails. The 11.3
+    peer is .m-l2 without B03 and is not this tag. Not a CONTENT_ALLOW.
+    Call this before fold_map_pick_a: that fold strips m-l2 and m-l4.
+    """
+    if path != B03_STATUS_YES_PAGE:
+        return html
+    if html.count(B03_RECOG_NEW) != 1:
+        return html
+    return html.replace(B03_RECOG_NEW, B03_RECOG_OLD, 1)
+
+
+def fold_b03_derecog(html, path):
+    """Fold the signed #123 Derecognise 5.6 open tag.
+
+    One exact open tag, on the CF Concept Map index only, and only when
+    it appears once. Class then data-brick. A second copy, a different
+    brick, attribute order other than class then data-brick, an extra
+    class, or any other byte stays in the compare and fails. Not a
+    CONTENT_ALLOW. Call this before fold_map_pick_a: that fold strips
+    m-l2 and m-l4.
+    """
+    if path != B03_STATUS_YES_PAGE:
+        return html
+    if html.count(B03_DERECOG_NEW) != 1:
+        return html
+    return html.replace(B03_DERECOG_NEW, B03_DERECOG_OLD, 1)
 
 
 # #116: one Settings-page chrome line. Stamp still owns anything else on
@@ -2367,10 +2439,17 @@ def main(argv=None):
                 failed = True
         base = fold_settings_stamps(base, head, path)
         base = fold_theme_js(base, head, path)
-        # #119 shaft class includes m-flow. fold_map_pick_a strips that
-        # token, so the exact open tag has to fold before that strip.
+        # #119 shaft class includes m-flow. #123 leaf classes include
+        # m-l2 / m-l4. fold_map_pick_a strips those tokens, so the exact
+        # open tags have to fold before that strip.
         base = fold_b12_shaft(base, path)
         head = fold_b12_shaft(head, path)
+        base = fold_b03_apply(base, path)
+        head = fold_b03_apply(head, path)
+        base = fold_b03_recog(base, path)
+        head = fold_b03_recog(head, path)
+        base = fold_b03_derecog(base, path)
+        head = fold_b03_derecog(head, path)
         base = fold_map_pick_a(base)
         head = fold_map_pick_a(head)
         base = fold_row86(base)
