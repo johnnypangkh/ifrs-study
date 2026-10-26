@@ -2704,5 +2704,98 @@ class SettingsMfLego116FoldTests(unittest.TestCase):
         self.assertIn(self.PAGE, stamp.STAMP_ONLY_HTML)
 
 
+class CfStatusYesB03FoldTests(unittest.TestCase):
+    """#123: three CF index open tags fold. Freestyle outside them fails."""
+
+    PAGE = stamp.B03_STATUS_YES_PAGE
+    TIP = "859bda8a952512a570131a6ef4e040d04b5f85a5"
+
+    def base_html(self):
+        import subprocess
+
+        return subprocess.check_output(
+            ["git", "show", f"{self.TIP}:{self.PAGE}"],
+            cwd=stamp.ROOT,
+            text=True,
+        )
+
+    def head_html(self):
+        return (stamp.ROOT / self.PAGE).read_text(encoding="utf-8")
+
+    def fold_all(self, html, path=None):
+        path = self.PAGE if path is None else path
+        html = stamp.fold_b03_apply(html, path)
+        html = stamp.fold_b03_recog(html, path)
+        html = stamp.fold_b03_derecog(html, path)
+        return html
+
+    def test_signed_needles_fold_back_to_tip(self):
+        base = self.base_html()
+        head = self.head_html()
+        self.assertEqual(head.count(stamp.B03_APPLY_NEW), 1)
+        self.assertEqual(head.count(stamp.B03_RECOG_NEW), 1)
+        self.assertEqual(head.count(stamp.B03_DERECOG_NEW), 1)
+        self.assertEqual(head.count('data-brick="B03"'), 3)
+        self.assertEqual(base.count(stamp.B03_APPLY_OLD), 1)
+        self.assertEqual(base.count(stamp.B03_RECOG_OLD), 1)
+        self.assertEqual(base.count(stamp.B03_DERECOG_OLD), 1)
+        self.assertNotIn(stamp.B03_APPLY_NEW, base)
+        self.assertNotIn(stamp.B03_RECOG_NEW, base)
+        self.assertNotIn(stamp.B03_DERECOG_NEW, base)
+        self.assertNotIn('data-brick="B03"', base)
+        self.assertEqual(head.count('<div class="leaf leaf-yes leaf-cont m-l2">'), 1)
+        folded = self.fold_all(head)
+        self.assertNotIn('data-brick="B03"', folded)
+        self.assertEqual(stamp.norm(self.fold_all(base)), stamp.norm(folded))
+        self.assertNotIn(self.PAGE, stamp.CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW, ("_shared/settings-rows.html",))
+        self.assertNotIn("proof-banner", head)
+        stripped = stamp.fold_map_pick_a(head)
+        self.assertNotIn(stamp.B03_APPLY_NEW, stripped)
+        self.assertNotIn(stamp.B03_RECOG_NEW, stripped)
+        self.assertNotIn(stamp.B03_DERECOG_NEW, stripped)
+        self.assertEqual(stripped.count('data-brick="B03"'), 3)
+        self.assertIn('data-brick="B03"', stamp.fold_b03_apply(stripped, self.PAGE))
+
+    def test_freestyle_wrong_path_and_second_copy_stay(self):
+        base = self.base_html()
+        head = self.head_html()
+        folded_base = stamp.norm(self.fold_all(base))
+        other = "ias-16/draft-v1-linked/index.html"
+        self.assertEqual(stamp.fold_b03_apply(head, other), head)
+        self.assertEqual(stamp.fold_b03_recog(head, other), head)
+        self.assertEqual(stamp.fold_b03_derecog(head, other), head)
+        swapped = head.replace(
+            stamp.B03_APPLY_NEW,
+            '<div data-brick="B03" class="leaf leaf-yes m-l2">',
+            1,
+        )
+        self.assertEqual(swapped.count(stamp.B03_APPLY_NEW), 0)
+        self.assertIn('data-brick="B03"', stamp.fold_b03_apply(swapped, self.PAGE))
+        self.assertNotEqual(stamp.norm(self.fold_all(swapped)), folded_base)
+        extra = head.replace(
+            stamp.B03_APPLY_NEW,
+            '<div class="leaf leaf-yes extra m-l2" data-brick="B03">',
+            1,
+        )
+        self.assertIn('data-brick="B03"', stamp.fold_b03_apply(extra, self.PAGE))
+        self.assertNotEqual(stamp.norm(self.fold_all(extra)), folded_base)
+        wrong = head.replace(
+            stamp.B03_DERECOG_NEW,
+            '<div class="leaf m-l2" data-brick="B99">',
+            1,
+        )
+        self.assertIn('data-brick="B99"', stamp.fold_b03_derecog(wrong, self.PAGE))
+        self.assertNotEqual(stamp.norm(self.fold_all(wrong)), folded_base)
+        second = head.replace(
+            stamp.B03_RECOG_NEW,
+            stamp.B03_RECOG_NEW + stamp.B03_RECOG_NEW,
+            1,
+        )
+        self.assertEqual(second.count(stamp.B03_RECOG_NEW), 2)
+        self.assertIn(stamp.B03_RECOG_NEW, stamp.fold_b03_recog(second, self.PAGE))
+        self.assertNotEqual(stamp.norm(self.fold_all(second)), folded_base)
+
+
 if __name__ == "__main__":
     unittest.main()
