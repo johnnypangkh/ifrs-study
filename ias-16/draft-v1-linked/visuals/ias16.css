@@ -8055,11 +8055,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 /* --- shared Dep flag geometry (one copy; Reval/Impair plates reuse the roles) --- */
 .plate .inner-board > .ppe-tl-row{grid-column:1/-1;min-width:0;box-sizing:border-box}
 .ppe-tl-row{display:flex;flex-direction:column;gap:var(--space-3);min-width:0}
-.ppe-tl-row .t1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
-.ppe-tl-row .t2{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0;color:var(--muted)}
-.ppe-tl-row .head{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
 .ppe-tl-row .l3{border:var(--stroke-1) solid var(--line);background:var(--surface);border-radius:var(--radius-s);padding:var(--space-1) var(--space-2);display:flex;flex-direction:column;gap:var(--space-hairline);min-width:0;box-sizing:border-box}
-/* #109: shared .m-tl* chrome is _shared/modules/visuals/timeline-1.css.
+/* #109 + #120: shared .m-tl* chrome and the Dep/Impair .tl-pane / .head / .t1 / .t2
+   near-dup live in _shared/modules/visuals/timeline-1.css.
    Placement only. Flex is Dep/Reval (.ppe-tl-row); Impair stays block.
    16rem / 17rem / line-height:1 have no token and stay here (shared lint). */
 .ppe-tl-row .m-tl{display:flex;flex-direction:column;gap:0}
@@ -8069,11 +8067,11 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 .ch04-impair .m-tl-flag{max-width:16rem}
 .ppe-tl-row .m-tl-flag .l3,
 .ch04-impair .m-tl-flag .l3{max-width:calc(16rem - var(--stroke-2))}
-.ppe-tl-row .m-tl-ribbon p{line-height:1}
+.ppe-tl-row .m-tl-ribbon p,
+.ch04-impair .m-tl-ribbon p{line-height:1}
 
 /* §10.10.4 — the phase rail covers the beat. Live align-self:start is the short stub. */
 .ppe-tl-row.srow{display:grid;grid-template-columns:calc(5 * var(--space-6) + var(--space-2) + var(--stroke-1)) minmax(0,1fr);gap:var(--space-cell);align-items:stretch}
-.ppe-tl-row .tl-pane{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;box-sizing:border-box;height:100%}
 
 
 /* LEGO B11 SIGNED spacing — object-to-border; Residual item-rows was padding:0 flush */
@@ -8346,15 +8344,6 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 /* Delta 1/3: Compensation own row; list gets the LEGO padding token (= signed Reval item-rows) */
 .ch04-impair .srow > .inner-detail > .item-rows{padding:var(--space-2) var(--space-3) !important;box-sizing:border-box;margin:0}
 
-/* Timeline pane + head = signed Dep .tl-pane / .head recipe */
-.ch04-impair .tl-pane{border:var(--stroke-1) solid var(--line);background:var(--band);border-radius:var(--card-radius);padding:var(--space-2);display:flex;flex-direction:column;gap:var(--space-2);min-width:0;box-sizing:border-box;height:100%}
-.ch04-impair .head{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
-
-/* Flag + axis — BYTE-IDENTICAL to BEFORE (signed flag geometry LOCK) */
-.ch04-impair .t1{font-size:var(--t1-fs);font-weight:var(--t1-fw);line-height:var(--t1-lh);margin:0}
-.ch04-impair .t2{font-size:var(--t2-fs);font-weight:var(--t2-fw);line-height:var(--t2-lh);margin:0;color:var(--muted)}
-.ch04-impair .m-tl-ribbon p{line-height:1}
-
 /* F1-F4 + CS1 selectors. FS2 ADDENDUM-CS1 §a.4 verbatim.
    F2 cite-run rules stay so a sentence + section chip still share a line (cite chips themselves are stripped). */
 .ppe:is(.pack, .ch04-map) .plate.ch04-reval .node{display:block;min-width:0;margin:0}
@@ -8415,35 +8404,9 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 /* 1z. ONE ring token for the Reval plate: the ◆ outline and the case (b) pole casing both read it (Johnny 17:55). */
 .plate.ch04-reval{--tl-ring-w:var(--stroke-1); --tl-ring:var(--tl-ring-w) solid var(--band)}   /* --tl-ring-w = its width, read only to seat the case (b) segments */
 
-/* 1a. Period-end tick (Reval + Impair): signed Impair V3 .rd-tick recipe, one rule for both. */
-.plate:is(.ch04-reval, .ch04-impair) .m-tl-rd{
-  left:calc(100% * var(--k) / var(--pe-n));
-}
-
-/* 1b. Key under the axis (Reval + Dep): left edge = Begins ring, one row per meaning. */
-.plate:is(.ch04-reval, .ch05-dep) .m-tl-key{
-  display:flex; flex-direction:column; gap:var(--space-1);
-  margin:0; min-width:0;
-}
-.plate:is(.ch04-reval, .ch05-dep) .key-row{
-  display:flex; flex-wrap:wrap; align-items:center; column-gap:var(--space-2); row-gap:var(--space-1);
-  margin:0; min-width:0;
-  font-size:var(--t2-fs); font-weight:var(--t2-fw); line-height:var(--t2-lh); color:var(--ink);
-}
-.plate:is(.ch04-reval, .ch05-dep) .key-row.key-head{font-weight:var(--t1-fw)}
-.plate:is(.ch04-reval, .ch05-dep) .key-row.key-case{padding-left:calc(var(--space-4) + var(--space-2))}
-.plate:is(.ch04-reval, .ch05-dep) .key-mark{
-  flex:none; width:var(--space-4); height:var(--space-3);
-  display:flex; justify-content:center; align-items:flex-start;
-}
-/* key swatches = the axis marks themselves (same stroke, same token height) */
-.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-tick::before{content:""; height:var(--space-3); border-left:var(--stroke-2) solid var(--ink)}
-.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-mo::before{content:""; height:var(--space-2); border-left:var(--stroke-1) solid var(--muted)}
-.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-nil::before{content:""; height:var(--space-3); border-left:var(--stroke-1) solid var(--muted)}
-.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-dia{align-items:center; color:var(--accent); font-size:var(--t2-fs); line-height:1}
-.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl .cite-run{
-  display:inline-flex; flex-wrap:wrap; align-items:center; gap:var(--space-1);
-}
+/* #120: period-end left, key, and .m-tl .cite-run live in timeline-1.css.
+   line-height:1 has no token, so this one declaration stays pack. */
+.plate:is(.ch04-reval, .ch05-dep) .key-mark.key-dia{line-height:1}
 
 /* ---------- 2. Reval (F1): 6 period-end ticks, 2 cases ---------- */
 .plate.ch04-reval .ppe-tl-row .m-tl-shaft{
@@ -8506,21 +8469,11 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 /* ---------- B1. Flow lane under the axis (VG L278, L280; supersedes Dep C3 "above the axis" 10-19) ----------
    Lane = exactly Begins ring -> End ring (x 0 -> 100%), pointed end at End, solid accent (L317: no gradient).
    It sits under the recurring ticks and their labels with a 4px (--space-1) clear gap, so ticks stay legible. */
-.plate:is(.ch04-reval, .ch05-dep, .ch04-impair){--lane-h:var(--space-6); --lane-pt:calc(var(--space-6) / 2); --t3-line:calc(var(--t3-fs) * var(--t3-lh))}
+.plate:is(.ch04-reval, .ch05-dep, .ch04-impair){--t3-line:calc(var(--t3-fs) * var(--t3-lh))}
 .plate.ch05-dep{--lane-top:calc(var(--stroke-2) + var(--space-4) + var(--t3-line) + var(--space-1))}     /* year-end tick + its label */
 .plate.ch04-reval{--lane-top:calc(var(--stroke-2) + var(--space-3) + var(--space-1))}                    /* period-end tick */
 .plate.ch04-impair{--lane-top:calc(var(--stroke-2) + var(--space-3) + var(--t3-line) * 5 + var(--space-1) * 2)} /* tick + M1 3-line label + 2-line note */
-.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl-ribbon{
-  left:0; width:100%;
-  top:calc(var(--pole-h) + var(--lane-top));
-  height:var(--lane-h);
-  box-sizing:border-box; padding:0 var(--lane-pt) 0 var(--space-3);
-  justify-content:flex-start;                     /* label at the lane start: the Impair entry stem crosses the lane at the Year-end tick, never through the label */
-  background:var(--accent);
-  clip-path:polygon(0 0, calc(100% - var(--lane-pt)) 0, 100% 50%, calc(100% - var(--lane-pt)) 100%, 0 100%);
-  z-index:3;
-}
-.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl-ribbon p{color:var(--bg)}
+/* #120: solid lane ribbon recipe lives in timeline-1.css. Plates keep --lane-top and the hides below. */
 /* ---------- Wave2a B16 Span (D4 ADD · ch05 During-use only) ----------
    Same lane locus as the retired ribbon. Chrome = MF .m-tl-span:
    muted caption + dashed rule. No new pack class. B15 is inventory only.
@@ -8547,12 +8500,7 @@ html .ppe:is(.pack,.scope-map,.recog-map,.cost-map,.models,.dep-map,.derecog-map
 /* shaft room: lane + gap before the key (Dep, Reval) */
 .plate:is(.ch04-reval, .ch05-dep) .ppe-tl-row .m-tl-shaft{height:calc(var(--pole-h) + var(--lane-top) + var(--lane-h) + var(--space-2))}
 
-/* ---------- B2. Axis past End = faded tail (L278) + long arrowhead (L279), one faded tone, no gradient ---------- */
-.plate:is(.ch04-reval, .ch05-dep, .ch04-impair){--tl-tail:color-mix(in srgb, var(--muted) 40%, var(--band))}
-.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl-line{
-  background:linear-gradient(to right, var(--muted) 0 calc(100% - var(--space-6)), var(--tl-tail) calc(100% - var(--space-6)) 100%);
-}
-.plate:is(.ch04-reval, .ch05-dep, .ch04-impair) .m-tl-line::after{border-left-color:var(--tl-tail)}
+/* #120: B2 faded-tail line recipe lives in timeline-1.css (--tl-tail on .m-tl). */
 
 /* ---------- B3. Reval case (b): no lane above the axis any more, so the pole is one 1px muted line, note -> axis ---------- */
 .plate.ch04-reval .ppe-tl-row .m-tl-evt.nil .evt-pole{
