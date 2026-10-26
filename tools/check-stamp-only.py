@@ -15,9 +15,12 @@ SIGNED structure (Purpose, Source hierarchy, Claim discipline, Surfaces),
 including that page-local CSS. Stamp still owns chrome outside the fold:
 the Home link, the page title, and the h1 text. Freestyle outside that
 shell still fails. Not a CONTENT_ALLOW. #112 Master Map
-(ias-16/draft-v1-linked/visuals/master-concept-map.html) may gain this one
-a.mf-lego-entry chrome line. The shared-visual ?v=-only rule is otherwise
-unchanged. The page stays in SHARED_VISUAL_PAGES. Not a CONTENT_ALLOW.
+(ias-16/draft-v1-linked/visuals/master-concept-map.html) added one
+a.mf-lego-entry chrome line. #124 removed that live line. fold_mf_lego_entry
+is KEPT (strip-if-present) so a tip base that still has the needle compares
+clean against a head that does not; after merge the tip lacks the needle and
+the fold is a no-op. The shared-visual ?v=-only rule is otherwise unchanged.
+The page stays in SHARED_VISUAL_PAGES. Not a CONTENT_ALLOW.
 #117 ch05 Echo on ias-16/draft-v1-linked/visuals/ch05-depreciation.html may
 gain data-brick="B19" on the one nav.master-echo open tag (class then
 data-brick). That nav sits outside #ch05-dep, so the master map is not
@@ -811,7 +814,9 @@ def fold_row98(html, path):
     return html
 
 
-# #112: one Master Map chrome line. Stamp still owns anything else on that page.
+# #112 added one Master Map chrome line. #124 removed the live line.
+# Fold body stays (strip-if-present) so tip→head remove PASSes.
+# Stamp still owns anything else on that page. Not a CONTENT_ALLOW.
 MF_LEGO_ENTRY_PAGE = "ias-16/draft-v1-linked/visuals/master-concept-map.html"
 MF_LEGO_ENTRY = (
     '<a class="mf-lego-entry" '
@@ -1082,12 +1087,16 @@ def fold_settings_mf_lego_entry(html, path):
 def fold_mf_lego_entry(html, path):
     """Drop the signed #112 Master Map LEGO-entry anchor, and nothing else.
 
-    #112 Master Map may gain this one a.mf-lego-entry chrome line. The
-    shared-visual ?v=-only rule is otherwise unchanged. One exact line is
-    folded out before the shared-visual compare. A second entry, a changed
-    href, an extra class, or any other chrome still fails. Not a
-    CONTENT_ALLOW. Other paths are left untouched, so a chapter page
-    cannot hide the same link behind this fold.
+    #112 added this one a.mf-lego-entry chrome line. #124 removed the live
+    line. The fold is kept as strip-if-present so a historical tip base
+    that still carries the needle compares clean against a head that does
+    not. After merge the tip lacks the needle and this fold is a no-op.
+    Freestyle outside the exact needle still fails. The shared-visual
+    ?v=-only rule is otherwise unchanged. One exact line is folded out
+    before the shared-visual compare. A second entry, a changed href, an
+    extra class, or any other chrome still fails. Not a CONTENT_ALLOW.
+    Other paths are left untouched, so a chapter page cannot hide the same
+    link behind this fold.
     """
     if path != MF_LEGO_ENTRY_PAGE:
         return html
