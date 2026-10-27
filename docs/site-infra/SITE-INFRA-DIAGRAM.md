@@ -1,6 +1,6 @@
 # Site infra — workbook #95
 
-**Owner:** IFRS Build · **Updated:** 2026-10-26 Asia/Hong_Kong · #124 Master Map mf-lego-entry REMOVE (fold_mf_lego_entry KEEP; stamp cascade lesson #111) · #123 CF Status Yes leaf dedicated fold + build-last-update stamp cascade (lesson #111) · #100 live `site/master-formatting/` · #109 timeline module · #120 remaining extract (pack placement only) · #121 shared brick module (`lego-bricks.css`, after map-box / timeline-1, not map-box) · #122 Concept Map L0 is solid `var(--bg)` (graph-paper and `--map-field-*` retired; lint FAILs a residual field)
+**Owner:** IFRS Build · **Updated:** 2026-10-27 Asia/Hong_Kong · #125 IAS 16 Master Map attrs-only brick-compose (12→79; `fold_b2_125`; stamp cascade) · #124 Master Map mf-lego-entry REMOVE (fold_mf_lego_entry KEEP; stamp cascade lesson #111) · #123 CF Status Yes leaf dedicated fold + build-last-update stamp cascade (lesson #111) · #100 live `site/master-formatting/` · #109 timeline module · #120 remaining extract (pack placement only) · #121 shared brick module (`lego-bricks.css`, after map-box / timeline-1, not map-box) · #122 Concept Map L0 is solid `var(--bg)` (graph-paper and `--map-field-*` retired; lint FAILs a residual field)
 **Update:** same PR as any infra change.
 
 ## Source of truth
@@ -47,6 +47,7 @@ flowchart LR
 | Where is Concept Map L0 background? | `_shared/modules/visuals/map-box.css` `.m-l0` is solid `var(--bg)` (#122). Graph-paper field and `--map-field-line` / `--map-field-pitch` / `--map-field-stroke` are retired (LOCK-#89 / kit 2 STRUCK). `tools/map-lint.py` FAILs a residual field. Not a plate-layout change. |
 | CF Status Yes leaf stamp still fails? | #123 on `cf-2018/draft-v1-linked/index.html`: three outcome leaves (`m-l4`→`m-l2` + `data-brick="B03"`) need a dedicated `check-stamp-only` fold (shape #117/#118/#119) and `tools/build-last-update.py` regen of `_shared/last-update.js` + consumer `last-update.js?v=`. Stamp alone cannot clear the leaf class+attrs. Not a `CONTENT_ALLOW`. Not a `stamp-assets.py` CSS restamp. |
 | Master Map LEGO chrome link gone? | #124 removed `a.mf-lego-entry` from `ias-16/draft-v1-linked/visuals/master-concept-map.html`. Do not re-add that Concept Map chrome link. Findability = homepage Ready #116 + Settings quiet entry + MF `#lego-sheet`. Stamp fold `fold_mf_lego_entry` is still present (strip-if-present; no-op once the tip lacks the needle). Pack CSS `.page > a.mf-lego-entry` is retired from `ias16.css`. Settings `_shared/settings.css` KEEP. site-rules §4 amend is PM after merge. |
+| Master Map brick stamp still fails? | #125 on `ias-16/draft-v1-linked/visuals/master-concept-map.html` plus the chapter map-sections it includes (not ch05). Attrs-only B09/B12/B14/B20. `fold_b2_125` is path-gated and count-gated (NEW→OLD). Not a `CONTENT_ALLOW`. `bash tools/build-all.sh` refreshes the stamp cascade. Do not put B19, `pack-flow-in`, or `data-brick="B20"` on a phase `a.rail-link`. |
 
 ## Live pages under `site/`
 
