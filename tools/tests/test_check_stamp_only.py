@@ -1915,7 +1915,7 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertEqual(head.count(b14_eq_new), 2)
         self.assertEqual(head.count(b14_minus_new), 2)
         self.assertEqual(head.count(b14_or_new), 1)
-        self.assertEqual(head.count('data-brick="B14"'), 5)
+        self.assertEqual(head.count('data-brick="B14"'), 10)
         self.assertEqual(head.count(b14_eq_old), 0)
         self.assertEqual(head.count(b14_minus_old), 0)
         self.assertEqual(head.count(b14_or_old), 0)
@@ -1926,13 +1926,15 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertNotIn(b14_minus_new, base)
         self.assertNotIn(b14_or_new, base)
         self.assertNotIn('data-brick="B14"', base)
-        self.assertEqual(head.count(b09_ifrs_new), 2)
+        # #125 tags the two Revaluation / Impairment IFRS 5 copies as well.
+        # The two inside #ch05-dep stay the #114 KEEP pins.
+        self.assertEqual(head.count(b09_ifrs_new), 4)
         self.assertEqual(head.count(b09_wide_new), 1)
         self.assertEqual(head.count(b09_lessee_new), 1)
-        self.assertEqual(head.count('data-brick="B09"'), 4)
+        self.assertEqual(head.count('data-brick="B09"'), 44)
         self.assertNotIn(b09_junction_new, head)
         self.assertNotIn("junction-tip", head)
-        self.assertEqual(head.count(b09_ifrs_old), 2)
+        self.assertEqual(head.count(b09_ifrs_old), 0)
         self.assertEqual(head.count(b09_wide_old), 0)
         self.assertEqual(head.count(b09_lessee_old), 0)
         self.assertEqual(base.count(b09_ifrs_old), 4)
@@ -1971,17 +1973,20 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         self.assertNotIn('data-brick="B19"', head)
         self.assertNotIn("pack-flow-in", head)
         self.assertNotIn("rail-link handoff", head)
-        self.assertNotIn('data-brick="B20"', head)
-        self.assertNotIn('data-brick="B12"', head)
-        self.assertNotIn(stamp.B12_SHAFT_NEW, head)
-        self.assertNotIn(stamp.B12_EXIT_LABEL_NEW, head)
+        self.assertEqual(head.count('data-brick="B20"'), 6)
+        self.assertEqual(head.count('data-brick="B12"'), 16)
+        self.assertEqual(head.count(stamp.B12_SHAFT_NEW), 5)
+        self.assertEqual(head.count(stamp.B12_EXIT_LABEL_NEW), 1)
         for needle in outside:
             self.assertEqual(base.count(needle), 1)
-            self.assertEqual(head.count(needle), 1)
+            self.assertEqual(head.count(needle), 0)
+            tagged = needle.replace(">", ' data-brick="B14">', 1)
+            self.assertEqual(head.count(tagged), 1)
             self.assertNotIn('data-brick="B14"', needle)
         folded_head = stamp.fold_mf_lego_entry(head, self.PAGE)
         self.assertEqual(folded_head, head)
         self.assertNotIn("mf-lego-entry", folded_head)
+        folded_head = stamp.fold_b2_125(folded_head, self.PAGE)
         folded_head = folded_head.replace(b13_new, b13_old, 1)
         folded_head = folded_head.replace(b14_eq_new, b14_eq_old, 2)
         folded_head = folded_head.replace(b14_minus_new, b14_minus_old, 2)
@@ -2278,7 +2283,9 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         master = (stamp.ROOT / stamp.MF_LEGO_ENTRY_PAGE).read_text(encoding="utf-8")
         self.assertNotIn("pack-flow-in", master)
         self.assertNotIn("rail-link handoff", master)
-        self.assertNotIn('data-brick="B20"', master)
+        self.assertEqual(master.count('data-brick="B20"'), 6)
+        self.assertNotIn(stamp.B20_PACK_FLOW_NEW, master)
+        self.assertNotIn(stamp.B20_HANDOFF_NEW, master)
         self.assertEqual(
             stamp.fold_b20_pack_flow(master, stamp.MF_LEGO_ENTRY_PAGE),
             master,
@@ -2430,11 +2437,11 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
             stamp.fold_b12_exit_label(head, stamp.MF_LEGO_ENTRY_PAGE), head
         )
         master = (stamp.ROOT / stamp.MF_LEGO_ENTRY_PAGE).read_text(encoding="utf-8")
-        self.assertNotIn('data-brick="B12"', master)
-        self.assertGreaterEqual(master.count(stamp.B12_SHAFT_OLD), 1)
-        self.assertIn(stamp.B12_EXIT_LABEL_OLD, master)
-        self.assertNotIn(stamp.B12_SHAFT_NEW, master)
-        self.assertNotIn(stamp.B12_EXIT_LABEL_NEW, master)
+        self.assertEqual(master.count('data-brick="B12"'), 16)
+        self.assertNotIn(stamp.B12_SHAFT_OLD, master)
+        self.assertEqual(master.count(stamp.B12_SHAFT_NEW), 5)
+        self.assertNotIn(stamp.B12_EXIT_LABEL_OLD, master)
+        self.assertEqual(master.count(stamp.B12_EXIT_LABEL_NEW), 1)
         self.assertEqual(
             stamp.fold_b12_shaft(master, stamp.MF_LEGO_ENTRY_PAGE), master
         )
@@ -2444,13 +2451,19 @@ class MfLegoEntry112FoldTests(unittest.TestCase):
         for sibling in (
             "ias-16/draft-v1-linked/visuals/ch02-recognition.html",
             "ias-16/draft-v1-linked/visuals/ch03-initial.html",
-            "ias-16/draft-v1-linked/visuals/ch04-models.html",
         ):
             text = (stamp.ROOT / sibling).read_text(encoding="utf-8")
             self.assertIn(stamp.B12_EXIT_LABEL_OLD, text)
-            self.assertNotIn('data-brick="B12"', text)
+            self.assertNotIn(stamp.B12_EXIT_LABEL_NEW, text)
+            self.assertNotIn(stamp.B12_SHAFT_NEW, text)
             self.assertEqual(stamp.fold_b12_shaft(text, sibling), text)
             self.assertEqual(stamp.fold_b12_exit_label(text, sibling), text)
+        models_path = "ias-16/draft-v1-linked/visuals/ch04-models.html"
+        models = (stamp.ROOT / models_path).read_text(encoding="utf-8")
+        self.assertIn(stamp.B12_EXIT_LABEL_NEW, models)
+        self.assertNotIn(stamp.B12_SHAFT_NEW, models)
+        self.assertEqual(stamp.fold_b12_shaft(models, models_path), models)
+        self.assertEqual(stamp.fold_b12_exit_label(models, models_path), models)
         swapped = head.replace(
             stamp.B12_SHAFT_NEW,
             '<div data-brick="B12" class="pack-flow-shaft m-flow">',
@@ -2804,6 +2817,122 @@ class CfStatusYesB03FoldTests(unittest.TestCase):
         self.assertEqual(second.count(stamp.B03_RECOG_NEW), 2)
         self.assertIn(stamp.B03_RECOG_NEW, stamp.fold_b03_recog(second, self.PAGE))
         self.assertNotEqual(stamp.norm(self.fold_all(second)), folded_base)
+
+
+class MasterBrickCompose125Tests(unittest.TestCase):
+    """#125: master and include-source open tags fold. Freestyle stays."""
+
+    TIP = "a374cbc4e8186a98b5c60b07154c3fc0a510dfec"
+
+    def text_at(self, path):
+        import subprocess
+
+        return subprocess.check_output(
+            ["git", "show", f"{self.TIP}:{path}"],
+            cwd=stamp.ROOT,
+            text=True,
+        )
+
+    def test_signed_counts_fold_back_to_tip(self):
+        page = stamp.B2_125_PAGE
+        base = self.text_at(page)
+        head = (stamp.ROOT / page).read_text(encoding="utf-8")
+        self.assertEqual(head.count('data-brick="B09"'), 44)
+        self.assertEqual(head.count('data-brick="B12"'), 16)
+        self.assertEqual(head.count('data-brick="B13"'), 1)
+        self.assertEqual(head.count('data-brick="B14"'), 10)
+        self.assertEqual(head.count('data-brick="B15"'), 1)
+        self.assertEqual(head.count('data-brick="B16"'), 1)
+        self.assertEqual(head.count('data-brick="B20"'), 6)
+        self.assertNotIn('data-brick="B19"', head)
+        self.assertNotIn("mf-lego-entry", head)
+        self.assertNotIn("pack-flow-in", head)
+        self.assertNotIn("junction-tip", head)
+        self.assertNotIn("rail-link handoff", head)
+        self.assertNotIn('data-brick="B20"', base)
+        self.assertNotIn('data-brick="B12"', base)
+        self.assertEqual(stamp.fold_b2_125(base, page), base)
+        self.assertNotIn(page, stamp.CONTENT_ALLOW)
+        bare = stamp.fold_row98(base, page)
+        raw = stamp.fold_row98(head, page)
+        self.assertIsNotNone(stamp.shared_visual_stamp_failure(bare, raw, page))
+        folded_base = stamp.fold_row98(stamp.fold_b2_125(base, page), page)
+        folded_head = stamp.fold_row98(stamp.fold_b2_125(head, page), page)
+        self.assertIsNone(
+            stamp.shared_visual_stamp_failure(folded_base, folded_head, page)
+        )
+        self.assertEqual(stamp.norm(folded_base), stamp.norm(folded_head))
+        ch05 = "ias-16/draft-v1-linked/visuals/ch05-depreciation.html"
+        chapter = (stamp.ROOT / ch05).read_text(encoding="utf-8")
+        self.assertEqual(chapter, self.text_at(ch05))
+        self.assertEqual(stamp.fold_b2_125(chapter, ch05), chapter)
+        self.assertEqual(stamp.fold_b2_125(head, ch05), head)
+        for source in stamp.B2_125_BY_PATH:
+            if source == page:
+                continue
+            src_base = self.text_at(source)
+            src_head = (stamp.ROOT / source).read_text(encoding="utf-8")
+            self.assertEqual(stamp.fold_b2_125(src_base, source), src_base)
+            self.assertEqual(
+                stamp.norm(stamp.fold_row98(stamp.fold_b2_125(src_base, source), source)),
+                stamp.norm(stamp.fold_row98(stamp.fold_b2_125(src_head, source), source)),
+            )
+
+    def test_freestyle_outside_the_needles_fails(self):
+        page = stamp.B2_125_PAGE
+        base = stamp.fold_row98(self.text_at(page), page)
+        head = (stamp.ROOT / page).read_text(encoding="utf-8")
+        folded_base = stamp.norm(stamp.fold_row98(stamp.fold_b2_125(base, page), page))
+        swapped = head.replace(
+            '<p class="see pack-see-not" data-brick="B09">',
+            '<p data-brick="B09" class="see pack-see-not">',
+            1,
+        )
+        self.assertNotEqual(
+            stamp.norm(stamp.fold_row98(stamp.fold_b2_125(swapped, page), page)),
+            folded_base,
+        )
+        extra = head.replace(
+            '<div class="pack-flow" data-brick="B20">',
+            '<div class="pack-flow extra" data-brick="B20">',
+            1,
+        )
+        self.assertNotEqual(
+            stamp.norm(stamp.fold_row98(stamp.fold_b2_125(extra, page), page)),
+            folded_base,
+        )
+        rail = head.replace(
+            '<a class="rail-link" data-phase="scope"',
+            '<a class="rail-link" data-brick="B20" data-phase="scope"',
+            1,
+        )
+        self.assertIn('data-brick="B20"', stamp.fold_b2_125(rail, page))
+        self.assertNotEqual(
+            stamp.norm(stamp.fold_row98(stamp.fold_b2_125(rail, page), page)),
+            folded_base,
+        )
+        echo = head.replace(
+            '<div class="page">',
+            '<div class="page"><nav class="master-echo" data-brick="B19" '
+            'aria-label="Master during-use path; Depreciation is the current chapter">',
+            1,
+        )
+        self.assertIn('data-brick="B19"', stamp.fold_b2_125(echo, page))
+        self.assertNotEqual(
+            stamp.norm(stamp.fold_row98(stamp.fold_b2_125(echo, page), page)),
+            folded_base,
+        )
+        second = head.replace(
+            '<p class="see foot-see" data-brick="B09">',
+            '<p class="see foot-see" data-brick="B09">'
+            '<p class="see foot-see" data-brick="B09">',
+            1,
+        )
+        self.assertEqual(second.count('<p class="see foot-see" data-brick="B09">'), 2)
+        self.assertIn(
+            '<p class="see foot-see" data-brick="B09">',
+            stamp.fold_b2_125(second, page),
+        )
 
 
 if __name__ == "__main__":

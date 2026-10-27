@@ -36,6 +36,13 @@ data-brick="B03" (class then data-brick, one each): Apply the Standard,
 Recognise 5.1, and Derecognise 5.6. Teaching strings, 11.2, 11.3, and
 the #122 solid L0 stay. Freestyle outside those needles still fails.
 Not a CONTENT_ALLOW.
+#125 IAS 16 Master Map brick-compose may add data-brick on the signed
+open tags only (B09 See-also, B14 Cost/Derecog operators, B12 shafts and
+arm-labels, B20 pack-flow and pack-exit). The chapter map-section that
+build-map-includes splices carries the same open tag (ch01, ch02, ch03,
+ch04, ch06, ch07). ch05 is not in this fold. Counts are exact. A swapped
+attribute order, an extra class, a rail-link B20, or B19 on the master
+still fails. Not a CONTENT_ALLOW.
 The live Master formatting page (site/master-formatting/index.html, #100)
 may change ?v= only, the same shape as Settings, once it is on the base.
 A copy that is not on the base yet must still carry ?v= hashes that match
@@ -1045,6 +1052,93 @@ def fold_b03_derecog(html, path):
     if html.count(B03_DERECOG_NEW) != 1:
         return html
     return html.replace(B03_DERECOG_NEW, B03_DERECOG_OLD, 1)
+
+
+# #125: attrs-only brick-compose. Each row is (new open tag, old open tag,
+# exact count on that path). The fold strips a needle only when the count
+# matches. Master `<p class="see" data-brick="B09">` is 35 and
+# `<p class="see see-wide" data-brick="B09">` is 6 because those open tags
+# are also the #114 KEEP pins inside #ch05-dep (3 and 1). Replacing every
+# copy is safe: fold_row98 blanks that include on the base, which still
+# has the KEEP pins. ch05-depreciation.html is not a key. Not a CONTENT_ALLOW.
+B2_125_PAGE = "ias-16/draft-v1-linked/visuals/master-concept-map.html"
+B2_125_BY_PATH = {
+    B2_125_PAGE: (
+        ('<span class="arm-label" data-brick="B12">', '<span class="arm-label">', 9),
+        ('<p class="see pack-see-not" data-brick="B09">', '<p class="see pack-see-not">', 1),
+        ('<p class="see" data-brick="B09">', '<p class="see">', 35),
+        ('<p class="arm-label" data-brick="B12">', '<p class="arm-label">', 1),
+        ('<div class="pack-flow" data-brick="B20">', '<div class="pack-flow">', 2),
+        ('<div class="pack-flow-shaft m-flow" data-brick="B12">', '<div class="pack-flow-shaft m-flow">', 5),
+        ('<span class="cost-op op-eq" aria-hidden="true" data-brick="B14">', '<span class="cost-op op-eq" aria-hidden="true">', 1),
+        ('<span class="cost-op op-p1" aria-hidden="true" data-brick="B14">', '<span class="cost-op op-p1" aria-hidden="true">', 1),
+        ('<span class="cost-op op-p2" aria-hidden="true" data-brick="B14">', '<span class="cost-op op-p2" aria-hidden="true">', 1),
+        ('<p class="see see-wide" data-brick="B09">', '<p class="see see-wide">', 6),
+        ('<p class="see see-wide policy-mute" data-brick="B09">', '<p class="see see-wide policy-mute">', 1),
+        ('<p class="arm-label exit-label" data-brick="B12">', '<p class="arm-label exit-label">', 1),
+        ('<div class="pack-flow pack-flow-to-dep" data-brick="B20">', '<div class="pack-flow pack-flow-to-dep">', 1),
+        ('<div class="pack-flow pack-flow-to-impair" data-brick="B20">', '<div class="pack-flow pack-flow-to-impair">', 1),
+        ('<div class="pack-flow pack-flow-impair" data-brick="B20">', '<div class="pack-flow pack-flow-impair">', 1),
+        ('<section class="plate pack-exit ch06-map" aria-label="Derecognition — remove carrying amount" data-brick="B20">', '<section class="plate pack-exit ch06-map" aria-label="Derecognition — remove carrying amount">', 1),
+        ('<span class="cost-op fx-o1" aria-hidden="true" data-brick="B14">', '<span class="cost-op fx-o1" aria-hidden="true">', 1),
+        ('<span class="cost-op fx-o2" aria-hidden="true" data-brick="B14">', '<span class="cost-op fx-o2" aria-hidden="true">', 1),
+        ('<p class="see foot-see" data-brick="B09">', '<p class="see foot-see">', 1),
+    ),
+    "ias-16/draft-v1-linked/visuals/ch01-scope.html": (
+        ('<span class="arm-label" data-brick="B12">', '<span class="arm-label">', 3),
+        ('<p class="see pack-see-not" data-brick="B09">', '<p class="see pack-see-not">', 1),
+        ('<p class="see" data-brick="B09">', '<p class="see">', 7),
+        ('<p class="arm-label" data-brick="B12">', '<p class="arm-label">', 1),
+    ),
+    "ias-16/draft-v1-linked/visuals/ch02-recognition.html": (
+        ('<p class="see" data-brick="B09">', '<p class="see">', 2),
+        ('<span class="arm-label" data-brick="B12">', '<span class="arm-label">', 2),
+    ),
+    "ias-16/draft-v1-linked/visuals/ch03-initial.html": (
+        ('<span class="cost-op op-eq" aria-hidden="true" data-brick="B14">', '<span class="cost-op op-eq" aria-hidden="true">', 1),
+        ('<span class="cost-op op-p1" aria-hidden="true" data-brick="B14">', '<span class="cost-op op-p1" aria-hidden="true">', 1),
+        ('<p class="see" data-brick="B09">', '<p class="see">', 8),
+        ('<span class="cost-op op-p2" aria-hidden="true" data-brick="B14">', '<span class="cost-op op-p2" aria-hidden="true">', 1),
+    ),
+    "ias-16/draft-v1-linked/visuals/ch04-models.html": (
+        ('<p class="see see-wide" data-brick="B09">', '<p class="see see-wide">', 5),
+        ('<p class="see see-wide policy-mute" data-brick="B09">', '<p class="see see-wide policy-mute">', 1),
+        ('<p class="see" data-brick="B09">', '<p class="see">', 10),
+        ('<p class="arm-label exit-label" data-brick="B12">', '<p class="arm-label exit-label">', 1),
+        ('<span class="arm-label" data-brick="B12">', '<span class="arm-label">', 4),
+    ),
+    "ias-16/draft-v1-linked/visuals/ch06-derecognition.html": (
+        ('<section class="plate pack-exit" aria-label="Derecognition — remove carrying amount" data-brick="B20">', '<section class="plate pack-exit" aria-label="Derecognition — remove carrying amount">', 1),
+        ('<p class="see" data-brick="B09">', '<p class="see">', 4),
+        ('<span class="cost-op fx-o1" aria-hidden="true" data-brick="B14">', '<span class="cost-op fx-o1" aria-hidden="true">', 1),
+        ('<span class="cost-op fx-o2" aria-hidden="true" data-brick="B14">', '<span class="cost-op fx-o2" aria-hidden="true">', 1),
+        ('<p class="see foot-see" data-brick="B09">', '<p class="see foot-see">', 1),
+    ),
+    "ias-16/draft-v1-linked/visuals/ch07-disclosure.html": (
+        ('<p class="see" data-brick="B09">', '<p class="see">', 2),
+    ),
+}
+
+
+def fold_b2_125(html, path):
+    """Fold the signed #125 brick-compose open tags, and nothing else.
+
+    One path, and only the needles whose count is the signed count.
+    Longest needle first so a shorter open tag cannot eat a longer one.
+    A second copy, a swapped attribute order, an extra class, or any
+    other byte stays in the compare and fails. ch05 is not this fold.
+    Not a CONTENT_ALLOW. Call before fold_map_pick_a (the shaft class
+    includes m-flow) and before fold_row98 (the #114 KEEP See-also pins
+    share two open tags with the promote).
+    """
+    rows = B2_125_BY_PATH.get(path)
+    if not rows:
+        return html
+    for new, old, count in sorted(rows, key=lambda row: len(row[0]), reverse=True):
+        if html.count(new) != count:
+            continue
+        html = html.replace(new, old)
+    return html
 
 
 # #116: one Settings-page chrome line. Stamp still owns anything else on
@@ -2448,9 +2542,14 @@ def main(argv=None):
                 failed = True
         base = fold_settings_stamps(base, head, path)
         base = fold_theme_js(base, head, path)
-        # #119 shaft class includes m-flow. #123 leaf classes include
-        # m-l2 / m-l4. fold_map_pick_a strips those tokens, so the exact
-        # open tags have to fold before that strip.
+        # #125 shaft class includes m-flow. #119 shaft class includes
+        # m-flow. #123 leaf classes include m-l2 / m-l4. fold_map_pick_a
+        # strips those tokens, so the exact open tags have to fold
+        # before that strip. fold_b2_125 also runs before fold_row98:
+        # three in-include B09 KEEP pins share an open tag with the
+        # promote, and the #98 blank drops those KEEP copies on the base.
+        base = fold_b2_125(base, path)
+        head = fold_b2_125(head, path)
         base = fold_b12_shaft(base, path)
         head = fold_b12_shaft(head, path)
         base = fold_b03_apply(base, path)
