@@ -39,6 +39,19 @@ FOURTH = "cf-2018/draft-v1-linked/ch01.html"
 FOURTH_STYLE = '<style id="not-a-floor">.x{color:red}</style>\n'
 
 
+IAS2_126_CONTENT_ALLOW = (
+    "_shared/settings-rows.html",
+    "ias-2/draft-v1-linked/ch01.html",
+    "ias-2/draft-v1-linked/ch02.html",
+    "ias-2/draft-v1-linked/ch03.html",
+    "ias-2/draft-v1-linked/ch04.html",
+    "ias-2/draft-v1-linked/ch05.html",
+    "ias-2/draft-v1-linked/ch06.html",
+    "ias-2/draft-v1-linked/references.html",
+    "ias-2/draft-v1-linked/index.html",
+)
+
+
 def page(body, block=""):
     return (
         "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n"
@@ -330,10 +343,14 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertIn("stamp-only: PASS", output)
 
     def test_ias2_unlisted_blank_and_wrong_title_fail(self):
-        """An unlisted IAS 2 gap, and a head title before </head>, fail."""
+        """Freestyle outside #126 CONTENT_ALLOW still fails.
+
+        ch01–ch06, references, and index are allowed teaching bodies.
+        abbreviations.html is the same pack and stays stamp-gated.
+        """
         import tempfile
 
-        rel = "ias-2/draft-v1-linked/ch02.html"
+        rel = "ias-2/draft-v1-linked/abbreviations.html"
         base = self._cf_shell(title_after_css=False)
         head = base.replace('<h3 id="s-1-1">', '\n<h3 id="s-1-1">', 1)
         with tempfile.TemporaryDirectory() as tmp:
@@ -341,7 +358,7 @@ class IframeFloorFoldTests(unittest.TestCase):
             self.write_tree(root, {rel: head})
             code, output = self.run_gate(root, {rel: base})
         self.assertEqual(code, 1, output)
-        self.assertIn("ch02.html", output)
+        self.assertIn("abbreviations.html", output)
 
         title = "<title>Ch1 Objective</title>\n"
         head = base.replace(
@@ -885,16 +902,16 @@ class Ias2InlineStyleFoldTests(unittest.TestCase):
         import tempfile
 
         base = self.approved_base()
+        other = "ias-2/draft-v1-linked/abbreviations.html"
+        base[other] = page("Teaching.")
         head = self.approved_head(base)
-        head["ias-2/draft-v1-linked/ch03.html"] = page(
-            f"Teachinx. {stamp.IAS2_DISCLAIMER_PLAIN}"
-        )
+        head[other] = page("Teachinx.")
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_tree(root, head)
             code, output = self.run_gate(root, base)
         self.assertEqual(code, 1, output)
-        self.assertIn("ch03.html", output)
+        self.assertIn("abbreviations.html", output)
 
 
 class DisclaimerInjectorFoldTests(unittest.TestCase):
@@ -1716,7 +1733,7 @@ class HowNotes108FoldTests(unittest.TestCase):
 
     def test_how_notes_is_not_a_content_allow(self):
         self.assertNotIn(stamp.HOW_NOTES, stamp.CONTENT_ALLOW)
-        self.assertEqual(stamp.CONTENT_ALLOW, ("_shared/settings-rows.html",))
+        self.assertEqual(stamp.CONTENT_ALLOW, IAS2_126_CONTENT_ALLOW)
 
     def test_gate_passes_signed_and_fails_freestyle(self):
         import tempfile
@@ -2770,7 +2787,7 @@ class CfStatusYesB03FoldTests(unittest.TestCase):
         self.assertNotIn('data-brick="B03"', folded)
         self.assertEqual(stamp.norm(self.fold_all(base)), stamp.norm(folded))
         self.assertNotIn(self.PAGE, stamp.CONTENT_ALLOW)
-        self.assertEqual(stamp.CONTENT_ALLOW, ("_shared/settings-rows.html",))
+        self.assertEqual(stamp.CONTENT_ALLOW, IAS2_126_CONTENT_ALLOW)
         self.assertNotIn("proof-banner", head)
         stripped = stamp.fold_map_pick_a(head)
         self.assertNotIn(stamp.B03_APPLY_NEW, stripped)
@@ -2933,6 +2950,92 @@ class MasterBrickCompose125Tests(unittest.TestCase):
             '<p class="see foot-see" data-brick="B09">',
             stamp.fold_b2_125(second, page),
         )
+
+
+class Ias2ContentAllow126Tests(unittest.TestCase):
+    """#126: eight IAS 2 teaching HTML paths join CONTENT_ALLOW. Other HTML stays gated."""
+
+    def write_tree(self, root, files):
+        for rel, text in files.items():
+            path = root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        last = root / "_shared" / "last-update.js"
+        last.parent.mkdir(parents=True, exist_ok=True)
+        last.write_text(LAST_UPDATE, encoding="utf-8")
+
+    def run_gate(self, root, base_files):
+        def git_text(rev, path):
+            if path == "_shared/last-update.js":
+                return LAST_UPDATE
+            return base_files[path]
+
+        def git_paths(rev):
+            return list(base_files)
+
+        original_root = stamp.ROOT
+        original_text = stamp.git_text
+        original_paths = stamp.git_paths
+        stamp.ROOT = root
+        stamp.git_text = git_text
+        stamp.git_paths = git_paths
+        buffer = io.StringIO()
+        try:
+            with redirect_stdout(buffer):
+                code = stamp.main(["--base", "fixture"])
+        finally:
+            stamp.ROOT = original_root
+            stamp.git_text = original_text
+            stamp.git_paths = original_paths
+        return code, buffer.getvalue()
+
+    def test_allow_is_settings_rows_plus_eight_ias2_pages(self):
+        self.assertEqual(stamp.CONTENT_ALLOW, IAS2_126_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW[0], "_shared/settings-rows.html")
+        for path in IAS2_126_CONTENT_ALLOW[1:]:
+            self.assertIn(path, stamp.CONTENT_ALLOW)
+        self.assertNotIn(
+            "ias-2/draft-v1-linked/abbreviations.html", stamp.CONTENT_ALLOW
+        )
+        self.assertNotIn(
+            "ias-2/draft-v1-linked/visuals/ch01-scope.html", stamp.CONTENT_ALLOW
+        )
+        self.assertNotIn("ias-16/draft-v1-linked/ch01.html", stamp.CONTENT_ALLOW)
+        self.assertNotIn("cf-2018/draft-v1-linked/index.html", stamp.CONTENT_ALLOW)
+
+    def test_allowed_body_passes_and_freestyle_outside_allow_fails(self):
+        import tempfile
+
+        allowed = "ias-2/draft-v1-linked/ch01.html"
+        blocked = "ias-2/draft-v1-linked/abbreviations.html"
+        base = {
+            allowed: page("<p>MOA 2020 teaching.</p>"),
+            blocked: page("<p>Kept.</p>"),
+        }
+        head_allow = {
+            allowed: page("<p>MOA 2026 teaching.</p>"),
+            blocked: page("<p>Kept.</p>"),
+        }
+        head_free = {
+            allowed: page("<p>MOA 2020 teaching.</p>"),
+            blocked: page("<p>Freestyle.</p>"),
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head_allow)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head_free)
+            code, output = self.run_gate(root, base)
+        self.assertNotEqual(code, 0)
+        self.assertIn(
+            "HTML changed outside ?v= and the homepage link: " + blocked,
+            output,
+        )
+        self.assertNotIn("stamp-only: PASS", output)
 
 
 if __name__ == "__main__":
