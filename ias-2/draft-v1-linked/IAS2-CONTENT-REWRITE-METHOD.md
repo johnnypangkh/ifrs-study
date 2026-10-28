@@ -157,3 +157,9 @@ Full audit: `/workspace/ias2-content-extract/IAS2-BIG4-COMPLETE-PREFLIGHT-2026-1
 ## Illustration peer colour lock + densify (2026-10-01)
 
 Johnny lock: **all Illustration peer columns neutral** — strip `.ok`/`.warn` from worked-strip peers (and Illustration-internal contrast / Illustration-root warn). Design owns CSS fills. Non-Illustration contrast-pairs may keep ok/warn. Peer body markup: always `div.box-body > ul`. See `ias2-content-extract/IAS2-ILLUS-NEUTRAL-DENSIFY-2026-10-01.md`.
+
+---
+
+## #126 PwC MOA 2026 Ch25 refresh (box HTML 2026-10-28 ~01:44 Asia/Hong_Kong)
+
+Chip work-title is now **PwC MOA 2026 Ch25**. See `/workspace/ias16/deliverables/METHOD-126-IAS2-PWC-2026.md` and `CHANGELOG-126-IAS2-HTML.md`. Illus 3.2.5 removed (FAQ 25.19.3 Not used); EX 25.46.1/2 label-only; seven new FAQ densify units; IFRS 18 disclosure overlay in ch06. Tip SoT `41a1cd752b8fbf0c3bd675750c701ffd33b4a14e` (no push this lane).
