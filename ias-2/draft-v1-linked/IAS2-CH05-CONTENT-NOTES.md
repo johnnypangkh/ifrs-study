@@ -69,3 +69,12 @@ Unsourced Dr/Cr lines (80 sold; Dr PPE); stale Ch4 refs ("SKU strip Dr expense 1
 ### Honest gaps
 - Official has no numbered example for recognition as an expense; numbers come only from PwC FAQ 25.42.1, KPMG Ex 9 (Ch4) and KPMG Ex 17 (Ch6).
 - No source gives examples of "losses of inventories" beyond PwC FAQ 25.46.1 (lost or damaged while held by the consignee) and PwC 25.42 (no future economic value, e.g. obsolete).
+
+---
+## #127 EX 25.46.1/2 densify (2026-10-29 ~22:20 Asia/Hong_Kong)
+- Write-once home remains Ch2 (`#s-2-ex-consign`, `#s-2-ex-rot`).
+- Consignment sales `li` + lost/damaged `li` — KEEP pointers to Illus 2.3.1 + EX 25.46.1 chips.
+- Reservation of title `li` — CHANGE: one-line pointer to Ch2 ROT + EX 25.46.2 chips; split standing “outside inventories” sale/repurchase/hedge list into separate `li` with **25.46 only** (not EX 25.46.2 — that EX body does not cover those arrangements).
+- Overview cite row still carries EX 25.46.1 (KEEP).
+- Backup: `/workspace/ias16/deliverables/by-phase-127/html-before/ch05.html`
+- Map / iframe untouched.

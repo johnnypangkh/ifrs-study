@@ -41,3 +41,14 @@ None this pass.
 ## KPMG defer-unfreeze 2026-10-01
 - **Added** `#s-2-1a` **2.1a** Timing — control indicators, shipping terms, principal vs agent (`KPMG Insights 2019/20 · Part 1 · 3.8 · 3.8.90`). Light section, not deep plates.
 - Backup: `ias2-content-extract/ch02-before-kpmg-defer-unfreeze-20261001-162245+0800.html`
+
+---
+## #127 EX 25.46.1/2 densify (2026-10-29 ~22:20 Asia/Hong_Kong)
+- **Source:** Viewpoint Print PDFs `EX-25-46-1.pdf` / `EX-25-46-2.pdf` (2026 Print; publication date on topic 31 Dec 2022). Extracts: `/workspace/ias16/deliverables/by-phase-127/pdf-extracts/`. 2020-vs-2026 still UNVERIFIED — densified to 2026 Print only; no invented 2020 delta.
+- **Chip labels:** stay `PwC MOA 2026 Ch25 · EX 25.46.1` / `EX 25.46.2` (#126 FAQ→EX).
+- `#s-2-ex-consign` Illus 2.3.1 — CHANGE densify peers Facts|Control|Manufacturer’s inventory from Print Example (retail/consumer) + B77/B78 indicators table kept. Peer density after: 13 bullets / ~1594 chars (before: 9 / ~989).
+- §2.3 first teaching `li` — CHANGE: Print preamble objective (sell as many units) + dealer bonus schemes + physical-before-title.
+- `#s-2-ex-rot` — CHANGE densify teaching (NOT Illus: Print EX 25.46.2 has no entity case facts) to full Print substance; add pointer-only to FAQ 11.192.1 (body not densified — outside inventories). Shape remains teaching `<li>` (chooser: plain firm EX without case → teaching).
+- Official + KPMG + DTT + EY chips on neighbouring consignment units **kept**.
+- Backup: `/workspace/ias16/deliverables/by-phase-127/html-before/ch02.html`
+- Map / iframe untouched.
