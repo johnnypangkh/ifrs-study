@@ -163,3 +163,9 @@ Johnny lock: **all Illustration peer columns neutral** — strip `.ok`/`.warn` f
 ## #126 PwC MOA 2026 Ch25 refresh (box HTML 2026-10-28 ~01:44 Asia/Hong_Kong)
 
 Chip work-title is now **PwC MOA 2026 Ch25**. See `/workspace/ias16/deliverables/METHOD-126-IAS2-PWC-2026.md` and `CHANGELOG-126-IAS2-HTML.md`. Illus 3.2.5 removed (FAQ 25.19.3 Not used); EX 25.46.1/2 label-only; seven new FAQ densify units; IFRS 18 disclosure overlay in ch06. Tip SoT `41a1cd752b8fbf0c3bd675750c701ffd33b4a14e` (no push this lane).
+
+---
+
+## #127 EX 25.46.1/2 Print densify (box HTML 2026-10-29 ~22:20 Asia/Hong_Kong)
+
+Closes #126 HOLD on EX bodies. Print SoT: `/workspace/pwc-faqs/pdfs/ch25-ex/EX-25-46-1.pdf` + `EX-25-46-2.pdf` + `ex-25-46-print-note.md`. Live: `ch02.html` (home Illus 2.3.1 + ROT teaching) + `ch05.html` (pointers). Tip base `4b7273d83be221d9ccd58d644d6a1a48310e4b02`. Deliverables: `CHANGELOG-127-IAS2-EX2546-DENSIFY.md`, `BVN-127-IAS2-EX2546.md`. No PR / Map untouched / BAN #43/#44. Do not invent 2020 delta (still UNVERIFIED).
