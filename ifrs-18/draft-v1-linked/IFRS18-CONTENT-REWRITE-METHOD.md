@@ -47,7 +47,7 @@
    - Official: `IFRS 18 · para [ref]` (e.g. `IFRS 18 · para 52`, `IFRS 18 · para IN9`, `IFRS 18 · para B42`, `IFRS 18 · para C1`, `IFRS 18 · Figure 2`). **Never** `Official · …` or bare `§N`.
    - EY: `EY Closer look 2026 · section …` / `Ill N` (use **`section`**, not `§`).
    - KPMG: `KPMG FI 2024 · section …` / `Example N` (use **`section`**, not `§`).
-   - DTT: `DTT A4 2022 · …` (IAS 1 bridge only). **No PwC invent.**
+   - DTT: `DTT A4 2022 · …` (IAS 1 bridge only). **PwC MOA 2026 Ch18 on disk (#128).** No invent beyond verified Ch18 locators.
    - **Placement split:** Illustration title chips only (C1); main teaching `<p>`/`<li>` chips at **end of unit** (C2).
    - Typography: Calibri Light / 11px / weight 300 (house inherits).
 9. **Anchors** — Preserve `#s-N-…` ids that Map / visual chips deep-link to.
@@ -59,7 +59,7 @@
 
 | Rule | Detail |
 |------|--------|
-| **Quote Standard + Big4** | Official HKFRS 18 (= IFRS 18 on site): IN / § / BC / App B / App C / IE. Firms: **KPMG** First Impressions; **EY** Applying IFRS closer look. **DTT A4** only as IAS 1 / pre-IFRS 18 pitfall bridge. **No PwC invent** (no IFRS 18 PwC in pack). |
+| **Quote Standard + Big4** | Official HKFRS 18 (= IFRS 18 on site): IN / § / BC / App B / App C / IE. Firms: **KPMG** First Impressions; **EY** Applying IFRS closer look. **DTT A4** only as IAS 1 / pre-IFRS 18 pitfall bridge. **PwC MOA 2026 Ch18 on disk (#128)** — cite only verified Ch18 FAQ/EX/standing locators. |
 | **Standard quotes primary** | Prefer short `<q>` extracts + cite chips over free rewrite. Firms support / align; do not replace Standard. |
 | **No invented examples** | No entity fact patterns not in Standard IE or firm materials. Teaching cues = firm quote + Standard aim OK. Decision strips cite each decision only. |
 | **Examples complete** | Every IE / Big4 illustration that belongs to the chapter appears as a line box in the body (not NOTES-only). |
@@ -88,7 +88,7 @@
 - [ ] Table/matrix only where **>2 columns** helps (not forced); nested `<ul>` OK inside cells
 - [ ] Decision strips (if any) cite every decision; no invented entity facts
 - [ ] Same Big4 points merged (multi cite chips); distinct firm views kept separate
-- [ ] No invented examples; no PwC invent; DTT A4 = IAS 1 bridge only
+- [ ] No invented examples; PwC Ch18 on disk (#128); DTT A4 = IAS 1 bridge only
 - [ ] Cite chips: `IFRS 18 · para …` / firm+work+`section`…; **zero `§`**; Illus chips on title; teaching chips at end of unit
 - [ ] Anchors preserved; iframe/visuals/Concept Map untouched
 - [ ] NOTES updated with IE/Big4 box IDs added; visual suggestions (if any) in NOTES only
@@ -102,6 +102,6 @@
 | KPMG | First Impressions IFRS 18 (2024) | `inputs/ifrs-18/kpmg-first-impressions-ifrs18.pdf` |
 | EY | Applying IFRS: A closer look at IFRS 18 (Updated April 2026) | `inputs/ifrs-18/EY_Applying-IFRS_2026-04_Closer-Look-IFRS-18.pdf` |
 | DTT | A4 Presentation of FS (IAS 1 bridge only) | `inputs/ifrs-18/dtt-2022-a4-presentation-fs-ias1.pdf` |
-| PwC | — | **not on disk** for IFRS 18 (no invent) |
+| PwC | `inputs/pwc-2026-moa/chapters/Ch18-FAQs.pdf` · `Ch18-nonFAQ.pdf` · `Ch18-EX.pdf` (box SoT `/workspace/pwc-faqs/pdfs/Ch18-*.pdf` + `ch18/` + `ch18-ex/`) | **on disk** — PwC MOA 2026 Ch18 (Presentation and disclosure in financial statements); Firm MOA refresh #128 |
 
 **Crosswalk A/B locator tables:** still open debt before any pack-complete claim (see I18-BIG-PASS note).

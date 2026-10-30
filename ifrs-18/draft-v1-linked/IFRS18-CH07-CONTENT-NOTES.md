@@ -72,3 +72,9 @@ Capital disclosures are in the Standard body (§126–128) + IE Part III. App B 
 | EY Closer look 2026 · section 5.4, 4.2.2 | L3 | 7.4, 7.4.1 | 5, B120, BC337 | — |
 | EY iGAAP 2026 Ch04 section 5.1–5.4 | L2 | — (no chips) | as CL | mirrors CL |
 | DTT A4 2022 · IAS 1 bridge | L2 | 7.0 | — | locked chip (A4 open) |
+
+
+## PwC MOA 2026 Ch18 densify (#128)
+- Added PwC FAQ/EX densify section before Key terms (see live `ch07.html`).
+- Detail + open homes: `/workspace/ias16/deliverables/CHANGELOG-128-IFRS18-PWC-HTML.md`.
+- Crosswalk B: new Ch18 FAQ/EX → Official locators on unit chips; standing via references.

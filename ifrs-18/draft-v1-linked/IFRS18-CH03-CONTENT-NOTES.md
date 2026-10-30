@@ -97,3 +97,9 @@
 | PwC | L2 | — | — | Missing — no PwC content |
 
 **Firm differences:** none verified (intercompany FX timing, HFS associate, grant income checked — see memory). No `.callout.differ`.
+
+
+## PwC MOA 2026 Ch18 densify (#128)
+- Added PwC FAQ/EX densify section before Key terms (see live `ch03.html`).
+- Detail + open homes: `/workspace/ias16/deliverables/CHANGELOG-128-IFRS18-PWC-HTML.md`.
+- Crosswalk B: new Ch18 FAQ/EX → Official locators on unit chips; standing via references.

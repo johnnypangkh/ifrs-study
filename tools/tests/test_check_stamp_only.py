@@ -50,6 +50,16 @@ IAS2_126_CONTENT_ALLOW = (
     "ias-2/draft-v1-linked/references.html",
     "ias-2/draft-v1-linked/index.html",
 )
+# #128: settings-rows + eight IAS 2 + seven IFRS 18 teaching HTML paths.
+IFRS18_128_CONTENT_ALLOW = IAS2_126_CONTENT_ALLOW + (
+    "ifrs-18/draft-v1-linked/ch01.html",
+    "ifrs-18/draft-v1-linked/ch02.html",
+    "ifrs-18/draft-v1-linked/ch03.html",
+    "ifrs-18/draft-v1-linked/ch05.html",
+    "ifrs-18/draft-v1-linked/ch06.html",
+    "ifrs-18/draft-v1-linked/ch07.html",
+    "ifrs-18/draft-v1-linked/references.html",
+)
 
 
 def page(body, block=""):
@@ -398,10 +408,14 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertIn("stamp-only: PASS", output)
 
     def test_ifrs18_unlisted_blank_and_other_title_fail(self):
-        """An unlisted IFRS 18 gap, a ch01 title rewrite, and a stale ch06 title fail."""
+        """An unlisted IFRS 18 gap, a ch04 title rewrite, and a stale ch08 title fail.
+
+        #128 puts ch01/ch06 on CONTENT_ALLOW, so those pages are no longer
+        the stamp-gated examples. ch04 and ch08 stay gated.
+        """
         import tempfile
 
-        rel = "ifrs-18/draft-v1-linked/ch01.html"
+        rel = "ifrs-18/draft-v1-linked/ch04.html"
         base = self._cf_shell(title_after_css=False)
         head = base.replace('<h3 id="s-1-1">', '\n<h3 id="s-1-1">', 1)
         with tempfile.TemporaryDirectory() as tmp:
@@ -409,11 +423,11 @@ class IframeFloorFoldTests(unittest.TestCase):
             self.write_tree(root, {rel: head})
             code, output = self.run_gate(root, {rel: base})
         self.assertEqual(code, 1, output)
-        self.assertIn("ch01.html", output)
+        self.assertIn("ch04.html", output)
 
         head = base.replace(
             "<title>Ch1 Objective</title>",
-            "<title>Ch1 Something else — IFRS 18</title>",
+            "<title>Ch4 Something else — IFRS 18</title>",
             1,
         )
         with tempfile.TemporaryDirectory() as tmp:
@@ -423,12 +437,9 @@ class IframeFloorFoldTests(unittest.TestCase):
         self.assertEqual(code, 1, output)
         self.assertNotIn("stamp-only: PASS", output)
 
-        rel = "ifrs-18/draft-v1-linked/ch06.html"
-        old = "<title>Ch6 MPMs — IFRS 18</title>"
-        new = (
-            "<title>Ch6 Management-defined performance measures (MPMs) — "
-            "IFRS 18</title>"
-        )
+        rel = "ifrs-18/draft-v1-linked/ch08.html"
+        old = "<title>Ch8 Transition — IFRS 18</title>"
+        new = "<title>Ch8 Transition &amp; effective date — IFRS 18</title>"
         base = self._cf_shell(title_after_css=False).replace(
             "<title>Ch1 Objective</title>", old, 1
         )
@@ -439,7 +450,7 @@ class IframeFloorFoldTests(unittest.TestCase):
             self.write_tree(root, {rel: stale})
             code, output = self.run_gate(root, {rel: base.replace(old, new, 1)})
         self.assertEqual(code, 1, output)
-        self.assertIn("ch06.html", output)
+        self.assertIn("ch08.html", output)
 
     def test_shared_visual_stamp_allowlist(self):
         import tempfile
@@ -1306,14 +1317,14 @@ class Pr6CleanupFoldTests(unittest.TestCase):
 
         base = self.base_files()
         head = self.approved_head(base)
-        rel = "ifrs-18/draft-v1-linked/ch03.html"
+        rel = "ifrs-18/draft-v1-linked/ch04.html"
         head[rel] = head[rel].replace("Teaching.", "Teachinx.", 1)
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_tree(root, head)
             code, output = self.run_gate(root, base)
         self.assertEqual(code, 1, output)
-        self.assertIn("ch03.html", output)
+        self.assertIn("ch04.html", output)
         self.assertNotIn("stamp-only: PASS", output)
 
 
@@ -1733,7 +1744,7 @@ class HowNotes108FoldTests(unittest.TestCase):
 
     def test_how_notes_is_not_a_content_allow(self):
         self.assertNotIn(stamp.HOW_NOTES, stamp.CONTENT_ALLOW)
-        self.assertEqual(stamp.CONTENT_ALLOW, IAS2_126_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW, IFRS18_128_CONTENT_ALLOW)
 
     def test_gate_passes_signed_and_fails_freestyle(self):
         import tempfile
@@ -2787,7 +2798,7 @@ class CfStatusYesB03FoldTests(unittest.TestCase):
         self.assertNotIn('data-brick="B03"', folded)
         self.assertEqual(stamp.norm(self.fold_all(base)), stamp.norm(folded))
         self.assertNotIn(self.PAGE, stamp.CONTENT_ALLOW)
-        self.assertEqual(stamp.CONTENT_ALLOW, IAS2_126_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW, IFRS18_128_CONTENT_ALLOW)
         self.assertNotIn("proof-banner", head)
         stripped = stamp.fold_map_pick_a(head)
         self.assertNotIn(stamp.B03_APPLY_NEW, stripped)
@@ -2990,7 +3001,7 @@ class Ias2ContentAllow126Tests(unittest.TestCase):
         return code, buffer.getvalue()
 
     def test_allow_is_settings_rows_plus_eight_ias2_pages(self):
-        self.assertEqual(stamp.CONTENT_ALLOW, IAS2_126_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW, IFRS18_128_CONTENT_ALLOW)
         self.assertEqual(stamp.CONTENT_ALLOW[0], "_shared/settings-rows.html")
         for path in IAS2_126_CONTENT_ALLOW[1:]:
             self.assertIn(path, stamp.CONTENT_ALLOW)
@@ -3036,6 +3047,110 @@ class Ias2ContentAllow126Tests(unittest.TestCase):
             output,
         )
         self.assertNotIn("stamp-only: PASS", output)
+
+
+class Ifrs18ContentAllow128Tests(unittest.TestCase):
+    """#128: seven IFRS 18 teaching HTML paths join CONTENT_ALLOW. ch04/ch08/visuals stay gated."""
+
+    def write_tree(self, root, files):
+        for rel, text in files.items():
+            path = root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        last = root / "_shared" / "last-update.js"
+        last.parent.mkdir(parents=True, exist_ok=True)
+        last.write_text(LAST_UPDATE, encoding="utf-8")
+
+    def run_gate(self, root, base_files):
+        def git_text(rev, path):
+            if path == "_shared/last-update.js":
+                return LAST_UPDATE
+            return base_files[path]
+
+        def git_paths(rev):
+            return list(base_files)
+
+        original_root = stamp.ROOT
+        original_text = stamp.git_text
+        original_paths = stamp.git_paths
+        stamp.ROOT = root
+        stamp.git_text = git_text
+        stamp.git_paths = git_paths
+        buffer = io.StringIO()
+        try:
+            with redirect_stdout(buffer):
+                code = stamp.main(["--base", "fixture"])
+        finally:
+            stamp.ROOT = original_root
+            stamp.git_text = original_text
+            stamp.git_paths = original_paths
+        return code, buffer.getvalue()
+
+    def test_allow_is_settings_rows_ias2_eight_and_ifrs18_seven(self):
+        self.assertEqual(stamp.CONTENT_ALLOW, IFRS18_128_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW[0], "_shared/settings-rows.html")
+        for path in IAS2_126_CONTENT_ALLOW:
+            self.assertIn(path, stamp.CONTENT_ALLOW)
+        for path in IFRS18_128_CONTENT_ALLOW[len(IAS2_126_CONTENT_ALLOW):]:
+            self.assertIn(path, stamp.CONTENT_ALLOW)
+        self.assertNotIn("ifrs-18/draft-v1-linked/ch04.html", stamp.CONTENT_ALLOW)
+        self.assertNotIn("ifrs-18/draft-v1-linked/ch08.html", stamp.CONTENT_ALLOW)
+        self.assertNotIn(
+            "ifrs-18/draft-v1-linked/visuals/ch01-whats-new.html",
+            stamp.CONTENT_ALLOW,
+        )
+        self.assertNotIn("ifrs-18/draft-v1-linked/index.html", stamp.CONTENT_ALLOW)
+
+    def test_allowed_body_passes_and_freestyle_outside_allow_fails(self):
+        import tempfile
+
+        allowed = "ifrs-18/draft-v1-linked/ch01.html"
+        blocked = "ifrs-18/draft-v1-linked/ch04.html"
+        visual = "ifrs-18/draft-v1-linked/visuals/ch01-whats-new.html"
+        base = {
+            allowed: page("<p>No PwC layer.</p>"),
+            blocked: page("<p>Kept totals.</p>"),
+            visual: page("<p>Map kept.</p>"),
+        }
+        head_allow = {
+            allowed: page("<p>PwC MOA 2026 Ch18 densify.</p>"),
+            blocked: page("<p>Kept totals.</p>"),
+            visual: page("<p>Map kept.</p>"),
+        }
+        head_ch04 = {
+            allowed: page("<p>No PwC layer.</p>"),
+            blocked: page("<p>Freestyle ch04.</p>"),
+            visual: page("<p>Map kept.</p>"),
+        }
+        head_visual = {
+            allowed: page("<p>No PwC layer.</p>"),
+            blocked: page("<p>Kept totals.</p>"),
+            visual: page("<p>Freestyle visual.</p>"),
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head_allow)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+        cases = (
+            (
+                head_ch04,
+                "HTML changed outside ?v= and the homepage link: " + blocked,
+            ),
+            (
+                head_visual,
+                "shared visual stamp: diff outside the allowlist: " + visual,
+            ),
+        )
+        for head, needle in cases:
+            with tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                self.write_tree(root, head)
+                code, output = self.run_gate(root, base)
+            self.assertNotEqual(code, 0, output)
+            self.assertIn(needle, output)
+            self.assertNotIn("stamp-only: PASS", output)
 
 
 if __name__ == "__main__":
