@@ -48,6 +48,11 @@ still fails. Not a CONTENT_ALLOW.
 and index.html. Those paths are on CONTENT_ALLOW (settings-rows stays).
 check-incremental / QC owns teaching substance. Map, visuals, and _shared
 CSS stay stamp-gated. Not a blank cheque for other packs.
+#128 IFRS 18 PwC MOA 2026 Ch18 densify teaching body may differ outside
+?v= on seven paths only: ifrs-18/draft-v1-linked/ ch01, ch02, ch03, ch05,
+ch06, ch07, and references.html. Those paths are on CONTENT_ALLOW
+(settings-rows and the eight IAS 2 paths stay). Map, visuals, ch04.html,
+and ch08.html stay stamp-gated. Not a blank cheque for other packs.
 The live Master formatting page (site/master-formatting/index.html, #100)
 may change ?v= only, the same shape as Settings, once it is on the base.
 A copy that is not on the base yet must still carry ?v= hashes that match
@@ -90,7 +95,8 @@ HOME = "homepage/homepage-wireframe-v0.1.html"
 HOW_NOTES = "homepage/how-these-notes-are-made.html"
 # site/settings/index.html and _shared/settings-rows.html are gated instead by check-settings-rows.py (276/276) and xlsx_to_tokens.py --check.
 # #126: eight IAS 2 teaching HTML paths may differ outside ?v=.
-# settings-rows stays. Map / visuals / _shared CSS are not listed.
+# #128: seven IFRS 18 teaching HTML paths may differ outside ?v=.
+# settings-rows stays. Map / visuals / ch04 / ch08 / _shared CSS are not listed.
 CONTENT_ALLOW = (
     "_shared/settings-rows.html",
     "ias-2/draft-v1-linked/ch01.html",
@@ -101,6 +107,13 @@ CONTENT_ALLOW = (
     "ias-2/draft-v1-linked/ch06.html",
     "ias-2/draft-v1-linked/references.html",
     "ias-2/draft-v1-linked/index.html",
+    "ifrs-18/draft-v1-linked/ch01.html",
+    "ifrs-18/draft-v1-linked/ch02.html",
+    "ifrs-18/draft-v1-linked/ch03.html",
+    "ifrs-18/draft-v1-linked/ch05.html",
+    "ifrs-18/draft-v1-linked/ch06.html",
+    "ifrs-18/draft-v1-linked/ch07.html",
+    "ifrs-18/draft-v1-linked/references.html",
 )
 # Settings may change ?v= only, and each new value must match the file hash.
 SETTINGS_PAGE = "site/settings/index.html"

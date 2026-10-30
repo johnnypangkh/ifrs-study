@@ -94,3 +94,9 @@ Layers: L1 Official HKFRS 18 (= IFRS 18). L2 EY iGAAP 2026 Ch04 (attached; chips
 - **Section grain:** Do **not** split Ch1 sections; hang further examples under existing `#s-1-*` if needed.
 - **App B vs IG:** App B = application guidance (B§). No separate IG numbered series in pack Official PDF. Supporting Materials Figures accompany but are not part of the Standard.
 - Ch1 Official/Big4 gaps for this honest-gap pass were out of scope (Figures/Ills targeted Ch2–3 / Ch6–8). Prior IE boxes kept.
+
+
+## PwC MOA 2026 Ch18 densify (#128)
+- Added PwC FAQ/EX densify section before Key terms (see live `ch01.html`).
+- Detail + open homes: `/workspace/ias16/deliverables/CHANGELOG-128-IFRS18-PWC-HTML.md`.
+- Crosswalk B: new Ch18 FAQ/EX → Official locators on unit chips; standing via references.

@@ -13,7 +13,7 @@
     "chrome-bar.js": "1f0dd2c5251c",
     "search.js": "85ee050b8575"
   };
-  var INDEX = "801ae781c65d";
+  var INDEX = "17fb3fad7e15";
   var src = (document.currentScript && document.currentScript.src) || "";
   var dir = src.replace(/[^/?]*(\?.*)?$/, "");
   if (!dir) dir = "../../_shared/";

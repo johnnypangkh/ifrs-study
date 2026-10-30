@@ -407,7 +407,15 @@ def parse_sections(body, where):
     flush()
     if not sections:
         raise ChapterError(f"{where}: a chapter needs at least one ## heading")
-    return sections, "\n".join(tail).strip("\n"), "\n".join(after).strip("\n")
+    # The renderer inserts one blank line before the tail. One leading
+    # newline in the source is that blank line. Further leading newlines
+    # are real (KEEP HTML that has a wider gap, such as a section that
+    # sits after </article>). Trailing newlines stay stripped: the
+    # renderer also inserts the blank line before the disclaimer.
+    tail_text = "\n".join(tail).rstrip("\n")
+    if tail_text.startswith("\n"):
+        tail_text = tail_text[1:]
+    return sections, tail_text, "\n".join(after).strip("\n")
 
 
 def chapter_number_of(section):
@@ -807,10 +815,17 @@ def extract_chapter(page, file_hint=""):
         raise ChapterError(f"{file_name}: missing h1#chapter-title")
     title = html_lib.unescape(re.sub(r"<[^>]+>", "", h1.group(1))).strip()
     purpose = None
-    purpose_match = re.search(r'<p class="purpose">(.*?)</p>', page, re.S)
-    if purpose_match:
-        # Keep the inner HTML, including entities and inline tags.
-        purpose = purpose_match.group(1).strip()
+    # Chapter purpose lives in the page header. A later teaching block
+    # may use the same class (PwC densify section purpose) and must not
+    # be copied into the header on the way back to source.
+    header_match = re.search(r'<div class="page-header">(.*?)</div>', page, re.S)
+    if header_match:
+        purpose_match = re.search(
+            r'<p class="purpose">(.*?)</p>', header_match.group(1), re.S
+        )
+        if purpose_match:
+            # Keep the inner HTML, including entities and inline tags.
+            purpose = purpose_match.group(1).strip()
     map_match = re.search(
         r'<fieldset class="visual-fieldset" id="page-map">(.*?)</fieldset>',
         page,
@@ -854,7 +869,13 @@ def extract_chapter(page, file_hint=""):
         section["blocks"] = split_blocks(body)
         sections.append(section)
     after_article = page.split("</article>", 1)[1]
-    tail = after_article.partition("<!-- disclaimer:start -->")[0].strip("\n")
+    # Renderer writes exactly "\n\n" between </article> and the tail.
+    # Drop those two newlines and keep any further leading newline so a
+    # wider KEEP gap round-trips. Trailing newlines before the disclaimer
+    # are the renderer's blank line, so drop them.
+    tail = after_article.partition("<!-- disclaimer:start -->")[0].rstrip("\n")
+    if tail.startswith("\n\n"):
+        tail = tail[2:]
     post = page.partition("<!-- footer-nav:end -->")[2]
     after = post.split("</main>", 1)[0].strip("\n")
     return {

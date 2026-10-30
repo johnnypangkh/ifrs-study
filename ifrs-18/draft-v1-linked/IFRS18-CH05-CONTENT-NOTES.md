@@ -79,3 +79,9 @@ Nature / function / mixed selection matrix from prior METHOD pass **kept**.
 | EY Closer look 2026 · section 3.5; Ill 3-13 | L3 | 5.2.1, Illus 5.2.2 | 24, 41, 43, B78–B79, BC374, BC407–BC413 | iGAAP Ill 3-9 Entity A |
 | EY iGAAP 2026 Ch04 · sections 3.4.2, 3.5 | L2 | — (no chips, A3) | as CL | no iGAAP-only content |
 | DTT A4 2022 · 5.4.2.1–5.4.2.5 | IAS 1 bridge | — (no chips) | IAS 1.99–1.105 | mixed heading flag |
+
+
+## PwC MOA 2026 Ch18 densify (#128)
+- Added PwC FAQ/EX densify section before Key terms (see live `ch05.html`).
+- Detail + open homes: `/workspace/ias16/deliverables/CHANGELOG-128-IFRS18-PWC-HTML.md`.
+- Crosswalk B: new Ch18 FAQ/EX → Official locators on unit chips; standing via references.

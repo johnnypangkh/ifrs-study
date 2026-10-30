@@ -70,3 +70,9 @@ MPM application guidance = **B113–B142** (App B). Figure 6 is Supporting Mater
 | EY Closer look 2026 · section 4.3.1–4.3.5 (Q4-7, Q4-8), Ill 4-1 | L3 | 6.4, 6.5, Illus 6.4.2 | 121–125, B132–B142, BC369–BC390 | — |
 | EY Closer look 2026 · section 4.4 | L3 | 6.1 | BC374–BC375 | — |
 | EY iGAAP 2026 Ch04 (FAQ index, Ill 4-1) | L2 | — (no chips) | as CL | lacks Q4-6 to Q4-8 |
+
+
+## PwC MOA 2026 Ch18 densify (#128)
+- Added PwC FAQ/EX densify section before Key terms (see live `ch06.html`).
+- Detail + open homes: `/workspace/ias16/deliverables/CHANGELOG-128-IFRS18-PWC-HTML.md`.
+- Crosswalk B: new Ch18 FAQ/EX → Official locators on unit chips; standing via references.
