@@ -4,6 +4,7 @@
 **Rule:** locator-level; gap-honest; layer 2 = MOA/manual; layer 3 = technical supplement.  
 **Status:** **Sentence-level every Official BC0–BC8 para × four firms** complete. Firm cells = real BC.nn cite harvested from pack PDFs/extracts, else **not-addressed**. **No invented BC.nn chips.** Pack-complete: see SUMMARY + `CF-GAP-FILL-4-SENTENCE-BC-2026-10-01.md`.  
 **Supersedes:** TOC-band-only Completeness in `CF-GAP-FILL-3-2026-10-01.md` (that stamp → Partial / superseded).
+**#129 (2026-10-31):** PwC intro chips relabelled `MOA 2026 Ch1`; FAQ 1.1.1 ADD on Ch1 `#s-1-faq-111` (PwC→ifrs.org who-uses; Official para 1.1 does **not** map to country-count — orphan-firm note). PwC A2 Appendix unchanged.
 
 ## SP + Ch1–8 teaching spine (unchanged grain — chapter paras)
 
@@ -13,7 +14,7 @@
 | SP1.2 | CF not a Standard | A2 · 2 | 1.17 | section 3.2 | 1.2.10 | — |
 | SP1.3 | Departures in BC | A2 · 2 | — | section 3.2 | — | gap-honest thin PwC/KPMG |
 | SP1.4–SP1.5 | Revisions / foundation | A2 · 2–3 | — | section 2–3 | 1.2.10 | — |
-| 1.1–1.4 | Objective + assessments | A2 · 4 | 1.19–1.21 | section 4.1 | 1.2.20 | ACCA storyline (no cite) |
+| 1.1–1.4 | Objective + assessments | A2 · 4 | 1.19–1.21; **FAQ 1.1.1** (country-list pointer → ifrs.org; not Official 1.1 substance) | section 4.1 | 1.2.20 | ACCA storyline (no cite); FAQ 1.1.1 = orphan-firm vs Official 1.1 (#129) |
 | 1.5–1.10 | Primary users / not primary | A2 · 4 | 1.18, 1.22 | section 4.1.1 | 1.2.20 | — |
 | 1.11–1.15 | Economic resources / claims | A2 · 4 | 1.23–1.25 | section 4.2 | 1.2.20 | — |
 | 1.16–1.18 | Changes in resources/claims | A2 · 4 | 1.26 | section 4.2 | 1.2.20 | — |
@@ -56,7 +57,7 @@
 
 **Harvest rule:** cell gets a firm+work+locator **only** if that BC.nn string appears in a firm commentary PDF/extract (not Official reprints in `pwc-folder-hkas-framework18.pdf`). Else **not-addressed**.
 
-**Sources scanned:** Official CF 2018 BC (410 paras); DTT `DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` + A2 appendix; PwC MOA intro + Appendix 2; EY IGAAP 2026 Ch2 (part1 pp 46–103) + devel169; KPMG Insights 2019/20 · 1.2 + Combined/Carve 2022 + flyer.
+**Sources scanned:** Official CF 2018 BC (410 paras); DTT `DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` + A2 appendix; PwC MOA **2026 Ch1** (intro SoT after #129) + Appendix 2 still 2020; EY IGAAP 2026 Ch2 (part1 pp 46–103) + devel169; KPMG Insights 2019/20 · 1.2 + Combined/Carve 2022 + flyer.
 
 | Official BC | Official topic (short) | DTT | PwC | EY | KPMG |
 |-------------|------------------------|-----|-----|----|------|
@@ -485,7 +486,7 @@
 | BC7.25 | KPMG Insights 2019/20 · 1.2 · BC7.25 |
 | BC7.29 | EY IGAAP 2026 · Ch2 · section 10 |
 
-**PwC MOA intro + Appendix 2:** **0** BC.nn cites harvested.  
+**PwC MOA 2026 Ch1 + Appendix 2 (2020 hold):** **0** BC.nn cites harvested.  
 **DTT:** **1** (BC1.41). **EY Ch2:** **7**. **KPMG Insights+Combined/Carve:** **3** distinct (BC1.41, BC3.21, BC7.25).
 
 ## Honest gaps (A)

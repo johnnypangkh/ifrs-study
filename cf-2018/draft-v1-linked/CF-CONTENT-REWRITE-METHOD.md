@@ -22,8 +22,8 @@
 |-------|---------------|------|----------|------|
 | 1 | Official | CF 2018 (2026 stamp) | **Yes** | `inputs/cf-2018/official-conceptual-framework-2026.pdf` (+ HTML / HK archive) |
 | 2 | DTT | A2 2022 Conceptual Framework | **Yes** | `inputs/cf-2018/DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` |
-| 2 | PwC | MOA 2020 intro · Conceptual Framework | **Yes** | `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_ch01_Conceptual-Framework-Intro.pdf` |
-| 2 | PwC | MOA 2020 Appendix 2 Combined/Carve | **Yes** | `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_chApp2_Combined-Carve-Out.pdf` |
+| 2 | PwC | **MOA 2026 Ch1** · Conceptual Framework introduction (layer-2 SoT after #129) | **Yes** | Box SoT `/workspace/pwc-faqs/pdfs/Ch1-FAQs.pdf` + `Ch1-nonFAQ.pdf` + `pdfs/ch1/` FAQ×11 + `pdfs/ch1-nonfaq/` NF×3. Archive (not live primary): `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_ch01_Conceptual-Framework-Intro.pdf` |
+| 2 | PwC | MOA 2020 Appendix 2 Combined/Carve (**hold 2020 until separate A2 job** — OUT-OF-SCOPE #129) | **Yes** | Live chips stay `PwC MOA 2020 · A2…`. Path: `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_chApp2_Combined-Carve-Out.pdf` (A2 2026 PDFs on box unscanned this job) |
 | 2 | EY | IGAAP 2026 **Ch2** The IASB’s conceptual framework | **Yes** | `inputs/ey-international-gaap-2026/EY_iGAAP_2026_Part1-pp1-2700.pdf` (book ~pp 46–103) |
 | 2 | KPMG | Insights 2019/20 Part1 **· 1.2** Conceptual Framework (= **2018 CF**) | **Yes** | `inputs/kpmg-2019-2020/KPMG_Insights-into-IFRS_2019-20_Part1-Non-FI.pdf` |
 | 3 | KPMG | Combined and/or carve-out FS (Feb 2022) — CF Ch3 app | **Yes** | `inputs/cf-2018/kpmg-public/kpmg-combined-and-carve-out-financial-statements.pdf` |
@@ -67,7 +67,7 @@
 8. **Cite chips (IAS 2 trial grammar — Johnny 2026-10-01)** — firm+work+locator inside each `.cite` span; **zero `§` in any chip**.
    - Official: `CF 2018 · para [ref]` (e.g. `CF 2018 · para 2.16`, `CF 2018 · para SP1.2`, `CF 2018 · para BC4.14`). Cross-standard: `IAS 8 · para 11`. Cover meta: `CF 2018 · 2026 cover`. **Never** `Official · …` or bare `§N`.
    - DTT: `DTT A2 2022 · …` (no `§`).
-   - PwC: `PwC MOA 2020 · …` / FAQ id (no `§`).
+   - PwC Ch1: `PwC MOA 2026 Ch1 · …` / FAQ id (no `§`) — edition string after #129 KEEP-RELABEL.
    - EY: `EY IGAAP 2026 · Ch2 · section …` (no `§`).
    - KPMG: `KPMG Insights 2019/20 · 1.2.…` / Example id; Combined/Carve app: `KPMG Combined/Carve 2022 · …` (class `cite-kpmg`).
    - PwC Combined/Carve: `PwC MOA 2020 · A2.…`.
@@ -84,7 +84,7 @@
 
 | Rule | Detail |
 |------|--------|
-| **Quote Official + Big4** | Official PRIMARY: `inputs/cf-2018/official-conceptual-framework-2026.pdf` (HK June 2026 / CF (2027) stamp — March 2018 substance; see `inputs/cf-2018/OFFICIAL-SOURCE-NOTE.md`). Compare archive `official-conceptual-framework-hk-2022-09.pdf`. **2010 CF PDF not in pack** — DTT A2 for 2018-vs-2010 deltas only. Firms: **DTT** 2022 A2; **PwC** MOA 2020 intro + Appendix 2 Combined/Carve; **EY** IGAAP 2026 Ch2; **KPMG** Insights 2019/20 · 1.2 (+ KPMG Combined/Carve 2022 app + flyer). Ignore `pwc-2020-moa/HKAS/`. ACCA storyline = visit-path only (no cite authority). |
+| **Quote Official + Big4** | Official PRIMARY: `inputs/cf-2018/official-conceptual-framework-2026.pdf` (HK June 2026 / CF (2027) stamp — March 2018 substance; see `inputs/cf-2018/OFFICIAL-SOURCE-NOTE.md`). Compare archive `official-conceptual-framework-hk-2022-09.pdf`. **2010 CF PDF not in pack** — DTT A2 for 2018-vs-2010 deltas only. Firms: **DTT** 2022 A2; **PwC** MOA **2026 Ch1** (intro SoT) + Appendix 2 Combined/Carve still **MOA 2020 · A2** until A2 refresh; **EY** IGAAP 2026 Ch2; **KPMG** Insights 2019/20 · 1.2 (+ KPMG Combined/Carve 2022 app + flyer). Ignore `pwc-2020-moa/HKAS/`. ACCA storyline = visit-path only (no cite authority). |
 | **Official quotes primary** | Prefer short `<q>` extracts + cite chips over free rewrite. Firms support / align; do not replace Official. |
 | **No invented examples** | No entity fact patterns not in Official §§/BC or firm materials. Teaching cues = firm quote + Official aim OK. Decision strips cite gates only. |
 | **Examples complete** | Every Official illustration / Big4 FAQ-with-body that belongs to the chapter appears as a line box in the body (not NOTES-only). If a PwC FAQ title has **no answer body** in the pack extract, note the gap in NOTES — do not invent the answer. |

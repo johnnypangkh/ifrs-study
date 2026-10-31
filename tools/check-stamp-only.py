@@ -53,6 +53,12 @@ CSS stay stamp-gated. Not a blank cheque for other packs.
 ch06, ch07, and references.html. Those paths are on CONTENT_ALLOW
 (settings-rows and the eight IAS 2 paths stay). Map, visuals, ch04.html,
 and ch08.html stay stamp-gated. Not a blank cheque for other packs.
+#129 CF 2018 PwC MOA 2026 Ch1 Firm MOA teaching body may differ outside
+?v= on ten paths only: cf-2018/draft-v1-linked/ ch01–ch08, ch11, and
+references.html. Those paths are on CONTENT_ALLOW (settings-rows, the
+eight IAS 2 paths, and the seven IFRS 18 paths stay). Map, visuals,
+_shared CSS, ch09.html, ch10.html, and index.html stay stamp-gated.
+Not a blank cheque for ch09/ch10/index/visuals or other packs.
 The live Master formatting page (site/master-formatting/index.html, #100)
 may change ?v= only, the same shape as Settings, once it is on the base.
 A copy that is not on the base yet must still carry ?v= hashes that match
@@ -96,7 +102,8 @@ HOW_NOTES = "homepage/how-these-notes-are-made.html"
 # site/settings/index.html and _shared/settings-rows.html are gated instead by check-settings-rows.py (276/276) and xlsx_to_tokens.py --check.
 # #126: eight IAS 2 teaching HTML paths may differ outside ?v=.
 # #128: seven IFRS 18 teaching HTML paths may differ outside ?v=.
-# settings-rows stays. Map / visuals / ch04 / ch08 / _shared CSS are not listed.
+# #129: ten CF 2018 teaching HTML paths may differ outside ?v=.
+# settings-rows stays. Map / visuals / ch09 / ch10 / index / _shared CSS are not listed.
 CONTENT_ALLOW = (
     "_shared/settings-rows.html",
     "ias-2/draft-v1-linked/ch01.html",
@@ -114,6 +121,16 @@ CONTENT_ALLOW = (
     "ifrs-18/draft-v1-linked/ch06.html",
     "ifrs-18/draft-v1-linked/ch07.html",
     "ifrs-18/draft-v1-linked/references.html",
+    "cf-2018/draft-v1-linked/ch01.html",
+    "cf-2018/draft-v1-linked/ch02.html",
+    "cf-2018/draft-v1-linked/ch03.html",
+    "cf-2018/draft-v1-linked/ch04.html",
+    "cf-2018/draft-v1-linked/ch05.html",
+    "cf-2018/draft-v1-linked/ch06.html",
+    "cf-2018/draft-v1-linked/ch07.html",
+    "cf-2018/draft-v1-linked/ch08.html",
+    "cf-2018/draft-v1-linked/ch11.html",
+    "cf-2018/draft-v1-linked/references.html",
 )
 # Settings may change ?v= only, and each new value must match the file hash.
 SETTINGS_PAGE = "site/settings/index.html"
