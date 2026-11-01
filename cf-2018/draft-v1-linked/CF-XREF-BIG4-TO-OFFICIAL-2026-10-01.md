@@ -28,7 +28,7 @@
 | A2 · 3 | Eight chapters; Framework not directly relevant to SMEs Standard entities (own concepts section) | BC0.26 | Ch11 11.0 lead, 11.7 lead |
 | A2 · 12 | Amendments to References: clarify which Framework each Standard refers to; "most notably" IAS 1 amended; effective 1 Jan 2020, earlier application permitted; some Interpretations keep older references; "2001 and 2010 versions"; May 2020 IFRS 3 amendment | BC0.28 | Ch11 11.4 table, 11.6 bullets, IFRS 3 table row, earlier-versions `.callout.differ` (DTT row) |
 
-## PwC MOA 2020 intro (layer 2)
+## PwC MOA 2026 Ch1 (layer 2) — was MOA 2020 intro; #129 KEEP-RELABEL 2026-10-31
 
 | Firm locator | Shape | Official link | Site |
 |--------------|-------|---------------|------|
@@ -37,6 +37,7 @@
 | 1.15 | Main sections of the Framework (status and purpose first) | SP1.1–SP1.5 | Ch11 11.0 lead |
 | 1.16–1.17 | Status | SP1.1–SP1.2 | Ch11 11.0, 11.1 (list + purposes differ PwC row), 11.2 lead |
 | 1.18–1.29 | Objective / users / stewardship / accrual | 1.2–1.23, 5.5 | Ch1 1.2–1.7 |
+| FAQ 1.1.1 | FAQ body — IASB country list of use / public commitment to IFRS Accounting Standards and IFRS for SMEs; points to ifrs.org “Who uses IFRS Accounting Standards?”; **no country count in FAQ**; no case facts → teaching (not Illus). Standing ref 1.1 | **orphan-firm / ifrs.org who-uses** (Official CF para 1.1 is objective-foundation text, not country-count; do not invent Official para mapping) | Ch1 `#s-1-faq-111` (#129 ADD 2026-10-31) |
 | FAQ 1.21.1 | FAQ body — general guidance, no case facts → section units (not Illus) | 1.2(c), 1.4, 1.13, 1.15–1.16, 1.20 | Ch1 1.4 / 1.5 table / 1.6 `#s-1-6-ex` (Opus Ch1 gate 2026-10-02) |
 | FAQ 1.51.1 | Items often material regardless of size — list (no case facts → section) | 2.11 | Ch2 2.2 bullet + `#s-2-2-ex` Yes outcome (Opus Ch2 gate 2026-10-02) |
 | FAQ 1.51.2 | Items not material; obscuring; no fixed monetary limits (section) | 2.11, BC2.20A | Ch2 2.2 bullet + `#s-2-2-ex` No outcome + `.callout.differ` |
@@ -112,6 +113,8 @@
 | 1.108 | OCI "deferred"; reclassification in principle, unless no clear basis for the period | 7.17–7.19 | Ch7 7.5 `.callout.differ` (reclassification: Official 7.19 \| DTT 10.3 \| PwC) |
 
 ## PwC MOA 2020 Appendix 2 Combined/Carve (layer 2 app)
+
+> **#129:** OUT-OF-SCOPE — live chips remain `PwC MOA 2020 · A2…` / Exhibit A2; do not year-flip; DTT A2 ≠ PwC A2.
 
 | Firm locator | Shape | Official link | Site |
 |--------------|-------|---------------|------|

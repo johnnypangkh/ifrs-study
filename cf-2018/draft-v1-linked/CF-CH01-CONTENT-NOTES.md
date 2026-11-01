@@ -11,7 +11,7 @@
 |----|--------|---------|
 | §1.1–1.23 / BC1 | Official IFRS Issued 2026 HTML (March 2018 CF) | Yes — primary |
 | DTT A2 §4 | `inputs/cf-2018/DTT_iGAAP_2022_chA2_Conceptual-Framework.pdf` | Yes — stewardship reinstatement |
-| PwC MOA §1.18–1.28 | `inputs/pwc-2020-moa/PwC_Manual-of-Accounting_2020_ch01_Conceptual-Framework-Intro.pdf` | Yes — objective / users / accrual / stewardship |
+| PwC MOA 2026 Ch1 · 1.18–1.28 (was 2020; #129) | Box SoT `/workspace/pwc-faqs/pdfs/Ch1-nonFAQ.pdf` (+ archive `inputs/pwc-2020-moa/…ch01…`) | Yes — objective / users / accrual / stewardship |
 | PwC FAQ 1.21.1 | same PDF | ~~Title only~~ — **superseded 2026-10-02:** body present in the PDF (Illustrative text page 15); used as section units in 1.4 / 1.5 / 1.6 (general guidance, no case facts → not an Illustration) |
 | KPMG / EY CF | — | ~~Gap~~ — **superseded:** EY IGAAP 2026 Ch2 section 4.1.1 / 4.1.2 and KPMG Insights 1.2.20 chips exist in the pack; PDFs not attached at the Opus gates → existing chips kept, no new substance attributed |
 
@@ -78,3 +78,16 @@ Johnny's Gate 1 decisions 1–6 applied to Ch1. Sources re-read: Official CF 201
 - EY section 4.1.1 / 4.1.2 and KPMG 1.2.20 chips: kept, not extended (PDFs not attached).
 - Ch1 Concept Map unchanged (passes reading order; ~180px dead space below board is iframe-fit / Build-owned).
 - Footer shows two Map links (`← Prev: Map` + mid `Map`) — chrome debt, not changed.
+
+
+---
+
+## #129 Firm MOA — PwC Ch1 2020→2026 (2026-10-31 Asia/Hong_Kong)
+
+- **Tip SoT:** `e88b711a6551154b8a36c838db3d0aebfbd6bc28`
+- **KEEP-RELABEL:** all live Ch1-family `PwC MOA 2020 · 1.…` / `FAQ 1.…` chips → `PwC MOA 2026 Ch1 · …` (pack REPLACE-129 rows 1–110; 171 chips).
+- **ADD densify:** FAQ 1.1.1 — *How many countries use IFRS Accounting Standards or the IFRS for SMEs Accounting Standard?* Teaching home `ch01.html#s-1-faq-111` (after §1.0 Scope / before §1.1). Form = teaching `<h4>` + dense `<li>` (FAQ without entity case → not Illustration). Chip alone: `PwC MOA 2026 Ch1 · FAQ 1.1.1`. Substance: IASB maintains country list of use / public commitment on ifrs.org (“Who uses IFRS Accounting Standards?”); FAQ states no count. Standing ref 1.1. Source: `/workspace/pwc-faqs/pdfs/ch1/FAQ-1-1-1.pdf`.
+- **Official mapping:** do **not** invent Official CF para 1.1 → country-count link (para 1.1 = objective foundation). Crosswalk B marks orphan-firm / ifrs.org who-uses.
+- **A2 untouched:** Ch9/Ch10/refs `PwC MOA 2020 · A2…` / Exhibit A2 held (178 chips). DTT A2 ≠ PwC A2.
+- **SoT path:** `/workspace/pwc-faqs/pdfs/Ch1-FAQs.pdf` + `Ch1-nonFAQ.pdf` + `pdfs/ch1/`. Archive: `inputs/pwc-2020-moa/…ch01…`.
+- **Map/iframe/cache-bust:** untouched (content-only). BAN #43/#44.

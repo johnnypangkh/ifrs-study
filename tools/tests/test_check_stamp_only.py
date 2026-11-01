@@ -60,6 +60,19 @@ IFRS18_128_CONTENT_ALLOW = IAS2_126_CONTENT_ALLOW + (
     "ifrs-18/draft-v1-linked/ch07.html",
     "ifrs-18/draft-v1-linked/references.html",
 )
+# #129: settings-rows + eight IAS 2 + seven IFRS 18 + ten CF 2018 teaching HTML paths.
+CF2018_129_CONTENT_ALLOW = IFRS18_128_CONTENT_ALLOW + (
+    "cf-2018/draft-v1-linked/ch01.html",
+    "cf-2018/draft-v1-linked/ch02.html",
+    "cf-2018/draft-v1-linked/ch03.html",
+    "cf-2018/draft-v1-linked/ch04.html",
+    "cf-2018/draft-v1-linked/ch05.html",
+    "cf-2018/draft-v1-linked/ch06.html",
+    "cf-2018/draft-v1-linked/ch07.html",
+    "cf-2018/draft-v1-linked/ch08.html",
+    "cf-2018/draft-v1-linked/ch11.html",
+    "cf-2018/draft-v1-linked/references.html",
+)
 
 
 def page(body, block=""):
@@ -246,7 +259,8 @@ class IframeFloorFoldTests(unittest.TestCase):
         """Unlisted CF gap: a blank line before s-1-1 is not on the allow-list."""
         import tempfile
 
-        rel = "cf-2018/draft-v1-linked/ch01.html"
+        # #129 puts ch01–ch08 on CONTENT_ALLOW. ch10 stays stamp-gated.
+        rel = "cf-2018/draft-v1-linked/ch10.html"
         base = self._cf_shell(title_after_css=False, blanks=("map", "article", "close", "terms"))
         head = base.replace('<h3 id="s-1-1">', '\n<h3 id="s-1-1">', 1)
         with tempfile.TemporaryDirectory() as tmp:
@@ -254,14 +268,15 @@ class IframeFloorFoldTests(unittest.TestCase):
             self.write_tree(root, {rel: head})
             code, output = self.run_gate(root, {rel: base})
         self.assertEqual(code, 1, output)
-        self.assertIn("ch01.html", output)
+        self.assertIn("ch10.html", output)
         self.assertNotIn("stamp-only: PASS", output)
 
     def test_n10_cf_title_just_before_head_close_fails(self):
         """N10: a head title sitting just before </head> on ch02 fails."""
         import tempfile
 
-        rel = "cf-2018/draft-v1-linked/ch02.html"
+        # #129 puts ch02 on CONTENT_ALLOW. ch10 stays stamp-gated.
+        rel = "cf-2018/draft-v1-linked/ch10.html"
         base = self._cf_shell(title_after_css=False)
         title = "<title>Ch1 Objective</title>\n"
         head = base.replace(
@@ -274,7 +289,7 @@ class IframeFloorFoldTests(unittest.TestCase):
             self.write_tree(root, {rel: head})
             code, output = self.run_gate(root, {rel: base})
         self.assertEqual(code, 1, output)
-        self.assertIn("ch02.html", output)
+        self.assertIn("ch10.html", output)
         self.assertNotIn("stamp-only: PASS", output)
 
     def test_n12_cf_title_inside_body_fails(self):
@@ -301,7 +316,8 @@ class IframeFloorFoldTests(unittest.TestCase):
         """Extra add: two new blank lines at an approved one-line spot fail."""
         import tempfile
 
-        rel = "cf-2018/draft-v1-linked/ch01.html"
+        # #129 puts ch01 on CONTENT_ALLOW. ch10 stays stamp-gated.
+        rel = "cf-2018/draft-v1-linked/ch10.html"
         base = self._cf_shell(title_after_css=False)
         head = self._cf_shell(
             title_after_css=False,
@@ -313,7 +329,7 @@ class IframeFloorFoldTests(unittest.TestCase):
             self.write_tree(root, {rel: head})
             code, output = self.run_gate(root, {rel: base})
         self.assertEqual(code, 1, output)
-        self.assertIn("ch01.html", output)
+        self.assertIn("ch10.html", output)
         self.assertNotIn("stamp-only: PASS", output)
 
     def test_ias2_shell_allowlist_is_folded(self):
@@ -758,13 +774,16 @@ class IframeFloorFoldTests(unittest.TestCase):
         head = dict(base)
         for rel in stamp.CF_IFRAME_FLOOR_BLOCKS:
             head[rel] = page("Teaching.")
-        head["cf-2018/draft-v1-linked/ch03.html"] = page("Teachinx.")
+        # #129 puts ch03 on CONTENT_ALLOW. index stays stamp-gated.
+        gated = "cf-2018/draft-v1-linked/index.html"
+        base[gated] = page("Teaching.")
+        head["cf-2018/draft-v1-linked/index.html"] = page("Teachinx.")
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_tree(root, head)
             code, output = self.run_gate(root, base)
         self.assertEqual(code, 1, output)
-        self.assertIn("ch03.html", output)
+        self.assertIn("index.html", output)
 
     def test_fourth_style_removal_fails(self):
         import tempfile
@@ -773,13 +792,16 @@ class IframeFloorFoldTests(unittest.TestCase):
         head = dict(base)
         for rel in stamp.CF_IFRAME_FLOOR_BLOCKS:
             head[rel] = page("Teaching.")
-        head[FOURTH] = page("Teaching.")
+        # #129 puts ch01 on CONTENT_ALLOW. A style removal on index still fails.
+        gated = "cf-2018/draft-v1-linked/index.html"
+        base[gated] = page("Teaching.", FOURTH_STYLE)
+        head[gated] = page("Teaching.")
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_tree(root, head)
             code, output = self.run_gate(root, base)
         self.assertEqual(code, 1, output)
-        self.assertIn("ch01.html", output)
+        self.assertIn("index.html", output)
 
 
 class Ias16ReferencesMutedFoldTests(unittest.TestCase):
@@ -1141,7 +1163,8 @@ class DisclaimerInjectorFoldTests(unittest.TestCase):
         """N6d CF page carrying IAS 2 base aside text (cross-pack swap)"""
         import tempfile
 
-        cf_page = "cf-2018/draft-v1-linked/ch01.html"
+        # #129 puts ch01 on CONTENT_ALLOW. ch09 stays stamp-gated.
+        cf_page = "cf-2018/draft-v1-linked/ch09.html"
         cf_aside = next(
             block
             for block in stamp.DISCLAIMER_KNOWN_ASIDES
@@ -1177,7 +1200,8 @@ class DisclaimerInjectorFoldTests(unittest.TestCase):
         """E10 CF minority wording in the shell slot on CF ch05 must FAIL"""
         import tempfile
 
-        cf_page = "cf-2018/draft-v1-linked/ch05.html"
+        # #129 puts ch05 on CONTENT_ALLOW. ch09 stays stamp-gated.
+        cf_page = "cf-2018/draft-v1-linked/ch09.html"
         majority = next(
             block
             for block in stamp.DISCLAIMER_KNOWN_ASIDES
@@ -1744,7 +1768,7 @@ class HowNotes108FoldTests(unittest.TestCase):
 
     def test_how_notes_is_not_a_content_allow(self):
         self.assertNotIn(stamp.HOW_NOTES, stamp.CONTENT_ALLOW)
-        self.assertEqual(stamp.CONTENT_ALLOW, IFRS18_128_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW, CF2018_129_CONTENT_ALLOW)
 
     def test_gate_passes_signed_and_fails_freestyle(self):
         import tempfile
@@ -2798,7 +2822,7 @@ class CfStatusYesB03FoldTests(unittest.TestCase):
         self.assertNotIn('data-brick="B03"', folded)
         self.assertEqual(stamp.norm(self.fold_all(base)), stamp.norm(folded))
         self.assertNotIn(self.PAGE, stamp.CONTENT_ALLOW)
-        self.assertEqual(stamp.CONTENT_ALLOW, IFRS18_128_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW, CF2018_129_CONTENT_ALLOW)
         self.assertNotIn("proof-banner", head)
         stripped = stamp.fold_map_pick_a(head)
         self.assertNotIn(stamp.B03_APPLY_NEW, stripped)
@@ -3001,7 +3025,7 @@ class Ias2ContentAllow126Tests(unittest.TestCase):
         return code, buffer.getvalue()
 
     def test_allow_is_settings_rows_plus_eight_ias2_pages(self):
-        self.assertEqual(stamp.CONTENT_ALLOW, IFRS18_128_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW, CF2018_129_CONTENT_ALLOW)
         self.assertEqual(stamp.CONTENT_ALLOW[0], "_shared/settings-rows.html")
         for path in IAS2_126_CONTENT_ALLOW[1:]:
             self.assertIn(path, stamp.CONTENT_ALLOW)
@@ -3087,7 +3111,7 @@ class Ifrs18ContentAllow128Tests(unittest.TestCase):
         return code, buffer.getvalue()
 
     def test_allow_is_settings_rows_ias2_eight_and_ifrs18_seven(self):
-        self.assertEqual(stamp.CONTENT_ALLOW, IFRS18_128_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW, CF2018_129_CONTENT_ALLOW)
         self.assertEqual(stamp.CONTENT_ALLOW[0], "_shared/settings-rows.html")
         for path in IAS2_126_CONTENT_ALLOW:
             self.assertIn(path, stamp.CONTENT_ALLOW)
@@ -3141,6 +3165,128 @@ class Ifrs18ContentAllow128Tests(unittest.TestCase):
             (
                 head_visual,
                 "shared visual stamp: diff outside the allowlist: " + visual,
+            ),
+        )
+        for head, needle in cases:
+            with tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                self.write_tree(root, head)
+                code, output = self.run_gate(root, base)
+            self.assertNotEqual(code, 0, output)
+            self.assertIn(needle, output)
+            self.assertNotIn("stamp-only: PASS", output)
+
+
+class Cf2018ContentAllow129Tests(unittest.TestCase):
+    """#129: ten CF 2018 teaching HTML paths join CONTENT_ALLOW. ch09/ch10/index/visuals stay gated."""
+
+    def write_tree(self, root, files):
+        for rel, text in files.items():
+            path = root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        last = root / "_shared" / "last-update.js"
+        last.parent.mkdir(parents=True, exist_ok=True)
+        last.write_text(LAST_UPDATE, encoding="utf-8")
+
+    def run_gate(self, root, base_files):
+        def git_text(rev, path):
+            if path == "_shared/last-update.js":
+                return LAST_UPDATE
+            return base_files[path]
+
+        def git_paths(rev):
+            return list(base_files)
+
+        original_root = stamp.ROOT
+        original_text = stamp.git_text
+        original_paths = stamp.git_paths
+        stamp.ROOT = root
+        stamp.git_text = git_text
+        stamp.git_paths = git_paths
+        buffer = io.StringIO()
+        try:
+            with redirect_stdout(buffer):
+                code = stamp.main(["--base", "fixture"])
+        finally:
+            stamp.ROOT = original_root
+            stamp.git_text = original_text
+            stamp.git_paths = original_paths
+        return code, buffer.getvalue()
+
+    def test_allow_is_settings_rows_ias2_ifrs18_and_ten_cf2018(self):
+        self.assertEqual(stamp.CONTENT_ALLOW, CF2018_129_CONTENT_ALLOW)
+        self.assertEqual(stamp.CONTENT_ALLOW[0], "_shared/settings-rows.html")
+        self.assertEqual(len(stamp.CONTENT_ALLOW), 1 + 8 + 7 + 10)
+        for path in IAS2_126_CONTENT_ALLOW:
+            self.assertIn(path, stamp.CONTENT_ALLOW)
+        for path in IFRS18_128_CONTENT_ALLOW:
+            self.assertIn(path, stamp.CONTENT_ALLOW)
+        for path in CF2018_129_CONTENT_ALLOW[len(IFRS18_128_CONTENT_ALLOW):]:
+            self.assertIn(path, stamp.CONTENT_ALLOW)
+        self.assertNotIn("cf-2018/draft-v1-linked/ch09.html", stamp.CONTENT_ALLOW)
+        self.assertNotIn("cf-2018/draft-v1-linked/ch10.html", stamp.CONTENT_ALLOW)
+        self.assertNotIn("cf-2018/draft-v1-linked/index.html", stamp.CONTENT_ALLOW)
+        self.assertNotIn(
+            "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html",
+            stamp.CONTENT_ALLOW,
+        )
+
+    def test_allowed_body_passes_and_freestyle_outside_allow_fails(self):
+        import tempfile
+
+        allowed = "cf-2018/draft-v1-linked/ch01.html"
+        blocked = "cf-2018/draft-v1-linked/ch09.html"
+        visual = "cf-2018/draft-v1-linked/visuals/ch01-objective-users.html"
+        index = "cf-2018/draft-v1-linked/index.html"
+        base = {
+            allowed: page("<p>MOA 2020 Ch1 teaching.</p>"),
+            blocked: page("<p>A2 kept.</p>"),
+            visual: page("<p>Map kept.</p>"),
+            index: page("<p>Index kept.</p>"),
+        }
+        head_allow = {
+            allowed: page("<p>PwC MOA 2026 Ch1 densify.</p>"),
+            blocked: page("<p>A2 kept.</p>"),
+            visual: page("<p>Map kept.</p>"),
+            index: page("<p>Index kept.</p>"),
+        }
+        head_ch09 = {
+            allowed: page("<p>MOA 2020 Ch1 teaching.</p>"),
+            blocked: page("<p>Freestyle ch09.</p>"),
+            visual: page("<p>Map kept.</p>"),
+            index: page("<p>Index kept.</p>"),
+        }
+        head_visual = {
+            allowed: page("<p>MOA 2020 Ch1 teaching.</p>"),
+            blocked: page("<p>A2 kept.</p>"),
+            visual: page("<p>Freestyle visual.</p>"),
+            index: page("<p>Index kept.</p>"),
+        }
+        head_index = {
+            allowed: page("<p>MOA 2020 Ch1 teaching.</p>"),
+            blocked: page("<p>A2 kept.</p>"),
+            visual: page("<p>Map kept.</p>"),
+            index: page("<p>Freestyle index.</p>"),
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_tree(root, head_allow)
+            code, output = self.run_gate(root, base)
+        self.assertEqual(code, 0, output)
+        self.assertIn("stamp-only: PASS", output)
+        cases = (
+            (
+                head_ch09,
+                "HTML changed outside ?v= and the homepage link: " + blocked,
+            ),
+            (
+                head_visual,
+                "shared visual stamp: diff outside the allowlist: " + visual,
+            ),
+            (
+                head_index,
+                "HTML changed outside ?v= and the homepage link: " + index,
             ),
         )
         for head, needle in cases:
